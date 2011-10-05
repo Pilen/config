@@ -230,6 +230,7 @@
 
 (global-set-key (kbd "M-q") 'goto-match-paren)
 (global-set-key (kbd "M-Q") 'rainbow-delimiters-mode)
+(global-set-key (kbd "M-j") 'my-anything)
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |-           |=           |Backspace             |
 ;|            |              |            |            |            |            |            |            |            |            |            |            |            |                      |
@@ -237,7 +238,7 @@
 ;|            |              |            |            |            |            |            |            |            |            |            |            |            |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
-;|                   |goto-m-paren  |            |<del-wrd    |del-wrd>    |goto-line   |            |<-W         |^           |W->         |splt-w-vert |splt-w-hori |kill-buf    |               |
+;|                   |goto-m-paren  |            |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |splt-w-hori |kill-buf    |               |
 ;|                   |rainbow-delim |            |            |            |            |            |<-P         |/\          |P->         |            |            |kill-buf+win|               |
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
@@ -508,6 +509,29 @@
 ;;                                    MODES
 ;;
 ;;______________________________________________________________________________
+
+
+;;______________________________________________________________________________
+;;ANYTHING
+;;______________________________________________________________________________
+(require 'anything)
+(require 'anything-config)
+(require 'anything-match-plugin)
+;(require 'anything-config)
+(defun my-anything ()
+  (interactive)
+  (anything-other-buffer 
+   '(anything-c-source-buffers+
+     anything-c-source-recentf
+     anything-c-source-files-in-current-dir+
+     ;anything-c-source-locate
+     ;anything-c-source-man-pages
+     ;anything-c-source-info-libc
+     ;anything-c-source-emacs-commands
+     ;anything-c-source-emacs-functions
+     ;anything-c-source-emacs-variables
+     )
+                         "*my-anything*"))
 
 
 ;;______________________________________________________________________________
