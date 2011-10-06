@@ -116,7 +116,7 @@
 (global-set-key (kbd "M-e") 'next-line)
 ;; Move by word
 (global-set-key (kbd "M-l") 'geosoft-backward-word)
-(global-set-key (kbd "M-y") 'geosoft-forward-word)
+(global-set-key (kbd "M-y") 'forward-word)
 ;; Move by paragraph
 (global-set-key (kbd "M-L") 'backward-paragraph)
 (global-set-key (kbd "M-Y") 'forward-paragraph)
@@ -220,8 +220,8 @@
 
 (global-set-key (kbd "M-/") 'query-replace)
 (global-set-key (kbd "M-?") 'query-replace-regexp)
-(global-set-key (kbd "M-\\") 'delete-other-windows)
-(global-set-key (kbd "M-|") 'delete-window)
+(global-set-key (kbd "M-\\") 'delete-window)
+(global-set-key (kbd "M-|") 'delete-other-windowz)
 (global-set-key (kbd "M-;") 'split-window-vertically)
 (global-set-key (kbd "M-[") 'split-window-horizontally)
 (global-set-key (kbd "M-r") 'align-regex)
@@ -243,8 +243,8 @@
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
-;|                      |exe-command   |align-regex |<del-chr    |del-chr>    |kill-line   |>>|         |<-          |v           |->          |other-window|switch-t-buf|del-o-window|            |
-;|                      |exe-shell     |            |            |            |killwholline||<<         ||<-         |\/          |->|         |            |            |del-window  |            |
+;|                      |exe-command   |align-regex |<del-chr    |del-chr>    |kill-line   |>>|         |<-          |v           |->          |other-window|switch-t-buf|del-window  |            |
+;|                      |exe-shell     |            |            |            |killwholline||<<         ||<-         |\/          |->|         |            |            |del-o-window|            |
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
