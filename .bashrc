@@ -20,8 +20,8 @@ alias pong='ping google.dk'
 alias nano='nano -Simz'
 alias eduroam='sudo wpa_supplicant -B -D wired -i eth0 -c /root/bla.txt'
 alias eixt='exit'
-#alias net='sudo killall dhcpcd -w; sudo dhcpcd eth0'
-alias net='sudo dhcpcd -k; sudo dhcpcd eth0'
+alias net='sudo killall dhcpcd -w; sudo dhcpcd eth0'
+#alias net='sudo dhcpcd -k; sudo dhcpcd eth0'
 
 #PS1='[\u@\h \W]\$ '
 #if ["`id -u`" = 0]; then
