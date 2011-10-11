@@ -98,9 +98,12 @@
 (global-unset-key (kbd "M->")) ; end-of-buffer
 (global-unset-key (kbd "M-;")) ; comment-dwim
 (global-unset-key (kbd "M-:")) ; eval-expresseion
+(global-unset-key (kbd "M--"))
 
-
-
+(global-unset-key (kbd "M-<insert>"))
+(global-unset-key (kbd "M-<delete>"))
+(global-unset-key (kbd "M-<home>"))
+(global-unset-key (kbd "M-<end>"))
 
 
 
@@ -221,9 +224,9 @@
 (global-set-key (kbd "M-/") 'query-replace)
 (global-set-key (kbd "M-?") 'query-replace-regexp)
 (global-set-key (kbd "M-\\") 'delete-window)
-(global-set-key (kbd "M-|") 'delete-other-windowz)
-(global-set-key (kbd "M-;") 'split-window-vertically)
-(global-set-key (kbd "M-[") 'split-window-horizontally)
+(global-set-key (kbd "M-|") 'delete-other-windows)
+(global-set-key (kbd "M-:") 'split-window-vertically)
+(global-set-key (kbd "M-;") 'split-window-horizontally)
 (global-set-key (kbd "M-r") 'align-regex)
 (global-set-key (kbd "M-]") 'kill-buffer)
 (global-set-key (kbd "M-}") 'kill-buffer-and-window)
@@ -231,15 +234,23 @@
 (global-set-key (kbd "M-q") 'goto-match-paren)
 (global-set-key (kbd "M-Q") 'rainbow-delimiters-mode)
 (global-set-key (kbd "M-j") 'my-anything)
+
+(global-set-key (kbd "M-<insert>") 'linum-mode)
+(global-set-key (kbd "M-<end>") 'whitespace-mode)
+
+(global-set-key (kbd "M-<home>") '(lambda nil (interactive) (defaultface)))
+(global-set-key (kbd "M-+") '(lambda nil (interactive) (zoomableface)))
+(global-set-key (kbd "M-=") '(lambda nil (interactive) (zoom 1)))
+
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |-           |=           |Backspace             |
-;|            |              |            |            |            |            |            |            |            |            |            |            |            |                      |
+;|            |              |            |            |            |            |            |            |            |            |            |            |zoom        |                      |
 ;|~           |!             |@           |#           |$           |%           |^           |&           |*           |(           |)           |_           |+           |                      |
-;|            |              |            |            |            |            |            |            |            |            |            |            |            |                      |
+;|            |              |            |            |            |            |            |            |            |            |            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
-;|                   |goto-m-paren  |            |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |splt-w-hori |kill-buf    |               |
-;|                   |rainbow-delim |            |            |            |            |            |<-P         |/\          |P->         |            |            |kill-buf+win|               |
+;|                   |goto-m-paren  |            |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |            |kill-buf    |               |
+;|                   |rainbow-delim |            |            |            |            |            |<-P         |/\          |P->         |splt-w-hori |            |kill-buf+win|               |
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
@@ -260,31 +271,18 @@
 
 
 
+;____________________________________________________
+;|insert      |delete      |home        |end         |
+;|linum       |            |def-face    |whitespace-m|
+;|            |            |            |            |
+;|            |            |            |            |
+;|____________|____________|____________|____________|
 
 
 
 
 
 
-
-;;______________________________________________________________________________
-;;DEFAULT FONT
-;;______________________________________________________________________________
-(custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(display-battery-mode t)
- '(show-paren-mode t)
- '(tool-bar-mode nil))
-;(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
-; '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
 
 
 
@@ -304,6 +302,11 @@
  'trailing-whitespace nil
  :background "gray60")
 
+(column-number-mode t)
+(display-battery-mode t)
+(show-paren-mode t)
+(tool-bar-mode 0)
+(global-linum-mode t)
 
 ;;______________________________________________________________________________
 ;;Startup
@@ -311,9 +314,29 @@
 (setq inhibit-startup-message t)
 (defun display-startup-echo-area-message ()
   (message ""))
-(switch-to-buffer "blank")
+(find-file "~/.emacs")
+;(switch-to-buffer "blank")
 (kill-buffer "*scratch*")
 (kill-buffer "*Messages*")
+
+;;______________________________________________________________________________
+;;Font
+;;______________________________________________________________________________
+;(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+; '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
+
+;(set-face-attribute 'default nil :height 80)
+(custom-set-faces
+  ;; custom-set-faces was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "Schumacher" :family "Clean")))))
+
 ;;______________________________________________________________________________
 ;;Theme
 ;;______________________________________________________________________________
@@ -383,6 +406,20 @@
 ;(((((((((())))))))))
 
 (rainbow-delimiters-mode 1)
+
+
+;(show-paren-mode t)
+;(show-paren-delay 0)
+;(show-paren-style 'expression)
+;(set-face-background 'show-paren-match-face "#aaaaaa")
+;(set-face-attribute 'show-paren-match-face nil
+;                    :weight 'bold :underline nil : overline nil :slant 'normal)
+;(set-face-foreground 'show-paren-mismatch-face "red")
+;(set-face-attribute 'show-paren-mismatch-face nil
+;                    :weight 'bold :underline t :overline nil : slant 'normal)
+
+
+
 ;;______________________________________________________________________________
 ;;Console
 ;;______________________________________________________________________________
@@ -442,11 +479,6 @@
 
 
 ;;______________________________________________________________________________
-;;Font
-;;______________________________________________________________________________
-(set-face-attribute 'default nil :height 80)
-
-;;______________________________________________________________________________
 ;;Cursor
 ;;______________________________________________________________________________
 (setq default-cursor-type 'box)
@@ -457,14 +489,32 @@
 (ad-activate 'overwrite-mode)
 
 
+;;______________________________________________________________________________
+;;Highlights
+;;______________________________________________________________________________
 
+;(add-hook 'emacs-lisp-mode-hook
+;          (lambda ()
+;            (font-lock-add-keywords nil
+;                                    '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
+;(require 'whitespace)
+(setq whitespace-line-column 80)
+(setq whitespace-style '(face empty tabs lines-tail trailing))
+;(global-whitespace-mode t)
 
-
-
-
-
-
-
+;;______________________________________________________________________________
+;;DTRT-INDENT
+;;______________________________________________________________________________
+(add-hook 'c-mode-common-hook
+          (lambda()
+            (require 'dert-indent)
+            (dtrt-indent-mode t)))
+;;______________________________________________________________________________
+;;Save position between sessions
+;;______________________________________________________________________________
+(setq save-place-file "~/.emacs.d/saveplace")
+(setq-default save-place t)
+(require 'saveplace)
 
 
 
@@ -544,6 +594,15 @@
 ;;______________________________________________________________________________
 (setq flyspell-issue-welcome-flag nil)
 
+
+;;______________________________________________________________________________
+;;FULL-ACK
+;;______________________________________________________________________________
+(autoload 'ack-same "full-ack" nil t)
+(autoload 'ack "full-ack" nil t)
+(autoload 'ack-find-same-file "full-ack" nil t)
+(autoload 'ack-find-file "full-ack" nil t)
+
 ;;______________________________________________________________________________
 ;;HIPPIE_EXPAND
 ;;______________________________________________________________________________
@@ -588,7 +647,8 @@
 ;;SML
 ;;______________________________________________________________________________
 ;; Aktiver sml-mode
-;(require 'sml-mode)
+(add-to-list 'load-path "~/.emacs.d/sml-mode-4.1/")
+(require 'sml-mode)
 (setq auto-mode-alist (cons '("\\.sml$" . sml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.sig$" . sml-mode) auto-mode-alist))
 (add-hook 'sml-mode-hook 
@@ -598,12 +658,6 @@
 	    (setq sml-indent-level 2)        ; conserve on horizontal space
 	    (setq words-include-escape t)    ; \ loses word break status
 	    (setq indent-tabs-mode nil)))    ; never ever indent with tabs
-(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "Schumacher" :family "Clean")))))
 
 ;;______________________________________________________________________________
 ;;TabBar
@@ -758,4 +812,30 @@ in that cyclic order."
   (interactive "p")
   (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
         ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
-        (t (self-insert-command (or arg 1)))))
+        ;(t (self-insert-command (or arg 1)))))
+        ))
+
+
+
+;;______________________________________________________________________________
+;;ZOOM
+;;______________________________________________________________________________
+
+(defun defaultface ()
+  (interactive)
+  (custom-set-faces
+   '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "Schumacher" :family "Clean")))))
+)
+
+
+(defun zoomableface ()
+  (custom-set-faces
+   '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 80 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
+)
+
+(defun zoom (n)
+  "With positive N, increase the font size, otherwire decrease it"
+  (set-face-attribute 'default (selected-frame) :height
+                      (+ (face-attribute 'default :height) (* (if (> n 0) 1 -1) 10))
+                     ;(+ (face-attribute 'default :height) 10)))
+))
