@@ -241,7 +241,7 @@
 (global-set-key (kbd "M-<home>") '(lambda nil (interactive) (defaultface)))
 (global-set-key (kbd "M-+") '(lambda nil (interactive) (zoomableface)))
 (global-set-key (kbd "M-=") '(lambda nil (interactive) (zoom 1)))
-
+(global-set-key (kbd "M-<delete>") 'auto-indent-mode)
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |-           |=           |Backspace             |
 ;|            |              |            |            |            |            |            |            |            |            |            |            |zoom        |                      |
@@ -273,7 +273,7 @@
 
 ;____________________________________________________
 ;|insert      |delete      |home        |end         |
-;|linum       |            |def-face    |whitespace-m|
+;|linum       |auto-indent |def-face    |whitespace-m|
 ;|            |            |            |            |
 ;|            |            |            |            |
 ;|____________|____________|____________|____________|
@@ -460,6 +460,10 @@
       (function (lambda ()
                   (setq indent-tabs-mode nil)
                   (setq c-indent-level 4))))
+;;______________________________________________________________________________
+;;Auto-indent
+;;______________________________________________________________________________
+(require 'auto-indent)
 
 ;;______________________________________________________________________________
 ;;Backups
