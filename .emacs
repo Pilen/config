@@ -242,6 +242,9 @@
 (global-set-key (kbd "M-+") '(lambda nil (interactive) (zoomableface)))
 (global-set-key (kbd "M-=") '(lambda nil (interactive) (zoom 1)))
 (global-set-key (kbd "M-<delete>") 'auto-indent-mode)
+
+(global-set-key (kbd "M-[") 'winner-undo)
+(global-set-key (kbd "M-{") 'winner-redo)
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |-           |=           |Backspace             |
 ;|            |              |            |            |            |            |            |            |            |            |            |            |zoom        |                      |
@@ -249,8 +252,8 @@
 ;|            |              |            |            |            |            |            |            |            |            |            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
-;|                   |goto-m-paren  |            |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |            |kill-buf    |               |
-;|                   |rainbow-delim |            |            |            |            |            |<-P         |/\          |P->         |splt-w-hori |            |kill-buf+win|               |
+;|                   |goto-m-paren  |            |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |winner-undo |kill-buf    |               |
+;|                   |rainbow-delim |            |            |            |            |            |<-P         |/\          |P->         |splt-w-hori |winner-redo |kill-buf+win|               |
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
@@ -307,7 +310,7 @@
 (show-paren-mode t)
 (tool-bar-mode 0)
 (global-linum-mode t)
-
+(winner-mode 1)
 ;;______________________________________________________________________________
 ;;Startup
 ;;______________________________________________________________________________
