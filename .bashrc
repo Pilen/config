@@ -29,8 +29,8 @@ alias pip='curl http://ifconfig.me/'
 #if ["`id -u`" = 0]; then
 #    PS1="#\[\033[s\]\[\033[1;\$((COLUMNS-4))f\]\$(date +%H:%M)\[\033[u\]"
 #else
-     PS1="$\[\033[s\]\[\033[1;\$((COLUMNS-4))f\]\$(date +%H:%M)\[\033[u\]"
-#     PS1="$"
+    PS1="$\[\033[s\]\[\033[1;\$((COLUMNS-4))f\]\$(date +%H:%M)\[\033[u\]"
+#    PS1="$"
 #fi
 
 if [[ -z $DISPLAY && $(tty) = /dev/tty1 ]]; then

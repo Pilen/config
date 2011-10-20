@@ -7,6 +7,7 @@ git add ~/.emacs;
 git add ~/.nanorc;
 git add ~/pushconfig;
 git add ~/.xinitrc;
+git add ~/.zshrc;
 
 git commit -m "Configuration updated";
 git push
