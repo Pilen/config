@@ -469,6 +469,18 @@
 (require 'auto-indent)
 
 ;;______________________________________________________________________________
+;;Auto-save
+;;______________________________________________________________________________
+(setq auto-save-default 1)
+(setq auto-save-visited-file-name nil) ;;Dont save to current file
+(setq delete-auto-save-files 1) ;;Delete autosaves on save
+(setq check-auto-save 1) ;;check wether autosave is the most recent on revert-buffer
+;(require 'auto-save)
+
+(setq backup-by-copying t)
+(setq auto-save-list-file-prefix "~/Dropbox/emacs/autosaves/")
+
+;;______________________________________________________________________________
 ;;Backups
 ;;______________________________________________________________________________
 (setq make-backup-files t)
