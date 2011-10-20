@@ -1,5 +1,7 @@
 # ! /bin/sh
 
+#This is basicly a list of all the files i want to keep track of.
+
 git add ~/.emacs.d/;
 git add ~/.xmonad/xmonad.hs;
 git add ~/.bashrc;
