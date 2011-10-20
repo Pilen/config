@@ -52,3 +52,4 @@ alias net='sudo killall dhcpcd -w; sudo dhcpcd eth0;dropbox stop; dropbox start;
 #alias net='sudo dhcpcd -k; sudo dhcpcd eth0'
 alias gcc32='/usr/bin/x86_64-unknown-linux-gnu-gcc'
 alias pip='curl http://ifconfig.me/'
+alias push='~/pushconfig'
