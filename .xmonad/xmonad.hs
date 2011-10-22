@@ -262,7 +262,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $ [
   
 main = xmonad $ defaultConfig {
   -- Simple
-  terminal         = "urxvt -fade 50 -fg \"#bac8ae\" -bg \"#220802\"",
+  terminal         = "urxvtc",
   workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
   -- Visuals
   borderWidth        = 1,

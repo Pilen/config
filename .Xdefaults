@@ -1,0 +1,98 @@
+! ================
+! Emacs
+! ================
+!Emacs.toolBar: False
+!Emacs.Foreground: wheat
+!Emacs.Background: darkslategrey
+!Emacs.menu.attributeForeground: wheat
+!Emacs.menu.attributeBackground: darkslategrey
+!Emacs.cursorColor: Darkgrey
+!! modeline
+!Emacs.mode-line.attributeForeground: white
+!Emacs.mode-line.attributeBackground: grey15
+!Emacs.modeline.attributeForeground: white
+!Emacs.modeline.attributeBackground: grey15
+!! selection
+!Emacs.region.attributeBackground: lightblue
+!Emacs.region.attributeForeground: darkslategrey
+!Emacs.primary-selection.attributeBackground: blue
+!Emacs.secondary-selection.attributeBackground: darkslateblue
+!Emacs.show-paren-match-face.attributeBackground: Aquamarine
+!Emacs.show-paren-match-face.attributeForeground: SlateBlue
+!Emacs.show-paren-mismatch-face.attributeBackground: Red
+!Emacs.show-paren-mismatch-face.attributeForeground: White
+!Emacs.title: emacs
+
+
+!emacs.font:             6x10
+!emacs.geometry:         80x40+360+215
+!emacs.borderColor:      VioletRed
+!emacs.cursorColor:      SkyBlue
+!emacs.pointerColor:     Yellow
+!emacs.borderWidth:      1
+!emacs.softButtons:      on
+!emacs.foreground:       PaleGreen
+!emacs.background:       DarkSlateGrey
+!emacs.bitmapicon:       on
+!emacs.iconName:         Emacs
+
+
+
+!Emacs*background: ivory
+!Emacs*foreground: MidnightBlue
+
+!Emacs.modeline*attributeForeground:     MidnightBlue
+!Emacs.modeline*attributeBackground:     Bisque
+
+!Emacs.text-cursor*attributeBackground:  Red3
+!Emacs.pointer*attributeForeground:      Red3
+!Emacs.pointer*attributeBackground:      Red3
+!Emacs*menubar*Foreground:               MidnightBlue
+!Emacs*menubar*Background:               Bisque1
+!Emacs*popup*Foreground:                 MidnightBlue
+!Emacs*popup*Background:                 Bisque1
+
+URxvt.termName: rxvt
+URxvt.transparent: false
+URxvt.inheritPixmap: false
+URxvt.scrollBar: true
+URxvt.urlLauncher: chromium
+URxvt.cursorBlink: true
+URxvt.geometry: 93.26
+URxvt.fading: 50
+!urxvt.font: xft: Bitstream Vera Sans Mono:pixelsize=10
+!urxvt.boldfont xft:Bitstream Vera Sans Mono:Bold:pixelsize=10
+urxvt.depth:32
+urxvt.background: #220802
+URxvt.foreground: #bac8ae
+!URxvt.tintColor: #262626
+URxvt.borderLess: false
+!URxvt.borderColor: #888888
+
+!*foreground:       #bac8ae
+!*background:       #220802
+!black
+*color0:        rgb:20/20/20
+*color8:        rgb:75/77/73
+!!red
+*color1:        rgb:cc/00/00
+*color9:        rgb:ef/29/29
+!!green
+*color2:        rgb:4e/9a/06
+*color10:       rgb:8a/e2/34
+!!brown/yellow
+*color3:        rgb:c4/a0/00
+*color11:       rgb:fc/e9/4f
+!!blue
+*color4:        rgb:34/65/a4
+*color12:       rgb:72/9f/cf
+!!magenta
+*color5:        rgb:75/50/7b
+*color13:       rgb:ad/7f/a8
+!!cyan
+*color6:        rgb:06/98/9a
+*color14:       rgb:34/e2/e2
+!!white
+*color7:        rgb:d3/d7/cf
+*color15:       rgb:ee/ee/ec
+!terminal         = "urxvt -fade 50 -fg \"#bac8ae\" -bg \"#220802\"",

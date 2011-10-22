@@ -8,6 +8,7 @@ git add ~/.bashrc;
 git add ~/.emacs;
 git add ~/.nanorc;
 git add ~/pushconfig;
+git add ~/.Xdefaults;
 git add ~/.xinitrc;
 git add ~/.zshrc;
 
