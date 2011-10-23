@@ -1,0 +1,17 @@
+# ! /bin/sh
+
+#This is basicly a list of all the files i want to keep track of.
+
+git add ~/.emacs.d/;
+git add ~/.xmonad/xmonad.hs;
+git add ~/.bashrc;
+git add ~/.emacs;
+git add ~/.nanorc;
+git add ~/.pushconfig;
+git add ~/.Xdefaults;
+git add ~/.xinitrc;
+git add ~/.zshrc;
+git add ~/.aliases;
+
+git commit -m "Configuration updated";
+git push
