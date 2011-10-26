@@ -220,9 +220,9 @@
 ;; turn on minor mode ergoemacs-mode
 ;;(ergoemacs-mode 1)
 
-
-(global-set-key (kbd "M-/") 'query-replace)
-(global-set-key (kbd "M-?") 'query-replace-regexp)
+(global-set-key (kbd "M-/") 'iedit-mode)
+(global-set-key (kbd "M-?") 'query-replace)
+;;(global-set-key (kbd "M-?") 'query-replace-regexp)
 (global-set-key (kbd "M-\\") 'delete-window)
 (global-set-key (kbd "M-|") 'delete-other-windows)
 (global-set-key (kbd "M-:") 'split-window-vertically)
@@ -252,7 +252,7 @@
 ;|            |              |            |            |            |            |            |            |            |            |            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
-;|                   |goto-m-paren  |            |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |winner-undo |kill-buf    |               |
+;|                   |goto-m-paren  |copy-region |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |winner-undo |kill-buf    |               |
 ;|                   |rainbow-delim |            |            |            |            |            |<-P         |/\          |P->         |splt-w-hori |winner-redo |kill-buf+win|               |
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
@@ -262,8 +262,8 @@
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
-;|                |              |undo        |            |            |            |toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |query-replac|                               |
-;|                |              |redo        |            |            |            |            |            |isearch-back|            |            |qry-rpl-regx|                               |
+;|                |              |undo        |            |            |            |toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |iedit       |                               |
+;|                |              |redo        |            |            |            |            |            |isearch-back|            |            |query-replac|                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
@@ -535,7 +535,10 @@
 (setq-default save-place t)
 (require 'saveplace)
 
-
+;;______________________________________________________________________________
+;;Iedit
+;;______________________________________________________________________________
+(require 'iedit)
 
 
 
