@@ -58,10 +58,12 @@ Emacs.scrollBarWidth: 8
 
 
 URxvt.termName: rxvt
+URxvt.perl-ext-common: default,matcher,tabbed
 URxvt.transparent: false
 URxvt.inheritPixmap: false
 URxvt.scrollBar: true
 URxvt.urlLauncher: chromium
+URxvt.matcher.button: 1
 URxvt.cursorBlink: true
 URxvt.geometry: 93.26
 URxvt.fading: 50
@@ -101,3 +103,8 @@ URxvt.borderLess: false
 *color7:        rgb:d3/d7/cf
 *color15:       rgb:ee/ee/ec
 !terminal         = "urxvt -fade 50 -fg \"#bac8ae\" -bg \"#220802\"",
+
+URxvt.tabbed.tabbar-fg: 4
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 12
+URxvt.tabbed.tab-bg: 0
