@@ -19,6 +19,7 @@ setopt completealiases
 autoload U promptinit
 promptinit
 
+export PATH="${PATH}:/opt/mosml/bin"
 autoload -U colors && colors
 
 #if [[$(hostname) = *joker*]]; then

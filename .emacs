@@ -347,8 +347,12 @@
 (set-background-color "grey30")
 (set-foreground-color "honeydew1")
 
+;(set-face-background 'menubar "slate gray")
+;(set-face-attribute 'menubar nil :box nil)
 
 
+(set-face-background 'modeline "slate gray")
+(set-face-attribute 'mode-line nil :box nil)
 ;(set-background-color "black")
 ;(set-face-background 'default "black")
 ;(set-face-background 'region "black")

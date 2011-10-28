@@ -52,6 +52,11 @@
 !Emacs*popup*Foreground:                 MidnightBlue
 !Emacs*popup*Background:                 Bisque1
 
+
+!Emacs.menuBar: off
+Emacs.scrollBarWidth: 8
+
+
 URxvt.termName: rxvt
 URxvt.transparent: false
 URxvt.inheritPixmap: false
