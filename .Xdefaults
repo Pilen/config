@@ -58,7 +58,7 @@ Emacs.scrollBarWidth: 8
 
 
 URxvt.termName: rxvt
-URxvt.perl-ext-common: default,matcher,tabbed
+URxvt.perl-ext-common: default,matcher,tabbedex,my-clock
 URxvt.transparent: false
 URxvt.inheritPixmap: false
 URxvt.scrollBar: true
@@ -108,3 +108,7 @@ URxvt.tabbed.tabbar-fg: 4
 URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg: 12
 URxvt.tabbed.tab-bg: 0
+
+URxvt.tabbed.new-button: false
+URxvt.tabbed.title: false
+URxvt.tabbed.autohide: true

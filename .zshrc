@@ -25,7 +25,7 @@ autoload -U colors && colors
 #if [[$(hostname) = *joker*]]; then
 PROMPT="%(!.#.$)"
 #PROMPT="$(tput sc; tput cup 0 $(($(tput cols)-5));date +%H:%M;tput rc)%(!.#.$)"
-RPROMPT="%T"
+#RPROMPT="%T"
 #else
 #PROMT="[%n@%m:%C]$"
 #fi
