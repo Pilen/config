@@ -616,6 +616,14 @@
 (autoload 'artist-mode "artist" "Enter artist-mode" t)
 
 ;;______________________________________________________________________________
+;;Babel
+;;______________________________________________________________________________
+(autoload 'babel "babel" nil t)
+(autoload 'babel-region "babel" nil t)
+(autoload 'babel-as-string "babel" nil t)
+(autoload 'babel-buffer "babel" nil t)
+
+;;______________________________________________________________________________
 ;;Flyspell
 ;;______________________________________________________________________________
 (setq flyspell-issue-welcome-flag nil)
