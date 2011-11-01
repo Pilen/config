@@ -678,6 +678,29 @@
 (setq TeX-save-query nil)
 
 ;;______________________________________________________________________________
+;;Mathematica
+;;______________________________________________________________________________
+(autoload 'math "math" "Starts Mathematica" t)
+;(autoload 'math-mode "math" "Mode for editing Mathematica" t)
+;(setq auto-mode-alist (cons '("\\.m\\'".math-mode) auto-mode-alist))
+
+;;______________________________________________________________________________
+;;Sage
+;;______________________________________________________________________________
+(add-to-list 'load-path (expand-file-name "/opt/sage/data/emacs"))
+(require 'sage "sage")
+(setq sage-command "/opt/sage/sage")
+;; If you want sage-view to typeset all your output and have plot()
+;; commands inline, uncomment the following line and configure sage-view:
+;; (require 'sage-view "sage-view")
+;; (add-hook 'sage-startup-hook 'sage-view)
+;; You can use commands like
+;; (add-hook 'sage-startup-hook 'sage-view
+;; 'sage-view-disable-inline-output 'sage-view-disable-inline-plots)
+;; to have some combination of features.  In future, the customize interface
+;; will make this simpler... hint, hint!
+
+;;______________________________________________________________________________
 ;;SML
 ;;______________________________________________________________________________
 ;; Aktiver sml-mode
@@ -838,7 +861,7 @@ in that cyclic order."
   )
 
 ;;______________________________________________________________________________
-;;Jump to mathcing parethesis
+;;Jump to matching parethesis
 ;;______________________________________________________________________________
 
 (defun goto-match-paren (arg)
