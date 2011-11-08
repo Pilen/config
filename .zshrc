@@ -30,6 +30,7 @@ PROMPT="%(!.#.$)"
 #PROMT="[%n@%m:%C]$"
 #fi
 
+export SAGE_BROWSER="/usr/bin/feh -.qB checks"
 
 source ~/.aliases
 
