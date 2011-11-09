@@ -108,6 +108,19 @@
 
 
 
+(global-unset-key (kbd "<f1>"))
+(global-unset-key (kbd "<f2>"))
+(global-unset-key (kbd "<f3>"))
+(global-unset-key (kbd "<f4>"))
+(global-unset-key (kbd "<f5>"))
+(global-unset-key (kbd "<f6>"))
+(global-unset-key (kbd "<f7>"))
+(global-unset-key (kbd "<f8>"))
+(global-unset-key (kbd "<f9>"))
+(global-unset-key (kbd "<f10>"))
+(global-unset-key (kbd "<f11>"))
+(global-unset-key (kbd "<f12>"))
+
 
 
 
@@ -245,6 +258,21 @@
 
 (global-set-key (kbd "M-[") 'winner-undo)
 (global-set-key (kbd "M-{") 'winner-redo)
+(global-set-key (kbd "M--") 'my-flymake-show-next-error)
+(global-set-key (kbd "M-_") 'flymake-mode)
+
+(global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
+(global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
+(global-set-key (kbd "<f11>") 'LaTeX-close-environment)
+(global-set-key (kbd "<f12>") 'preview-buffer)
+(global-set-key (kbd "<M-f12>") 'preview-clearout-buffer)
+
+; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
+;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
+;|          | |          |          |          |          | |          |          |          |          | |          |          |prev-clear|prev-latex||linum     |autoindent|def-face  |whitespc-m|
+;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
+;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
+;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |-           |=           |Backspace             |
 ;|            |              |            |            |            |            |            |            |            |            |            |            |zoom        |                      |
@@ -271,17 +299,6 @@
 ;|            |                  |           |           |                                                                  |            |            |            |                               |
 ;|            |                  |           |           |                                                                  |            |            |            |                               |
 ;|____________|__________________|___________|___________|__________________________________________________________________|____________|____________|____________|_______________________________|
-
-
-
-;____________________________________________________
-;|insert      |delete      |home        |end         |
-;|linum       |auto-indent |def-face    |whitespace-m|
-;|            |            |            |            |
-;|            |            |            |            |
-;|____________|____________|____________|____________|
-
-
 
 
 
@@ -313,6 +330,8 @@
 (tool-bar-mode 0)
 (global-linum-mode t)
 (winner-mode 1)
+
+(setq temporary-file-directory "/tmp/")
 
 (require 'follow-mouse)
 (turn-on-follow-mouse)
@@ -571,31 +590,6 @@
 ;;______________________________________________________________________________
 (require 'iedit)
 
-;;______________________________________________________________________________
-;;Flymake
-;;______________________________________________________________________________
-(require 'flymake)
-(require 'rfringe)
-(require 'flymake-cursor)
-
-;; Flymake for LaTeX
-(defun flymake-get-tex-args (file-name)
-  (list "chktex" (list "-g0" "-r" "-l" (expand-file-name "~/.chktexrc") "-I" "-q" "-v0" file-name)))
-(push
- '("^\\(\.+\.tex\\):\\([0-9+\\):\\([0-9]+\\):\\(.+\\))"
-   1 2 3 4) flymake-err-line-patterns)
-
-;; Underline errors instead of highlight
-(custom-set-faces
- '(flymake-errline ((((class color)) (:underline "red"))))
- '(flymake-warnline ((((class color)) (:underline "yellow")))))
-
-;; Quickly show next err-menu
-(defun my-flymake-show-next-error()
-  (interactive)
-  (flymake-goto-next-error)
-  (flymake-display-err-menu-for-current-line)
-)
 
 
 
@@ -675,6 +669,37 @@
 (autoload 'babel-buffer "babel" nil t)
 
 ;;______________________________________________________________________________
+;;Flymake
+;;______________________________________________________________________________
+(require 'flymake)
+(require 'rfringe)
+(require 'flymake-cursor)
+
+;; Flymake for LaTeX
+;(defun flymake-get-tex-args (file-name)
+;  (list "chktex" (list "-g0" "-r" "-l" (expand-file-name "~/.chktexrc") "-I" "-q" "-v0" file-name)))
+;(push
+; '("^\\(\.+\.tex\\):\\([0-9+\\):\\([0-9]+\\):\\(.+\\))"
+;   1 2 3 4) flymake-err-line-patterns)
+(defun flymake-get-tex-ags (file-name)
+  (list "pdflatex" (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
+(push
+ '("^\\(\.+\.tex\\):\\([0-9+\\):\\([0-9]+\\):\\(.+\\))"
+   1 2 3 4) flymake-err-line-patterns)
+
+;; Underline errors instead of highlight
+(custom-set-faces
+ '(flymake-errline ((((class color)) (:underline "red"))))
+ '(flymake-warnline ((((class color)) (:underline "yellow")))))
+
+;; Quickly show next err-menu
+(defun my-flymake-show-next-error()
+  (interactive)
+  (flymake-goto-next-error)
+  (flymake-display-err-menu-for-current-line)
+)
+
+;;______________________________________________________________________________
 ;;Flyspell
 ;;______________________________________________________________________________
 (setq flyspell-issue-welcome-flag nil)
@@ -718,7 +743,7 @@
 (require 'jabber-autoloads)
 
 ;;______________________________________________________________________________
-;;LaTeX
+;;Latex
 ;;______________________________________________________________________________
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 (load "auctex.el" nil t t)
@@ -727,6 +752,21 @@
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq TeX-save-query nil)
+
+(setq TeX-fold-env-spec-list t)
+(setq TeX-fold-macro-spec-list t)
+(setq TeX-fold-math-spec-list t)
+
+(setq preview-auto-cache-preamble t)
+
+;(setq 
+
+;(defun toogle-preview-buffer ()
+;  (interactive)
+;  (let ((cmd (if preview
+;                 'preview-clearout-buffer
+;               'preview-buffer)))
+;(call-interactively cmd)
 
 ;;______________________________________________________________________________
 ;;Mathematica
