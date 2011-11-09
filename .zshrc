@@ -22,8 +22,16 @@ promptinit
 export PATH="${PATH}:/opt/mosml/bin"
 autoload -U colors && colors
 
-#if [[$(hostname) = *joker*]]; then
-PROMPT="%(!.#.$)"
+#if [[$hostname = *joker*]]; then
+PROMPT="";
+if [[ "$HOST" == joker ]]; then
+    PROMPT="%(!.#.$)"
+    RPROMPT="%3~";
+else
+    PROMPT="%n@%m%(!.#.$)"
+    RPROMPT="%3~";
+fi
+
 #PROMPT="$(tput sc; tput cup 0 $(($(tput cols)-5));date +%H:%M;tput rc)%(!.#.$)"
 #RPROMPT="%T"
 #else
@@ -34,6 +42,6 @@ export SAGE_BROWSER="/usr/bin/feh -.qB checks"
 
 source ~/.aliases
 
-if [[ -z $DISPLAY && $(tty) = /dev/tty1 ]]; then
+if [[ -z $DISPLAY && $(tty) -eq /dev/tty1 ]]; then
     exec startx
 fi

@@ -54,7 +54,7 @@
 
 
 !Emacs.menuBar: off
-Emacs.scrollBarWidth: 8
+Emacs.scrollBarWidth: 12
 
 
 URxvt.termName: rxvt

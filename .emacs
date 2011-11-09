@@ -3,10 +3,10 @@
 ;;______________________________________________________________________________
 
 ;; open keyboard shortcut image with F8 key
-(global-set-key (kbd "<f8>")
-  (lambda ()
-    (interactive)
-    (find-file "~/.emacs.d/ergonomic_emacs_layout_qwerty_5.3.4.png")))
+;(global-set-key (kbd "<f8>")
+;  (lambda ()
+;    (interactive)
+;    (find-file "~/.emacs.d/ergonomic_emacs_layout_qwerty_5.3.4.png")))
 
 ;; kicking the habit
 (global-unset-key (kbd "C-b")) ; backward-char
@@ -293,6 +293,8 @@
 ;;______________________________________________________________________________
 ;;Settings
 ;;______________________________________________________________________________
+(add-to-list 'load-path "~/.emacs.d/")
+
 (setq inhibit-startup-message t)
 (setq default-frame-alist (append (list
   '(width  . 80)  ; Width set to 80 characters
@@ -311,6 +313,10 @@
 (tool-bar-mode 0)
 (global-linum-mode t)
 (winner-mode 1)
+
+(require 'follow-mouse)
+(turn-on-follow-mouse)
+(setq follow-mouse-deselect-active-minibuffer nil)
 ;;______________________________________________________________________________
 ;;Startup
 ;;______________________________________________________________________________
@@ -321,6 +327,28 @@
 ;(switch-to-buffer "blank")
 (kill-buffer "*scratch*")
 (kill-buffer "*Messages*")
+
+;;______________________________________________________________________________
+;;Clock
+;;______________________________________________________________________________
+
+;(setq display-time-day-and-date t
+;      display-time-24hr-format t)
+;(setq display-time-format 1)
+;(setq display-time-24hr-format t)
+
+(defface display-time-face
+  '((((type x w32 mac))
+     (:foreground "honeydew1")); :inherit bold))
+    (((type tty))
+     (:foreground "blue")))
+  "Face used to display the time in the mode line.")
+
+(setq display-time-string-forms
+      '((propertize (concat " " 24-hours ":" minutes " ")
+                    'face 'display-time-face)))
+
+(display-time)
 
 ;;______________________________________________________________________________
 ;;Font
@@ -366,7 +394,6 @@
 ;;______________________________________________________________________________
 ;;Rainbow delimiters
 ;;______________________________________________________________________________
-(add-to-list 'load-path "~/.emacs.d/")
 (require 'rainbow-delimiters)
 ;;(require 'color-theme-tomorrow)
 ;;(setq-default frame-background-mode 'dark)
@@ -689,8 +716,9 @@
 ;;______________________________________________________________________________
 (require 'help-mode)
 (add-to-list 'load-path (expand-file-name "/opt/sage/data/emacs"))
-(require 'sage)
-(require 'sage-view)
+(require 'sage "sage")
+(setq sage-command "/opt/sage/sage")
+(require 'sage-view "sage-view")
 (add-hook 'sage-startup-hook 'sage-view 'sage-view-disable-inline-output)
 
 ;;______________________________________________________________________________
