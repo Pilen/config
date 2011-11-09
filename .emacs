@@ -571,7 +571,31 @@
 ;;______________________________________________________________________________
 (require 'iedit)
 
+;;______________________________________________________________________________
+;;Flymake
+;;______________________________________________________________________________
+(require 'flymake)
+(require 'rfringe)
+(require 'flymake-cursor)
 
+;; Flymake for LaTeX
+(defun flymake-get-tex-args (file-name)
+  (list "chktex" (list "-g0" "-r" "-l" (expand-file-name "~/.chktexrc") "-I" "-q" "-v0" file-name)))
+(push
+ '("^\\(\.+\.tex\\):\\([0-9+\\):\\([0-9]+\\):\\(.+\\))"
+   1 2 3 4) flymake-err-line-patterns)
+
+;; Underline errors instead of highlight
+(custom-set-faces
+ '(flymake-errline ((((class color)) (:underline "red"))))
+ '(flymake-warnline ((((class color)) (:underline "yellow")))))
+
+;; Quickly show next err-menu
+(defun my-flymake-show-next-error()
+  (interactive)
+  (flymake-goto-next-error)
+  (flymake-display-err-menu-for-current-line)
+)
 
 
 
