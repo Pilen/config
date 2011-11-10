@@ -1,5 +1,12 @@
 ;;______________________________________________________________________________
-;;SHORTCUTS
+;;
+;;
+;;                                 Keybindings
+;;
+;;______________________________________________________________________________
+
+;;______________________________________________________________________________
+;;UNBIND
 ;;______________________________________________________________________________
 
 ;; open keyboard shortcut image with F8 key
@@ -7,6 +14,8 @@
 ;  (lambda ()
 ;    (interactive)
 ;    (find-file "~/.emacs.d/ergonomic_emacs_layout_qwerty_5.3.4.png")))
+
+
 
 ;; kicking the habit
 (global-unset-key (kbd "C-b")) ; backward-char
@@ -100,6 +109,8 @@
 (global-unset-key (kbd "M-:")) ; eval-expresseion
 (global-unset-key (kbd "M--"))
 
+(global-unset-key (kbd "M-`"))
+(global-unset-key (kbd "M-~"))
 (global-unset-key (kbd "M-<insert>"))
 (global-unset-key (kbd "M-<delete>"))
 (global-unset-key (kbd "M-<home>"))
@@ -123,6 +134,9 @@
 
 
 
+;;______________________________________________________________________________
+;;Global Bindings
+;;______________________________________________________________________________
 
 ;;;; CURSOR MOVEMENTS
 ;; Single char cursor movement
@@ -134,14 +148,18 @@
 (global-set-key (kbd "M-l") 'geosoft-backward-word)
 (global-set-key (kbd "M-y") 'forward-word)
 ;; Move by paragraph
-(global-set-key (kbd "M-L") 'backward-paragraph)
-(global-set-key (kbd "M-Y") 'forward-paragraph)
+;(global-set-key (kbd "M-L") 'backward-paragraph)
+;(global-set-key (kbd "M-Y") 'forward-paragraph)
+(global-set-key (kbd "M-L") 'pager-row-up)
+(global-set-key (kbd "M-Y") 'pager-row-down)
 ;; Move to beginning/ending of line
 (global-set-key (kbd "M-N") 'move-beginning-of-line)
 (global-set-key (kbd "M-I") 'move-end-of-line)
 ;; Move by screen (page up/down)
-(global-set-key (kbd "M-U") 'scroll-down)
-(global-set-key (kbd "M-E") 'scroll-up)
+;(global-set-key (kbd "M-U") 'scroll-down)
+;(global-set-key (kbd "M-E") 'scroll-up)
+(global-set-key (kbd "M-U") 'pager-page-up)
+(global-set-key (kbd "M-E") 'pager-page-down)
 ;; Move to beginning/ending of file
 (global-set-key (kbd "M-H") 'beginning-of-buffer)
 (global-set-key (kbd "M-h") 'end-of-buffer)
@@ -188,7 +206,7 @@
 ;; Mark point
 (global-set-key (kbd "C-SPC") 'set-mark-command)
 (global-set-key (kbd "M-a") 'execute-extended-command)
-(global-set-key (kbd "M-A") 'shell-command)
+(global-set-key (kbd "M-A") 'shell-toggle-cd)
 
 ;;;; WINDOW SPLITTING
 ;(global-set-key (kbd "M-r") 'move-cursor-next-pane)
@@ -199,21 +217,35 @@
 ;(global-set-key (kbd "M-`") 'switch-to-next-frame)
 
 ;(global-set-key (kbd "M-8") 'extend-selection)
-;(Global-set-key (kbd "M-*") 'select-text-in-quote)
+;(global-set-key (kbd "M-*") 'select-text-in-quote)
 
 
 
 
 
 
+(global-set-key (kbd "M-<up>") 'windmove-up)
+(global-set-key (kbd "M-<down>") 'windmove-down)
+(global-set-key (kbd "M-<right>") 'windmove-right)
+(global-set-key (kbd "M-<left>") 'windmove-left)
+(global-set-key (kbd "S-<up>") 'buf-move-up)
+(global-set-key (kbd "S-<down>") 'buf-move-down)
+(global-set-key (kbd "S-<right>") 'buf-move-right)
+(global-set-key (kbd "S-<left>") 'buf-move-left)
+(global-set-key (kbd "C-<up>") 'tiling-tile-up)
+(global-set-key (kbd "C-<down>") 'tiling-tile-down)
+(global-set-key (kbd "C-<right>") 'tiling-tile-right)
+(global-set-key (kbd "C-<left>") 'tiling-tile-left)
 
 
 (global-set-key (kbd "M-m") 'isearch-forward)
-(global-set-key (kbd "M-M") 'isearch-backward)
+
 
 (global-set-key (kbd "M-SPC") 'hippie-expand)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "M-'") 'switch-to-buffer)
+(global-set-key (kbd "M-O") 'tiling-cycle)
+(global-set-key (kbd "M-'") 'win-switch-dispatch)
+;(global-set-key (kbd "M-'") 'switch-to-buffer)
 ;(global-set-key (kbd "M-,") 'previous-buffer)
 ;(global-set-key (kbd "M-.") 'next-buffer)
 (global-set-key (kbd "M-g") 'goto-line)
@@ -244,12 +276,14 @@
 (global-set-key (kbd "M-]") 'kill-buffer)
 (global-set-key (kbd "M-}") 'kill-buffer-and-window)
 
-(global-set-key (kbd "M-q") 'goto-match-paren)
-(global-set-key (kbd "M-Q") 'rainbow-delimiters-mode)
+;(global-set-key (kbd "M-q") 'goto-match-paren)
+;(global-set-key (kbd "M-Q") 'rainbow-delimiters-mode)
 (global-set-key (kbd "M-j") 'my-anything)
+(global-set-key (kbd "M-J") 'find-file-at-point)
 
 (global-set-key (kbd "M-<insert>") 'linum-mode)
 (global-set-key (kbd "M-<end>") 'whitespace-mode)
+(global-set-key (kbd "M-S-<end>") 'rainbow-delimiters-mode)
 
 (global-set-key (kbd "M-<home>") '(lambda nil (interactive) (defaultface)))
 (global-set-key (kbd "M-+") '(lambda nil (interactive) (zoomableface)))
@@ -258,19 +292,32 @@
 
 (global-set-key (kbd "M-[") 'winner-undo)
 (global-set-key (kbd "M-{") 'winner-redo)
-(global-set-key (kbd "M--") 'my-flymake-show-next-error)
+(global-set-key (kbd "M--") 'flymake-goto-next-error)
 (global-set-key (kbd "M-_") 'flymake-mode)
 
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
+(global-set-key (kbd "<M-f3>") 'kmacro-name-last-macro)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
-(global-set-key (kbd "<f11>") 'LaTeX-close-environment)
+(global-set-key (kbd "<f10>") 'reftex-toc)
+(global-set-key (kbd "<f11>") 'LaTeX-environment)
+(global-set-key (kbd "M-<f11>") 'LaTeX-close-environment)
 (global-set-key (kbd "<f12>") 'preview-buffer)
 (global-set-key (kbd "<M-f12>") 'preview-clearout-buffer)
+;;______________________________________________________________________________
+;;Local Bindings
+;;______________________________________________________________________________
+(define-key isearch-mode-map (kbd "M-u") 'isearch-repeat-backward)
+(define-key isearch-mode-map (kbd "M-e") 'isearch-repeat-forward)
+
+
+;;______________________________________________________________________________
+;;Map
+;;______________________________________________________________________________
 
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
-;|          | |          |          |          |          | |          |          |          |          | |          |          |prev-clear|prev-latex||linum     |autoindent|def-face  |whitespc-m|
-;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
+;|          | |          |          |mcro-start|mcro-end/c| |          |          |          |          | |          |          |tex-insenv|prev-latex||linum     |autoindent|def-face  |whitespc-m|
+;|          | |          |          |mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||          |          |          |rainbow-de|
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
@@ -280,18 +327,18 @@
 ;|            |              |            |            |            |            |            |            |            |            |            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
-;|                   |goto-m-paren  |copy-region |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |winner-undo |kill-buf    |               |
-;|                   |rainbow-delim |            |            |            |            |            |<-P         |/\          |P->         |splt-w-hori |winner-redo |kill-buf+win|               |
+;|                   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |winner-undo |kill-buf    |               |
+;|                   |              |            |            |            |            |find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |kill-buf+win|               |
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
-;|                      |exe-command   |align-regex |<del-chr    |del-chr>    |kill-line   |>>|         |<-          |v           |->          |other-window|switch-t-buf|del-window  |            |
-;|                      |exe-shell     |            |            |            |killwholline||<<         ||<-         |\/          |->|         |            |            |del-o-window|            |
+;|                      |exe-command   |align-regex |<del-chr    |del-chr>    |kill-line   |>>|         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
+;|                      |exe-shell     |            |            |            |killwholline||<<         ||<-         |\/          |->|         |tiling-cycle|            |del-o-window|            |
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
-;|                |              |undo        |            |            |            |toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |iedit       |                               |
-;|                |              |redo        |            |            |            |            |            |isearch-back|            |            |query-replac|                               |
+;|                |flymake-next  |undo        |            |            |            |toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |iedit       |                               |
+;|                |flymake       |redo        |            |            |            |            |            |            |prv-buf-grp |nxt-buf-grp |query-replac|                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
@@ -332,6 +379,10 @@
 (winner-mode 1)
 
 (setq temporary-file-directory "/tmp/")
+
+(require 'shell-toggle)
+
+(require 'pager)
 
 (require 'follow-mouse)
 (turn-on-follow-mouse)
@@ -591,17 +642,64 @@
 (require 'iedit)
 
 
+;;______________________________________________________________________________
+;;Windows
+;;______________________________________________________________________________
+(require 'buffer-move)
+(require 'tiling)
+(require 'window-numbering)
+(setq windmove-wrap-around t)
+(window-numbering-mode 1)
+(require 'win-switch)
+(setq win-switch-idle-time 1000)
+(setq win-switch-window-threshold 2)
+(setq win-switch-other-window-first nil)
+(win-switch-set-wrap-around)
+(win-switch-delete-key "i" 'up)
+(win-switch-delete-key "k" 'down)
+(win-switch-delete-key "j" 'left)
+(win-switch-delete-key "l" 'right)
+(win-switch-delete-key "o" 'next-window)
+(win-switch-delete-key "p" 'previous-window)
+;(win-switch-delete-key "<spc>" 'other-frame)
+(win-switch-delete-key "u" 'exit)
+(win-switch-delete-key "I" 'enlarge-vertically)
+(win-switch-delete-key "K" 'shrink-vertically)
+(win-switch-delete-key "L" 'enlarge-horizontally)
+(win-switch-delete-key "J" 'shrink-horizontally)
+(win-switch-delete-key "h" 'split-vertically)
+(win-switch-delete-key ";" 'split-horizontally)
+(win-switch-delete-key "0" 'delete-window)
 
 
+(win-switch-add-key "u" 'up)
+(win-switch-add-key "e" 'down)
+(win-switch-add-key "n" 'left)
+(win-switch-add-key "i" 'right)
+(win-switch-add-key "y" 'next-window)
+(win-switch-add-key "l" 'previous-window)
+(win-switch-add-key "<spc>" 'other-frame)
+(win-switch-add-key "k" 'exit)
+(win-switch-add-key "f" 'shrink-vertically)
+(win-switch-add-key "s" 'enlarge-vertically)
+(win-switch-add-key "r" 'enlarge-horizontally)
+(win-switch-add-key "t" 'shrink-horizontally)
+(win-switch-add-key ":" 'split-horizontally)
+(win-switch-add-key ";" 'split-vertically)
+(win-switch-add-key "\\" 'delete-window)
 
+(win-switch-define-key "U" 'buf-move-up t)
+(win-switch-define-key "E" 'buf-move-down t)
+(win-switch-define-key "N" 'buf-move-left t)
+(win-switch-define-key "I" 'buf-move-right t)
 
+(win-switch-define-key "C-U" 'tiling-tile-up t)
+(win-switch-define-key "C-E" 'tiling-tile-down t)
+(win-switch-define-key "C-N" 'tiling-tile-left t)
+(win-switch-define-key "C-I" 'tiling-tile-right t)
 
-
-
-
-
-
-
+(win-switch-define-key "o" 'tiling-cycle t)
+(win-switch-define-key "|" 'delete-other-windows t)
 
 
 
@@ -653,6 +751,8 @@
      ;anything-c-source-emacs-variables
      )
                          "*my-anything*"))
+(define-key anything-map (kbd "M-u") 'anything-previous-line)
+(define-key anything-map (kbd "M-e") 'anything-next-line)
 
 
 ;;______________________________________________________________________________
@@ -681,11 +781,8 @@
 ;(push
 ; '("^\\(\.+\.tex\\):\\([0-9+\\):\\([0-9]+\\):\\(.+\\))"
 ;   1 2 3 4) flymake-err-line-patterns)
-(defun flymake-get-tex-ags (file-name)
+(defun flymake-get-tex-args (file-name)
   (list "pdflatex" (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
-(push
- '("^\\(\.+\.tex\\):\\([0-9+\\):\\([0-9]+\\):\\(.+\\))"
-   1 2 3 4) flymake-err-line-patterns)
 
 ;; Underline errors instead of highlight
 (custom-set-faces
@@ -699,10 +796,17 @@
   (flymake-display-err-menu-for-current-line)
 )
 
+(add-hook 'LaTeX-mode-hook 'flymake-mode)
+
 ;;______________________________________________________________________________
 ;;Flyspell
 ;;______________________________________________________________________________
 (setq flyspell-issue-welcome-flag nil)
+
+;; Better order of spelling suggestions
+;(defadvice ispell-command-loop (before ispell-reverse-miss-list activate)
+;  "reverse the first argument to ispell-command-loop"
+;  (ad-set-arg 0 (reverse (ad-get-arg 0))))
 
 
 ;;______________________________________________________________________________
@@ -748,6 +852,7 @@
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
+(require 'reftex-toc)
 (setq TeX-PDF-mode t)
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
@@ -758,15 +863,13 @@
 (setq TeX-fold-math-spec-list t)
 
 (setq preview-auto-cache-preamble t)
+(add-hook 'LaTeX-mode-hook 'flymake-mode)
+(add-hook 'LaTeX-mode-hook 'reftex-mode)
+(define-key reftex-toc-map (kbd "u") 'reftex-toc-previous)
+(define-key reftex-toc-map (kbd "e") 'reftex-toc-next)
+;(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+;(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 
-;(setq 
-
-;(defun toogle-preview-buffer ()
-;  (interactive)
-;  (let ((cmd (if preview
-;                 'preview-clearout-buffer
-;               'preview-buffer)))
-;(call-interactively cmd)
 
 ;;______________________________________________________________________________
 ;;Mathematica
@@ -786,9 +889,40 @@
 (add-hook 'sage-startup-hook 'sage-view 'sage-view-disable-inline-output)
 
 ;;______________________________________________________________________________
+;;Shell
+;;______________________________________________________________________________
+(custom-set-variables
+ '(comint-scroll-to-bottom-on-input t)
+ '(comint-scroll-to-bottom-on-output t)
+ '(comint-scroll-show-maximum-output t)
+ '(comint-completion-autolist t)
+ '(comint-input-ignoredups t)
+ '(comint-completion-addsuffix t)
+ '(comint-buffer-maximum-size 10000)
+ '(comint-prompt-read-only nil)
+ '(comint-get-old-input (lambda () ""))
+ '(comint-input-ring-size 100)
+ '(comint-process-echoes t)
+ '(protect-buffer-bury-p nil)
+)
+(ansi-color-for-comint-mode-on)
+(defvar my-shells '("*shell*" "*shell0*" "*shell1*" "*shell2*" "*shell3*"))
+(add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
+(defun make-my-shell-output-read-only (text)
+  "Add to comint-output-filter-functions to make stdout read only in my shells."
+  (if (member (buffer-name) my-shells)
+      (let ((inhibit-read-only t)
+            (output-end (process-mark (get-buffer-process (current-buffer)))))
+        (put-text-property comint-last-output-start output-end 'read-only t))))
+(add-hook 'comint-output-filter-functions 'make-my-shell-output-read-only)
+
+;; make completion buffers disappear after 3 seconds.
+(add-hook 'completion-setup-hook
+          (lambda() (run-at-time 3 nil
+                                 (lambda () (delete-windows-on "*Completions*")))))
+;;______________________________________________________________________________
 ;;SML
 ;;______________________________________________________________________________
-;; Aktiver sml-mode
 (add-to-list 'load-path "~/.emacs.d/sml-mode-4.1/")
 (require 'sml-mode)
 (setq auto-mode-alist (cons '("\\.sml$" . sml-mode) auto-mode-alist))
@@ -981,3 +1115,31 @@ in that cyclic order."
                       (+ (face-attribute 'default :height) (* (if (> n 0) 1 -1) 10))
                      ;(+ (face-attribute 'default :height) 10)))
 ))
+
+
+;;______________________________________________________________________________
+;;Swap windows
+;;______________________________________________________________________________
+
+(defun swap-with (dir)
+  (interactive)
+  (let ((other-window (windmove-find-other-window dir)))
+    (when other-window
+      (let* ((this-window  (selected-window))
+             (this-buffer  (window-buffer this-window))
+             (other-buffer (window-buffer other-window))
+             (this-start   (window-start this-window))
+             (other-start  (window-start other-window)))
+        (set-window-buffer this-window other-buffer)
+        (set-window-buffer other-window this-buffer)
+        (set-window-start  this-window other-start)
+        (set-window-start  other-window this-start)))))
+
+;;______________________________________________________________________________
+;;Swap windows
+;;______________________________________________________________________________
+
+(defun clear ()
+  (interactive)
+  (let ((comint-buffer-maximum-size 0))
+    (comint-truncate-buffer)))
