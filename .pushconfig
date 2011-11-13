@@ -1,5 +1,7 @@
 # ! /bin/sh
 
+./.copyaliases;
+
 #This is basicly a list of all the files i want to keep track of.
 
 git add ~/.emacs.d/;
@@ -12,6 +14,6 @@ git add ~/.Xdefaults;
 git add ~/.xinitrc;
 git add ~/.zshrc;
 git add ~/.aliases;
-
+git add ~/.copyaliases;
 git commit -m "Configuration updated";
 git push

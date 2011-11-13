@@ -187,8 +187,8 @@
 (global-set-key (kbd "M-z") 'undo)
 (global-set-key (kbd "C-z") 'undo)
 ;; Kill line
-(global-set-key (kbd "M-d") 'kill-line)
-(global-set-key (kbd "M-D") 'kill-whole-line)
+;(global-set-key (kbd "M-d") 'kill-line)
+(global-set-key (kbd "M-d") 'kill-whole-line)
 
 ;;;; Textual Transformation
 (global-set-key (kbd "M-S-SPC") 'mark-paragraph)
@@ -206,7 +206,7 @@
 ;; Mark point
 (global-set-key (kbd "C-SPC") 'set-mark-command)
 (global-set-key (kbd "M-a") 'execute-extended-command)
-(global-set-key (kbd "M-A") 'shell-toggle-cd)
+(global-set-key (kbd "M-A") 'shell-toggle)
 
 ;;;; WINDOW SPLITTING
 ;(global-set-key (kbd "M-r") 'move-cursor-next-pane)
@@ -273,7 +273,7 @@
 (global-set-key (kbd "M-:") 'split-window-vertically)
 (global-set-key (kbd "M-;") 'split-window-horizontally)
 (global-set-key (kbd "M-r") 'align-regex)
-(global-set-key (kbd "M-]") 'kill-buffer)
+(global-set-key (kbd "M-]") '(lambda nil (interactive) (kill-buffer (current-buffer))))
 (global-set-key (kbd "M-}") 'kill-buffer-and-window)
 
 ;(global-set-key (kbd "M-q") 'goto-match-paren)
@@ -332,8 +332,8 @@
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
-;|                      |exe-command   |align-regex |<del-chr    |del-chr>    |kill-line   |>>|         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
-;|                      |exe-shell     |            |            |            |killwholline||<<         ||<-         |\/          |->|         |tiling-cycle|            |del-o-window|            |
+;|                      |exe-command   |align-regex |<del-chr    |del-chr>    |killwholline|>>|         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
+;|                      |exe-shell     |            |            |            |            ||<<         ||<-         |\/          |->|         |tiling-cycle|            |del-o-window|            |
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
@@ -381,7 +381,7 @@
 (setq temporary-file-directory "/tmp/")
 
 (require 'shell-toggle)
-
+(setq shell-toggle-launch-shell 'shell-toggle-eshell)
 (require 'pager)
 
 (require 'follow-mouse)
@@ -769,6 +769,31 @@
 (autoload 'babel-buffer "babel" nil t)
 
 ;;______________________________________________________________________________
+;;Eshell
+;;______________________________________________________________________________
+(require 'eshell)
+(setq eshell-directory-name "~/.emacs.d/eshell/")
+(setq eshell-visual-commands '("nano"))
+(setq eshell-buffer-shorthand t)
+(setq eshell-hist-ignoredups t)
+(defun m-eshell-hook ()
+  (setq eshell-visual-commands '("nano"))
+  (setq eshell-buffer-shorthand t)
+  (setq eshell-hist-ignoredups t)
+  (define-key eshell-mode-map (kbd "M-d") 'eshell-kill-input)
+  (define-key eshell-mode-map (kbd "M-n") 'eshell-bol)
+  (add-to-list 'eshell-visual-commands "nano")
+  (add-to-list 'eshell-visual-commands "htop")
+  (add-to-list 'eshell-visual-commands "irssi")
+  (add-to-list 'eshell-visual-commands "emacs")
+  (add-to-list 'eshell-visual-commands "alsamixer")
+  (add-to-list 'eshell-visual-commands "ssh")
+  (add-to-list 'eshell-visual-commands "tail")
+  
+)
+(add-hook 'eshell-mode-hook 'm-eshell-hook)
+
+;;______________________________________________________________________________
 ;;Flymake
 ;;______________________________________________________________________________
 (require 'flymake)
@@ -797,7 +822,34 @@
 )
 
 (add-hook 'LaTeX-mode-hook 'flymake-mode)
-
+(defun tyler-eshell-view-file (file)
+  "A version of `view-file' which properly respects the eshell prompt."
+  (interactive "fView file: ")
+  (unless (file-exists-p file) (error "%s does not exist" file))
+  (let ((had-a-buf (get-file-buffer file))
+        (buffer (find-file-noselect file)))
+    (if (eq (with-current-buffer buffer (get major-mode 'mode-class))
+            'special)
+        (progn
+          (switch-to-buffer buffer)
+          (message "Not using View mode because the major mode is special"))
+      (let ((undo-window (list (window-buffer) (window-start)
+                               (+ (window-point)
+                                  (length (funcall eshell-prompt-function))))))
+        (switch-to-buffer buffer)
+        (view-mode-enter (cons (selected-window) (cons nil undo-window))
+                         'kill-buffer)))))
+(defun eshell/less (&rest args)
+  "Invoke `view-file' on a file. \"less +42 foo\" will go to line 42 in
+    the buffer for foo."
+  (while args
+    (if (string-match "\\`\\+\\([0-9]+\\)\\'" (car args))
+        (let* ((line (string-to-number (match-string 1 (pop args))))
+               (file (pop args)))
+          (tyler-eshell-view-file file)
+          (goto-line line))
+      (tyler-eshell-view-file (pop args)))))
+(defalias 'eshell/more 'eshell/less)
 ;;______________________________________________________________________________
 ;;Flyspell
 ;;______________________________________________________________________________
@@ -917,9 +969,10 @@
 (add-hook 'comint-output-filter-functions 'make-my-shell-output-read-only)
 
 ;; make completion buffers disappear after 3 seconds.
-(add-hook 'completion-setup-hook
-          (lambda() (run-at-time 3 nil
-                                 (lambda () (delete-windows-on "*Completions*")))))
+;(add-hook 'completion-setup-hook
+;          (lambda() (run-at-time 3 nil
+;                                 (lambda () (delete-windows-on "*Completions*")))))
+
 ;;______________________________________________________________________________
 ;;SML
 ;;______________________________________________________________________________
@@ -1136,10 +1189,42 @@ in that cyclic order."
         (set-window-start  other-window this-start)))))
 
 ;;______________________________________________________________________________
-;;Swap windows
+;;
 ;;______________________________________________________________________________
 
 (defun clear ()
   (interactive)
   (let ((comint-buffer-maximum-size 0))
     (comint-truncate-buffer)))
+
+;;______________________________________________________________________________
+;;Eshellcontrol
+;;______________________________________________________________________________
+
+(defun my-eshell-execute-current-line ()
+  "Insert text of current line in eshell and execute."
+  (interactive)
+  (require 'eshell)
+  (let ((command (buffer-substring
+                  (save-excursion
+                    (beginning-of-line)
+                    (point))
+                  (save-excursion
+                    (end-of-line)
+                    (point)))))
+    (let ((buf (current-buffer)))
+      (unless (get-buffer eshell-buffer-name)
+        (eshell))
+      (display-buffer eshell-buffer-name t)
+      (switch-to-buffer-other-window eshell-buffer-name)
+      (end-of-buffer)
+      (eshell-kill-input)
+      (insert command)
+      (eshell-send-input)
+      (end-of-buffer)
+      (switch-to-buffer-other-window buf))))
+
+(defun eshell/clear ()
+  (interactive)
+  (let ((inhibit-read-only t))
+    (erase-buffer)))

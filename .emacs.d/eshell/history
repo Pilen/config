@@ -1,0 +1,81 @@
+ls
+help
+ls
+cd Dropbox/pwnies/
+ls
+grep main
+cd /home/pilen/
+ls
+ls
+eshell-truncate-buffer 
+shell
+nano
+man ls
+locate man
+man ls
+man ls
+whoami
+vc-dir
+cd-dir /home/pilen/
+vc-dir /home/pilen/
+ls
+./.aliases 
+source .aliases 
+ls
+cat .aliases 
+echo eshell-visual-commands
+echo $eshell-visual-commands
+(add-to-list eshell-visual-commands "nano")
+(add-to-list 'eshell-visual-commands "nano")
+nano
+nano
+echo $eshell-visual-commands
+pine
+echo $eshell-prompt-function
+cd Dropbox/diku/
+echo $eshell-prompt-regexp
+echo $eshell-prompt-function
+ls
+less .aliases
+less .aliases 
+nano
+alsamixer 
+alsamixer 
+eshell/more
+cd Dropbox/pwnies/
+ls
+less decode.py
+find-file decode.py
+f
+alias f find-file
+f decode.py
+alias f find-file $1
+f decode.py
+alias f 'find-file'
+f decode.py
+alias f 'find-file $1'
+f decode.py
+rm .emacs.d/shell-toggle.el 
+rm .emacs.d/eshell-toggle.el 
+ls
+recenter
+recenter 0
+cd
+cd .eshell/
+ls
+less alias 
+alias foo='date'
+foo
+man ls
+grep main Dropbox/
+cd Dropbox/Python/
+ls
+cd ..
+cd c/
+ls
+grep main *.c
+exit
+(let ((inhibit-read-only t)) (erase-buffer))
+clear
+ls
+exit
