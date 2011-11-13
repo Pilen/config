@@ -74,8 +74,9 @@ cd ..
 cd c/
 ls
 grep main *.c
-exit
 (let ((inhibit-read-only t)) (erase-buffer))
 clear
 ls
+ls .copyaliases.py
 exit
+emacs
