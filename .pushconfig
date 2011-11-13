@@ -1,6 +1,6 @@
 # ! /bin/sh
 
-/home/pilen/.copyaliases.py;
+python /home/pilen/.copyaliases.py;
 
 #This is basicly a list of all the files i want to keep track of.
 
