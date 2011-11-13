@@ -1,6 +1,6 @@
 # ! /bin/sh
 
-
+/home/pilen/.copyaliases.py
 
 #This is basicly a list of all the files i want to keep track of.
 
@@ -14,9 +14,6 @@ git add ~/.Xdefaults;
 git add ~/.xinitrc;
 git add ~/.zshrc;
 git add ~/.aliases;
-git add ~/.copyaliases;
+git add ~/.copyaliases.py;
 git commit -m "Configuration updated";
 git push
-
-
-/home/pilen/.copyaliases.py
