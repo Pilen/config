@@ -295,9 +295,14 @@
 (global-set-key (kbd "M--") 'flymake-goto-next-error)
 (global-set-key (kbd "M-_") 'flymake-mode)
 
+(global-set-key (kbd "<f1>") 'flyspell-mode)
+(global-set-key (kbd "M-<f1>") 'flyspell-mode)
+(global-set-key (kbd "<f2>") 'flyspell-buffer)
+(global-set-key (kbd "M-<f2>") 'fd-switch-dictionary)
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<M-f3>") 'kmacro-name-last-macro)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
+(global-set-key (kbd "<f8>") 'narrow-toggle)
 (global-set-key (kbd "<f10>") 'reftex-toc)
 (global-set-key (kbd "<f11>") 'LaTeX-environment)
 (global-set-key (kbd "M-<f11>") 'LaTeX-close-environment)
@@ -316,7 +321,7 @@
 
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
-;|          | |          |          |mcro-start|mcro-end/c| |          |          |          |          | |          |          |tex-insenv|prev-latex||linum     |autoindent|def-face  |whitespc-m|
+;|          | |          |          |mcro-start|mcro-end/c| |          |          |          |narrow-tog| |          |          |tex-insenv|prev-latex||linum     |autoindent|def-face  |whitespc-m|
 ;|          | |          |          |mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||          |          |          |rainbow-de|
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
@@ -343,7 +348,7 @@
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
 ;|            |                  |           |           |hippie-expand                                                     |            |Tabbar-menu |            |                               |
-;|            |                  |           |           |                                                                  |            |            |            |                               |
+;|            |                  |           |           |mark-paragraph                                                    |            |            |            |                               |
 ;|            |                  |           |           |                                                                  |            |            |            |                               |
 ;|____________|__________________|___________|___________|__________________________________________________________________|____________|____________|____________|_______________________________|
 
@@ -377,14 +382,20 @@
 (tool-bar-mode 0)
 (global-linum-mode t)
 (winner-mode 1)
+(put 'narrow-to-region 'disabled nil)
+(put 'narrow-to-defun 'disabled nil)
+(put 'narrow-to-page 'disabled nil)
+(setq european-calendar-style t)
 
 (setq temporary-file-directory "/tmp/")
-
+(setq kill-buffer-query-functions
+      (remq 'process-kill-buffer-query-function
+            kill-buffer-query-functions))
 (require 'shell-toggle)
 (setq shell-toggle-launch-shell 'shell-toggle-eshell)
-(require 'pager)
+(require 'pager) ;For smarter scrolling
 
-(require 'follow-mouse)
+(require 'follow-mouse) ;Active window follows mouse
 (turn-on-follow-mouse)
 (setq follow-mouse-deselect-active-minibuffer nil)
 ;;______________________________________________________________________________
@@ -652,7 +663,7 @@
 (window-numbering-mode 1)
 (require 'win-switch)
 (setq win-switch-idle-time 1000)
-(setq win-switch-window-threshold 2)
+(setq win-switch-window-threshold 0)
 (setq win-switch-other-window-first nil)
 (win-switch-set-wrap-around)
 (win-switch-delete-key "i" 'up)
@@ -853,7 +864,19 @@
 ;;______________________________________________________________________________
 ;;Flyspell
 ;;______________________________________________________________________________
+(autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
 (setq flyspell-issue-welcome-flag nil)
+(setq flyspell-issue-message-flag nil)
+(add-hook 'c-mode-common-hook 'flyspell-mprog-mode)
+(add-hook 'python-mode-hook 'flyspell-prog-mode)
+(add-hook 'sml-mode 'flyspell-prog-mode)
+
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+
+(defun turn-on-flyspell ()
+  "Force flyspell-mode on using a positive arg."
+  (interactive)
+  (flyspell-mode 1))
 
 ;; Better order of spelling suggestions
 ;(defadvice ispell-command-loop (before ispell-reverse-miss-list activate)
@@ -1188,14 +1211,6 @@ in that cyclic order."
         (set-window-start  this-window other-start)
         (set-window-start  other-window this-start)))))
 
-;;______________________________________________________________________________
-;;
-;;______________________________________________________________________________
-
-(defun clear ()
-  (interactive)
-  (let ((comint-buffer-maximum-size 0))
-    (comint-truncate-buffer)))
 
 ;;______________________________________________________________________________
 ;;Eshellcontrol
@@ -1228,3 +1243,138 @@ in that cyclic order."
   (interactive)
   (let ((inhibit-read-only t))
     (erase-buffer)))
+
+
+;;______________________________________________________________________________
+;;Eshellcontrol
+;;______________________________________________________________________________
+
+(defun narrow-toggle (beg end)
+  "If narrow, widen; if not narrowed, narrow!"
+  (interactive "r") ; "r" for region
+  (if (narrow-p)
+    (progn (widen)
+      (message "Un-narrowing."))
+    (progn (narrow-to-region beg end)
+       (message "Narrowing to c%s - c%s." beg end))))
+
+(defun narrow-p ()
+  "Whether narrow is in effect for the current buffer"
+
+  (let (real-point-min real-point-max)
+    (save-excursion (save-restriction
+    (widen)
+    (setq real-point-min (point-min)
+            real-point-max (point-max))))
+    (or
+     (/= real-point-min (point-min))
+     (/= real-point-max (point-max)))))
+
+
+
+;;______________________________________________________________________________
+;;Smartscan
+;;______________________________________________________________________________
+
+(defvar smart-use-extended-syntax nil
+  "If t the smart symbol functionality will consider extended
+syntax in finding matches, if such matches exist.")
+ 
+(defvar smart-last-symbol-name ""
+  "Contains the current symbol name.
+ 
+This is only refreshed when `last-command' does not contain
+either `smart-symbol-go-forward' or `smart-symbol-go-backward'")
+ 
+(make-local-variable 'smart-use-extended-syntax)
+ 
+(defvar smart-symbol-old-pt nil
+  "Contains the location of the old point")
+ 
+(defun smart-symbol-goto (name direction)
+  "Jumps to the next NAME in DIRECTION in the current buffer.
+ 
+DIRECTION must be either `forward' or `backward'; no other option
+is valid."
+ 
+  ;; if `last-command' did not contain
+  ;; `smart-symbol-go-forward/backward' then we assume it's a
+  ;; brand-new command and we re-set the search term.
+  (unless (memq last-command '(smart-symbol-go-forward
+                               smart-symbol-go-backward))
+    (setq smart-last-symbol-name name))
+  (setq smart-symbol-old-pt (point))
+  (message (format "%s scan for symbol \"%s\""
+                   (capitalize (symbol-name direction))
+                   smart-last-symbol-name))
+  (unless (catch 'done
+            (while (funcall (cond
+                             ((eq direction 'forward) ; forward
+                              'search-forward)
+                             ((eq direction 'backward) ; backward
+                              'search-backward)
+                             (t (error "Invalid direction"))) ; all others
+                            smart-last-symbol-name nil t)
+              (unless (memq (syntax-ppss-context
+                             (syntax-ppss (point))) '(string comment))
+                (throw 'done t))))
+    (goto-char smart-symbol-old-pt)))
+ 
+(defun smart-symbol-go-forward ()
+  "Jumps forward to the next symbol at point"
+  (interactive)
+  (smart-symbol-goto (smart-symbol-at-pt 'end) 'forward))
+ 
+(defun smart-symbol-go-backward ()
+  "Jumps backward to the previous symbol at point"
+  (interactive)
+  (smart-symbol-goto (smart-symbol-at-pt 'beginning) 'backward))
+ 
+(defun smart-symbol-at-pt (&optional dir)
+  "Returns the symbol at point and moves point to DIR (either `beginning' or `end') of the symbol.
+ 
+If `smart-use-extended-syntax' is t then that symbol is returned
+instead."
+  (with-syntax-table (make-syntax-table)
+    (if smart-use-extended-syntax
+        (modify-syntax-entry ?. "w"))
+    (modify-syntax-entry ?_ "w")
+    (modify-syntax-entry ?- "w")
+    ;; grab the word and return it
+    (let ((word (thing-at-point 'word))
+          (bounds (bounds-of-thing-at-point 'word)))
+      (if word
+          (progn
+            (cond
+             ((eq dir 'beginning) (goto-char (car bounds)))
+             ((eq dir 'end) (goto-char (cdr bounds)))
+             (t (error "Invalid direction")))
+            word)
+        (error "No symbol found")))))
+ 
+;(global-set-key (kbd "M-n") 'smart-symbol-go-forward)
+;(global-set-key (kbd "M-p") 'smart-symbol-go-backward)
+
+
+
+
+;;______________________________________________________________________________
+;;Dictionaries
+;;______________________________________________________________________________
+
+(defun fd-switch-dictionary()
+  (interactive)
+  (let* ((dic ispell-current-dictionary)
+    	 (change (if (string= dic "dansk") "english" "dansk")))
+    (ispell-change-dictionary change)
+    (message "Dictionary switched from %s to %s" dic change)
+    ))
+
+(let ((langs '("american" "francais" "brasileiro")))
+  (setq lang-ring (make-ring (length langs)))
+  (dolist (elem langs) (ring-insert lang-ring elem)))
+(defun cycle-ispell-languages ()
+  (interactive)
+  (let ((lang (ring-ref lang-ring -1)))
+    (ring-insert lang-ring lang)
+    (ispell-change-dictionary lang)))

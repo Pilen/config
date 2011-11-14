@@ -56,7 +56,6 @@
 !Emacs.menuBar: off
 Emacs.scrollBarWidth: 12
 
-
 URxvt.termName: rxvt
 URxvt.perl-ext-common: default,matcher,tabbedex,my-clock
 URxvt.transparent: false
