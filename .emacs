@@ -947,7 +947,10 @@
 ;(add-hook 'LaTeX-mode-hook 'flyspell-mode)
 ;(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 
+(setq TeX-view-program-list '(("Zathura" "zathura %o")))
+(setq TeX-view-program-selection '((output-pdf "Zathura")))
 
+(add-hook 'doc-view-mode-hook 'auto-revert-mode)
 ;;______________________________________________________________________________
 ;;Mathematica
 ;;______________________________________________________________________________
