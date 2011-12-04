@@ -153,8 +153,8 @@
 (global-set-key (kbd "M-L") 'pager-row-up)
 (global-set-key (kbd "M-Y") 'pager-row-down)
 ;; Move to beginning/ending of line
-(global-set-key (kbd "M-N") 'move-beginning-of-line)
-(global-set-key (kbd "M-I") 'move-end-of-line)
+(global-set-key (kbd "M-N") 'back-to-indentation-or-beginning)
+(global-set-key (kbd "M-I") 'end-of-line)
 ;; Move by screen (page up/down)
 ;(global-set-key (kbd "M-U") 'scroll-down)
 ;(global-set-key (kbd "M-E") 'scroll-up)
@@ -897,6 +897,11 @@
 ;;______________________________________________________________________________
 ;;HIPPIE_EXPAND
 ;;______________________________________________________________________________
+(load-file ".emacs.d/graphviz-dot-mode.el")
+
+;;______________________________________________________________________________
+;;HIPPIE_EXPAND
+;;______________________________________________________________________________
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-all-buffers
                                          try-expand-dabbrev-from-kill
@@ -1383,3 +1388,19 @@ instead."
   (let ((lang (ring-ref lang-ring -1)))
     (ring-insert lang-ring lang)
     (ispell-change-dictionary lang)))
+
+
+;;______________________________________________________________________________
+;;Start of line/indentation
+;;______________________________________________________________________________
+(defun back-to-indentation-or-beginning ()
+  (interactive)
+  (if (= (point) (save-excursion (back-to-indentation) (point)))
+      (beginning-of-line)
+    (back-to-indentation)))
+
+;;______________________________________________________________________________
+;;Flipline
+;;______________________________________________________________________________
+;;abc|def
+;;def|abc
