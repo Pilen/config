@@ -398,6 +398,9 @@
 (require 'follow-mouse) ;Active window follows mouse
 (turn-on-follow-mouse)
 (setq follow-mouse-deselect-active-minibuffer nil)
+
+(delete-selection-mode t)
+
 ;;______________________________________________________________________________
 ;;Startup
 ;;______________________________________________________________________________
