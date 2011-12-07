@@ -791,6 +791,7 @@
 (setq eshell-visual-commands '("nano"))
 (setq eshell-buffer-shorthand t)
 (setq eshell-hist-ignoredups t)
+(setq eshell-aliases-file "~/.emacs.d/eshell/alias")
 (defun m-eshell-hook ()
   (setq eshell-visual-commands '("nano"))
   (setq eshell-buffer-shorthand t)
