@@ -236,6 +236,10 @@
 (global-set-key (kbd "C-<down>") 'tiling-tile-down)
 (global-set-key (kbd "C-<right>") 'tiling-tile-right)
 (global-set-key (kbd "C-<left>") 'tiling-tile-left)
+(global-set-key (kbd "M-S-<up>") 'shrink-window)
+(global-set-key (kbd "M-S-<down>") 'enlarge-window)
+(global-set-key (kbd "M-S-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "M-S-<left>") 'shrink-window-horizontally)
 
 
 (global-set-key (kbd "M-m") 'isearch-forward)
