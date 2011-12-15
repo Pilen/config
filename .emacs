@@ -243,6 +243,7 @@
 
 
 (global-set-key (kbd "M-m") 'isearch-forward)
+(global-set-key (kbd "M-M") 'sprint-forward)
 
 
 (global-set-key (kbd "M-SPC") 'hippie-expand)
@@ -277,7 +278,7 @@
 (global-set-key (kbd "M-|") 'delete-other-windows)
 (global-set-key (kbd "M-:") 'split-window-vertically)
 (global-set-key (kbd "M-;") 'split-window-horizontally)
-(global-set-key (kbd "M-r") 'align-regex)
+(global-set-key (kbd "M-r") 'align-regexp)
 (global-set-key (kbd "M-]") '(lambda nil (interactive) (kill-buffer (current-buffer))))
 (global-set-key (kbd "M-}") 'kill-buffer-and-window)
 
@@ -342,13 +343,13 @@
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
-;|                      |exe-command   |align-regex |<del-chr    |del-chr>    |killwholline|>>|         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
+;|                      |exe-command   |align-regexp|<del-chr    |del-chr>    |killwholline|>>|         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
 ;|                      |exe-shell     |            |            |            |            ||<<         ||<-         |\/          |->|         |tiling-cycle|win-80col   |del-o-window|            |
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
 ;|                |flymake-next  |undo        |            |            |            |toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |iedit       |                               |
-;|                |flymake       |redo        |            |            |            |            |            |            |prv-buf-grp |nxt-buf-grp |query-replac|                               |
+;|                |flymake       |redo        |            |            |            |            |            |sprint      |prv-buf-grp |nxt-buf-grp |query-replac|                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
@@ -815,6 +816,11 @@
   
 )
 (add-hook 'eshell-mode-hook 'm-eshell-hook)
+
+;;______________________________________________________________________________
+;;Fastnav
+;;______________________________________________________________________________
+(require 'fastnav)
 
 ;;______________________________________________________________________________
 ;;Flymake
