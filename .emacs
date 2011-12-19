@@ -466,6 +466,16 @@
 ;;Theme
 ;;______________________________________________________________________________
 (require 'color-theme)
+(require 'color-theme-tomorrow)
+
+;(add-to-list 'load-path "~/.emacs.d/solarized")
+;(eval-after-load "color-theme"
+;  '(progn
+;     (color-theme-initialize)
+;     (color-theme-hober)))
+;(require 'color-theme-solarized)
+;(color-theme-solarized-dark)
+
 (set-background-color "grey30")
 (set-foreground-color "honeydew1")
 
@@ -490,7 +500,6 @@
 ;;Rainbow delimiters
 ;;______________________________________________________________________________
 (require 'rainbow-delimiters)
-;;(require 'color-theme-tomorrow)
 ;;(setq-default frame-background-mode 'dark)
 
 (set-face-attribute
