@@ -48,7 +48,7 @@ notion of \"the end of an outline\".")
     ("\C-c\C-m"	. sml-insert-form)
     ("\C-c\C-i"	. sml-mode-info)
     ;("\M-|"	. sml-electric-pipe) ;;FUCK YOU FOR OVERWRITING MY KEYS!!!!
-    ("\M-\ "	. sml-electric-space)
+    ;("\M-\ "	. sml-electric-space)
     ("\;"	. sml-electric-semi)
     ("\M-\t"	. sml-back-to-outer-indent)
     ;; Process commands added to sml-mode-map -- these should autoload

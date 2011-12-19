@@ -271,8 +271,8 @@
 ;; turn on minor mode ergoemacs-mode
 ;;(ergoemacs-mode 1)
 
-(global-set-key (kbd "M-/") 'iedit-mode)
-(global-set-key (kbd "M-?") 'query-replace)
+(global-set-key (kbd "M-/") 'query-replace)
+(global-set-key (kbd "M-?") 'iedit-mode)
 ;;(global-set-key (kbd "M-?") 'query-replace-regexp)
 (global-set-key (kbd "M-\\") 'delete-window)
 (global-set-key (kbd "M-|") 'delete-other-windows)
@@ -348,8 +348,8 @@
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
-;|                |flymake-next  |undo        |            |            |            |toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |iedit       |                               |
-;|                |flymake       |redo        |            |            |            |            |            |sprint      |prv-buf-grp |nxt-buf-grp |query-replac|                               |
+;|                |flymake-next  |undo        |            |            |            |toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |query-replac|                               |
+;|                |flymake       |redo        |            |            |            |            |            |sprint      |prv-buf-grp |nxt-buf-grp |iedit       |                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
@@ -784,6 +784,53 @@
 (autoload 'artist-mode "artist" "Enter artist-mode" t)
 
 ;;______________________________________________________________________________
+;;Auto-insert
+;;______________________________________________________________________________
+(require 'autoinsert)
+(auto-insert-mode)
+(setq auto-insert-directory "~/.emacs.d/templates/")
+(setq auto-insert-query nil)
+(setq auto-insert-alist '(
+                          ("\\.tex$" . ["preamble.tex" auto-update-template]);(lambda () (goto-line 40))])
+                          ))
+
+
+(defun insert-today ()
+  "Insert today's date into buffer"
+  (interactive)
+  (insert (format-time-string "%e/%m - %Y" (current-time))))
+
+(defun auto-update-template ()
+  "Replace the following sequences when files are created from templates:
+@@@CURSOR
+@@@DATE
+@@@FILENAME"
+  (save-excursion
+    ;;Replace @@@DATE with date
+    (while (search-forward "@@@DATE" nil t)
+      (save-restriction
+        (narrow-to-region (match-beginning 0) (match-end 0))
+        (replace-match "")
+        (insert-today)
+        ))
+    )
+  (save-excursion
+    ;;Replace @@@FILENAME with file name
+    (while (search-forward "@@@FILENAME" nil t)
+      (save-restriction
+        (narrow-to-region (match-beginning 0) (match-end 0))
+        (replace-match (file-name-nondirectory buffer-file-name) t)
+        ))
+    )
+  ;;Move cursor to last occurence of @@@CURSOR
+  (while (search-forward "@@@CURSOR" nil t)
+    (save-restriction
+      (narrow-to-region (match-beginning 0) (match-end 0))
+      (replace-match "")
+      )
+    )
+  )
+;;______________________________________________________________________________
 ;;Babel
 ;;______________________________________________________________________________
 (autoload 'babel "babel" nil t)
@@ -816,6 +863,34 @@
   
 )
 (add-hook 'eshell-mode-hook 'm-eshell-hook)
+(defun tyler-eshell-view-file (file)
+  "A version of `view-file' which properly respects the eshell prompt."
+  (interactive "fView file: ")
+  (unless (file-exists-p file) (error "%s does not exist" file))
+  (let ((had-a-buf (get-file-buffer file))
+        (buffer (find-file-noselect file)))
+    (if (eq (with-current-buffer buffer (get major-mode 'mode-class))
+            'special)
+        (progn
+          (switch-to-buffer buffer)
+          (message "Not using View mode because the major mode is special"))
+      (let ((undo-window (list (window-buffer) (window-start)
+                               (+ (window-point)
+                                  (length (funcall eshell-prompt-function))))))
+        (switch-to-buffer buffer)
+        (view-mode-enter (cons (selected-window) (cons nil undo-window))
+                         'kill-buffer)))))
+(defun eshell/less (&rest args)
+  "Invoke `view-file' on a file. \"less +42 foo\" will go to line 42 in
+    the buffer for foo."
+  (while args
+    (if (string-match "\\`\\+\\([0-9]+\\)\\'" (car args))
+        (let* ((line (string-to-number (match-string 1 (pop args))))
+               (file (pop args)))
+          (tyler-eshell-view-file file)
+          (goto-line line))
+      (tyler-eshell-view-file (pop args)))))
+(defalias 'eshell/more 'eshell/less)
 
 ;;______________________________________________________________________________
 ;;Fastnav
@@ -850,35 +925,7 @@
   (flymake-display-err-menu-for-current-line)
 )
 
-(add-hook 'LaTeX-mode-hook 'flymake-mode)
-(defun tyler-eshell-view-file (file)
-  "A version of `view-file' which properly respects the eshell prompt."
-  (interactive "fView file: ")
-  (unless (file-exists-p file) (error "%s does not exist" file))
-  (let ((had-a-buf (get-file-buffer file))
-        (buffer (find-file-noselect file)))
-    (if (eq (with-current-buffer buffer (get major-mode 'mode-class))
-            'special)
-        (progn
-          (switch-to-buffer buffer)
-          (message "Not using View mode because the major mode is special"))
-      (let ((undo-window (list (window-buffer) (window-start)
-                               (+ (window-point)
-                                  (length (funcall eshell-prompt-function))))))
-        (switch-to-buffer buffer)
-        (view-mode-enter (cons (selected-window) (cons nil undo-window))
-                         'kill-buffer)))))
-(defun eshell/less (&rest args)
-  "Invoke `view-file' on a file. \"less +42 foo\" will go to line 42 in
-    the buffer for foo."
-  (while args
-    (if (string-match "\\`\\+\\([0-9]+\\)\\'" (car args))
-        (let* ((line (string-to-number (match-string 1 (pop args))))
-               (file (pop args)))
-          (tyler-eshell-view-file file)
-          (goto-line line))
-      (tyler-eshell-view-file (pop args)))))
-(defalias 'eshell/more 'eshell/less)
+;(add-hook 'LaTeX-mode-hook 'flymake-mode)
 ;;______________________________________________________________________________
 ;;Flyspell
 ;;______________________________________________________________________________
@@ -963,7 +1010,6 @@
 (setq TeX-fold-math-spec-list t)
 
 (setq preview-auto-cache-preamble t)
-(add-hook 'LaTeX-mode-hook 'flymake-mode)
 (add-hook 'LaTeX-mode-hook 'reftex-mode)
 (define-key reftex-toc-map (kbd "u") 'reftex-toc-previous)
 (define-key reftex-toc-map (kbd "e") 'reftex-toc-next)
