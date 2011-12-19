@@ -473,6 +473,7 @@
 
 
 (set-face-background 'modeline "slate gray")
+;(set-face-background 'modeline "#4477aa")
 (set-face-attribute 'mode-line nil :box nil)
 ;(set-background-color "black")
 ;(set-face-background 'default "black")
@@ -804,6 +805,7 @@
   "Replace the following sequences when files are created from templates:
 @@@CURSOR
 @@@DATE
+@@@YEAR
 @@@FILENAME"
   (save-excursion
     ;;Replace @@@DATE with date
@@ -812,6 +814,15 @@
         (narrow-to-region (match-beginning 0) (match-end 0))
         (replace-match "")
         (insert-today)
+        ))
+    )
+  (save-excursion
+    ;;Replace @@@YEAR with year
+    (while (search-forward "@@@YEAR" nil t)
+      (save-restriction
+        (narrow-to-region (match-beginning 0) (match-end 0))
+        (replace-match "")
+        (insert (format-time-string "%Y" (current-time)))
         ))
     )
   (save-excursion
