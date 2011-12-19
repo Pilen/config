@@ -407,6 +407,7 @@
 
 (delete-selection-mode t)
 
+(setq debug-on-error t)
 (require 'recentf)
 (recentf-mode t)
 
