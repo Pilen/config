@@ -5,6 +5,12 @@
 ;;
 ;;______________________________________________________________________________
 
+
+;; Debug on errors in .emacs
+(setq debug-on-error t)
+
+
+
 ;;______________________________________________________________________________
 ;;UNBIND
 ;;______________________________________________________________________________
@@ -407,7 +413,6 @@
 
 (delete-selection-mode t)
 
-(setq debug-on-error t)
 (require 'recentf)
 (recentf-mode t)
 
@@ -1523,3 +1528,9 @@ instead."
   (interactive)
   (set-window-width 80))
 
+
+
+
+
+;; End of .emacs, go away debugger!
+(setq debug-on-error nil)
