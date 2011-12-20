@@ -741,6 +741,11 @@
 (win-switch-define-key "|" 'delete-other-windows t)
 
 
+(defadvice split-window (after move-point-to-new-window activate)
+  "Moves the point to the newly created window after splitting."
+  (other-window 1))
+
+
 
 
 
