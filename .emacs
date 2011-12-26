@@ -6,9 +6,9 @@
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |-           |=           |Backspace             |
-;|            |              |            |            |            |            |            |            |            |            |            |            |zoom        |                      |
+;|            |bread-set     |bread-prev  |bread-next  |            |            |            |            |            |            |            |            |zoom        |                      |
 ;|~           |!             |@           |#           |$           |%           |^           |&           |*           |(           |)           |_           |+           |                      |
-;|            |              |            |            |            |            |            |            |            |            |            |            |zoomable    |                      |
+;|            |              |            |bread-list  |            |            |            |            |            |            |            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
 ;|                   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |winner-undo |kill-buf    |               |
@@ -340,6 +340,11 @@
 (global-set-key (kbd "M-{") 'winner-redo)
 (global-set-key (kbd "M--") 'flymake-goto-next-error)
 (global-set-key (kbd "M-_") 'flymake-mode)
+
+(global-set-key (kbd "M-1") 'bc-set)
+(global-set-key (kbd "M-2") 'bc-previous)
+(global-set-key (kbd "M-3") 'bc-next)
+(global-set-key (kbd "M-3") 'bc-list)
 
 (global-set-key (kbd "<f1>") 'flyspell-mode)
 (global-set-key (kbd "M-<f1>") 'flyspell-mode)
@@ -709,9 +714,9 @@
 ;;______________________________________________________________________________
 (require 'buffer-move)
 (require 'tiling)
-(require 'window-numbering)
+;(require 'window-numbering)
 (setq windmove-wrap-around t)
-(window-numbering-mode 1)
+;(window-numbering-mode 1)
 (require 'win-switch)
 (setq win-switch-idle-time 1000)
 (setq win-switch-window-threshold 0)
@@ -884,6 +889,7 @@
       )
     )
   )
+
 ;;______________________________________________________________________________
 ;;Babel
 ;;______________________________________________________________________________
@@ -891,6 +897,11 @@
 (autoload 'babel-region "babel" nil t)
 (autoload 'babel-as-string "babel" nil t)
 (autoload 'babel-buffer "babel" nil t)
+
+;;______________________________________________________________________________
+;;Breadcrumb
+;;______________________________________________________________________________
+(require 'breadcrumb)
 
 ;;______________________________________________________________________________
 ;;Eshell
