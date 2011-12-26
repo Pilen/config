@@ -3,8 +3,6 @@
 wc -l .emacs
 /home/pilen/.copyaliases.py
 
-git status -u no
-
 #This is basicly a list of all the files i want to keep track of.
 
 git add ~/.emacs.d/;
@@ -20,3 +18,5 @@ git add ~/.aliases;
 git add ~/.copyaliases.py;
 git commit -m "Configuration updated";
 git push
+
+git show --pretty="format:" --name-only
