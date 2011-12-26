@@ -16,8 +16,8 @@
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
-;|                      |exe-command   |align-regexp|<del-chr    |del-chr>    |killwholline|>>|         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
-;|                      |exe-shell     |            |            |            |            ||<<         ||<-         |\/          |->|         |tiling-cycle|win-80col   |del-o-window|            |
+;|                      |exe-command   |transpose   |<del-chr    |del-chr>    |killwholline|>>|         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
+;|                      |exe-shell     |align-regexp|            |            |            ||<<         ||<-         |\/          |->|         |tiling-cycle|win-80col   |del-o-window|            |
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
@@ -318,7 +318,8 @@
 (global-set-key (kbd "M-|") 'delete-other-windows)
 (global-set-key (kbd "M-:") 'split-window-vertically)
 (global-set-key (kbd "M-;") 'split-window-horizontally)
-(global-set-key (kbd "M-r") 'align-regexp)
+(global-set-key (kbd "M-r") 'transpose-lines)
+(global-set-key (kbd "M-R") 'align-regexp)
 (global-set-key (kbd "M-]") '(lambda nil (interactive) (kill-buffer (current-buffer))))
 (global-set-key (kbd "M-}") 'kill-buffer-and-window)
 
