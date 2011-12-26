@@ -3,6 +3,8 @@
 wc -l .emacs
 /home/pilen/.copyaliases.py
 
+git status -u no
+
 #This is basicly a list of all the files i want to keep track of.
 
 git add ~/.emacs.d/;
