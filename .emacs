@@ -442,6 +442,9 @@
 
 (delete-selection-mode t)
 
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
+
 (load "~/.emacs.d/fixed-point-completion.el")
 (enable-fixed-point-completions)
 
