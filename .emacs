@@ -217,11 +217,11 @@
 (global-set-key (kbd "M-p") 'kill-word)
 ;; Copy Cut Paste, Paste previous
 ;;lobal-set-key (kbd "M-x") 'kill-region) ; C-w
-(global-set-key (kbd "M-c") 'kill-ring-save)
-(global-set-key (kbd "M-v") 'yank)
-(global-set-key (kbd "M-V") 'yank-pop)
-(global-set-key (kbd "M-C") 'copy-all)
-(global-set-key (kbd "M-X") 'cut-all)
+;(global-set-key (kbd "M-c") 'kill-ring-save)
+;(global-set-key (kbd "M-v") 'yank)
+;(global-set-key (kbd "M-V") 'yank-pop)
+;(global-set-key (kbd "M-C") 'copy-all)
+;(global-set-key (kbd "M-X") 'cut-all)
 ;; Undo and redo
 (global-set-key (kbd "M-Z") 'redo)
 (global-set-key (kbd "M-z") 'undo)
@@ -239,7 +239,8 @@
 ;(global-set-key (kbd "M-g") 'call-keyword-completion) ???
 ;; Hard-wrap/un-hard-wrap paragraph
 ;(global-set-key (kbd "M-q") 'compact-uncompact-block) ???
-
+(global-set-key (kbd "M-c") 'er/expand-region)
+(global-set-key (kbd "M-C") 'er/contract-region)
 ;;;; EMACS'S SPECIAL COMMANDS
 ;; Cancel
 (global-set-key (kbd "M-k") 'keyboard-escape-quit)
@@ -343,9 +344,9 @@
 (global-set-key (kbd "M-_") 'flymake-mode)
 
 (global-set-key (kbd "M-1") 'bc-set)
-(global-set-key (kbd "M-2") 'bc-previous)
-(global-set-key (kbd "M-3") 'bc-next)
-(global-set-key (kbd "M-3") 'bc-list)
+(global-set-key (kbd "M-2") 'bc-local-previous)
+(global-set-key (kbd "M-3") 'bc-local-next)
+(global-set-key (kbd "M-#") 'bc-list)
 
 (global-set-key (kbd "<f1>") 'flyspell-mode)
 (global-set-key (kbd "M-<f1>") 'flyspell-mode)
@@ -840,7 +841,7 @@
 (autoload 'artist-mode "artist" "Enter artist-mode" t)
 
 ;;______________________________________________________________________________
-;;Auto-insert
+;;AUTO-INSERT
 ;;______________________________________________________________________________
 (require 'autoinsert)
 (auto-insert-mode)
@@ -898,7 +899,7 @@
   )
 
 ;;______________________________________________________________________________
-;;Babel
+;;BABEL
 ;;______________________________________________________________________________
 (autoload 'babel "babel" nil t)
 (autoload 'babel-region "babel" nil t)
@@ -906,12 +907,12 @@
 (autoload 'babel-buffer "babel" nil t)
 
 ;;______________________________________________________________________________
-;;Breadcrumb
+;;BREADCRUMB
 ;;______________________________________________________________________________
 (require 'breadcrumb)
 
 ;;______________________________________________________________________________
-;;Eshell
+;;ESHELL
 ;;______________________________________________________________________________
 (require 'eshell)
 (setq eshell-directory-name "~/.emacs.d/eshell/")
@@ -932,7 +933,6 @@
   (add-to-list 'eshell-visual-commands "alsamixer")
   (add-to-list 'eshell-visual-commands "ssh")
   (add-to-list 'eshell-visual-commands "tail")
-  
 )
 (add-hook 'eshell-mode-hook 'm-eshell-hook)
 (defun tyler-eshell-view-file (file)
@@ -965,12 +965,31 @@
 (defalias 'eshell/more 'eshell/less)
 
 ;;______________________________________________________________________________
-;;Fastnav
+;;EXPAND-REGION
+;;______________________________________________________________________________
+(require 'expand-region)
+;; (defun er/add-text-mode-expansions ()
+;;   (set (make-local-variable 'er/try-expand-list)
+;;        (append
+;;         er/try-expand-list
+;;         '(mark-paragraph
+;;           mark-page))))
+
+;; (add-hook 'text-mode-hook 'er/add-text-mode-expansions)
+
+(setq er/try-expand-list
+      (append er/try-expand-list
+              '(mark-paragraph
+                mark-page)))
+
+
+;;______________________________________________________________________________
+;;FASTNAV
 ;;______________________________________________________________________________
 (require 'fastnav)
 
 ;;______________________________________________________________________________
-;;Flymake
+;;FLYMAKE
 ;;______________________________________________________________________________
 (require 'flymake)
 (require 'rfringe)
@@ -1000,7 +1019,7 @@
 ;(add-hook 'LaTeX-mode-hook 'flymake-mode)
 
 ;;______________________________________________________________________________
-;;Flyspell
+;;FLYSPELL
 ;;______________________________________________________________________________
 (autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
 (setq flyspell-issue-welcome-flag nil)
@@ -1033,7 +1052,7 @@
 (autoload 'ack-find-file "full-ack" nil t)
 
 ;;______________________________________________________________________________
-;;HIPPIE_EXPAND
+;;
 ;;______________________________________________________________________________
 (load-file ".emacs.d/graphviz-dot-mode.el")
 
@@ -1067,7 +1086,7 @@
 (require 'jabber-autoloads)
 
 ;;______________________________________________________________________________
-;;Latex
+;;LATEX
 ;;______________________________________________________________________________
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 (load "auctex.el" nil t t)
@@ -1094,14 +1113,14 @@
 
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 ;;______________________________________________________________________________
-;;Mathematica
+;;MATHEMATICA
 ;;______________________________________________________________________________
 (autoload 'math "math" "Starts Mathematica" t)
 ;(autoload 'math-mode "math" "Mode for editing Mathematica" t)
 ;(setq auto-mode-alist (cons '("\\.m\\'".math-mode) auto-mode-alist))
 
 ;;______________________________________________________________________________
-;;Sage
+;;SAGE
 ;;______________________________________________________________________________
 (require 'help-mode)
 (add-to-list 'load-path (expand-file-name "/opt/sage/data/emacs"))
@@ -1111,7 +1130,7 @@
 (add-hook 'sage-startup-hook 'sage-view 'sage-view-disable-inline-output)
 
 ;;______________________________________________________________________________
-;;Shell
+;;SHELL
 ;;______________________________________________________________________________
 (custom-set-variables
  '(comint-scroll-to-bottom-on-input t)
