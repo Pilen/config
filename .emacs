@@ -21,8 +21,8 @@
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
-;|                |flymake-next  |undo        |            |            |            |toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |query-replac|                               |
-;|                |flymake       |redo        |            |            |            |            |            |sprint      |prv-buf-grp |nxt-buf-grp |iedit       |                               |
+;|                |flymake-next  |undo        |            |expand-regio|goto-last-ch|toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |query-replac|                               |
+;|                |flymake       |redo        |            |cntrct-regio|            |            |            |sprint      |prv-buf-grp |nxt-buf-grp |iedit       |                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
@@ -260,6 +260,7 @@
 ;(global-set-key (kbd "M-8") 'extend-selection)
 ;(global-set-key (kbd "M-*") 'select-text-in-quote)
 
+(global-set-key (kbd "M-v") 'goto-last-change)
 
 
 
@@ -451,6 +452,8 @@
 
 (require 'recentf)
 (recentf-mode t)
+
+(require 'goto-last-change)
 
 ;;______________________________________________________________________________
 ;;Startup
