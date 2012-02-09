@@ -452,6 +452,7 @@
 
 (require 'recentf)
 (recentf-mode t)
+(setq recentf-max-saved-items 20)
 
 (require 'goto-last-change)
 
@@ -1082,6 +1083,18 @@
 (setq ido-create-new-buffer 'always)
 (setq ido-file-extension-order '("/" ".tex" ".emacs" ".txt" ".py" ".cfg" ".c" ".h" ".asm" ".xml" ".org"))
 (ido-mode 1)
+
+;; use ido to complete commands via M-X
+(global-set-key
+ "\M-x"
+ (lambda ()
+   (interactive)
+   (call-interactively
+    (intern
+     (ido-completing-read
+      "M-x "
+      (all-completions "" obarray 'commandp))))))
+
 ;;______________________________________________________________________________
 ;;JABBER
 ;;______________________________________________________________________________
