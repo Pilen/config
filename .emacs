@@ -456,6 +456,8 @@
 
 (require 'goto-last-change)
 
+(require 'uniquify)
+
 ;;______________________________________________________________________________
 ;;Startup
 ;;______________________________________________________________________________
@@ -505,7 +507,9 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "Schumacher" :family "Clean")))))
+ '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "Schumacher" :family "Clean"))))
+ '(flymake-errline ((((class color)) (:underline "red"))))
+ '(flymake-warnline ((((class color)) (:underline "yellow")))))
 
 ;;______________________________________________________________________________
 ;;Theme
@@ -1009,9 +1013,7 @@
   (list "pdflatex" (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
 
 ;; Underline errors instead of highlight
-(custom-set-faces
- '(flymake-errline ((((class color)) (:underline "red"))))
- '(flymake-warnline ((((class color)) (:underline "yellow")))))
+
 
 ;; Quickly show next err-menu
 (defun my-flymake-show-next-error()
@@ -1149,19 +1151,23 @@
 ;;SHELL
 ;;______________________________________________________________________________
 (custom-set-variables
- '(comint-scroll-to-bottom-on-input t)
- '(comint-scroll-to-bottom-on-output t)
- '(comint-scroll-show-maximum-output t)
- '(comint-completion-autolist t)
- '(comint-input-ignoredups t)
- '(comint-completion-addsuffix t)
+  ;; custom-set-variables was added by Custom.
+  ;; If you edit it by hand, you could mess it up, so be careful.
+  ;; Your init file should contain only one such instance.
+  ;; If there is more than one, they won't work right.
  '(comint-buffer-maximum-size 10000)
- '(comint-prompt-read-only nil)
- '(comint-get-old-input (lambda () ""))
+ '(comint-completion-addsuffix t)
+ '(comint-completion-autolist t)
+ '(comint-get-old-input (lambda nil "") t)
+ '(comint-input-ignoredups t)
  '(comint-input-ring-size 100)
+ '(comint-move-point-for-output t)
  '(comint-process-echoes t)
+ '(comint-prompt-read-only nil)
+ '(comint-scroll-show-maximum-output t)
+ '(comint-scroll-to-bottom-on-input t)
  '(protect-buffer-bury-p nil)
-)
+ '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
 (ansi-color-for-comint-mode-on)
 (defvar my-shells '("*shell*" "*shell0*" "*shell1*" "*shell2*" "*shell3*"))
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
