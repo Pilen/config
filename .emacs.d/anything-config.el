@@ -836,7 +836,7 @@ This will be use with `format', so use something like \"wmctrl -xa %s\"."
   (global-set-key (read-kbd-macro anything-command-map-prefix-key)
                   'anything-command-map))
 
-(defcustom anything-command-map-prefix-key "<f5> a"
+(defcustom anything-command-map-prefix-key "<c> <f5> a"
   "*The prefix key for all `anything-command-map' commands.
 
 !!WARNING!!

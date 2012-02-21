@@ -1,6 +1,6 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
-;|          | |          |          |mcro-start|mcro-end/c| |          |          |          |narrow-tog| |          |          |tex-insenv|prev-latex||linum     |autoindent|def-face  |whitespc-m|
+;|          | |          |          |mcro-start|mcro-end/c| |revert-bu |          |          |narrow-tog| |          |reftex-toc|tex-insenv|prev-latex||linum     |autoindent|def-face  |whitespc-m|
 ;|          | |          |          |mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||          |          |          |rainbow-de|
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
@@ -187,6 +187,7 @@
 ;; Move by word
 (global-set-key (kbd "M-l") 'geosoft-backward-word)
 (global-set-key (kbd "M-y") 'forward-word)
+(global-set-key (kbd "M-0") 'forward-same-syntax)
 ;; Move by paragraph
 ;(global-set-key (kbd "M-L") 'backward-paragraph)
 ;(global-set-key (kbd "M-Y") 'forward-paragraph)
@@ -298,6 +299,8 @@
 ;(global-set-key (kbd "M-.") 'next-buffer)
 (global-set-key (kbd "M-g") 'goto-line)
 
+(global-set-key (kbd "M-<return>") 'ido-switch-buffer)
+
 (global-set-key (kbd "M-,") 'tabbar-backward)
 (global-set-key (kbd "M-.") 'tabbar-forward)
 (global-set-key (kbd "M-<") 'tabbar-backward-group)
@@ -356,6 +359,7 @@
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<M-f3>") 'kmacro-name-last-macro)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
+(global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "<f8>") 'narrow-toggle)
 (global-set-key (kbd "<f10>") 'reftex-toc)
 (global-set-key (kbd "<f11>") 'LaTeX-environment)
@@ -457,6 +461,8 @@
 (require 'goto-last-change)
 
 (require 'uniquify)
+
+(require 'ace-jump-mode)
 
 ;;______________________________________________________________________________
 ;;Startup
