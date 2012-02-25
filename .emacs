@@ -1015,8 +1015,8 @@
 ;(push
 ; '("^\\(\.+\.tex\\):\\([0-9+\\):\\([0-9]+\\):\\(.+\\))"
 ;   1 2 3 4) flymake-err-line-patterns)
-(defun flymake-get-tex-args (file-name)
-  (list "pdflatex" (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
+;(defun flymake-get-tex-args (file-name)
+;  (list "pdflatex" (list "-file-line-error" "-draftmode" "-interaction=nonstopmode" file-name)))
 
 ;; Underline errors instead of highlight
 

@@ -20,6 +20,7 @@ autoload U promptinit
 promptinit
 
 export PATH="${PATH}:/opt/mosml/bin"
+export PATH=~/programs/osm/bin:$PATH
 autoload -U colors && colors
 
 #if [[$hostname = *joker*]]; then
