@@ -6,7 +6,7 @@
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |-           |=           |Backspace             |
-;|            |bread-set     |bread-prev  |bread-next  |            |            |            |            |            |            |            |            |zoom        |                      |
+;|            |bread-set     |bread-prev  |bread-next  |            |            |            |            |jump-back-ta|find-tag    |            |            |zoom        |                      |
 ;|~           |!             |@           |#           |$           |%           |^           |&           |*           |(           |)           |_           |+           |                      |
 ;|            |              |            |bread-list  |            |            |            |            |            |            |            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
@@ -351,6 +351,9 @@
 (global-set-key (kbd "M-2") 'bc-local-previous)
 (global-set-key (kbd "M-3") 'bc-local-next)
 (global-set-key (kbd "M-#") 'bc-list)
+
+(global-set-key (kbd "M-9") 'find-tag)
+(global-set-key (kbd "M-8") 'pop-tag-mark)
 
 (global-set-key (kbd "<f1>") 'flyspell-mode)
 (global-set-key (kbd "M-<f1>") 'flyspell-mode)
@@ -1255,7 +1258,39 @@
 (add-hook 'first-change-hook 'ztl-on-buffer-modification)
 
 
+;;______________________________________________________________________________
+;;TAGS
+;;______________________________________________________________________________
 
+(defun create-tags (dir-name)
+     "Create tags file."
+     (interactive "DDirectory: ")
+     (eshell-command 
+      (format "find %s -type f -name \"*.[ch]\" | etags -L -" dir-name)))
+
+
+;;;  Jonas.Jarnestrom<at>ki.ericsson.se A smarter
+;;;  find-tag that automagically reruns etags when it cant find a
+;;;  requested item and then makes a new try to locate it.
+;;;  Fri Mar 15 09:52:14 2002
+(defadvice find-tag (around refresh-etags activate)
+  "Rerun etags and reload tags if tag not found and redo find-tag.
+   If buffer is modified, ask about save before running etags."
+  (let ((extension (file-name-extension (buffer-file-name))))
+    (condition-case err
+        ad-do-it
+      (error (and (buffer-modified-p)
+                  (not (ding))
+                  (y-or-n-p "Buffer is modified, save it? ")
+                  (save-buffer))
+             (er-refresh-etags extension)
+             ad-do-it))))
+(defun er-refresh-etags (&optional extension)
+  "Run etags on all peer files in current dir and reload them silently."
+  (interactive)
+  (shell-command (format "etags *.%s" (or extension "el")))
+  (let ((tags-revert-without-query t))  ; don't query, revert silently
+    (visit-tags-table default-directory nil)))
 
 
 
