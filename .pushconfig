@@ -1,5 +1,7 @@
 # ! /bin/sh
 
+echo old size:
+wget -qO- https://raw.github.com/Pilen/config/master/.emacs | wc -l
 wc -l .emacs
 /home/pilen/.copyaliases.py
 
