@@ -8,7 +8,7 @@
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |-           |=           |Backspace             |
 ;|            |bread-set     |bread-prev  |bread-next  |            |            |            |            |jump-back-ta|find-tag    |            |            |zoom        |                      |
 ;|~           |!             |@           |#           |$           |%           |^           |&           |*           |(           |)           |_           |+           |                      |
-;|            |              |            |bread-list  |            |            |            |            |            |            |            |            |zoomable    |                      |
+;|            |              |            |bread-list  |            |            |            |            |            |tags-apropos|            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
 ;|                   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |winner-undo |kill-buf    |               |
