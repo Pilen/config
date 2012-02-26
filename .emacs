@@ -12,11 +12,11 @@
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
 ;|                   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |winner-undo |kill-buf    |               |
-;|                   |              |            |            |            |            |find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |kill-buf+win|               |
+;|                   |              |            |transpose-up|transpose-dn|            |find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |kill-buf+win|               |
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
-;|                      |exe-command   |transpose   |<del-chr    |del-chr>    |killwholline|>>|         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
+;|                      |exe-command   |            |<del-chr    |del-chr>    |killwholline|>>|         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
 ;|                      |exe-shell     |align-regexp|            |            |            ||<<         ||<-         |\/          |->|         |tiling-cycle|win-80col   |del-o-window|            |
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
@@ -300,6 +300,7 @@
 (global-set-key (kbd "M-g") 'goto-line)
 
 (global-set-key (kbd "M-<return>") 'ido-switch-buffer)
+(global-set-key (kbd "S-<return>") 'new-indented-line)
 
 (global-set-key (kbd "M-,") 'tabbar-backward)
 (global-set-key (kbd "M-.") 'tabbar-forward)
@@ -323,10 +324,13 @@
 (global-set-key (kbd "M-|") 'delete-other-windows)
 (global-set-key (kbd "M-:") 'split-window-vertically)
 (global-set-key (kbd "M-;") 'split-window-horizontally)
-(global-set-key (kbd "M-r") 'transpose-lines)
+;(global-set-key (kbd "M-r") 'transpose-lines)
 (global-set-key (kbd "M-R") 'align-regexp)
 (global-set-key (kbd "M-]") '(lambda nil (interactive) (kill-buffer (current-buffer))))
 (global-set-key (kbd "M-}") 'kill-buffer-and-window)
+
+(global-set-key (kbd "M-F") 'transpose-up)
+(global-set-key (kbd "M-P") 'transpose-down)
 
 ;(global-set-key (kbd "M-q") 'goto-match-paren)
 ;(global-set-key (kbd "M-Q") 'rainbow-delimiters-mode)
@@ -475,8 +479,10 @@
   (message ""))
 (find-file "~/.emacs")
 ;(switch-to-buffer "blank")
-(kill-buffer "*scratch*")
-(kill-buffer "*Messages*")
+(if (not (eq nil (get-buffer "*scratch*")))
+    (kill-buffer "*scratch*"))
+(if (not (eq nil (get-buffer "*Messages*")))
+    (kill-buffer "*Messages*"))
 
 ;;______________________________________________________________________________
 ;;Clock
@@ -1655,7 +1661,36 @@ instead."
   (set-window-width 80))
 
 
+;;; Made by Søren Pilgård
+(defun transpose-up ()
+  "Move current line up"
+  (interactive)
+  (let ((column-number (- (point) (point-at-bol))))
+    (kill-whole-line)
+    (forward-line -1)
+    (yank)
+    (setq kill-ring (cdr kill-ring))
+    (forward-line -1)
+    (move-to-column column-number)))
 
+;;; Made by Søren Pilgård
+(defun transpose-down ()
+  "Move current line down"
+  (interactive)
+  (let ((column-number (- (point) (point-at-bol))))
+    (kill-whole-line)
+    (forward-line 1)
+    (yank)
+    (setq kill-ring (cdr kill-ring))
+    (forward-line -1)
+    (move-to-column column-number)))
+
+
+(defun new-indented-line ()
+  "Insert a line below the current and indent it"
+  (interactive)
+  (end-of-line)
+  (newline-and-indent))
 
 
 ;; End of .emacs, go away debugger!
