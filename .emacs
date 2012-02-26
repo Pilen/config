@@ -358,6 +358,7 @@
 
 (global-set-key (kbd "M-9") 'find-tag)
 (global-set-key (kbd "M-8") 'pop-tag-mark)
+(global-set-key (kbd "M-(") 'tags-apropos)
 
 (global-set-key (kbd "<f1>") 'flyspell-mode)
 (global-set-key (kbd "M-<f1>") 'flyspell-mode)
