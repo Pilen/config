@@ -39,6 +39,8 @@
 ;;
 ;;______________________________________________________________________________
 
+;; Nice to remember keys:
+;; c-l    scroll line to top/center/bottom
 
 ;; Debug on errors in .emacs
 (setq debug-on-error t)
@@ -560,6 +562,33 @@
 ;(set-cursor-color "red")
 ;(set-cursor-color "cyan")
 
+
+;;______________________________________________________________________________
+;;MODELINE
+;;______________________________________________________________________________
+(defvar my-mode-line-buffer-line-count nil)
+(make-variable-buffer-local 'my-mode-line-buffer-line-count)
+
+;; (setq-default mode-line-format
+;;               '("  " mode-line-modified
+;;                 (list 'line-number-mode "  ")
+;;                 (:eval (when line-number-mode
+;;                          (let ((str "L%l"))
+;;                            (when (and (not (buffer-modified-p)) my-mode-line-buffer-line-count)
+;;                              (setq str (concat str "/" my-mode-line-buffer-line-count)))
+;;                            str)))
+;;                 "  %p"
+;;                 (list 'column-number-mode "  C%c")
+;;                 "  " mode-line-buffer-identification
+;;                 "  " mode-line-modes))
+
+(defun my-mode-line-count-lines ()
+  (setq my-mode-line-buffer-line-count (int-to-string (count-lines (point-min) (point-max)))))
+
+(add-hook 'find-file-hook 'my-mode-line-count-lines)
+(add-hook 'after-save-hook 'my-mode-line-count-lines)
+(add-hook 'after-revert-hook 'my-mode-line-count-lines)
+(add-hook 'dired-after-readin-hook 'my-mode-line-count-lines)
 
 ;;______________________________________________________________________________
 ;;Rainbow delimiters
