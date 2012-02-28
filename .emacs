@@ -1077,7 +1077,7 @@
 (setq flyspell-issue-message-flag nil)
 (setq ispell-dictionary "dansk")
 (add-hook 'flyspell-mode-hook 'flyspell-buffer)
-(add-hook 'c-mode-common-hook 'flyspell-mprog-mode)
+(add-hook 'c-mode-common-hook 'flyspell-prog-mode)
 (add-hook 'python-mode-hook 'flyspell-prog-mode)
 (add-hook 'sml-mode 'flyspell-prog-mode)
 
