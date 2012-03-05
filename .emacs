@@ -753,10 +753,12 @@
 ;;______________________________________________________________________________
 ;;DTRT-INDENT
 ;;______________________________________________________________________________
-(add-hook 'c-mode-common-hook
-          (lambda()
-            (require 'dert-indent)
-            (dtrt-indent-mode t)))
+;(add-hook 'c-mode-common-hook
+;          (lambda()
+;            (require 'dert-indent)
+;            (dtrt-indent-mode t)))
+(require 'dtrt-indent)
+(dtrt-indent-mode t)
 ;;______________________________________________________________________________
 ;;Save position between sessions
 ;;______________________________________________________________________________
