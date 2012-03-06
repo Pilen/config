@@ -543,7 +543,9 @@
 ;(require 'color-theme-solarized)
 ;(color-theme-solarized-dark)
 
-(set-background-color "grey30")
+(if (string= (system-name) "joker")
+    (set-background-color "grey30")
+  (set-background-color "blue"))
 (set-foreground-color "honeydew1")
 
 ;(set-face-background 'menubar "slate gray")
