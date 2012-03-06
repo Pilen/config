@@ -29,7 +29,7 @@ if [[ "$HOST" == joker ]]; then
     PROMPT="%(!.#.$)";
     RPROMPT="%3~";
 else
-    PROMPT="%n@%m%(!.#.$)"
+    PROMPT="%F{green}%B%n@%m%(!.#.$)%b%f"
     RPROMPT="%3~";
 fi
 
