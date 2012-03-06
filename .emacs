@@ -1189,11 +1189,10 @@
 ;;______________________________________________________________________________
 ;;SAGE
 ;;______________________________________________________________________________
-(require 'help-mode)
 (add-to-list 'load-path (expand-file-name "/opt/sage/data/emacs"))
-(require 'sage "sage")
-(setq sage-command "/opt/sage/sage")
-(require 'sage-view "sage-view")
+(autoload 'sage "sage")
+;(setq sage-command "/opt/sage/sage")
+(autoload 'sage-view "sage-view")
 (add-hook 'sage-startup-hook 'sage-view 'sage-view-disable-inline-output)
 
 ;;______________________________________________________________________________
