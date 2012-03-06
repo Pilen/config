@@ -21,4 +21,12 @@ git add ~/.copyaliases.py;
 git commit -m "Configuration updated";
 git push
 
+#Locales to update
+echo Updating remote addreses
+ssh pilgaard@tyr.diku.dk git pull origin master
+
+echo
 git show --pretty="format:" --name-only
+
+
+
