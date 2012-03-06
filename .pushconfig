@@ -4,6 +4,7 @@ echo old size:
 wget -qO- https://raw.github.com/Pilen/config/master/.emacs | wc -l
 wc -l .emacs
 /home/pilen/.copyaliases.py
+echo
 
 #This is basicly a list of all the files i want to keep track of.
 
@@ -22,6 +23,7 @@ git commit -m "Configuration updated";
 git push
 
 #Locales to update
+echo
 echo Updating remote addreses
 ssh pilgaard@tyr.diku.dk git pull origin master
 
