@@ -30,7 +30,7 @@ if [[ "$HOST" == joker ]]; then
     RPROMPT="%3~";
 else
     PROMPT="%B%{%F{green}%}%n@%m%{%f%} %{%F{blue}%}%~ %(!.#.$)%{%f%}%b"
-    RPROMPT="%3~";
+    #RPROMPT="%3~";
 fi
 
 #PROMPT="$(tput sc; tput cup 0 $(($(tput cols)-5));date +%H:%M;tput rc)%(!.#.$)"
