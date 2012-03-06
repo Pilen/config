@@ -545,7 +545,7 @@
 
 (if (string= (system-name) "joker")
     (set-background-color "grey30")
-  (set-background-color "steel blue"))
+  (set-background-color "royal blue"))
 (set-foreground-color "honeydew1")
 
 ;(set-face-background 'menubar "slate gray")
