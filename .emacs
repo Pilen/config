@@ -22,7 +22,7 @@
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
 ;|                |flymake-next  |undo        |            |expand-regio|goto-last-ch|toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |query-replac|                               |
-;|                |flymake       |redo        |            |cntrct-regio|            |            |            |sprint      |prv-buf-grp |nxt-buf-grp |iedit       |                               |
+;|                |flymake       |redo        |            |cntrct-regio|            |caps-mode   |            |sprint      |prv-buf-grp |nxt-buf-grp |iedit       |                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
@@ -238,6 +238,7 @@
 ;(global-set-key (kbd "M-w") 'shrink-whitespace) ???
 ;(global-set-key (kbd "M-'") 'comment-dwim) ;?
 (global-set-key (kbd "M-b") 'toggle-letter-case)
+(global-set-key (kbd "M-B") 'caps-mode)
 ;; Keyword completion, because Alt-Tab is used by OS
 ;(global-set-key (kbd "M-g") 'call-keyword-completion) ???
 ;; Hard-wrap/un-hard-wrap paragraph
@@ -473,6 +474,8 @@
 (require 'uniquify)
 
 (require 'ace-jump-mode)
+
+(require 'caps-mode)
 
 ;;______________________________________________________________________________
 ;;Startup
