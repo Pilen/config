@@ -39,6 +39,14 @@ fi
 #PROMT="[%n@%m:%C]$"
 #fi
 
+function mkcd {
+    mkdir $1 && cd $1;
+}
+
+function cl {
+    cd $1 && ls
+}
+
 export SAGE_BROWSER="/usr/bin/feh -.qB checks"
 
 source ~/.aliases
