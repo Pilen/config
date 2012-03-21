@@ -350,7 +350,8 @@
 
 ;(global-set-key (kbd "M-q") 'goto-match-paren)
 ;(global-set-key (kbd "M-Q") 'rainbow-delimiters-mode)
-(global-set-key (kbd "M-j") 'my-anything)
+;(global-set-key (kbd "M-j") 'my-anything)
+(global-set-key (kbd "M-j") 'recentf-ido-find-file)
 (global-set-key (kbd "M-J") 'find-file-at-point)
 
 (global-set-key (kbd "M-<insert>") 'linum-mode)
@@ -480,7 +481,7 @@
 
 (require 'recentf)
 (recentf-mode t)
-(setq recentf-max-saved-items 20)
+(setq recentf-max-saved-items 200)
 
 (require 'goto-last-change)
 
@@ -1149,6 +1150,8 @@
 ;;______________________________________________________________________________
 ;;IBUFFER
 ;;______________________________________________________________________________
+(require 'ibuffer)
+
 ;; From emacs-fu
 (setq ibuffer-saved-filter-groups
       (quote (("default"
@@ -1212,6 +1215,23 @@
           (lambda ()
             (define-key ibuffer-mode-map "\C-x\C-f"
               'ibuffer-ido-find-file)))
+(defadvice ibuffer (around ibuffer-point-to-most-recent) ()
+  "Open ibuffer with cursor pointed to most recent buffer name"
+  (let ((recent-buffer-name (buffer-name)))
+    ad-do-it
+    (ibuffer-jump-to-buffer recent-buffer-name)))
+(ad-activate 'ibuffer)
+
+(defun ibuffer-ediff-marked-buffers ()
+  (interactive)
+  (let* ((marked-buffers (ibuffer-get-marked-buffers))
+         (len (length marked-buffers)))
+    (unless (= 2 len)
+      (error (format "%s buffer%s been marked (needs to be 2)"
+                     len (if (= len 1) " has" "s have"))))
+    (ediff-buffers (car marked-buffers) (cadr marked-buffers))))
+
+(define-key ibuffer-mode-map "e" 'ibuffer-ediff-marked-buffers)
 
 ;;______________________________________________________________________________
 ;;IDO
@@ -1224,8 +1244,14 @@
 
 ;; Display ido results vertically, rather than horizontally
 ;(setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
-;(defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
+(defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
 ;(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
+
+;default
+;(setq ido-decorations (quote ("{" "}" " | " " | ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
+;(remove-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
+
+
 
 ;; use ido to complete commands via M-X
 (global-set-key
@@ -1237,6 +1263,17 @@
      (ido-completing-read
       "M-x "
       (all-completions "" obarray 'commandp))))))
+
+(defun recentf-ido-find-file ()
+  "Find a recent file using Ido."
+  (interactive)
+
+  (let ((ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]"))))
+  ;(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
+
+  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+    (when file
+      (find-file file)))))
 
 ;;______________________________________________________________________________
 ;;JABBER
