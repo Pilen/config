@@ -22,7 +22,7 @@
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
 ;|                |expand-region |undo        |            |ace-jump-wrd|goto-last-ch|toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |query-replac|                               |
-;|                |contrct-region|redo        |            |            |            |caps-mode   |            |sprint      |prv-buf-grp |nxt-buf-grp |iedit       |                               |
+;|                |contrct-region|redo        |            |idomenu     |            |caps-mode   |            |sprint      |prv-buf-grp |nxt-buf-grp |iedit       |                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
@@ -300,6 +300,7 @@
 (global-set-key (kbd "M-m") 'isearch-forward)
 (global-set-key (kbd "M-M") 'sprint-forward)
 (global-set-key (kbd "M-c") 'ace-jump-word-mode)
+(global-set-key (kbd "M-C") 'idomenu)
 
 (global-set-key (kbd "M-SPC") 'hippie-expand)
 (global-set-key (kbd "M-o") 'other-window)
@@ -494,6 +495,8 @@
 (defvar sql-sqlite-program "sqlite3")
 
 (menu-bar-mode)
+
+(require 'idomenu)
 
 ;;______________________________________________________________________________
 ;;Startup
