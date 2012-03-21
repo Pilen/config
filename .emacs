@@ -1426,6 +1426,45 @@
 (add-hook 'first-change-hook 'ztl-on-buffer-modification)
 
 
+(defun autohide-tabbar ()
+  "Make tabbar briefly show itself while
+you are switching buffers with shortcuts.
+Tested with GNU Emacs 23
+- Sabof"
+  (defvar *tabbar-autohide-delay* 3)
+
+  (interactive)
+  (tabbar-mode nil)
+  (defvar *tabbar-autohide-timer* nil)
+  (defun renew-tabbar-autohide-timer ()
+    (if (timerp *tabbar-autohide-timer*)
+        (cancel-timer *tabbar-autohide-timer*))
+    (setf *tabbar-autohide-timer*
+          (run-with-timer
+           3 nil (lambda ()
+                   (tabbar-mode nil)
+                   (setf *tabbar-autohide-timer*
+                         nil)))))
+
+  (global-set-key
+   (kbd "M-.")
+   (lambda ()
+     (interactive)
+     (if tabbar-mode
+         (tabbar-forward)
+       (tabbar-mode t))
+     (renew-tabbar-autohide-timer)))
+  (global-set-key
+   (kbd "M-,")
+   (lambda ()
+     (interactive)
+     (if tabbar-mode
+         (tabbar-backward)
+       (tabbar-mode t))
+     (renew-tabbar-autohide-timer))))
+
+(autohide-tabbar)
+
 ;;______________________________________________________________________________
 ;;TAGS
 ;;______________________________________________________________________________
@@ -1459,7 +1498,6 @@
   (shell-command (format "etags *.%s" (or extension "el")))
   (let ((tags-revert-without-query t))  ; don't query, revert silently
     (visit-tags-table default-directory nil)))
-
 
 
 ;;______________________________________________________________________________
