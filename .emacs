@@ -1,7 +1,7 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
-;|          | |          |          |mcro-start|mcro-end/c| |revert-bu |          |          |narrow-tog| |          |reftex-toc|tex-insenv|prev-latex||linum     |autoindent|def-face  |whitespc-m|
-;|          | |          |          |mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||          |          |          |rainbow-de|
+;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |          |narrow-tog| |          |reftex-toc|tex-insenv|prev-latex||linum     |autoindent|def-face  |whitespc-m|
+;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||          |          |          |rainbow-de|
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
@@ -16,8 +16,8 @@
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
-;|                      |exe-command   |            |<del-chr    |del-chr>    |killwholline|>>|         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
-;|                      |exe-shell     |align-regexp|            |            |            ||<<         ||<-         |\/          |->|         |tiling-cycle|win-80col   |del-o-window|            |
+;|                      |exe-command   |            |<del-chr    |del-chr>    |killwholline||<<         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
+;|                      |exe-shell     |align-regexp|            |            |            |>>|         ||<-         |\/          |->|         |tiling-cycle|win-80col   |del-o-window|            |
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
@@ -213,8 +213,8 @@
 (global-set-key (kbd "M-U") 'pager-page-up)
 (global-set-key (kbd "M-E") 'pager-page-down)
 ;; Move to beginning/ending of file
-(global-set-key (kbd "M-H") 'beginning-of-buffer)
-(global-set-key (kbd "M-h") 'end-of-buffer)
+(global-set-key (kbd "M-h") 'beginning-of-buffer)
+(global-set-key (kbd "M-H") 'end-of-buffer)
 ;; isearch
 ;(global-set-key (kbd "M-o") 'isearch-forward)
 ;(global-set-key (kbd "M-O") 'isearch-backward)
