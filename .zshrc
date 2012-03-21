@@ -46,6 +46,17 @@ function mkcd {
 function cl {
     cd $1 && ls
 }
+function lss {
+    if [[ -n $1 ]]; then
+        if [[ -d $1 ]]; then
+            ls $1;
+            else
+            less $1;
+        fi
+    else
+        ls;
+    fi
+}
 
 export SAGE_BROWSER="/usr/bin/feh -.qB checks"
 

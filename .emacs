@@ -6,13 +6,13 @@
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |-           |=           |Backspace             |
-;|            |bread-set     |bread-prev  |bread-next  |            |            |            |            |jump-back-ta|find-tag    |            |            |zoom        |                      |
+;|flymake-next|bread-set     |bread-prev  |bread-next  |            |            |            |            |jump-back-ta|find-tag    |            |            |zoom        |                      |
 ;|~           |!             |@           |#           |$           |%           |^           |&           |*           |(           |)           |_           |+           |                      |
-;|            |              |            |bread-list  |            |            |            |            |            |tags-apropos|            |            |zoomable    |                      |
+;|flymake     |              |            |bread-list  |            |            |            |            |            |tags-apropos|            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
 ;|                   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |winner-undo |kill-buf    |               |
-;|                   |              |            |transpose-up|transpose-dn|            |find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |kill-buf+win|               |
+;|                   |              |            |transpose-up|transpose-dn|transpos-wrd|find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |kill-buf+win|               |
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
@@ -21,14 +21,14 @@
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
-;|                |flymake-next  |undo        |            |expand-regio|goto-last-ch|toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |query-replac|                               |
-;|                |flymake       |redo        |            |cntrct-regio|            |caps-mode   |            |sprint      |prv-buf-grp |nxt-buf-grp |iedit       |                               |
+;|                |expand-region |undo        |            |ace-jump-wrd|goto-last-ch|toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |query-replac|                               |
+;|                |contrct-region|redo        |            |            |            |caps-mode   |            |sprint      |prv-buf-grp |nxt-buf-grp |iedit       |                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
-;|            |                  |           |           |hippie-expand                                                     |            |Tabbar-menu |            |                               |
-;|            |                  |           |           |mark-paragraph                                                    |            |            |            |                               |
-;|            |                  |           |           |                                                                  |            |            |            |                               |
+;|            |                  |           |           |hippie-expand                                                     |            |idobuffer   |            |                               |
+;|            |                  |           |           |mark-paragraph                                                    |            |Tabbar-menu |            |                               |
+;|            |                  |           |           |                                                                  |            |menu-bar    |            |                               |
 ;|____________|__________________|___________|___________|__________________________________________________________________|____________|____________|____________|_______________________________|
 
 
@@ -40,7 +40,16 @@
 ;;______________________________________________________________________________
 
 ;; Nice to remember keys:
-;; c-l    scroll line to top/center/bottom
+;; C-l    scroll line to top/center/bottom
+
+;; C-x r k      Kill (cut) rectangle
+;; C-x r y      Yank (paste) rectangle
+;; C-x r o      Open (insert spaces into selection)
+;; C-x r c      Clear (overwrite selection with spaces)
+;; C-x r t      Replace (replace selection with user text)
+
+
+
 
 ;; Debug on errors in .emacs
 (setq debug-on-error t)
@@ -243,8 +252,8 @@
 ;(global-set-key (kbd "M-g") 'call-keyword-completion) ???
 ;; Hard-wrap/un-hard-wrap paragraph
 ;(global-set-key (kbd "M-q") 'compact-uncompact-block) ???
-(global-set-key (kbd "M-c") 'er/expand-region)
-(global-set-key (kbd "M-C") 'er/contract-region)
+(global-set-key (kbd "M--") 'er/expand-region)
+(global-set-key (kbd "M-_") 'er/contract-region)
 ;;;; EMACS'S SPECIAL COMMANDS
 ;; Cancel
 (global-set-key (kbd "M-k") 'keyboard-escape-quit)
@@ -290,7 +299,7 @@
 
 (global-set-key (kbd "M-m") 'isearch-forward)
 (global-set-key (kbd "M-M") 'sprint-forward)
-
+(global-set-key (kbd "M-c") 'ace-jump-word-mode)
 
 (global-set-key (kbd "M-SPC") 'hippie-expand)
 (global-set-key (kbd "M-o") 'other-window)
@@ -301,15 +310,18 @@
 ;(global-set-key (kbd "M-,") 'previous-buffer)
 ;(global-set-key (kbd "M-.") 'next-buffer)
 (global-set-key (kbd "M-g") 'goto-line)
-
 (global-set-key (kbd "M-<return>") 'ido-switch-buffer)
+;(global-set-key (kbd "M-<return>") 'idobuffer)
 (global-set-key (kbd "S-<return>") 'new-indented-line)
 
 (global-set-key (kbd "M-,") 'tabbar-backward)
 (global-set-key (kbd "M-.") 'tabbar-forward)
 (global-set-key (kbd "M-<") 'tabbar-backward-group)
 (global-set-key (kbd "M->") 'tabbar-forward-group)
-(global-set-key (kbd "<menu>") 'tabbar-press-home)
+(global-set-key (kbd "M-<menu>") 'tabbar-press-home)
+
+(global-set-key (kbd "<menu>") 'idobuffer)
+(global-set-key (kbd "S-<menu>") 'menu-bar-mode)
 
 ;;END
 
@@ -334,6 +346,7 @@
 
 (global-set-key (kbd "M-F") 'transpose-up)
 (global-set-key (kbd "M-P") 'transpose-down)
+(global-set-key (kbd "M-G") 'transpose-words)
 
 ;(global-set-key (kbd "M-q") 'goto-match-paren)
 ;(global-set-key (kbd "M-Q") 'rainbow-delimiters-mode)
@@ -351,8 +364,8 @@
 
 (global-set-key (kbd "M-[") 'winner-undo)
 (global-set-key (kbd "M-{") 'winner-redo)
-(global-set-key (kbd "M--") 'flymake-goto-next-error)
-(global-set-key (kbd "M-_") 'flymake-mode)
+(global-set-key (kbd "M-`") 'flymake-goto-next-error)
+(global-set-key (kbd "M-~") 'flymake-mode)
 
 (global-set-key (kbd "M-1") 'bc-set)
 (global-set-key (kbd "M-2") 'bc-local-previous)
@@ -476,6 +489,10 @@
 (require 'ace-jump-mode)
 
 (require 'caps-mode)
+
+(defvar sql-sqlite-program "sqlite3")
+
+(menu-bar-mode)
 
 ;;______________________________________________________________________________
 ;;Startup
@@ -1130,6 +1147,73 @@
                                          try-complete-lisp-symbol))
 
 ;;______________________________________________________________________________
+;;IBUFFER
+;;______________________________________________________________________________
+;; From emacs-fu
+(setq ibuffer-saved-filter-groups
+      (quote (("default"
+
+
+               ("OSM"
+                (filename . "~/Dropbox/diku/osm/"))
+
+               ("Tex"
+                (or
+                 (mode . auctex)
+                 (mode . latex-mode)))
+               ("c"
+                (mode . c-mode))
+               ("Python"
+                (mode . python-mode))
+               ("Web"
+                (or
+                 (mode . html-mode)
+                 (mode . css-mode)))
+
+               ("emacs-config"
+                (or
+                 (filename . ".emacs")))
+
+               ("Org" ;; all org-related buffers
+                (mode . org-mode))
+               ("Mail"
+                (or ;; mail-related buffers
+                 (mode . message-mode)
+                 (mode . mail-mode)
+                 ;; etc. ; all your mail related modes
+                 ))
+               ("ERC"
+                (mode . erc-mode))
+
+                 ))))
+
+(add-hook 'ibuffer-mode-hook
+          (lambda ()
+            (ibuffer-switch-to-saved-filter-groups "default")))
+
+(setq ibuffer-show-empty-filter-groups nil)
+
+(defun idobuffer ()
+  "Open ibuffer and start ido"
+  (interactive)
+  (ibuffer)
+  (ido-switch-buffer))
+
+(defun ibuffer-ido-find-file ()
+  "Like `ido-find-file', but default to the directory of the buffer at point."
+  (interactive
+   (let ((default-directory (let ((buf (ibuffer-current-buffer)))
+                              (if (buffer-live-p buf)
+                                  (with-current-buffer buf
+                                    default-directory)
+                                default-directory))))
+     (ido-find-file-in-dir default-directory))))
+(add-hook 'ibuffer-mode-hook
+          (lambda ()
+            (define-key ibuffer-mode-map "\C-x\C-f"
+              'ibuffer-ido-find-file)))
+
+;;______________________________________________________________________________
 ;;IDO
 ;;______________________________________________________________________________
 (setq ido-enable-flex-matching t)
@@ -1137,6 +1221,11 @@
 (setq ido-create-new-buffer 'always)
 (setq ido-file-extension-order '("/" ".tex" ".emacs" ".txt" ".py" ".cfg" ".c" ".h" ".asm" ".xml" ".org"))
 (ido-mode 1)
+
+;; Display ido results vertically, rather than horizontally
+;(setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
+;(defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
+;(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
 
 ;; use ido to complete commands via M-X
 (global-set-key
