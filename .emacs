@@ -1206,7 +1206,8 @@
   "Open ibuffer and start ido"
   (interactive)
   (ibuffer)
-  (ido-switch-buffer))
+  (ido-switch-buffer)
+  (kill-buffer "*Ibuffer*"))
 
 (defun ibuffer-ido-find-file ()
   "Like `ido-find-file', but default to the directory of the buffer at point."
@@ -1314,6 +1315,11 @@
 (setq TeX-view-program-selection '((output-pdf "Zathura")))
 
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
+(add-hook
+ 'LaTeX-mode-hook
+ (lambda nil
+   (setq LaTeX-command "latex -file-line-error -synctex=1")))
 ;;______________________________________________________________________________
 ;;MATHEMATICA
 ;;______________________________________________________________________________
