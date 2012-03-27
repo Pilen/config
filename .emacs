@@ -11,13 +11,13 @@
 ;|flymake     |              |            |bread-list  |            |            |            |            |            |tags-apropos|            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
-;|                   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |anything    |<-W         |^           |W->         |splt-w-vert |winner-undo |kill-buf    |               |
+;|                   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |kill-buf    |               |
 ;|                   |              |            |transpose-up|transpose-dn|transpos-wrd|find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |kill-buf+win|               |
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
 ;|                      |exe-command   |            |<del-chr    |del-chr>    |killwholline||<<         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
-;|                      |exe-shell     |align-regexp|            |            |            |>>|         ||<-         |\/          |->|         |tiling-cycle|win-80col   |del-o-window|            |
+;|                      |exe-shell     |align-regexp|            |            |new-scratch |>>|         ||<-         |\/          |->|         |tiling-cycle|win-80col   |del-o-window|            |
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
@@ -315,8 +315,8 @@
 ;(global-set-key (kbd "M-<return>") 'idobuffer)
 (global-set-key (kbd "S-<return>") 'new-indented-line)
 
-(global-set-key (kbd "M-,") 'tabbar-backward)
-(global-set-key (kbd "M-.") 'tabbar-forward)
+(global-set-key (kbd "M-,") 'tabbar-backward-renew)
+(global-set-key (kbd "M-.") 'tabbar-forward-renew)
 (global-set-key (kbd "M-<") 'tabbar-backward-group)
 (global-set-key (kbd "M->") 'tabbar-forward-group)
 (global-set-key (kbd "M-<menu>") 'tabbar-press-home)
@@ -324,6 +324,7 @@
 (global-set-key (kbd "<menu>") 'idobuffer)
 (global-set-key (kbd "S-<menu>") 'menu-bar-mode)
 
+(global-set-key (kbd "M-D") 'create-scratch-buffer)
 ;;END
 
 ;;New layout
@@ -497,6 +498,8 @@
 (menu-bar-mode)
 
 (require 'idomenu)
+
+(load-file ".emacs.d/minesweeper-mode.el")
 
 ;;______________________________________________________________________________
 ;;Startup
@@ -1404,7 +1407,7 @@
  'tabbar-separator nil
  :height 0.7)
 
-(tabbar-mode 1)
+;(tabbar-mode 1)
 
 
 ;; add a buffer modification state indicator in the tab label,
@@ -1429,44 +1432,70 @@
 (add-hook 'first-change-hook 'ztl-on-buffer-modification)
 
 
-(defun autohide-tabbar ()
-  "Make tabbar briefly show itself while
-you are switching buffers with shortcuts.
-Tested with GNU Emacs 23
-- Sabof"
-  (defvar *tabbar-autohide-delay* 3)
+;; (defun autohide-tabbar ()
+;;   "Make tabbar briefly show itself while
+;; you are switching buffers with shortcuts.
+;; Tested with GNU Emacs 23
+;; - Sabof"
+;;   (defvar *tabbar-autohide-delay* 3)
 
+;;   (interactive)
+;;   (tabbar-mode nil)
+;;   (defvar *tabbar-autohide-timer* nil)
+;;   (defun renew-tabbar-autohide-timer ()
+;;     (if (timerp *tabbar-autohide-timer*)
+;;         (cancel-timer *tabbar-autohide-timer*))
+;;     (setf *tabbar-autohide-timer*
+;;           (run-with-timer
+;;            3 nil (lambda ()
+;;                    (tabbar-mode nil)
+;;                    (setf *tabbar-autohide-timer*
+;;                          nil)))))
+
+;;   (global-set-key
+;;    (kbd "M-.")
+;;    (lambda ()
+;;      (interactive)
+;;      (if tabbar-mode
+;;          (tabbar-forward)
+;;        (tabbar-mode t))
+;;      (renew-tabbar-autohide-timer)))
+;;   (global-set-key
+;;    (kbd "M-,")
+;;    (lambda ()
+;;      (interactive)
+;;      (if tabbar-mode
+;;          (tabbar-backward)
+;;        (tabbar-mode t))
+;;      (renew-tabbar-autohide-timer))))
+
+;; (autohide-tabbar)
+
+
+(defvar tabbar-autohide-timer nil)
+(defun renew-tabbar-autohide-timer ()
+  (if (timerp tabbar-autohide-timer)
+      (cancel-timer tabbar-autohide-timer))
+  (setf tabbar-autohide-timer
+        (run-with-timer
+         3 nil (lambda ()
+                 (tabbar-mode -1)
+                 (setf tabbar-autohide-timer nil)))))
+
+(defun tabbar-forward-renew ()
   (interactive)
-  (tabbar-mode nil)
-  (defvar *tabbar-autohide-timer* nil)
-  (defun renew-tabbar-autohide-timer ()
-    (if (timerp *tabbar-autohide-timer*)
-        (cancel-timer *tabbar-autohide-timer*))
-    (setf *tabbar-autohide-timer*
-          (run-with-timer
-           3 nil (lambda ()
-                   (tabbar-mode nil)
-                   (setf *tabbar-autohide-timer*
-                         nil)))))
+  (if tabbar-mode
+      (tabbar-forward)
+    (tabbar-mode t))
+  (renew-tabbar-autohide-timer))
 
-  (global-set-key
-   (kbd "M-.")
-   (lambda ()
-     (interactive)
-     (if tabbar-mode
-         (tabbar-forward)
-       (tabbar-mode t))
-     (renew-tabbar-autohide-timer)))
-  (global-set-key
-   (kbd "M-,")
-   (lambda ()
-     (interactive)
-     (if tabbar-mode
-         (tabbar-backward)
-       (tabbar-mode t))
-     (renew-tabbar-autohide-timer))))
+(defun tabbar-backward-renew ()
+  (interactive)
+  (if tabbar-mode
+      (tabbar-backward)
+    (tabbar-mode t))
+  (renew-tabbar-autohide-timer))
 
-(autohide-tabbar)
 
 ;;______________________________________________________________________________
 ;;TAGS
@@ -1894,6 +1923,12 @@ instead."
   (interactive)
   (end-of-line)
   (newline-and-indent))
+
+
+(defun create-scratch-buffer ()
+  "Create a scratch buffer"
+  (interactive)
+  (pop-to-buffer (get-buffer-create (generate-new-buffer-name "scratch"))))
 
 
 ;; End of .emacs, go away debugger!
