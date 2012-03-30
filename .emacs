@@ -1319,6 +1319,7 @@
 (add-hook
  'LaTeX-mode-hook
  (lambda nil
+   (visual-line-mode)
    (setq LaTeX-command "latex -file-line-error -synctex=1")))
 ;;______________________________________________________________________________
 ;;MATHEMATICA
