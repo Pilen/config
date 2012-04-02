@@ -499,7 +499,16 @@
 
 (require 'idomenu)
 
+(add-to-list 'load-path "~/builds/emacs-w3m-1.4.4")
+(require 'w3m-e21)
+(provide 'w3m-e23)
+(add-hook 'w3m-mode-hook (lambda ()
+                           (setq show-trailing-whitespace nil)))
+
 (load-file ".emacs.d/minesweeper-mode.el")
+(require 'reddit)
+(setq browse-url-browser-function 'browse-url-generic
+          browse-url-generic-program "chromium")
 
 ;;______________________________________________________________________________
 ;;Startup
