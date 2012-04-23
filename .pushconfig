@@ -19,6 +19,7 @@ git add ~/.xinitrc;
 git add ~/.zshrc;
 git add ~/.aliases;
 git add ~/.copyaliases.py;
+git add ~/.Xmodmap;
 git commit -m "Configuration updated";
 git push
 

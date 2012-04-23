@@ -1,0 +1,26 @@
+clear Control
+clear mod1
+clear mod2
+clear mod3
+clear mod4
+!clear mod5
+
+!! Sec-2. System dependent; use xev to find the exact keycodes:
+keycode  37 = Control_L
+keycode  64 = Alt_L
+keycode 105 = Hyper_R
+
+
+keycode 204 = NoSymbol NoSymbol NoSymbol NoSymbol
+!keycode 205 = NoSymbol NoSymbol NoSymbol NoSymbol
+!keycode 206 = NoSymbol NoSymbol NoSymbol NoSymbol
+!keycode 207 = NoSymbol NoSymbol NoSymbol NoSymbol
+
+!! Sec-3.
+add Control = Control_L
+add mod1 = Alt_L Meta_L
+add mod2 = Hyper_L Hyper_R
+add mod3 = Num_Lock
+add mod4 = Super_L 
+!add mod5 = Alt_L Alt_R Multi_key
+!add mod5 = ISO_Level3_Shift Mode_switch

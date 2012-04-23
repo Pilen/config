@@ -41,13 +41,13 @@
 
 ;; Nice to remember keys:
 ;; C-l    scroll line to top/center/bottom
+;; C-x -        Shrink window to buffersize
 
 ;; C-x r k      Kill (cut) rectangle
 ;; C-x r y      Yank (paste) rectangle
 ;; C-x r o      Open (insert spaces into selection)
 ;; C-x r c      Clear (overwrite selection with spaces)
 ;; C-x r t      Replace (replace selection with user text)
-
 
 
 
@@ -452,7 +452,13 @@
 
 (column-number-mode t)
 (display-battery-mode t)
+
 (show-paren-mode t)
+(setq show-paren-delay 0)
+(require 'mic-paren)
+(paren-activate)
+(setq show-paren-style 'expression)
+
 (tool-bar-mode 0)
 (global-linum-mode t)
 (winner-mode 1)
@@ -599,6 +605,9 @@
 ;(set-foreground-color "white")
 ;(set-cursor-color "red")
 ;(set-cursor-color "cyan")
+
+(set-face-background 'show-paren-match-face "gray40")
+(set-face-background 'paren-face-match "gray40")
 
 
 ;;______________________________________________________________________________
