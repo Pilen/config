@@ -1223,7 +1223,10 @@
                 (or
                  (mode . html-mode)
                  (mode . css-mode)))
-
+               ("MATLAB"
+                (or
+                 (mode . matlab-mode)
+                 (name . "*MATLAB*")))
                ("emacs-config"
                 (or
                  (filename . ".emacs")))
