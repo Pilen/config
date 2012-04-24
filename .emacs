@@ -505,6 +505,10 @@
 
 (require 'idomenu)
 
+(require 'rfringe)
+;(set-fringe-mode '(1 . 0))
+(set-fringe-mode '(0 . 0))
+
 (add-to-list 'load-path "~/builds/emacs-w3m-1.4.4")
 (require 'w3m-e21)
 (provide 'w3m-e23)
@@ -515,6 +519,11 @@
 (require 'reddit)
 (setq browse-url-browser-function 'browse-url-generic
           browse-url-generic-program "chromium")
+
+(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+(setq eldoc-idle-delay 0)
+(require 'c-eldoc)
+(add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
 
 ;;______________________________________________________________________________
 ;;Startup
@@ -609,6 +618,7 @@
 (set-face-background 'show-paren-match-face "gray40")
 (set-face-background 'paren-face-match "gray40")
 
+(set-face-foreground'vertical-border "gray22")
 
 ;;______________________________________________________________________________
 ;;MODELINE
@@ -636,6 +646,13 @@
 (add-hook 'after-save-hook 'my-mode-line-count-lines)
 (add-hook 'after-revert-hook 'my-mode-line-count-lines)
 (add-hook 'dired-after-readin-hook 'my-mode-line-count-lines)
+
+;;______________________________________________________________________________
+;;SML-MODELINE
+;;______________________________________________________________________________
+(require 'sml-modeline)
+(sml-modeline-mode 1)
+(scroll-bar-mode -1)
 
 ;;______________________________________________________________________________
 ;;Rainbow delimiters
@@ -1094,7 +1111,6 @@
 ;;FLYMAKE
 ;;______________________________________________________________________________
 (require 'flymake)
-(require 'rfringe)
 (require 'flymake-cursor)
 
 ;; Flymake for LaTeX
