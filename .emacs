@@ -393,6 +393,9 @@
 (global-set-key (kbd "M-<f11>") 'LaTeX-close-environment)
 (global-set-key (kbd "<f12>") 'preview-buffer)
 (global-set-key (kbd "<M-f12>") 'preview-clearout-buffer)
+
+
+
 ;;______________________________________________________________________________
 ;;Local Bindings
 ;;______________________________________________________________________________
@@ -602,8 +605,14 @@
 ;(set-face-background 'menubar "slate gray")
 ;(set-face-attribute 'menubar nil :box nil)
 
+;; Box modeline
+;(custom-set-faces
+;   '(mode-line ((t (:box (:line-width 0 :color "gray50"))))))
+;(custom-set-faces
+;   '(mode-line-inactive ((t (:box (:line-width 0 :color "gray50"))))))
 
 (set-face-background 'modeline "slate gray")
+(set-face-background 'modeline-inactive "gray36")
 ;(set-face-background 'modeline "#4477aa")
 (set-face-attribute 'mode-line nil :box nil)
 ;(set-background-color "black")
@@ -647,6 +656,8 @@
 (add-hook 'after-revert-hook 'my-mode-line-count-lines)
 (add-hook 'dired-after-readin-hook 'my-mode-line-count-lines)
 
+(setq which-func-modes t)
+(which-func-mode 1)
 ;;______________________________________________________________________________
 ;;SML-MODELINE
 ;;______________________________________________________________________________
@@ -1363,6 +1374,16 @@
 ;(setq auto-mode-alist (cons '("\\.m\\'".math-mode) auto-mode-alist))
 
 ;;______________________________________________________________________________
+;;MATLAB
+;;______________________________________________________________________________
+(add-to-list 'load-path "~/.emacs.d/matlab-emacs")
+(autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
+(add-to-list 'auto-mode-alist
+             '("\\.m$" . matlab-mode))
+;(setq matlab-indent-function t)
+(setq matlab-shell-command "~/programs/MATLAB/R2012a/bin/matlab")
+
+;;______________________________________________________________________________
 ;;SAGE
 ;;______________________________________________________________________________
 (add-to-list 'load-path (expand-file-name "/opt/sage/data/emacs"))
@@ -1974,3 +1995,9 @@ instead."
 
 ;; End of .emacs, go away debugger!
 (setq debug-on-error nil)
+
+(defun sudo-edit-current-file ()
+  (interactive)
+  (let ((pos (point)))
+    (find-alternate-file (concat "/sudo:root@localhost:" (buffer-file-name (current-buffer))))
+    (goto-char pos)))
