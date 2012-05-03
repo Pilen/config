@@ -25,4 +25,7 @@ alias cortex cd ~/.wine/drive_c/Program\ Files\ \(x86\)/Data\ Realms/Cortex\ Com
 alias les less $*
 alias diku ssh pilgaard@tyr.diku.dk $*
 alias l lss $*
+alias colemak setxkbmap us -variant colemak $*
+alias dansk setxkbmap dk $*
+alias us setxkbmap us $*
 alias f 'find-file $1'
