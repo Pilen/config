@@ -35,4 +35,5 @@ alias l='lss'
 
 alias colemak='setxkbmap us -variant colemak'
 alias dansk='setxkbmap dk'
+alias sakre='setxkbmap dk'
 alias us='setxkbmap us'
