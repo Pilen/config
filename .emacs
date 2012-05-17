@@ -60,112 +60,112 @@
 ;;UNBIND
 ;;______________________________________________________________________________
 
-;; open keyboard shortcut image with F8 key
-;(global-set-key (kbd "<f8>")
-;  (lambda ()
-;    (interactive)
-;    (find-file "~/.emacs.d/ergonomic_emacs_layout_qwerty_5.3.4.png")))
+;; ;; open keyboard shortcut image with F8 key
+;; ;(global-set-key (kbd "<f8>")
+;; ;  (lambda ()
+;; ;    (interactive)
+;; ;    (find-file "~/.emacs.d/ergonomic_emacs_layout_qwerty_5.3.4.png")))
 
 
 
-;; kicking the habit
-(global-unset-key (kbd "C-b")) ; backward-char
-(global-unset-key (kbd "C-f")) ; forward-char
-(global-unset-key (kbd "C-p")) ; previous-line
-(global-unset-key (kbd "C-n")) ; next-line
+;; ;; kicking the habit
+;; (global-unset-key (kbd "C-b")) ; backward-char
+;; (global-unset-key (kbd "C-f")) ; forward-char
+;; (global-unset-key (kbd "C-p")) ; previous-line
+;; (global-unset-key (kbd "C-n")) ; next-line
 
-(global-unset-key (kbd "M-b")) ; backward-word
-(global-unset-key (kbd "M-t")) ; forward-word
+;; (global-unset-key (kbd "M-b")) ; backward-word
+;; (global-unset-key (kbd "M-t")) ; forward-word
 
-(global-unset-key (kbd "M-s")) ; kill-word
-(global-unset-key (kbd "C-<backspace>")) ; backward-kill-word
-;(global-unset-key (kbd "C-s")) ; delete-char
+;; (global-unset-key (kbd "M-s")) ; kill-word
+;; (global-unset-key (kbd "C-<backspace>")) ; backward-kill-word
+;; ;(global-unset-key (kbd "C-s")) ; delete-char
 
-(global-unset-key (kbd "M-j")) ; newline-and-indent
-(global-unset-key (kbd "M-h")) ; mark-paragraph
+;; (global-unset-key (kbd "M-j")) ; newline-and-indent
+;; (global-unset-key (kbd "M-h")) ; mark-paragraph
 
-(global-unset-key (kbd "M-o"))
-(global-unset-key (kbd "C-o"))
-(global-unset-key (kbd "M-'")) ; abbrev-prefix-mark
+;; (global-unset-key (kbd "M-o"))
+;; (global-unset-key (kbd "C-o"))
+;; (global-unset-key (kbd "M-'")) ; abbrev-prefix-mark
 
-(global-unset-key (kbd "M-u")) ;
-(global-unset-key (kbd "M-n")) ;
-(global-unset-key (kbd "M-e")) ;
-(global-unset-key (kbd "M-i")) ;
-(global-unset-key (kbd "M-U")) ;
-(global-unset-key (kbd "M-N")) ;
-(global-unset-key (kbd "M-E")) ;
-(global-unset-key (kbd "M-I")) ;
+;; (global-unset-key (kbd "M-u")) ;
+;; (global-unset-key (kbd "M-n")) ;
+;; (global-unset-key (kbd "M-e")) ;
+;; (global-unset-key (kbd "M-i")) ;
+;; (global-unset-key (kbd "M-U")) ;
+;; (global-unset-key (kbd "M-N")) ;
+;; (global-unset-key (kbd "M-E")) ;
+;; (global-unset-key (kbd "M-I")) ;
 
-(global-unset-key (kbd "M-a")) ;
-(global-unset-key (kbd "M-b")) ;
-(global-unset-key (kbd "M-c")) ;
-(global-unset-key (kbd "M-d")) ;
-(global-unset-key (kbd "M-e")) ;
-(global-unset-key (kbd "M-f")) ;
-(global-unset-key (kbd "M-g")) ;
-(global-unset-key (kbd "M-h")) ;
-(global-unset-key (kbd "M-i")) ;
-(global-unset-key (kbd "M-j")) ;
-(global-unset-key (kbd "M-k")) ;
-(global-unset-key (kbd "M-l")) ;
-(global-unset-key (kbd "M-m")) ;
-(global-unset-key (kbd "M-n")) ;
-(global-unset-key (kbd "M-o")) ;
-(global-unset-key (kbd "M-p")) ;
-(global-unset-key (kbd "M-q")) ;
-(global-unset-key (kbd "M-r")) ;
-(global-unset-key (kbd "M-s")) ;
-(global-unset-key (kbd "M-t")) ;
-(global-unset-key (kbd "M-u")) ;
-(global-unset-key (kbd "M-v")) ;
-;(global-unset-key (kbd "M-w")) ;
-;(global-unset-key (kbd "M-x")) ;
-(global-unset-key (kbd "M-y")) ;
-(global-unset-key (kbd "M-z")) ;
+;; (global-unset-key (kbd "M-a")) ;
+;; (global-unset-key (kbd "M-b")) ;
+;; (global-unset-key (kbd "M-c")) ;
+;; (global-unset-key (kbd "M-d")) ;
+;; (global-unset-key (kbd "M-e")) ;
+;; (global-unset-key (kbd "M-f")) ;
+;; (global-unset-key (kbd "M-g")) ;
+;; (global-unset-key (kbd "M-h")) ;
+;; (global-unset-key (kbd "M-i")) ;
+;; (global-unset-key (kbd "M-j")) ;
+;; (global-unset-key (kbd "M-k")) ;
+;; (global-unset-key (kbd "M-l")) ;
+;; (global-unset-key (kbd "M-m")) ;
+;; (global-unset-key (kbd "M-n")) ;
+;; (global-unset-key (kbd "M-o")) ;
+;; (global-unset-key (kbd "M-p")) ;
+;; (global-unset-key (kbd "M-q")) ;
+;; (global-unset-key (kbd "M-r")) ;
+;; (global-unset-key (kbd "M-s")) ;
+;; (global-unset-key (kbd "M-t")) ;
+;; (global-unset-key (kbd "M-u")) ;
+;; (global-unset-key (kbd "M-v")) ;
+;; ;(global-unset-key (kbd "M-w")) ;
+;; ;(global-unset-key (kbd "M-x")) ;
+;; (global-unset-key (kbd "M-y")) ;
+;; (global-unset-key (kbd "M-z")) ;
 
-(global-unset-key (kbd "M-A")) ;
-(global-unset-key (kbd "M-B")) ;
-(global-unset-key (kbd "M-C")) ;
-(global-unset-key (kbd "M-D")) ;
-(global-unset-key (kbd "M-E")) ;
-(global-unset-key (kbd "M-F")) ;
-(global-unset-key (kbd "M-G")) ;
-(global-unset-key (kbd "M-H")) ;
-(global-unset-key (kbd "M-I")) ;
-(global-unset-key (kbd "M-J")) ;
-(global-unset-key (kbd "M-K")) ;
-(global-unset-key (kbd "M-L")) ;
-(global-unset-key (kbd "M-M")) ;
-(global-unset-key (kbd "M-N")) ;
-(global-unset-key (kbd "M-O")) ;
-(global-unset-key (kbd "M-P")) ;
-(global-unset-key (kbd "M-Q")) ;
-(global-unset-key (kbd "M-R")) ;
-(global-unset-key (kbd "M-S")) ;
-(global-unset-key (kbd "M-T")) ;
-(global-unset-key (kbd "M-U")) ;
-(global-unset-key (kbd "M-V")) ;
-(global-unset-key (kbd "M-W")) ;
-(global-unset-key (kbd "M-X")) ;
-(global-unset-key (kbd "M-Y")) ;
-(global-unset-key (kbd "M-Z")) ;
+;; (global-unset-key (kbd "M-A")) ;
+;; (global-unset-key (kbd "M-B")) ;
+;; (global-unset-key (kbd "M-C")) ;
+;; (global-unset-key (kbd "M-D")) ;
+;; (global-unset-key (kbd "M-E")) ;
+;; (global-unset-key (kbd "M-F")) ;
+;; (global-unset-key (kbd "M-G")) ;
+;; (global-unset-key (kbd "M-H")) ;
+;; (global-unset-key (kbd "M-I")) ;
+;; (global-unset-key (kbd "M-J")) ;
+;; (global-unset-key (kbd "M-K")) ;
+;; (global-unset-key (kbd "M-L")) ;
+;; (global-unset-key (kbd "M-M")) ;
+;; (global-unset-key (kbd "M-N")) ;
+;; (global-unset-key (kbd "M-O")) ;
+;; (global-unset-key (kbd "M-P")) ;
+;; (global-unset-key (kbd "M-Q")) ;
+;; (global-unset-key (kbd "M-R")) ;
+;; (global-unset-key (kbd "M-S")) ;
+;; (global-unset-key (kbd "M-T")) ;
+;; (global-unset-key (kbd "M-U")) ;
+;; (global-unset-key (kbd "M-V")) ;
+;; (global-unset-key (kbd "M-W")) ;
+;; (global-unset-key (kbd "M-X")) ;
+;; (global-unset-key (kbd "M-Y")) ;
+;; (global-unset-key (kbd "M-Z")) ;
 
 
-(global-unset-key (kbd "M-,")) ; tags-loop-continue
-(global-unset-key (kbd "M-.")) ; find-tag
-(global-unset-key (kbd "M-<")) ; beginning-of-buffer
-(global-unset-key (kbd "M->")) ; end-of-buffer
-(global-unset-key (kbd "M-;")) ; comment-dwim
-(global-unset-key (kbd "M-:")) ; eval-expresseion
-(global-unset-key (kbd "M--"))
+;; (global-unset-key (kbd "M-,")) ; tags-loop-continue
+;; (global-unset-key (kbd "M-.")) ; find-tag
+;; (global-unset-key (kbd "M-<")) ; beginning-of-buffer
+;; (global-unset-key (kbd "M->")) ; end-of-buffer
+;; (global-unset-key (kbd "M-;")) ; comment-dwim
+;; (global-unset-key (kbd "M-:")) ; eval-expresseion
+;; (global-unset-key (kbd "M--"))
 
-(global-unset-key (kbd "M-`"))
-(global-unset-key (kbd "M-~"))
-(global-unset-key (kbd "M-<insert>"))
-(global-unset-key (kbd "M-<delete>"))
-(global-unset-key (kbd "M-<home>"))
-(global-unset-key (kbd "M-<end>"))
+;; (global-unset-key (kbd "M-`"))
+;; (global-unset-key (kbd "M-~"))
+;; (global-unset-key (kbd "M-<insert>"))
+;; (global-unset-key (kbd "M-<delete>"))
+;; (global-unset-key (kbd "M-<home>"))
+;; (global-unset-key (kbd "M-<end>"))
 
 
 
@@ -191,98 +191,98 @@
 
 ;;;; CURSOR MOVEMENTS
 ;; Single char cursor movement
-(global-set-key (kbd "M-n") 'backward-char)
-(global-set-key (kbd "M-i") 'forward-char)
-(global-set-key (kbd "M-u") 'previous-line)
-(global-set-key (kbd "M-e") 'next-line)
+(global-set-key (kbd "H-n") 'backward-char)
+(global-set-key (kbd "H-i") 'forward-char)
+(global-set-key (kbd "H-u") 'previous-line)
+(global-set-key (kbd "H-e") 'next-line)
 ;; Move by word
-(global-set-key (kbd "M-l") 'geosoft-backward-word)
-(global-set-key (kbd "M-y") 'forward-word)
-(global-set-key (kbd "M-0") 'forward-same-syntax)
+(global-set-key (kbd "H-l") 'geosoft-backward-word)
+(global-set-key (kbd "H-y") 'forward-word)
+(global-set-key (kbd "H-0") 'forward-same-syntax)
 ;; Move by paragraph
-;(global-set-key (kbd "M-L") 'backward-paragraph)
-;(global-set-key (kbd "M-Y") 'forward-paragraph)
-(global-set-key (kbd "M-L") 'pager-row-up)
-(global-set-key (kbd "M-Y") 'pager-row-down)
+;(global-set-key (kbd "H-L") 'backward-paragraph)
+;(global-set-key (kbd "H-Y") 'forward-paragraph)
+(global-set-key (kbd "H-L") 'pager-row-up)
+(global-set-key (kbd "H-Y") 'pager-row-down)
 ;; Move to beginning/ending of line
-(global-set-key (kbd "M-N") 'back-to-indentation-or-beginning)
-(global-set-key (kbd "M-I") 'end-of-line)
+(global-set-key (kbd "H-N") 'back-to-indentation-or-beginning)
+(global-set-key (kbd "H-I") 'end-of-line)
 ;; Move by screen (page up/down)
-;(global-set-key (kbd "M-U") 'scroll-down)
-;(global-set-key (kbd "M-E") 'scroll-up)
-(global-set-key (kbd "M-U") 'pager-page-up)
-(global-set-key (kbd "M-E") 'pager-page-down)
+;(global-set-key (kbd "H-U") 'scroll-down)
+;(global-set-key (kbd "H-E") 'scroll-up)
+(global-set-key (kbd "H-U") 'pager-page-up)
+(global-set-key (kbd "H-E") 'pager-page-down)
 ;; Move to beginning/ending of file
-(global-set-key (kbd "M-h") 'beginning-of-buffer)
-(global-set-key (kbd "M-H") 'end-of-buffer)
+(global-set-key (kbd "H-h") 'beginning-of-buffer)
+(global-set-key (kbd "H-H") 'end-of-buffer)
 ;; isearch
-;(global-set-key (kbd "M-o") 'isearch-forward)
-;(global-set-key (kbd "M-O") 'isearch-backward)
- (global-set-key (kbd "M-g") 'recenter)
+;(global-set-key (kbd "H-o") 'isearch-forward)
+;(global-set-key (kbd "H-O") 'isearch-backward)
+ (global-set-key (kbd "H-g") 'recenter)
 
 ;;;; MAJOR EDITING COMMANDS
 ;; Delete previous/next char
-(global-set-key (kbd "M-s") 'delete-backward-char)
-(global-set-key (kbd "M-t") 'delete-char)
+(global-set-key (kbd "H-s") 'delete-backward-char)
+(global-set-key (kbd "H-t") 'delete-char)
 ;; Delete previous/next word
-(global-set-key (kbd "M-f") 'backward-kill-word)
-(global-set-key (kbd "M-p") 'kill-word)
+(global-set-key (kbd "H-f") 'backward-kill-word)
+(global-set-key (kbd "H-p") 'kill-word)
 ;; Copy Cut Paste, Paste previous
-;;lobal-set-key (kbd "M-x") 'kill-region) ; C-w
-;(global-set-key (kbd "M-c") 'kill-ring-save)
-;(global-set-key (kbd "M-v") 'yank)
-;(global-set-key (kbd "M-V") 'yank-pop)
-;(global-set-key (kbd "M-C") 'copy-all)
-;(global-set-key (kbd "M-X") 'cut-all)
+;;lobal-set-key (kbd "H-x") 'kill-region) ; C-w
+;(global-set-key (kbd "H-c") 'kill-ring-save)
+;(global-set-key (kbd "H-v") 'yank)
+;(global-set-key (kbd "H-V") 'yank-pop)
+;(global-set-key (kbd "H-C") 'copy-all)
+;(global-set-key (kbd "H-X") 'cut-all)
 ;; Undo and redo
-(global-set-key (kbd "M-Z") 'redo)
-(global-set-key (kbd "M-z") 'undo)
+(global-set-key (kbd "H-Z") 'redo)
+(global-set-key (kbd "H-z") 'undo)
 (global-set-key (kbd "C-z") 'undo)
 ;; Kill line
-;(global-set-key (kbd "M-d") 'kill-line)
-(global-set-key (kbd "M-d") 'kill-whole-line)
+;(global-set-key (kbd "H-d") 'kill-line)
+(global-set-key (kbd "H-d") 'kill-whole-line)
 
 ;;;; Textual Transformation
-(global-set-key (kbd "M-S-SPC") 'mark-paragraph)
-;(global-set-key (kbd "M-w") 'shrink-whitespace) ???
-;(global-set-key (kbd "M-'") 'comment-dwim) ;?
-(global-set-key (kbd "M-b") 'toggle-letter-case)
-(global-set-key (kbd "M-B") 'caps-mode)
+(global-set-key (kbd "H-S-SPC") 'mark-paragraph)
+;(global-set-key (kbd "H-w") 'shrink-whitespace) ???
+;(global-set-key (kbd "H-'") 'comment-dwim) ;?
+(global-set-key (kbd "H-b") 'toggle-letter-case)
+(global-set-key (kbd "H-B") 'caps-mode)
 ;; Keyword completion, because Alt-Tab is used by OS
-;(global-set-key (kbd "M-g") 'call-keyword-completion) ???
+;(global-set-key (kbd "H-g") 'call-keyword-completion) ???
 ;; Hard-wrap/un-hard-wrap paragraph
-;(global-set-key (kbd "M-q") 'compact-uncompact-block) ???
-(global-set-key (kbd "M--") 'er/expand-region)
-(global-set-key (kbd "M-_") 'er/contract-region)
+;(global-set-key (kbd "H-q") 'compact-uncompact-block) ???
+(global-set-key (kbd "H--") 'er/expand-region)
+(global-set-key (kbd "H-_") 'er/contract-region)
 ;;;; EMACS'S SPECIAL COMMANDS
 ;; Cancel
-(global-set-key (kbd "M-k") 'keyboard-escape-quit)
+(global-set-key (kbd "H-k") 'keyboard-escape-quit)
 ;; Mark point
 (global-set-key (kbd "C-SPC") 'set-mark-command)
-(global-set-key (kbd "M-a") 'execute-extended-command)
-(global-set-key (kbd "M-A") 'shell-toggle)
+(global-set-key (kbd "H-a") 'execute-extended-command)
+(global-set-key (kbd "H-A") 'shell-toggle)
 
 ;;;; WINDOW SPLITTING
-;(global-set-key (kbd "M-r") 'move-cursor-next-pane)
-;(global-set-key (kbd "M-R") 'move-cursor-previous-pane)
+;(global-set-key (kbd "H-r") 'move-cursor-next-pane)
+;(global-set-key (kbd "H-R") 'move-cursor-previous-pane)
 
 ;;;; OTHER SHORTCUTS
-;(global-set-key (kbd "M-~") 'switch-to-previous-frame)
-;(global-set-key (kbd "M-`") 'switch-to-next-frame)
+;(global-set-key (kbd "H-~") 'switch-to-previous-frame)
+;(global-set-key (kbd "H-`") 'switch-to-next-frame)
 
-;(global-set-key (kbd "M-8") 'extend-selection)
-;(global-set-key (kbd "M-*") 'select-text-in-quote)
+;(global-set-key (kbd "H-8") 'extend-selection)
+;(global-set-key (kbd "H-*") 'select-text-in-quote)
 
-(global-set-key (kbd "M-v") 'goto-last-change)
-
-
+(global-set-key (kbd "H-v") 'goto-last-change)
 
 
 
-(global-set-key (kbd "M-<up>") 'windmove-up)
-(global-set-key (kbd "M-<down>") 'windmove-down)
-(global-set-key (kbd "M-<right>") 'windmove-right)
-(global-set-key (kbd "M-<left>") 'windmove-left)
+
+
+(global-set-key (kbd "H-<up>") 'windmove-up)
+(global-set-key (kbd "H-<down>") 'windmove-down)
+(global-set-key (kbd "H-<right>") 'windmove-right)
+(global-set-key (kbd "H-<left>") 'windmove-left)
 (global-set-key (kbd "S-<up>") 'buf-move-up)
 (global-set-key (kbd "S-<down>") 'buf-move-down)
 (global-set-key (kbd "S-<right>") 'buf-move-right)
@@ -291,40 +291,40 @@
 (global-set-key (kbd "C-<down>") 'tiling-tile-down)
 (global-set-key (kbd "C-<right>") 'tiling-tile-right)
 (global-set-key (kbd "C-<left>") 'tiling-tile-left)
-(global-set-key (kbd "M-S-<up>") 'shrink-window)
-(global-set-key (kbd "M-S-<down>") 'enlarge-window)
-(global-set-key (kbd "M-S-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "M-S-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "H-S-<up>") 'shrink-window)
+(global-set-key (kbd "H-S-<down>") 'enlarge-window)
+(global-set-key (kbd "H-S-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "H-S-<left>") 'shrink-window-horizontally)
 
 
-(global-set-key (kbd "M-m") 'isearch-forward)
-(global-set-key (kbd "M-M") 'sprint-forward)
-(global-set-key (kbd "M-c") 'ace-jump-word-mode)
-(global-set-key (kbd "M-C") 'idomenu)
+(global-set-key (kbd "H-m") 'isearch-forward)
+(global-set-key (kbd "H-M") 'sprint-forward)
+(global-set-key (kbd "H-c") 'ace-jump-word-mode)
+(global-set-key (kbd "H-C") 'idomenu)
 
-(global-set-key (kbd "M-SPC") 'hippie-expand)
-(global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "M-O") 'tiling-cycle)
-(global-set-key (kbd "M-'") 'win-switch-dispatch)
-(global-set-key (kbd "M-\"") 'set-80-columns)
-;(global-set-key (kbd "M-'") 'switch-to-buffer)
-;(global-set-key (kbd "M-,") 'previous-buffer)
-;(global-set-key (kbd "M-.") 'next-buffer)
-(global-set-key (kbd "M-g") 'goto-line)
-(global-set-key (kbd "M-<return>") 'ido-switch-buffer)
-;(global-set-key (kbd "M-<return>") 'idobuffer)
+(global-set-key (kbd "H-SPC") 'hippie-expand)
+(global-set-key (kbd "H-o") 'other-window)
+(global-set-key (kbd "H-O") 'tiling-cycle)
+(global-set-key (kbd "H-'") 'win-switch-dispatch)
+(global-set-key (kbd "H-\"") 'set-80-columns)
+;(global-set-key (kbd "H-'") 'switch-to-buffer)
+;(global-set-key (kbd "H-,") 'previous-buffer)
+;(global-set-key (kbd "H-.") 'next-buffer)
+(global-set-key (kbd "H-g") 'goto-line)
+(global-set-key (kbd "H-<return>") 'ido-switch-buffer)
+;(global-set-key (kbd "H-<return>") 'idobuffer)
 (global-set-key (kbd "S-<return>") 'new-indented-line)
 
-(global-set-key (kbd "M-,") 'tabbar-backward-renew)
-(global-set-key (kbd "M-.") 'tabbar-forward-renew)
-(global-set-key (kbd "M-<") 'tabbar-backward-group)
-(global-set-key (kbd "M->") 'tabbar-forward-group)
-(global-set-key (kbd "M-<menu>") 'tabbar-press-home)
+(global-set-key (kbd "H-,") 'tabbar-backward-renew)
+(global-set-key (kbd "H-.") 'tabbar-forward-renew)
+(global-set-key (kbd "H-<") 'tabbar-backward-group)
+(global-set-key (kbd "H->") 'tabbar-forward-group)
+(global-set-key (kbd "H-<menu>") 'tabbar-press-home)
 
 (global-set-key (kbd "<menu>") 'idobuffer)
 (global-set-key (kbd "S-<menu>") 'menu-bar-mode)
 
-(global-set-key (kbd "M-D") 'create-scratch-buffer)
+(global-set-key (kbd "H-D") 'create-scratch-buffer)
 ;;END
 
 ;;New layout
@@ -334,73 +334,73 @@
 ;; turn on minor mode ergoemacs-mode
 ;;(ergoemacs-mode 1)
 
-(global-set-key (kbd "M-/") 'query-replace)
-(global-set-key (kbd "M-?") 'iedit-mode)
-;;(global-set-key (kbd "M-?") 'query-replace-regexp)
-(global-set-key (kbd "M-\\") 'delete-window)
-(global-set-key (kbd "M-|") 'delete-other-windows)
-(global-set-key (kbd "M-:") 'split-window-vertically)
-(global-set-key (kbd "M-;") 'split-window-horizontally)
-;(global-set-key (kbd "M-r") 'transpose-lines)
-(global-set-key (kbd "M-R") 'align-regexp)
-(global-set-key (kbd "M-]") '(lambda nil (interactive) (kill-buffer (current-buffer))))
-(global-set-key (kbd "M-}") 'kill-buffer-and-window)
+(global-set-key (kbd "H-/") 'query-replace)
+(global-set-key (kbd "H-?") 'iedit-mode)
+;;(global-set-key (kbd "H-?") 'query-replace-regexp)
+(global-set-key (kbd "H-\\") 'delete-window)
+(global-set-key (kbd "H-|") 'delete-other-windows)
+(global-set-key (kbd "H-:") 'split-window-vertically)
+(global-set-key (kbd "H-;") 'split-window-horizontally)
+;(global-set-key (kbd "H-r") 'transpose-lines)
+(global-set-key (kbd "H-R") 'align-regexp)
+(global-set-key (kbd "H-]") '(lambda nil (interactive) (kill-buffer (current-buffer))))
+(global-set-key (kbd "H-}") 'kill-buffer-and-window)
 
-(global-set-key (kbd "M-F") 'transpose-up)
-(global-set-key (kbd "M-P") 'transpose-down)
-(global-set-key (kbd "M-G") 'transpose-words)
+(global-set-key (kbd "H-F") 'transpose-up)
+(global-set-key (kbd "H-P") 'transpose-down)
+(global-set-key (kbd "H-G") 'transpose-words)
 
-;(global-set-key (kbd "M-q") 'goto-match-paren)
-;(global-set-key (kbd "M-Q") 'rainbow-delimiters-mode)
-;(global-set-key (kbd "M-j") 'my-anything)
-(global-set-key (kbd "M-j") 'recentf-ido-find-file)
-(global-set-key (kbd "M-J") 'find-file-at-point)
+;(global-set-key (kbd "H-q") 'goto-match-paren)
+;(global-set-key (kbd "H-Q") 'rainbow-delimiters-mode)
+;(global-set-key (kbd "H-j") 'my-anything)
+(global-set-key (kbd "H-j") 'recentf-ido-find-file)
+(global-set-key (kbd "H-J") 'find-file-at-point)
 
-(global-set-key (kbd "M-<insert>") 'linum-mode)
-(global-set-key (kbd "M-<end>") 'whitespace-mode)
-(global-set-key (kbd "M-S-<end>") 'rainbow-delimiters-mode)
+(global-set-key (kbd "H-<insert>") 'linum-mode)
+(global-set-key (kbd "H-<end>") 'whitespace-mode)
+(global-set-key (kbd "H-S-<end>") 'rainbow-delimiters-mode)
 
-(global-set-key (kbd "M-<home>") '(lambda nil (interactive) (defaultface)))
-(global-set-key (kbd "M-+") '(lambda nil (interactive) (zoomableface)))
-(global-set-key (kbd "M-=") '(lambda nil (interactive) (zoom 1)))
-(global-set-key (kbd "M-<delete>") 'auto-indent-mode)
+(global-set-key (kbd "H-<home>") '(lambda nil (interactive) (defaultface)))
+(global-set-key (kbd "H-+") '(lambda nil (interactive) (zoomableface)))
+(global-set-key (kbd "H-=") '(lambda nil (interactive) (zoom 1)))
+(global-set-key (kbd "H-<delete>") 'auto-indent-mode)
 
-(global-set-key (kbd "M-[") 'winner-undo)
-(global-set-key (kbd "M-{") 'winner-redo)
-(global-set-key (kbd "M-`") 'flymake-goto-next-error)
-(global-set-key (kbd "M-~") 'flymake-mode)
+(global-set-key (kbd "H-[") 'winner-undo)
+(global-set-key (kbd "H-{") 'winner-redo)
+(global-set-key (kbd "H-`") 'flymake-goto-next-error)
+(global-set-key (kbd "H-~") 'flymake-mode)
 
-(global-set-key (kbd "M-1") 'bc-set)
-(global-set-key (kbd "M-2") 'bc-local-previous)
-(global-set-key (kbd "M-3") 'bc-local-next)
-(global-set-key (kbd "M-#") 'bc-list)
+(global-set-key (kbd "H-1") 'bc-set)
+(global-set-key (kbd "H-2") 'bc-local-previous)
+(global-set-key (kbd "H-3") 'bc-local-next)
+(global-set-key (kbd "H-#") 'bc-list)
 
-(global-set-key (kbd "M-9") 'find-tag)
-(global-set-key (kbd "M-8") 'pop-tag-mark)
-(global-set-key (kbd "M-(") 'tags-apropos)
+(global-set-key (kbd "H-9") 'find-tag)
+(global-set-key (kbd "H-8") 'pop-tag-mark)
+(global-set-key (kbd "H-(") 'tags-apropos)
 
 (global-set-key (kbd "<f1>") 'flyspell-mode)
-(global-set-key (kbd "M-<f1>") 'flyspell-mode)
+(global-set-key (kbd "H-<f1>") 'flyspell-mode)
 (global-set-key (kbd "<f2>") 'flyspell-buffer)
-(global-set-key (kbd "M-<f2>") 'fd-switch-dictionary)
+(global-set-key (kbd "H-<f2>") 'fd-switch-dictionary)
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
-(global-set-key (kbd "<M-f3>") 'kmacro-name-last-macro)
+(global-set-key (kbd "<H-f3>") 'kmacro-name-last-macro)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "<f8>") 'narrow-toggle)
 (global-set-key (kbd "<f10>") 'reftex-toc)
 (global-set-key (kbd "<f11>") 'LaTeX-environment)
-(global-set-key (kbd "M-<f11>") 'LaTeX-close-environment)
+(global-set-key (kbd "H-<f11>") 'LaTeX-close-environment)
 (global-set-key (kbd "<f12>") 'preview-buffer)
-(global-set-key (kbd "<M-f12>") 'preview-clearout-buffer)
+(global-set-key (kbd "<H-f12>") 'preview-clearout-buffer)
 
 
 
 ;;______________________________________________________________________________
 ;;Local Bindings
 ;;______________________________________________________________________________
-(define-key isearch-mode-map (kbd "M-u") 'isearch-repeat-backward)
-(define-key isearch-mode-map (kbd "M-e") 'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "H-u") 'isearch-repeat-backward)
+(define-key isearch-mode-map (kbd "H-e") 'isearch-repeat-forward)
 
 
 
@@ -961,8 +961,8 @@
      ;anything-c-source-emacs-variables
      )
                          "*my-anything*"))
-(define-key anything-map (kbd "M-u") 'anything-previous-line)
-(define-key anything-map (kbd "M-e") 'anything-next-line)
+(define-key anything-map (kbd "H-u") 'anything-previous-line)
+(define-key anything-map (kbd "H-e") 'anything-next-line)
 
 
 ;;______________________________________________________________________________
@@ -1054,8 +1054,8 @@
   (setq eshell-visual-commands '("nano"))
   (setq eshell-buffer-shorthand t)
   (setq eshell-hist-ignoredups t)
-  (define-key eshell-mode-map (kbd "M-d") 'eshell-kill-input)
-  (define-key eshell-mode-map (kbd "M-n") 'eshell-bol)
+  (define-key eshell-mode-map (kbd "H-d") 'eshell-kill-input)
+  (define-key eshell-mode-map (kbd "H-n") 'eshell-bol)
   (add-to-list 'eshell-visual-commands "nano")
   (add-to-list 'eshell-visual-commands "htop")
   (add-to-list 'eshell-visual-commands "irssi")
@@ -1309,8 +1309,7 @@
 
 
 ;; use ido to complete commands via M-X
-(global-set-key
- "\M-x"
+(global-set-key (kbd "H-x")
  (lambda ()
    (interactive)
    (call-interactively
@@ -1526,7 +1525,7 @@
 ;;                          nil)))))
 
 ;;   (global-set-key
-;;    (kbd "M-.")
+;;    (kbd "H-.")
 ;;    (lambda ()
 ;;      (interactive)
 ;;      (if tabbar-mode
@@ -1534,7 +1533,7 @@
 ;;        (tabbar-mode t))
 ;;      (renew-tabbar-autohide-timer)))
 ;;   (global-set-key
-;;    (kbd "M-,")
+;;    (kbd "H-,")
 ;;    (lambda ()
 ;;      (interactive)
 ;;      (if tabbar-mode
@@ -1910,8 +1909,8 @@ instead."
             word)
         (error "No symbol found")))))
  
-;(global-set-key (kbd "M-n") 'smart-symbol-go-forward)
-;(global-set-key (kbd "M-p") 'smart-symbol-go-backward)
+;(global-set-key (kbd "H-n") 'smart-symbol-go-forward)
+;(global-set-key (kbd "H-p") 'smart-symbol-go-backward)
 
 
 
