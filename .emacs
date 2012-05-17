@@ -238,6 +238,8 @@
 (global-set-key (kbd "H-Z") 'redo)
 (global-set-key (kbd "H-z") 'undo)
 (global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "H-w") 'kill-ring-save)
+
 ;; Kill line
 ;(global-set-key (kbd "H-d") 'kill-line)
 (global-set-key (kbd "H-d") 'kill-whole-line)
