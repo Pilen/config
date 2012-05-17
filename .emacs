@@ -1369,6 +1369,14 @@
  (lambda nil
    (visual-line-mode)
    (setq LaTeX-command "latex -file-line-error -synctex=1")))
+
+;;______________________________________________________________________________
+;;MINIMAP
+;;______________________________________________________________________________
+(require 'minimap)
+(setq minimap-window-location 'right)
+(setq minimap-width-fraction 0.8)
+;(set-face-attribute 'minimap-font-face '((default :family "DejaVu Sans Mono" :height 5)))
 ;;______________________________________________________________________________
 ;;MATHEMATICA
 ;;______________________________________________________________________________
