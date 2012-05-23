@@ -59,6 +59,7 @@ function lss {
 }
 
 export SAGE_BROWSER="/usr/bin/feh -.qB checks"
+export PATH=~/.cabal/bin:$PATH
 
 source ~/.aliases
 
