@@ -61,6 +61,9 @@ function lss {
 export SAGE_BROWSER="/usr/bin/feh -.qB checks"
 export PATH=~/.cabal/bin:$PATH
 
+autoload -U select-word-style
+select-word-style bash
+
 source ~/.aliases
 
 if [[ -z $DISPLAY && $(tty) = /dev/tty1 ]]; then

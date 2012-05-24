@@ -32,7 +32,8 @@ alias cortex='cd ~/.wine/drive_c/Program\ Files\ \(x86\)/Data\ Realms/Cortex\ Co
 alias les='less'
 alias diku='ssh pilgaard@tyr.diku.dk'
 alias l='lss'
-alias knet'sudo killall wpa_supplicant dhcpcd'
+alias knet='sudo killall wpa_supplicant dhcpcd'
+alias cdd='cd ..'
 
 alias colemak='setxkbmap us -variant colemak'
 alias dansk='setxkbmap dk'
