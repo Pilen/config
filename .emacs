@@ -383,7 +383,7 @@
 (global-set-key (kbd "H-8") 'pop-tag-mark)
 (global-set-key (kbd "H-(") 'tags-apropos)
 
-(global-set-key (kbd "<f1>") 'flyspell-mode)
+(global-set-key (kbd "<f1>") 'google-translate-query-translate)
 (global-set-key (kbd "H-<f1>") 'flyspell-mode)
 (global-set-key (kbd "<f2>") 'flyspell-buffer)
 (global-set-key (kbd "H-<f2>") 'fd-switch-dictionary)
@@ -535,6 +535,7 @@
 
 (setq recenter-positions '(top middle bottom))
 
+(require 'google-translate)
 ;;______________________________________________________________________________
 ;;Fill-column-indicator
 ;;______________________________________________________________________________
