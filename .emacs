@@ -533,6 +533,8 @@
 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
 
 
+(setq recenter-positions '(top middle bottom))
+
 ;;______________________________________________________________________________
 ;;Fill-column-indicator
 ;;______________________________________________________________________________
