@@ -6,9 +6,9 @@
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |-           |=           |Backspace             |
-;|flymake-next|bread-set     |bread-prev  |bread-next  |            |            |            |            |jump-back-ta|find-tag    |            |            |zoom        |                      |
+;|flymake-next|bread-set     |bread-prev  |bread-next  |            |            |            |fold        |jump-back-ta|find-tag    |            |            |zoom        |                      |
 ;|~           |!             |@           |#           |$           |%           |^           |&           |*           |(           |)           |_           |+           |                      |
-;|flymake     |              |            |bread-list  |            |            |            |            |            |tags-apropos|            |            |zoomable    |                      |
+;|flymake     |              |            |bread-list  |            |            |            |fold-column |            |tags-apropos|            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
 ;|                   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |kill-buf    |               |
@@ -377,6 +377,8 @@
 (global-set-key (kbd "H-3") 'bc-local-next)
 (global-set-key (kbd "H-#") 'bc-list)
 
+(global-set-key (kbd "H-7") 'toggle-selective-display)
+(global-set-key (kbd "H-&") 'cursor-selective-display)
 (global-set-key (kbd "H-9") 'find-tag)
 (global-set-key (kbd "H-8") 'pop-tag-mark)
 (global-set-key (kbd "H-(") 'tags-apropos)
@@ -530,6 +532,15 @@
 (require 'c-eldoc)
 (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
 
+
+;;______________________________________________________________________________
+;;Fill-column-indicator
+;;______________________________________________________________________________
+(require 'fill-column-indicator)
+(setq fci-rule-color "gray32")
+(setq-default fill-column 80)
+(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+(global-fci-mode 1)
 ;;______________________________________________________________________________
 ;;Startup
 ;;______________________________________________________________________________
@@ -2013,3 +2024,18 @@ instead."
   (let ((pos (point)))
     (find-alternate-file (concat "/sudo:root@localhost:" (buffer-file-name (current-buffer))))
     (goto-char pos)))
+
+;;______________________________________________________________________________
+;;CODE FOLDING
+;;______________________________________________________________________________
+
+(defun toggle-selective-display ()
+  (interactive)
+  (set-selective-display (if selective-display nil 1)))
+(defun cursor-selective-display ()
+  "Activate selective display based on the column at point"
+  (interactive)
+  (set-selective-display
+   (if selective-display
+       nil
+     (+ 1 (current-column)))))

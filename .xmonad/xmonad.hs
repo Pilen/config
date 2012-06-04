@@ -159,8 +159,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
   ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
   
   --Launch dmenu                                             mod-p
-  ((modm, xK_p),                    spawn "dmenu_run"),
-  
+  --((modm, xK_p),                    spawn "dmenu_run"),
+  ((modm, xK_p),                    spawn "exec /home/pilen/.menu.sh"),
+
   --Launch gmrun                                             mod-shift-p
   ((modm .|. shiftMask, xK_p),      spawn "gmrun"),
   
