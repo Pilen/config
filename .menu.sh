@@ -6,7 +6,7 @@ title=$date"..."$bat
 
 menu=(\
         firefox   "firefox"
-        zathura   "zathura"
+        zathura   "zathura"        
         emacs     "emacs"
         gimp      "gimp"
         inkscape  "inkscape"
@@ -18,7 +18,6 @@ menu=(\
         alsamixer "urxvtc -e alsamixer"
         htop      "urxvtc -e htop"
         cal       "urxvtc -e perl .cal.pl"
-        readn     "urxvtc -e read"
         update    "urxvtc -e sudo pacman -Syu"
         shutdown  "urxvtc -e sudo shutdown -h now"
         0%        "amixer set Master 0"
@@ -34,6 +33,10 @@ menu=(\
         100%      "amixer set Master 64"
         MAX       "amixer set Master 64"
         dmenu     "dmenu_run"
+
+        google    "firefox -new-window google.dk"
+        en.wikipedia.org "firefox -new-window en.wikipedia.org"
+        da.wikipedia.org "firefox -new-window da.wikipedia.org"
      )
 
 for (( count = 0 ; count < ${#menu[*]}; count++ )); do
