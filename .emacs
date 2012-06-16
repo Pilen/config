@@ -728,8 +728,9 @@
  :foreground "red")
 ;(((((((((())))))))))
 
-(rainbow-delimiters-mode 1)
-
+;(rainbow-delimiters-mode 1)
+;(global-rainbow-delimiters-mode) ;;This should be the correct way (not working)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 ;(show-paren-mode t)
 ;(show-paren-delay 0)
@@ -1374,8 +1375,10 @@
 ;(add-hook 'LaTeX-mode-hook 'flyspell-mode)
 ;(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 
-(setq TeX-view-program-list '(("Zathura" "zathura %o")))
-(setq TeX-view-program-selection '((output-pdf "Zathura")))
+;(setq TeX-view-program-list '(("Zathura" "zathura %o")))
+;(setq TeX-view-program-selection '((output-pdf "Zathura")))
+(setq TeX-view-program-list '(("Xpdf" "xpdf %o")))
+(setq TeX-view-program-selection '((output-pdf "Xpdf")))
 
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
