@@ -31,16 +31,34 @@
 ;|            |                  |           |           |                                                                  |            |menu-bar    |            |                               |
 ;|____________|__________________|___________|___________|__________________________________________________________________|____________|____________|____________|_______________________________|
 
+;;______________________________________________________________________________
+;;
+;;
+;;                                    TODO
+;;
+;;______________________________________________________________________________
+
+;; Port to Emacs 24
+;; Code navigation
+;; Code folding
+;; Windownavigation/manipulation
+;; minimap
+;; rainbows everywhere
+;; cedet
+
+;;org-mode
+;;magit
+
 
 ;;______________________________________________________________________________
 ;;
 ;;
-;;                                 Keybindings
+;;                                Keybindings
 ;;
 ;;______________________________________________________________________________
 
 ;; Nice to remember keys:
-;; C-l    scroll line to top/center/bottom
+;; C-l          scroll line to top/center/bottom
 ;; C-x -        Shrink window to buffersize
 
 ;; C-x r k      Kill (cut) rectangle
@@ -49,6 +67,8 @@
 ;; C-x r c      Clear (overwrite selection with spaces)
 ;; C-x r t      Replace (replace selection with user text)
 
+;; M-z          zap to char
+;; M-SPC        fixup-whitespace
 
 
 ;; Debug on errors in .emacs
@@ -398,14 +418,19 @@
 (global-set-key (kbd "<f12>") 'preview-buffer)
 (global-set-key (kbd "<H-f12>") 'preview-clearout-buffer)
 
+(global-set-key (kbd "<home>") 'beginning-of-buffer)
+(global-set-key (kbd "<end>") 'end-of-buffer)
+(global-set-key (kbd "M-SPC") 'fixup-whitespace) ;make it context aware.
 
+(global-set-key (kbd "C-H-u") 'chop-move-up)
+(global-set-key (kbd "C-H-e") 'chop-move-down)
 
 ;;______________________________________________________________________________
 ;;Local Bindings
 ;;______________________________________________________________________________
 (define-key isearch-mode-map (kbd "H-u") 'isearch-repeat-backward)
 (define-key isearch-mode-map (kbd "H-e") 'isearch-repeat-forward)
-
+                                        
 
 
 
@@ -534,6 +559,7 @@
 
 
 (setq recenter-positions '(top middle bottom))
+(require 'chop)
 
 (require 'google-translate)
 ;;______________________________________________________________________________
@@ -952,7 +978,7 @@
 ;;______________________________________________________________________________
 ;;
 ;;
-;;                                    MODES
+;;                                   MODES
 ;;
 ;;______________________________________________________________________________
 
@@ -1626,7 +1652,7 @@
 ;;______________________________________________________________________________
 ;;
 ;;
-;;                                 FUNCTIONALITY
+;;                               FUNCTIONALITY
 ;;
 ;;______________________________________________________________________________
 
