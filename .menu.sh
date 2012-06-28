@@ -6,8 +6,8 @@ title=$date"..."$bat
 
 menu=(\
         firefox   "firefox"
-        zathura   "zathura"        
         emacs     "emacs"
+        zathura   "zathura"        
         gimp      "gimp"
         inkscape  "inkscape"
         xlock     "xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0"

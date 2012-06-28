@@ -425,11 +425,6 @@
 (global-set-key (kbd "C-H-u") 'chop-move-up)
 (global-set-key (kbd "C-H-e") 'chop-move-down)
 
-;;______________________________________________________________________________
-;;Local Bindings
-;;______________________________________________________________________________
-(define-key isearch-mode-map (kbd "H-u") 'isearch-repeat-backward)
-(define-key isearch-mode-map (kbd "H-e") 'isearch-repeat-forward)
                                         
 
 
@@ -1371,6 +1366,23 @@
   (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
     (when file
       (find-file file)))))
+
+;;______________________________________________________________________________
+;;ISEARCH
+;;______________________________________________________________________________
+(defun sacha/isearch-yank-current-word ()
+  "Pull current word from buffer into search string."
+  (interactive)
+  (save-excursion
+    (skip-syntax-backward "w_")
+    (isearch-yank-internal
+     (lambda ()
+       (skip-syntax-forward "w_")
+       (point)))))
+(define-key isearch-mode-map (kbd "C-x") 'sacha/isearch-yank-current-word)
+(define-key isearch-mode-map (kbd "H-u") 'isearch-repeat-backward)
+(define-key isearch-mode-map (kbd "H-e") 'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "H-m") 'isearch-edit-string)
 
 ;;______________________________________________________________________________
 ;;JABBER
