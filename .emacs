@@ -542,7 +542,7 @@
 (add-hook 'w3m-mode-hook (lambda ()
                            (setq show-trailing-whitespace nil)))
 
-(load-file ".emacs.d/minesweeper-mode.el")
+(load-file "~/.emacs.d/minesweeper-mode.el")
 (require 'reddit)
 (setq browse-url-browser-function 'browse-url-generic
           browse-url-generic-program "chromium")
@@ -1219,7 +1219,7 @@
 ;;______________________________________________________________________________
 ;;
 ;;______________________________________________________________________________
-(load-file ".emacs.d/graphviz-dot-mode.el")
+(load-file "~/.emacs.d/graphviz-dot-mode.el")
 
 ;;______________________________________________________________________________
 ;;HIPPIE_EXPAND
