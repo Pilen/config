@@ -11,7 +11,7 @@ menu=(\
         gimp      "gimp"
         inkscape  "inkscape"
         xlock     "xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0"
-        xpdf      "xpdf"
+        xpdeef      "xpdf"
         python2   "urxvtc -bg black -e python2 -i .python2.py"
         python3   "urxvtc -fg green -e python3"
         chromium  "chromium"
@@ -33,6 +33,7 @@ menu=(\
         100%      "amixer set Master 64"
         MAX       "amixer set Master 64"
         dmenu     "dmenu_run"
+        omacs     "sh .omacs"
 
         google    "firefox -new-window google.dk"
         en.wikipedia.org "firefox -new-window en.wikipedia.org"

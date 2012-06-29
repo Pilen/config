@@ -487,6 +487,7 @@
 (setq show-paren-style 'expression)
 
 (tool-bar-mode 0)
+(menu-bar-mode)
 (global-linum-mode t)
 (winner-mode 1)
 (put 'narrow-to-region 'disabled nil)
@@ -528,7 +529,6 @@
 
 (defvar sql-sqlite-program "sqlite3")
 
-(menu-bar-mode)
 
 (require 'idomenu)
 
