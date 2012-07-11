@@ -6,7 +6,7 @@
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |-           |=           |Backspace             |
-;|flymake-next|bread-set     |bread-prev  |bread-next  |            |            |            |fold        |jump-back-ta|find-tag    |            |            |zoom        |                      |
+;|flymake-next|bread-set     |bread-prev  |bread-next  |            |            |            |fold        |jump-back-ta|find-tag    |forward-synt|            |zoom        |                      |
 ;|~           |!             |@           |#           |$           |%           |^           |&           |*           |(           |)           |_           |+           |                      |
 ;|flymake     |              |            |bread-list  |            |            |            |fold-column |            |tags-apropos|            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
@@ -39,15 +39,15 @@
 ;;______________________________________________________________________________
 
 ;; Port to Emacs 24
+;; rainbows everywhere
 ;; Code navigation
 ;; Code folding
-;; Windownavigation/manipulation
-;; minimap
-;; rainbows everywhere
 ;; cedet
-
-;;org-mode
-;;magit
+;; magit
+;; Windownavigation/manipulation
+;; mail
+;; org-mode
+;; minimap
 
 
 ;;______________________________________________________________________________
@@ -66,6 +66,8 @@
 ;; C-x r o      Open (insert spaces into selection)
 ;; C-x r c      Clear (overwrite selection with spaces)
 ;; C-x r t      Replace (replace selection with user text)
+;; C-x r N      Numerate lines
+;; C-u Cx r N   Numerate lines prompting starting number
 
 ;; M-z          zap to char
 ;; M-SPC        fixup-whitespace
@@ -542,8 +544,6 @@
 (add-hook 'w3m-mode-hook (lambda ()
                            (setq show-trailing-whitespace nil)))
 
-(load-file "~/.emacs.d/minesweeper-mode.el")
-(require 'reddit)
 (setq browse-url-browser-function 'browse-url-generic
           browse-url-generic-program "chromium")
 
@@ -557,6 +557,14 @@
 (require 'chop)
 
 (require 'google-translate)
+
+;;______________________________________________________________________________
+;;Fun
+;;______________________________________________________________________________
+(load-file "~/.emacs.d/minesweeper-mode.el")
+(require 'reddit)
+(require 'typing)
+
 ;;______________________________________________________________________________
 ;;Fill-column-indicator
 ;;______________________________________________________________________________
