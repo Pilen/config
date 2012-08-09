@@ -514,8 +514,8 @@
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 
-(load "~/.emacs.d/fixed-point-completion.el")
-(enable-fixed-point-completions)
+;(load "~/.emacs.d/fixed-point-completion.el")
+;(enable-fixed-point-completions)
 
 (require 'recentf)
 (recentf-mode t)
@@ -1006,7 +1006,7 @@
      ;anything-c-source-emacs-functions
      ;anything-c-source-emacs-variables
      )
-                         "*my-anything*"))
+   "*my-anything*"))
 (define-key anything-map (kbd "H-u") 'anything-previous-line)
 (define-key anything-map (kbd "H-e") 'anything-next-line)
 
@@ -1225,7 +1225,12 @@
 (autoload 'ack-find-file "full-ack" nil t)
 
 ;;______________________________________________________________________________
-;;
+;;GNUPLOT
+;;______________________________________________________________________________
+(require 'gnuplot)
+
+;;______________________________________________________________________________
+;;GRAPHVIZ
 ;;______________________________________________________________________________
 (load-file "~/.emacs.d/graphviz-dot-mode.el")
 
@@ -1345,7 +1350,7 @@
 
 ;; Display ido results vertically, rather than horizontally
 ;(setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
-(defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
+;(defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
 ;(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
 
 ;default

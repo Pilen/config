@@ -2,19 +2,19 @@
 
 date=`date +%H:%M`
 bat=`acpi | grep -o '[0-9]*%'`
-title=$date"..."$bat
+title="$date $bat"
 
 menu=(\
-        firefox   "firefox"
+        chromium  "chromium"
         emacs     "emacs"
         zathura   "zathura"        
         gimp      "gimp"
         inkscape  "inkscape"
         xlock     "xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0"
         xpdf      "xpdf"
-        python2   "urxvtc -bg black -e python2 -i .python2.py"
-        python3   "urxvtc -fg green -e python3"
-        chromium  "chromium"
+        firefox   "firefox"
+        python2   "urxvtc -bg #111111 -fg #6fbfe7 -e python2 -i .python2.py"
+        python3   "urxvtc -bg #111111 -fg #51a366 -e python3"
         alsamixer "urxvtc -bg black -e alsamixer"
         htop      "urxvtc -bg black -e htop"
         cal       "urxvtc -bg black -e perl .cal.pl"
@@ -56,7 +56,7 @@ for (( count = 0 ; count < ${#menu[*]}; count++ )); do
 
 done
 
-select=`echo -e $menu_labels | dmenu -p $title`
+select=`echo -e $menu_labels | dmenu -i -p "$title"`
 
 if [ "$select" != "" ]; then
 
