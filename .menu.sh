@@ -35,10 +35,7 @@ menu=(\
         dmenu     "dmenu_run"
         omacs     "sh .omacs"
 
-        google    "firefox -new-window google.dk"
-        en.wikipedia.org "firefox -new-window en.wikipedia.org"
-        da.wikipedia.org "firefox -new-window da.wikipedia.org"
-        latex\ book "firefox -new-window en.wikibooks.org/wiki/LaTeX"
+        links     "perl linkmenu.pl"
      )
 
 for (( count = 0 ; count < ${#menu[*]}; count++ )); do

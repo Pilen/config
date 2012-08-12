@@ -24,6 +24,8 @@ git add ~/.Xmodmap;
 git add ~/.menu.sh
 git add ~/.cal.pl
 git add ~/.python2.py
+git add ~/.linkmenu.pl
+
 
 git commit -m "Configuration updated";
 git push
