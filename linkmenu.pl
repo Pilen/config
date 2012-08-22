@@ -11,6 +11,9 @@ $browser = "chromium --new-window";
           "reddit.com",
           "reddit.com/r/emacs",
           "reddit.com/r/python",
+          "archlinux.org",
+          "wiki.archlinux.org",
+          "archlinux.org/packages",
           "pol.dk");
 
 $pages = join("\n",@pages);

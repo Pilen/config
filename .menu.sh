@@ -7,6 +7,7 @@ title="$date $bat"
 menu=(\
         chromium  "chromium"
         emacs     "emacs"
+        ranger    "urxvt -e ranger"
         zathura   "zathura"        
         gimp      "gimp"
         inkscape  "inkscape"

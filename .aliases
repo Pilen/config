@@ -41,7 +41,7 @@ alias net='sudo killall wpa_supplicant dhcpcd; sudo wpa_supplicant -iwlan0 -c/ro
 alias netscan='sudo ifconfig wlan0 up; sudo iwlist wlan0 scan | grep SSID; sudo ifconfig wlan0 down'
 
 
-alias colemak='setxkbmap us -variant colemak'
+alias colemak='setxkbmap us -variant colemak; xmodmap .Xmodmap'
 alias dansk='setxkbmap dk'
 alias sakre='setxkbmap dk'
 alias us='setxkbmap us'

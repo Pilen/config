@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*-
+;; -*- emacs-lisp -*- <12/08/20 02:40:07 /home/pilen/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -24,11 +24,12 @@
   ("perl-cwd-realpath" t)
   ("perl" "\\perl"))
  (["sudo" "root" "localhost" nil]
-  ("uname" "Linux 3.3.7-1-ARCH")
+  ("uname" "Linux 3.4.9-1-ARCH")
   ("test" "test")
   ("remote-path"
    ("/bin" "/usr/bin" "/usr/sbin" "/usr/local/bin"))
   ("remote-shell" "/bin/sh")
+  ("busybox" nil)
   ("readlink" "\\readlink")
   ("stat" "\\stat")
   ("file-exists" "test -e")
@@ -37,8 +38,4 @@
   ("uid-integer" 0)
   ("perl-file-spec" t)
   ("perl-cwd-realpath" t)
-  ("perl" "\\perl")
-  ("local-encoding" base64-encode-region)
-  ("local-decoding" base64-decode-region)
-  ("remote-encoding" "base64")
-  ("remote-decoding" "base64 -d -i")))
+  ("perl" "\\perl")))
