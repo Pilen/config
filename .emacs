@@ -72,6 +72,7 @@
 ;; M-z          zap to char
 ;; M-SPC        fixup-whitespace
 
+;; C-s C-w      Search for word at point
 
 ;; Debug on errors in .emacs
 (setq debug-on-error t)
@@ -480,7 +481,7 @@
  :background "gray60")
 
 (column-number-mode t)
-(display-battery-mode t)
+;;(display-battery-mode t) ;; my battery seems to be dead, and battery-mode cant handle that correctly
 
 (show-paren-mode t)
 (setq show-paren-delay 0)
@@ -489,7 +490,7 @@
 (setq show-paren-style 'expression)
 
 (tool-bar-mode 0)
-(menu-bar-mode)
+(menu-bar-mode 0)
 (global-linum-mode t)
 (winner-mode 1)
 (put 'narrow-to-region 'disabled nil)
@@ -2016,11 +2017,6 @@ instead."
       (beginning-of-line)
     (back-to-indentation)))
 
-;;______________________________________________________________________________
-;;Flipline
-;;______________________________________________________________________________
-;;abc|def
-;;def|abc
 
 ;;______________________________________________________________________________
 ;;Windows
@@ -2096,3 +2092,27 @@ instead."
    (if selective-display
        nil
      (+ 1 (current-column)))))
+
+
+
+
+
+
+
+
+;;______________________________________________________________________________
+;;
+;;
+;;                               Function ideas
+;;
+;;______________________________________________________________________________
+
+;;______________________________________________________________________________
+;;Flipline
+;;______________________________________________________________________________
+;;abc|def
+;;def|abc
+
+;;______________________________________________________________________________
+;;Delete entire word under cursor
+;;______________________________________________________________________________
