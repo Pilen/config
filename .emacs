@@ -1236,6 +1236,15 @@
 (load-file "~/.emacs.d/graphviz-dot-mode.el")
 
 ;;______________________________________________________________________________
+;;HASKELL
+;;______________________________________________________________________________
+(load "~/.emacs.d/haskell-mode/haskell-site-file.el")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+
+;;______________________________________________________________________________
 ;;HIPPIE_EXPAND
 ;;______________________________________________________________________________
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
@@ -1346,7 +1355,7 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (setq ido-create-new-buffer 'always)
-(setq ido-file-extension-order '("/" ".tex" ".emacs" ".txt" ".py" ".cfg" ".c" ".h" ".asm" ".xml" ".org"))
+(setq ido-file-extension-order '("/" ".tex" ".emacs" ".txt" ".py" ".pl" ".c" ".h" ".hs" ".cfg" ".asm" ".xml" ".org"))
 (ido-mode 1)
 
 ;; Display ido results vertically, rather than horizontally
