@@ -219,8 +219,8 @@
 (global-set-key (kbd "H-u") 'previous-line)
 (global-set-key (kbd "H-e") 'next-line)
 ;; Move by word
-(global-set-key (kbd "H-l") 'geosoft-backward-word)
-(global-set-key (kbd "H-y") 'forward-word)
+(global-set-key (kbd "H-l") 'backward-word-to-newline) ;; geosoft-backward-word
+(global-set-key (kbd "H-y") 'forward-word-to-newline)  ;; forward-word
 (global-set-key (kbd "H-0") 'forward-same-syntax)
 ;; Move by paragraph
 ;(global-set-key (kbd "H-L") 'backward-paragraph)
@@ -325,7 +325,8 @@
 (global-set-key (kbd "H-m") 'isearch-forward)
 (global-set-key (kbd "H-M") 'sprint-forward)
 (global-set-key (kbd "H-c") 'ace-jump-word-mode)
-(global-set-key (kbd "H-C") 'idomenu)
+(global-set-key (kbd "H-C") 'ace-jump-line-mode)
+(global-set-key (kbd "H-V") 'idomenu)
 
 (global-set-key (kbd "H-SPC") 'hippie-expand)
 (global-set-key (kbd "H-o") 'other-window)
@@ -559,6 +560,14 @@
 
 (require 'google-translate)
 
+(add-to-list 'load-path "~/.emacs.d/predictive/")
+(require 'predictive)
+(set-default 'predictive-auto-add-to-dict t)
+(setq predictive-main-dict 'rpg-dictionary
+      predictive-auto-learn t
+      predictive-add-to-dict-ask nil
+      predictive-use-auto-learn-cache nil
+      predictive-which-dict t)
 ;;______________________________________________________________________________
 ;;Fun
 ;;______________________________________________________________________________
@@ -632,8 +641,8 @@
 ;;______________________________________________________________________________
 ;;Theme
 ;;______________________________________________________________________________
-(require 'color-theme)
-(require 'color-theme-tomorrow)
+;(require 'color-theme)
+;(require 'color-theme-tomorrow)
 
 ;(add-to-list 'load-path "~/.emacs.d/solarized")
 ;(eval-after-load "color-theme"
@@ -1198,8 +1207,10 @@
 (autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
 (setq flyspell-issue-welcome-flag nil)
 (setq flyspell-issue-message-flag nil)
-(setq ispell-dictionary "dansk")
+;(setq ispell-dictionary "dansk")
+(setq ispell-dictionary "english")
 (add-hook 'flyspell-mode-hook 'flyspell-buffer)
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
 (add-hook 'c-mode-common-hook 'flyspell-prog-mode)
 (add-hook 'python-mode-hook 'flyspell-prog-mode)
 (add-hook 'sml-mode 'flyspell-prog-mode)
@@ -2103,6 +2114,27 @@ instead."
      (+ 1 (current-column)))))
 
 
+(defun forward-word-to-newline ()
+  (interactive)
+  (if (char-equal (char-after) ?\n)
+      (search-forward-regexp "[a-zA-Z0-9]+")
+    (search-forward-regexp "[[a-zA-Z0-9]+\\|$")))
+
+
+(defun backward-word-to-newline ()
+  (interactive)
+  (if (char-equal (char-before) ?\n)
+      (progn
+        (message "before")
+        (backward-char)
+        (backward-char)
+        (search-backward-regexp "[^a-zA-Z0-9]+[a-zA-Z0-9]+\\|$")
+        (forward-char))
+    (progn
+      (when (char-equal (char-after) ?\n)
+        (backward-char))
+      (search-backward-regexp "[^a-zA-Z0-9]+[a-zA-Z0-9]+\\|$")
+      (forward-char))))
 
 
 

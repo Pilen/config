@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <12/09/06 16:56:39 /home/pilen/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <12/09/08 17:28:20 /home/pilen/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -23,31 +23,6 @@
   ("perl-file-spec" t)
   ("perl-cwd-realpath" t)
   ("perl" "\\perl"))
- (["sudo" "root" "localhost" nil]
-  ("uname" "Linux 3.4.9-1-ARCH")
-  ("test" "test")
-  ("remote-path"
-   ("/bin" "/usr/bin" "/usr/sbin" "/usr/local/bin"))
-  ("remote-shell" "/bin/sh")
-  ("busybox" nil)
-  ("readlink" "\\readlink")
-  ("stat" "\\stat")
-  ("file-exists" "test -e")
-  ("id" "/usr/bin/id")
-  ("gid-integer" 0)
-  ("uid-integer" 0)
-  ("perl-file-spec" t)
-  ("perl-cwd-realpath" t)
-  ("perl" "\\perl")
-  ("~root" "/root")
-  ("ls" "/bin/ls --color=never")
-  ("ls-dired" t)
-  ("local-encoding" base64-encode-region)
-  ("local-decoding" base64-decode-region)
-  ("remote-encoding" "base64")
-  ("remote-decoding" "base64 -d -i")
-  ("inline-compress" "gzip")
-  ("inline-decompress" "gzip -d"))
  (["sudo" "root" "joker" nil]
   ("uname" "Linux 3.5.3-1-ARCH")
   ("test" "test")
@@ -67,4 +42,26 @@
   ("local-encoding" base64-encode-region)
   ("local-decoding" base64-decode-region)
   ("remote-encoding" "base64")
-  ("remote-decoding" "base64 -d -i")))
+  ("remote-decoding" "base64 -d -i"))
+ (["sudo" "root" "localhost" nil]
+  ("uname" "Linux 3.5.3-1-ARCH")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/usr/sbin" "/usr/local/bin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("readlink" "\\readlink")
+  ("stat" "\\stat")
+  ("file-exists" "test -e")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 0)
+  ("uid-integer" 0)
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("local-encoding" base64-encode-region)
+  ("local-decoding" base64-decode-region)
+  ("remote-encoding" "base64")
+  ("remote-decoding" "base64 -d -i")
+  ("inline-compress" "gzip")
+  ("inline-decompress" "gzip -d")))
