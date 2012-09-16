@@ -76,33 +76,77 @@ URxvt.foreground: #bac8ae
 URxvt.borderLess: false
 !URxvt.borderColor: #888888
 
-!*foreground:       #bac8ae
-!*background:       #220802
+! !*foreground:       #bac8ae
+! !*background:       #220802
+! !black
+! *color0:        rgb:20/20/20
+! *color8:        rgb:75/77/73
+! !!red
+! *color1:        rgb:cc/00/00
+! *color9:        rgb:ef/29/29
+! !!green
+! *color2:        rgb:4e/9a/06
+! *color10:       rgb:8a/e2/34
+! !!brown/yellow
+! *color3:        rgb:c4/a0/00
+! *color11:       rgb:fc/e9/4f
+! !!blue
+! *color4:        rgb:34/65/a4
+! *color12:       rgb:72/9f/cf
+! !!magenta
+! *color5:        rgb:75/50/7b
+! *color13:       rgb:ad/7f/a8
+! !!cyan
+! *color6:        rgb:06/98/9a
+! *color14:       rgb:34/e2/e2
+! !!white
+! *color7:        rgb:d3/d7/cf
+! *color15:       rgb:ee/ee/ec
+! !terminal         = "urxvt -fade 50 -fg \"#bac8ae\" -bg \"#220802\"",
+
+! urxvt*color0:    #2E3436
+! urxvt*color1:    #DD1144
+! urxvt*color2:    #9B859D
+! urxvt*color3:    #F9EE98
+! urxvt*color4:    #424D5E
+! urxvt*color5:    #CDA869
+! urxvt*color6:    #E94444
+! urxvt*color7:    #C2C2C2
+! urxvt*color8:    #4DA869
+! urxvt*color9:    #EF2929
+! urxvt*color10:    #BDA2BF
+! urxvt*color11:    #FFF391
+! urxvt*color12:    #7587A6
+! urxvt*color13:    #F0C47B
+! urxvt*color14:    #FF4040
+! urxvt*color15:    #EEEEEC
+
+
 !black
-*color0:        rgb:20/20/20
+*color0:        #2E3436
 *color8:        rgb:75/77/73
 !!red
-*color1:        rgb:cc/00/00
-*color9:        rgb:ef/29/29
+*color1:        #DD1144
+*color9:        #EF2929
 !!green
-*color2:        rgb:4e/9a/06
-*color10:       rgb:8a/e2/34
+*color2:        #4E9A06
+*color10:       #4DA869
 !!brown/yellow
-*color3:        rgb:c4/a0/00
-*color11:       rgb:fc/e9/4f
+*color3:        #F9EE98
+*color11:       #FFF391
 !!blue
 *color4:        rgb:34/65/a4
-*color12:       rgb:72/9f/cf
-!!magenta
+*color12:       #7587A6
+!!magenta?
 *color5:        rgb:75/50/7b
 *color13:       rgb:ad/7f/a8
 !!cyan
 *color6:        rgb:06/98/9a
-*color14:       rgb:34/e2/e2
+*color14:       #12c5c7
 !!white
 *color7:        rgb:d3/d7/cf
 *color15:       rgb:ee/ee/ec
-!terminal         = "urxvt -fade 50 -fg \"#bac8ae\" -bg \"#220802\"",
+
 
 URxvt.tabbed.tabbar-fg: 4
 URxvt.tabbed.tabbar-bg: 0
@@ -112,7 +156,3 @@ URxvt.tabbed.tab-bg: 0
 URxvt.tabbed.new-button: false
 URxvt.tabbed.title: false
 URxvt.tabbed.autohide: true
-
-
-
-

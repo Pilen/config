@@ -2,7 +2,7 @@ alias clock while sleep 1; do tput sc; tput cup 0 $(($(tput cols)-5));date +%H:%
 alias xlock xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0 $*
 alias xlcok xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0 $*
 alias ls ls --color=auto $*
-alias ls ls -CF --group-directories-first --color=never $*
+alias ls ls -CF --group-directories-first --color=auto $*
 alias c clear $*
 alias feh feh -.qB checks $*
 alias fehb feh -.qB black $*

@@ -903,7 +903,7 @@
 ;; :background "gray60")
 
 ;; nuke whitespaces when writing to a file
-(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;______________________________________________________________________________
 ;;DTRT-INDENT

@@ -8,7 +8,7 @@ menu=(\
         chromium  "chromium"
         emacs     "emacs"
         ranger    "urxvt -e ranger"
-        zathura   "zathura"        
+        zathura   "zathura"
         gimp      "gimp"
         inkscape  "inkscape"
         xlock     "xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0"
@@ -20,6 +20,7 @@ menu=(\
         htop      "urxvtc -bg black -e htop"
         cal       "urxvtc -bg black -e perl .cal.pl"
         update    "urxvtc -bg black -e sudo pacman -Syu"
+        urxvt-nf  "urxvtc -fade 0"
         shutdown  "urxvtc -bg black -fg red -e sudo shutdown -h now"
         0%        "amixer set Master 0"
         10%       "amixer set Master 18"
@@ -60,7 +61,7 @@ if [ "$select" != "" ]; then
 
 #   fetch and clean the index of the selected label
     index=`echo -e "${menu_labels[*]}" | grep -xnm1 $select | sed 's/:.*//'`
-    
+
 #   get the command which has the same index
     part=`echo -e ${menu_commands[*]} | head -$index`
     exe=`echo -e "$part" | tail -1`
