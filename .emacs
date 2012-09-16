@@ -478,18 +478,14 @@
   default-frame-alist))
 (setq frame-title-format "%b")
 (fset 'yes-or-no-p 'y-or-n-p)
-(setq-default show-trailing-whitespace t)
-(set-face-attribute
- 'trailing-whitespace nil
- :background "gray60")
 
 (column-number-mode t)
 ;;(display-battery-mode t) ;; my battery seems to be dead, and battery-mode cant handle that correctly
 
 (show-paren-mode t)
 (setq show-paren-delay 0)
-(require 'mic-paren)
-(paren-activate)
+;(require 'mic-paren)
+;(paren-activate)
 (setq show-paren-style 'expression)
 
 (tool-bar-mode 0)
@@ -574,6 +570,14 @@
       predictive-add-to-dict-ask nil
       predictive-use-auto-learn-cache nil
       predictive-which-dict t)
+
+;;Highlight current line
+(require 'hlinum)
+(global-hl-line-mode 1)
+
+
+;(setq line-move-visual nil)
+
 ;;______________________________________________________________________________
 ;;Fun
 ;;______________________________________________________________________________
@@ -686,7 +690,7 @@
 ;(set-cursor-color "cyan")
 
 (set-face-background 'show-paren-match-face "gray40")
-(set-face-background 'paren-face-match "gray40")
+;(set-face-background 'paren-face-match "gray40") ;; from mic-paren
 
 (set-face-foreground'vertical-border "gray22")
 
@@ -876,17 +880,30 @@
 
 
 ;;______________________________________________________________________________
-;;Highlights
+;;HIGHLIGHTS/WHITESPACE
 ;;______________________________________________________________________________
 
 ;(add-hook 'emacs-lisp-mode-hook
 ;          (lambda ()
 ;            (font-lock-add-keywords nil
 ;                                    '(("^[^\n]\\{80\\}\\(.*\\)$" 1 font-lock-warning-face t)))))
-;(require 'whitespace)
+(require 'whitespace)
 (setq whitespace-line-column 80)
-(setq whitespace-style '(face empty tabs lines-tail trailing))
-;(global-whitespace-mode t)
+(set-face-attribute 'whitespace-trailing nil :background "grey60")
+(set-face-attribute 'whitespace-tab nil :background "grey60")
+;;(set-face-attribute 'whitespace-line nil :foreground nil)  ;; I actually want it to use its default color.
+;;(set-face-attribute 'whitespace-line nil :background nil)
+(setq whitespace-style '(face empty tabs trailing)) ;;removed lines-tail
+(global-whitespace-mode t)
+
+;;show-trailing-whitespace is incompatible with fci-mode
+;;(setq-default show-trailing-whitespace t)
+;;(set-face-attribute
+;; 'trailing-whitespace nil
+;; :background "gray60")
+
+;; nuke whitespaces when writing to a file
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;;______________________________________________________________________________
 ;;DTRT-INDENT
@@ -1012,7 +1029,7 @@
 ;(require 'anything-config)
 (defun my-anything ()
   (interactive)
-  (anything-other-buffer 
+  (anything-other-buffer
    '(anything-c-source-buffers+
      anything-c-source-recentf
      anything-c-source-files-in-current-dir+
@@ -1271,7 +1288,7 @@
 (add-to-list 'load-path "~/.emacs.d/ghc-mod/")
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda ()
-                               (ghc-init) 
+                               (ghc-init)
                                (flymake-mode)
                                (define-key haskell-mode-map "\C-c\C-c" '(lambda () (interactive)
                                                                             (ghc-flymake-toggle-command)
@@ -1605,8 +1622,8 @@
 (require 'sml-mode)
 (setq auto-mode-alist (cons '("\\.sml$" . sml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.sig$" . sml-mode) auto-mode-alist))
-(add-hook 'sml-mode-hook 
-          (lambda() ;;; *** SML-mode Customization 
+(add-hook 'sml-mode-hook
+          (lambda() ;;; *** SML-mode Customization
             (setq sml-program-name "mosml")
             (setq sml-default-arg "-P full")
             (setq sml-indent-level 2)        ; conserve on horizontal space
@@ -1735,7 +1752,7 @@
 (defun create-tags (dir-name)
      "Create tags file."
      (interactive "DDirectory: ")
-     (eshell-command 
+     (eshell-command
       (format "find %s -type f -name \"*.[ch]\" | etags -L -" dir-name)))
 
 
@@ -1774,12 +1791,12 @@
 
 ;; IMAP
 (setq elmo-imap4-default-server "imap.gmail.com")
-(setq elmo-imap4-default-user my-email-address) 
-(setq elmo-imap4-default-authenticate-type 'clear) 
+(setq elmo-imap4-default-user my-email-address)
+(setq elmo-imap4-default-authenticate-type 'clear)
 (setq elmo-imap4-default-port '993)
 (setq elmo-imap4-default-stream-type 'ssl)
 
-(setq elmo-imap4-use-modified-utf7 t) 
+(setq elmo-imap4-use-modified-utf7 t)
 
 ;; SMTP
 (setq wl-smtp-connection-type 'starttls)
@@ -1794,7 +1811,7 @@
 (setq wl-draft-folder "%[Gmail]/Drafts") ; Gmail IMAP
 (setq wl-trash-folder "%[Gmail]/Trash")
 
-(setq wl-folder-check-async t) 
+(setq wl-folder-check-async t)
 
 (setq elmo-imap4-use-modified-utf7 t)
 
@@ -1856,29 +1873,29 @@
 
  (if (not filename)
         (message "Buffer '%s' is not visiting a file!" name)
- (progn         (copy-file filename newname 1)  (delete-file filename)  (set-visited-file-name newname)         (set-buffer-modified-p nil)     t)))) 
+ (progn         (copy-file filename newname 1)  (delete-file filename)  (set-visited-file-name newname)         (set-buffer-modified-p nil)     t))))
 
 
-(defun geosoft-forward-word () 
-   ;; Move one word forward. Leave the pointer at start of word 
-   ;; instead of emacs default end of word. Treat _ as part of word 
-   (interactive) 
-   (forward-char 1) 
-   (backward-word 1) 
-   (forward-word 2) 
-   (backward-word 1) 
-   (backward-char 1) 
-   (cond ((looking-at "_") (forward-char 1) (geosoft-forward-word)) 
-         (t (forward-char 1)))) 
+(defun geosoft-forward-word ()
+   ;; Move one word forward. Leave the pointer at start of word
+   ;; instead of emacs default end of word. Treat _ as part of word
+   (interactive)
+   (forward-char 1)
+   (backward-word 1)
+   (forward-word 2)
+   (backward-word 1)
+   (backward-char 1)
+   (cond ((looking-at "_") (forward-char 1) (geosoft-forward-word))
+         (t (forward-char 1))))
 
-(defun geosoft-backward-word () 
-   ;; Move one word backward. Leave the pointer at start of word 
-   ;; Treat _ as part of word 
-   (interactive) 
-   (backward-word 1) 
-   (backward-char 1) 
-   (cond ((looking-at "_") (geosoft-backward-word)) 
-         (t (forward-char 1)))) 
+(defun geosoft-backward-word ()
+   ;; Move one word backward. Leave the pointer at start of word
+   ;; Treat _ as part of word
+   (interactive)
+   (backward-word 1)
+   (backward-char 1)
+   (cond ((looking-at "_") (geosoft-backward-word))
+         (t (forward-char 1))))
 
 (defun toggle-letter-case ()
   "Toggle the letter case of current word or text selection.
@@ -2040,24 +2057,24 @@ in that cyclic order."
 (defvar smart-use-extended-syntax nil
   "If t the smart symbol functionality will consider extended
 syntax in finding matches, if such matches exist.")
- 
+
 (defvar smart-last-symbol-name ""
   "Contains the current symbol name.
- 
+
 This is only refreshed when `last-command' does not contain
 either `smart-symbol-go-forward' or `smart-symbol-go-backward'")
- 
+
 (make-local-variable 'smart-use-extended-syntax)
- 
+
 (defvar smart-symbol-old-pt nil
   "Contains the location of the old point")
- 
+
 (defun smart-symbol-goto (name direction)
   "Jumps to the next NAME in DIRECTION in the current buffer.
- 
+
 DIRECTION must be either `forward' or `backward'; no other option
 is valid."
- 
+
   ;; if `last-command' did not contain
   ;; `smart-symbol-go-forward/backward' then we assume it's a
   ;; brand-new command and we re-set the search term.
@@ -2080,20 +2097,20 @@ is valid."
                              (syntax-ppss (point))) '(string comment))
                 (throw 'done t))))
     (goto-char smart-symbol-old-pt)))
- 
+
 (defun smart-symbol-go-forward ()
   "Jumps forward to the next symbol at point"
   (interactive)
   (smart-symbol-goto (smart-symbol-at-pt 'end) 'forward))
- 
+
 (defun smart-symbol-go-backward ()
   "Jumps backward to the previous symbol at point"
   (interactive)
   (smart-symbol-goto (smart-symbol-at-pt 'beginning) 'backward))
- 
+
 (defun smart-symbol-at-pt (&optional dir)
   "Returns the symbol at point and moves point to DIR (either `beginning' or `end') of the symbol.
- 
+
 If `smart-use-extended-syntax' is t then that symbol is returned
 instead."
   (with-syntax-table (make-syntax-table)
@@ -2112,7 +2129,7 @@ instead."
              (t (error "Invalid direction")))
             word)
         (error "No symbol found")))))
- 
+
 ;(global-set-key (kbd "H-n") 'smart-symbol-go-forward)
 ;(global-set-key (kbd "H-p") 'smart-symbol-go-backward)
 
