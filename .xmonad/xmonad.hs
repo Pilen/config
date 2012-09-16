@@ -101,11 +101,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
   ++
   
   --Switch to workspace N                                    mod-[1..9]
-  ----Using view instead of greedyView (wont swap screens, only focus)
+  ----Using W.view instead of W.greedyView (wont swap screens, only focus)
   --Move client to workspace N                               mod-shift-[1..9]
   [((m .|. modm, k), windows $ f i)
    | (i, k) <- zip (XMonad.workspaces conf) [xK_0 .. xK_9]
-   , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+   , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
   ++
   
   --Switch to physical/Xinerama screens 1, 2, or 3           mod-{l,u,y}

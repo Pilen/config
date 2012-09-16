@@ -16,13 +16,13 @@
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
-;|                      |exe-command   |            |<del-chr    |del-chr>    |killwholline||<<         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
+;|                      |exe-command   |comment-togl|<del-chr    |del-chr>    |killwholline||<<         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
 ;|                      |exe-shell     |align-regexp|            |            |new-scratch |>>|         ||<-         |\/          |->|         |tiling-cycle|win-80col   |del-o-window|            |
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
 ;|                |expand-region |undo        |            |ace-jump-wrd|goto-last-ch|toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |query-replac|                               |
-;|                |contrct-region|redo        |            |idomenu     |            |caps-mode   |            |sprint      |prv-buf-grp |nxt-buf-grp |iedit       |                               |
+;|                |contrct-region|redo        |            |ace-jump-lin|idomenu     |caps-mode   |            |sprint      |prv-buf-grp |nxt-buf-grp |iedit       |                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
@@ -39,7 +39,6 @@
 ;;______________________________________________________________________________
 
 ;; Port to Emacs 24
-;; rainbows everywhere
 ;; Code navigation
 ;; Code folding
 ;; cedet
@@ -219,6 +218,7 @@
 (global-set-key (kbd "H-u") 'previous-line)
 (global-set-key (kbd "H-e") 'next-line)
 ;; Move by word
+(global-set-key (kbd "H-l") 'geosoft-backward-word)
 (global-set-key (kbd "H-l") 'backward-word-to-newline) ;; geosoft-backward-word
 (global-set-key (kbd "H-y") 'forward-word-to-newline)  ;; forward-word
 (global-set-key (kbd "H-0") 'forward-same-syntax)
@@ -368,6 +368,7 @@
 (global-set-key (kbd "H-:") 'split-window-vertically)
 (global-set-key (kbd "H-;") 'split-window-horizontally)
 ;(global-set-key (kbd "H-r") 'transpose-lines)
+(global-set-key (kbd "H-r") 'comment-or-uncomment-region)
 (global-set-key (kbd "H-R") 'align-regexp)
 (global-set-key (kbd "H-]") '(lambda nil (interactive) (kill-buffer (current-buffer))))
 (global-set-key (kbd "H-}") 'kill-buffer-and-window)
@@ -429,9 +430,10 @@
 (global-set-key (kbd "C-H-u") 'chop-move-up)
 (global-set-key (kbd "C-H-e") 'chop-move-down)
 
-                                        
 
-
+(add-hook 'comint-mode-hook (lambda ()
+   (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
+   (define-key comint-mode-map (kbd "<down>") 'comint-next-input)))
 
 
 
@@ -536,7 +538,7 @@
 
 (require 'idomenu)
 
-(require 'rfringe)
+;(require 'rfringe)
 ;(set-fringe-mode '(1 . 0))
 (set-fringe-mode '(0 . 0))
 
@@ -546,8 +548,12 @@
 (add-hook 'w3m-mode-hook (lambda ()
                            (setq show-trailing-whitespace nil)))
 
-(setq browse-url-browser-function 'browse-url-generic
-          browse-url-generic-program "chromium")
+;;(setq browse-url-browser-function 'browse-url-generic
+;;          browse-url-generic-program "chromium")'
+(setq browse-url-browser-function 'w3m-browse-url)
+;;(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+;; optional keyboard short-cut
+;;(global-set-key "\C-xm" 'browse-url-at-point)
 
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (setq eldoc-idle-delay 0)
@@ -768,8 +774,9 @@
 ;(((((((((())))))))))
 
 ;(rainbow-delimiters-mode 1)
-;(global-rainbow-delimiters-mode) ;;This should be the correct way (not working)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+;;(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(global-rainbow-delimiters-mode)
+
 
 ;(show-paren-mode t)
 ;(show-paren-delay 0)
@@ -1249,11 +1256,72 @@
 ;;______________________________________________________________________________
 ;;HASKELL
 ;;______________________________________________________________________________
+;;;; Haskell setup:
+;;;; Install hoogle (used in GHCi with :hoogle and :doc):
+;; cabal install hoogle
+;; echo >> ~/.ghci ':def hoogle \x -> return $ ":!hoogle \"" ++ x ++ "\""'
+;;echo >> ~/.ghci ':def doc \x -> return $ ":!hoogle --info \"" ++ x ++ "\""'
+
 (load "~/.emacs.d/haskell-mode/haskell-site-file.el")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+
+(add-to-list 'load-path "~/.emacs.d/ghc-mod/")
+(autoload 'ghc-init "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda ()
+                               (ghc-init) 
+                               (flymake-mode)
+                               (define-key haskell-mode-map "\C-c\C-c" '(lambda () (interactive)
+                                                                            (ghc-flymake-toggle-command)
+                                                                            (flymake-start-syntax-check)
+                                                                            (message "Checkedede")))))
+
+
+;; (require 'hs-lint)    ;; https://gist.github.com/1241059
+;; ;;(require 'haskell-ac) ;; https://gist.github.com/1241063
+
+;; (defun my-haskell-mode-hook ()
+;;   "hs-lint binding, plus autocompletion and paredit."
+;;   (local-set-key "\C-cl" 'hs-lint))
+
+;; (eval-after-load 'haskell-mode
+;;   '(progn
+;;      (require 'flymake)
+;;      (push '("\\.l?hs\\'" flymake-haskell-init) flymake-allowed-file-name-masks)
+;;      (add-hook 'haskell-mode-hook 'flymake-haskell-enable)
+;;      (add-hook 'haskell-mode-hook 'my-haskell-mode-hook)))
+
+
+
+;; (defun flymake-haskell-init ()
+;;   "When flymake triggers, generates a tempfile containing the
+;;   contents of the current buffer, runs `hslint` on it, and
+;;   deletes file. Put this file path (and run `chmod a+x hslint`)
+;;   to enable hslint: https://gist.github.com/1241073"
+;;   (let* ((temp-file   (flymake-init-create-temp-buffer-copy
+;;                        'flymake-create-temp-inplace))
+;;          (local-file  (file-relative-name
+;;                        temp-file
+;;                        (file-name-directory buffer-file-name))))
+;;     (list "hlint" (list local-file))))
+
+;; (defun flymake-haskell-enable ()
+;;   "Enables flymake-mode for haskell, and sets <C-c d> as command
+;;   to show current error."
+;;   (when (and buffer-file-name
+;;              (file-writable-p
+;;               (file-name-directory buffer-file-name))
+;;              (file-writable-p buffer-file-name))
+;;     (local-set-key (kbd "C-c d") 'flymake-display-err-menu-for-current-line)
+;;     (flymake-mode t)))
+
+;; Forces flymake to underline bad lines, instead of fully
+;; highlighting them; remove this if you prefer full highlighting.
+;; (custom-set-faces
+;;  '(flymake-errline ((((class color)) (:underline "red"))))
+;;  '(flymake-warnline ((((class color)) (:underline "yellow")))))
 
 ;;______________________________________________________________________________
 ;;HIPPIE_EXPAND
@@ -1694,7 +1762,52 @@
   (let ((tags-revert-without-query t))  ; don't query, revert silently
     (visit-tags-table default-directory nil)))
 
+;;______________________________________________________________________________
+;;Wanderlust
+;;______________________________________________________________________________
+;; wanderlust
+(load-file "~/.email.el")
 
+(autoload 'wl "wl" "Wanderlust" t)
+(autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)
+(autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
+
+;; IMAP
+(setq elmo-imap4-default-server "imap.gmail.com")
+(setq elmo-imap4-default-user my-email-address) 
+(setq elmo-imap4-default-authenticate-type 'clear) 
+(setq elmo-imap4-default-port '993)
+(setq elmo-imap4-default-stream-type 'ssl)
+
+(setq elmo-imap4-use-modified-utf7 t) 
+
+;; SMTP
+(setq wl-smtp-connection-type 'starttls)
+(setq wl-smtp-posting-port 587)
+(setq wl-smtp-authenticate-type "plain")
+(setq wl-smtp-posting-user "Pilen")
+(setq wl-smtp-posting-server "smtp.gmail.com")
+(setq wl-local-domain "gmail.com")
+
+(setq wl-default-folder "%inbox")
+(setq wl-default-spec "%")
+(setq wl-draft-folder "%[Gmail]/Drafts") ; Gmail IMAP
+(setq wl-trash-folder "%[Gmail]/Trash")
+
+(setq wl-folder-check-async t) 
+
+(setq elmo-imap4-use-modified-utf7 t)
+
+(autoload 'wl-user-agent-compose "wl-draft" nil t)
+(if (boundp 'mail-user-agent)
+    (setq mail-user-agent 'wl-user-agent))
+(if (fboundp 'define-mail-user-agent)
+    (define-mail-user-agent
+      'wl-user-agent
+      'wl-user-agent-compose
+      'wl-draft-send
+      'wl-draft-kill
+      'mail-send-hook))
 ;;______________________________________________________________________________
 ;;
 ;;
