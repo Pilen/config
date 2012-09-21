@@ -1,7 +1,7 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
 ;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |          |narrow-tog| |          |reftex-toc|tex-insenv|prev-latex||linum     |autoindent|def-face  |whitespc-m|
-;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||          |          |          |rainbow-de|
+;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||          |          |          |          |
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
@@ -11,18 +11,18 @@
 ;|flymake     |              |            |bread-list  |            |            |            |fold-column |            |tags-apropos|            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
-;|                   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |kill-buf    |               |
-;|                   |              |            |transpose-up|transpose-dn|transpos-wrd|find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |kill-buf+win|               |
+;|                   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |tiling-cycle|ido-sw-buf     |
+;|                   |              |            |transpose-up|transpose-dn|transpos-wrd|find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |            |idomenu        |
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
 ;|                      |exe-command   |comment-togl|<del-chr    |del-chr>    |killwholline||<<         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
-;|                      |exe-shell     |align-regexp|            |            |new-scratch |>>|         ||<-         |\/          |->|         |tiling-cycle|win-80col   |del-o-window|            |
+;|                      |exe-shell     |align-regexp|            |            |new-scratch |>>|         ||<-         |\/          |->|         |prev-window |win-80col   |del-o-window|            |
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
-;|                |expand-region |undo        |            |ace-jump-wrd|goto-last-ch|toggle-case |cancel      |isearch-forw|prev-buffer |next-buffer |query-replac|                               |
-;|                |contrct-region|redo        |            |ace-jump-lin|idomenu     |caps-mode   |            |sprint      |prv-buf-grp |nxt-buf-grp |iedit       |                               |
+;|                |expand-region |undo        |            |ace-jump-wrd|goto-last-ch|toggle-case |cancel      |isearch-forw|ahs-sym-bck |ahs-sym-fwd |query-replac|                               |
+;|                |contrct-region|redo        |            |ace-jump-lin|idomenu     |caps-mode   |            |sprint      |ahs-def-bck |ahs-def-fwd |iedit       |                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
@@ -48,6 +48,7 @@
 ;; org-mode
 ;; minimap
 
+;; insert haskell arrows
 
 ;;______________________________________________________________________________
 ;;
@@ -248,8 +249,8 @@
 (global-set-key (kbd "H-s") 'delete-backward-char)
 (global-set-key (kbd "H-t") 'delete-char)
 ;; Delete previous/next word
-(global-set-key (kbd "H-f") 'backward-kill-word)
-(global-set-key (kbd "H-p") 'kill-word)
+(global-set-key (kbd "H-f") 'backward-kill-word-to-newline)
+(global-set-key (kbd "H-p") 'forward-kill-word-to-newline)
 ;; Copy Cut Paste, Paste previous
 ;;lobal-set-key (kbd "H-x") 'kill-region) ; C-w
 ;(global-set-key (kbd "H-c") 'kill-ring-save)
@@ -286,6 +287,7 @@
 (global-set-key (kbd "C-SPC") 'set-mark-command)
 (global-set-key (kbd "H-a") 'execute-extended-command)
 (global-set-key (kbd "H-A") 'shell-toggle)
+(global-set-key (kbd "H-C-a") 'ido-M-X)
 
 ;;;; WINDOW SPLITTING
 ;(global-set-key (kbd "H-r") 'move-cursor-next-pane)
@@ -326,11 +328,13 @@
 (global-set-key (kbd "H-M") 'sprint-forward)
 (global-set-key (kbd "H-c") 'ace-jump-word-mode)
 (global-set-key (kbd "H-C") 'ace-jump-line-mode)
-(global-set-key (kbd "H-V") 'idomenu)
+;(global-set-key (kbd "H-V") '(lambda () (interactive) (global-hl-line-mode) (my-global-auto-highlight-symbol-mode)))
+(global-set-key (kbd "H-x") 'ido-goto-symbol)
+(global-set-key (kbd "H-S-<return>") 'ido-goto-symbol)
 
 (global-set-key (kbd "H-SPC") 'hippie-expand)
 (global-set-key (kbd "H-o") 'other-window)
-(global-set-key (kbd "H-O") 'tiling-cycle)
+(global-set-key (kbd "H-O") '(lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "H-'") 'win-switch-dispatch)
 (global-set-key (kbd "H-\"") 'set-80-columns)
 ;(global-set-key (kbd "H-'") 'switch-to-buffer)
@@ -341,11 +345,15 @@
 ;(global-set-key (kbd "H-<return>") 'idobuffer)
 (global-set-key (kbd "S-<return>") 'new-indented-line)
 
-(global-set-key (kbd "H-,") 'tabbar-backward-renew)
-(global-set-key (kbd "H-.") 'tabbar-forward-renew)
-(global-set-key (kbd "H-<") 'tabbar-backward-group)
-(global-set-key (kbd "H->") 'tabbar-forward-group)
-(global-set-key (kbd "H-<menu>") 'tabbar-press-home)
+;; (global-set-key (kbd "H-,") 'tabbar-backward-renew)
+;; (global-set-key (kbd "H-.") 'tabbar-forward-renew)
+;; (global-set-key (kbd "H-<") 'tabbar-backward-group)
+;; (global-set-key (kbd "H->") 'tabbar-forward-group)
+;; (global-set-key (kbd "H-<menu>") 'tabbar-press-home)
+(global-set-key (kbd "H-,") '(lambda () (interactive) (ahs-highlight-now) (ahs-backward)))
+(global-set-key (kbd "H-.") '(lambda () (interactive) (ahs-highlight-now) (ahs-forward)))
+(global-set-key (kbd "H-<") '(lambda () (interactive) (ahs-highlight-now) (ahs-backward-definition)))
+(global-set-key (kbd "H->") '(lambda () (interactive) (ahs-highlight-now) (ahs-forward-definition)))
 
 (global-set-key (kbd "<menu>") 'idobuffer)
 (global-set-key (kbd "S-<menu>") 'menu-bar-mode)
@@ -370,22 +378,21 @@
 ;(global-set-key (kbd "H-r") 'transpose-lines)
 (global-set-key (kbd "H-r") 'comment-or-uncomment-region)
 (global-set-key (kbd "H-R") 'align-regexp)
-(global-set-key (kbd "H-]") '(lambda nil (interactive) (kill-buffer (current-buffer))))
-(global-set-key (kbd "H-}") 'kill-buffer-and-window)
+(global-set-key (kbd "H-]") 'tiling-cycle)
+;(global-set-key (kbd "H-]") '(lambda nil (interactive) (kill-buffer (current-buffer))))
+;(global-set-key (kbd "H-}") 'kill-buffer-and-window)
 
 (global-set-key (kbd "H-F") 'transpose-up)
 (global-set-key (kbd "H-P") 'transpose-down)
 (global-set-key (kbd "H-G") 'transpose-words)
 
 ;(global-set-key (kbd "H-q") 'goto-match-paren)
-;(global-set-key (kbd "H-Q") 'rainbow-delimiters-mode)
 ;(global-set-key (kbd "H-j") 'my-anything)
 (global-set-key (kbd "H-j") 'recentf-ido-find-file)
 (global-set-key (kbd "H-J") 'find-file-at-point)
 
 (global-set-key (kbd "H-<insert>") 'linum-mode)
 (global-set-key (kbd "H-<end>") 'whitespace-mode)
-(global-set-key (kbd "H-S-<end>") 'rainbow-delimiters-mode)
 
 (global-set-key (kbd "H-<home>") '(lambda nil (interactive) (defaultface)))
 (global-set-key (kbd "H-+") '(lambda nil (interactive) (zoomableface)))
@@ -435,6 +442,9 @@
    (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
    (define-key comint-mode-map (kbd "<down>") 'comint-next-input)))
 
+
+(global-set-key (kbd "H-C-.") '(lambda () (interactive) (insert " -> ")))
+(global-set-key (kbd "H-C-,") '(lambda () (interactive) (insert " <- ")))
 
 
 
@@ -520,6 +530,9 @@
 (require 'recentf)
 (recentf-mode t)
 (setq recentf-max-saved-items 200)
+(add-to-list 'recentf-exclude ".breadcrumb")
+(add-to-list 'recentf-exclude ".emacs")
+(add-to-list 'recentf-exclude ".ido.last")
 
 (require 'goto-last-change)
 
@@ -532,24 +545,9 @@
 (defvar sql-sqlite-program "sqlite3")
 
 
-(require 'idomenu)
-
 ;(require 'rfringe)
 ;(set-fringe-mode '(1 . 0))
 (set-fringe-mode '(0 . 0))
-
-(add-to-list 'load-path "~/builds/emacs-w3m-1.4.4")
-(require 'w3m-e21)
-(provide 'w3m-e23)
-(add-hook 'w3m-mode-hook (lambda ()
-                           (setq show-trailing-whitespace nil)))
-
-;;(setq browse-url-browser-function 'browse-url-generic
-;;          browse-url-generic-program "chromium")'
-(setq browse-url-browser-function 'w3m-browse-url)
-;;(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
-;; optional keyboard short-cut
-;;(global-set-key "\C-xm" 'browse-url-at-point)
 
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (setq eldoc-idle-delay 0)
@@ -562,14 +560,14 @@
 
 (require 'google-translate)
 
-(add-to-list 'load-path "~/.emacs.d/predictive/")
-(require 'predictive)
-(set-default 'predictive-auto-add-to-dict t)
-(setq predictive-main-dict 'rpg-dictionary
-      predictive-auto-learn t
-      predictive-add-to-dict-ask nil
-      predictive-use-auto-learn-cache nil
-      predictive-which-dict t)
+;; (add-to-list 'load-path "~/.emacs.d/predictive/")
+;; (require 'predictive)
+;; (set-default 'predictive-auto-add-to-dict t)
+;; (setq predictive-main-dict 'rpg-dictionary
+;;       predictive-auto-learn t
+;;       predictive-add-to-dict-ask nil
+;;       predictive-use-auto-learn-cache nil
+;;       predictive-which-dict t)
 
 ;;Highlight current line
 (require 'hlinum)
@@ -805,7 +803,9 @@
 ;;______________________________________________________________________________
 (setq standard-indent 4)
 (setq-default indent-tabs-mode nil)
-(setq tab-always-indent 'complete)
+;(setq tab-always-indent 'complete)
+(setq tab-always-indent t)
+
 
 ;;Autoindentation on yanking
 (dolist (command '(yank yank-pop))
@@ -893,7 +893,7 @@
 (set-face-attribute 'whitespace-tab nil :background "grey60")
 ;;(set-face-attribute 'whitespace-line nil :foreground nil)  ;; I actually want it to use its default color.
 ;;(set-face-attribute 'whitespace-line nil :background nil)
-(setq whitespace-style '(face empty tabs trailing)) ;;removed lines-tail
+(setq whitespace-style '(face tabs trailing)) ;;removed: lines-tail, empty
 (global-whitespace-mode t)
 
 ;;show-trailing-whitespace is incompatible with fci-mode
@@ -932,21 +932,20 @@
 ;;______________________________________________________________________________
 (require 'buffer-move)
 (require 'tiling)
-;(require 'window-numbering)
-(setq windmove-wrap-around t)
-;(window-numbering-mode 1)
+(require 'window-numbering)
+(window-numbering-mode 1)
 (require 'win-switch)
-(setq win-switch-idle-time 1000)
-(setq win-switch-window-threshold 0)
+(setq win-switch-idle-time 2)
+(setq win-switch-window-threshold 2)
 (setq win-switch-other-window-first nil)
-(win-switch-set-wrap-around)
+;(win-switch-set-wrap-around)
 (win-switch-delete-key "i" 'up)
 (win-switch-delete-key "k" 'down)
 (win-switch-delete-key "j" 'left)
 (win-switch-delete-key "l" 'right)
 (win-switch-delete-key "o" 'next-window)
 (win-switch-delete-key "p" 'previous-window)
-;(win-switch-delete-key "<spc>" 'other-frame)
+(win-switch-delete-key " " 'other-frame)
 (win-switch-delete-key "u" 'exit)
 (win-switch-delete-key "I" 'enlarge-vertically)
 (win-switch-delete-key "K" 'shrink-vertically)
@@ -963,14 +962,15 @@
 (win-switch-add-key "i" 'right)
 (win-switch-add-key "y" 'next-window)
 (win-switch-add-key "l" 'previous-window)
-(win-switch-add-key "<spc>" 'other-frame)
+;(win-switch-add-key "<spc>" 'other-frame)
+(win-switch-add-key "<spc>" 'exit)
 (win-switch-add-key "k" 'exit)
 (win-switch-add-key "f" 'shrink-vertically)
 (win-switch-add-key "s" 'enlarge-vertically)
 (win-switch-add-key "r" 'enlarge-horizontally)
 (win-switch-add-key "t" 'shrink-horizontally)
-(win-switch-add-key ":" 'split-horizontally)
-(win-switch-add-key ";" 'split-vertically)
+(win-switch-add-key ";" 'split-horizontally)
+(win-switch-add-key ":" 'split-vertically)
 (win-switch-add-key "\\" 'delete-window)
 
 (win-switch-define-key "U" 'buf-move-up t)
@@ -990,9 +990,6 @@
 (defadvice split-window (after move-point-to-new-window activate)
   "Moves the point to the newly created window after splitting."
   (other-window 1))
-
-
-
 
 
 
@@ -1050,6 +1047,32 @@
 ;;______________________________________________________________________________
 (autoload 'artist-mode "artist" "Enter artist-mode" t)
 
+;;______________________________________________________________________________
+;;AUTO-HIGHLIGHT-SYMBOL
+;;______________________________________________________________________________
+(require 'auto-highlight-symbol)
+(ahs-set-idle-interval 0.2)
+(ahs-chrange-whole-buffer)
+(setq auto-highlight-symbol-mode-map nil)
+(set-face-background ahs-plugin-defalt-face "olive drab")
+(set-face-foreground ahs-plugin-defalt-face nil)
+
+(set-face-background ahs-face "grey40")
+(set-face-foreground ahs-face nil)
+
+(set-face-background ahs-plugin-whole-buffer-face "olive drab")
+(set-face-foreground ahs-plugin-whole-buffer-face nil)
+
+(defun ahs-mode ()
+  "Always fire up ahs-mode, except in minibuffer"
+  (if (not (minibufferp (current-buffer)))
+      (auto-highlight-symbol-mode t)))
+
+(define-globalized-minor-mode my-global-auto-highlight-symbol-mode
+  auto-highlight-symbol-mode-map ahs-mode
+  :group 'auto-highlight-symbol)
+
+(my-global-auto-highlight-symbol-mode 1)
 ;;______________________________________________________________________________
 ;;AUTO-INSERT
 ;;______________________________________________________________________________
@@ -1225,6 +1248,16 @@
 
 ;(add-hook 'LaTeX-mode-hook 'flymake-mode)
 
+
+(defun flyc/show-stored-error-now ()
+  "Displays the stored error in the minibuffer."
+  (interactive)
+  (let ((editing-p (= (minibuffer-depth) 0)))
+   (if (and flyc--e-at-point editing-p)
+       (progn
+         (message "%s" (replace-regexp-in-string "\0" "\n" (flyc/maybe-fixup-message flyc--e-at-point)))
+         (setq flyc--e-display-timer nil)))))
+
 ;;______________________________________________________________________________
 ;;FLYSPELL
 ;;______________________________________________________________________________
@@ -1239,7 +1272,7 @@
 (add-hook 'python-mode-hook 'flyspell-prog-mode)
 (add-hook 'sml-mode 'flyspell-prog-mode)
 
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook (lambda () 'flyspell-mode (setq ispell-dictionary "dansk")))
 
 (defun turn-on-flyspell ()
   "Force flyspell-mode on using a positive arg."
@@ -1253,7 +1286,7 @@
 
 
 ;;______________________________________________________________________________
-;;FULL-ACK
+;;FNCLL-ACK
 ;;______________________________________________________________________________
 (autoload 'ack-same "full-ack" nil t)
 (autoload 'ack "full-ack" nil t)
@@ -1282,7 +1315,7 @@
 (load "~/.emacs.d/haskell-mode/haskell-site-file.el")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 (add-to-list 'load-path "~/.emacs.d/ghc-mod/")
@@ -1292,8 +1325,7 @@
                                (flymake-mode)
                                (define-key haskell-mode-map "\C-c\C-c" '(lambda () (interactive)
                                                                             (ghc-flymake-toggle-command)
-                                                                            (flymake-start-syntax-check)
-                                                                            (message "Checkedede")))))
+                                                                            (flymake-start-syntax-check)))))
 
 
 ;; (require 'hs-lint)    ;; https://gist.github.com/1241059
@@ -1455,25 +1487,30 @@
 (ido-mode 1)
 
 ;; Display ido results vertically, rather than horizontally
-;(setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
-;(defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
-;(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
+(setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
+(defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
+(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
 
 ;default
 ;(setq ido-decorations (quote ("{" "}" " | " " | ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
 ;(remove-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
 
+(add-hook 'ido-setup-hook 'ido-my-keys)
+
+(defun ido-my-keys ()
+  "Add my keybindings for ido."
+  (define-key ido-completion-map (kbd "H-e") 'ido-next-match)
+  (define-key ido-completion-map (kbd "H-u") 'ido-prev-match))
 
 
 ;; use ido to complete commands via M-X
-(global-set-key (kbd "H-x")
- (lambda ()
-   (interactive)
-   (call-interactively
-    (intern
-     (ido-completing-read
-      "M-x "
-      (all-completions "" obarray 'commandp))))))
+(defun ido-M-X ()
+  (interactive)
+  (call-interactively
+   (intern
+    (ido-completing-read
+     "M-x "
+     (all-completions "" obarray 'commandp)))))
 
 (defun recentf-ido-find-file ()
   "Find a recent file using Ido."
@@ -1485,6 +1522,81 @@
   (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
     (when file
       (find-file file)))))
+
+;(load-file "~/.emacs.d/ido-better-flex-0.0.2.el")
+;(ido-better-flex/enable)
+
+; sort ido filelist by mtime instead of alphabetically
+(add-hook 'ido-make-file-list-hook 'ido-sort-mtime);'(lambda () (ido-sort-mtime) (ido-better-flex/enable)))
+(add-hook 'ido-make-dir-list-hook 'ido-sort-mtime);'(lambda () (ido-sort-mtime) (ido-better-flex/enable)))
+;(add-hook 'ido-make-buffer-list-hook '(lambda () (ido-better-flex/enable)))
+
+(defun ido-sort-mtime ()
+  (setq ido-temp-list
+        (sort ido-temp-list
+              (lambda (a b)
+                (time-less-p
+                 (sixth (file-attributes (concat ido-current-directory b)))
+                 (sixth (file-attributes (concat ido-current-directory a)))))))
+  (ido-to-end  ;; move . files to end (again)
+   (delq nil (mapcar
+              (lambda (x) (and (char-equal (string-to-char x) ?.) x))
+              ido-temp-list))))
+
+;;______________________________________________________________________________
+;;IDO-IMENU
+;;______________________________________________________________________________
+
+;;(require 'idomenu) ;; I use ido-goto-symbol instead as it merges the groups
+
+(defun ido-goto-symbol (&optional symbol-list)
+      "Refresh imenu and jump to a place in the buffer using Ido."
+      (interactive)
+      (unless (featurep 'imenu)
+        (require 'imenu nil t))
+      (cond
+       ((not symbol-list)
+        (let ((ido-mode ido-mode)
+              (ido-enable-flex-matching
+               (if (boundp 'ido-enable-flex-matching)
+                   ido-enable-flex-matching t))
+              name-and-pos symbol-names position)
+          (unless ido-mode
+            (ido-mode 1)
+            (setq ido-enable-flex-matching t))
+          (while (progn
+                   (imenu--cleanup)
+                   (setq imenu--index-alist nil)
+                   (ido-goto-symbol (imenu--make-index-alist))
+                   (setq selected-symbol
+                         (ido-completing-read "Symbol? " symbol-names))
+                   (string= (car imenu--rescan-item) selected-symbol)))
+          (unless (and (boundp 'mark-active) mark-active)
+            (push-mark nil t nil))
+          (setq position (cdr (assoc selected-symbol name-and-pos)))
+          (cond
+           ((overlayp position)
+            (goto-char (overlay-start position)))
+           (t
+            (goto-char position)))))
+       ((listp symbol-list)
+        (dolist (symbol symbol-list)
+          (let (name position)
+            (cond
+             ((and (listp symbol) (imenu--subalist-p symbol))
+              (ido-goto-symbol symbol))
+             ((listp symbol)
+              (setq name (car symbol))
+              (setq position (cdr symbol)))
+             ((stringp symbol)
+              (setq name symbol)
+              (setq position
+                    (get-text-property 1 'org-imenu-marker symbol))))
+            (unless (or (null position) (null name)
+                        (string= (car imenu--rescan-item) name))
+              (add-to-list 'symbol-names name)
+              (add-to-list 'name-and-pos (cons name position))))))))
+
 
 ;;______________________________________________________________________________
 ;;ISEARCH
@@ -1634,115 +1746,117 @@
 ;;TABBAR
 ;;______________________________________________________________________________
 
-(require 'tabbar)
-(set-face-attribute
- 'tabbar-default nil
- :background "gray30")
-(set-face-attribute
- 'tabbar-unselected nil
- :background "gray60"
- :foreground "gray30"
- :box nil)
-(set-face-attribute
- 'tabbar-selected nil
- :background "#f2f2f6"
- :foreground "black"
- :box nil)
-(set-face-attribute
- 'tabbar-button nil
- :box '(:line-width 1 :color "gray72" :style released-button))
-(set-face-attribute
- 'tabbar-separator nil
- :height 0.7)
+;; I dont use tabbar anymore, but it might be usefull some day (or to someone).
 
-;(tabbar-mode 1)
+;; (require 'tabbar)
+;; (set-face-attribute
+;;  'tabbar-default nil
+;;  :background "gray30")
+;; (set-face-attribute
+;;  'tabbar-unselected nil
+;;  :background "gray60"
+;;  :foreground "gray30"
+;;  :box nil)
+;; (set-face-attribute
+;;  'tabbar-selected nil
+;;  :background "#f2f2f6"
+;;  :foreground "black"
+;;  :box nil)
+;; (set-face-attribute
+;;  'tabbar-button nil
+;;  :box '(:line-width 1 :color "gray72" :style released-button))
+;; (set-face-attribute
+;;  'tabbar-separator nil
+;;  :height 0.7)
 
-
-;; add a buffer modification state indicator in the tab label,
-;; and place a space around the label to make it looks less crowd
-(defadvice tabbar-buffer-tab-label (after fixup_tab_label_space_and_flag activate)
-  (setq ad-return-value
-        (if (and (buffer-modified-p (tabbar-tab-value tab))
-                 (buffer-file-name (tabbar-tab-value tab)))
-            (concat " + " (concat ad-return-value " "))
-          (concat " " (concat ad-return-value " ")))))
-;; called each time the modification state of the buffer changed
-(defun ztl-modification-state-change ()
-  (tabbar-set-template tabbar-current-tabset nil)
-  (tabbar-display-update))
-;; first-change-hook is called BEFORE the change is made
-(defun ztl-on-buffer-modification ()
-  (set-buffer-modified-p t)
-  (ztl-modification-state-change))
-(add-hook 'after-save-hook 'ztl-modification-state-change)
-;; this doesn't work for revert, I don't know
-;;(add-hook 'after-revert-hook 'ztl-modification-state-change)
-(add-hook 'first-change-hook 'ztl-on-buffer-modification)
+;; ;(tabbar-mode 1)
 
 
-;; (defun autohide-tabbar ()
-;;   "Make tabbar briefly show itself while
-;; you are switching buffers with shortcuts.
-;; Tested with GNU Emacs 23
-;; - Sabof"
-;;   (defvar *tabbar-autohide-delay* 3)
+;; ;; add a buffer modification state indicator in the tab label,
+;; ;; and place a space around the label to make it looks less crowd
+;; (defadvice tabbar-buffer-tab-label (after fixup_tab_label_space_and_flag activate)
+;;   (setq ad-return-value
+;;         (if (and (buffer-modified-p (tabbar-tab-value tab))
+;;                  (buffer-file-name (tabbar-tab-value tab)))
+;;             (concat " + " (concat ad-return-value " "))
+;;           (concat " " (concat ad-return-value " ")))))
+;; ;; called each time the modification state of the buffer changed
+;; (defun ztl-modification-state-change ()
+;;   (tabbar-set-template tabbar-current-tabset nil)
+;;   (tabbar-display-update))
+;; ;; first-change-hook is called BEFORE the change is made
+;; (defun ztl-on-buffer-modification ()
+;;   (set-buffer-modified-p t)
+;;   (ztl-modification-state-change))
+;; (add-hook 'after-save-hook 'ztl-modification-state-change)
+;; ;; this doesn't work for revert, I don't know
+;; ;;(add-hook 'after-revert-hook 'ztl-modification-state-change)
+;; (add-hook 'first-change-hook 'ztl-on-buffer-modification)
 
+
+;; ;; (defun autohide-tabbar ()
+;; ;;   "Make tabbar briefly show itself while
+;; ;; you are switching buffers with shortcuts.
+;; ;; Tested with GNU Emacs 23
+;; ;; - Sabof"
+;; ;;   (defvar *tabbar-autohide-delay* 3)
+
+;; ;;   (interactive)
+;; ;;   (tabbar-mode nil)
+;; ;;   (defvar *tabbar-autohide-timer* nil)
+;; ;;   (defun renew-tabbar-autohide-timer ()
+;; ;;     (if (timerp *tabbar-autohide-timer*)
+;; ;;         (cancel-timer *tabbar-autohide-timer*))
+;; ;;     (setf *tabbar-autohide-timer*
+;; ;;           (run-with-timer
+;; ;;            3 nil (lambda ()
+;; ;;                    (tabbar-mode nil)
+;; ;;                    (setf *tabbar-autohide-timer*
+;; ;;                          nil)))))
+
+;; ;;   (global-set-key
+;; ;;    (kbd "H-.")
+;; ;;    (lambda ()
+;; ;;      (interactive)
+;; ;;      (if tabbar-mode
+;; ;;          (tabbar-forward)
+;; ;;        (tabbar-mode t))
+;; ;;      (renew-tabbar-autohide-timer)))
+;; ;;   (global-set-key
+;; ;;    (kbd "H-,")
+;; ;;    (lambda ()
+;; ;;      (interactive)
+;; ;;      (if tabbar-mode
+;; ;;          (tabbar-backward)
+;; ;;        (tabbar-mode t))
+;; ;;      (renew-tabbar-autohide-timer))))
+
+;; ;; (autohide-tabbar)
+
+
+;; (defvar tabbar-autohide-timer nil)
+;; (defun renew-tabbar-autohide-timer ()
+;;   (if (timerp tabbar-autohide-timer)
+;;       (cancel-timer tabbar-autohide-timer))
+;;   (setf tabbar-autohide-timer
+;;         (run-with-timer
+;;          3 nil (lambda ()
+;;                  (tabbar-mode -1)
+;;                  (setf tabbar-autohide-timer nil)))))
+
+;; (defun tabbar-forward-renew ()
 ;;   (interactive)
-;;   (tabbar-mode nil)
-;;   (defvar *tabbar-autohide-timer* nil)
-;;   (defun renew-tabbar-autohide-timer ()
-;;     (if (timerp *tabbar-autohide-timer*)
-;;         (cancel-timer *tabbar-autohide-timer*))
-;;     (setf *tabbar-autohide-timer*
-;;           (run-with-timer
-;;            3 nil (lambda ()
-;;                    (tabbar-mode nil)
-;;                    (setf *tabbar-autohide-timer*
-;;                          nil)))))
+;;   (if tabbar-mode
+;;       (tabbar-forward)
+;;     (tabbar-mode t))
+;;   (renew-tabbar-autohide-timer))
 
-;;   (global-set-key
-;;    (kbd "H-.")
-;;    (lambda ()
-;;      (interactive)
-;;      (if tabbar-mode
-;;          (tabbar-forward)
-;;        (tabbar-mode t))
-;;      (renew-tabbar-autohide-timer)))
-;;   (global-set-key
-;;    (kbd "H-,")
-;;    (lambda ()
-;;      (interactive)
-;;      (if tabbar-mode
-;;          (tabbar-backward)
-;;        (tabbar-mode t))
-;;      (renew-tabbar-autohide-timer))))
-
-;; (autohide-tabbar)
-
-
-(defvar tabbar-autohide-timer nil)
-(defun renew-tabbar-autohide-timer ()
-  (if (timerp tabbar-autohide-timer)
-      (cancel-timer tabbar-autohide-timer))
-  (setf tabbar-autohide-timer
-        (run-with-timer
-         3 nil (lambda ()
-                 (tabbar-mode -1)
-                 (setf tabbar-autohide-timer nil)))))
-
-(defun tabbar-forward-renew ()
-  (interactive)
-  (if tabbar-mode
-      (tabbar-forward)
-    (tabbar-mode t))
-  (renew-tabbar-autohide-timer))
-
-(defun tabbar-backward-renew ()
-  (interactive)
-  (if tabbar-mode
-      (tabbar-backward)
-    (tabbar-mode t))
-  (renew-tabbar-autohide-timer))
+;; (defun tabbar-backward-renew ()
+;;   (interactive)
+;;   (if tabbar-mode
+;;       (tabbar-backward)
+;;     (tabbar-mode t))
+;;   (renew-tabbar-autohide-timer))
 
 
 ;;______________________________________________________________________________
@@ -1780,7 +1894,81 @@
     (visit-tags-table default-directory nil)))
 
 ;;______________________________________________________________________________
-;;Wanderlust
+;;W3M
+;;______________________________________________________________________________
+
+(add-to-list 'load-path "~/builds/emacs-w3m-1.4.4")
+(require 'w3m-e21)
+(provide 'w3m-e23)
+(autoload 'w3m-link-numbering-mode "w3m-lnum" nil t)
+(add-hook 'w3m-mode-hook (lambda ()
+                           (setq show-trailing-whitespace nil)
+                           ;;(w3m-lnum-mode)
+                           (w3m-link-numbering-mode)))
+;;(setq browse-url-browser-function 'browse-url-generic
+;;          browse-url-generic-program "chromium")'
+(setq browse-url-browser-function 'w3m-browse-url)
+;;(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+;; optional keyboard short-cut
+;;(global-set-key "\C-xm" 'browse-url-at-point)
+
+
+(defvar w3m-isearch-links-do-wrap t
+  "Used internally for fast search wrapping.")
+
+(defun w3m-isearch-links (&optional regexp)
+  (interactive "P")
+  (let ((isearch-wrap-function
+         #'(lambda ()
+             (setq w3m-isearch-links-do-wrap nil)
+             (if isearch-forward
+                 (goto-char (window-start))
+               (goto-char (window-end)))))
+        (isearch-search-fun-function
+         #'(lambda () 'w3m-isearch-links-search-fun))
+        post-command-hook		;inhibit link echoing
+        do-follow-link
+        (isearch-mode-end-hook
+         (list  #'(lambda nil
+                    (when (and (not isearch-mode-end-hook-quit)
+                               (w3m-anchor))
+                      (setq do-follow-link t))))))
+    (setq w3m-isearch-links-do-wrap t)
+    (isearch-mode t
+                  regexp
+                  ;; fast wrap
+                  #'(lambda nil
+                      (if isearch-success
+                          (setq w3m-isearch-links-do-wrap t)
+                        (when w3m-isearch-links-do-wrap
+                          (setq w3m-isearch-links-do-wrap nil)
+                          (setq isearch-forward
+                                (not isearch-forward))
+                          (isearch-repeat isearch-forward))))
+                  t)
+    (when do-follow-link
+      (w3m-view-this-url))))
+(defun w3m-isearch-links-search-fun (string &optional bound no-error)
+  (let* (isearch-search-fun-function
+         (search-fun  (isearch-search-fun))
+         error
+         (bound  (if isearch-forward
+                     (max (or bound 0)
+                          (window-end))
+                   (min (or bound (window-start))
+                        (window-start)))))
+    (condition-case err
+        (while (and (apply search-fun (list string bound))
+                    (not (w3m-anchor (point)))))
+      (error (setq error err)))
+    (if error
+        (if (not no-error)
+            (signal (car error) (cadr error)))
+      (point))))
+(require 'w3m)
+(define-key w3m-mode-map [?f] 'w3m-isearch-links)
+;;______________________________________________________________________________
+;;WANDERLUST
 ;;______________________________________________________________________________
 ;; wanderlust
 (load-file "~/.email.el")
@@ -1876,27 +2064,6 @@
  (progn         (copy-file filename newname 1)  (delete-file filename)  (set-visited-file-name newname)         (set-buffer-modified-p nil)     t))))
 
 
-(defun geosoft-forward-word ()
-   ;; Move one word forward. Leave the pointer at start of word
-   ;; instead of emacs default end of word. Treat _ as part of word
-   (interactive)
-   (forward-char 1)
-   (backward-word 1)
-   (forward-word 2)
-   (backward-word 1)
-   (backward-char 1)
-   (cond ((looking-at "_") (forward-char 1) (geosoft-forward-word))
-         (t (forward-char 1))))
-
-(defun geosoft-backward-word ()
-   ;; Move one word backward. Leave the pointer at start of word
-   ;; Treat _ as part of word
-   (interactive)
-   (backward-word 1)
-   (backward-char 1)
-   (cond ((looking-at "_") (geosoft-backward-word))
-         (t (forward-char 1))))
-
 (defun toggle-letter-case ()
   "Toggle the letter case of current word or text selection.
 Toggles from 3 cases: UPPER CASE, lower case, Title Case,
@@ -1932,6 +2099,7 @@ in that cyclic order."
      )
     )
   )
+
 
 ;;______________________________________________________________________________
 ;;Jump to matching parethesis
@@ -2246,8 +2414,33 @@ instead."
 
 
 ;;______________________________________________________________________________
-;;MOVEMENT (by me)
+;;MOVEMENT
 ;;______________________________________________________________________________
+
+;; I used to use geosoft-backward-word and forward-word to automatically cling to
+;; the word traversed, but i found it annoying when i met an end of line.
+
+(defun geosoft-forward-word ()
+   ;; Move one word forward. Leave the pointer at start of word
+   ;; instead of emacs default end of word. Treat _ as part of word
+   (interactive)
+   (forward-char 1)
+   (backward-word 1)
+   (forward-word 2)
+   (backward-word 1)
+   (backward-char 1)
+   (cond ((looking-at "_") (forward-char 1) (geosoft-forward-word))
+         (t (forward-char 1))))
+
+(defun geosoft-backward-word ()
+   ;; Move one word backward. Leave the pointer at start of word
+   ;; Treat _ as part of word
+   (interactive)
+   (backward-word 1)
+   (backward-char 1)
+   (cond ((looking-at "_") (geosoft-backward-word))
+         (t (forward-char 1))))
+
 
 (defun forward-word-to-newline ()
   (interactive)
@@ -2255,7 +2448,7 @@ instead."
       (search-forward-regexp "[a-zA-Z0-9]+")
     (search-forward-regexp "[[a-zA-Z0-9]+\\|$")))
 
-
+;;theres an error, as it needs a non a-Z0-9 char before the word
 (defun backward-word-to-newline ()
   (interactive)
   (if (char-equal (char-before) ?\n)
@@ -2263,17 +2456,25 @@ instead."
         (message "before")
         (backward-char)
         (backward-char)
-        (search-backward-regexp "[^a-zA-Z0-9]+[a-zA-Z0-9]+\\|$")
+        (search-backward-regexp "[^a-zA-Z0-9]+[a-zA-Z0-9]+")
         (forward-char))
     (progn
-      (when (char-equal (char-after) ?\n)
+      (when (or (eobp) (char-equal (char-after) ?\n))
         (backward-char))
       (search-backward-regexp "[^a-zA-Z0-9]+[a-zA-Z0-9]+\\|$")
       (forward-char))))
 
+(defun forward-kill-word-to-newline ()
+  (interactive)
+  (let ((beg (point)))
+  (forward-word-to-newline)
+  (kill-region beg (point))))
 
-
-
+(defun backward-kill-word-to-newline ()
+  (interactive)
+  (let ((beg (point)))
+  (backward-word-to-newline)
+  (kill-region beg (point))))
 
 
 ;;______________________________________________________________________________

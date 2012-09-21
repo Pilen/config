@@ -84,7 +84,7 @@ message to display, so there is one ;)"
   (let ((editing-p (= (minibuffer-depth) 0)))
    (if (and flyc--e-at-point editing-p)
        (progn
-         (message "%s" (flyc/maybe-fixup-message flyc--e-at-point))
+         (message "%s" (replace-regexp-in-string "\0" "\n" (flyc/maybe-fixup-message flyc--e-at-point)))
          (setq flyc--e-display-timer nil)))))
 
 

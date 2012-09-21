@@ -204,7 +204,7 @@
 ;;
 ;;  * 11 Sep 2011 -- Fixed typo in `win-switch-setup-keys-arrow-ctrl'
 ;;                   and `win-switch-setup-keys-arrow-meta'
-;;                   
+;;
 ;;  * 27 Aug 2011 -- Fixed missing hyphen in `win-switch-authors-configuration'
 ;;
 ;;  * 20 Aug 2011 -- Updated documentation, moved split and delete
@@ -702,7 +702,7 @@ where <key-list> is a list of key bindings."
 ;; The function `win-switch-fix-keymap-defaults' adds the necessary
 ;; defaults in the keymap and sub-keymaps. It is used in the key setting
 ;; functions and in the `win-switch-map' keymap definition itself.
-;; 
+;;
 
 (defun win-switch-fix-keymap-defaults (map)
   "Adjust keymap MAP to include proper exit defaults.
@@ -1301,7 +1301,7 @@ DISPATCH-KEYS, if non-nil, should be a list of keys that will be
 bound globally to `win-switch-dispatch'."
   (interactive "SModifier symbol: ")
   (when (eq modifier 'shift)
-    (error The "shift modifier cannot be used for dispatch"))
+    (error "The shift modifier cannot be used for dispatch"))
   (win-switch-set-keys '([up]) 'up)
   (win-switch-set-keys '([down]) 'down)
   (win-switch-set-keys '([left]) 'left)
