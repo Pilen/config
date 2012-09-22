@@ -11,7 +11,7 @@
 ;|flymake     |              |            |bread-list  |            |            |            |fold-column |            |tags-apropos|            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
-;|                   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |tiling-cycle|ido-sw-buf     |
+;|focus-minibuffer   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |tiling-cycle|ido-sw-buf     |
 ;|                   |              |            |transpose-up|transpose-dn|transpos-wrd|find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |            |idomenu        |
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
@@ -214,8 +214,10 @@
 
 ;;;; CURSOR MOVEMENTS
 ;; Single char cursor movement
-(global-set-key (kbd "H-n") 'backward-char)
-(global-set-key (kbd "H-i") 'forward-char)
+;(global-set-key (kbd "H-n") 'backward-char)
+;(global-set-key (kbd "H-i") 'forward-char)
+(global-set-key (kbd "H-n") 'left-char)
+(global-set-key (kbd "H-i") 'right-char)
 (global-set-key (kbd "H-u") 'previous-line)
 (global-set-key (kbd "H-e") 'next-line)
 ;; Move by word
@@ -391,8 +393,11 @@
 (global-set-key (kbd "H-j") 'recentf-ido-find-file)
 (global-set-key (kbd "H-J") 'find-file-at-point)
 
-(global-set-key (kbd "H-<insert>") 'linum-mode)
+(global-set-key (kbd "H-<insert>") 'global-hl-line-mode)
+(global-set-key (kbd "H-S-<insert>") 'linum-mode)
 (global-set-key (kbd "H-<end>") 'whitespace-mode)
+
+(global-set-key (kbd "H-<tab>") 'switch-to-minibuffer-window)
 
 (global-set-key (kbd "H-<home>") '(lambda nil (interactive) (defaultface)))
 (global-set-key (kbd "H-+") '(lambda nil (interactive) (zoomableface)))
@@ -416,8 +421,8 @@
 (global-set-key (kbd "H-(") 'tags-apropos)
 
 (global-set-key (kbd "<f1>") 'google-translate-query-translate)
-(global-set-key (kbd "H-<f1>") 'flyspell-mode)
-(global-set-key (kbd "<f2>") 'flyspell-buffer)
+(global-set-key (kbd "H-<f1>") 'flyspell-toogle)
+(global-set-key (kbd "<f2>") 'flyspell-my-buffer)
 (global-set-key (kbd "H-<f2>") 'fd-switch-dictionary)
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<H-f3>") 'kmacro-name-last-macro)
@@ -443,8 +448,8 @@
    (define-key comint-mode-map (kbd "<down>") 'comint-next-input)))
 
 
-(global-set-key (kbd "H-C-.") '(lambda () (interactive) (insert " -> ")))
-(global-set-key (kbd "H-C-,") '(lambda () (interactive) (insert " <- ")))
+(global-set-key (kbd "H-C-.") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "-> ") (insert " -> "))))
+(global-set-key (kbd "H-C-,") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "<- ") (insert " <- "))))
 
 
 
@@ -638,10 +643,10 @@
 
 ;(set-face-attribute 'default nil :height 80)
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "Schumacher" :family "Clean"))))
  '(flymake-errline ((((class color)) (:underline "red"))))
  '(flymake-warnline ((((class color)) (:underline "yellow")))))
@@ -1052,7 +1057,8 @@
 ;;______________________________________________________________________________
 (require 'auto-highlight-symbol)
 (ahs-set-idle-interval 0.2)
-(ahs-chrange-whole-buffer)
+(setq ahs-default-range 'ahs-range-whole-buffer)
+
 (setq auto-highlight-symbol-mode-map nil)
 (set-face-background ahs-plugin-defalt-face "olive drab")
 (set-face-foreground ahs-plugin-defalt-face nil)
@@ -1067,6 +1073,7 @@
   "Always fire up ahs-mode, except in minibuffer"
   (if (not (minibufferp (current-buffer)))
       (auto-highlight-symbol-mode t)))
+
 
 (define-globalized-minor-mode my-global-auto-highlight-symbol-mode
   auto-highlight-symbol-mode-map ahs-mode
@@ -1269,15 +1276,42 @@
 (add-hook 'flyspell-mode-hook 'flyspell-buffer)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 (add-hook 'c-mode-common-hook 'flyspell-prog-mode)
+(add-hook 'c-mode-hook 'flyspell-prog-mode)
+(add-hook 'sh-mode-hook 'flyspell-prog-mode)
+(add-hook 'c++-mode-hook 'flyspell-prog-mode)
+(add-hook 'ruby-mode-hook 'flyspell-prog-mode)
+(add-hook 'perl-mode-hook 'flyspell-prog-mode)
+(add-hook 'haskell-mode-hook 'flyspell-prog-mode)
 (add-hook 'python-mode-hook 'flyspell-prog-mode)
 (add-hook 'sml-mode 'flyspell-prog-mode)
+
 
 (add-hook 'LaTeX-mode-hook (lambda () 'flyspell-mode (setq ispell-dictionary "dansk")))
 
 (defun turn-on-flyspell ()
   "Force flyspell-mode on using a positive arg."
   (interactive)
-  (flyspell-mode 1))
+  (flyspell-mode 1)
+  )
+
+(setq flyspell-is-on nil)
+(defun flyspell-toogle ()
+  (interactive)
+  (if flyspell-is-on
+      (progn
+        (message "Off")
+        (setq flyspell-is-on nil)
+        (flyspell-mode-off))
+      (progn
+        (message "On")
+        (setq flyspell-is-on t)
+        (flyspell-mode-on)
+        (flyspell-buffer))))
+
+(defun flyspell-my-buffer ()
+  (interactive)
+  (setq flyspell-is-on t)
+  (flyspell-buffer))
 
 ;; Better order of spelling suggestions
 ;(defadvice ispell-command-loop (before ispell-reverse-miss-list activate)
@@ -1286,7 +1320,7 @@
 
 
 ;;______________________________________________________________________________
-;;FNCLL-ACK
+;;FULL-ACK
 ;;______________________________________________________________________________
 (autoload 'ack-same "full-ack" nil t)
 (autoload 'ack "full-ack" nil t)
@@ -1654,7 +1688,7 @@
 (add-hook
  'LaTeX-mode-hook
  (lambda nil
-   (visual-line-mode)
+   ;(visual-line-mode)
    (setq LaTeX-command "latex -file-line-error -synctex=1")))
 
 ;;______________________________________________________________________________
@@ -1694,10 +1728,10 @@
 ;;SHELL
 ;;______________________________________________________________________________
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(comint-buffer-maximum-size 10000)
  '(comint-completion-addsuffix t)
  '(comint-completion-autolist t)
@@ -2019,6 +2053,13 @@
 ;;                               FUNCTIONALITY
 ;;
 ;;______________________________________________________________________________
+
+(defun switch-to-minibuffer-window ()
+  "switch to minibuffer window (if active)"
+  (interactive)
+  (when (active-minibuffer-window)
+    (select-window (active-minibuffer-window))))
+
 
 ;; someday might want to rotate windows if more than 2 of them
 (defun swap-windows ()
