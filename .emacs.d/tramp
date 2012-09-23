@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <12/09/20 18:21:45 /home/pilen/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <12/09/23 18:26:42 /home/pilen/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -54,8 +54,6 @@
   ("~root" "/root")
   ("ls" "/bin/ls --color=never")
   ("ls-dired" t))
- (["scpc" nil "130.225.96.225" nil]
-  nil)
  (["sudo" "root" "localhost" nil]
   ("uname" "Linux 3.5.4-1-ARCH")
   ("test" "test")

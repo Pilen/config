@@ -473,7 +473,7 @@
 
 
 
-
+(add-to-list 'load-path "~/.emacs.d/")
 ;;______________________________________________________________________________
 ;;
 ;;
@@ -482,15 +482,15 @@
 ;;______________________________________________________________________________
 
 ;;______________________________________________________________________________
-;;Settings
+;;SETTINGS
 ;;______________________________________________________________________________
 (add-to-list 'load-path "~/.emacs.d/")
 
 (setq inhibit-startup-message t)
 (setq default-frame-alist (append (list
-  '(width  . 80)  ; Width set to 80 characters
-  '(height . 40)) ; Height set to 60 lines
-  default-frame-alist))
+                                   '(width  . 80)  ; Width set to 80 characters
+                                   '(height . 40)) ; Height set to 60 lines
+                                  default-frame-alist))
 (setq frame-title-format "%b")
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -505,6 +505,7 @@
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)
+;(require 'linum+)
 (global-linum-mode t)
 (winner-mode 1)
 (put 'narrow-to-region 'disabled nil)
@@ -524,7 +525,7 @@
 (turn-on-follow-mouse)
 (setq follow-mouse-deselect-active-minibuffer nil)
 
-(delete-selection-mode t)
+;(delete-selection-mode t)
 
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
@@ -591,11 +592,13 @@
 ;;______________________________________________________________________________
 ;;Fill-column-indicator
 ;;______________________________________________________________________________
-(require 'fill-column-indicator)
-(setq fci-rule-color "gray32")
-(setq-default fill-column 80)
-(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(global-fci-mode 1)
+;; (require 'fill-column-indicator)
+;; (setq fci-rule-color "gray32")
+;; (setq-default fill-column 80)
+;; (setq fci-always-use-textual-rule 1)
+;; (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+;; (global-fci-mode 1)
+
 ;;______________________________________________________________________________
 ;;Startup
 ;;______________________________________________________________________________
@@ -603,7 +606,7 @@
 (defun display-startup-echo-area-message ()
   (message ""))
 (find-file "~/.emacs")
-;(switch-to-buffer "blank")
+                                        ;(switch-to-buffer "blank")
 (if (not (eq nil (get-buffer "*scratch*")))
     (kill-buffer "*scratch*"))
 (if (not (eq nil (get-buffer "*Messages*")))
@@ -635,10 +638,10 @@
 ;;Font
 ;;______________________________________________________________________________
 ;(custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+;; custom-set-faces was added by Custom.
+;; If you edit it by hand, you could mess it up, so be careful.
+;; Your init file should contain only one such instance.
+;; If there is more than one, they won't work right.
 ; '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 98 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
 
 ;(set-face-attribute 'default nil :height 80)
@@ -649,10 +652,11 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "Schumacher" :family "Clean"))))
  '(flymake-errline ((((class color)) (:underline "red"))))
- '(flymake-warnline ((((class color)) (:underline "yellow")))))
+ '(flymake-warnline ((((class color)) (:underline "yellow"))))
+ '(whitespace-line ((t (:background "gray20")))))
 
 ;;______________________________________________________________________________
-;;Theme
+;;THEME
 ;;______________________________________________________________________________
 ;(require 'color-theme)
 ;(require 'color-theme-tomorrow)
@@ -695,7 +699,13 @@
 (set-face-background 'show-paren-match-face "gray40")
 ;(set-face-background 'paren-face-match "gray40") ;; from mic-paren
 
-(set-face-foreground'vertical-border "gray22")
+(set-face-foreground 'vertical-border "gray22")
+
+;(set-face-background 'region "royal blue")
+;(set-face-background 'region "cornflower blue")
+;(set-face-background 'region "DeepSkyBlue4")
+(set-face-background 'region "SkyBlue4")
+
 
 ;;______________________________________________________________________________
 ;;MODELINE
@@ -778,7 +788,7 @@
 (set-face-attribute
  'rainbow-delimiters-unmatched-face nil
  :foreground "red")
-;(((((((((())))))))))
+                                        ;(((((((((())))))))))
 
 ;(rainbow-delimiters-mode 1)
 ;;(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
@@ -851,7 +861,7 @@
 (setq auto-save-visited-file-name nil) ;;Dont save to current file
 (setq delete-auto-save-files 1) ;;Delete autosaves on save
 (setq check-auto-save 1) ;;check wether autosave is the most recent on revert-buffer
-;(require 'auto-save)
+                                        ;(require 'auto-save)
 
 (setq backup-by-copying t)
 (setq auto-save-list-file-prefix "~/Dropbox/emacs/autosaves/")
@@ -898,6 +908,7 @@
 (set-face-attribute 'whitespace-tab nil :background "grey60")
 ;;(set-face-attribute 'whitespace-line nil :foreground nil)  ;; I actually want it to use its default color.
 ;;(set-face-attribute 'whitespace-line nil :background nil)
+;(set-face-foreground 'whitespace-line nil)
 (setq whitespace-style '(face tabs trailing)) ;;removed: lines-tail, empty
 (global-whitespace-mode t)
 
@@ -909,6 +920,26 @@
 
 ;; nuke whitespaces when writing to a file
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; (font-lock-add-keywords
+;;      'emacs-lisp-mode
+;;      '(("^[^\n]\\{80\\}\\(.*\\)$"
+;;         1 longlines prepend)))
+
+;; (defface longlines
+;;   '((((type x w32 mac))
+;;      (:background "red")); :inherit bold))
+;;     (((type tty))
+;;      (:foreground "blue")))
+;;   "Face used to display the time in the mode line.")
+
+(defface whitespace-line
+  '((((class mono)) (:inverse-video t :bold t :underline t))
+    (t (:background "gray20" :foreground "red")))
+  "Face used to visualize \"long\" lines.
+
+See `whitespace-line-column'."
+  :group 'whitespace)
 
 ;;______________________________________________________________________________
 ;;DTRT-INDENT
@@ -1028,7 +1059,7 @@
 (require 'anything)
 (require 'anything-config)
 (require 'anything-match-plugin)
-;(require 'anything-config)
+                                        ;(require 'anything-config)
 (defun my-anything ()
   (interactive)
   (anything-other-buffer
@@ -1173,7 +1204,7 @@
   (add-to-list 'eshell-visual-commands "alsamixer")
   (add-to-list 'eshell-visual-commands "ssh")
   (add-to-list 'eshell-visual-commands "tail")
-)
+  )
 (add-hook 'eshell-mode-hook 'm-eshell-hook)
 (defun tyler-eshell-view-file (file)
   "A version of `view-file' which properly respects the eshell prompt."
@@ -1251,7 +1282,7 @@
   (interactive)
   (flymake-goto-next-error)
   (flymake-display-err-menu-for-current-line)
-)
+  )
 
 ;(add-hook 'LaTeX-mode-hook 'flymake-mode)
 
@@ -1260,10 +1291,10 @@
   "Displays the stored error in the minibuffer."
   (interactive)
   (let ((editing-p (= (minibuffer-depth) 0)))
-   (if (and flyc--e-at-point editing-p)
-       (progn
-         (message "%s" (replace-regexp-in-string "\0" "\n" (flyc/maybe-fixup-message flyc--e-at-point)))
-         (setq flyc--e-display-timer nil)))))
+    (if (and flyc--e-at-point editing-p)
+        (progn
+          (message "%s" (replace-regexp-in-string "\0" "\n" (flyc/maybe-fixup-message flyc--e-at-point)))
+          (setq flyc--e-display-timer nil)))))
 
 ;;______________________________________________________________________________
 ;;FLYSPELL
@@ -1271,7 +1302,7 @@
 (autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
 (setq flyspell-issue-welcome-flag nil)
 (setq flyspell-issue-message-flag nil)
-;(setq ispell-dictionary "dansk")
+                                        ;(setq ispell-dictionary "dansk")
 (setq ispell-dictionary "english")
 (add-hook 'flyspell-mode-hook 'flyspell-buffer)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
@@ -1302,11 +1333,11 @@
         (message "Off")
         (setq flyspell-is-on nil)
         (flyspell-mode-off))
-      (progn
-        (message "On")
-        (setq flyspell-is-on t)
-        (flyspell-mode-on)
-        (flyspell-buffer))))
+    (progn
+      (message "On")
+      (setq flyspell-is-on t)
+      (flyspell-mode-on)
+      (flyspell-buffer))))
 
 (defun flyspell-my-buffer ()
   (interactive)
@@ -1358,8 +1389,8 @@
                                (ghc-init)
                                (flymake-mode)
                                (define-key haskell-mode-map "\C-c\C-c" '(lambda () (interactive)
-                                                                            (ghc-flymake-toggle-command)
-                                                                            (flymake-start-syntax-check)))))
+                                                                          (ghc-flymake-toggle-command)
+                                                                          (flymake-start-syntax-check)))))
 
 
 ;; (require 'hs-lint)    ;; https://gist.github.com/1241059
@@ -1465,7 +1496,7 @@
                ("ERC"
                 (mode . erc-mode))
 
-                 ))))
+               ))))
 
 (add-hook 'ibuffer-mode-hook
           (lambda ()
@@ -1551,11 +1582,11 @@
   (interactive)
 
   (let ((ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]"))))
-  ;(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
+;(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
 
-  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
-    (when file
-      (find-file file)))))
+    (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+      (when file
+        (find-file file)))))
 
 ;(load-file "~/.emacs.d/ido-better-flex-0.0.2.el")
 ;(ido-better-flex/enable)
@@ -1584,52 +1615,52 @@
 ;;(require 'idomenu) ;; I use ido-goto-symbol instead as it merges the groups
 
 (defun ido-goto-symbol (&optional symbol-list)
-      "Refresh imenu and jump to a place in the buffer using Ido."
-      (interactive)
-      (unless (featurep 'imenu)
-        (require 'imenu nil t))
+  "Refresh imenu and jump to a place in the buffer using Ido."
+  (interactive)
+  (unless (featurep 'imenu)
+    (require 'imenu nil t))
+  (cond
+   ((not symbol-list)
+    (let ((ido-mode ido-mode)
+          (ido-enable-flex-matching
+           (if (boundp 'ido-enable-flex-matching)
+               ido-enable-flex-matching t))
+          name-and-pos symbol-names position)
+      (unless ido-mode
+        (ido-mode 1)
+        (setq ido-enable-flex-matching t))
+      (while (progn
+               (imenu--cleanup)
+               (setq imenu--index-alist nil)
+               (ido-goto-symbol (imenu--make-index-alist))
+               (setq selected-symbol
+                     (ido-completing-read "Symbol? " symbol-names))
+               (string= (car imenu--rescan-item) selected-symbol)))
+      (unless (and (boundp 'mark-active) mark-active)
+        (push-mark nil t nil))
+      (setq position (cdr (assoc selected-symbol name-and-pos)))
       (cond
-       ((not symbol-list)
-        (let ((ido-mode ido-mode)
-              (ido-enable-flex-matching
-               (if (boundp 'ido-enable-flex-matching)
-                   ido-enable-flex-matching t))
-              name-and-pos symbol-names position)
-          (unless ido-mode
-            (ido-mode 1)
-            (setq ido-enable-flex-matching t))
-          (while (progn
-                   (imenu--cleanup)
-                   (setq imenu--index-alist nil)
-                   (ido-goto-symbol (imenu--make-index-alist))
-                   (setq selected-symbol
-                         (ido-completing-read "Symbol? " symbol-names))
-                   (string= (car imenu--rescan-item) selected-symbol)))
-          (unless (and (boundp 'mark-active) mark-active)
-            (push-mark nil t nil))
-          (setq position (cdr (assoc selected-symbol name-and-pos)))
-          (cond
-           ((overlayp position)
-            (goto-char (overlay-start position)))
-           (t
-            (goto-char position)))))
-       ((listp symbol-list)
-        (dolist (symbol symbol-list)
-          (let (name position)
-            (cond
-             ((and (listp symbol) (imenu--subalist-p symbol))
-              (ido-goto-symbol symbol))
-             ((listp symbol)
-              (setq name (car symbol))
-              (setq position (cdr symbol)))
-             ((stringp symbol)
-              (setq name symbol)
-              (setq position
-                    (get-text-property 1 'org-imenu-marker symbol))))
-            (unless (or (null position) (null name)
-                        (string= (car imenu--rescan-item) name))
-              (add-to-list 'symbol-names name)
-              (add-to-list 'name-and-pos (cons name position))))))))
+       ((overlayp position)
+        (goto-char (overlay-start position)))
+       (t
+        (goto-char position)))))
+   ((listp symbol-list)
+    (dolist (symbol symbol-list)
+      (let (name position)
+        (cond
+         ((and (listp symbol) (imenu--subalist-p symbol))
+          (ido-goto-symbol symbol))
+         ((listp symbol)
+          (setq name (car symbol))
+          (setq position (cdr symbol)))
+         ((stringp symbol)
+          (setq name symbol)
+          (setq position
+                (get-text-property 1 'org-imenu-marker symbol))))
+        (unless (or (null position) (null name)
+                    (string= (car imenu--rescan-item) name))
+          (add-to-list 'symbol-names name)
+          (add-to-list 'name-and-pos (cons name position))))))))
 
 
 ;;______________________________________________________________________________
@@ -1648,6 +1679,15 @@
 (define-key isearch-mode-map (kbd "H-u") 'isearch-repeat-backward)
 (define-key isearch-mode-map (kbd "H-e") 'isearch-repeat-forward)
 (define-key isearch-mode-map (kbd "H-m") 'isearch-edit-string)
+(define-key isearch-mode-map (kbd "C-o") 'isearch-occur)
+(defun isearch-occur ()
+  (interactive)
+  (let ((case-fold-search isearch-case-fold-search))
+    (occur (if isearch-regexp isearch-string
+             (regexp-quote isearch-string))))
+  (let ((current-pos (format "%d:" (count-lines 1 (point)))))
+    (other-window 1)
+    (search-forward current-pos)))
 
 ;;______________________________________________________________________________
 ;;JABBER
@@ -1680,7 +1720,7 @@
 
 ;(setq TeX-view-program-list '(("Zathura" "zathura %o")))
 ;(setq TeX-view-program-selection '((output-pdf "Zathura")))
-(setq TeX-view-program-list '(("Xpdf" "xpdf %o")))
+(setq TeX-view-program-list '(("Xpdf" "xpdf -fullscreen -cont -z 100 %o")))
 (setq TeX-view-program-selection '((output-pdf "Xpdf")))
 
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
@@ -1688,7 +1728,7 @@
 (add-hook
  'LaTeX-mode-hook
  (lambda nil
-   ;(visual-line-mode)
+;(visual-line-mode)
    (setq LaTeX-command "latex -file-line-error -synctex=1")))
 
 ;;______________________________________________________________________________
@@ -1732,6 +1772,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
  '(comint-buffer-maximum-size 10000)
  '(comint-completion-addsuffix t)
  '(comint-completion-autolist t)
@@ -1743,7 +1784,11 @@
  '(comint-prompt-read-only nil)
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
+ '(display-time-mode t)
+ '(menu-bar-mode nil)
  '(protect-buffer-bury-p nil)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
 (ansi-color-for-comint-mode-on)
 (defvar my-shells '("*shell*" "*shell0*" "*shell1*" "*shell2*" "*shell3*"))
@@ -1898,10 +1943,10 @@
 ;;______________________________________________________________________________
 
 (defun create-tags (dir-name)
-     "Create tags file."
-     (interactive "DDirectory: ")
-     (eshell-command
-      (format "find %s -type f -name \"*.[ch]\" | etags -L -" dir-name)))
+  "Create tags file."
+  (interactive "DDirectory: ")
+  (eshell-command
+   (format "find %s -type f -name \"*.[ch]\" | etags -L -" dir-name)))
 
 
 ;;;  Jonas.Jarnestrom<at>ki.ericsson.se A smarter
@@ -2063,46 +2108,46 @@
 
 ;; someday might want to rotate windows if more than 2 of them
 (defun swap-windows ()
- "If you have 2 windows, it swaps them." (interactive) (cond ((not (= (count-windows) 2)) (message "You need exactly 2 windows to do this."))
- (t
- (let* ((w1 (first (window-list)))
-         (w2 (second (window-list)))
-         (b1 (window-buffer w1))
-         (b2 (window-buffer w2))
-         (s1 (window-start w1))
-         (s2 (window-start w2)))
- (set-window-buffer w1 b2)
- (set-window-buffer w2 b1)
- (set-window-start w1 s2)
- (set-window-start w2 s1)))))
+  "If you have 2 windows, it swaps them." (interactive) (cond ((not (= (count-windows) 2)) (message "You need exactly 2 windows to do this."))
+                                                              (t
+                                                               (let* ((w1 (first (window-list)))
+                                                                      (w2 (second (window-list)))
+                                                                      (b1 (window-buffer w1))
+                                                                      (b2 (window-buffer w2))
+                                                                      (s1 (window-start w1))
+                                                                      (s2 (window-start w2)))
+                                                                 (set-window-buffer w1 b2)
+                                                                 (set-window-buffer w2 b1)
+                                                                 (set-window-start w1 s2)
+                                                                 (set-window-start w2 s1)))))
 
 ;;
 ;; Never understood why Emacs doesn't have this function.
 ;;
 (defun rename-file-and-buffer (new-name)
- "Renames both current buffer and file it's visiting to NEW-NAME." (interactive "sNew name: ")
- (let ((name (buffer-name))
+  "Renames both current buffer and file it's visiting to NEW-NAME." (interactive "sNew name: ")
+  (let ((name (buffer-name))
         (filename (buffer-file-name)))
- (if (not filename)
+    (if (not filename)
         (message "Buffer '%s' is not visiting a file!" name)
- (if (get-buffer new-name)
-         (message "A buffer named '%s' already exists!" new-name)
+      (if (get-buffer new-name)
+          (message "A buffer named '%s' already exists!" new-name)
         (progn   (rename-file name new-name 1)   (rename-buffer new-name)        (set-visited-file-name new-name)        (set-buffer-modified-p nil))))))
 
 ;; Never understood why Emacs doesn't have this function, either.
 ;;
 (defun move-buffer-file (dir)
- "Moves both current buffer and file it's visiting to DIR." (interactive "DNew directory: ")
- (let* ((name (buffer-name))
+  "Moves both current buffer and file it's visiting to DIR." (interactive "DNew directory: ")
+  (let* ((name (buffer-name))
          (filename (buffer-file-name))
          (dir
-         (if (string-match dir "\\(?:/\\|\\\\)$")
-         (substring dir 0 -1) dir))
+          (if (string-match dir "\\(?:/\\|\\\\)$")
+              (substring dir 0 -1) dir))
          (newname (concat dir "/" name)))
 
- (if (not filename)
+    (if (not filename)
         (message "Buffer '%s' is not visiting a file!" name)
- (progn         (copy-file filename newname 1)  (delete-file filename)  (set-visited-file-name newname)         (set-buffer-modified-p nil)     t))))
+      (progn         (copy-file filename newname 1)  (delete-file filename)  (set-visited-file-name newname)         (set-buffer-modified-p nil)     t))))
 
 
 (defun toggle-letter-case ()
@@ -2151,7 +2196,7 @@ in that cyclic order."
   (interactive "p")
   (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
         ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
-        ;(t (self-insert-command (or arg 1)))))
+                                        ;(t (self-insert-command (or arg 1)))))
         ))
 
 
@@ -2164,20 +2209,20 @@ in that cyclic order."
   (interactive)
   (custom-set-faces
    '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "Schumacher" :family "Clean")))))
-)
+  )
 
 
 (defun zoomableface ()
   (custom-set-faces
    '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 80 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
-)
+  )
 
 (defun zoom (n)
   "With positive N, increase the font size, otherwire decrease it"
   (set-face-attribute 'default (selected-frame) :height
                       (+ (face-attribute 'default :height) (* (if (> n 0) 1 -1) 10))
-                     ;(+ (face-attribute 'default :height) 10)))
-))
+                                        ;(+ (face-attribute 'default :height) 10)))
+                      ))
 
 
 ;;______________________________________________________________________________
@@ -2240,19 +2285,19 @@ in that cyclic order."
   "If narrow, widen; if not narrowed, narrow!"
   (interactive "r") ; "r" for region
   (if (narrow-p)
-    (progn (widen)
-      (message "Un-narrowing."))
+      (progn (widen)
+             (message "Un-narrowing."))
     (progn (narrow-to-region beg end)
-       (message "Narrowing to c%s - c%s." beg end))))
+           (message "Narrowing to c%s - c%s." beg end))))
 
 (defun narrow-p ()
   "Whether narrow is in effect for the current buffer"
 
   (let (real-point-min real-point-max)
     (save-excursion (save-restriction
-    (widen)
-    (setq real-point-min (point-min)
-            real-point-max (point-max))))
+                      (widen)
+                      (setq real-point-min (point-min)
+                            real-point-max (point-max))))
     (or
      (/= real-point-min (point-min))
      (/= real-point-max (point-max)))))
@@ -2462,25 +2507,25 @@ instead."
 ;; the word traversed, but i found it annoying when i met an end of line.
 
 (defun geosoft-forward-word ()
-   ;; Move one word forward. Leave the pointer at start of word
-   ;; instead of emacs default end of word. Treat _ as part of word
-   (interactive)
-   (forward-char 1)
-   (backward-word 1)
-   (forward-word 2)
-   (backward-word 1)
-   (backward-char 1)
-   (cond ((looking-at "_") (forward-char 1) (geosoft-forward-word))
-         (t (forward-char 1))))
+  ;; Move one word forward. Leave the pointer at start of word
+  ;; instead of emacs default end of word. Treat _ as part of word
+  (interactive)
+  (forward-char 1)
+  (backward-word 1)
+  (forward-word 2)
+  (backward-word 1)
+  (backward-char 1)
+  (cond ((looking-at "_") (forward-char 1) (geosoft-forward-word))
+        (t (forward-char 1))))
 
 (defun geosoft-backward-word ()
-   ;; Move one word backward. Leave the pointer at start of word
-   ;; Treat _ as part of word
-   (interactive)
-   (backward-word 1)
-   (backward-char 1)
-   (cond ((looking-at "_") (geosoft-backward-word))
-         (t (forward-char 1))))
+  ;; Move one word backward. Leave the pointer at start of word
+  ;; Treat _ as part of word
+  (interactive)
+  (backward-word 1)
+  (backward-char 1)
+  (cond ((looking-at "_") (geosoft-backward-word))
+        (t (forward-char 1))))
 
 
 (defun forward-word-to-newline ()
@@ -2508,14 +2553,14 @@ instead."
 (defun forward-kill-word-to-newline ()
   (interactive)
   (let ((beg (point)))
-  (forward-word-to-newline)
-  (kill-region beg (point))))
+    (forward-word-to-newline)
+    (kill-region beg (point))))
 
 (defun backward-kill-word-to-newline ()
   (interactive)
   (let ((beg (point)))
-  (backward-word-to-newline)
-  (kill-region beg (point))))
+    (backward-word-to-newline)
+    (kill-region beg (point))))
 
 
 ;;______________________________________________________________________________
@@ -2533,4 +2578,7 @@ instead."
 
 ;;______________________________________________________________________________
 ;;Delete entire word under cursor
+;;______________________________________________________________________________
+;;______________________________________________________________________________
+;;Deletemode, all movement deletes
 ;;______________________________________________________________________________
