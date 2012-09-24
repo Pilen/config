@@ -1,6 +1,6 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
-;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |          |narrow-tog| |          |reftex-toc|tex-insenv|prev-latex||linum     |autoindent|def-face  |whitespc-m|
+;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |          |narrow-tog| |shell-rplc|reftex-toc|tex-insenv|prev-latex||linum     |autoindent|def-face  |whitespc-m|
 ;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||          |          |          |          |
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
@@ -429,6 +429,7 @@
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "<f8>") 'narrow-toggle)
+(global-set-key (kbd "<f9>") 'shell-command-on-region-replace)
 (global-set-key (kbd "<f10>") 'reftex-toc)
 (global-set-key (kbd "<f11>") 'LaTeX-environment)
 (global-set-key (kbd "H-<f11>") 'LaTeX-close-environment)
@@ -502,6 +503,8 @@
 ;(require 'mic-paren)
 ;(paren-activate)
 (setq show-paren-style 'expression)
+
+(set-default 'truncate-lines t)
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)
@@ -592,12 +595,12 @@
 ;;______________________________________________________________________________
 ;;Fill-column-indicator
 ;;______________________________________________________________________________
-;; (require 'fill-column-indicator)
-;; (setq fci-rule-color "gray32")
-;; (setq-default fill-column 80)
-;; (setq fci-always-use-textual-rule 1)
-;; (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-;; (global-fci-mode 1)
+(require 'fill-column-indicator)
+(setq fci-rule-color "gray32")
+(setq-default fill-column 80)
+(setq fci-always-use-textual-rule 1)
+(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+(global-fci-mode 1)
 
 ;;______________________________________________________________________________
 ;;Startup
@@ -705,6 +708,14 @@
 ;(set-face-background 'region "cornflower blue")
 ;(set-face-background 'region "DeepSkyBlue4")
 (set-face-background 'region "SkyBlue4")
+
+;(set-face-background hl-line-face "dark olive green")
+(set-face-background hl-line-face "dark slate gray")
+;(set-face-background hl-line-face "DodgerBlue4")
+;(set-face-background hl-line-face "RoyalBlue4")
+;(set-face-background hl-line-face "gray27")
+;(set-face-background hl-line-face "gray34")
+
 
 
 ;;______________________________________________________________________________
@@ -2187,6 +2198,23 @@ in that cyclic order."
   )
 
 
+
+(defun shell-command-on-region-replace (start end command)
+  "Run shell-command-on-region interactivly replacing the region in place"
+  (interactive (let (string)
+         (unless (mark)
+           (error "The mark is not set now, so there is no region"))
+         ;; Do this before calling region-beginning
+         ;; and region-end, in case subprocess output
+         ;; relocates them while we are in the minibuffer.
+         ;; call-interactively recognizes region-beginning and
+         ;; region-end specially, leaving them in the history.
+         (setq string (read-from-minibuffer "Shell command on region: "
+                                            nil nil nil
+                                            'shell-command-history))
+         (list (region-beginning) (region-end)
+               string)))
+  (shell-command-on-region start end command t t))
 ;;______________________________________________________________________________
 ;;Jump to matching parethesis
 ;;______________________________________________________________________________
