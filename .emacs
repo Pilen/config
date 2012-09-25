@@ -1,6 +1,6 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
-;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |          |narrow-tog| |shell-rplc|reftex-toc|tex-insenv|prev-latex||linum     |autoindent|def-face  |whitespc-m|
+;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-tog| |shell-rplc|reftex-toc|tex-insenv|prev-latex||linum     |autoindent|def-face  |whitespc-m|
 ;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||          |          |          |          |
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
@@ -47,8 +47,6 @@
 ;; mail
 ;; org-mode
 ;; minimap
-
-;; insert haskell arrows
 
 ;;______________________________________________________________________________
 ;;
@@ -328,7 +326,7 @@
 
 (global-set-key (kbd "H-m") 'isearch-forward)
 (global-set-key (kbd "H-M") 'sprint-forward)
-(global-set-key (kbd "H-c") 'ace-jump-word-mode)
+(global-set-key (kbd "H-c") 'ace-jump-char-mode)
 (global-set-key (kbd "H-C") 'ace-jump-line-mode)
 ;(global-set-key (kbd "H-V") '(lambda () (interactive) (global-hl-line-mode) (my-global-auto-highlight-symbol-mode)))
 (global-set-key (kbd "H-x") 'ido-goto-symbol)
@@ -391,7 +389,7 @@
 ;(global-set-key (kbd "H-q") 'goto-match-paren)
 ;(global-set-key (kbd "H-j") 'my-anything)
 (global-set-key (kbd "H-j") 'recentf-ido-find-file)
-(global-set-key (kbd "H-J") 'find-file-at-point)
+(global-set-key (kbd "H-J") 'find-file-at-point-no-enter)
 
 (global-set-key (kbd "H-<insert>") 'global-hl-line-mode)
 (global-set-key (kbd "H-S-<insert>") 'linum-mode)
@@ -421,13 +419,14 @@
 (global-set-key (kbd "H-(") 'tags-apropos)
 
 (global-set-key (kbd "<f1>") 'google-translate-query-translate)
-(global-set-key (kbd "H-<f1>") 'flyspell-toogle)
+(global-set-key (kbd "H-<f1>") 'flyspell-toggle)
 (global-set-key (kbd "<f2>") 'flyspell-my-buffer)
 (global-set-key (kbd "H-<f2>") 'fd-switch-dictionary)
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<H-f3>") 'kmacro-name-last-macro)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
 (global-set-key (kbd "<f5>") 'revert-buffer)
+(global-set-key (kbd "<f7>") 'toggle-window-dedicated)
 (global-set-key (kbd "<f8>") 'narrow-toggle)
 (global-set-key (kbd "<f9>") 'shell-command-on-region-replace)
 (global-set-key (kbd "<f10>") 'reftex-toc)
@@ -547,8 +546,6 @@
 
 (require 'uniquify)
 
-(require 'ace-jump-mode)
-
 (require 'caps-mode)
 
 (defvar sql-sqlite-program "sqlite3")
@@ -584,6 +581,12 @@
 
 
 ;(setq line-move-visual nil)
+
+(fset 'find-file-at-point-no-enter
+   (lambda (&optional arg) "Keyboard macro."
+     (interactive "p")
+     (kmacro-exec-ring-item
+      (quote ([16777313 102 105 110 100 45 102 105 108 101 45 97 116 45 112 111 105 110 116 return return] 0 "%d")) arg)))
 
 ;;______________________________________________________________________________
 ;;Fun
@@ -1039,6 +1042,22 @@ See `whitespace-line-column'."
   (other-window 1))
 
 
+;; Toggle window dedication
+(defun toggle-window-dedicated ()
+  "Toggle whether the current active window is dedicated or not"
+  (interactive)
+  (if (let (window (get-buffer-window (current-buffer)))
+       (set-window-dedicated-p window (not (window-dedicated-p window))))
+      (progn
+        (message "'%s' dedicated" (current-buffer))
+        (bufferlocal-background "gray20"))
+    (progn
+      (message "'%s' normal" (current-buffer))
+      (remove-bufferlocal-background))))
+
+
+
+
 
 
 
@@ -1063,7 +1082,19 @@ See `whitespace-line-column'."
 ;;
 ;;______________________________________________________________________________
 
-
+;;______________________________________________________________________________
+;;ACE-JUMP
+;;______________________________________________________________________________
+(require 'ace-jump-mode)
+;; (setq ace-jump-mode-move-keys
+;;       '(?a ?r ?s ?t ?n ?e ?i ?o ?l ?u ?y))
+(setq ace-jump-mode-move-keys
+      (loop for i from ?a to ?z collect i))
+(setq ace-jump-mode-case-fold t)
+(setq ace-jump-mode-gray-background t)
+(set-face-foreground 'ace-jump-face-background "gray80")
+;(setq ace-jump-mode-scope 'window)
+(setq ace-jump-mode-scope 'global)
 ;;______________________________________________________________________________
 ;;ANYTHING
 ;;______________________________________________________________________________
@@ -1337,7 +1368,7 @@ See `whitespace-line-column'."
   )
 
 (setq flyspell-is-on nil)
-(defun flyspell-toogle ()
+(defun flyspell-toggle ()
   (interactive)
   (if flyspell-is-on
       (progn
@@ -2510,6 +2541,56 @@ instead."
     (find-alternate-file (concat "/sudo:root@localhost:" (buffer-file-name (current-buffer))))
     (goto-char pos)))
 
+
+
+
+(defun bufferlocal-background (background)
+  (interactive)
+  ;;Delete the old overlay, if any
+  (remove-bufferlocal-background)
+  ;;Set new overlay
+  (let ((o (make-overlay (point-min) (point-max)
+                         (current-buffer) nil t)))
+    (overlay-put o 'face `(:background ,background))
+    (overlay-put o 'buffer-local t)))
+
+(defun remove-bufferlocal-background ()
+  (interactive)
+  (mapc (lambda (o)
+          (when (overlay-get o 'buffer-local)
+            (delete-overlay o)))
+          (overlays-in (point-min) (point-max))))
+
+(defun list-overlays-at (&optional pos)
+  "Describe overlays at POS or point."
+  (interactive)
+  (setq pos (or pos (point)))
+  (let ((overlays (overlays-at pos))
+        (obuf (current-buffer))
+        (buf (get-buffer-create "*Overlays*"))
+        (props '(priority window category face mouse-face display
+                          help-echo modification-hooks insert-in-front-hooks
+                          insert-behind-hooks invisible intangible
+                          isearch-open-invisible isearch-open-invisible-temporary
+                          before-string after-string evaporate local-map keymap
+                          field))
+        start end text)
+    (if (not overlays)
+        (message "None.")
+      (set-buffer buf)
+      (erase-buffer)
+      (dolist (o overlays)
+        (setq start (overlay-start o)
+              end (overlay-end o)
+              text (with-current-buffer obuf
+                     (buffer-substring start end)))
+        (when (> (- end start) 13)
+          (setq text (concat (substring text 1 10) "...")))
+        (insert (format "From %d to %d: \"%s\":\n" start end text))
+        (dolist (p props)
+          (when (overlay-get o p)
+            (insert (format " %15S: %S\n" p (overlay-get o p))))))
+      (pop-to-buffer buf))))
 ;;______________________________________________________________________________
 ;;CODE FOLDING
 ;;______________________________________________________________________________

@@ -12,7 +12,7 @@ menu=(\
         gimp      "gimp"
         inkscape  "inkscape"
         xlock     "xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0"
-        xpdf      "xpdf"
+        xpdf      "perl xpdf.pl"
         firefox   "firefox"
         python3   "urxvtc -bg #111111 -fg #51a366 -e python3"
         python2   "urxvtc -bg #111111 -fg #6fbfe7 -e python2 -i .python2.py"
