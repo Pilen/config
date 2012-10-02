@@ -11,13 +11,13 @@
 ;|flymake     |              |            |bread-list  |            |            |            |fold-column |            |tags-apropos|            |            |zoomable    |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
-;|focus-minibuffer   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |tiling-cycle|ido-sw-buf     |
-;|                   |              |            |transpose-up|transpose-dn|transpos-wrd|find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |            |idomenu        |
+;|goto-match-paren   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |tiling-cycle|ido-sw-buf     |
+;|focus-minibuffer   |              |            |transpose-up|transpose-dn|transpos-wrd|find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |            |idomenu        |
 ;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
-;|                      |exe-command   |comment-togl|<del-chr    |del-chr>    |killwholline||<<         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
-;|                      |exe-shell     |align-regexp|            |            |new-scratch |>>|         ||<-         |\/          |->|         |prev-window |win-80col   |del-o-window|            |
+;|                      |exe-command   |comment-togl|<del-chr    |del-chr>    |killwholline|>>|         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
+;|                      |exe-shell     |align-regexp|            |            |new-scratch ||<<         ||<-         |\/          |->|         |prev-window |win-80col   |del-o-window|            |
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
@@ -71,6 +71,12 @@
 ;; M-SPC        fixup-whitespace
 
 ;; C-s C-w      Search for word at point
+
+;; C-M-Space    Mark-sexp
+
+
+
+
 
 ;; Debug on errors in .emacs
 (setq debug-on-error t)
@@ -237,8 +243,8 @@
 (global-set-key (kbd "H-U") 'pager-page-up)
 (global-set-key (kbd "H-E") 'pager-page-down)
 ;; Move to beginning/ending of file
-(global-set-key (kbd "H-h") 'beginning-of-buffer)
-(global-set-key (kbd "H-H") 'end-of-buffer)
+(global-set-key (kbd "H-h") 'end-of-buffer)
+(global-set-key (kbd "H-H") 'beginning-of-buffer)
 ;; isearch
 ;(global-set-key (kbd "H-o") 'isearch-forward)
 ;(global-set-key (kbd "H-O") 'isearch-backward)
@@ -269,7 +275,7 @@
 (global-set-key (kbd "H-d") 'kill-whole-line)
 
 ;;;; Textual Transformation
-(global-set-key (kbd "H-S-SPC") 'mark-paragraph)
+(global-set-key (kbd "H-S-SPC") '(lambda () (interactive) (mark-paragraph) (right-char)))
 ;(global-set-key (kbd "H-w") 'shrink-whitespace) ???
 ;(global-set-key (kbd "H-'") 'comment-dwim) ;?
 (global-set-key (kbd "H-b") 'toggle-letter-case)
@@ -395,7 +401,8 @@
 (global-set-key (kbd "H-S-<insert>") 'linum-mode)
 (global-set-key (kbd "H-<end>") 'whitespace-mode)
 
-(global-set-key (kbd "H-<tab>") 'switch-to-minibuffer-window)
+(global-set-key (kbd "H-<tab>") 'goto-match-paren)
+(global-set-key (kbd "H-S-<tab>") 'switch-to-minibuffer-window)
 
 (global-set-key (kbd "H-<home>") '(lambda nil (interactive) (defaultface)))
 (global-set-key (kbd "H-+") '(lambda nil (interactive) (zoomableface)))
@@ -418,7 +425,8 @@
 (global-set-key (kbd "H-8") 'pop-tag-mark)
 (global-set-key (kbd "H-(") 'tags-apropos)
 
-(global-set-key (kbd "<f1>") 'google-translate-query-translate)
+(global-set-key (kbd "<f1>") 'google-translate-da/en)
+(global-set-key (kbd "S-<f1>") 'google-translate-en/da)
 (global-set-key (kbd "H-<f1>") 'flyspell-toggle)
 (global-set-key (kbd "<f2>") 'flyspell-my-buffer)
 (global-set-key (kbd "H-<f2>") 'fd-switch-dictionary)
@@ -439,8 +447,8 @@
 (global-set-key (kbd "<end>") 'end-of-buffer)
 (global-set-key (kbd "M-SPC") 'fixup-whitespace) ;make it context aware.
 
-(global-set-key (kbd "C-H-u") 'chop-move-up)
-(global-set-key (kbd "C-H-e") 'chop-move-down)
+(global-set-key (kbd "H-C-u") 'chop-move-up)
+(global-set-key (kbd "H-C-e") 'chop-move-down)
 
 
 (add-hook 'comint-mode-hook (lambda ()
@@ -451,11 +459,7 @@
 (global-set-key (kbd "H-C-.") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "-> ") (insert " -> "))))
 (global-set-key (kbd "H-C-,") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "<- ") (insert " <- "))))
 
-
-
-
-
-
+(global-set-key (kbd "C-y") 'yank-or-pop)
 
 
 
@@ -513,6 +517,8 @@
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-defun 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
+(put 'scroll-left 'disabled nil)
+
 (setq european-calendar-style t)
 
 (setq temporary-file-directory "/tmp/")
@@ -565,6 +571,20 @@
 (require 'chop)
 
 (require 'google-translate)
+(setq google-translate-default-source-language "da")
+(setq google-translate-default-target-language "en")
+
+(defun google-translate-da/en ()
+  (interactive)
+  (let ((google-translate-default-source-language "da")
+        (google-translate-default-target-language "en"))
+    (google-translate-query-translate)))
+
+(defun google-translate-en/da ()
+  (interactive)
+  (let ((google-translate-default-source-language "en")
+        (google-translate-default-target-language "da"))
+    (google-translate-query-translate)))
 
 ;; (add-to-list 'load-path "~/.emacs.d/predictive/")
 ;; (require 'predictive)
@@ -587,6 +607,9 @@
      (interactive "p")
      (kmacro-exec-ring-item
       (quote ([16777313 102 105 110 100 45 102 105 108 101 45 97 116 45 112 111 105 110 116 return return] 0 "%d")) arg)))
+
+
+(setq prolog-system (quote gnu))
 
 ;;______________________________________________________________________________
 ;;Fun
@@ -2047,7 +2070,7 @@ See `whitespace-line-column'."
                (goto-char (window-end)))))
         (isearch-search-fun-function
          #'(lambda () 'w3m-isearch-links-search-fun))
-        post-command-hook		;inhibit link echoing
+        post-command-hook               ;inhibit link echoing
         do-follow-link
         (isearch-mode-end-hook
          (list  #'(lambda nil
@@ -2246,18 +2269,65 @@ in that cyclic order."
          (list (region-beginning) (region-end)
                string)))
   (shell-command-on-region start end command t t))
+
+
+(defun yank-or-pop (&optional arg)
+  (interactive "*p")
+  (if (not (eq last-command 'yank))
+      (if arg
+          (yank arg)
+        (yank))
+    (setq this-command 'yank)
+    (unless arg (setq arg 1))
+    (let ((inhibit-read-only t)
+          (before (< (point) (mark t))))
+      (if before
+          (funcall (or yank-undo-function 'delete-region) (point) (mark t))
+        (funcall (or yank-undo-function 'delete-region) (mark t) (point)))
+      (setq yank-undo-function nil)
+      (set-marker (mark-marker) (point) (current-buffer))
+      (insert-for-yank (current-kill arg))
+      ;; Set the window start back where it was in the yank command,
+      ;; if possible.
+      (set-window-start (selected-window) yank-window-start t)
+      (if before
+          ;; This is like exchange-point-and-mark, but doesn't activate the mark.
+          ;; It is cleaner to avoid activation, even though the command
+          ;; loop would deactivate the mark because we inserted text.
+          (goto-char (prog1 (mark t)
+                       (set-marker (mark-marker) (point) (current-buffer))))))
+    nil))
+
 ;;______________________________________________________________________________
 ;;Jump to matching parethesis
 ;;______________________________________________________________________________
 
-(defun goto-match-paren (arg)
-  "Go to the matching parenthesis if on parenthesis, otherwise insert the character typed."
-  (interactive "p")
-  (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
-        ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
-                                        ;(t (self-insert-command (or arg 1)))))
-        ))
+;; (defun goto-match-paren (arg)
+;;   "Go to the matching parenthesis if on parenthesis, otherwise insert the character typed."
+;;   (interactive "p")
+;;   (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
+;;         ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
+;;                                         ;(t (self-insert-command (or arg 1)))))
+;;         ))
 
+(defun goto-match-paren (arg)
+  "Go to the matching parenthesis if on parenthesis. Else go to the
+   opening parenthesis one level up."
+  (interactive "p")
+  (cond ((looking-at "\\s\(") (forward-list 1))
+        (t
+         (backward-char 1)
+         (cond ((looking-at "\\s\)")
+                (forward-char 1) (backward-list 1))
+               (t
+                (while (not (looking-at "\\s("))
+                  (backward-char 1)
+                  (cond ((looking-at "\\s\)")
+                         (message "->> )")
+                         (forward-char 1)
+                         (backward-list 1)
+                         (backward-char 1)))
+                  ))))))
 
 
 ;;______________________________________________________________________________
@@ -2456,7 +2526,7 @@ instead."
 (defun fd-switch-dictionary()
   (interactive)
   (let* ((dic ispell-current-dictionary)
-    	 (change (if (string= dic "dansk") "english" "dansk")))
+         (change (if (string= dic "dansk") "english" "dansk")))
     (ispell-change-dictionary change)
     (message "Dictionary switched from %s to %s" dic change)
     ))
@@ -2688,6 +2758,7 @@ instead."
 ;;______________________________________________________________________________
 ;;Delete entire word under cursor
 ;;______________________________________________________________________________
+
 ;;______________________________________________________________________________
 ;;Deletemode, all movement deletes
 ;;______________________________________________________________________________
