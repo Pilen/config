@@ -1,14 +1,14 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
-;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-tog| |shell-rplc|reftex-toc|tex-insenv|prev-latex||linum     |autoindent|def-face  |whitespc-m|
-;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||          |          |          |          |
+;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-tog| |shell-rplc|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
+;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||linum     |autoindent|          |zoomable  |
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
-;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |-           |=           |Backspace             |
-;|flymake-next|bread-set     |bread-prev  |bread-next  |            |            |            |fold        |jump-back-ta|find-tag    |forward-synt|            |zoom        |                      |
-;|~           |!             |@           |#           |$           |%           |^           |&           |*           |(           |)           |_           |+           |                      |
-;|flymake     |              |            |bread-list  |            |            |            |fold-column |            |tags-apropos|            |            |zoomable    |                      |
+;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |λ           |=           |Backspace             |
+;|flymake-next|bread-set     |bread-prev  |bread-next  |            |            |            |fold        |            |smart-backw |smart-forw  |find-tag    |pop-tag-mark|                      |
+;|~           |!             |@           |#           |$           |%           |^           |&           |*           |(           |)           |π           |+           |                      |
+;|flymake     |              |            |bread-list  |            |            |            |fold-column |            |            |            |tags-apropos|            |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
 ;|goto-match-paren   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |tiling-cycle|ido-sw-buf     |
@@ -21,8 +21,8 @@
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
-;|                |expand-region |undo        |            |ace-jump-wrd|goto-last-ch|toggle-case |cancel      |isearch-forw|ahs-sym-bck |ahs-sym-fwd |query-replac|                               |
-;|                |contrct-region|redo        |            |ace-jump-lin|idomenu     |caps-mode   |            |sprint      |ahs-def-bck |ahs-def-fwd |iedit       |                               |
+;|                |expand-region |undo        |            |ace-jmp-wd-l|goto-last-ch|toggle-case |cancel      |isearch-forw|ahs-sym-bck |ahs-sym-fwd |query-replac|                               |
+;|                |contrct-region|redo        |            |ace-jmp-wd-g|idomenu     |caps-mode   |            |sprint      |ahs-def-bck |ahs-def-fwd |iedit       |                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
@@ -47,6 +47,10 @@
 ;; mail
 ;; org-mode
 ;; minimap
+
+;; windowmanager
+;; xpdfremote
+;; selectioneditor, expand and decrease with chars, words, lines paragraphs
 
 ;;______________________________________________________________________________
 ;;
@@ -74,9 +78,11 @@
 
 ;; C-M-Space    Mark-sexp
 
+;; C-x C-x      swap mark and point
 
+;; C-u C-space  Jump back
 
-
+;; C-j          newline-and-indent
 
 ;; Debug on errors in .emacs
 (setq debug-on-error t)
@@ -228,7 +234,7 @@
 (global-set-key (kbd "H-l") 'geosoft-backward-word)
 (global-set-key (kbd "H-l") 'backward-word-to-newline) ;; geosoft-backward-word
 (global-set-key (kbd "H-y") 'forward-word-to-newline)  ;; forward-word
-(global-set-key (kbd "H-0") 'forward-same-syntax)
+(global-set-key (kbd "H-8") 'forward-same-syntax)
 ;; Move by paragraph
 ;(global-set-key (kbd "H-L") 'backward-paragraph)
 ;(global-set-key (kbd "H-Y") 'forward-paragraph)
@@ -332,13 +338,15 @@
 
 (global-set-key (kbd "H-m") 'isearch-forward)
 (global-set-key (kbd "H-M") 'sprint-forward)
-(global-set-key (kbd "H-c") 'ace-jump-char-mode)
-(global-set-key (kbd "H-C") 'ace-jump-line-mode)
+(global-set-key (kbd "H-c") 'ace-jump-char-l)
+(global-set-key (kbd "H-C") 'ace-jump-char-global)
+
 ;(global-set-key (kbd "H-V") '(lambda () (interactive) (global-hl-line-mode) (my-global-auto-highlight-symbol-mode)))
 (global-set-key (kbd "H-x") 'ido-goto-symbol)
 (global-set-key (kbd "H-S-<return>") 'ido-goto-symbol)
 
 (global-set-key (kbd "H-SPC") 'hippie-expand)
+(global-set-key (kbd "H-C-SPC") 'my-ido-hippie-expand)
 (global-set-key (kbd "H-o") 'other-window)
 (global-set-key (kbd "H-O") '(lambda () (interactive) (other-window -1)))
 (global-set-key (kbd "H-'") 'win-switch-dispatch)
@@ -397,17 +405,22 @@
 (global-set-key (kbd "H-j") 'recentf-ido-find-file)
 (global-set-key (kbd "H-J") 'find-file-at-point-no-enter)
 
+(global-set-key (kbd "H-q") 'mc/mark-next-like-this)
+(global-set-key (kbd "H-Q") 'mc/edit-lines)
+(global-set-key (kbd "H-C-q") 'mc/mark-all-like-this)
+
+
 (global-set-key (kbd "H-<insert>") 'global-hl-line-mode)
 (global-set-key (kbd "H-S-<insert>") 'linum-mode)
-(global-set-key (kbd "H-<end>") 'whitespace-mode)
+(global-set-key (kbd "H-<delete>") 'whitespace-mode)
+(global-set-key (kbd "H-S-<delete>") 'auto-indent-mode)
+
+(global-set-key (kbd "H-<home>") '(lambda nil (interactive) (defaultface)))
+(global-set-key (kbd "H-<end>") '(lambda nil (interactive) (zoom 1)))
+(global-set-key (kbd "H-S-<end>") '(lambda nil (interactive) (zoomableface)))
 
 (global-set-key (kbd "H-<tab>") 'goto-match-paren)
 (global-set-key (kbd "H-S-<tab>") 'switch-to-minibuffer-window)
-
-(global-set-key (kbd "H-<home>") '(lambda nil (interactive) (defaultface)))
-(global-set-key (kbd "H-+") '(lambda nil (interactive) (zoomableface)))
-(global-set-key (kbd "H-=") '(lambda nil (interactive) (zoom 1)))
-(global-set-key (kbd "H-<delete>") 'auto-indent-mode)
 
 (global-set-key (kbd "H-[") 'winner-undo)
 (global-set-key (kbd "H-{") 'winner-redo)
@@ -421,9 +434,13 @@
 
 (global-set-key (kbd "H-7") 'toggle-selective-display)
 (global-set-key (kbd "H-&") 'cursor-selective-display)
-(global-set-key (kbd "H-9") 'find-tag)
-(global-set-key (kbd "H-8") 'pop-tag-mark)
-(global-set-key (kbd "H-(") 'tags-apropos)
+
+(global-set-key (kbd "H-λ") 'find-tag)
+(global-set-key (kbd "H-π") 'tags-apropos)
+(global-set-key (kbd "H-=") 'pop-tag-mark)
+
+(global-set-key (kbd "H-9") 'smart-backward)
+(global-set-key (kbd "H-0") 'smart-forward)
 
 (global-set-key (kbd "<f1>") 'google-translate-da/en)
 (global-set-key (kbd "S-<f1>") 'google-translate-en/da)
@@ -458,6 +475,9 @@
 
 (global-set-key (kbd "H-C-.") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "-> ") (insert " -> "))))
 (global-set-key (kbd "H-C-,") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "<- ") (insert " <- "))))
+
+(add-hook 'multiple-cursors-mode-enabled-hook (lambda ()
+                                                (define-key mc/keymap (kbd "<return>") 'newline)))
 
 (global-set-key (kbd "C-y") 'yank-or-pop)
 
@@ -611,6 +631,16 @@
 
 (setq prolog-system (quote gnu))
 
+(require 'visible-mark)
+(set-face-background 'visible-mark-face "DarkSlateGray4")
+(set-face-background 'visible-mark-face "SkyBlue4")
+(set-face-background 'visible-mark-face "DodgerBlue4")
+(global-visible-mark-mode)
+(setq visible-mark-inhibit-trailing-overlay nil)
+
+
+(add-to-list 'load-path "~/.emacs.d/multiple-cursors/")
+(load-file "~/.emacs.d/multiple-cursors/multiple-cursors.el")
 ;;______________________________________________________________________________
 ;;Fun
 ;;______________________________________________________________________________
@@ -999,7 +1029,6 @@ See `whitespace-line-column'."
 ;;______________________________________________________________________________
 (require 'iedit)
 
-
 ;;______________________________________________________________________________
 ;;Windows
 ;;______________________________________________________________________________
@@ -1113,11 +1142,32 @@ See `whitespace-line-column'."
 ;;       '(?a ?r ?s ?t ?n ?e ?i ?o ?l ?u ?y))
 (setq ace-jump-mode-move-keys
       (loop for i from ?a to ?z collect i))
-(setq ace-jump-mode-case-fold t)
+(setq ace-jump-mode-case-fold nil)
 (setq ace-jump-mode-gray-background t)
 (set-face-foreground 'ace-jump-face-background "gray80")
 ;(setq ace-jump-mode-scope 'window)
 (setq ace-jump-mode-scope 'global)
+
+(defun ace-jump-char-local (query-char)
+  (interactive (list (read-char "Query Char:")))
+  (let ((ace-jump-mode-scope 'window))
+    (ace-jump-char-mode query-char)))
+
+(defun ace-jump-char-global (query-char)
+  (interactive (list (read-char "Query Char:")))
+  (let ((ace-jump-mode-scope 'global))
+    (ace-jump-char-mode query-char)))
+
+(defun ace-jump-line-local (query-char)
+  (interactive (list (read-char "Query Char:")))
+  (let ((ace-jump-mode-scope 'window))
+    (ace-jump-line-mode query-char)))
+
+(defun ace-jump-line-global (query-char)
+  (interactive (list (read-char "Query Char:")))
+  (let ((ace-jump-mode-scope 'global))
+    (ace-jump-line-mode query-char)))
+
 ;;______________________________________________________________________________
 ;;ANYTHING
 ;;______________________________________________________________________________
@@ -1303,7 +1353,10 @@ See `whitespace-line-column'."
 ;;______________________________________________________________________________
 ;;EXPAND-REGION
 ;;______________________________________________________________________________
-(require 'expand-region)
+(add-to-list 'load-path "~/.emacs.d/expand-region/")
+(load-file "~/.emacs.d/expand-region/expand-region.el")
+;; (require 'expand-region)
+
 ;; (defun er/add-text-mode-expansions ()
 ;;   (set (make-local-variable 'er/try-expand-list)
 ;;        (append
@@ -1313,11 +1366,12 @@ See `whitespace-line-column'."
 
 ;; (add-hook 'text-mode-hook 'er/add-text-mode-expansions)
 
-(setq er/try-expand-list
-      (append er/try-expand-list
-              '(mark-paragraph
-                mark-page)))
+;; (setq er/try-expand-list
+;;       (append er/try-expand-list
+;;               '(mark-paragraph
+;;                 mark-page)))
 
+(require 'smart-forward)
 
 ;;______________________________________________________________________________
 ;;FASTNAV
@@ -1506,6 +1560,7 @@ See `whitespace-line-column'."
 ;;HIPPIE_EXPAND
 ;;______________________________________________________________________________
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
+                                         try-expand-dabbrev-visible
                                          try-expand-dabbrev-all-buffers
                                          try-expand-dabbrev-from-kill
                                          try-complete-file-name-partially
@@ -1514,8 +1569,43 @@ See `whitespace-line-column'."
                                          try-expand-list
                                          try-expand-line
                                          try-complete-lisp-symbol-partially
-
                                          try-complete-lisp-symbol))
+(defun my-hippie-expand-completions (&optional hippie-expand-function)
+  "Return the full list of possible completions generated by `hippie-expand'.
+    The optional argument can be generated with `make-hippie-expand-function'."
+  (let ((this-command 'my-hippie-expand-completions)
+        (last-command last-command)
+        (buffer-modified (buffer-modified-p))
+        (hippie-expand-function (or hippie-expand-function 'hippie-expand)))
+    (flet ((ding)) ; avoid the (ding) when hippie-expand exhausts its options.
+      (while (progn
+               (funcall hippie-expand-function nil)
+               (setq last-command 'my-hippie-expand-completions)
+               (not (equal he-num -1)))))
+    ;; Evaluating the completions modifies the buffer, however we will finish
+    ;; up in the same state that we began, and (save-current-buffer) seems a
+    ;; bit heavyweight in the circumstances.
+    (set-buffer-modified-p buffer-modified)
+    ;; Provide the options in the order in which they are normally generated.
+    (delete he-search-string (reverse he-tried-table))))
+
+(defmacro my-ido-hippie-expand-with (hippie-expand-function)
+  "Generate an interactively-callable function that offers ido-based completion
+    using the specified hippie-expand function."
+  `(call-interactively
+    (lambda (&optional selection)
+      (interactive
+       (let ((options (my-hippie-expand-completions ,hippie-expand-function)))
+         (if options
+             (list (ido-completing-read "Completions: " options nil nil (word-at-point))))))
+      (if selection
+          (he-substitute-string selection t)
+        (message "No expansion found")))))
+
+(defun my-ido-hippie-expand ()
+  "Offer ido-based completion for the word at point."
+  (interactive)
+  (my-ido-hippie-expand-with 'hippie-expand))
 
 ;;______________________________________________________________________________
 ;;IBUFFER
@@ -1777,7 +1867,7 @@ See `whitespace-line-column'."
 (setq TeX-fold-math-spec-list t)
 
 (setq preview-auto-cache-preamble t)
-(add-hook 'LaTeX-mode-hook 'reftex-mode)
+(add-hook 'LaTeX-mode-hook (lambda () (reftex-mode) (LaTeX-math-mode)))
 (define-key reftex-toc-map (kbd "u") 'reftex-toc-previous)
 (define-key reftex-toc-map (kbd "e") 'reftex-toc-next)
 ;(add-hook 'LaTeX-mode-hook 'flyspell-mode)
@@ -2278,25 +2368,9 @@ in that cyclic order."
           (yank arg)
         (yank))
     (setq this-command 'yank)
-    (unless arg (setq arg 1))
-    (let ((inhibit-read-only t)
-          (before (< (point) (mark t))))
-      (if before
-          (funcall (or yank-undo-function 'delete-region) (point) (mark t))
-        (funcall (or yank-undo-function 'delete-region) (mark t) (point)))
-      (setq yank-undo-function nil)
-      (set-marker (mark-marker) (point) (current-buffer))
-      (insert-for-yank (current-kill arg))
-      ;; Set the window start back where it was in the yank command,
-      ;; if possible.
-      (set-window-start (selected-window) yank-window-start t)
-      (if before
-          ;; This is like exchange-point-and-mark, but doesn't activate the mark.
-          ;; It is cleaner to avoid activation, even though the command
-          ;; loop would deactivate the mark because we inserted text.
-          (goto-char (prog1 (mark t)
-                       (set-marker (mark-marker) (point) (current-buffer))))))
-    nil))
+    (if arg
+        (yank-pop arg)
+      (yank-pop))))
 
 ;;______________________________________________________________________________
 ;;Jump to matching parethesis
