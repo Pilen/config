@@ -25,6 +25,7 @@ alias diku ssh pilgaard@tyr.diku.dk $*
 alias l lss $*
 alias cdd cd .. $*
 alias bc bc -q $*
+alias d cd ~/Dropbox/diku/ $*
 alias eduroam sudo wpa_supplicant -B -D wired -i eth0 -c /root/bla.txt $*
 alias net sudo killall dhcpcd -w; sudo dhcpcd eth0;dropbox stop; dropbox start; dropbox status $*
 alias arkham sudo wpa_supplicant -iwlan0 -c/root/bla2.txt -B;sudo dhcpcd wlan0 $*

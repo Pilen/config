@@ -1,5 +1,5 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
-;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
+;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |hominie      |end       |
 ;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-tog| |shell-rplc|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
 ;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||linum     |autoindent|          |zoomable  |
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
@@ -11,9 +11,9 @@
 ;|flymake     |              |            |bread-list  |            |            |            |fold-column |            |            |            |tags-apropos|            |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
-;|goto-match-paren   |              |copy-region |<del-wrd    |del-wrd>    |goto-line   |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |tiling-cycle|ido-sw-buf     |
-;|focus-minibuffer   |              |            |transpose-up|transpose-dn|transpos-wrd|find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |            |idomenu        |
-;|                   |              |            |            |            |            |            |            |            |            |            |            |            |               |
+;|goto-match-paren   |mc-next-like  |copy-region |<del-wrd    |del-wrd>    |goto-line   |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |tiling-cycle|ido-sw-buf     |
+;|focus-minibuffer   |mc-edit-lines |            |transpose-up|transpose-dn|transpos-wrd|find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |            |idomenu        |
+;|                   |mc-all-like   |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
 ;|                      |exe-command   |comment-togl|<del-chr    |del-chr>    |killwholline|>>|         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
@@ -338,7 +338,7 @@
 
 (global-set-key (kbd "H-m") 'isearch-forward)
 (global-set-key (kbd "H-M") 'sprint-forward)
-(global-set-key (kbd "H-c") 'ace-jump-char-l)
+(global-set-key (kbd "H-c") 'ace-jump-char-local)
 (global-set-key (kbd "H-C") 'ace-jump-char-global)
 
 ;(global-set-key (kbd "H-V") '(lambda () (interactive) (global-hl-line-mode) (my-global-auto-highlight-symbol-mode)))
@@ -712,6 +712,9 @@
  '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "Schumacher" :family "Clean"))))
  '(flymake-errline ((((class color)) (:underline "red"))))
  '(flymake-warnline ((((class color)) (:underline "yellow"))))
+ ;'(minimap-semantic-function-face ((t (:height 30 :family "DejaVu Sans Mono"))))
+ ;'(minimap-semantic-type-face ((t (:height 30 :family "DejaVu Sans Mono"))))
+ ;'(minimap-semantic-variable-face ((t (:height 30 :family "DejaVu Sans Mono"))))
  '(whitespace-line ((t (:background "gray20")))))
 
 ;;______________________________________________________________________________
@@ -1298,6 +1301,23 @@ See `whitespace-line-column'."
 (require 'breadcrumb)
 
 ;;______________________________________________________________________________
+;;Erlang
+;;______________________________________________________________________________
+(add-to-list 'load-path "/usr/lib/erlang/lib/tools-2.6.7/emacs/")
+(require 'erlang-start)
+
+(add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
+(add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
+
+(setq erlang-root-dir "/usr/lib/erlang")
+(add-to-list 'exec-path "/usr/lib/erlang/bin")
+(setq erlang-man-root-dir "/usr/lib/erlang/man")
+
+
+(add-hook 'erlang-mode-hook (lambda ()
+                              ;; when starting an Erlang shell in Emacs, default in the node name
+                              (setq inferior-erlang-machine-options '("-sname" "emacs"))))
+;;______________________________________________________________________________
 ;;ESHELL
 ;;______________________________________________________________________________
 (require 'eshell)
@@ -1312,6 +1332,7 @@ See `whitespace-line-column'."
   (setq eshell-hist-ignoredups t)
   (define-key eshell-mode-map (kbd "H-d") 'eshell-kill-input)
   (define-key eshell-mode-map (kbd "H-n") 'eshell-bol)
+  (define-key eshell-mode-map (kbd "C-l") '(lambda () (interactive) (eshell/clear) (eshell-send-input)))
   (add-to-list 'eshell-visual-commands "nano")
   (add-to-list 'eshell-visual-commands "htop")
   (add-to-list 'eshell-visual-commands "irssi")
@@ -1889,9 +1910,15 @@ See `whitespace-line-column'."
 ;;______________________________________________________________________________
 ;;MINIMAP
 ;;______________________________________________________________________________
-(require 'minimap)
+(require 'my-minimap)
 (setq minimap-window-location 'right)
 (setq minimap-width-fraction 0.8)
+(setq minimap-display-semantic-overlays nil)
+(setq minimap-display-semantic-overlays nil)
+(setq minimap-enlarge-certain-faces nil)
+(setq minimap-normal-height-faces nil)
+
+
 ;(set-face-attribute 'minimap-font-face '((default :family "DejaVu Sans Mono" :height 5)))
 ;;______________________________________________________________________________
 ;;MATHEMATICA
@@ -2673,8 +2700,8 @@ instead."
 (defun create-scratch-buffer ()
   "Create a scratch buffer"
   (interactive)
-  (pop-to-buffer (get-buffer-create (generate-new-buffer-name "scratch"))))
-
+  (pop-to-buffer (get-buffer-create (generate-new-buffer-name "scratch")))
+  (emacs-lock-mode 'exit))
 
 ;; End of .emacs, go away debugger!
 (setq debug-on-error nil)

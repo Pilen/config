@@ -3,8 +3,10 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        backward-kill-word-to-newline
-        eval-last-sexp
+        back-to-indentation-or-beginning
+        forward-word-to-newline
+        indent-for-tab-command
+        sprint-forward
         yank-or-pop
         ))
 
