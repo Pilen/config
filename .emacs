@@ -1,5 +1,5 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
-;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |hominie      |end       |
+;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
 ;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-tog| |shell-rplc|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
 ;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||linum     |autoindent|          |zoomable  |
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
@@ -392,7 +392,8 @@
 ;(global-set-key (kbd "H-r") 'transpose-lines)
 (global-set-key (kbd "H-r") 'comment-or-uncomment-region)
 (global-set-key (kbd "H-R") 'align-regexp)
-(global-set-key (kbd "H-]") 'tiling-cycle)
+(global-set-key (kbd "H-]") 'golden-ratio)
+(global-set-key (kbd "H-}") 'tiling-cycle)
 ;(global-set-key (kbd "H-]") '(lambda nil (interactive) (kill-buffer (current-buffer))))
 ;(global-set-key (kbd "H-}") 'kill-buffer-and-window)
 
@@ -606,6 +607,7 @@
         (google-translate-default-target-language "da"))
     (google-translate-query-translate)))
 
+
 ;; (add-to-list 'load-path "~/.emacs.d/predictive/")
 ;; (require 'predictive)
 ;; (set-default 'predictive-auto-add-to-dict t)
@@ -675,10 +677,10 @@
 ;;Clock
 ;;______________________________________________________________________________
 
-;(setq display-time-day-and-date t
-;      display-time-24hr-format t)
-;(setq display-time-format 1)
-;(setq display-time-24hr-format t)
+(setq display-time-day-and-date t
+     display-time-24hr-format t)
+(setq display-time-format 1)
+(setq display-time-24hr-format t)
 
 (defface display-time-face
   '((((type x w32 mac))
@@ -1110,6 +1112,7 @@ See `whitespace-line-column'."
       (message "'%s' normal" (current-buffer))
       (remove-bufferlocal-background))))
 
+(require 'golden-ratio)
 
 
 
@@ -1966,7 +1969,7 @@ See `whitespace-line-column'."
  '(comint-prompt-read-only nil)
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
- '(display-time-mode t)
+ ;'(display-time-mode t)
  '(menu-bar-mode nil)
  '(protect-buffer-bury-p nil)
  '(show-paren-mode t)

@@ -37,4 +37,4 @@ alias colemak setxkbmap us -variant colemak; xmodmap .Xmodmap $*
 alias dansk setxkbmap dk $*
 alias sakre setxkbmap dk $*
 alias us setxkbmap us $*
-alias f 'find-file $1'
+alias e 'find-file $1'

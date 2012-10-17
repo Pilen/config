@@ -5,4 +5,4 @@ with open('/home/pilen/.aliases','r') as inp:
         for line in inp:
             if line.startswith('alias '):
                 out.write(line.partition('=')[0] + " " + line.partition('=')[2][1:-2]+' $*\n')
-        out.write("alias f 'find-file $1'\n")
+        out.write("alias e 'find-file $1'\n")
