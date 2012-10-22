@@ -6,7 +6,7 @@
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |λ           |=           |Backspace             |
-;|flymake-next|bread-set     |bread-prev  |bread-next  |            |            |            |fold        |            |smart-backw |smart-forw  |find-tag    |pop-tag-mark|                      |
+;|flymake-next|bread-set     |bread-prev  |bread-next  |            |            |            |fold        |            |smart-backw |smart-forw  |find-tag    |pop-tag-mark|join-line             |
 ;|~           |!             |@           |#           |$           |%           |^           |&           |*           |(           |)           |π           |+           |                      |
 ;|flymake     |              |            |bread-list  |            |            |            |fold-column |            |            |            |tags-apropos|            |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
@@ -358,6 +358,7 @@
 (global-set-key (kbd "H-<return>") 'ido-switch-buffer)
 ;(global-set-key (kbd "H-<return>") 'idobuffer)
 (global-set-key (kbd "S-<return>") 'new-indented-line)
+(global-set-key (kbd "H-<backspace>") 'join-line)
 
 ;; (global-set-key (kbd "H-,") 'tabbar-backward-renew)
 ;; (global-set-key (kbd "H-.") 'tabbar-forward-renew)
@@ -393,7 +394,8 @@
 (global-set-key (kbd "H-r") 'comment-or-uncomment-region)
 (global-set-key (kbd "H-R") 'align-regexp)
 (global-set-key (kbd "H-]") 'golden-ratio)
-(global-set-key (kbd "H-}") 'tiling-cycle)
+(global-set-key (kbd "H-}") 'golden-ratio-toggle)
+;(global-set-key (kbd "H-}") 'tiling-cycle)
 ;(global-set-key (kbd "H-]") '(lambda nil (interactive) (kill-buffer (current-buffer))))
 ;(global-set-key (kbd "H-}") 'kill-buffer-and-window)
 
@@ -564,7 +566,7 @@
 
 (require 'recentf)
 (recentf-mode t)
-(setq recentf-max-saved-items 200)
+(setq recentf-max-saved-items 1000)
 (add-to-list 'recentf-exclude ".breadcrumb")
 (add-to-list 'recentf-exclude ".emacs")
 (add-to-list 'recentf-exclude ".ido.last")
@@ -625,10 +627,11 @@
 ;(setq line-move-visual nil)
 
 (fset 'find-file-at-point-no-enter
-   (lambda (&optional arg) "Keyboard macro."
-     (interactive "p")
-     (kmacro-exec-ring-item
-      (quote ([16777313 102 105 110 100 45 102 105 108 101 45 97 116 45 112 111 105 110 116 return return] 0 "%d")) arg)))
+      "uses find-file-at-point"
+      (lambda (&optional arg) "Keyboard macro."
+        (interactive "p")
+        (kmacro-exec-ring-item
+         (quote ([16777313 102 105 110 100 45 102 105 108 101 45 97 116 45 112 111 105 110 116 return return] 0 "%d")) arg)))
 
 
 (setq prolog-system (quote gnu))
@@ -643,6 +646,13 @@
 
 (add-to-list 'load-path "~/.emacs.d/multiple-cursors/")
 (load-file "~/.emacs.d/multiple-cursors/multiple-cursors.el")
+
+;; This is what you probably want if you are using a tiling window
+;; manager under X, such as ratpoison.
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
+
+(require 'cafeen)
 ;;______________________________________________________________________________
 ;;Fun
 ;;______________________________________________________________________________
@@ -694,7 +704,6 @@
                     'face 'display-time-face)))
 
 (display-time)
-
 ;;______________________________________________________________________________
 ;;Font
 ;;______________________________________________________________________________
@@ -785,7 +794,19 @@
 (defvar my-mode-line-buffer-line-count nil)
 (make-variable-buffer-local 'my-mode-line-buffer-line-count)
 
-;; (setq-default mode-line-format
+(defun my-mode-line-count-lines ()
+  (setq my-mode-line-buffer-line-count (int-to-string (count-lines (point-min) (point-max)))))
+
+(add-hook 'find-file-hook 'my-mode-line-count-lines)
+(add-hook 'after-save-hook 'my-mode-line-count-lines)
+(add-hook 'after-revert-hook 'my-mode-line-count-lines)
+(add-hook 'dired-after-readin-hook 'my-mode-line-count-lines)
+
+
+(setq which-func-modes t)
+(which-func-mode 1)
+
+;; (setq mode-line-format
 ;;               '("  " mode-line-modified
 ;;                 (list 'line-number-mode "  ")
 ;;                 (:eval (when line-number-mode
@@ -798,22 +819,119 @@
 ;;                 "  " mode-line-buffer-identification
 ;;                 "  " mode-line-modes))
 
-(defun my-mode-line-count-lines ()
-  (setq my-mode-line-buffer-line-count (int-to-string (count-lines (point-min) (point-max)))))
+;; (setq mode-line-format
+;;       (list
+;;        "("
+;;        (propertize "%02l" 'face 'font-lock-type-face)
+;;        ")"))
 
-(add-hook 'find-file-hook 'my-mode-line-count-lines)
-(add-hook 'after-save-hook 'my-mode-line-count-lines)
-(add-hook 'after-revert-hook 'my-mode-line-count-lines)
-(add-hook 'dired-after-readin-hook 'my-mode-line-count-lines)
+(defface window-numbering-face
+  '((((type x w32 mac))
+     (:foreground "chartreuse")))
+  "Face used to display the time in the mode line.")
 
-(setq which-func-modes t)
-(which-func-mode 1)
+(setq-default mode-line-format
+              '(
+                "%e"
+                (:eval (propertize (window-numbering-get-number-string)
+                                   'face 'window-numbering-face))
+                ":"
+                mode-line-modified
+                " "
+                mode-line-buffer-identification
+                mode-line-position
+                display-time-string
+                (which-func-mode
+                 ("" which-func-format
+                  #(" " 0 1
+                    (help-echo "mouse-1: Select (drag to resize)\nmouse-2: Make current window occupy the whole frame\nmouse-3: Remove current window from display"))))
+                "[%m:"
+                minor-mode-alist
+                "]"
+                ))
+
 ;;______________________________________________________________________________
 ;;SML-MODELINE
 ;;______________________________________________________________________________
 (require 'sml-modeline)
-(sml-modeline-mode 1)
+(setq sml-modeline-len 24)
 (scroll-bar-mode -1)
+
+(set-face-attribute
+ 'sml-modeline-vis-face nil
+ :foreground "red"
+ :background "dark green")
+
+(set-face-attribute
+ 'sml-modeline-end-face nil
+ :foreground "white")
+
+(defun sml-modeline-create ()
+ (let* ((wstart (window-start))
+        (wend (window-end))
+        number-max number-beg number-end
+        (sml-begin (or (car sml-modeline-borders) ""))
+        (sml-end   (or (cdr sml-modeline-borders) ""))
+        (inner-len (- sml-modeline-len (length sml-begin) (length sml-end)))
+        bpad-len epad-len
+        pos-%
+        start end
+        string)
+   (if (not (or (< wend (save-restriction (widen) (point-max)))
+                (> wstart 1)))
+       ""
+     (cond
+      ((eq sml-modeline-numbers 'percentage)
+       (setq number-max (save-restriction (widen) (point-max)))
+       (setq number-beg (/ (float wstart) (float number-max)))
+       (setq number-end (/ (float wend) (float number-max)))
+       (setq start (floor (* number-beg inner-len)))
+       (setq end (floor (* number-end inner-len)))
+       (setq string
+             (concat (format "%02d" (round (* number-beg 100)))
+                     "-"
+                     (format "%02d" (round (* number-end 100)))
+                     "%%"
+                     " (%l,%c) "
+                     my-mode-line-buffer-line-count)))
+      ((eq sml-modeline-numbers 'line-numbers)
+       (save-restriction
+         (widen)
+         (setq number-max (line-number-at-pos (point-max)))
+         (setq number-beg (line-number-at-pos wstart))
+         (setq number-end (line-number-at-pos wend)))
+       (setq start (floor (* (/ number-beg (float number-max)) inner-len)))
+       (setq end   (floor (* (/ number-end (float number-max)) inner-len)))
+       (setq string
+             (concat "L"
+                     (format "%02d" number-beg)
+                     "-"
+                     (format "%02d" number-end))))
+      (t (error "Unknown sml-modeline-numbers=%S" sml-modeline-numbers)))
+     (setq inner-len (max inner-len (length string)))
+     (setq bpad-len (floor (/ (- inner-len (length string)) 2.0)))
+     (setq epad-len (- inner-len (length string) bpad-len))
+     (setq pos-% (+ bpad-len (length string) -1))
+     (setq string (concat sml-begin
+                          (make-string bpad-len 32)
+                          string
+                          (make-string epad-len 32)
+                          sml-end))
+     ;;(assert (= (length string) sml-modeline-len) t)
+     (when (= start sml-modeline-len) (setq start (1- start)))
+     (setq start (+ start (length sml-begin)))
+     (setq end   (+ end   (length sml-begin)))
+     (when (= start end) (setq end (1+ end)))
+     (when (= end pos-%) (setq end (1+ end))) ;; If on % add 1
+     (put-text-property start end 'face 'sml-modeline-vis-face string)
+     (when (and (= 0 (length sml-begin))
+                (= 0 (length sml-end)))
+       (put-text-property 0 start 'face 'sml-modeline-end-face string)
+       (put-text-property end sml-modeline-len 'face 'sml-modeline-end-face string))
+     string)))
+
+(setq-default mode-line-position '(eval (list (sml-modeline-create))))
+(sml-modeline-mode 1)
 
 ;;______________________________________________________________________________
 ;;Rainbow delimiters
@@ -1040,6 +1158,8 @@ See `whitespace-line-column'."
 (require 'buffer-move)
 (require 'tiling)
 (require 'window-numbering)
+(defun window-numbering-install-mode-line (&optional position)
+  )
 (window-numbering-mode 1)
 (require 'win-switch)
 (setq win-switch-idle-time 2)
@@ -1113,6 +1233,18 @@ See `whitespace-line-column'."
       (remove-bufferlocal-background))))
 
 (require 'golden-ratio)
+(setq golden-ratio 'nil)
+;(golden-ratio-enable)
+(defun golden-ratio-toggle ()
+  (interactive)
+  (if golden-ratio
+      (progn
+        (setq golden-ratio 'nil)
+        (golden-ratio-disable))
+    (progn
+      (setq golden-ratio 't)
+      (golden-ratio-enable))))
+(defconst -golden-ratio-value 2)
 
 
 
@@ -1969,7 +2101,6 @@ See `whitespace-line-column'."
  '(comint-prompt-read-only nil)
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
- ;'(display-time-mode t)
  '(menu-bar-mode nil)
  '(protect-buffer-bury-p nil)
  '(show-paren-mode t)
@@ -2706,9 +2837,6 @@ instead."
   (pop-to-buffer (get-buffer-create (generate-new-buffer-name "scratch")))
   (emacs-lock-mode 'exit))
 
-;; End of .emacs, go away debugger!
-(setq debug-on-error nil)
-
 (defun sudo-edit-current-file ()
   (interactive)
   (let ((pos (point)))
@@ -2866,3 +2994,9 @@ instead."
 ;;______________________________________________________________________________
 ;;Deletemode, all movement deletes
 ;;______________________________________________________________________________
+
+
+
+
+;; End of .emacs, go away debugger!
+(setq debug-on-error nil)
