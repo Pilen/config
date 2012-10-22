@@ -626,8 +626,8 @@
 
 ;(setq line-move-visual nil)
 
+;; uses find-file-at-point
 (fset 'find-file-at-point-no-enter
-      "uses find-file-at-point"
       (lambda (&optional arg) "Keyboard macro."
         (interactive "p")
         (kmacro-exec-ring-item
