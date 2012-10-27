@@ -39,6 +39,7 @@
 ;;______________________________________________________________________________
 
 ;; Port to Emacs 24
+;; ido-goto-symbol should interpret numbers as linenumbers
 ;; Code navigation
 ;; Code folding
 ;; cedet
@@ -259,7 +260,7 @@
 ;;;; MAJOR EDITING COMMANDS
 ;; Delete previous/next char
 (global-set-key (kbd "H-s") 'delete-backward-char)
-(global-set-key (kbd "H-t") 'delete-char)
+(global-set-key (kbd "H-t") 'delete-forward-char)
 ;; Delete previous/next word
 (global-set-key (kbd "H-f") 'backward-kill-word-to-newline)
 (global-set-key (kbd "H-p") 'forward-kill-word-to-newline)
@@ -500,7 +501,6 @@
 
 
 
-(add-to-list 'load-path "~/.emacs.d/")
 ;;______________________________________________________________________________
 ;;
 ;;
@@ -552,9 +552,9 @@
 (setq shell-toggle-launch-shell 'shell-toggle-eshell)
 (require 'pager) ;For smarter scrolling
 
-(require 'follow-mouse) ;Active window follows mouse
-(turn-on-follow-mouse)
-(setq follow-mouse-deselect-active-minibuffer nil)
+;(require 'follow-mouse) ;Active window follows mouse
+;(turn-on-follow-mouse)
+;(setq follow-mouse-deselect-active-minibuffer nil)
 
 ;(delete-selection-mode t)
 
@@ -653,6 +653,9 @@
 (setq ediff-split-window-function 'split-window-horizontally)
 
 (require 'cafeen)
+
+(add-hook 'compilation-mode-hook 'next-error-follow-minor-mode)
+(add-hook 'occur-mode-hook 'next-error-follow-minor-mode)
 ;;______________________________________________________________________________
 ;;Fun
 ;;______________________________________________________________________________
@@ -660,15 +663,15 @@
 (require 'reddit)
 (require 'typing)
 
-;;______________________________________________________________________________
-;;Fill-column-indicator
-;;______________________________________________________________________________
-(require 'fill-column-indicator)
-(setq fci-rule-color "gray32")
-(setq-default fill-column 80)
-(setq fci-always-use-textual-rule 1)
-(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(global-fci-mode 1)
+;; ;;______________________________________________________________________________
+;; ;;Fill-column-indicator
+;; ;;______________________________________________________________________________
+;; (require 'fill-column-indicator)
+;; (setq fci-rule-color "gray32")
+;; (setq-default fill-column 80)
+;; (setq fci-always-use-textual-rule 1)
+;; (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+;; (global-fci-mode 1)
 
 ;;______________________________________________________________________________
 ;;Startup
@@ -1053,13 +1056,16 @@
 (setq check-auto-save 1) ;;check wether autosave is the most recent on revert-buffer
                                         ;(require 'auto-save)
 
-(setq backup-by-copying t)
 (setq auto-save-list-file-prefix "~/Dropbox/emacs/autosaves/")
+;; (setq auto-save-file-name-transforms
+;;       (quote ((".*" . "~/Dropbox/emacs/autosavefiles"))))
+
 
 ;;______________________________________________________________________________
 ;;Backups
 ;;______________________________________________________________________________
 (setq make-backup-files t)
+(setq backup-by-copying t)
 (setq version-control t)
 (setq backup-directory-alist (quote ((".*" . "~/Dropbox/emacs/backups"))))
 (setq delete-old-versions t)
@@ -1099,7 +1105,7 @@
 ;;(set-face-attribute 'whitespace-line nil :foreground nil)  ;; I actually want it to use its default color.
 ;;(set-face-attribute 'whitespace-line nil :background nil)
 ;(set-face-foreground 'whitespace-line nil)
-(setq whitespace-style '(face tabs trailing)) ;;removed: lines-tail, empty
+(setq whitespace-style '(face tabs trailing lines-tail)) ;;removed: lines-tail, empty
 (global-whitespace-mode t)
 
 ;;show-trailing-whitespace is incompatible with fci-mode
@@ -1862,6 +1868,10 @@ See `whitespace-line-column'."
 (setq ido-file-extension-order '("/" ".tex" ".emacs" ".txt" ".py" ".pl" ".c" ".h" ".hs" ".cfg" ".asm" ".xml" ".org"))
 (ido-mode 1)
 
+(set-face-attribute
+ 'ido-only-match nil
+ :foreground "lime green")
+
 ;; Display ido results vertically, rather than horizontally
 (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
 (defun ido-disable-line-trucation () (set (make-local-variable 'truncate-lines) nil))
@@ -2045,13 +2055,14 @@ See `whitespace-line-column'."
 ;;______________________________________________________________________________
 ;;MINIMAP
 ;;______________________________________________________________________________
-(require 'my-minimap)
-(setq minimap-window-location 'right)
+(add-to-list 'load-path "~/.emacs.d/")
+(require 'minimap)
+;(setq minimap-window-location 'right)
 (setq minimap-width-fraction 0.8)
-(setq minimap-display-semantic-overlays nil)
-(setq minimap-display-semantic-overlays nil)
-(setq minimap-enlarge-certain-faces nil)
-(setq minimap-normal-height-faces nil)
+;(setq minimap-display-semantic-overlays nil)
+;(setq minimap-display-semantic-overlays nil)
+;(setq minimap-enlarge-certain-faces nil)
+;(setq minimap-normal-height-faces nil)
 
 
 ;(set-face-attribute 'minimap-font-face '((default :family "DejaVu Sans Mono" :height 5)))
@@ -2408,6 +2419,7 @@ See `whitespace-line-column'."
       'wl-draft-send
       'wl-draft-kill
       'mail-send-hook))
+
 ;;______________________________________________________________________________
 ;;
 ;;
@@ -2942,8 +2954,8 @@ instead."
 (defun forward-word-to-newline ()
   (interactive)
   (if (char-equal (char-after) ?\n)
-      (search-forward-regexp "[a-zA-Z0-9]+")
-    (search-forward-regexp "[[a-zA-Z0-9]+\\|$")))
+      (search-forward-regexp "[a-zA-Z0-9æøåÆØÅ]+")
+    (search-forward-regexp "[[a-zA-Z0-9æøåÆØÅ]+\\|$")))
 
 ;;theres an error, as it needs a non a-Z0-9 char before the word
 (defun backward-word-to-newline ()
@@ -2953,12 +2965,12 @@ instead."
         (message "before")
         (backward-char)
         (backward-char)
-        (search-backward-regexp "[^a-zA-Z0-9]+[a-zA-Z0-9]+")
+        (search-backward-regexp "[^a-zA-Z0-9æøåÆØÅ]+[a-zA-Z0-9æøåÆØÅ]+")
         (forward-char))
     (progn
       (when (or (eobp) (char-equal (char-after) ?\n))
         (backward-char))
-      (search-backward-regexp "[^a-zA-Z0-9]+[a-zA-Z0-9]+\\|$")
+      (search-backward-regexp "[^a-zA-Z0-9æøåÆØÅ]+[a-zA-Z0-9æøåÆØÅ]+\\|$")
       (forward-char))))
 
 (defun forward-kill-word-to-newline ()
@@ -2986,6 +2998,8 @@ instead."
 ;;______________________________________________________________________________
 ;;abc|def
 ;;def|abc
+(fset 'flipline
+   "\C-k\C-a\C-y")
 
 ;;______________________________________________________________________________
 ;;Delete entire word under cursor

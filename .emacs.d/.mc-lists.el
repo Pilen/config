@@ -3,6 +3,8 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        TeX-insert-backslash
+        TeX-insert-sub-or-superscript
         back-to-indentation-or-beginning
         forward-word-to-newline
         indent-for-tab-command
