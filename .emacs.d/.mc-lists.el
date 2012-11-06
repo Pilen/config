@@ -3,16 +3,20 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        TeX-insert-backslash
-        TeX-insert-sub-or-superscript
         back-to-indentation-or-beginning
+        backward-kill-word-to-newline
+        backward-word-to-newline
+        forward-kill-word-to-newline
         forward-word-to-newline
-        indent-for-tab-command
+        org-self-insert-command
+        overwrite-mode
         sprint-forward
         yank-or-pop
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        TeX-insert-backslash
+        haskell-indentation-delete-backward-char
         pager-row-down
         ))

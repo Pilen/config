@@ -11,8 +11,8 @@
 ;|flymake     |              |            |bread-list  |            |            |            |fold-column |            |            |            |tags-apropos|            |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
-;|goto-match-paren   |mc-next-like  |copy-region |<del-wrd    |del-wrd>    |goto-line   |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |tiling-cycle|ido-sw-buf     |
-;|focus-minibuffer   |mc-edit-lines |            |transpose-up|transpose-dn|transpos-wrd|find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |            |idomenu        |
+;|goto-match-paren   |mc-next-like  |copy-region |<del-wrd    |del-wrd>    |compile/run |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |golden-ratio|ido-sw-buf     |
+;|focus-minibuffer   |mc-edit-lines |            |transpose-up|transpose-dn|transpos-wrd|find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |gldn-rat-tog|ido-goto-sym/ln|
 ;|                   |mc-all-like   |            |            |            |            |            |            |            |            |            |            |            |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
@@ -39,7 +39,6 @@
 ;;______________________________________________________________________________
 
 ;; Port to Emacs 24
-;; ido-goto-symbol should interpret numbers as linenumbers
 ;; Code navigation
 ;; Code folding
 ;; cedet
@@ -52,6 +51,8 @@
 ;; windowmanager
 ;; xpdfremote
 ;; selectioneditor, expand and decrease with chars, words, lines paragraphs
+;; Pagefitted coding
+;; Move by syllable. http://www.tug.org/docs/liang/ http://usuallyalex.wordpress.com/2009/06/15/detecting-syllables-programatically/
 
 ;;______________________________________________________________________________
 ;;
@@ -343,8 +344,8 @@
 (global-set-key (kbd "H-C") 'ace-jump-char-global)
 
 ;(global-set-key (kbd "H-V") '(lambda () (interactive) (global-hl-line-mode) (my-global-auto-highlight-symbol-mode)))
-(global-set-key (kbd "H-x") 'ido-goto-symbol)
-(global-set-key (kbd "H-S-<return>") 'ido-goto-symbol)
+(global-set-key (kbd "H-x") 'ido-goto-symbol-or-line)
+(global-set-key (kbd "H-S-<return>") 'ido-goto-symbol-or-line)
 
 (global-set-key (kbd "H-SPC") 'hippie-expand)
 (global-set-key (kbd "H-C-SPC") 'my-ido-hippie-expand)
@@ -371,7 +372,8 @@
 (global-set-key (kbd "H-<") '(lambda () (interactive) (ahs-highlight-now) (ahs-backward-definition)))
 (global-set-key (kbd "H->") '(lambda () (interactive) (ahs-highlight-now) (ahs-forward-definition)))
 
-(global-set-key (kbd "<menu>") 'idobuffer)
+;;(global-set-key (kbd "<menu>") 'idobuffer)
+(global-set-key (kbd "<menu>") 'ibuffer)
 (global-set-key (kbd "S-<menu>") 'menu-bar-mode)
 
 (global-set-key (kbd "H-D") 'create-scratch-buffer)
@@ -416,15 +418,15 @@
 
 (global-set-key (kbd "H-<insert>") 'global-hl-line-mode)
 (global-set-key (kbd "H-S-<insert>") 'linum-mode)
-(global-set-key (kbd "H-<delete>") 'whitespace-mode)
+(global-set-key (kbd "H-<delete>") 'global-whitespace-mode)
 (global-set-key (kbd "H-S-<delete>") 'auto-indent-mode)
 
 (global-set-key (kbd "H-<home>") '(lambda nil (interactive) (defaultface)))
 (global-set-key (kbd "H-<end>") '(lambda nil (interactive) (zoom 1)))
 (global-set-key (kbd "H-S-<end>") '(lambda nil (interactive) (zoomableface)))
 
-(global-set-key (kbd "H-<tab>") 'goto-match-paren)
-(global-set-key (kbd "H-S-<tab>") 'switch-to-minibuffer-window)
+(global-set-key (kbd "H-<tab>") 'goto-match-paren-or-defun)
+(global-set-key (kbd "<H-S-iso-lefttab>") 'switch-to-minibuffer-window)
 
 (global-set-key (kbd "H-[") 'winner-undo)
 (global-set-key (kbd "H-{") 'winner-redo)
@@ -445,6 +447,8 @@
 
 (global-set-key (kbd "H-9") 'smart-backward)
 (global-set-key (kbd "H-0") 'smart-forward)
+(global-set-key (kbd "H-(") 'beginning-of-defun)
+(global-set-key (kbd "H-)") 'end-of-defun)
 
 (global-set-key (kbd "<f1>") 'google-translate-da/en)
 (global-set-key (kbd "S-<f1>") 'google-translate-en/da)
@@ -486,9 +490,10 @@
 (global-set-key (kbd "C-y") 'yank-or-pop)
 
 
-
-
-
+;; H-g  =  compile
+(add-hook 'erlang-mode-hook  (lambda () (define-key erlang-mode-map  (kbd "H-g") (lambda () (interactive) (erlang-compile) (first-error)))))
+(add-hook 'LaTeX-mode-hook   (lambda () (define-key TeX-mode-map     (kbd "H-g") 'run-latex)))
+(add-hook 'haskell-mode-hook (lambda () (define-key haskell-mode-map (kbd "H-g") 'inferior-haskell-load-file)))
 
 
 
@@ -522,7 +527,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (column-number-mode t)
-;;(display-battery-mode t) ;; my battery seems to be dead, and battery-mode cant handle that correctly
+(display-battery-mode t) ;; my battery seems to be dead, and battery-mode cant handle that correctly
+
+(setq-default fill-column 80)
 
 (show-paren-mode t)
 (setq show-paren-delay 0)
@@ -654,14 +661,33 @@
 
 (require 'cafeen)
 
+(add-hook 'erlang-shell-mode-hook 'next-error-follow-minor-mode)
 (add-hook 'compilation-mode-hook 'next-error-follow-minor-mode)
 (add-hook 'occur-mode-hook 'next-error-follow-minor-mode)
+
+
+
+(require 'keyfreq)
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
+(setq keyfreq-file "~/Dropbox/emacs/keyfreq")
+
 ;;______________________________________________________________________________
 ;;Fun
 ;;______________________________________________________________________________
 (load-file "~/.emacs.d/minesweeper-mode.el")
 (require 'reddit)
 (require 'typing)
+(setq tetris-score-file "~/Dropbox/emacs/tetris-scores")
+
+(add-hook 'tetris-mode-hook (lambda ()
+                              (define-key tetris-mode-map (kbd "n") 'tetris-move-left)
+                              (define-key tetris-mode-map (kbd "i") 'tetris-move-right)
+                              (define-key tetris-mode-map (kbd "u") 'tetris-rotate-prev)
+                              (define-key tetris-mode-map (kbd "e") 'tetris-rotate-next)
+                              (define-key tetris-mode-map (kbd "l") 'tetris-rotate-next)
+                              (define-key tetris-mode-map (kbd "y") 'tetris-rotate-prev)
+                              (define-key tetris-mode-map (kbd "r") 'tetris-start-game)))
 
 ;; ;;______________________________________________________________________________
 ;; ;;Fill-column-indicator
@@ -726,10 +752,7 @@
  '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "Schumacher" :family "Clean"))))
  '(flymake-errline ((((class color)) (:underline "red"))))
  '(flymake-warnline ((((class color)) (:underline "yellow"))))
- ;'(minimap-semantic-function-face ((t (:height 30 :family "DejaVu Sans Mono"))))
- ;'(minimap-semantic-type-face ((t (:height 30 :family "DejaVu Sans Mono"))))
- ;'(minimap-semantic-variable-face ((t (:height 30 :family "DejaVu Sans Mono"))))
- '(whitespace-line ((t (:background "gray20")))))
+ '(whitespace-line ((t (:inherit nil :background "gray20")))))
 
 ;;______________________________________________________________________________
 ;;THEME
@@ -761,6 +784,9 @@
 
 (set-face-background 'modeline "slate gray")
 (set-face-background 'modeline-inactive "gray36")
+;(set-face-foreground 'modeline-inactive "gray10")
+(set-face-foreground 'modeline-inactive "black")
+
 ;(set-face-background 'modeline "#4477aa")
 (set-face-attribute 'mode-line nil :box nil)
 ;(set-background-color "black")
@@ -844,6 +870,7 @@
                 mode-line-buffer-identification
                 mode-line-position
                 display-time-string
+                battery-mode-line-string
                 (which-func-mode
                  ("" which-func-format
                   #(" " 0 1
@@ -1457,7 +1484,48 @@ See `whitespace-line-column'."
 
 (add-hook 'erlang-mode-hook (lambda ()
                               ;; when starting an Erlang shell in Emacs, default in the node name
-                              (setq inferior-erlang-machine-options '("-sname" "emacs"))))
+                              (setq inferior-erlang-machine-options '("-sname" "emacs"))
+(defun inferior-erlang-compile (arg)
+  "Compile the file in the current buffer.
+
+With prefix arg, compiles for debug.
+
+Should Erlang return `{error, nofile}' it could not load the object
+module after completing the compilation.  This is due to a bug in the
+compile command `c' when using the option `outdir'.
+
+There exists two workarounds for this bug:
+
+  1) Place the directory in the Erlang load path.
+
+  2) Set the Emacs variable `erlang-compile-use-outdir' to nil.
+     To do so, place the following line in your `~/.emacs'-file:
+        (setq erlang-compile-use-outdir nil)"
+  (interactive "P")
+  (call-interactively 'save-buffer)
+  (inferior-erlang-prepare-for-input)
+  (let* ((dir (inferior-erlang-compile-outdir))
+;;; (file (file-name-nondirectory (buffer-file-name)))
+	 (noext (substring (buffer-file-name) 0 -4))
+	 (opts (append (list (cons 'outdir dir))
+		       (if current-prefix-arg
+			   (list 'debug_info 'export_all))
+		       erlang-compile-extra-opts))
+	 end)
+    (save-excursion
+      (set-buffer inferior-erlang-buffer)
+      (compilation-forget-errors))
+    (setq end (inferior-erlang-send-command
+	       (inferior-erlang-compute-compile-command noext opts)
+	       nil))
+    (sit-for 0)
+    (inferior-erlang-wait-prompt)
+    (save-excursion
+      (set-buffer inferior-erlang-buffer)
+      (setq compilation-error-list nil)
+      (set-marker compilation-parsing-end end))
+    (setq compilation-last-buffer inferior-erlang-buffer)))))
+
 ;;______________________________________________________________________________
 ;;ESHELL
 ;;______________________________________________________________________________
@@ -1516,8 +1584,8 @@ See `whitespace-line-column'."
 ;;EXPAND-REGION
 ;;______________________________________________________________________________
 (add-to-list 'load-path "~/.emacs.d/expand-region/")
-(load-file "~/.emacs.d/expand-region/expand-region.el")
-;; (require 'expand-region)
+;; (load-file "~/.emacs.d/expand-region/expand-region.el")
+(require 'expand-region)
 
 ;; (defun er/add-text-mode-expansions ()
 ;;   (set (make-local-variable 'er/try-expand-list)
@@ -1545,6 +1613,7 @@ See `whitespace-line-column'."
 ;;______________________________________________________________________________
 (require 'flymake)
 (require 'flymake-cursor)
+(setq flymake-no-changes-timeout 5)
 
 ;; Flymake for LaTeX
 ;(defun flymake-get-tex-args (file-name)
@@ -1786,10 +1855,14 @@ See `whitespace-line-column'."
                 (or
                  (mode . auctex)
                  (mode . latex-mode)))
-               ("c"
+               ("C"
                 (mode . c-mode))
                ("Python"
                 (mode . python-mode))
+               ("Haskell"
+                (mode . haskell-mode))
+               ("Erlang"
+                (mode . erlang-mode))
                ("Web"
                 (or
                  (mode . html-mode)
@@ -1935,59 +2008,128 @@ See `whitespace-line-column'."
 
 ;;(require 'idomenu) ;; I use ido-goto-symbol instead as it merges the groups
 
-(defun ido-goto-symbol (&optional symbol-list)
-  "Refresh imenu and jump to a place in the buffer using Ido."
-  (interactive)
-  (unless (featurep 'imenu)
-    (require 'imenu nil t))
-  (cond
-   ((not symbol-list)
-    (let ((ido-mode ido-mode)
-          (ido-enable-flex-matching
-           (if (boundp 'ido-enable-flex-matching)
-               ido-enable-flex-matching t))
-          name-and-pos symbol-names position)
-      (unless ido-mode
-        (ido-mode 1)
-        (setq ido-enable-flex-matching t))
-      (while (progn
-               (imenu--cleanup)
-               (setq imenu--index-alist nil)
-               (ido-goto-symbol (imenu--make-index-alist))
-               (setq selected-symbol
-                     (ido-completing-read "Symbol? " symbol-names))
-               (string= (car imenu--rescan-item) selected-symbol)))
-      (unless (and (boundp 'mark-active) mark-active)
-        (push-mark nil t nil))
-      (setq position (cdr (assoc selected-symbol name-and-pos)))
-      (cond
-       ((overlayp position)
-        (goto-char (overlay-start position)))
-       (t
-        (goto-char position)))))
-   ((listp symbol-list)
-    (dolist (symbol symbol-list)
-      (let (name position)
-        (cond
-         ((and (listp symbol) (imenu--subalist-p symbol))
-          (ido-goto-symbol symbol))
-         ((listp symbol)
-          (setq name (car symbol))
-          (setq position (cdr symbol)))
-         ((stringp symbol)
-          (setq name symbol)
-          (setq position
-                (get-text-property 1 'org-imenu-marker symbol))))
-        (unless (or (null position) (null name)
-                    (string= (car imenu--rescan-item) name))
-          (add-to-list 'symbol-names name)
-          (add-to-list 'name-and-pos (cons name position))))))))
+;; (defun ido-goto-symbol (&optional symbol-list)
+;;   "Refresh imenu and jump to a place in the buffer using Ido."
+;;   (interactive)
+;;   (unless (featurep 'imenu)
+;;     (require 'imenu nil t))
+;;   (cond
+;;    ((not symbol-list)
+;;     (let ((ido-mode ido-mode)
+;;           (ido-enable-flex-matching
+;;            (if (boundp 'ido-enable-flex-matching)
+;;                ido-enable-flex-matching t))
+;;           name-and-pos symbol-names position)
+;;       (unless ido-mode
+;;         (ido-mode 1)
+;;         (setq ido-enable-flex-matching t))
+;;       (while (progn
+;;                (imenu--cleanup)
+;;                (setq imenu--index-alist nil)
+;;                (ido-goto-symbol (imenu--make-index-alist))
+;;                (setq selected-symbol
+;;                      (ido-completing-read "Symbol? " symbol-names))
+;;                (string= (car imenu--rescan-item) selected-symbol)))
+;;       (unless (and (boundp 'mark-active) mark-active)
+;;         (push-mark nil t nil))
+;;       (setq position (cdr (assoc selected-symbol name-and-pos)))
+;;       (cond
+;;        ((overlayp position)
+;;         (goto-char (overlay-start position)))
+;;        (t
+;;         (goto-char position)))))
+;;    ((listp symbol-list)
+;;     (dolist (symbol symbol-list)
+;;       (let (name position)
+;;         (cond
+;;          ((and (listp symbol) (imenu--subalist-p symbol))
+;;           (ido-goto-symbol symbol))
+;;          ((listp symbol)
+;;           (setq name (car symbol))
+;;           (setq position (cdr symbol)))
+;;          ((stringp symbol)
+;;           (setq name symbol)
+;;           (setq position
+;;                 (get-text-property 1 'org-imenu-marker symbol))))
+;;         (unless (or (null position) (null name)
+;;                     (string= (car imenu--rescan-item) name))
+;;           (add-to-list 'symbol-names name)
+;;           (add-to-list 'name-and-pos (cons name position))))))))
 
+;; (defun ido-goto-symbol ()
+;;   "Will update the imenu index and then use ido to select a
+;;    symbol to navigate to"
+;;   (interactive)
+;;   (imenu--make-index-alist)
+;;   (let ((name-and-pos '())
+;;         (symbol-names '()))
+;;     (flet ((addsymbols (symbol-list)
+;;                        (when (listp symbol-list)
+;;                          (dolist (symbol symbol-list)
+;;                            (let ((name nil) (position nil))
+;;                              (cond
+;;                               ((and (listp symbol) (imenu--subalist-p symbol))
+;;                                (addsymbols symbol))
+
+;;                               ((listp symbol)
+;;                                (setq name (car symbol))
+;;                                (setq position (cdr symbol)))
+
+;;                               ((stringp symbol)
+;;                                (setq name symbol)
+;;                                (setq position (get-text-property 1 'org-imenu-marker symbol))))
+
+;;                              (unless (or (null position) (null name))
+;;                                (add-to-list 'symbol-names name)
+;;                                (add-to-list 'name-and-pos (cons name position))))))))
+;;       (addsymbols imenu--index-alist))
+;;     (let* ((selected-symbol (ido-completing-read "Symbol? " symbol-names))
+;;            (position (cdr (assoc selected-symbol name-and-pos))))
+;;       (goto-char position))))
+
+(defun ido-goto-symbol-or-line ()
+  "Will update the imenu index and then use ido to select a
+   symbol to navigate to"
+  (interactive)
+  (imenu--make-index-alist)
+  (let ((name-and-pos '())
+        (symbol-names '()))
+    (flet ((addsymbols (symbol-list)
+                       (when (listp symbol-list)
+                         (dolist (symbol symbol-list)
+                           (let ((name nil) (position nil))
+                             (cond
+                              ((and (listp symbol) (imenu--subalist-p symbol))
+                               (addsymbols symbol))
+
+                              ((listp symbol)
+                               (setq name (car symbol))
+                               (setq position (cdr symbol)))
+
+                              ((stringp symbol)
+                               (setq name symbol)
+                               (setq position (get-text-property 1 'org-imenu-marker symbol))))
+
+                             (unless (or (null position) (null name))
+                               (add-to-list 'symbol-names name)
+                               (add-to-list 'name-and-pos (cons name position))))))))
+      (addsymbols imenu--index-alist))
+    (let* ((selected-symbol (ido-completing-read "Symbol? " symbol-names))
+           (position (cdr (assoc selected-symbol name-and-pos))))
+      (if (string-integer-p selected-symbol)
+          (goto-line (string-to-number selected-symbol))
+      (goto-char position)))))
+
+
+(defun string-integer-p (string)
+   (if (string-match "\\`[-+]?[0-9]+\\'" string)
+       t
+     nil))
 
 ;;______________________________________________________________________________
 ;;ISEARCH
 ;;______________________________________________________________________________
-(defun sacha/isearch-yank-current-word ()
+(defun sdacha/isearch-yank-current-word ()
   "Pull current word from buffer into search string."
   (interactive)
   (save-excursion
@@ -2033,7 +2175,6 @@ See `whitespace-line-column'."
 (setq TeX-fold-math-spec-list t)
 
 (setq preview-auto-cache-preamble t)
-(add-hook 'LaTeX-mode-hook (lambda () (reftex-mode) (LaTeX-math-mode)))
 (define-key reftex-toc-map (kbd "u") 'reftex-toc-previous)
 (define-key reftex-toc-map (kbd "e") 'reftex-toc-next)
 ;(add-hook 'LaTeX-mode-hook 'flyspell-mode)
@@ -2050,7 +2191,17 @@ See `whitespace-line-column'."
  'LaTeX-mode-hook
  (lambda nil
 ;(visual-line-mode)
+   (reftex-mode)
+   (LaTeX-math-mode)
+   (auto-fill-mode)
+   (set-face-foreground 'font-latex-bold-face "OliveDrab3")
+   (set-face-foreground 'font-latex-italic-face "OliveDrab3")
    (setq LaTeX-command "latex -file-line-error -synctex=1")))
+
+(defun run-latex ()
+  (interactive)
+  (TeX-save-document (TeX-master-file))
+  (TeX-command "LaTeX" 'TeX-master-file))
 
 ;;______________________________________________________________________________
 ;;MINIMAP
@@ -2556,6 +2707,16 @@ in that cyclic order."
 ;;         ((looking-at "\\s\)") (forward-char 1) (backward-list 1))
 ;;                                         ;(t (self-insert-command (or arg 1)))))
 ;;         ))
+
+(defun goto-match-paren-or-defun (arg)
+  (interactive "p")
+  (let ((pos (point)))
+    (ignore-errors (call-interactively 'goto-match-paren))
+    (message "hello")
+    (when (equal (point) (point-min))
+      (message "world")
+      (goto-char pos)
+      (beginning-of-defun))))
 
 (defun goto-match-paren (arg)
   "Go to the matching parenthesis if on parenthesis. Else go to the
