@@ -1476,7 +1476,7 @@ See `whitespace-line-column'."
 ;;______________________________________________________________________________
 ;;Erlang
 ;;______________________________________________________________________________
-(add-to-list 'load-path "/usr/lib/erlang/lib/tools-2.6.7/emacs/")
+(add-to-list 'load-path "/usr/lib/erlang/lib/tools-2.6.8/emacs/")
 (require 'erlang-start)
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
