@@ -547,6 +547,8 @@ bind ^- redo all
 ##bind nowrap
 ##bind suspendenable
 
+bind ^r insert all
+
 ## Haskell syntax highlighting
 ## found here: http://www.wubutu.com/2011/05/syntax-highlighting-nano-ban.html
 syntax "haskell" "\.hs$"

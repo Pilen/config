@@ -763,3 +763,5 @@
 ;; followLinkInNewWinNoSel
 ;;        Same  as followLinkInNewWin, but does nothing if there is a non-empty selection.  (This is use‐
 ;;        ful as a mouse button binding.)
+
+(provide 'xpdfremote)

@@ -13,7 +13,7 @@
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
 ;|goto-match-paren   |mc-next-like  |copy-region |<del-wrd    |del-wrd>    |compile/run |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |golden-ratio|ido-sw-buf     |
 ;|focus-minibuffer   |mc-edit-lines |            |transpose-up|transpose-dn|transpos-wrd|find-file-at|pager-row-up|/\          |pager-row-dn|splt-w-hori |winner-redo |gldn-rat-tog|ido-goto-sym/ln|
-;|                   |mc-all-like   |            |            |            |            |            |            |            |            |            |            |            |               |
+;|                   |mc-all-like   |            |            |            |            |            |            |            |            |            |            |balance-win |               |
 ;|___________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|__             |
 ;|Cpslock               |a             |sr          |ds          |ft          |gd          |h           |jn          |ke          |li          | o          |'           |\           |            |
 ;|                      |exe-command   |comment-togl|<del-chr    |del-chr>    |killwholline|>>|         |<-          |v           |->          |other-window|win-switch  |del-window  |            |
@@ -398,6 +398,8 @@
 (global-set-key (kbd "H-R") 'align-regexp)
 (global-set-key (kbd "H-]") 'golden-ratio)
 (global-set-key (kbd "H-}") 'golden-ratio-toggle)
+(global-set-key (kbd "H-C-]") 'balance-windows)
+
 ;(global-set-key (kbd "H-}") 'tiling-cycle)
 ;(global-set-key (kbd "H-]") '(lambda nil (interactive) (kill-buffer (current-buffer))))
 ;(global-set-key (kbd "H-}") 'kill-buffer-and-window)
@@ -465,7 +467,8 @@
 (global-set-key (kbd "<f10>") 'reftex-toc)
 (global-set-key (kbd "<f11>") 'LaTeX-environment)
 (global-set-key (kbd "H-<f11>") 'LaTeX-close-environment)
-(global-set-key (kbd "<f12>") 'preview-buffer)
+(global-set-key (kbd "S-<f11>") 'LaTeX-insert-matrix)
+(global-set-key (kbd "<f12>") (lambda () (interactive) (save-buffer) (preview-buffer)))
 (global-set-key (kbd "<H-f12>") 'preview-clearout-buffer)
 
 (global-set-key (kbd "<home>") 'beginning-of-buffer)
@@ -494,7 +497,7 @@
 (add-hook 'erlang-mode-hook  (lambda () (define-key erlang-mode-map  (kbd "H-g") (lambda () (interactive) (erlang-compile) (first-error)))))
 (add-hook 'LaTeX-mode-hook   (lambda () (define-key TeX-mode-map     (kbd "H-g") 'run-latex)))
 (add-hook 'haskell-mode-hook (lambda () (define-key haskell-mode-map (kbd "H-g") 'inferior-haskell-load-file)))
-
+(add-hook 'maple-mode-hook   (lambda () (define-key maple-mode-map   (kbd "H-g") 'maple-buffer)))
 
 
 
@@ -671,6 +674,8 @@
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 (setq keyfreq-file "~/Dropbox/emacs/keyfreq")
+
+(require 'xpdfremote)
 
 ;;______________________________________________________________________________
 ;;Fun
@@ -1850,11 +1855,6 @@ There exists two workarounds for this bug:
 
                ("OSM"
                 (filename . "~/Dropbox/diku/osm/"))
-
-               ("Tex"
-                (or
-                 (mode . auctex)
-                 (mode . latex-mode)))
                ("C"
                 (mode . c-mode))
                ("Python"
@@ -1875,8 +1875,14 @@ There exists two workarounds for this bug:
                 (or
                  (filename . ".emacs")))
 
+               ("Tex"
+                (or
+                 (mode . auctex)
+                 (mode . latex-mode)))
                ("Org" ;; all org-related buffers
                 (mode . org-mode))
+               ("Text"
+                (mode . text-mode))
                ("Mail"
                 (or ;; mail-related buffers
                  (mode . message-mode)
@@ -2203,6 +2209,21 @@ There exists two workarounds for this bug:
   (TeX-save-document (TeX-master-file))
   (TeX-command "LaTeX" 'TeX-master-file))
 
+
+(defun LaTeX-insert-matrix ()
+  (interactive)
+  (let ((r "\\begin{pmatrix}\n")
+        (i " "))
+    (while (not (string= i ""))
+      (setq i (read-string "row: "))
+      (setq r (concat r
+                      "  "
+                      (replace-regexp-in-string " +" " & " i)
+                        " \\\\\n")))
+    (setq r (substring r 0 -10))
+    (setq r (concat r "\n\\end{pmatrix}\n"))
+    ;;(message r)
+    (insert r)))
 ;;______________________________________________________________________________
 ;;MINIMAP
 ;;______________________________________________________________________________
@@ -2217,6 +2238,15 @@ There exists two workarounds for this bug:
 
 
 ;(set-face-attribute 'minimap-font-face '((default :family "DejaVu Sans Mono" :height 5)))
+
+;;______________________________________________________________________________
+;;MATHEMATICA
+;;______________________________________________________________________________
+(autoload 'maple-mode "maple-mode" "Maple-mode" t)
+(setq maple-command "/home/pilen/programs/maple16/bin/maple")
+(add-to-list 'auto-mode-alist
+             '("\\.mw$" . maple-mode))
+
 ;;______________________________________________________________________________
 ;;MATHEMATICA
 ;;______________________________________________________________________________

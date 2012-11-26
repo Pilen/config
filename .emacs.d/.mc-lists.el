@@ -3,11 +3,14 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        TeX-insert-backslash
         back-to-indentation-or-beginning
         backward-kill-word-to-newline
         backward-word-to-newline
-        forward-kill-word-to-newline
         forward-word-to-newline
+        org-beginning-of-line
+        org-delete-backward-char
+        org-end-of-line
         org-self-insert-command
         overwrite-mode
         sprint-forward
@@ -16,7 +19,7 @@
 
 (setq mc/cmds-to-run-once
       '(
-        TeX-insert-backslash
-        haskell-indentation-delete-backward-char
+        TeX-insert-sub-or-superscript
+        maple-untab
         pager-row-down
         ))

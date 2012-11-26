@@ -34,6 +34,7 @@ menu=(\
         90%       "amixer set Master 61"
         100%      "amixer set Master 64"
         MAX       "amixer set Master 64"
+        maple     "maple"
         dmenu     "dmenu_run"
         omacs     "sh .omacs"
 
