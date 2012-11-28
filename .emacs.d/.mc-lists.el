@@ -3,10 +3,8 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        TeX-insert-backslash
-        back-to-indentation-or-beginning
-        backward-kill-word-to-newline
-        backward-word-to-newline
+        TeX-insert-dollar
+        forward-kill-word-to-newline
         forward-word-to-newline
         org-beginning-of-line
         org-delete-backward-char

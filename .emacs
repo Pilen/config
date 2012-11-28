@@ -520,6 +520,7 @@
 ;;SETTINGS
 ;;______________________________________________________________________________
 (add-to-list 'load-path "~/.emacs.d/")
+(require 'cl)
 
 (setq inhibit-startup-message t)
 (setq default-frame-alist (append (list
@@ -2224,6 +2225,59 @@ There exists two workarounds for this bug:
     (setq r (concat r "\n\\end{pmatrix}\n"))
     ;;(message r)
     (insert r)))
+
+
+
+(defun pad-center (s n)
+  (let* ((f (/ (- n (length s)) 2))
+         (l (+ f (length s))))
+    (format (format "%%%ds" (- n)) (format (format "%%%ds" l) s))))
+
+(defun LaTeX-insert-matrix ()
+  (interactive)
+
+  (flet
+      ((maximum-map (a b)
+                    ;; a = string list, b = int list
+                    (loop with r = '()
+                          for i below (max (length a) (length b))
+                          collect (max-nil (length (nth i a))
+                                           (nth i b))))
+       (max-nil (a b)
+            (if (eq a nil) b
+              (if (eq b nil) a
+                (max a b))))
+       (populate (m n)
+                 (interactive)
+                 (loop for r in m
+                       collect (append r (loop repeat (- n (length r))
+                                               collect " "))))
+       (format-rows (m maxlen)
+                    (mapconcat
+                     (lambda (r)
+                       (loop for v in r
+                             for m in maxlen
+                             collect (pad-center v m) into nr
+                             finally return
+                             (concat "  " (mapconcat 'identity nr " & "))))
+                     m
+                     " \\\\\n")))
+
+  (loop with i = (read-string "row: ")
+        with splitted
+        with maxlen
+
+        until (string= i "") do
+        (setq splitted (split-string i))
+        (setq maxlen (maximum-map splitted maxlen))
+        (setq i (read-string "row: "))
+        collect splitted into matrix
+
+        finally (insert "\\begin{pmatrix}\n"
+                        (format-rows (populate matrix (length maxlen))
+                                     maxlen)
+                        "\n\\end{pmatrix}\n"))))
+
 ;;______________________________________________________________________________
 ;;MINIMAP
 ;;______________________________________________________________________________
