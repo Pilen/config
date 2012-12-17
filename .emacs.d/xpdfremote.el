@@ -81,7 +81,6 @@
   (switch-to-buffer xpdfremote/buffer-name)
 
   (when (not (eq major-mode 'xpfremote/mode))
-    (message "hej")
     (kill-all-local-variables)
     (use-local-map xpdfremote/mode-map)
     (setq major-mode 'xpdfremote/mode)

@@ -1,0 +1,89 @@
+;; Object control/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "control/"
+  :tables (list 
+   (semanticdb-table "TronLauncher.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("control" package nil nil [1 17])
+            ("java.util.Collection" include nil nil [19 47])
+            ("java.io.FileNotFoundException" include nil nil [48 85])
+            ("java.awt.event.ActionEvent" include nil nil [87 121])
+            ("javax.swing.JOptionPane" include nil nil [122 153])
+            ("javax.swing.UIManager" include nil nil [154 183])
+            ("javax.swing.JFrame" include nil nil [184 210])
+            ("model.config.Configuration" include nil nil [211 245])
+            ("model.config.TextParser" include nil nil [246 277])
+            ("model.config.ParserException" include nil nil [278 314])
+            ("model.config.LineSegment" include nil nil [315 347])
+            ("model.Position" include nil nil [348 370])
+            ("model.Player" include nil nil [371 391])
+            ("model.GameManager" include nil nil [392 417])
+            ("view.NewGameDialog" include nil nil [418 444])
+            ("view.TronDisplayPanel" include nil nil [445 474])
+            ("view.MainWindowFrame" include nil nil [475 503])
+            ("TronLauncher" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [804 817]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [780 3502]))                  
+                :type "class")
+                nil [687 3504]))          
+    :file "TronLauncher.java"
+    :pointmax 3505
+    :fsize 3509
+    :lastmodtime '(19776 29613)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "GUIController.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("control" package nil nil [1 17])
+            ("model.GameManager" include nil nil [19 44])
+            ("model.Player" include nil nil [45 65])
+            ("javax.swing.JOptionPane" include nil nil [67 98])
+            ("GUIController" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("manager" variable
+                       (:typemodifiers ("private")
+                        :type "GameManager")
+                        (reparse-symbol class_member_declaration) [270 298])
+                    ("GUIController" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("manager" variable (:type "GameManager") (reparse-symbol formal_parameters) [421 440]))                          )
+                        (reparse-symbol class_member_declaration) [400 485])
+                    ("run" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [617 983])
+                    ("showGameResult" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1058 1217])
+                    ("getResultMessage" function
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1291 1566]))                  
+                :type "class")
+                nil [237 1568]))          
+    :file "GUIController.java"
+    :pointmax 1569
+    :fsize 1569
+    :lastmodtime '(19764 19103)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!Dropbox!Eclipse!workspace!OOPD eksamen 2010!src!control!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.0"
+  )

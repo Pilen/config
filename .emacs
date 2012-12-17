@@ -86,6 +86,12 @@
 
 ;; C-j          newline-and-indent
 
+
+;; C-y          yank-or-pop
+;; C-Y          yank
+;; C-H-y        yank primary
+
+
 ;; Debug on errors in .emacs
 (setq debug-on-error t)
 
@@ -491,7 +497,8 @@
                                                 (define-key mc/keymap (kbd "<return>") 'newline)))
 
 (global-set-key (kbd "C-y") 'yank-or-pop)
-
+(global-set-key (kbd "C-S-y") 'yank)
+(global-set-key (kbd "H-C-y") (lambda () (interactive) (insert (x-get-selection-value))))
 
 ;; H-g  =  compile
 (add-hook 'erlang-mode-hook  (lambda () (define-key erlang-mode-map  (kbd "H-g") (lambda () (interactive) (erlang-compile) (first-error)))))
@@ -677,6 +684,8 @@
 (setq keyfreq-file "~/Dropbox/emacs/keyfreq")
 
 (require 'xpdfremote)
+
+(semantic-mode 1)
 
 ;;______________________________________________________________________________
 ;;Fun
@@ -1194,6 +1203,9 @@ See `whitespace-line-column'."
 ;;______________________________________________________________________________
 ;;Windows
 ;;______________________________________________________________________________
+;;(setq split-width-threshold 0)
+(setq split-height-threshold nil)
+
 (require 'buffer-move)
 (require 'tiling)
 (require 'window-numbering)
@@ -1860,6 +1872,8 @@ There exists two workarounds for this bug:
                 (mode . c-mode))
                ("Python"
                 (mode . python-mode))
+               ("Java"
+                (mode . java-mode))
                ("Haskell"
                 (mode . haskell-mode))
                ("Erlang"
@@ -1997,17 +2011,39 @@ There exists two workarounds for this bug:
 (add-hook 'ido-make-dir-list-hook 'ido-sort-mtime);'(lambda () (ido-sort-mtime) (ido-better-flex/enable)))
 ;(add-hook 'ido-make-buffer-list-hook '(lambda () (ido-better-flex/enable)))
 
+;; (defun ido-sort-mtime ()
+;;   (setq ido-temp-list
+;;         (sort ido-temp-list
+;;               (lambda (a b)
+;;                 (time-less-p
+;;                  (sixth (file-attributes (concat ido-current-directory b)))
+;;                  (sixth (file-attributes (concat ido-current-directory a)))))))
+;;   (ido-to-end  ;; move . files to end (again)
+;;    (delq nil (mapcar
+;;               (lambda (x) (and (char-equal (string-to-char x) ?.) x))
+;;               ido-temp-list))))
+
 (defun ido-sort-mtime ()
   (setq ido-temp-list
         (sort ido-temp-list
               (lambda (a b)
-                (time-less-p
-                 (sixth (file-attributes (concat ido-current-directory b)))
-                 (sixth (file-attributes (concat ido-current-directory a)))))))
+                (let ((a-tramp-file-p (string-match-p ":\\'" a))
+                      (b-tramp-file-p (string-match-p ":\\'" b)))
+                  (cond
+                   ((and a-tramp-file-p b-tramp-file-p)
+                    (string< a b))
+                   (a-tramp-file-p nil)
+                   (b-tramp-file-p t)
+                   (t (time-less-p
+                       (sixth (file-attributes (concat ido-current-directory b)))
+                       (sixth (file-attributes (concat ido-current-directory a))))))))))
   (ido-to-end  ;; move . files to end (again)
    (delq nil (mapcar
               (lambda (x) (and (char-equal (string-to-char x) ?.) x))
               ido-temp-list))))
+
+
+
 
 ;;______________________________________________________________________________
 ;;IDO-IMENU
@@ -2120,7 +2156,7 @@ There exists two workarounds for this bug:
                              (unless (or (null position) (null name))
                                (add-to-list 'symbol-names name)
                                (add-to-list 'name-and-pos (cons name position))))))))
-      (addsymbols imenu--index-alist))
+      (addsymbols (reverse imenu--index-alist)))
     (let* ((selected-symbol (ido-completing-read "Symbol? " symbol-names))
            (position (cdr (assoc selected-symbol name-and-pos))))
       (if (string-integer-p selected-symbol)

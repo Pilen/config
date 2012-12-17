@@ -1,0 +1,18 @@
+;; Object tron/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "tron/"
+  :tables (list 
+   (semanticdb-table "tron.py"
+    :major-mode 'python-mode
+    :tags 
+        '( ("main" function nil nil [2 23])
+            ("if" code nil nil [25 63]))          
+    :file "tron.py"
+    :pointmax 63
+    :unmatched-syntax '((NEWLINE 12 . 13) (IF 14 . 16) ($EOI 29 . 29))
+    )
+   )
+  :file "!home!pilen!code!small!tron!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.0"
+  )

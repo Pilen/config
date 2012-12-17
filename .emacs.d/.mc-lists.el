@@ -3,21 +3,17 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        TeX-insert-dollar
-        forward-kill-word-to-newline
-        forward-word-to-newline
-        org-beginning-of-line
-        org-delete-backward-char
-        org-end-of-line
-        org-self-insert-command
-        overwrite-mode
-        sprint-forward
+        backward-word-to-newline
+        python-backspace
+        toggle-letter-case
         yank-or-pop
         ))
 
 (setq mc/cmds-to-run-once
       '(
         TeX-insert-sub-or-superscript
+        iedit-mode
         maple-untab
+        new-indented-line
         pager-row-down
         ))

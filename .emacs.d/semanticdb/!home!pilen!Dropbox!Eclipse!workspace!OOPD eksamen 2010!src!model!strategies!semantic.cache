@@ -1,0 +1,44 @@
+;; Object strategies/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "strategies/"
+  :tables (list 
+   (semanticdb-table "RandomStrategy.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model.strategies" package nil nil [1 26])
+            ("java.util.Collection" include nil nil [28 56])
+            ("model.Direction" include nil nil [57 80])
+            ("model.Game" include nil nil [81 99])
+            ("model.Player" include nil nil [100 120])
+            ("RandomStrategy" type
+               (:typemodifiers ("public")
+                :interfaces ("IStrategy")
+                :members 
+                  ( ("RandomStrategy" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [351 391])
+                    ("getName" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [462 518])
+                    ("nextMove" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [653 662])
+                            ("player" variable (:type "Player") (reparse-symbol formal_parameters) [664 677]))                          
+                        :type "Direction")
+                        (reparse-symbol class_member_declaration) [627 1181]))                  
+                :type "class")
+                nil [296 1183]))          
+    :file "RandomStrategy.java"
+    :pointmax 1184
+    :fsize 1186
+    :lastmodtime '(19769 35199)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!Dropbox!Eclipse!workspace!OOPD eksamen 2010!src!model!strategies!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.0"
+  )

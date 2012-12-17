@@ -5,7 +5,7 @@ bat=`acpi | grep -o '[0-9]*%'`
 title="$date $bat"
 
 menu=(\
-        chromium  "chromium"
+        chromium  "chromium --purge-memory-button"
         emacs     "emacs"
         ranger    "urxvt -e ranger"
         zathura   "zathura"
