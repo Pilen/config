@@ -403,8 +403,8 @@
 (global-set-key (kbd "H-r") 'comment-or-uncomment-region)
 (global-set-key (kbd "H-R") 'align-regexp)
 (global-set-key (kbd "H-]") 'golden-ratio)
-(global-set-key (kbd "H-}") 'golden-ratio-toggle)
-(global-set-key (kbd "H-C-]") 'balance-windows)
+(global-set-key (kbd "H-C-]") 'golden-ratio-toggle)
+(global-set-key (kbd "H-}") 'balance-windows)
 
 ;(global-set-key (kbd "H-}") 'tiling-cycle)
 ;(global-set-key (kbd "H-]") '(lambda nil (interactive) (kill-buffer (current-buffer))))
@@ -539,6 +539,16 @@
 
 (column-number-mode t)
 (display-battery-mode t) ;; my battery seems to be dead, and battery-mode cant handle that correctly
+(defun battery-format (format alist)
+  "Substitute %-sequences in FORMAT."
+  (replace-regexp-in-string "\\..\\|\\[\\|\\]" ""
+  (replace-regexp-in-string
+   "%."
+   (lambda (str)
+     (let ((char (aref str 1)))
+       (if (eq char ?%) "%"
+	 (or (cdr (assoc char alist)) ""))))
+   format t t)))
 
 (setq-default fill-column 80)
 
@@ -584,7 +594,7 @@
 
 (require 'recentf)
 (recentf-mode t)
-(setq recentf-max-saved-items 1000)
+(setq recentf-max-saved-items 10000)
 (add-to-list 'recentf-exclude ".breadcrumb")
 (add-to-list 'recentf-exclude ".emacs")
 (add-to-list 'recentf-exclude ".ido.last")
@@ -890,16 +900,17 @@
                  ("" which-func-format
                   #(" " 0 1
                     (help-echo "mouse-1: Select (drag to resize)\nmouse-2: Make current window occupy the whole frame\nmouse-3: Remove current window from display"))))
-                "[%m:"
-                minor-mode-alist
-                "]"
+                ;; "[%m:"
+                ;; minor-mode-alist
+                ;; "]"
+                "%m"
                 ))
 
 ;;______________________________________________________________________________
 ;;SML-MODELINE
 ;;______________________________________________________________________________
 (require 'sml-modeline)
-(setq sml-modeline-len 24)
+(setq sml-modeline-len 16)
 (scroll-bar-mode -1)
 
 (set-face-attribute
@@ -933,12 +944,15 @@
        (setq start (floor (* number-beg inner-len)))
        (setq end (floor (* number-end inner-len)))
        (setq string
-             (concat (format "%02d" (round (* number-beg 100)))
-                     "-"
-                     (format "%02d" (round (* number-end 100)))
-                     "%%"
-                     " (%l,%c) "
-                     my-mode-line-buffer-line-count)))
+             ;; (concat (format "%02d" (round (* number-beg 100)))
+             ;;         "-"
+             ;;         (format "%02d" (round (* number-end 100)))
+             ;;         "%%"
+             ;;         " (%l,%c) "
+             ;;         (my-mode-line-count-lines))))
+             (concat "%l/"
+                     (my-mode-line-count-lines)
+                     ":%c")))
       ((eq sml-modeline-numbers 'line-numbers)
        (save-restriction
          (widen)
@@ -1911,6 +1925,7 @@ There exists two workarounds for this bug:
 
 (add-hook 'ibuffer-mode-hook
           (lambda ()
+            (ibuffer-auto-mode t)
             (ibuffer-switch-to-saved-filter-groups "default")))
 
 (setq ibuffer-show-empty-filter-groups nil)
@@ -2212,6 +2227,7 @@ There exists two workarounds for this bug:
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq TeX-save-query nil)
+(setq TeX-clean-confirm nil)
 
 (setq TeX-fold-env-spec-list t)
 (setq TeX-fold-macro-spec-list t)
@@ -2244,7 +2260,9 @@ There exists two workarounds for this bug:
 (defun run-latex ()
   (interactive)
   (TeX-save-document (TeX-master-file))
-  (TeX-command "LaTeX" 'TeX-master-file))
+  (TeX-command "LaTeX" 'TeX-master-file)
+  ;(TeX-clean nil))
+  )
 
 
 (defun LaTeX-insert-matrix ()
@@ -2407,8 +2425,9 @@ There exists two workarounds for this bug:
 ;;______________________________________________________________________________
 ;;SML
 ;;______________________________________________________________________________
-(add-to-list 'load-path "~/.emacs.d/sml-mode-4.1/")
-(require 'sml-mode)
+;;(add-to-list 'load-path "~/.emacs.d/sml-mode-4.1/")
+
+(require 'sml-mode "sml-mode-6.1")
 (setq auto-mode-alist (cons '("\\.sml$" . sml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.sig$" . sml-mode) auto-mode-alist))
 (add-hook 'sml-mode-hook
@@ -2697,6 +2716,13 @@ There exists two workarounds for this bug:
 ;;                               FUNCTIONALITY
 ;;
 ;;______________________________________________________________________________
+
+(defun reindent-buffer ()
+  "indent whole buffer"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
 
 (defun switch-to-minibuffer-window ()
   "switch to minibuffer window (if active)"

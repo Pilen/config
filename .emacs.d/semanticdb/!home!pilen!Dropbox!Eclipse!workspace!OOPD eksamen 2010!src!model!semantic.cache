@@ -13,7 +13,7 @@
     :pointmax 3145
     :fsize 3147
     :lastmodtime '(19769 34981)
-    :unmatched-syntax '((BRACE_BLOCK 274 . 3144) (IDENTIFIER 264 . 273) (PUBLIC 252 . 258) (IDENTIFIER 259 . 263))
+    :unmatched-syntax 'nil
     )
    (semanticdb-table "Position.java"
     :major-mode 'java-mode

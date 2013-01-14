@@ -1,0 +1,219 @@
+;; Object config/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "config/"
+  :tables (list 
+   (semanticdb-table "Configuration.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model.config" package nil nil [1 22])
+            ("java.util.Collection" include nil nil [24 52])
+            ("model.Position" include nil nil [53 75])
+            ("Configuration" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("scaleFactor" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [428 440])
+                    ("height" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [420 427])
+                    ("width" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [401 419])
+                    ("Configuration" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("width" variable (:type "int") (reparse-symbol formal_parameters) [1002 1011])
+                            ("height" variable (:type "int") (reparse-symbol formal_parameters) [1013 1023])
+                            ("scaleFactor" variable (:type "int") (reparse-symbol formal_parameters) [1025 1040]))                          )
+                        (reparse-symbol class_member_declaration) [981 1386])
+                    ("getWidth" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1520 1575])
+                    ("getHeight" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1715 1772])
+                    ("getScaleFactor" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1898 1965])
+                    ("getLineSegments" function (:constructor-flag t) (reparse-symbol class_member_declaration) [2124 2182])
+                    ("getStartPositions" function (:constructor-flag t) (reparse-symbol class_member_declaration) [2359 2421]))                  
+                :type "class")
+                nil [368 2423]))          
+    :file "Configuration.java"
+    :pointmax 2424
+    :fsize 2424
+    :lastmodtime '(19764 18917)
+    :unmatched-syntax '((GT 2357 . 2358) (PUBLIC 2331 . 2337) (LT 2348 . 2349) (GT 2122 . 2123) (PUBLIC 2093 . 2099) (LT 2110 . 2111) (GT 1149 . 1150) (LT 1140 . 1141) (COMMA 1103 . 1104) (GT 1089 . 1090) (IDENTIFIER 1067 . 1077) (LT 1077 . 1078) (SEMICOLON 538 . 539) (GT 522 . 523) (LT 513 . 514) (SEMICOLON 489 . 490) (GT 475 . 476) (PRIVATE 445 . 452) (LT 463 . 464))
+    )
+   (semanticdb-table "IParser.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model.config" package nil nil [1 22])
+            ("IParser" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("getConfiguration" function
+                       (:throws ("ParserException")
+                        :typemodifiers ("public")
+                        :type "Configuration")
+                        (reparse-symbol interface_member_declaration) [401 464]))                  
+                :type "interface")
+                nil [166 466]))          
+    :file "IParser.java"
+    :pointmax 467
+    :fsize 467
+    :lastmodtime '(19764 18917)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "LineSegment.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model.config" package nil nil [1 22])
+            ("model.Position" include nil nil [24 46])
+            ("java.util.Collection" include nil nil [47 75])
+            ("java.util.ArrayList" include nil nil [76 103])
+            ("LineSegment" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("p2" variable
+                       (:typemodifiers ("private")
+                        :type "Position")
+                        (reparse-symbol class_member_declaration) [290 293])
+                    ("p1" variable
+                       (:typemodifiers ("private")
+                        :type "Position")
+                        (reparse-symbol class_member_declaration) [269 289])
+                    ("LineSegment" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("p1" variable (:type "Position") (reparse-symbol formal_parameters) [512 523])
+                            ("p2" variable (:type "Position") (reparse-symbol formal_parameters) [525 536]))                          )
+                        (reparse-symbol class_member_declaration) [493 593])
+                    ("LineSegment" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("x1" variable (:type "int") (reparse-symbol formal_parameters) [1012 1018])
+                            ("y1" variable (:type "int") (reparse-symbol formal_parameters) [1020 1026])
+                            ("x2" variable (:type "int") (reparse-symbol formal_parameters) [1028 1034])
+                            ("y2" variable (:type "int") (reparse-symbol formal_parameters) [1036 1042]))                          )
+                        (reparse-symbol class_member_declaration) [993 1113])
+                    ("getP1" function
+                       (:typemodifiers ("public")
+                        :type "Position")
+                        (reparse-symbol class_member_declaration) [1218 1272])
+                    ("getP2" function
+                       (:typemodifiers ("public")
+                        :type "Position")
+                        (reparse-symbol class_member_declaration) [1379 1433])
+                    ("getPositions" function (:constructor-flag t) (reparse-symbol class_member_declaration) [1795 3416]))                  
+                :type "class")
+                nil [238 3418]))          
+    :file "LineSegment.java"
+    :pointmax 3419
+    :fsize 3419
+    :lastmodtime '(19764 18917)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "TextParser.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model.config" package nil nil [1 22])
+            ("java.io.File" include nil nil [24 44])
+            ("java.io.FileNotFoundException" include nil nil [45 82])
+            ("java.util.ArrayList" include nil nil [83 110])
+            ("java.util.Scanner" include nil nil [111 136])
+            ("java.util.InputMismatchException" include nil nil [137 177])
+            ("model.Position" include nil nil [179 201])
+            ("TextParser" type
+               (:typemodifiers ("public")
+                :interfaces ("IParser")
+                :members 
+                  ( ("file" variable
+                       (:typemodifiers ("private")
+                        :type "File")
+                        (reparse-symbol class_member_declaration) [419 437])
+                    ("scaleFactor" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [469 481])
+                    ("height" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [461 468])
+                    ("width" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [442 460])
+                    ("configuration" variable
+                       (:typemodifiers ("private")
+                        :type "Configuration")
+                        (reparse-symbol class_member_declaration) [648 691])
+                    ("TextParser" function
+                       (:constructor-flag t
+                        :throws ("FileNotFoundException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("file" variable (:type "File") (reparse-symbol formal_parameters) [914 923]))                          )
+                        (reparse-symbol class_member_declaration) [896 1111])
+                    ("TextParser" function
+                       (:constructor-flag t
+                        :throws ("FileNotFoundException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("fileName" variable (:type "String") (reparse-symbol formal_parameters) [1369 1384]))                          )
+                        (reparse-symbol class_member_declaration) [1351 1460])
+                    ("getConfiguration" function
+                       (:throws ("ParserException")
+                        :typemodifiers ("public")
+                        :type "Configuration")
+                        (reparse-symbol class_member_declaration) [1548 1781])
+                    ("parse" function
+                       (:throws ("ParserException")
+                        :typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1850 3512])
+                    ("validatePosition" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("position" variable (:type "Position") (reparse-symbol formal_parameters) [3779 3796]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [3746 3933])
+                    ("scanLineSegment" function
+                       (:throws ("ParserException")
+                        :typemodifiers ("private")
+                        :arguments 
+                          ( ("scanner" variable (:type "Scanner") (reparse-symbol formal_parameters) [4208 4223])
+                            ("line" variable (:type "int") (reparse-symbol formal_parameters) [4225 4233]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4179 5004])
+                    ("scanStartPosition" function
+                       (:throws ("ParserException")
+                        :typemodifiers ("private")
+                        :arguments 
+                          ( ("scanner" variable (:type "Scanner") (reparse-symbol formal_parameters) [5277 5292])
+                            ("line" variable (:type "int") (reparse-symbol formal_parameters) [5294 5302]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [5246 5930]))                  
+                :type "class")
+                nil [370 5932]))          
+    :file "TextParser.java"
+    :pointmax 5933
+    :fsize 5935
+    :lastmodtime '(19769 14843)
+    :unmatched-syntax '((SEMICOLON 637 . 638) (PAREN_BLOCK 635 . 637) (GT 634 . 635) (LT 625 . 626) (NEW 612 . 615) (EQ 610 . 611) (GT 592 . 593) (LT 583 . 584) (SEMICOLON 560 . 561) (PAREN_BLOCK 558 . 560) (GT 557 . 558) (LT 545 . 546) (NEW 532 . 535) (EQ 530 . 531) (GT 515 . 516) (PRIVATE 486 . 493) (LT 503 . 504))
+    )
+   )
+  :file "!home!pilen!Dropbox!Eclipse!workspace!OOPD eksamen 2010!src!model!config!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.0"
+  )

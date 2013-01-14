@@ -472,7 +472,7 @@ install the memoized function over the original function."
                                           'local-map (make-mode-line-mouse-map
                                                       'mouse-1 'mode-line-widen)))))
 (defpowerline status      "%s")
-(defpowerline global      global-mode-string)
+(defpowerline global      global-mode-string4)
 (defpowerline emacsclient mode-line-client)
 
 (defpowerline vc          (when (and (buffer-file-name (current-buffer))

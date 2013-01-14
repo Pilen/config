@@ -2,145 +2,165 @@
 ;; SEMANTICDB Tags save file
 (semanticdb-project-database-file "model/"
   :tables (list 
-   (semanticdb-table "direction.py"
+   (semanticdb-table "strategyInterface.py"
     :major-mode 'python-mode
     :tags 
-        '( ("print" code nil nil [1 18])
-            ("random" include nil nil [20 33])
-            ("Direction" type
-               (:members 
-                  ( ("opposite" function (:arguments 
-                      ( ("direction" variable nil (reparse-symbol function_parameters) [123 132]))                      ) (reparse-symbol indented_block_body) [110 478])
-                    ("left" function (:arguments 
-                      ( ("direction" variable nil (reparse-symbol function_parameters) [492 501]))                      ) (reparse-symbol indented_block_body) [483 871])
-                    ("right" function (:arguments 
-                      ( ("direction" variable nil (reparse-symbol function_parameters) [886 895]))                      ) (reparse-symbol indented_block_body) [876 1267])
-                    ("random" function nil (reparse-symbol indented_block_body) [1272 1421])
-                    ("shuffled" function nil (reparse-symbol indented_block_body) [1426 1633])
-                    ("pick" function nil (reparse-symbol indented_block_body) [1638 1663]))                  
-                :type "class")
-                nil [87 1663])
-            ("north" variable nil nil [1666 1685])
-            ("east" variable nil nil [1686 1704])
-            ("south" variable nil nil [1705 1724])
-            ("west" variable nil nil [1725 1743])
-            ("directions" variable nil nil [1744 1783])
-            ("West" type
+        '( ("abstract" include nil nil [1 16])
+            ("Board" type
                (:members 
                   ( ("__init__" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [1784 1784]))                      ) (reparse-symbol indented_block_body) [1784 1784]))                  
+                      ( ("self" variable nil (reparse-symbol function_parameters) [50 54])
+                        ("board" variable nil (reparse-symbol function_parameters) [56 61])
+                        ("height" variable nil (reparse-symbol function_parameters) [63 69])
+                        ("width" variable nil (reparse-symbol function_parameters) [71 76]))                      ) (reparse-symbol indented_block_body) [37 331])
+                    ("isOccupied" function (:arguments 
+                      ( ("self" variable nil (reparse-symbol function_parameters) [350 354])
+                        ("position" variable nil (reparse-symbol function_parameters) [356 364]))                      ) (reparse-symbol indented_block_body) [335 466])
+                    ("containsPosition" function (:arguments 
+                      ( ("self" variable nil (reparse-symbol function_parameters) [491 495])
+                        ("position" variable nil (reparse-symbol function_parameters) [497 505]))                      ) (reparse-symbol indented_block_body) [470 609]))                  
                 :type "class")
-                nil [1784 1784]))          
-    :file "direction.py"
-    :pointmax 1906
-    :fsize 1784
-    :lastmodtime '(20686 17786)
+                nil [18 609])
+            ("Bike" type
+               (:members 
+                  ( ("__init__" function (:arguments 
+                      ( ("self" variable nil (reparse-symbol function_parameters) [641 645])
+                        ("name" variable nil (reparse-symbol function_parameters) [664 668])
+                        ("color" variable nil (reparse-symbol function_parameters) [687 692])
+                        ("position" variable nil (reparse-symbol function_parameters) [711 719])
+                        ("direction" variable nil (reparse-symbol function_parameters) [738 747])
+                        ("previousPosition" variable nil (reparse-symbol function_parameters) [766 782])
+                        ("score" variable nil (reparse-symbol function_parameters) [801 806]))                      ) (reparse-symbol indented_block_body) [628 1077]))                  
+                :type "class")
+                nil [610 1077])
+            ("Strategy" type
+               (:members (("" "" All strategies should inherit this class "" "" code nil (reparse-symbol indented_block_body) [1100 1156]) ("name" function (:arguments (("self" variable nil (reparse-symbol function_parameters) [1170 1174]))) (reparse-symbol indented_block_body) [1161 1249]) ("nextMove" function (:arguments (("self" variable nil (reparse-symbol function_parameters) [1266 1270]) ("board" variable nil (reparse-symbol function_parameters) [1272 1277]) ("bikes" variable nil (reparse-symbol function_parameters) [1279 1284]) ("bike" variable nil (reparse-symbol function_parameters) [1286 1290]))) (reparse-symbol indented_block_body) [1253 1393]))
+                :type "class")
+                nil [1078 1393]))          
+    :file "strategyInterface.py"
+    :pointmax 1393
+    :fsize 1392
+    :lastmodtime '(20702 29093)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "position.py"
     :major-mode 'python-mode
     :tags 
-        '( ("direction" include nil nil [1 17])
+        '( ("model.direction" include nil nil [1 23])
             ("Position" type
                (:members 
                   ( ("__init__" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [54 58])
-                        ("x" variable nil (reparse-symbol function_parameters) [60 61])
-                        ("y" variable nil (reparse-symbol function_parameters) [63 64]))                      ) (reparse-symbol indented_block_body) [41 254])
+                      ( ("self" variable nil (reparse-symbol function_parameters) [60 64])
+                        ("x" variable nil (reparse-symbol function_parameters) [66 67])
+                        ("y" variable nil (reparse-symbol function_parameters) [69 70]))                      ) (reparse-symbol indented_block_body) [47 212])
                     ("getNeighbour" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [276 280]))                      ) (reparse-symbol indented_block_body) [259 819])
+                      ( ("self" variable nil (reparse-symbol function_parameters) [234 238])
+                        ("direction" variable nil (reparse-symbol function_parameters) [240 249]))                      ) (reparse-symbol indented_block_body) [217 568])
                     ("getNeighbours" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [842 846]))                      ) (reparse-symbol indented_block_body) [824 1197])
+                      ( ("self" variable nil (reparse-symbol function_parameters) [591 595]))                      ) (reparse-symbol indented_block_body) [573 658])
                     ("__eq__" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [1213 1217])
-                        ("other" variable nil (reparse-symbol function_parameters) [1219 1224]))                      ) (reparse-symbol indented_block_body) [1202 1487])
+                      ( ("self" variable nil (reparse-symbol function_parameters) [674 678])
+                        ("other" variable nil (reparse-symbol function_parameters) [680 685]))                      ) (reparse-symbol indented_block_body) [663 743])
                     ("__repr__" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [1505 1509]))                      ) (reparse-symbol indented_block_body) [1492 1693]))                  
+                      ( ("self" variable nil (reparse-symbol function_parameters) [761 765]))                      ) (reparse-symbol indented_block_body) [748 809]))                  
                 :type "class")
-                nil [19 1693]))          
+                nil [25 809]))          
     :file "position.py"
-    :pointmax 697
-    :fsize 1692
-    :lastmodtime '(20686 10680)
-    :unmatched-syntax 'nil
+    :pointmax 809
+    :fsize 808
+    :lastmodtime '(20707 28735)
+    :unmatched-syntax '(($EOI 809 . 809))
     )
-   (semanticdb-table "board.py"
+   (semanticdb-table "direction.py"
     :major-mode 'python-mode
     :tags 
-        '( ("Board" type
+        '( ("random" include nil nil [1 14])
+            ("Direction" type
                (:members 
-                  ( (""""
-    A class for modeling the board of a Tron game.
-    The board is of size getWidth() x getHeight() and has some obstacles on it.
-    You can check if there's an obstacle at position x,y by calling isOccupied(x,y).
-    """" code nil (reparse-symbol indented_block_body) [21 248])
-                    ("__init__" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [267 271])
-                        ("width" variable nil (reparse-symbol function_parameters) [273 278])
-                        ("height" variable nil (reparse-symbol function_parameters) [280 286]))                      ) (reparse-symbol indented_block_body) [254 615])
-                    ("occupyField" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [636 640])
-                        ("position" variable nil (reparse-symbol function_parameters) [642 650]))                      ) (reparse-symbol indented_block_body) [620 884])
-                    ("isOccupied" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [904 908])
-                        ("position" variable nil (reparse-symbol function_parameters) [910 918]))                      ) (reparse-symbol indented_block_body) [889 1223])
-                    ("containsPosition" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [1250 1254])
-                        ("position" variable nil (reparse-symbol function_parameters) [1256 1264]))                      ) (reparse-symbol indented_block_body) [1229 1577])
-                    ("reset" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [1592 1596]))                      ) (reparse-symbol indented_block_body) [1582 1612]))                  
+                  ( ("__init__" function (:arguments 
+                      ( ("self" variable nil (reparse-symbol function_parameters) [52 56])
+                        ("direction" variable nil (reparse-symbol function_parameters) [58 67]))                      ) (reparse-symbol indented_block_body) [39 185])
+                    ("__eq__" function (:arguments 
+                      ( ("self" variable nil (reparse-symbol function_parameters) [201 205])
+                        ("other" variable nil (reparse-symbol function_parameters) [207 212]))                      ) (reparse-symbol indented_block_body) [190 264]))                  
                 :type "class")
-                nil [2 1612]))          
-    :file "board.py"
-    :pointmax 1608
-    :fsize 1611
-    :lastmodtime '(20686 10643)
-    :unmatched-syntax 'nil
+                nil [16 264])
+            ("north" variable nil nil [265 291])
+            ("east" variable nil nil [292 316])
+            ("south" variable nil nil [317 343])
+            ("west" variable nil nil [344 368])
+            ("north" variable nil nil [369 391])
+            ("east" variable nil nil [392 412])
+            ("south" variable nil nil [413 435])
+            ("west" variable nil nil [436 456])
+            ("north" variable nil nil [458 475])
+            ("east" variable nil nil [476 493])
+            ("south" variable nil nil [494 511])
+            ("west" variable nil nil [512 529])
+            ("north" variable nil nil [531 549])
+            ("east" variable nil nil [550 568])
+            ("south" variable nil nil [569 587])
+            ("west" variable nil nil [588 606])
+            ("directions" variable nil nil [608 647])
+            ("random" function nil nil [649 707])
+            ("shuffled" function nil nil [708 768])
+            ("pick" function (:arguments 
+              ( ("directions" variable nil (reparse-symbol function_parameters) [778 788]))              ) nil [769 850]))          
+    :file "direction.py"
+    :pointmax 850
+    :fsize 849
+    :lastmodtime '(20702 28227)
+    :unmatched-syntax '((DEF 769 . 772) ($EOI 790 . 790) (DEF 769 . 772) ($EOI 789 . 789) (DEF 708 . 711) ($EOI 723 . 723) (DEF 708 . 711) ($EOI 719 . 719))
     )
    (semanticdb-table "game.py"
     :major-mode 'python-mode
     :tags 
-        '( ("Game" type
-               (:members 
-                  ( ("__init__" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [33 37])
-                        ("board" variable nil (reparse-symbol function_parameters) [39 44])
-                        ("players" variable nil (reparse-symbol function_parameters) [46 53]))                      ) (reparse-symbol indented_block_body) [20 281])
-                    ("gameOver" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [299 303]))                      ) (reparse-symbol indented_block_body) [286 584])
-                    ("isOccupied" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [604 608])
-                        ("position" variable nil (reparse-symbol function_parameters) [610 618]))                      ) (reparse-symbol indented_block_body) [589 868])
-                    ("getPlayerPositions" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [896 900]))                      ) (reparse-symbol indented_block_body) [873 1135]))                  
-                :type "class")
-                nil [2 1135]))          
+        '( ("direction" include nil nil [1 17])
+            ("loop" function (:arguments 
+              ( ("board" variable nil (reparse-symbol function_parameters) [28 33])
+                ("players" variable nil (reparse-symbol function_parameters) [35 42]))              ) nil [19 436]))          
     :file "game.py"
-    :pointmax 1135
-    :fsize 1134
-    :lastmodtime '(20686 10956)
-    :unmatched-syntax '((NAME 626 . 634) ($EOI 878 . 878))
+    :pointmax 436
+    :fsize 435
+    :lastmodtime '(20702 29486)
+    :unmatched-syntax '((IF 420 . 422) (NEWLINE 435 . 436))
     )
-   (semanticdb-table "gamemanager.py"
+   (semanticdb-table "config.py"
     :major-mode 'python-mode
     :tags 
-        '( ("direction" include nil nil [1 17])
-            ("game" include nil nil [18 29])
-            ("GameManager" type
+        '( ("model.position" include nil nil [1 41])
+            ("Config" type
                (:members 
                   ( ("__init__" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [69 73])
-                        ("config" variable nil (reparse-symbol function_parameters) [75 81])
-                        ("players" variable nil (reparse-symbol function_parameters) [83 90]))                      ) (reparse-symbol indented_block_body) [56 585])
-                    ("takeTurn" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [603 607]))                      ) (reparse-symbol indented_block_body) [590 1536]))                  
+                      ( ("self" variable nil (reparse-symbol function_parameters) [118 122])
+                        ("filename" variable nil (reparse-symbol function_parameters) [124 132]))                      ) (reparse-symbol indented_block_body) [105 783]))                  
                 :type "class")
-                nil [31 1536]))          
-    :file "gamemanager.py"
-    :pointmax 1536
-    :fsize 1535
-    :lastmodtime '(20686 17774)
+                nil [85 783]))          
+    :file "config.py"
+    :pointmax 801
+    :fsize 782
+    :lastmodtime '(20707 29038)
     :unmatched-syntax 'nil
+    )
+   (semanticdb-table "linesegment.py"
+    :major-mode 'python-mode
+    :tags 
+        '( ("model.position" include nil nil [1 22])
+            ("LineSegment" type
+               (:members 
+                  ( ("__init__" function (:arguments 
+                      ( ("self" variable nil (reparse-symbol function_parameters) [62 66])
+                        ("p1" variable nil (reparse-symbol function_parameters) [68 70])
+                        ("p2" variable nil (reparse-symbol function_parameters) [72 74]))                      ) (reparse-symbol indented_block_body) [49 119])
+                    ("getPositions" function (:arguments 
+                      ( ("self" variable nil (reparse-symbol function_parameters) [141 145]))                      ) (reparse-symbol indented_block_body) [124 1238]))                  
+                :type "class")
+                nil [24 1238]))          
+    :file "linesegment.py"
+    :pointmax 1238
+    :fsize 1237
+    :lastmodtime '(20707 28771)
+    :unmatched-syntax '((NAME 837 . 842) (IF 847 . 849) (ELSE 857 . 861) ($EOI 1238 . 1238) (NAME 831 . 836) (IF 841 . 843) (ELSE 851 . 855) (NAME 831 . 836) (IF 841 . 843) (ELSE 851 . 855) (NAME 814 . 819) (IF 824 . 826) (ELSE 834 . 838))
     )
    )
   :file "!home!pilen!code!small!tron!model!semantic.cache"
