@@ -1,7 +1,7 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
 ;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-tog| |shell-rplc|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
-;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |          | |          |          |tex-clsenv|prev-clear||linum     |autoindent|          |zoomable  |
+;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |narrow-fun| |          |          |tex-clsenv|prev-clear||linum     |autoindent|          |zoomable  |
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
@@ -77,6 +77,7 @@
 ;; M-SPC        fixup-whitespace
 
 ;; C-s C-w      Search for word at point
+;; C-s C-s      C-s repeats the last search term when searching
 
 ;; C-M-Space    Mark-sexp
 
@@ -366,6 +367,7 @@
 (global-set-key (kbd "H-<return>") 'ido-switch-buffer)
 ;(global-set-key (kbd "H-<return>") 'idobuffer)
 (global-set-key (kbd "S-<return>") 'new-indented-line)
+;(global-set-key (kbd "S-<return>>") 'reindent-then-newline-and-indent)
 (global-set-key (kbd "H-<backspace>") 'join-line)
 
 ;; (global-set-key (kbd "H-,") 'tabbar-backward-renew)
@@ -469,6 +471,7 @@
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "<f7>") 'toggle-window-dedicated)
 (global-set-key (kbd "<f8>") 'narrow-toggle)
+(global-set-key (kbd "S-<f8>") 'narrow-to-defun)
 (global-set-key (kbd "<f9>") 'shell-command-on-region-replace)
 (global-set-key (kbd "<f10>") 'reftex-toc)
 (global-set-key (kbd "<f11>") 'LaTeX-environment)
@@ -505,7 +508,7 @@
 (add-hook 'LaTeX-mode-hook   (lambda () (define-key TeX-mode-map     (kbd "H-g") 'run-latex)))
 (add-hook 'haskell-mode-hook (lambda () (define-key haskell-mode-map (kbd "H-g") 'inferior-haskell-load-file)))
 (add-hook 'maple-mode-hook   (lambda () (define-key maple-mode-map   (kbd "H-g") 'maple-buffer)))
-
+(add-hook 'sml-mode-hook     (lambda () (define-key sml-mode-map     (kbd "H-g") 'sml-prog-proc-load-file)))
 
 
 
@@ -680,6 +683,8 @@
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
 
+(require 'fuzzy)
+
 (require 'cafeen)
 
 (add-hook 'erlang-shell-mode-hook 'next-error-follow-minor-mode)
@@ -724,6 +729,12 @@
 ;; (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
 ;; (global-fci-mode 1)
 
+
+(require 'column-marker)
+(column-marker-1 fill-column)
+(set-face-attribute 'column-marker-1 nil
+                    :background "gray44")
+(column-marker-1 fill-column)
 ;;______________________________________________________________________________
 ;;Startup
 ;;______________________________________________________________________________
@@ -845,6 +856,7 @@
 ;;______________________________________________________________________________
 ;;MODELINE
 ;;______________________________________________________________________________
+(require 'powerline)
 (defvar my-mode-line-buffer-line-count nil)
 (make-variable-buffer-local 'my-mode-line-buffer-line-count)
 
@@ -884,6 +896,19 @@
      (:foreground "chartreuse")))
   "Face used to display the time in the mode line.")
 
+(make-face 'mode-line)
+(set-face-attribute 'mode-line nil
+                    :foreground "black"
+                    :background "slate gray"
+                    :box nil)
+(make-face 'mode-line-buffer-id)
+(set-face-attribute 'mode-line-buffer-id nil
+                    :weight 'bold)
+(make-face 'mode-line-long-line)
+(set-face-attribute 'mode-line-long-line nil
+                    :foreground "black"
+                    :background "red")
+
 (setq-default mode-line-format
               '(
                 "%e"
@@ -893,9 +918,16 @@
                 mode-line-modified
                 " "
                 mode-line-buffer-identification
+
                 mode-line-position
+                (:eval (let ((length (save-excursion
+                                       (end-of-line)
+                                       (current-column))))
+                         (when (> length fill-column)
+                           (propertize (concat "" (int-to-string length)) 'face 'mode-line-long-line))))
                 display-time-string
                 battery-mode-line-string
+                (:eval (powerline-percent-xpm 'text nil powerline-color1))
                 (which-func-mode
                  ("" which-func-format
                   #(" " 0 1
@@ -996,7 +1028,48 @@
 ;;Rainbow delimiters
 ;;______________________________________________________________________________
 (require 'rainbow-delimiters)
-;;(setq-default frame-background-mode 'dark)
+(setq-default frame-background-mode 'dark)
+
+;; (set-face-attribute
+;;  'rainbow-delimiters-depth-1-face nil
+;;  :foreground "honeydew1")
+
+;; (set-face-attribute
+;;  'rainbow-delimiters-depth-2-face nil
+;;  :foreground "LightSkyBlue1")
+
+;; (set-face-attribute
+;;  'rainbow-delimiters-depth-3-face nil
+;;  :foreground "DarkSlateGray1")
+
+;; (set-face-attribute
+;;  'rainbow-delimiters-depth-4-face nil
+;;  :foreground "OliveDrab1")
+
+;; (set-face-attribute
+;;  'rainbow-delimiters-depth-5-face nil
+;;  :foreground "SteelBlue1")
+
+;; (set-face-attribute
+;;  'rainbow-delimiters-depth-6-face nil
+;;  :foreground "chartreuse1")
+
+;; (set-face-attribute
+;;  'rainbow-delimiters-depth-7-face nil
+;;  :foreground "MediumOrchid2")
+
+;; (set-face-attribute
+;;  'rainbow-delimiters-depth-8-face nil
+;;  :foreground "tan1")
+
+;; (set-face-attribute
+;;  'rainbow-delimiters-depth-9-face nil
+;;  :foreground "magenta1")
+
+;; (set-face-attribute
+;;  'rainbow-delimiters-unmatched-face nil
+;;  :foreground "red")
+
 
 (set-face-attribute
  'rainbow-delimiters-depth-1-face nil
@@ -1004,23 +1077,23 @@
 
 (set-face-attribute
  'rainbow-delimiters-depth-2-face nil
- :foreground "LightSkyBlue1")
-
-(set-face-attribute
- 'rainbow-delimiters-depth-3-face nil
  :foreground "DarkSlateGray1")
 
 (set-face-attribute
+ 'rainbow-delimiters-depth-3-face nil
+ :foreground "DeepSkyBlue3")
+
+(set-face-attribute
  'rainbow-delimiters-depth-4-face nil
- :foreground "OliveDrab1")
+ :foreground "green")
 
 (set-face-attribute
  'rainbow-delimiters-depth-5-face nil
- :foreground "SteelBlue1")
+ :foreground "pink4")
 
 (set-face-attribute
  'rainbow-delimiters-depth-6-face nil
- :foreground "chartreuse1")
+ :foreground "goldenrod2")
 
 (set-face-attribute
  'rainbow-delimiters-depth-7-face nil
@@ -1028,16 +1101,17 @@
 
 (set-face-attribute
  'rainbow-delimiters-depth-8-face nil
- :foreground "tan1")
+ :foreground "purple4")
 
 (set-face-attribute
  'rainbow-delimiters-depth-9-face nil
- :foreground "magenta1")
+ :foreground "gray50")
 
 (set-face-attribute
  'rainbow-delimiters-unmatched-face nil
  :foreground "red")
-                                        ;(((((((((())))))))))
+
+;((((((((((t))))))))))
 
 ;(rainbow-delimiters-mode 1)
 ;;(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
@@ -1054,7 +1128,7 @@
 ;(set-face-attribute 'show-paren-mismatch-face nil
 ;                    :weight 'bold :underline t :overline nil : slant 'normal)
 
-
+;(require 'highlight-parentheses)
 
 ;;______________________________________________________________________________
 ;;Console
@@ -1162,7 +1236,7 @@
 ;;(set-face-attribute 'whitespace-line nil :background nil)
 ;(set-face-foreground 'whitespace-line nil)
 (setq whitespace-style '(face tabs trailing lines-tail)) ;;removed: lines-tail, empty
-(global-whitespace-mode t)
+;;(global-whitespace-mode t)
 
 ;;show-trailing-whitespace is incompatible with fci-mode
 ;;(setq-default show-trailing-whitespace t)
@@ -1890,6 +1964,8 @@ There exists two workarounds for this bug:
                 (mode . java-mode))
                ("Haskell"
                 (mode . haskell-mode))
+               ("SML"
+                (mode . sml-mode))
                ("Erlang"
                 (mode . erlang-mode))
                ("Web"

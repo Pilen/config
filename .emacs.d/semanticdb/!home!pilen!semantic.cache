@@ -2,7 +2,25 @@
 ;; SEMANTICDB Tags save file
 (semanticdb-project-database-file "pilen/"
   :tables (list 
+   (semanticdb-table "color.py"
+    :major-mode 'python-mode
+    :tags 
+        '( ("time" include nil nil [1 12])
+            ("os" include nil nil [13 22])
+            ("CODE" variable nil nil [24 810])
+            ("termcode" function (:arguments 
+              ( ("num" variable nil (reparse-symbol function_parameters) [825 828]))              ) nil [812 857])
+            ("colorstr" function (:arguments 
+              ( ("astr" variable nil (reparse-symbol function_parameters) [871 875])
+                ("color" variable nil (reparse-symbol function_parameters) [876 881]))              ) nil [858 945])
+            ("if" code nil nil [946 1288]))          
+    :file "color.py"
+    :pointmax 1288
+    :fsize 1287
+    :lastmodtime '(20668 48535)
+    :unmatched-syntax 'nil
     )
+   )
   :file "!home!pilen!semantic.cache"
   :semantic-tag-version "2.0"
   :semanticdb-version "2.0"

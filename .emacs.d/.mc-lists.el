@@ -11,13 +11,13 @@
         python-backspace
         toggle-letter-case
         yank-or-pop
+        TeX-insert-sub-or-superscript
+        maple-untab
+        new-indented-line
+        pager-row-down
         ))
 
 (setq mc/cmds-to-run-once
       '(
-        TeX-insert-sub-or-superscript
         iedit-mode
-        maple-untab
-        new-indented-line
-        pager-row-down
         ))

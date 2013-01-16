@@ -18,23 +18,25 @@
 ;;        powerline tries to output something unexpected, it won't
 ;;        just fail and flail-barf.  (JonathanArkell)
 ;; v1.2 - Fixed the Guard Clause to not just sit there and message like mad
-;;        When a list is encountered, it is interpreted as a mode line. Fixes 
-;;        problems with shell mode and nXhtml mode. 
+;;        When a list is encountered, it is interpreted as a mode line. Fixes
+;;        problems with shell mode and nXhtml mode.
 
 ;;; Code:
 
 (defvar powerline-color1)
 (defvar powerline-color2)
 
+(setq powerline-xpm-height 12)
+(setq powerline-xpm-width 10)
 
 (setq powerline-color1 "grey22")
 (setq powerline-color2 "grey40")
 
-(set-face-attribute 'mode-line nil
-                    :background "OliveDrab3"
-                    :box nil)
-(set-face-attribute 'mode-line-inactive nil
-                    :box nil)
+;; (set-face-attribute 'mode-line nil
+;;                     :background "OliveDrab3"
+;;                     :box nil)
+;; (set-face-attribute 'mode-line-inactive nil
+;;                     :box nil)
 
 (scroll-bar-mode -1)
 
@@ -214,7 +216,8 @@ static char * %s[] = {
                  (round (* 17 (/ (float we) (float pmax))))))
          (o    nil)
          (i    0))
-    (while (< i 18)
+    ;; (while (< i 18)
+    (while (< i powerline-xpm-height)
       (setq o (cons
                (if (and (<= fs i)
                         (<= i fe))
@@ -388,7 +391,7 @@ install the memoized function over the original function."
      (powerline-make side
                      (let ((result ,string))
 					   (cond ((listp result)
-							  (format-mode-line result)) 
+							  (format-mode-line result))
 							 ((not (or (stringp result)
 									   (null result)))
 							  (progn
@@ -489,8 +492,15 @@ install the memoized function over the original function."
                                           (widen)
                                           (setq pmax (point-max))
                                           (setq pmin (point-min)))
-                                        (percent-xpm pmax pmin we ws 15 color1 color2))))
-
+                                        ;; (percent-xpm pmax pmin we ws 15 color1 color2))))
+                                        (percent-xpm pmax pmin we ws powerline-xpm-width color1 color2))))
+(defun powerline-mode ()
+  (interactive)
+(set-face-attribute 'mode-line nil
+                    :background "OliveDrab3"
+                    :box nil)
+(set-face-attribute 'mode-line-inactive nil
+                    :box nil)
 (setq-default mode-line-format
               (list "%e"
                     '(:eval (concat
@@ -509,7 +519,7 @@ install the memoized function over the original function."
                              (powerline-column         'right       powerline-color1  )
                              (powerline-percent        'right  nil  powerline-color1  )
                              (powerline-percent-xpm    'text   nil  powerline-color1  )
-                             (powerline-make-text      "  "    nil  )))))
+                             (powerline-make-text      "  "    nil  ))))))
 
 
 
