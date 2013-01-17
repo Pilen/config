@@ -615,6 +615,7 @@
 ;(set-fringe-mode '(1 . 0))
 (set-fringe-mode '(0 . 0))
 
+(defalias 'el 'emacs-lisp-mode)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (setq eldoc-idle-delay 0)
 (require 'c-eldoc)
@@ -2508,6 +2509,12 @@ There exists two workarounds for this bug:
 (setq auto-mode-alist (cons '("\\.sig$" . sml-mode) auto-mode-alist))
 (add-hook 'sml-mode-hook
           (lambda() ;;; *** SML-mode Customization
+            (define-key inferior-sml-mode-map (kbd "<return>") (lambda ()
+                                                                 (interactive)
+                                                                 (end-of-line)
+                                                                 (insert ";")
+                                                                 (comint-send-input)))
+            (define-key inferior-sml-mode-map (kbd "S-<return>") 'comint-send-input)
             (setq sml-program-name "mosml")
             (setq sml-default-arg "-P full")
             (setq sml-indent-level 2)        ; conserve on horizontal space
@@ -2834,6 +2841,7 @@ There exists two workarounds for this bug:
       (if (get-buffer new-name)
           (message "A buffer named '%s' already exists!" new-name)
         (progn   (rename-file name new-name 1)   (rename-buffer new-name)        (set-visited-file-name new-name)        (set-buffer-modified-p nil))))))
+(defalias 'rfb 'rename-file-and-buffer)
 
 ;; Never understood why Emacs doesn't have this function, either.
 ;;

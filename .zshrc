@@ -21,7 +21,7 @@ promptinit
 
 export PATH="${PATH}:/opt/mosml/bin"
 export PATH=~/programs/osm/bin:$PATH
-export PATH=~/code:$PATH
+export PATH=~/code/scripts:$PATH
 autoload -U colors && colors
 
 #if [[$hostname = *joker*]]; then

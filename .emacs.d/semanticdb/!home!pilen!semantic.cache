@@ -20,6 +20,13 @@
     :lastmodtime '(20668 48535)
     :unmatched-syntax 'nil
     )
+   (semanticdb-table "fizzbuzz.py"
+    :major-mode 'python-mode
+    :tags nil
+    :file "fizzbuzz.py"
+    :pointmax 2
+    :unmatched-syntax '(($EOI 2 . 2))
+    )
    )
   :file "!home!pilen!semantic.cache"
   :semantic-tag-version "2.0"
