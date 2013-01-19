@@ -1,4 +1,4 @@
-;; -*- emacs-lisp -*- <13/01/17 03:33:41 /home/pilen/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <13/01/17 06:15:53 /home/pilen/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
@@ -25,4 +25,24 @@
   ("remote-decoding" "base64 -d -i")
   ("inline-compress" "gzip")
   ("inline-decompress" "gzip -d")
-  ("~root" "/root")))
+  ("~root" "/root"))
+ (["scpc" "caro" "192.168.1.178" nil]
+  ("uname" "Linux 3.6.11-1-ARCH")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/usr/sbin" "/usr/local/bin"))
+  ("remote-shell" "/bin/sh")
+  ("busybox" nil)
+  ("file-exists" "test -e")
+  ("~" "/home/caro")
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("readlink" "\\readlink")
+  ("stat" "\\stat")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 100)
+  ("local-encoding" base64-encode-region)
+  ("local-decoding" base64-decode-region)
+  ("remote-encoding" "base64")
+  ("remote-decoding" "base64 -d -i")))
