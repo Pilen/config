@@ -7,7 +7,7 @@
   :group 'external)
 
 (defcustom xpdfremote/xpdf-command
-  "xpdf -remote emacs-xpdfremote"
+  "xpdf -fullscreen -remote emacs-xpdfremote"
   "xpdf command, not currently used"
   :group 'xpdfremote
   :type 'string)

@@ -3,18 +3,19 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        TeX-insert-backslash
         back-to-indentation-or-beginning
         backward-kill-word-to-newline
         backward-word-to-newline
+        forward-kill-word-to-newline
         forward-word-to-newline
         indent-for-tab-command
-        python-backspace
-        toggle-letter-case
-        yank-or-pop
-        TeX-insert-sub-or-superscript
         maple-untab
         new-indented-line
         pager-row-down
+        python-backspace
+        toggle-letter-case
+        yank-or-pop
         ))
 
 (setq mc/cmds-to-run-once

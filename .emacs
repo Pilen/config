@@ -21,8 +21,8 @@
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
-;|                |expand-region |undo        |            |ace-jmp-wd-l|goto-last-ch|toggle-case |cancel      |isearch-forw|ahs-sym-bck |ahs-sym-fwd |query-replac|                               |
-;|                |contrct-region|redo        |            |ace-jmp-wd-g|idomenu     |caps-mode   |            |sprint      |ahs-def-bck |ahs-def-fwd |iedit       |                               |
+;|                |expand-region |undo        |            |ace-jmp-wd-l|goto-last-ch|toggle-case |            |isearch-forw|ahs-sym-bck |ahs-sym-fwd |query-replac|                               |
+;|                |contrct-region|            |            |ace-jmp-wd-g|            |caps-mode   |            |sprint      |ahs-def-bck |ahs-def-fwd |iedit       |                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
@@ -34,7 +34,7 @@
 ;;______________________________________________________________________________
 ;;
 ;;
-;;                                    TODO
+;π                                    TODO
 ;;
 ;;______________________________________________________________________________
 
@@ -50,14 +50,13 @@
 
 ;; windowmanager
 ;; xpdfremote
-;; selectioneditor, expand and decrease with chars, words, lines paragraphs
 ;; Pagefitted coding
 ;; Move by syllable. http://www.tug.org/docs/liang/ http://usuallyalex.wordpress.com/2009/06/15/detecting-syllables-programatically/
 
 ;;______________________________________________________________________________
 ;;
 ;;
-;;                                Keybindings
+;π                                Keybindings
 ;;
 ;;______________________________________________________________________________
 
@@ -99,7 +98,7 @@
 
 
 ;;______________________________________________________________________________
-;;UNBIND
+;π UNBIND
 ;;______________________________________________________________________________
 
 ;; ;; open keyboard shortcut image with F8 key
@@ -228,7 +227,7 @@
 
 
 ;;______________________________________________________________________________
-;;Global Bindings
+;π Global Bindings
 ;;______________________________________________________________________________
 
 ;;;; CURSOR MOVEMENTS
@@ -280,7 +279,7 @@
 ;(global-set-key (kbd "H-C") 'copy-all)
 ;(global-set-key (kbd "H-X") 'cut-all)
 ;; Undo and redo
-(global-set-key (kbd "H-Z") 'redo)
+;(global-set-key (kbd "H-Z") 'redo)
 (global-set-key (kbd "H-z") 'undo)
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "H-w") 'kill-ring-save)
@@ -351,7 +350,6 @@
 (global-set-key (kbd "H-C") 'ace-jump-char-global)
 
 ;(global-set-key (kbd "H-V") '(lambda () (interactive) (global-hl-line-mode) (my-global-auto-highlight-symbol-mode)))
-(global-set-key (kbd "H-x") 'ido-goto-symbol-or-line)
 (global-set-key (kbd "H-S-<return>") 'ido-goto-symbol-or-line)
 
 (global-set-key (kbd "H-SPC") 'hippie-expand)
@@ -508,7 +506,8 @@
 (add-hook 'LaTeX-mode-hook   (lambda () (define-key TeX-mode-map     (kbd "H-g") 'run-latex)))
 (add-hook 'haskell-mode-hook (lambda () (define-key haskell-mode-map (kbd "H-g") 'inferior-haskell-load-file)))
 (add-hook 'maple-mode-hook   (lambda () (define-key maple-mode-map   (kbd "H-g") 'maple-buffer)))
-(add-hook 'sml-mode-hook     (lambda () (define-key sml-mode-map     (kbd "H-g") 'sml-prog-proc-load-file)))
+(add-hook 'sml-mode-hook     (lambda () (define-key sml-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (call-interactively 'sml-prog-proc-load-file)))))
+(add-hook 'python-mode       (lambda () (define-key python-mode-map  (kbd "H-g") 'python-compile)))
 
 
 
@@ -522,12 +521,12 @@
 ;;______________________________________________________________________________
 ;;
 ;;
-;;                                  Settings
+;π                                  Settings
 ;;
 ;;______________________________________________________________________________
 
 ;;______________________________________________________________________________
-;;SETTINGS
+;π SETTINGS
 ;;______________________________________________________________________________
 (add-to-list 'load-path "~/.emacs.d/")
 (require 'cl)
@@ -704,7 +703,7 @@
 (semantic-mode 1)
 
 ;;______________________________________________________________________________
-;;Fun
+;π Fun
 ;;______________________________________________________________________________
 (load-file "~/.emacs.d/minesweeper-mode.el")
 (require 'reddit)
@@ -720,9 +719,9 @@
                               (define-key tetris-mode-map (kbd "y") 'tetris-rotate-prev)
                               (define-key tetris-mode-map (kbd "r") 'tetris-start-game)))
 
-;; ;;______________________________________________________________________________
-;; ;;Fill-column-indicator
-;; ;;______________________________________________________________________________
+;;______________________________________________________________________________
+;π Fill-column-indicator
+;;______________________________________________________________________________
 ;; (require 'fill-column-indicator)
 ;; (setq fci-rule-color "gray32")
 ;; (setq-default fill-column 80)
@@ -737,7 +736,7 @@
                     :background "gray44")
 (column-marker-1 fill-column)
 ;;______________________________________________________________________________
-;;Startup
+;π Startup
 ;;______________________________________________________________________________
 (setq inhibit-startup-message t)
 (defun display-startup-echo-area-message ()
@@ -750,7 +749,7 @@
     (kill-buffer "*Messages*"))
 
 ;;______________________________________________________________________________
-;;Clock
+;π Clock
 ;;______________________________________________________________________________
 
 (setq display-time-day-and-date t
@@ -771,7 +770,7 @@
 
 (display-time)
 ;;______________________________________________________________________________
-;;Font
+;π Font
 ;;______________________________________________________________________________
 ;(custom-set-faces
 ;; custom-set-faces was added by Custom.
@@ -792,7 +791,7 @@
  '(whitespace-line ((t (:inherit nil :background "gray20")))))
 
 ;;______________________________________________________________________________
-;;THEME
+;π THEME
 ;;______________________________________________________________________________
 ;(require 'color-theme)
 ;(require 'color-theme-tomorrow)
@@ -855,7 +854,7 @@
 
 
 ;;______________________________________________________________________________
-;;MODELINE
+;π MODELINE
 ;;______________________________________________________________________________
 (require 'powerline)
 (defvar my-mode-line-buffer-line-count nil)
@@ -909,6 +908,7 @@
 (set-face-attribute 'mode-line-long-line nil
                     :foreground "black"
                     :background "red")
+(setq-default mode-line-buffer-identification (propertized-buffer-identification "%b "))
 
 (setq-default mode-line-format
               '(
@@ -939,7 +939,7 @@
                 ))
 
 ;;______________________________________________________________________________
-;;SML-MODELINE
+;π SML-MODELINE
 ;;______________________________________________________________________________
 (require 'sml-modeline)
 (setq sml-modeline-len 16)
@@ -1071,7 +1071,7 @@
 (sml-modeline-mode 1)
 
 ;;______________________________________________________________________________
-;;Rainbow delimiters
+;π Rainbow delimiters
 ;;______________________________________________________________________________
 (require 'rainbow-delimiters)
 (setq-default frame-background-mode 'dark)
@@ -1177,13 +1177,13 @@
 ;(require 'highlight-parentheses)
 
 ;;______________________________________________________________________________
-;;Console
+;π Console
 ;;______________________________________________________________________________
 (xterm-mouse-mode t)
 
 
 ;;______________________________________________________________________________
-;;Indentation
+;π Indentation
 ;;______________________________________________________________________________
 (setq standard-indent 4)
 (setq-default indent-tabs-mode nil)
@@ -1219,12 +1219,12 @@
                   (setq indent-tabs-mode nil)
                   (setq c-indent-level 4))))
 ;;______________________________________________________________________________
-;;Auto-indent
+;π Auto-indent
 ;;______________________________________________________________________________
 (require 'auto-indent)
 
 ;;______________________________________________________________________________
-;;Auto-save
+;π Auto-save
 ;;______________________________________________________________________________
 (setq auto-save-default 1)
 (setq auto-save-visited-file-name nil) ;;Dont save to current file
@@ -1238,7 +1238,7 @@
 
 
 ;;______________________________________________________________________________
-;;Backups
+;π Backups
 ;;______________________________________________________________________________
 (setq make-backup-files t)
 (setq backup-by-copying t)
@@ -1247,7 +1247,7 @@
 (setq delete-old-versions t)
 
 ;;______________________________________________________________________________
-;;Buffers
+;π Buffers
 ;;______________________________________________________________________________
 (setq default-major-mode 'text-mode)
 
@@ -1256,7 +1256,7 @@
 
 
 ;;______________________________________________________________________________
-;;Cursor
+;π Cursor
 ;;______________________________________________________________________________
 (setq default-cursor-type 'box)
 (defadvice overwrite-mode (after overwrite-mode)
@@ -1267,7 +1267,7 @@
 
 
 ;;______________________________________________________________________________
-;;HIGHLIGHTS/WHITESPACE
+;π HIGHLIGHTS/WHITESPACE
 ;;______________________________________________________________________________
 
 ;(add-hook 'emacs-lisp-mode-hook
@@ -1314,7 +1314,7 @@ See `whitespace-line-column'."
   :group 'whitespace)
 
 ;;______________________________________________________________________________
-;;DTRT-INDENT
+;π DTRT-INDENT
 ;;______________________________________________________________________________
 ;(add-hook 'c-mode-common-hook
 ;          (lambda()
@@ -1323,19 +1323,19 @@ See `whitespace-line-column'."
 (require 'dtrt-indent)
 (dtrt-indent-mode t)
 ;;______________________________________________________________________________
-;;Save position between sessions
+;π Save position between sessions
 ;;______________________________________________________________________________
 (setq save-place-file "~/.emacs.d/saveplace")
 (setq-default save-place t)
 (require 'saveplace)
 
 ;;______________________________________________________________________________
-;;Iedit
+;π Iedit
 ;;______________________________________________________________________________
 (require 'iedit)
 
 ;;______________________________________________________________________________
-;;Windows
+;π Windows
 ;;______________________________________________________________________________
 ;;(setq split-width-threshold 0)
 (setq split-height-threshold nil)
@@ -1453,12 +1453,12 @@ See `whitespace-line-column'."
 ;;______________________________________________________________________________
 ;;
 ;;
-;;                                   MODES
+;π                                   MODES
 ;;
 ;;______________________________________________________________________________
 
 ;;______________________________________________________________________________
-;;ACE-JUMP
+;π ACE-JUMP
 ;;______________________________________________________________________________
 (require 'ace-jump-mode)
 ;; (setq ace-jump-mode-move-keys
@@ -1492,7 +1492,7 @@ See `whitespace-line-column'."
     (ace-jump-line-mode query-char)))
 
 ;;______________________________________________________________________________
-;;ANYTHING
+;π ANYTHING
 ;;______________________________________________________________________________
 (require 'anything)
 (require 'anything-config)
@@ -1517,12 +1517,12 @@ See `whitespace-line-column'."
 
 
 ;;______________________________________________________________________________
-;;ARTIST MODE
+;π ARTIST MODE
 ;;______________________________________________________________________________
 (autoload 'artist-mode "artist" "Enter artist-mode" t)
 
 ;;______________________________________________________________________________
-;;AUTO-HIGHLIGHT-SYMBOL
+;π AUTO-HIGHLIGHT-SYMBOL
 ;;______________________________________________________________________________
 (require 'auto-highlight-symbol)
 (ahs-set-idle-interval 0.2)
@@ -1550,7 +1550,7 @@ See `whitespace-line-column'."
 
 (my-global-auto-highlight-symbol-mode 1)
 ;;______________________________________________________________________________
-;;AUTO-INSERT
+;π AUTO-INSERT
 ;;______________________________________________________________________________
 (require 'autoinsert)
 (auto-insert-mode)
@@ -1608,7 +1608,7 @@ See `whitespace-line-column'."
   )
 
 ;;______________________________________________________________________________
-;;BABEL
+;π BABEL
 ;;______________________________________________________________________________
 (autoload 'babel "babel" nil t)
 (autoload 'babel-region "babel" nil t)
@@ -1616,12 +1616,12 @@ See `whitespace-line-column'."
 (autoload 'babel-buffer "babel" nil t)
 
 ;;______________________________________________________________________________
-;;BREADCRUMB
+;π BREADCRUMB
 ;;______________________________________________________________________________
 (require 'breadcrumb)
 
 ;;______________________________________________________________________________
-;;Erlang
+;π Erlang
 ;;______________________________________________________________________________
 (add-to-list 'load-path "/usr/lib/erlang/lib/tools-2.6.8/emacs/")
 (require 'erlang-start)
@@ -1679,7 +1679,7 @@ There exists two workarounds for this bug:
     (setq compilation-last-buffer inferior-erlang-buffer)))))
 
 ;;______________________________________________________________________________
-;;ESHELL
+;π ESHELL
 ;;______________________________________________________________________________
 (require 'eshell)
 (setq eshell-directory-name "~/.emacs.d/eshell/")
@@ -1733,7 +1733,7 @@ There exists two workarounds for this bug:
 (defalias 'eshell/more 'eshell/less)
 
 ;;______________________________________________________________________________
-;;EXPAND-REGION
+;π EXPAND-REGION
 ;;______________________________________________________________________________
 (add-to-list 'load-path "~/.emacs.d/expand-region/")
 ;; (load-file "~/.emacs.d/expand-region/expand-region.el")
@@ -1756,12 +1756,12 @@ There exists two workarounds for this bug:
 (require 'smart-forward)
 
 ;;______________________________________________________________________________
-;;FASTNAV
+;π FASTNAV
 ;;______________________________________________________________________________
 (require 'fastnav)
 
 ;;______________________________________________________________________________
-;;FLYMAKE
+;π FLYMAKE
 ;;______________________________________________________________________________
 (require 'flymake)
 (require 'flymake-cursor)
@@ -1799,11 +1799,10 @@ There exists two workarounds for this bug:
           (setq flyc--e-display-timer nil)))))
 
 ;;______________________________________________________________________________
-;;FLYSPELL
+;π FLYSPELL
 ;;______________________________________________________________________________
 (autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
 (setq flyspell-issue-welcome-flag nil)
-(setq flyspell-issue-message-flag nil)
                                         ;(setq ispell-dictionary "dansk")
 (setq ispell-dictionary "english")
 (add-hook 'flyspell-mode-hook 'flyspell-buffer)
@@ -1853,7 +1852,7 @@ There exists two workarounds for this bug:
 
 
 ;;______________________________________________________________________________
-;;FULL-ACK
+;π FULL-ACK
 ;;______________________________________________________________________________
 (autoload 'ack-same "full-ack" nil t)
 (autoload 'ack "full-ack" nil t)
@@ -1861,17 +1860,17 @@ There exists two workarounds for this bug:
 (autoload 'ack-find-file "full-ack" nil t)
 
 ;;______________________________________________________________________________
-;;GNUPLOT
+;π GNUPLOT
 ;;______________________________________________________________________________
 (require 'gnuplot)
 
 ;;______________________________________________________________________________
-;;GRAPHVIZ
+;π GRAPHVIZ
 ;;______________________________________________________________________________
 (load-file "~/.emacs.d/graphviz-dot-mode.el")
 
 ;;______________________________________________________________________________
-;;HASKELL
+;π HASKELL
 ;;______________________________________________________________________________
 ;;;; Haskell setup:
 ;;;; Install hoogle (used in GHCi with :hoogle and :doc):
@@ -1940,7 +1939,7 @@ There exists two workarounds for this bug:
 ;;  '(flymake-warnline ((((class color)) (:underline "yellow")))))
 
 ;;______________________________________________________________________________
-;;HIPPIE_EXPAND
+;π HIPPIE_EXPAND
 ;;______________________________________________________________________________
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-visible
@@ -1991,7 +1990,7 @@ There exists two workarounds for this bug:
   (my-ido-hippie-expand-with 'hippie-expand))
 
 ;;______________________________________________________________________________
-;;IBUFFER
+;π IBUFFER
 ;;______________________________________________________________________________
 (require 'ibuffer)
 
@@ -2091,7 +2090,7 @@ There exists two workarounds for this bug:
 (define-key ibuffer-mode-map "e" 'ibuffer-ediff-marked-buffers)
 
 ;;______________________________________________________________________________
-;;IDO
+;π IDO
 ;;______________________________________________________________________________
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -2183,7 +2182,7 @@ There exists two workarounds for this bug:
 
 
 ;;______________________________________________________________________________
-;;IDO-IMENU
+;π IDO-IMENU
 ;;______________________________________________________________________________
 
 ;;(require 'idomenu) ;; I use ido-goto-symbol instead as it merges the groups
@@ -2307,7 +2306,7 @@ There exists two workarounds for this bug:
      nil))
 
 ;;______________________________________________________________________________
-;;ISEARCH
+;π ISEARCH
 ;;______________________________________________________________________________
 (defun sdacha/isearch-yank-current-word ()
   "Pull current word from buffer into search string."
@@ -2333,13 +2332,13 @@ There exists two workarounds for this bug:
     (search-forward current-pos)))
 
 ;;______________________________________________________________________________
-;;JABBER
+;π JABBER
 ;;______________________________________________________________________________
 (add-to-list 'load-path "~/.emacs.d/emacs-jabber-0.8.0/")
 (require 'jabber-autoloads)
 
 ;;______________________________________________________________________________
-;;LATEX
+;π LATEX
 ;;______________________________________________________________________________
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 (load "auctex.el" nil t t)
@@ -2455,7 +2454,7 @@ There exists two workarounds for this bug:
                         "\n\\end{pmatrix}\n"))))
 
 ;;______________________________________________________________________________
-;;MINIMAP
+;π MINIMAP
 ;;______________________________________________________________________________
 (add-to-list 'load-path "~/.emacs.d/")
 (require 'minimap)
@@ -2470,7 +2469,7 @@ There exists two workarounds for this bug:
 ;(set-face-attribute 'minimap-font-face '((default :family "DejaVu Sans Mono" :height 5)))
 
 ;;______________________________________________________________________________
-;;MATHEMATICA
+;π MATHEMATICA
 ;;______________________________________________________________________________
 (autoload 'maple-mode "maple-mode" "Maple-mode" t)
 (setq maple-command "/home/pilen/programs/maple16/bin/maple")
@@ -2478,14 +2477,14 @@ There exists two workarounds for this bug:
              '("\\.mw$" . maple-mode))
 
 ;;______________________________________________________________________________
-;;MATHEMATICA
+;π MATHEMATICA
 ;;______________________________________________________________________________
 (autoload 'math "math" "Starts Mathematica" t)
 ;(autoload 'math-mode "math" "Mode for editing Mathematica" t)
 ;(setq auto-mode-alist (cons '("\\.m\\'".math-mode) auto-mode-alist))
 
 ;;______________________________________________________________________________
-;;MATLAB
+;π MATLAB
 ;;______________________________________________________________________________
 (add-to-list 'load-path "~/.emacs.d/matlab-emacs")
 (autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
@@ -2495,7 +2494,7 @@ There exists two workarounds for this bug:
 (setq matlab-shell-command "~/programs/MATLAB/R2012a/bin/matlab")
 
 ;;______________________________________________________________________________
-;;SAGE
+;π SAGE
 ;;______________________________________________________________________________
 (add-to-list 'load-path (expand-file-name "/opt/sage/data/emacs"))
 (autoload 'sage "sage")
@@ -2504,7 +2503,7 @@ There exists two workarounds for this bug:
 (add-hook 'sage-startup-hook 'sage-view 'sage-view-disable-inline-output)
 
 ;;______________________________________________________________________________
-;;SHELL
+;π SHELL
 ;;______________________________________________________________________________
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -2545,7 +2544,7 @@ There exists two workarounds for this bug:
 ;                                 (lambda () (delete-windows-on "*Completions*")))))
 
 ;;______________________________________________________________________________
-;;SML
+;π SML
 ;;______________________________________________________________________________
 ;;(add-to-list 'load-path "~/.emacs.d/sml-mode-4.1/")
 
@@ -2561,13 +2560,14 @@ There exists two workarounds for this bug:
                                                                  (comint-send-input)))
             (define-key inferior-sml-mode-map (kbd "S-<return>") 'comint-send-input)
             (setq sml-program-name "mosml")
-            (setq sml-default-arg "-P full")
+            ;(setq sml-default-arg "-P full")
+            (setq sml-default-arg "-Ccontrol.poly-eq-warn=false")
             (setq sml-indent-level 2)        ; conserve on horizontal space
             (setq words-include-escape t)    ; \ loses word break status
             (setq indent-tabs-mode nil)))    ; never ever indent with tabs
 
 ;;______________________________________________________________________________
-;;TABBAR
+;π TABBAR
 ;;______________________________________________________________________________
 
 ;; I dont use tabbar anymore, but it might be usefull some day (or to someone).
@@ -2684,7 +2684,7 @@ There exists two workarounds for this bug:
 
 
 ;;______________________________________________________________________________
-;;TAGS
+;π TAGS
 ;;______________________________________________________________________________
 
 (defun create-tags (dir-name)
@@ -2718,7 +2718,7 @@ There exists two workarounds for this bug:
     (visit-tags-table default-directory nil)))
 
 ;;______________________________________________________________________________
-;;W3M
+;π W3M
 ;;______________________________________________________________________________
 
 (add-to-list 'load-path "~/builds/emacs-w3m-1.4.4")
@@ -2792,7 +2792,7 @@ There exists two workarounds for this bug:
 (require 'w3m)
 (define-key w3m-mode-map [?f] 'w3m-isearch-links)
 ;;______________________________________________________________________________
-;;WANDERLUST
+;π WANDERLUST
 ;;______________________________________________________________________________
 ;; wanderlust
 (load-file "~/.email.el")
@@ -2841,9 +2841,19 @@ There exists two workarounds for this bug:
 ;;______________________________________________________________________________
 ;;
 ;;
-;;                               FUNCTIONALITY
+;π                               FUNCTIONALITY
 ;;
 ;;______________________________________________________________________________
+
+(defun python-compile ()
+  (interactive)
+  (save-excursion
+    (beginning-of-buffer)
+    (insert (concat "print('evaluating: " (buffer-name) "')\n"))
+    (python-send-buffer)
+    (beginning-of-buffer)
+    (kill-whole-line)
+    ))
 
 (defun reindent-buffer ()
   "indent whole buffer"
@@ -2972,7 +2982,7 @@ in that cyclic order."
       (yank-pop))))
 
 ;;______________________________________________________________________________
-;;Jump to matching parethesis
+;π Jump to matching parethesis
 ;;______________________________________________________________________________
 
 ;; (defun goto-match-paren (arg)
@@ -3014,7 +3024,7 @@ in that cyclic order."
 
 
 ;;______________________________________________________________________________
-;;ZOOM
+;π ZOOM
 ;;______________________________________________________________________________
 
 (defun defaultface ()
@@ -3038,7 +3048,7 @@ in that cyclic order."
 
 
 ;;______________________________________________________________________________
-;;Swap windows
+;π Swap windows
 ;;______________________________________________________________________________
 
 (defun swap-with (dir)
@@ -3057,7 +3067,7 @@ in that cyclic order."
 
 
 ;;______________________________________________________________________________
-;;Eshellcontrol
+;π Eshellcontrol
 ;;______________________________________________________________________________
 
 (defun my-eshell-execute-current-line ()
@@ -3090,7 +3100,7 @@ in that cyclic order."
 
 
 ;;______________________________________________________________________________
-;;Narrow
+;π Narrow
 ;;______________________________________________________________________________
 
 (defun narrow-toggle (beg end)
@@ -3117,7 +3127,7 @@ in that cyclic order."
 
 
 ;;______________________________________________________________________________
-;;Smartscan
+;π Smartscan
 ;;______________________________________________________________________________
 
 (defvar smart-use-extended-syntax nil
@@ -3203,7 +3213,7 @@ instead."
 
 
 ;;______________________________________________________________________________
-;;Dictionaries
+;π Dictionaries
 ;;______________________________________________________________________________
 
 (defun fd-switch-dictionary()
@@ -3225,7 +3235,7 @@ instead."
 
 
 ;;______________________________________________________________________________
-;;Start of line/indentation
+;π Start of line/indentation
 ;;______________________________________________________________________________
 (defun back-to-indentation-or-beginning ()
   (interactive)
@@ -3235,7 +3245,7 @@ instead."
 
 
 ;;______________________________________________________________________________
-;;Windows
+;π Windows
 ;;______________________________________________________________________________
 (defun set-window-width (n)
   "Set the selected window's width."
@@ -3342,7 +3352,7 @@ instead."
             (insert (format " %15S: %S\n" p (overlay-get o p))))))
       (pop-to-buffer buf))))
 ;;______________________________________________________________________________
-;;CODE FOLDING
+;π CODE FOLDING
 ;;______________________________________________________________________________
 
 (defun toggle-selective-display ()
@@ -3359,7 +3369,7 @@ instead."
 
 
 ;;______________________________________________________________________________
-;;MOVEMENT
+;π MOVEMENT
 ;;______________________________________________________________________________
 
 ;; I used to use geosoft-backward-word and forward-word to automatically cling to
@@ -3425,12 +3435,12 @@ instead."
 ;;______________________________________________________________________________
 ;;
 ;;
-;;                               Function ideas
+;π                               Function ideas
 ;;
 ;;______________________________________________________________________________
 
 ;;______________________________________________________________________________
-;;Flipline
+;π Flipline
 ;;______________________________________________________________________________
 ;;abc|def
 ;;def|abc
@@ -3438,11 +3448,11 @@ instead."
    "\C-k\C-a\C-y")
 
 ;;______________________________________________________________________________
-;;Delete entire word under cursor
+;π Delete entire word under cursor
 ;;______________________________________________________________________________
 
 ;;______________________________________________________________________________
-;;Deletemode, all movement deletes
+;π Deletemode, all movement deletes
 ;;______________________________________________________________________________
 
 
