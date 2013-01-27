@@ -31,7 +31,6 @@ alias l='lss'
 alias cdd='cd ..'
 alias bc='bc -q'
 alias d="cd ~/Dropbox/diku/"
-alias e="cd ~/Dropbox/diku/ap/exam/src/src/pm"
 
 alias eduroam='sudo wpa_supplicant -B -D wired -i eth0 -c /root/bla.txt'
 alias net='sudo killall dhcpcd -w; sudo dhcpcd eth0;dropbox stop; dropbox start; dropbox status'

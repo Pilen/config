@@ -105,6 +105,15 @@
     :lastmodtime '(20503 18489)
     :unmatched-syntax '((NEWLINE 6520 . 6521) (INDENT_BLOCK 6521 . 6639) (NEWLINE 6352 . 6353) (INDENT_BLOCK 6353 . 6470) (NAME 6161 . 6165) (NEWLINE 6211 . 6212) (INDENT_BLOCK 6212 . 6301) (NAME 5560 . 5565) (IF 5588 . 5590) (ELSE 5614 . 5618) (INDENT_BLOCK 4702 . 4748) (WHILE 4682 . 4687) (NEWLINE 4701 . 4702) (NAME 3514 . 3519) (IF 3539 . 3541) (ELSE 3547 . 3551))
     )
+   (semanticdb-table ".copyaliases.py"
+    :major-mode 'python-mode
+    :tags nil
+    :file ".copyaliases.py"
+    :pointmax 339
+    :fsize 338
+    :lastmodtime '(20741 45105)
+    :unmatched-syntax '((INDENT_BLOCK 67 . 292) (COLON 65 . 66) (NAME 26 . 30) (AS 59 . 61) (INDENT_BLOCK 67 . 338) (COLON 65 . 66) (NAME 26 . 30) (AS 59 . 61))
+    )
    )
   :file "!home!pilen!semantic.cache"
   :semantic-tag-version "2.0"
