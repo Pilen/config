@@ -302,7 +302,7 @@
 (global-set-key (kbd "H-_") 'er/contract-region)
 ;;;; EMACS'S SPECIAL COMMANDS
 ;; Cancel
-(global-set-key (kbd "H-k") 'keyboard-escape-quit)
+;(global-set-key (kbd "H-k") 'keyboard-escape-quit)
 ;; Mark point
 (global-set-key (kbd "C-SPC") 'set-mark-command)
 (global-set-key (kbd "H-a") 'execute-extended-command)
@@ -500,6 +500,8 @@
 (global-set-key (kbd "C-y") 'yank-or-pop)
 (global-set-key (kbd "C-S-y") 'yank)
 (global-set-key (kbd "H-C-y") (lambda () (interactive) (insert (x-get-selection-value))))
+
+(global-set-key (kbd "H-k") 'erc-start-or-switch)
 
 ;; H-g  =  compile
 (add-hook 'erlang-mode-hook  (lambda () (define-key erlang-mode-map  (kbd "H-g") (lambda () (interactive) (erlang-compile) (first-error)))))
@@ -929,6 +931,7 @@
                 display-time-string
                 battery-mode-line-string
                 (:eval (powerline-percent-xpm 'text nil powerline-color1))
+                erc-modified-channels-object
                 ("" which-func-format
                  #(" " 0 1
                    (help-echo "mouse-1: Select (drag to resize)\nmouse-2: Make current window occupy the whole frame\nmouse-3: Remove current window from display")))
@@ -1621,6 +1624,62 @@ See `whitespace-line-column'."
 (require 'breadcrumb)
 
 ;;______________________________________________________________________________
+;π ERC
+;;______________________________________________________________________________
+(setq erc-modules (quote (autojoin button completion irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring stamp track)))
+(setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
+                                 "324" "329" "332" "333" "353" "477"))
+(setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
+
+(defun erc-start-or-switch ()
+  "Connect to ERC, or switch to last active buffer"
+  (interactive)
+  (if (get-buffer "irc.freenode.net:6667") ;; ERC already active?
+
+    (erc-track-switch-buffer 1) ;; yes: switch to last active
+    (when (y-or-n-p "Start ERC? ") ;; no: maybe start ERC
+      (call-interactively 'erc))))
+
+(eval-after-load 'erc-track
+  '(progn
+     (defun erc-bar-move-back (n)
+       "Moves back n message lines. Ignores wrapping, and server messages."
+       (interactive "nHow many lines ? ")
+       (re-search-backward "^.*<.*>" nil t n))
+
+     (defun erc-bar-update-overlay ()
+       "Update the overlay for current buffer, based on the content of
+erc-modified-channels-alist. Should be executed on window change."
+       (interactive)
+       (let* ((info (assq (current-buffer) erc-modified-channels-alist))
+	      (count (cadr info)))
+	 (if (and info (> count erc-bar-threshold))
+	     (save-excursion
+	       (end-of-buffer)
+	       (when (erc-bar-move-back count)
+		 (let ((inhibit-field-text-motion t))
+		   (move-overlay erc-bar-overlay
+				 (line-beginning-position)
+				 (line-end-position)
+				 (current-buffer)))))
+	   (delete-overlay erc-bar-overlay))))
+
+     (defvar erc-bar-threshold 1
+       "Display bar when there are more than erc-bar-threshold unread messages.")
+     (defvar erc-bar-overlay nil
+       "Overlay used to set bar")
+     (setq erc-bar-overlay (make-overlay 0 0))
+     (overlay-put erc-bar-overlay 'face '(:underline "black"))
+     ;;put the hook before erc-modified-channels-update
+     (defadvice erc-track-mode (after erc-bar-setup-hook
+				      (&rest args) activate)
+       ;;remove and add, so we know it's in the first place
+       (remove-hook 'window-configuration-change-hook 'erc-bar-update-overlay)
+       (add-hook 'window-configuration-change-hook 'erc-bar-update-overlay))
+     (add-hook 'erc-send-completed-hook (lambda (str)
+					  (erc-bar-update-overlay)))))
+
+;;______________________________________________________________________________
 ;π Erlang
 ;;______________________________________________________________________________
 (add-to-list 'load-path "/usr/lib/erlang/lib/tools-2.6.8/emacs/")
@@ -1731,7 +1790,8 @@ There exists two workarounds for this bug:
           (goto-line line))
       (tyler-eshell-view-file (pop args)))))
 (defalias 'eshell/more 'eshell/less)
-
+(defun eshell/e (file)
+  (find-file file))
 ;;______________________________________________________________________________
 ;π EXPAND-REGION
 ;;______________________________________________________________________________
@@ -2492,6 +2552,11 @@ There exists two workarounds for this bug:
              '("\\.m$" . matlab-mode))
 ;(setq matlab-indent-function t)
 (setq matlab-shell-command "~/programs/MATLAB/R2012a/bin/matlab")
+
+;;______________________________________________________________________________
+;π PYTHON
+;;______________________________________________________________________________
+(setq python-command "/usr/bin/bpython")
 
 ;;______________________________________________________________________________
 ;π SAGE
