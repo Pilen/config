@@ -557,17 +557,6 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (column-number-mode t)
-(display-battery-mode t) ;; my battery seems to be dead, and battery-mode cant handle that correctly
-(defun battery-format (format alist)
-  "Substitute %-sequences in FORMAT."
-  (replace-regexp-in-string "\\..\\|\\[\\|\\]" ""
-  (replace-regexp-in-string
-   "%."
-   (lambda (str)
-     (let ((char (aref str 1)))
-       (if (eq char ?%) "%"
-	 (or (cdr (assoc char alist)) ""))))
-   format t t)))
 
 (setq-default fill-column 80)
 
@@ -719,6 +708,43 @@
 
 (semantic-mode 1)
 
+;;______________________________________________________________________________
+;π BATTERY
+;;______________________________________________________________________________
+(display-battery-mode t) ;; my battery seems to be dead, and battery-mode cant handle that correctly
+(defun battery-format (format alist)
+  "Substitute %-sequences in FORMAT."
+  (replace-regexp-in-string "\\..\\|\\[\\|\\]" ""
+  (replace-regexp-in-string
+   "%."
+   (lambda (str)
+     (let ((char (aref str 1)))
+       (if (eq char ?%) "%"
+         (or (cdr (assoc char alist)) ""))))
+   format t t)))
+
+(defface battery-level-low
+  '((((type x w32 mac))
+     (:foreground "black" :background "red" :bold 't)))
+  "Face used to display low battery level.")
+
+(defun battery-update ()
+  "Update battery status information in the mode line."
+  (let ((data (and battery-status-function (funcall battery-status-function))))
+    (setq battery-mode-line-string
+          (propertize (if (and battery-mode-line-format
+                               (<= (car (read-from-string (cdr (assq ?p data))))
+                                   battery-mode-line-limit))
+                          (battery-format
+                           battery-mode-line-format
+                           data)
+                        "")
+                      'face
+                      (and (<= (car (read-from-string (cdr (assq ?p data))))
+                               battery-load-critical)
+                           'battery-level-low)
+                      'help-echo "Battery status information")))
+  (force-mode-line-update))
 ;;______________________________________________________________________________
 ;π Fun
 ;;______________________________________________________________________________
@@ -1299,8 +1325,8 @@
 ;;(set-face-attribute 'whitespace-line nil :foreground nil)  ;; I actually want it to use its default color.
 ;;(set-face-attribute 'whitespace-line nil :background nil)
 ;(set-face-foreground 'whitespace-line nil)
-(setq whitespace-style '(face tabs trailing lines-tail)) ;;removed: lines-tail, empty
-;;(global-whitespace-mode t)
+(setq whitespace-style '(face tabs trailing ));lines-tail)) ;;removed: lines-tail, empty
+(global-whitespace-mode t)
 
 ;;show-trailing-whitespace is incompatible with fci-mode
 ;;(setq-default show-trailing-whitespace t)
@@ -1673,17 +1699,17 @@ See `whitespace-line-column'."
 erc-modified-channels-alist. Should be executed on window change."
        (interactive)
        (let* ((info (assq (current-buffer) erc-modified-channels-alist))
-	      (count (cadr info)))
-	 (if (and info (> count erc-bar-threshold))
-	     (save-excursion
-	       (end-of-buffer)
-	       (when (erc-bar-move-back count)
-		 (let ((inhibit-field-text-motion t))
-		   (move-overlay erc-bar-overlay
-				 (line-beginning-position)
-				 (line-end-position)
-				 (current-buffer)))))
-	   (delete-overlay erc-bar-overlay))))
+              (count (cadr info)))
+         (if (and info (> count erc-bar-threshold))
+             (save-excursion
+               (end-of-buffer)
+               (when (erc-bar-move-back count)
+                 (let ((inhibit-field-text-motion t))
+                   (move-overlay erc-bar-overlay
+                                 (line-beginning-position)
+                                 (line-end-position)
+                                 (current-buffer)))))
+           (delete-overlay erc-bar-overlay))))
 
      (defvar erc-bar-threshold 1
        "Display bar when there are more than erc-bar-threshold unread messages.")
@@ -1693,12 +1719,12 @@ erc-modified-channels-alist. Should be executed on window change."
      (overlay-put erc-bar-overlay 'face '(:underline "black"))
      ;;put the hook before erc-modified-channels-update
      (defadvice erc-track-mode (after erc-bar-setup-hook
-				      (&rest args) activate)
+                                      (&rest args) activate)
        ;;remove and add, so we know it's in the first place
        (remove-hook 'window-configuration-change-hook 'erc-bar-update-overlay)
        (add-hook 'window-configuration-change-hook 'erc-bar-update-overlay))
      (add-hook 'erc-send-completed-hook (lambda (str)
-					  (erc-bar-update-overlay)))))
+                                          (erc-bar-update-overlay)))))
 
 ;;______________________________________________________________________________
 ;π Erlang
@@ -1738,18 +1764,18 @@ There exists two workarounds for this bug:
   (inferior-erlang-prepare-for-input)
   (let* ((dir (inferior-erlang-compile-outdir))
 ;;; (file (file-name-nondirectory (buffer-file-name)))
-	 (noext (substring (buffer-file-name) 0 -4))
-	 (opts (append (list (cons 'outdir dir))
-		       (if current-prefix-arg
-			   (list 'debug_info 'export_all))
-		       erlang-compile-extra-opts))
-	 end)
+         (noext (substring (buffer-file-name) 0 -4))
+         (opts (append (list (cons 'outdir dir))
+                       (if current-prefix-arg
+                           (list 'debug_info 'export_all))
+                       erlang-compile-extra-opts))
+         end)
     (save-excursion
       (set-buffer inferior-erlang-buffer)
       (compilation-forget-errors))
     (setq end (inferior-erlang-send-command
-	       (inferior-erlang-compute-compile-command noext opts)
-	       nil))
+               (inferior-erlang-compute-compile-command noext opts)
+               nil))
     (sit-for 0)
     (inferior-erlang-wait-prompt)
     (save-excursion
