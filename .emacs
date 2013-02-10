@@ -21,8 +21,8 @@
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
-;|                |expand-region |undo        |            |ace-jmp-wd-l|goto-last-ch|toggle-case |            |isearch-forw|ahs-sym-bck |ahs-sym-fwd |query-replac|                               |
-;|                |contrct-region|            |            |ace-jmp-wd-g|            |caps-mode   |            |sprint      |ahs-def-bck |ahs-def-fwd |iedit       |                               |
+;|                |expand-region |undo        |            |ace-jmp-wd-l|goto-last-ch|toggle-case |erc         |isearch-forw|ahs-sym-bck |ahs-sym-fwd |query-replac|                               |
+;|                |contrct-region|            |            |ace-jmp-wd-g|pop-to-mark |caps-mode   |            |sprint      |ahs-def-bck |ahs-def-fwd |iedit       |                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
@@ -321,6 +321,7 @@
 ;(global-set-key (kbd "H-*") 'select-text-in-quote)
 
 (global-set-key (kbd "H-v") 'goto-last-change)
+(global-set-key (kbd "H-V") 'pop-to-mark-command)
 
 
 
@@ -497,23 +498,37 @@
 (add-hook 'multiple-cursors-mode-enabled-hook (lambda ()
                                                 (define-key mc/keymap (kbd "<return>") 'newline)))
 
-(global-set-key (kbd "C-y") 'yank-or-pop)
-(global-set-key (kbd "C-S-y") 'yank)
+(global-set-key (kbd "C-y") 'yank)
+(global-set-key (kbd "C-S-y") 'yank-or-pop)
 (global-set-key (kbd "H-C-y") (lambda () (interactive) (insert (x-get-selection-value))))
+
+(global-set-key (kbd "H-x") 'xpdfremote/xpdf-pageDown)
+(global-set-key (kbd "H-X") 'xpdfremote/xpdf-pageUp)
 
 (global-set-key (kbd "H-k") 'erc-start-or-switch)
 
+
+;;______________________________________________________________________________
+;π COMPILE
+;;______________________________________________________________________________
 ;; H-g  =  compile
 (add-hook 'erlang-mode-hook  (lambda () (define-key erlang-mode-map  (kbd "H-g") (lambda () (interactive) (erlang-compile) (first-error)))))
 (add-hook 'LaTeX-mode-hook   (lambda () (define-key TeX-mode-map     (kbd "H-g") 'run-latex)))
 (add-hook 'haskell-mode-hook (lambda () (define-key haskell-mode-map (kbd "H-g") 'inferior-haskell-load-file)))
 (add-hook 'maple-mode-hook   (lambda () (define-key maple-mode-map   (kbd "H-g") 'maple-buffer)))
 (add-hook 'sml-mode-hook     (lambda () (define-key sml-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (call-interactively 'sml-prog-proc-load-file)))))
-(add-hook 'python-mode       (lambda () (define-key python-mode-map  (kbd "H-g") 'python-compile)))
+(add-hook 'python-mode-hook  (lambda () (define-key python-mode-map  (kbd "H-g") 'python-compile)))
+(add-hook 'c-mode-hook       (lambda () (define-key c-mode-map       (kbd "H-g") 'my-c-compile)))
 
-
-
-
+(defun my-c-compile ()
+  (interactive)
+  (save-buffer)
+  (if
+      (file-exists-p (concat (file-name-directory (buffer-file-name (current-buffer)))
+                             "Makefile"))
+      (compile "make")
+    (compile (compilation-read-command (concat "gcc "
+                                               (file-name-nondirectory (buffer-file-name)))))))
 
 
 
@@ -1209,18 +1224,18 @@
                   (indent-region (region-beginning) (region-end) nil))))))
 
 
-(setq c-mode-hook
-      (function (lambda ()
-                  (setq indent-tabs-mode nil)
-                  (setq c-indent-level 4))))
-(setq objc-mode-hook
-      (function (lambda ()
-                  (setq indent-tabs-mode nil)
-                  (setq c-indent-level 4))))
-(setq c++-mode-hook
-      (function (lambda ()
-                  (setq indent-tabs-mode nil)
-                  (setq c-indent-level 4))))
+(add-hook 'c-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode nil)
+            (setq c-indent-level 4)))
+(add-hook 'objc-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode nil)
+            (setq c-indent-level 4)))
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode nil)
+            (setq c-indent-level 4)))
 ;;______________________________________________________________________________
 ;π Auto-indent
 ;;______________________________________________________________________________
@@ -1631,14 +1646,20 @@ See `whitespace-line-column'."
                                  "324" "329" "332" "333" "353" "477"))
 (setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
 
+(defun my-erc-start ()
+  (interactive)
+  (erc :server "localhost" :port "6667" :nick "pilen" :password (read-passwd "Password: ")))
+
 (defun erc-start-or-switch ()
   "Connect to ERC, or switch to last active buffer"
   (interactive)
-  (if (get-buffer "irc.freenode.net:6667") ;; ERC already active?
+  (if (get-buffer "localhost:6667") ;; ERC already active?
 
     (erc-track-switch-buffer 1) ;; yes: switch to last active
     (when (y-or-n-p "Start ERC? ") ;; no: maybe start ERC
-      (call-interactively 'erc))))
+      (my-erc-start))))
+
+(add-hook 'erc-mode-hook (lambda () (erc-fill-mode -) (visual-line-mode)))
 
 (eval-after-load 'erc-track
   '(progn
@@ -1865,7 +1886,7 @@ There exists two workarounds for this bug:
 (setq flyspell-issue-welcome-flag nil)
                                         ;(setq ispell-dictionary "dansk")
 (setq ispell-dictionary "english")
-(add-hook 'flyspell-mode-hook 'flyspell-buffer)
+;(add-hook 'flyspell-mode-hook 'flyspell-buffer)
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 (add-hook 'c-mode-common-hook 'flyspell-prog-mode)
 (add-hook 'c-mode-hook 'flyspell-prog-mode)
@@ -1878,7 +1899,7 @@ There exists two workarounds for this bug:
 (add-hook 'sml-mode 'flyspell-prog-mode)
 
 
-(add-hook 'LaTeX-mode-hook (lambda () 'flyspell-mode (setq ispell-dictionary "dansk")))
+(add-hook 'LaTeX-mode-hook (lambda () (turn-on-flyspell) (setq ispell-dictionary "dansk")))
 
 (defun turn-on-flyspell ()
   "Force flyspell-mode on using a positive arg."
@@ -2060,7 +2081,9 @@ There exists two workarounds for this bug:
 
 
                ("OSM"
-                (filename . "~/Dropbox/diku/osm/"))
+                (or
+                 (filename . "~/Dropbox/diku/osm/")
+                 (filename . "~/Dropbox/diku/osm2/")))
                ("C"
                 (mode . c-mode))
                ("Python"
@@ -2084,6 +2107,8 @@ There exists two workarounds for this bug:
                ("emacs-config"
                 (or
                  (filename . ".emacs")))
+               ("Shell"
+                (mode . shell-script-mode))
 
                ("Tex"
                 (or
@@ -2355,9 +2380,15 @@ There exists two workarounds for this bug:
       (addsymbols (reverse imenu--index-alist)))
     (let* ((selected-symbol (ido-completing-read "Symbol? " symbol-names))
            (position (cdr (assoc selected-symbol name-and-pos))))
-      (if (string-integer-p selected-symbol)
-          (goto-line (string-to-number selected-symbol))
-      (goto-char position)))))
+      (push-mark)
+      (cond ((overlayp position)
+             (goto-char (overlay-start position)))
+
+            ((string-integer-p selected-symbol)
+             (goto-line (string-to-number selected-symbol)))
+
+            (t
+             (goto-char position))))))
 
 
 (defun string-integer-p (string)
@@ -2918,7 +2949,8 @@ There exists two workarounds for this bug:
     (python-send-buffer)
     (beginning-of-buffer)
     (kill-whole-line)
-    ))
+    )
+  (python-switch-to-python t))
 
 (defun reindent-buffer ()
   "indent whole buffer"
@@ -3062,9 +3094,7 @@ in that cyclic order."
   (interactive "p")
   (let ((pos (point)))
     (ignore-errors (call-interactively 'goto-match-paren))
-    (message "hello")
     (when (equal (point) (point-min))
-      (message "world")
       (goto-char pos)
       (beginning-of-defun))))
 

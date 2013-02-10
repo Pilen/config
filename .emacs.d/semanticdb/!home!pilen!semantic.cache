@@ -23,18 +23,17 @@
    (semanticdb-table "fac.py"
     :major-mode 'python-mode
     :tags 
-        '( ("print" code nil nil [2 14])
-            ("fac" function (:arguments 
-              ( ("n" variable nil (reparse-symbol function_parameters) [92 93]))              ) nil [84 191])
-            ("fac10" function nil nil [192 311])
-            ("fac10unrolled" function nil nil [312 729])
-            ("fac10opitmized" function nil nil [730 771])
+        '( ("fac" function (:arguments 
+              ( ("n" variable nil (reparse-symbol function_parameters) [78 79]))              ) nil [70 177])
+            ("fac10" function nil nil [178 297])
+            ("fac10unrolled" function nil nil [298 715])
+            ("fac10opitmized" function nil nil [716 757])
             ("facr" function (:arguments 
-              ( ("n" variable nil (reparse-symbol function_parameters) [782 783]))              ) nil [773 857]))          
+              ( ("n" variable nil (reparse-symbol function_parameters) [768 769]))              ) nil [759 843]))          
     :file "fac.py"
-    :pointmax 857
-    :fsize 857
-    :lastmodtime '(20672 51968)
+    :pointmax 843
+    :fsize 843
+    :lastmodtime '(20741 47263)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "lampy.py"

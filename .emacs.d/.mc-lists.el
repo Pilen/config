@@ -3,10 +3,8 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        TeX-insert-backslash
         back-to-indentation-or-beginning
-        backward-kill-word-to-newline
-        backward-word-to-newline
+        c-electric-star
         forward-kill-word-to-newline
         forward-word-to-newline
         indent-for-tab-command
@@ -20,5 +18,6 @@
 
 (setq mc/cmds-to-run-once
       '(
+        c-electric-backspace
         iedit-mode
         ))

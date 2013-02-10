@@ -193,10 +193,10 @@
     (define-key xpdfremote/mode-map (kbd "y") 'xpdfremote/xpdf-scrollToBottomRight)
 
 
-    (define-key xpdfremote/mode-map (kbd "H-<left>")      'xpdfremote/xpdf-scrollLeft_16)
-    (define-key xpdfremote/mode-map (kbd "H-<right>")     'xpdfremote/xpdf-scrollRight_16)
-    (define-key xpdfremote/mode-map (kbd "H-<up>")        'xpdfremote/xpdf-scrollUp_16)
-    (define-key xpdfremote/mode-map (kbd "H-<down>")      'xpdfremote/xpdf-scrollDown_16)
+    (define-key xpdfremote/mode-map (kbd "<left>")      'xpdfremote/xpdf-scrollLeft_16)
+    (define-key xpdfremote/mode-map (kbd "<right>")     'xpdfremote/xpdf-scrollRight_16)
+    (define-key xpdfremote/mode-map (kbd "<up>")        'xpdfremote/xpdf-scrollUp_16)
+    (define-key xpdfremote/mode-map (kbd "<down>")      'xpdfremote/xpdf-scrollDown_16)
 
     (define-key xpdfremote/mode-map (kbd "<home>")      'xpdfremote/xpdf-gotoPage_1)
     (define-key xpdfremote/mode-map (kbd "<end>")      'xpdfremote/xpdf-gotoLastPage)
