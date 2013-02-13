@@ -1395,7 +1395,7 @@ See `whitespace-line-column'."
   )
 (window-numbering-mode 1)
 (require 'win-switch)
-(setq win-switch-idle-time 2)
+(setq win-switch-idle-time 0.60)
 (setq win-switch-window-threshold 2)
 (setq win-switch-other-window-first nil)
 ;(win-switch-set-wrap-around)
@@ -2171,6 +2171,8 @@ current frame, create a new window and switch to it.
                  ))
                ("ERC"
                 (mode . erc-mode))
+               ("Scratch"
+                (mode . scratch-mode))
 
                ))))
 
@@ -3454,10 +3456,19 @@ instead."
   (newline-and-indent))
 
 
+(defcustom scratch-mode-hook nil
+  "Hooks for scratch mode"
+  :type 'hook)
+
+(define-derived-mode scratch-mode fundamental-mode "Scratch" "Scratch buffers"
+  (interactive)
+  (run-hooks 'scratch-mode-hook))
+
 (defun create-scratch-buffer ()
   "Create a scratch buffer"
   (interactive)
   (pop-to-buffer (get-buffer-create (generate-new-buffer-name "scratch")))
+  (scratch-mode)
   (emacs-lock-mode 'exit))
 
 (defun sudo-edit-current-file ()
