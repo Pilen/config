@@ -1049,6 +1049,1991 @@
           )
 
     )
+   (semanticdb-table "stdc-predef.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("_STDC_PREDEF_H" variable (:constant-flag t) nil [821 835])
+            ("__STDC_IEC_559__" variable (:constant-flag t) nil [1372 1388])
+            ("__STDC_IEC_559_COMPLEX__" variable (:constant-flag t) nil [1400 1424])
+            ("__STDC_ISO_10646__" variable (:constant-flag t) nil [1520 1538])
+            ("__STDC_NO_THREADS__" variable (:constant-flag t) nil [1599 1618]))          
+    :file "stdc-predef.h"
+    :pointmax 1630
+    :fsize 1629
+    :lastmodtime '(20740 53911)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("__STDC_IEC_559__" . ((number "1" 1390 . 1391)))
+          ("__STDC_IEC_559_COMPLEX__" . ((number "1" 1425 . 1426)))
+          ("_STDC_PREDEF_H" . ((number "1" 836 . 837)))
+          ("__STDC_ISO_10646__" . ((number "201103L" 1540 . 1547)))
+          ("__STDC_NO_THREADS__" . ((number "1" 1620 . 1621)))
+          )
+
+    )
+   (semanticdb-table "syscall.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("sys/syscall.h" include (:system-flag t) nil [1 25]))          
+    :file "syscall.h"
+    :pointmax 26
+    :fsize 25
+    :lastmodtime '(20740 53932)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "mpc.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("__MPC_H" variable (:constant-flag t) nil [795 802])
+            ("gmp.h" include nil nil [804 820])
+            ("mpfr.h" include nil nil [821 838])
+            ("mpfr_exp_t" variable (:constant-flag t) nil [913 923])
+            ("MPC_VERSION_MAJOR" variable (:constant-flag t) nil [981 998])
+            ("MPC_VERSION_MINOR" variable (:constant-flag t) nil [1009 1026])
+            ("MPC_VERSION_PATCHLEVEL" variable (:constant-flag t) nil [1037 1059])
+            ("MPC_VERSION_STRING" variable (:constant-flag t) nil [1070 1088])
+            ("MPC_VERSION_NUM" variable (:constant-flag t) nil [1144 1159])
+            ("MPC_VERSION" variable (:constant-flag t) nil [1209 1220])
+            ("_MPC_H_HAVE_INTMAX_T" variable (:constant-flag t) nil [1455 1475])
+            ("MPC_INEX_POS" variable (:constant-flag t) nil [1579 1591])
+            ("MPC_INEX_NEG" variable (:constant-flag t) nil [1713 1725])
+            ("MPC_INEX" variable (:constant-flag t) nil [2076 2084])
+            ("MPC_INEX_RE" variable (:constant-flag t) nil [2176 2187])
+            ("MPC_INEX_IM" variable (:constant-flag t) nil [2227 2238])
+            ("MPC_INEX12" variable (:constant-flag t) nil [2407 2417])
+            ("MPC_INEX1" variable (:constant-flag t) nil [2463 2472])
+            ("MPC_INEX2" variable (:constant-flag t) nil [2499 2508])
+            ("mpc_rnd_t" type
+               (:typedef ("int")
+                :superclasses "int"
+                :type "typedef")
+                nil [2687 2709])
+            ("MPC_RND" variable (:constant-flag t) nil [2719 2726])
+            ("MPC_RND_RE" variable (:constant-flag t) nil [2775 2785])
+            ("MPC_RND_IM" variable (:constant-flag t) nil [2824 2834])
+            ("MPC_RNDNN" variable (:constant-flag t) nil [2872 2881])
+            ("MPC_RNDNZ" variable (:constant-flag t) nil [2918 2927])
+            ("MPC_RNDNU" variable (:constant-flag t) nil [2964 2973])
+            ("MPC_RNDND" variable (:constant-flag t) nil [3010 3019])
+            ("MPC_RNDZN" variable (:constant-flag t) nil [3057 3066])
+            ("MPC_RNDZZ" variable (:constant-flag t) nil [3103 3112])
+            ("MPC_RNDZU" variable (:constant-flag t) nil [3149 3158])
+            ("MPC_RNDZD" variable (:constant-flag t) nil [3195 3204])
+            ("MPC_RNDUN" variable (:constant-flag t) nil [3242 3251])
+            ("MPC_RNDUZ" variable (:constant-flag t) nil [3288 3297])
+            ("MPC_RNDUU" variable (:constant-flag t) nil [3334 3343])
+            ("MPC_RNDUD" variable (:constant-flag t) nil [3380 3389])
+            ("MPC_RNDDN" variable (:constant-flag t) nil [3427 3436])
+            ("MPC_RNDDZ" variable (:constant-flag t) nil [3473 3482])
+            ("MPC_RNDDU" variable (:constant-flag t) nil [3519 3528])
+            ("MPC_RNDDD" variable (:constant-flag t) nil [3565 3574])
+            ("__mpc_struct" type
+               (:typedef ("" type
+                     (:members 
+                        ( ("re" variable (:type ("mpfr_t" type (:type "class") nil nil)) (reparse-symbol classsubparts) [3672 3682])
+                          ("im" variable (:type ("mpfr_t" type (:type "class") nil nil)) (reparse-symbol classsubparts) [3685 3695]))                        
+                      :type "struct")
+                      nil nil)
+                :type "typedef")
+                nil [3653 3711])
+            ("mpc_t" type
+               (:typedef ("__mpc_struct" type (:type "class") nil nil)
+                :superclasses "__mpc_struct"
+                :type "typedef")
+                nil [3713 3743])
+            ("mpc_ptr" type
+               (:typedef ("__mpc_struct" type (:type "class") nil nil)
+                :pointer 1
+                :superclasses "__mpc_struct"
+                :type "typedef")
+                nil [3744 3774])
+            ("mpc_srcptr" type
+               (:typedef ("__mpc_struct" type (:type "class") nil nil)
+                :pointer 1
+                :superclasses "__mpc_struct"
+                :type "typedef")
+                nil [3775 3814])
+            ("__MPC_DECLSPEC" variable (:constant-flag t) nil [4070 4084])
+            ("mpc_set_uj_uj" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11162 11170])
+                    ("" variable (:type ("uintmax_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11171 11181])
+                    ("" variable (:type ("uintmax_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11182 11192])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11193 11203]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [11142 11204])
+            ("mpc_set_sj_sj" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11086 11094])
+                    ("" variable (:type ("intmax_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11095 11104])
+                    ("" variable (:type ("intmax_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11105 11114])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11115 11125]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [11066 11126])
+            ("mpc_set_uj" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11018 11026])
+                    ("" variable (:type ("uintmax_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11027 11037])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11039 11049]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10998 11050])
+            ("mpc_set_sj" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10952 10960])
+                    ("" variable (:type ("intmax_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10961 10970])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10971 10981]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10932 10982])
+            ("mpc_free_str" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "void"
+                :arguments 
+                  ( ("" variable
+                       (:pointer 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [10800 10807]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10780 10808])
+            ("mpc_get_str" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "char"
+                :arguments 
+                  ( ("" variable (:type "int") (reparse-symbol arg-sub-list) [10728 10732])
+                    ("" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10733 10740])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10741 10752])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10753 10763]))                  
+                :pointer 1
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10708 10764])
+            ("mpc_set_str" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10653 10661])
+                    ("" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [10662 10675])
+                    ("" variable (:type "int") (reparse-symbol arg-sub-list) [10676 10680])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10681 10691]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10633 10692])
+            ("mpc_strtoc" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10569 10577])
+                    ("" variable
+                       (:pointer 1
+                        :constant-flag t
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [10578 10591])
+                    ("" variable
+                       (:pointer 2
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [10592 10600])
+                    ("" variable (:type "int") (reparse-symbol arg-sub-list) [10601 10605])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10606 10616]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10549 10617])
+            ("mpc_get_version" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "char"
+                :arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [10526 10531]))                  
+                :constant-flag t
+                :pointer 1
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10496 10532])
+            ("mpc_set_prec" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "void"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10458 10466])
+                    ("" variable (:type ("mpfr_prec_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10467 10479]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10438 10480])
+            ("mpc_get_prec2" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "void"
+                :arguments 
+                  ( ("pr" variable
+                       (:pointer 1
+                        :type ("mpfr_prec_t" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [10374 10390])
+                    ("pi" variable
+                       (:pointer 1
+                        :type ("mpfr_prec_t" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [10391 10407])
+                    ("x" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10408 10421]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10354 10422])
+            ("mpc_get_prec" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type ("mpfr_prec_t" type (:type "class") nil nil)
+                :arguments 
+                  ( ("x" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10324 10337]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10298 10338])
+            ("mpc_init3" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "void"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10247 10255])
+                    ("" variable (:type ("mpfr_prec_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10256 10268])
+                    ("" variable (:type ("mpfr_prec_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10269 10281]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10227 10282])
+            ("mpc_init2" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "void"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10189 10197])
+                    ("" variable (:type ("mpfr_prec_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10198 10210]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10169 10211])
+            ("mpc_urandom" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10127 10135])
+                    ("" variable (:type ("gmp_randstate_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10136 10152]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10107 10153])
+            ("mpc_clear" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "void"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10082 10090]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [10062 10091])
+            ("mpc_atanh" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10014 10022])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10023 10034])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10035 10045]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9994 10046])
+            ("mpc_acosh" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9946 9954])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9955 9966])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9967 9977]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9926 9978])
+            ("mpc_asinh" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9878 9886])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9887 9898])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9899 9909]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9858 9910])
+            ("mpc_atan" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9810 9818])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9819 9830])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9831 9841]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9790 9842])
+            ("mpc_acos" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9742 9750])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9751 9762])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9763 9773]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9722 9774])
+            ("mpc_asin" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9674 9682])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9683 9694])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9695 9705]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9654 9706])
+            ("mpc_tanh" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9606 9614])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9615 9626])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9627 9637]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9586 9638])
+            ("mpc_cosh" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9538 9546])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9547 9558])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9559 9569]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9518 9570])
+            ("mpc_sinh" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9470 9478])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9479 9490])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9491 9501]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9450 9502])
+            ("mpc_tan" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9402 9410])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9411 9422])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9423 9433]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9382 9434])
+            ("mpc_sin_cos" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9314 9322])
+                    ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9323 9331])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9332 9343])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9344 9354])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9355 9365]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9294 9366])
+            ("mpc_cos" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9246 9254])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9255 9266])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9267 9277]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9226 9278])
+            ("mpc_sin" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9178 9186])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9187 9198])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9199 9209]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9158 9210])
+            ("mpc_log10" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9110 9118])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9119 9130])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9131 9141]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9090 9142])
+            ("mpc_log" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9042 9050])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9051 9062])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9063 9073]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [9022 9074])
+            ("mpc_exp" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8974 8982])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8983 8994])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8995 9005]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8954 9006])
+            ("mpc_cmp_si_si" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8906 8917])
+                    ("" variable (:type "long int") (reparse-symbol arg-sub-list) [8918 8927])
+                    ("" variable (:type "long int") (reparse-symbol arg-sub-list) [8928 8937]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8886 8938])
+            ("mpc_cmp" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8846 8857])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8858 8869]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8826 8870])
+            ("mpc_proj" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8778 8786])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8787 8798])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8799 8809]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8758 8810])
+            ("mpc_arg" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpfr_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8708 8717])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8718 8729])
+                    ("" variable (:type ("mpfr_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8730 8741]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8688 8742])
+            ("mpc_imag" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpfr_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8638 8647])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8648 8659])
+                    ("" variable (:type ("mpfr_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8660 8671]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8618 8672])
+            ("mpc_real" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpfr_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8568 8577])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8578 8589])
+                    ("" variable (:type ("mpfr_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8590 8601]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8548 8602])
+            ("mpc_set_nan" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "void"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8522 8530]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8502 8531])
+            ("mpc_fma" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8429 8437])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8438 8449])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8450 8461])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8462 8473])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8474 8484]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8409 8485])
+            ("mpc_swap" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "void"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8375 8383])
+                    ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8384 8392]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8355 8393])
+            ("mpc_set_z_z" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8295 8303])
+                    ("" variable (:type ("mpz_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8304 8315])
+                    ("" variable (:type ("mpz_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8316 8327])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8328 8338]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8275 8339])
+            ("mpc_set_z" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8227 8235])
+                    ("" variable (:type ("mpz_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8236 8247])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8248 8258]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8207 8259])
+            ("mpc_set_ui_ui" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8133 8141])
+                    ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [8142 8160])
+                    ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [8161 8179])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8180 8190]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8113 8191])
+            ("mpc_set_ui" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8058 8066])
+                    ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [8067 8085])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8086 8096]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [8038 8097])
+            ("mpc_set_si_si" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7982 7990])
+                    ("" variable (:type "long int") (reparse-symbol arg-sub-list) [7991 8000])
+                    ("" variable (:type "long int") (reparse-symbol arg-sub-list) [8001 8010])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8011 8021]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7962 8022])
+            ("mpc_set_si" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7916 7924])
+                    ("" variable (:type "long int") (reparse-symbol arg-sub-list) [7925 7934])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7935 7945]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7896 7946])
+            ("mpc_set_q_q" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7836 7844])
+                    ("" variable (:type ("mpq_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7845 7856])
+                    ("" variable (:type ("mpq_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7857 7868])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7869 7879]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7816 7880])
+            ("mpc_set_q" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7768 7776])
+                    ("" variable (:type ("mpq_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7777 7788])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7789 7799]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7748 7800])
+            ("mpc_set_fr_fr" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7686 7694])
+                    ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7695 7707])
+                    ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7708 7720])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7721 7731]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7666 7732])
+            ("mpc_set_fr" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7617 7625])
+                    ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7626 7638])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7639 7649]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7597 7650])
+            ("mpc_set_f_f" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7537 7545])
+                    ("" variable (:type ("mpf_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7546 7557])
+                    ("" variable (:type ("mpf_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7558 7569])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7570 7580]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7517 7581])
+            ("mpc_set_f" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7469 7477])
+                    ("" variable (:type ("mpf_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7478 7489])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7490 7500]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7449 7501])
+            ("mpc_set_ld_ld" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7387 7395])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [7396 7408])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [7409 7421])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7422 7432]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7367 7433])
+            ("mpc_set_ld" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7318 7326])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [7327 7339])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7340 7350]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7298 7351])
+            ("mpc_set_d_d" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7246 7254])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [7255 7262])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [7263 7270])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7271 7281]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7226 7282])
+            ("mpc_set_d" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7182 7190])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [7191 7198])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7199 7209]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7162 7210])
+            ("mpc_set" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7114 7122])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7123 7134])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7135 7145]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7094 7146])
+            ("mpc_sqrt" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7046 7054])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7055 7066])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7067 7077]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [7026 7078])
+            ("mpc_abs" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpfr_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6976 6985])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6986 6997])
+                    ("" variable (:type ("mpfr_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6998 7009]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [6956 7010])
+            ("mpc_norm" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpfr_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6906 6915])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6916 6927])
+                    ("" variable (:type ("mpfr_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6928 6939]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [6886 6940])
+            ("mpc_neg" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6838 6846])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6847 6858])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6859 6869]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [6818 6870])
+            ("mpc_conj" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6770 6778])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6779 6790])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6791 6801]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [6750 6802])
+            ("mpc_mul_2si" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6692 6700])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6701 6712])
+                    ("" variable (:type "long int") (reparse-symbol arg-sub-list) [6713 6722])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6723 6733]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [6672 6734])
+            ("mpc_div_2si" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6614 6622])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6623 6634])
+                    ("" variable (:type "long int") (reparse-symbol arg-sub-list) [6635 6644])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6645 6655]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [6594 6656])
+            ("mpc_mul_2ui" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6527 6535])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6536 6547])
+                    ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [6548 6566])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6567 6577]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [6507 6578])
+            ("mpc_div_2ui" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6440 6448])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6449 6460])
+                    ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [6461 6479])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6480 6490]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [6420 6491])
+            ("mpc_ui_div" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6353 6361])
+                    ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [6362 6380])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6381 6392])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6393 6403]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [6333 6404])
+            ("mpc_div_ui" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6266 6274])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6275 6286])
+                    ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [6287 6305])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6306 6316]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [6246 6317])
+            ("mpc_fr_div" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6185 6193])
+                    ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6194 6206])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6207 6218])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6219 6229]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [6165 6230])
+            ("mpc_div_fr" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6104 6112])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6113 6124])
+                    ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6125 6137])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6138 6148]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [6084 6149])
+            ("mpc_pow_z" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6024 6032])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6033 6044])
+                    ("" variable (:type ("mpz_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6045 6056])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6057 6067]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [6004 6068])
+            ("mpc_pow_ui" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5941 5949])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5950 5961])
+                    ("" variable (:type "unsigned long") (reparse-symbol arg-sub-list) [5962 5976])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5977 5987]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [5921 5988])
+            ("mpc_pow_si" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5867 5875])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5876 5887])
+                    ("" variable (:type "long") (reparse-symbol arg-sub-list) [5888 5893])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5894 5904]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [5847 5905])
+            ("mpc_pow_d" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5791 5799])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5800 5811])
+                    ("" variable (:type "double") (reparse-symbol arg-sub-list) [5812 5819])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5820 5830]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [5771 5831])
+            ("mpc_pow_ld" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5710 5718])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5719 5730])
+                    ("" variable (:type "long double") (reparse-symbol arg-sub-list) [5731 5743])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5744 5754]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [5690 5755])
+            ("mpc_pow_fr" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5629 5637])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5638 5649])
+                    ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5650 5662])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5663 5673]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [5609 5674])
+            ("mpc_pow" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5549 5557])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5558 5569])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5570 5581])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5582 5592]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [5529 5593])
+            ("mpc_div" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5469 5477])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5478 5489])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5490 5501])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5502 5512]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [5449 5513])
+            ("mpc_sqr" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5401 5409])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5410 5421])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5422 5432]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [5381 5433])
+            ("mpc_mul_i" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5328 5336])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5337 5348])
+                    ("" variable (:type "int") (reparse-symbol arg-sub-list) [5349 5353])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5354 5364]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [5308 5365])
+            ("mpc_mul_si" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5250 5258])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5259 5270])
+                    ("" variable (:type "long int") (reparse-symbol arg-sub-list) [5271 5280])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5281 5291]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [5230 5292])
+            ("mpc_mul_ui" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5163 5171])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5172 5183])
+                    ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [5184 5202])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5203 5213]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [5143 5214])
+            ("mpc_mul_fr" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5082 5090])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5091 5102])
+                    ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5103 5115])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5116 5126]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [5062 5127])
+            ("mpc_mul" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5002 5010])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5011 5022])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5023 5034])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5035 5045]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [4982 5046])
+            ("mpc_ui_ui_sub" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4896 4904])
+                    ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [4905 4923])
+                    ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [4924 4942])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4943 4954])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4955 4965]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [4876 4966])
+            ("mpc_sub_ui" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4809 4817])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4818 4829])
+                    ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [4830 4848])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4849 4859]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [4789 4860])
+            ("mpc_fr_sub" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4728 4736])
+                    ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4737 4749])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4750 4761])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4762 4772]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [4708 4773])
+            ("mpc_sub_fr" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4647 4655])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4656 4667])
+                    ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4668 4680])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4681 4691]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [4627 4692])
+            ("mpc_sub" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4567 4575])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4576 4587])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4588 4599])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4600 4610]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [4547 4611])
+            ("mpc_add_ui" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4480 4488])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4489 4500])
+                    ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [4501 4519])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4520 4530]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [4460 4531])
+            ("mpc_add_si" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4402 4410])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4411 4422])
+                    ("" variable (:type "long int") (reparse-symbol arg-sub-list) [4423 4432])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4433 4443]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [4382 4444])
+            ("mpc_add_fr" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4321 4329])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4330 4341])
+                    ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4342 4354])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4355 4365]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [4301 4366])
+            ("mpc_add" function
+               (:typemodifiers ("extern" "\"C\"")
+                :type "int"
+                :arguments 
+                  ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4241 4249])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4250 4261])
+                    ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4262 4273])
+                    ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4274 4284]))                  
+                :prototype-flag t)
+                (reparse-symbol extern-c-contents) [4221 4285])
+            ("C" extern (:members 
+              ( ("mpc_add" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4241 4249])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4250 4261])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4262 4273])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4274 4284]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [4221 4285])
+                ("mpc_add_fr" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4321 4329])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4330 4341])
+                        ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4342 4354])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4355 4365]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [4301 4366])
+                ("mpc_add_si" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4402 4410])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4411 4422])
+                        ("" variable (:type "long int") (reparse-symbol arg-sub-list) [4423 4432])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4433 4443]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [4382 4444])
+                ("mpc_add_ui" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4480 4488])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4489 4500])
+                        ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [4501 4519])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4520 4530]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [4460 4531])
+                ("mpc_sub" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4567 4575])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4576 4587])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4588 4599])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4600 4610]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [4547 4611])
+                ("mpc_sub_fr" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4647 4655])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4656 4667])
+                        ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4668 4680])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4681 4691]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [4627 4692])
+                ("mpc_fr_sub" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4728 4736])
+                        ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4737 4749])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4750 4761])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4762 4772]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [4708 4773])
+                ("mpc_sub_ui" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4809 4817])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4818 4829])
+                        ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [4830 4848])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4849 4859]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [4789 4860])
+                ("mpc_ui_ui_sub" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4896 4904])
+                        ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [4905 4923])
+                        ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [4924 4942])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4943 4954])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [4955 4965]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [4876 4966])
+                ("mpc_mul" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5002 5010])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5011 5022])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5023 5034])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5035 5045]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [4982 5046])
+                ("mpc_mul_fr" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5082 5090])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5091 5102])
+                        ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5103 5115])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5116 5126]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [5062 5127])
+                ("mpc_mul_ui" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5163 5171])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5172 5183])
+                        ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [5184 5202])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5203 5213]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [5143 5214])
+                ("mpc_mul_si" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5250 5258])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5259 5270])
+                        ("" variable (:type "long int") (reparse-symbol arg-sub-list) [5271 5280])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5281 5291]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [5230 5292])
+                ("mpc_mul_i" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5328 5336])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5337 5348])
+                        ("" variable (:type "int") (reparse-symbol arg-sub-list) [5349 5353])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5354 5364]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [5308 5365])
+                ("mpc_sqr" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5401 5409])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5410 5421])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5422 5432]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [5381 5433])
+                ("mpc_div" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5469 5477])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5478 5489])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5490 5501])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5502 5512]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [5449 5513])
+                ("mpc_pow" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5549 5557])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5558 5569])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5570 5581])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5582 5592]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [5529 5593])
+                ("mpc_pow_fr" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5629 5637])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5638 5649])
+                        ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5650 5662])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5663 5673]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [5609 5674])
+                ("mpc_pow_ld" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5710 5718])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5719 5730])
+                        ("" variable (:type "long double") (reparse-symbol arg-sub-list) [5731 5743])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5744 5754]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [5690 5755])
+                ("mpc_pow_d" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5791 5799])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5800 5811])
+                        ("" variable (:type "double") (reparse-symbol arg-sub-list) [5812 5819])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5820 5830]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [5771 5831])
+                ("mpc_pow_si" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5867 5875])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5876 5887])
+                        ("" variable (:type "long") (reparse-symbol arg-sub-list) [5888 5893])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5894 5904]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [5847 5905])
+                ("mpc_pow_ui" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5941 5949])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5950 5961])
+                        ("" variable (:type "unsigned long") (reparse-symbol arg-sub-list) [5962 5976])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [5977 5987]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [5921 5988])
+                ("mpc_pow_z" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6024 6032])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6033 6044])
+                        ("" variable (:type ("mpz_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6045 6056])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6057 6067]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [6004 6068])
+                ("mpc_div_fr" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6104 6112])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6113 6124])
+                        ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6125 6137])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6138 6148]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [6084 6149])
+                ("mpc_fr_div" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6185 6193])
+                        ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6194 6206])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6207 6218])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6219 6229]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [6165 6230])
+                ("mpc_div_ui" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6266 6274])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6275 6286])
+                        ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [6287 6305])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6306 6316]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [6246 6317])
+                ("mpc_ui_div" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6353 6361])
+                        ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [6362 6380])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6381 6392])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6393 6403]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [6333 6404])
+                ("mpc_div_2ui" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6440 6448])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6449 6460])
+                        ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [6461 6479])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6480 6490]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [6420 6491])
+                ("mpc_mul_2ui" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6527 6535])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6536 6547])
+                        ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [6548 6566])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6567 6577]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [6507 6578])
+                ("mpc_div_2si" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6614 6622])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6623 6634])
+                        ("" variable (:type "long int") (reparse-symbol arg-sub-list) [6635 6644])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6645 6655]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [6594 6656])
+                ("mpc_mul_2si" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6692 6700])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6701 6712])
+                        ("" variable (:type "long int") (reparse-symbol arg-sub-list) [6713 6722])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6723 6733]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [6672 6734])
+                ("mpc_conj" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6770 6778])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6779 6790])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6791 6801]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [6750 6802])
+                ("mpc_neg" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6838 6846])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6847 6858])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6859 6869]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [6818 6870])
+                ("mpc_norm" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpfr_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6906 6915])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6916 6927])
+                        ("" variable (:type ("mpfr_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6928 6939]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [6886 6940])
+                ("mpc_abs" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpfr_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6976 6985])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6986 6997])
+                        ("" variable (:type ("mpfr_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [6998 7009]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [6956 7010])
+                ("mpc_sqrt" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7046 7054])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7055 7066])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7067 7077]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7026 7078])
+                ("mpc_set" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7114 7122])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7123 7134])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7135 7145]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7094 7146])
+                ("mpc_set_d" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7182 7190])
+                        ("" variable (:type "double") (reparse-symbol arg-sub-list) [7191 7198])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7199 7209]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7162 7210])
+                ("mpc_set_d_d" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7246 7254])
+                        ("" variable (:type "double") (reparse-symbol arg-sub-list) [7255 7262])
+                        ("" variable (:type "double") (reparse-symbol arg-sub-list) [7263 7270])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7271 7281]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7226 7282])
+                ("mpc_set_ld" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7318 7326])
+                        ("" variable (:type "long double") (reparse-symbol arg-sub-list) [7327 7339])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7340 7350]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7298 7351])
+                ("mpc_set_ld_ld" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7387 7395])
+                        ("" variable (:type "long double") (reparse-symbol arg-sub-list) [7396 7408])
+                        ("" variable (:type "long double") (reparse-symbol arg-sub-list) [7409 7421])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7422 7432]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7367 7433])
+                ("mpc_set_f" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7469 7477])
+                        ("" variable (:type ("mpf_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7478 7489])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7490 7500]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7449 7501])
+                ("mpc_set_f_f" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7537 7545])
+                        ("" variable (:type ("mpf_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7546 7557])
+                        ("" variable (:type ("mpf_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7558 7569])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7570 7580]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7517 7581])
+                ("mpc_set_fr" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7617 7625])
+                        ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7626 7638])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7639 7649]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7597 7650])
+                ("mpc_set_fr_fr" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7686 7694])
+                        ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7695 7707])
+                        ("" variable (:type ("mpfr_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7708 7720])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7721 7731]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7666 7732])
+                ("mpc_set_q" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7768 7776])
+                        ("" variable (:type ("mpq_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7777 7788])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7789 7799]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7748 7800])
+                ("mpc_set_q_q" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7836 7844])
+                        ("" variable (:type ("mpq_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7845 7856])
+                        ("" variable (:type ("mpq_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7857 7868])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7869 7879]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7816 7880])
+                ("mpc_set_si" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7916 7924])
+                        ("" variable (:type "long int") (reparse-symbol arg-sub-list) [7925 7934])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7935 7945]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7896 7946])
+                ("mpc_set_si_si" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [7982 7990])
+                        ("" variable (:type "long int") (reparse-symbol arg-sub-list) [7991 8000])
+                        ("" variable (:type "long int") (reparse-symbol arg-sub-list) [8001 8010])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8011 8021]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [7962 8022])
+                ("mpc_set_ui" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8058 8066])
+                        ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [8067 8085])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8086 8096]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8038 8097])
+                ("mpc_set_ui_ui" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8133 8141])
+                        ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [8142 8160])
+                        ("" variable (:type "unsigned long int") (reparse-symbol arg-sub-list) [8161 8179])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8180 8190]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8113 8191])
+                ("mpc_set_z" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8227 8235])
+                        ("" variable (:type ("mpz_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8236 8247])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8248 8258]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8207 8259])
+                ("mpc_set_z_z" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8295 8303])
+                        ("" variable (:type ("mpz_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8304 8315])
+                        ("" variable (:type ("mpz_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8316 8327])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8328 8338]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8275 8339])
+                ("mpc_swap" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "void"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8375 8383])
+                        ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8384 8392]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8355 8393])
+                ("mpc_fma" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8429 8437])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8438 8449])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8450 8461])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8462 8473])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8474 8484]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8409 8485])
+                ("mpc_set_nan" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "void"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8522 8530]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8502 8531])
+                ("mpc_real" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpfr_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8568 8577])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8578 8589])
+                        ("" variable (:type ("mpfr_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8590 8601]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8548 8602])
+                ("mpc_imag" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpfr_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8638 8647])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8648 8659])
+                        ("" variable (:type ("mpfr_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8660 8671]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8618 8672])
+                ("mpc_arg" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpfr_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8708 8717])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8718 8729])
+                        ("" variable (:type ("mpfr_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8730 8741]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8688 8742])
+                ("mpc_proj" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8778 8786])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8787 8798])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8799 8809]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8758 8810])
+                ("mpc_cmp" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8846 8857])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8858 8869]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8826 8870])
+                ("mpc_cmp_si_si" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8906 8917])
+                        ("" variable (:type "long int") (reparse-symbol arg-sub-list) [8918 8927])
+                        ("" variable (:type "long int") (reparse-symbol arg-sub-list) [8928 8937]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8886 8938])
+                ("mpc_exp" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8974 8982])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8983 8994])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [8995 9005]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [8954 9006])
+                ("mpc_log" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9042 9050])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9051 9062])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9063 9073]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9022 9074])
+                ("mpc_log10" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9110 9118])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9119 9130])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9131 9141]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9090 9142])
+                ("mpc_sin" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9178 9186])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9187 9198])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9199 9209]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9158 9210])
+                ("mpc_cos" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9246 9254])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9255 9266])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9267 9277]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9226 9278])
+                ("mpc_sin_cos" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9314 9322])
+                        ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9323 9331])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9332 9343])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9344 9354])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9355 9365]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9294 9366])
+                ("mpc_tan" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9402 9410])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9411 9422])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9423 9433]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9382 9434])
+                ("mpc_sinh" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9470 9478])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9479 9490])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9491 9501]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9450 9502])
+                ("mpc_cosh" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9538 9546])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9547 9558])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9559 9569]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9518 9570])
+                ("mpc_tanh" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9606 9614])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9615 9626])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9627 9637]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9586 9638])
+                ("mpc_asin" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9674 9682])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9683 9694])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9695 9705]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9654 9706])
+                ("mpc_acos" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9742 9750])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9751 9762])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9763 9773]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9722 9774])
+                ("mpc_atan" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9810 9818])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9819 9830])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9831 9841]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9790 9842])
+                ("mpc_asinh" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9878 9886])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9887 9898])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9899 9909]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9858 9910])
+                ("mpc_acosh" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9946 9954])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9955 9966])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [9967 9977]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9926 9978])
+                ("mpc_atanh" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10014 10022])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10023 10034])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10035 10045]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [9994 10046])
+                ("mpc_clear" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "void"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10082 10090]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10062 10091])
+                ("mpc_urandom" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10127 10135])
+                        ("" variable (:type ("gmp_randstate_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10136 10152]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10107 10153])
+                ("mpc_init2" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "void"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10189 10197])
+                        ("" variable (:type ("mpfr_prec_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10198 10210]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10169 10211])
+                ("mpc_init3" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "void"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10247 10255])
+                        ("" variable (:type ("mpfr_prec_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10256 10268])
+                        ("" variable (:type ("mpfr_prec_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10269 10281]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10227 10282])
+                ("mpc_get_prec" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type ("mpfr_prec_t" type (:type "class") nil nil)
+                    :arguments 
+                      ( ("x" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10324 10337]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10298 10338])
+                ("mpc_get_prec2" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "void"
+                    :arguments 
+                      ( ("pr" variable
+                           (:pointer 1
+                            :type ("mpfr_prec_t" type (:type "class") nil nil))
+                            (reparse-symbol arg-sub-list) [10374 10390])
+                        ("pi" variable
+                           (:pointer 1
+                            :type ("mpfr_prec_t" type (:type "class") nil nil))
+                            (reparse-symbol arg-sub-list) [10391 10407])
+                        ("x" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10408 10421]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10354 10422])
+                ("mpc_set_prec" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "void"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10458 10466])
+                        ("" variable (:type ("mpfr_prec_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10467 10479]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10438 10480])
+                ("mpc_get_version" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "char"
+                    :arguments 
+                      ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [10526 10531]))                      
+                    :constant-flag t
+                    :pointer 1
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10496 10532])
+                ("mpc_strtoc" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10569 10577])
+                        ("" variable
+                           (:pointer 1
+                            :constant-flag t
+                            :type "char")
+                            (reparse-symbol arg-sub-list) [10578 10591])
+                        ("" variable
+                           (:pointer 2
+                            :type "char")
+                            (reparse-symbol arg-sub-list) [10592 10600])
+                        ("" variable (:type "int") (reparse-symbol arg-sub-list) [10601 10605])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10606 10616]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10549 10617])
+                ("mpc_set_str" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10653 10661])
+                        ("" variable
+                           (:pointer 1
+                            :constant-flag t
+                            :type "char")
+                            (reparse-symbol arg-sub-list) [10662 10675])
+                        ("" variable (:type "int") (reparse-symbol arg-sub-list) [10676 10680])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10681 10691]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10633 10692])
+                ("mpc_get_str" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "char"
+                    :arguments 
+                      ( ("" variable (:type "int") (reparse-symbol arg-sub-list) [10728 10732])
+                        ("" variable (:type ("size_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10733 10740])
+                        ("" variable (:type ("mpc_srcptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10741 10752])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10753 10763]))                      
+                    :pointer 1
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10708 10764])
+                ("mpc_free_str" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "void"
+                    :arguments 
+                      ( ("" variable
+                           (:pointer 1
+                            :type "char")
+                            (reparse-symbol arg-sub-list) [10800 10807]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10780 10808])
+                ("mpc_set_sj" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10952 10960])
+                        ("" variable (:type ("intmax_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10961 10970])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [10971 10981]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10932 10982])
+                ("mpc_set_uj" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11018 11026])
+                        ("" variable (:type ("uintmax_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11027 11037])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11039 11049]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [10998 11050])
+                ("mpc_set_sj_sj" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11086 11094])
+                        ("" variable (:type ("intmax_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11095 11104])
+                        ("" variable (:type ("intmax_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11105 11114])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11115 11125]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [11066 11126])
+                ("mpc_set_uj_uj" function
+                   (:typemodifiers ("extern" "\"C\"")
+                    :type "int"
+                    :arguments 
+                      ( ("" variable (:type ("mpc_ptr" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11162 11170])
+                        ("" variable (:type ("uintmax_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11171 11181])
+                        ("" variable (:type ("uintmax_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11182 11192])
+                        ("" variable (:type ("mpc_rnd_t" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [11193 11203]))                      
+                    :prototype-flag t)
+                    (reparse-symbol extern-c-contents) [11142 11204]))              ) nil [4185 11748])
+            ("mpc_realref" variable (:constant-flag t) nil [11765 11776])
+            ("mpc_imagref" variable (:constant-flag t) nil [11798 11809])
+            ("mpc_cmp_si" variable (:constant-flag t) nil [11832 11842])
+            ("mpc_ui_sub" variable (:constant-flag t) nil [11893 11903])
+            ("mpfr_set_fr" variable (:constant-flag t) nil [12185 12196])
+            ("MPC_SET_X_Y" variable (:constant-flag t) nil [12221 12232]))          
+    :file "mpc.h"
+    :pointmax 12722
+    :fsize 12721
+    :lastmodtime '(20553 18936)
+    :unmatched-syntax '((symbol "__GMP_DECLSPEC_EXPORT" 11127 . 11141) (symbol "__GMP_DECLSPEC_EXPORT" 11051 . 11065) (symbol "__GMP_DECLSPEC_EXPORT" 10983 . 10997) (symbol "__GMP_DECLSPEC_EXPORT" 10917 . 10931) (symbol "__GMP_DECLSPEC_EXPORT" 10765 . 10779) (symbol "__GMP_DECLSPEC_EXPORT" 10693 . 10707) (symbol "__GMP_DECLSPEC_EXPORT" 10618 . 10632) (symbol "__GMP_DECLSPEC_EXPORT" 10534 . 10548) (symbol "__GMP_DECLSPEC_EXPORT" 10481 . 10495) (symbol "__GMP_DECLSPEC_EXPORT" 10423 . 10437) (symbol "__GMP_DECLSPEC_EXPORT" 10339 . 10353) (symbol "__GMP_DECLSPEC_EXPORT" 10283 . 10297) (symbol "__GMP_DECLSPEC_EXPORT" 10212 . 10226) (symbol "__GMP_DECLSPEC_EXPORT" 10154 . 10168) (symbol "__GMP_DECLSPEC_EXPORT" 10092 . 10106) (symbol "__GMP_DECLSPEC_EXPORT" 10047 . 10061) (symbol "__GMP_DECLSPEC_EXPORT" 9979 . 9993) (symbol "__GMP_DECLSPEC_EXPORT" 9911 . 9925) (symbol "__GMP_DECLSPEC_EXPORT" 9843 . 9857) (symbol "__GMP_DECLSPEC_EXPORT" 9775 . 9789) (symbol "__GMP_DECLSPEC_EXPORT" 9707 . 9721) (symbol "__GMP_DECLSPEC_EXPORT" 9639 . 9653) (symbol "__GMP_DECLSPEC_EXPORT" 9571 . 9585) (symbol "__GMP_DECLSPEC_EXPORT" 9503 . 9517) (symbol "__GMP_DECLSPEC_EXPORT" 9435 . 9449) (symbol "__GMP_DECLSPEC_EXPORT" 9367 . 9381) (symbol "__GMP_DECLSPEC_EXPORT" 9279 . 9293) (symbol "__GMP_DECLSPEC_EXPORT" 9211 . 9225) (symbol "__GMP_DECLSPEC_EXPORT" 9143 . 9157) (symbol "__GMP_DECLSPEC_EXPORT" 9075 . 9089) (symbol "__GMP_DECLSPEC_EXPORT" 9007 . 9021) (symbol "__GMP_DECLSPEC_EXPORT" 8939 . 8953) (symbol "__GMP_DECLSPEC_EXPORT" 8871 . 8885) (symbol "__GMP_DECLSPEC_EXPORT" 8811 . 8825) (symbol "__GMP_DECLSPEC_EXPORT" 8743 . 8757) (symbol "__GMP_DECLSPEC_EXPORT" 8673 . 8687) (symbol "__GMP_DECLSPEC_EXPORT" 8603 . 8617) (symbol "__GMP_DECLSPEC_EXPORT" 8533 . 8547) (symbol "__GMP_DECLSPEC_EXPORT" 8487 . 8501) (symbol "__GMP_DECLSPEC_EXPORT" 8394 . 8408) (symbol "__GMP_DECLSPEC_EXPORT" 8340 . 8354) (symbol "__GMP_DECLSPEC_EXPORT" 8260 . 8274) (symbol "__GMP_DECLSPEC_EXPORT" 8192 . 8206) (symbol "__GMP_DECLSPEC_EXPORT" 8098 . 8112) (symbol "__GMP_DECLSPEC_EXPORT" 8023 . 8037) (symbol "__GMP_DECLSPEC_EXPORT" 7947 . 7961) (symbol "__GMP_DECLSPEC_EXPORT" 7881 . 7895) (symbol "__GMP_DECLSPEC_EXPORT" 7801 . 7815) (symbol "__GMP_DECLSPEC_EXPORT" 7733 . 7747) (symbol "__GMP_DECLSPEC_EXPORT" 7651 . 7665) (symbol "__GMP_DECLSPEC_EXPORT" 7582 . 7596) (symbol "__GMP_DECLSPEC_EXPORT" 7502 . 7516) (symbol "__GMP_DECLSPEC_EXPORT" 7434 . 7448) (symbol "__GMP_DECLSPEC_EXPORT" 7352 . 7366) (symbol "__GMP_DECLSPEC_EXPORT" 7283 . 7297) (symbol "__GMP_DECLSPEC_EXPORT" 7211 . 7225) (symbol "__GMP_DECLSPEC_EXPORT" 7147 . 7161) (symbol "__GMP_DECLSPEC_EXPORT" 7079 . 7093) (symbol "__GMP_DECLSPEC_EXPORT" 7011 . 7025) (symbol "__GMP_DECLSPEC_EXPORT" 6941 . 6955) (symbol "__GMP_DECLSPEC_EXPORT" 6871 . 6885) (symbol "__GMP_DECLSPEC_EXPORT" 6803 . 6817) (symbol "__GMP_DECLSPEC_EXPORT" 6735 . 6749) (symbol "__GMP_DECLSPEC_EXPORT" 6657 . 6671) (symbol "__GMP_DECLSPEC_EXPORT" 6579 . 6593) (symbol "__GMP_DECLSPEC_EXPORT" 6492 . 6506) (symbol "__GMP_DECLSPEC_EXPORT" 6405 . 6419) (symbol "__GMP_DECLSPEC_EXPORT" 6318 . 6332) (symbol "__GMP_DECLSPEC_EXPORT" 6231 . 6245) (symbol "__GMP_DECLSPEC_EXPORT" 6150 . 6164) (symbol "__GMP_DECLSPEC_EXPORT" 6069 . 6083) (symbol "__GMP_DECLSPEC_EXPORT" 5989 . 6003) (symbol "__GMP_DECLSPEC_EXPORT" 5906 . 5920) (symbol "__GMP_DECLSPEC_EXPORT" 5832 . 5846) (symbol "__GMP_DECLSPEC_EXPORT" 5756 . 5770) (symbol "__GMP_DECLSPEC_EXPORT" 5675 . 5689) (symbol "__GMP_DECLSPEC_EXPORT" 5594 . 5608) (symbol "__GMP_DECLSPEC_EXPORT" 5514 . 5528) (symbol "__GMP_DECLSPEC_EXPORT" 5434 . 5448) (symbol "__GMP_DECLSPEC_EXPORT" 5366 . 5380) (symbol "__GMP_DECLSPEC_EXPORT" 5293 . 5307) (symbol "__GMP_DECLSPEC_EXPORT" 5215 . 5229) (symbol "__GMP_DECLSPEC_EXPORT" 5128 . 5142) (symbol "__GMP_DECLSPEC_EXPORT" 5047 . 5061) (symbol "__GMP_DECLSPEC_EXPORT" 4967 . 4981) (symbol "__GMP_DECLSPEC_EXPORT" 4861 . 4875) (symbol "__GMP_DECLSPEC_EXPORT" 4774 . 4788) (symbol "__GMP_DECLSPEC_EXPORT" 4693 . 4707) (symbol "__GMP_DECLSPEC_EXPORT" 4612 . 4626) (symbol "__GMP_DECLSPEC_EXPORT" 4532 . 4546) (symbol "__GMP_DECLSPEC_EXPORT" 4445 . 4459) (symbol "__GMP_DECLSPEC_EXPORT" 4367 . 4381) (symbol "__GMP_DECLSPEC_EXPORT" 4286 . 4300) (symbol "__GMP_DECLSPEC_EXPORT" 4206 . 4220))
+    :lexical-table 
+        '(("MPC_INEX12" (spp-arg-list ("inex1" "inex2") 2417 . 2431) . ((semantic-list "(inex1 | (inex2 << 4))" 2432 . 2454)))
+          ("MPC_RNDZU" . ((symbol "MPC_RND" 3159 . 3166) (semantic-list "(GMP_RNDZ,GMP_RNDU)" 3167 . 3186)))
+          ("MPC_VERSION_STRING" . ((string "\"1.0.1\"" 1089 . 1096)))
+          ("MPC_INEX_IM" (spp-arg-list ("inex") 2238 . 2244) . ((symbol "MPC_INEX_NEG" 2245 . 2257) (semantic-list "((inex) >> 2)" 2257 . 2270)))
+          ("MPC_RND" (spp-arg-list ("r1" "r2") 2726 . 2733) . ((semantic-list "(((int)(r1)) + ((int)(r2) << 4))" 2734 . 2766)))
+          ("MPC_RND_RE" (spp-arg-list ("x") 2785 . 2788) . ((semantic-list "((mpfr_rnd_t)((x) & 0x0F))" 2789 . 2815)))
+          ("mpc_imagref" (spp-arg-list ("x") 11809 . 11812) . ((semantic-list "((x)->im)" 11813 . 11822)))
+          ("MPC_RNDNU" . ((symbol "MPC_RND" 2974 . 2981) (semantic-list "(GMP_RNDN,GMP_RNDU)" 2982 . 3001)))
+          ("MPC_RNDUZ" . ((symbol "MPC_RND" 3298 . 3305) (semantic-list "(GMP_RNDU,GMP_RNDZ)" 3306 . 3325)))
+          ("MPC_INEX_NEG" (spp-arg-list ("inex") 1725 . 1731) . ((semantic-list "(((inex) == 2) ? -1 : ((inex) == 0) ? 0 : 1)" 1732 . 1776)))
+          ("MPC_RNDUN" . ((symbol "MPC_RND" 3252 . 3259) (semantic-list "(GMP_RNDU,GMP_RNDN)" 3260 . 3279)))
+          ("MPC_RNDDZ" . ((symbol "MPC_RND" 3483 . 3490) (semantic-list "(GMP_RNDD,GMP_RNDZ)" 3491 . 3510)))
+          ("MPC_VERSION_MAJOR" . ((number "1" 999 . 1000)))
+          ("MPC_VERSION_PATCHLEVEL" . ((number "1" 1060 . 1061)))
+          ("MPC_INEX1" (spp-arg-list ("inex") 2472 . 2478) . ((semantic-list "(inex & 15)" 2479 . 2490)))
+          ("MPC_RNDZZ" . ((symbol "MPC_RND" 3113 . 3120) (semantic-list "(GMP_RNDZ,GMP_RNDZ)" 3121 . 3140)))
+          ("MPC_RNDDN" . ((symbol "MPC_RND" 3437 . 3444) (semantic-list "(GMP_RNDD,GMP_RNDN)" 3445 . 3464)))
+          ("MPC_INEX2" (spp-arg-list ("inex") 2508 . 2514) . ((semantic-list "(inex >> 4)" 2515 . 2526)))
+          ("MPC_RNDZN" . ((symbol "MPC_RND" 3067 . 3074) (semantic-list "(GMP_RNDZ,GMP_RNDN)" 3075 . 3094)))
+          ("MPC_INEX" (spp-arg-list ("inex_re" "inex_im") 2084 . 2102) . ((semantic-list "(MPC_INEX_POS(inex_re) | (MPC_INEX_POS(inex_im) << 2))" 2113 . 2167)))
+          ("MPC_INEX_RE" (spp-arg-list ("inex") 2187 . 2193) . ((symbol "MPC_INEX_NEG" 2194 . 2206) (semantic-list "((inex) & 3)" 2206 . 2218)))
+          ("MPC_RNDUD" . ((symbol "MPC_RND" 3390 . 3397) (semantic-list "(GMP_RNDU,GMP_RNDD)" 3398 . 3417)))
+          ("MPC_RND_IM" (spp-arg-list ("x") 2834 . 2837) . ((semantic-list "((mpfr_rnd_t)((x) >> 4))" 2838 . 2862)))
+          ("MPC_RNDNZ" . ((symbol "MPC_RND" 2928 . 2935) (semantic-list "(GMP_RNDN,GMP_RNDZ)" 2936 . 2955)))
+          ("MPC_RNDDD" . ((symbol "MPC_RND" 3575 . 3582) (semantic-list "(GMP_RNDD,GMP_RNDD)" 3583 . 3602)))
+          ("MPC_VERSION" . ((symbol "MPC_VERSION_NUM" 1277 . 1292) (semantic-list "(MPC_VERSION_MAJOR,MPC_VERSION_MINOR,MPC_VERSION_PATCHLEVEL)" 1292 . 1352)))
+          ("MPC_RNDNN" . ((symbol "MPC_RND" 2882 . 2889) (semantic-list "(GMP_RNDN,GMP_RNDN)" 2890 . 2909)))
+          ("MPC_RNDZD" . ((symbol "MPC_RND" 3205 . 3212) (semantic-list "(GMP_RNDZ,GMP_RNDD)" 3213 . 3232)))
+          ("__MPC_DECLSPEC" . ((symbol "__GMP_DECLSPEC_EXPORT" 4085 . 4106)))
+          ("mpc_realref" (spp-arg-list ("x") 11776 . 11779) . ((semantic-list "((x)->re)" 11780 . 11789)))
+          ("MPC_VERSION_MINOR" . ((number "0" 1027 . 1028)))
+          ("mpc_cmp_si" (spp-arg-list ("x" "y") 11842 . 11848) . ((semantic-list "( mpc_cmp_si_si ((x), (y), 0l) )" 11852 . 11884)))
+          ("mpc_ui_sub" (spp-arg-list ("x" "y" "z" "r") 11903 . 11915) . ((symbol "mpc_ui_ui_sub" 11916 . 11929) (semantic-list "(x, y, 0ul, z, r)" 11930 . 11947)))
+          ("MPC_SET_X_Y" (spp-arg-list ("real_t" "imag_t" "z" "real_value" "imag_value" "rnd") 12232 . 12280) . ((semantic-list "{                                                                     \\
+    int _inex_re, _inex_im;                                             \\
+    _inex_re = (mpfr_set_ ## real_t) (mpc_realref (z), (real_value), MPC_RND_RE (rnd)); \\
+    _inex_im = (mpfr_set_ ## imag_t) (mpc_imagref (z), (imag_value), MPC_RND_IM (rnd)); \\
+    return MPC_INEX (_inex_re, _inex_im);                               \\
+  }" 12289 . 12692)))
+          ("__MPC_H")
+          ("MPC_RNDUU" . ((symbol "MPC_RND" 3344 . 3351) (semantic-list "(GMP_RNDU,GMP_RNDU)" 3352 . 3371)))
+          ("mpfr_exp_t" . ((symbol "mp_exp_t" 924 . 932)))
+          ("MPC_VERSION_NUM" (spp-arg-list ("a" "b" "c") 1159 . 1166) . ((semantic-list "(((a) << 16L) | ((b) << 8) | (c))" 1167 . 1200)))
+          ("_MPC_H_HAVE_INTMAX_T" . ((number "1" 1476 . 1477)))
+          ("MPC_INEX_POS" (spp-arg-list ("inex") 1591 . 1597) . ((semantic-list "(((inex) < 0) ? 2 : ((inex) == 0) ? 0 : 1)" 1598 . 1640)))
+          ("MPC_RNDND" . ((symbol "MPC_RND" 3020 . 3027) (semantic-list "(GMP_RNDN,GMP_RNDD)" 3028 . 3047)))
+          ("MPC_RNDDU" . ((symbol "MPC_RND" 3529 . 3536) (semantic-list "(GMP_RNDD,GMP_RNDU)" 3537 . 3556)))
+          ("mpfr_set_fr" . ((symbol "mpfr_set" 12197 . 12205)))
+          )
+
+    )
+   (semanticdb-table "gc.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("gc/gc.h" include (:system-flag t) nil [58 76]))          
+    :file "gc.h"
+    :pointmax 77
+    :fsize 76
+    :lastmodtime '(20540 29512)
+    :unmatched-syntax 'nil
+    )
    )
   :file "!usr!include!semantic.cache"
   :semantic-tag-version "2.0"

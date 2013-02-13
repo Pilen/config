@@ -3,14 +3,10 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        back-to-indentation-or-beginning
-        c-electric-star
-        forward-kill-word-to-newline
-        forward-word-to-newline
+        backward-kill-word-to-newline
+        backward-word-to-newline
         indent-for-tab-command
-        maple-untab
-        new-indented-line
-        pager-row-down
+        perl-electric-terminator
         python-backspace
         toggle-letter-case
         yank-or-pop

@@ -79,26 +79,26 @@
                   ( ("iterator" variable
                        (:pointer 1
                         :type ("pclI" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [316 331])
+                        (reparse-symbol arg-sub-list) [310 325])
                     ("value" variable
                        (:pointer 1
                         :type "void")
-                        (reparse-symbol arg-sub-list) [332 344]))                  
+                        (reparse-symbol arg-sub-list) [326 338]))                  
                 :type "void")
-                nil [302 345])
+                nil [296 339])
             ("pclI_done" function
                (:prototype-flag t
                 :arguments 
                   ( ("iterator" variable
                        (:pointer 1
                         :type ("pclI" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [376 391]))                  
+                        (reparse-symbol arg-sub-list) [370 385]))                  
                 :type "void")
-                nil [361 392]))          
+                nil [355 386]))          
     :file "pcl_iterator.h"
-    :pointmax 629
-    :fsize 628
-    :lastmodtime '(20759 59929)
+    :pointmax 635
+    :fsize 634
+    :lastmodtime '(20762 44572)
     :unmatched-syntax 'nil
     :lexical-table 
         '(("_PCL_ITERATOR_")
@@ -152,7 +152,7 @@
     :file "pcl_iterator.c"
     :pointmax 344
     :fsize 343
-    :lastmodtime '(20759 59901)
+    :lastmodtime '(20762 44581)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "pcl_error.h"
@@ -223,204 +223,216 @@
     :major-mode 'c-mode
     :tags 
         '( ("stdlib.h" include (:system-flag t) nil [1 20])
-            ("pcl_error.h" include nil nil [21 43])
-            ("pcl_dynamic_array.h" include nil nil [44 74])
-            ("pcl_iterator.h" include nil nil [75 100])
+            ("pcl_types.h" include nil nil [21 43])
+            ("pcl_error.h" include nil nil [44 66])
+            ("pcl_dynamic_array.h" include nil nil [67 97])
+            ("pcl_iterator.h" include nil nil [98 123])
             ("pclDa" type
                (:members 
-                  ( ("data" variable
+                  ( ("pcl_type" variable (:type "int") (reparse-symbol classsubparts) [142 155])
+                    ("data" variable
                        (:pointer 2
                         :type "void")
-                        (reparse-symbol classsubparts) [119 131])
-                    ("top" variable (:type "int") (reparse-symbol classsubparts) [134 142])
-                    ("size" variable (:type "int") (reparse-symbol classsubparts) [145 154]))                  
+                        (reparse-symbol classsubparts) [158 170])
+                    ("top" variable (:type "int") (reparse-symbol classsubparts) [173 181])
+                    ("size" variable (:type "int") (reparse-symbol classsubparts) [184 193]))                  
                 :type "struct")
-                nil [102 157])
-            ("pclDa_expand" function
+                nil [125 196])
+            ("pclDa_p_expand" function
                (:prototype-flag t
                 :typemodifiers ("static")
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [184 195]))                  
+                        (reparse-symbol arg-sub-list) [225 236]))                  
                 :type "void")
-                nil [159 196])
-            ("pclDa_contract" function
+                nil [198 237])
+            ("pclDa_p_contract" function
                (:prototype-flag t
                 :typemodifiers ("static")
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [224 235]))                  
+                        (reparse-symbol arg-sub-list) [267 278]))                  
                 :type "void")
-                nil [197 236])
+                nil [238 279])
             ("pclDa_init" function
                (:pointer 1
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [257 268])
-                    ("size" variable (:type "int") (reparse-symbol arg-sub-list) [269 278]))                  
+                        (reparse-symbol arg-sub-list) [300 311])
+                    ("size" variable (:type "int") (reparse-symbol arg-sub-list) [312 321]))                  
                 :type ("pclDa" type (:type "class") nil nil))
-                nil [239 455])
+                nil [282 532])
             ("pclDa_new" function
                (:pointer 1
                 :type ("pclDa" type (:type "class") nil nil))
-                nil [457 535])
+                nil [534 612])
             ("pclDa_create" function
                (:pointer 1
                 :arguments 
                   ( ("els" variable
                        (:pointer 1
                         :type "void")
-                        (reparse-symbol arg-sub-list) [557 567])
-                    ("size" variable (:type "int") (reparse-symbol arg-sub-list) [568 577]))                  
+                        (reparse-symbol arg-sub-list) [634 644])
+                    ("size" variable (:type "int") (reparse-symbol arg-sub-list) [645 654]))                  
                 :type ("pclDa" type (:type "class") nil nil))
-                nil [537 655])
+                nil [614 732])
             ("pclDa_copy" function
                (:pointer 1
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [675 686]))                  
+                        (reparse-symbol arg-sub-list) [752 763]))                  
                 :type ("pclDa" type (:type "class") nil nil))
-                nil [657 743])
+                nil [734 820])
+            ("pclDa_free" function
+               (:arguments 
+                  ( ("dar" variable
+                       (:pointer 1
+                        :type ("pclDa" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [838 849]))                  
+                :type "void")
+                nil [822 866])
             ("pclDa_append" function
                (:arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [764 775])
+                        (reparse-symbol arg-sub-list) [926 937])
                     ("el" variable
                        (:pointer 1
                         :type "void")
-                        (reparse-symbol arg-sub-list) [776 785]))                  
+                        (reparse-symbol arg-sub-list) [938 947]))                  
                 :type "void")
-                nil [746 890])
+                nil [908 1054])
             ("pclDa_pop" function
                (:pointer 1
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [908 919]))                  
+                        (reparse-symbol arg-sub-list) [1072 1083]))                  
                 :type "void")
-                nil [892 1080])
+                nil [1056 1246])
             ("pclDa_top" function
                (:pointer 1
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1098 1109]))                  
+                        (reparse-symbol arg-sub-list) [1264 1275]))                  
                 :type "void")
-                nil [1082 1148])
+                nil [1248 1314])
             ("pclDa_empty" function
                (:arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1166 1177]))                  
+                        (reparse-symbol arg-sub-list) [1332 1343]))                  
                 :type "int")
-                nil [1150 1206])
+                nil [1316 1372])
             ("pclDa_length" function
                (:arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1225 1236]))                  
+                        (reparse-symbol arg-sub-list) [1391 1402]))                  
                 :type "int")
-                nil [1208 1263])
+                nil [1374 1429])
             ("pclDa_get" function
                (:pointer 1
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1281 1292])
-                    ("i" variable (:type "int") (reparse-symbol arg-sub-list) [1293 1299]))                  
+                        (reparse-symbol arg-sub-list) [1447 1458])
+                    ("i" variable (:type "int") (reparse-symbol arg-sub-list) [1459 1465]))                  
                 :type "void")
-                nil [1265 1326])
+                nil [1431 1492])
             ("pclDa_set" function
                (:arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1343 1354])
-                    ("i" variable (:type "int") (reparse-symbol arg-sub-list) [1355 1361])
+                        (reparse-symbol arg-sub-list) [1509 1520])
+                    ("i" variable (:type "int") (reparse-symbol arg-sub-list) [1521 1527])
                     ("el" variable
                        (:pointer 1
                         :type "void")
-                        (reparse-symbol arg-sub-list) [1362 1371]))                  
+                        (reparse-symbol arg-sub-list) [1528 1537]))                  
                 :type "void")
-                nil [1328 1396])
+                nil [1494 1562])
             ("pclDa_extend" function
                (:arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1416 1427])
+                        (reparse-symbol arg-sub-list) [1582 1593])
                     ("els" variable
                        (:pointer 1
                         :dereference 1
                         :type "void")
-                        (reparse-symbol arg-sub-list) [1428 1440])
-                    ("size" variable (:type "int") (reparse-symbol arg-sub-list) [1441 1450]))                  
+                        (reparse-symbol arg-sub-list) [1594 1606])
+                    ("size" variable (:type "int") (reparse-symbol arg-sub-list) [1607 1616]))                  
                 :type "void")
-                nil [1398 1529])
+                nil [1564 1695])
             ("pclDa_concat" function
                (:arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1549 1560])
+                        (reparse-symbol arg-sub-list) [1715 1726])
                     ("els" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1561 1572]))                  
+                        (reparse-symbol arg-sub-list) [1727 1738]))                  
                 :type "void")
-                nil [1531 1627])
-            ("pclDa_expand" function
+                nil [1697 1793])
+            ("pclDa_p_expand" function
                (:arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1647 1658]))                  
+                        (reparse-symbol arg-sub-list) [1815 1826]))                  
                 :type "void")
-                nil [1629 1882])
-            ("pclDa_contract" function
-               (:arguments 
+                nil [1795 2050])
+            ("pclDa_p_contract" function
+               (:typemodifiers ("static")
+                :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1904 1915]))                  
+                        (reparse-symbol arg-sub-list) [2081 2092]))                  
                 :type "void")
-                nil [1884 2139])
+                nil [2052 2316])
+            ("pclDa_p_iterator_next" function
+               (:typemodifiers ("static")
+                :arguments 
+                  ( ("iterator" variable
+                       (:pointer 1
+                        :type ("pclI" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [2351 2366]))                  
+                :type "int")
+                nil [2318 2662])
             ("pclDa_iterator" function
                (:pointer 1
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [2212 2223]))                  
+                        (reparse-symbol arg-sub-list) [2734 2745]))                  
                 :type ("pclI" type (:type "class") nil nil))
-                nil [2191 2386])
-            ("pclDa_p_iterator_next" function
-               (:arguments 
-                  ( ("iterator" variable
-                       (:pointer 1
-                        :type ("pclI" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [2413 2428]))                  
-                :type "int")
-                nil [2387 2724]))          
+                nil [2713 2908]))          
     :file "pcl_dynamic_array.c"
-    :pointmax 2902
-    :fsize 2900
-    :lastmodtime '(20759 56583)
+    :pointmax 3087
+    :fsize 3086
+    :lastmodtime '(20762 44834)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "pcl_dynamic_array.h"
@@ -475,19 +487,37 @@
                         (reparse-symbol arg-sub-list) [460 471]))                  
                 :type ("pclDa" type (:type "class") nil nil))
                 nil [442 472])
+            ("pclDa_free" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("dar" variable
+                       (:pointer 1
+                        :type ("pclDa" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [544 555]))                  
+                :type "void")
+                nil [528 556])
+            ("pclDa_deep_free" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("dar" variable
+                       (:pointer 1
+                        :type ("pclDa" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [618 629]))                  
+                :type "void")
+                nil [597 630])
             ("pclDa_append" function
                (:prototype-flag t
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [547 558])
+                        (reparse-symbol arg-sub-list) [685 696])
                     ("el" variable
                        (:pointer 1
                         :type "void")
-                        (reparse-symbol arg-sub-list) [559 568]))                  
+                        (reparse-symbol arg-sub-list) [697 706]))                  
                 :type "void")
-                nil [529 569])
+                nil [667 707])
             ("pclDa_pop" function
                (:prototype-flag t
                 :pointer 1
@@ -495,9 +525,9 @@
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [630 641]))                  
+                        (reparse-symbol arg-sub-list) [768 779]))                  
                 :type "void")
-                nil [614 642])
+                nil [752 780])
             ("pclDa_top" function
                (:prototype-flag t
                 :pointer 1
@@ -505,27 +535,27 @@
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [715 726]))                  
+                        (reparse-symbol arg-sub-list) [853 864]))                  
                 :type "void")
-                nil [699 727])
+                nil [837 865])
             ("pclDa_empty" function
                (:prototype-flag t
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [801 812]))                  
+                        (reparse-symbol arg-sub-list) [939 950]))                  
                 :type "int")
-                nil [785 813])
+                nil [923 951])
             ("pclDa_length" function
                (:prototype-flag t
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [871 882]))                  
+                        (reparse-symbol arg-sub-list) [1009 1020]))                  
                 :type "int")
-                nil [854 883])
+                nil [992 1021])
             ("pclDa_get" function
                (:prototype-flag t
                 :pointer 1
@@ -533,52 +563,52 @@
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [939 950])
-                    ("i" variable (:type "int") (reparse-symbol arg-sub-list) [951 957]))                  
+                        (reparse-symbol arg-sub-list) [1077 1088])
+                    ("i" variable (:type "int") (reparse-symbol arg-sub-list) [1089 1095]))                  
                 :type "void")
-                nil [923 958])
+                nil [1061 1096])
             ("pclDa_set" function
                (:prototype-flag t
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1024 1035])
-                    ("i" variable (:type "int") (reparse-symbol arg-sub-list) [1036 1042])
+                        (reparse-symbol arg-sub-list) [1162 1173])
+                    ("i" variable (:type "int") (reparse-symbol arg-sub-list) [1174 1180])
                     ("el" variable
                        (:pointer 1
                         :type "void")
-                        (reparse-symbol arg-sub-list) [1043 1052]))                  
+                        (reparse-symbol arg-sub-list) [1181 1190]))                  
                 :type "void")
-                nil [1009 1053])
+                nil [1147 1191])
             ("pclDa_extend" function
                (:prototype-flag t
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1113 1124])
+                        (reparse-symbol arg-sub-list) [1251 1262])
                     ("els" variable
                        (:pointer 1
                         :dereference 1
                         :type "void")
-                        (reparse-symbol arg-sub-list) [1125 1137])
-                    ("size" variable (:type "int") (reparse-symbol arg-sub-list) [1138 1147]))                  
+                        (reparse-symbol arg-sub-list) [1263 1275])
+                    ("size" variable (:type "int") (reparse-symbol arg-sub-list) [1276 1285]))                  
                 :type "void")
-                nil [1095 1148])
+                nil [1233 1286])
             ("pclDa_concat" function
                (:prototype-flag t
                 :arguments 
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1198 1209])
+                        (reparse-symbol arg-sub-list) [1336 1347])
                     ("els" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1210 1221]))                  
+                        (reparse-symbol arg-sub-list) [1348 1359]))                  
                 :type "void")
-                nil [1180 1222])
+                nil [1318 1360])
             ("pclDa_iterator" function
                (:prototype-flag t
                 :pointer 1
@@ -586,13 +616,13 @@
                   ( ("dar" variable
                        (:pointer 1
                         :type ("pclDa" type (:type "class") nil nil))
-                        (reparse-symbol arg-sub-list) [1287 1298]))                  
+                        (reparse-symbol arg-sub-list) [1425 1436]))                  
                 :type ("pclI" type (:type "class") nil nil))
-                nil [1266 1299]))          
+                nil [1404 1437]))          
     :file "pcl_dynamic_array.h"
-    :pointmax 1359
-    :fsize 1358
-    :lastmodtime '(20759 2873)
+    :pointmax 1497
+    :fsize 1496
+    :lastmodtime '(20762 43578)
     :unmatched-syntax 'nil
     :lexical-table 
         '(("PDYNARRAY_DEFAULT_INIT_SIZE" . ((number "0" 155 . 156)))
@@ -673,7 +703,224 @@
     :lastmodtime '(20757 11301)
     :unmatched-syntax 'nil
     )
-     )
+   (semanticdb-table "pcl_types.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("_PCL_TYPES_" variable (:constant-flag t) nil [29 40])
+            ("PCL_TYPE_pclI" variable (:constant-flag t) nil [50 63])
+            ("PCL_TYPE_pclDa" variable (:constant-flag t) nil [74 88]))          
+    :file "pcl_types.h"
+    :pointmax 99
+    :fsize 98
+    :lastmodtime '(20762 44937)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("PCL_TYPE_pclDa" . ((number "2" 89 . 90)))
+          ("_PCL_TYPES_")
+          ("PCL_TYPE_pclI" . ((number "1" 64 . 65)))
+          )
+
+    )
+   (semanticdb-table "pcl_shortcuts.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("_PCL_SHORTCUTS_" variable (:constant-flag t) nil [33 48])
+            ("pcl_iterator.h" include nil nil [50 75])
+            ("pclS_iterator" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [97 104]))                  
+                :type ("pclI" type (:type "class") nil nil))
+                nil [77 105])
+            ("pclS_iterate_easy" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("it" variable
+                       (:pointer 1
+                        :type ("pclI" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [130 139]))                  
+                :type "void")
+                nil [106 140]))          
+    :file "pcl_shortcuts.h"
+    :pointmax 150
+    :fsize 149
+    :lastmodtime '(20762 45210)
+    :unmatched-syntax '((symbol 112 . 124) (punctuation 111 . 112) (VOID 106 . 110) (symbol 112 . 125) (punctuation 111 . 112) (VOID 106 . 110) (symbol 112 . 117) (punctuation 111 . 112) (VOID 106 . 110) (symbol 112 . 121) (punctuation 111 . 112) (VOID 106 . 110) (symbol 112 . 121) (punctuation 111 . 112) (VOID 106 . 110) (symbol 112 . 125) (punctuation 111 . 112) (VOID 106 . 110) (symbol 112 . 125) (punctuation 111 . 112) (VOID 106 . 110) (symbol 112 . 125) (punctuation 111 . 112) (VOID 106 . 110) (symbol 112 . 126) (punctuation 111 . 112) (VOID 106 . 110) (symbol 112 . 126) (punctuation 111 . 112) (VOID 106 . 110) (symbol 112 . 126) (punctuation 111 . 112) (VOID 106 . 110) (symbol 112 . 124) (punctuation 111 . 112) (VOID 106 . 110) (symbol 112 . 117) (punctuation 111 . 112) (VOID 106 . 110) (symbol 112 . 117) (punctuation 111 . 112) (VOID 106 . 110) (semantic-list 95 . 103) (symbol 83 . 95) (punctuation 82 . 83) (symbol 77 . 81))
+    :lexical-table 
+        '(("_PCL_SHORTCUTS_")
+          )
+
+    )
+   (semanticdb-table "example_iterator_use.c"
+    :major-mode 'c-mode
+    :tags 
+        '( ("foo" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [11 16]))                  
+                :type "int")
+                nil [3 222])
+            ("bar" function
+               (:arguments 
+                  ( ("" variable (:type "void") (reparse-symbol arg-sub-list) [232 237]))                  
+                :type "int")
+                nil [224 504]))          
+    :file "example_iterator_use.c"
+    :pointmax 505
+    :fsize 504
+    :lastmodtime '(20762 48613)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "pcl_iterator_tools.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("_PCL_ITERTOOLS_" variable (:constant-flag t) nil [33 48])
+            ("pcl_iterator.h" include nil nil [49 74])
+            ("map" function
+               (:prototype-flag t
+                :pointer 1
+                :type ("pclI" type (:type "class") nil nil))
+                nil [76 88])
+            ("fold" function
+               (:prototype-flag t
+                :pointer 1
+                :type ("pclI" type (:type "class") nil nil))
+                nil [89 102])
+            ("filter" function
+               (:prototype-flag t
+                :pointer 1
+                :type ("pclI" type (:type "class") nil nil))
+                nil [103 118])
+            ("map_ip" function
+               (:prototype-flag t
+                :type "void")
+                nil [120 134])
+            ("fold_ip" function
+               (:prototype-flag t
+                :type "void")
+                nil [135 150])
+            ("filter_ip" function
+               (:prototype-flag t
+                :type "void")
+                nil [151 168])
+            ("length" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("it" variable (:type ("pclI" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [181 189]))                  
+                :type "int")
+                nil [170 190])
+            ("in" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("it" variable (:type ("pclI" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [198 206])
+                    ("" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [207 214]))                  
+                :type "int")
+                nil [191 215])
+            ("null_free" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("it" variable (:type ("pclI" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [230 238]))                  
+                :type "int")
+                nil [216 239])
+            ("sum" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("it" variable (:type ("pclI" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [249 257]))                  
+                :type "int")
+                nil [241 258])
+            ("min" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("it" variable (:type ("pclI" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [267 275]))                  
+                :type "int")
+                nil [259 276])
+            ("max" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("it" variable (:type ("pclI" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [285 293]))                  
+                :type "int")
+                nil [277 294])
+            ("range" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("start" variable (:type "int") (reparse-symbol arg-sub-list) [308 318])
+                    ("end" variable (:type "int") (reparse-symbol arg-sub-list) [319 327])
+                    ("step" variable (:type "int") (reparse-symbol arg-sub-list) [328 337]))                  
+                :type ("pclI" type (:type "class") nil nil))
+                nil [296 338])
+            ("infinity" function
+               (:prototype-flag t
+                :pointer 1
+                :type ("pclI" type (:type "class") nil nil))
+                nil [339 356])
+            ("chain" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("first" variable (:type ("pclI" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [370 381])
+                    ("second" variable (:type ("pclI" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [382 394]))                  
+                :type ("pclI" type (:type "class") nil nil))
+                nil [358 395])
+            ("take" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("it" variable (:type ("pclI" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [407 415])
+                    ("count" variable (:type "int") (reparse-symbol arg-sub-list) [416 426]))                  
+                :type ("pclI" type (:type "class") nil nil))
+                nil [396 427])
+            ("slice" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("it" variable (:type ("pclI" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [440 448])
+                    ("start" variable (:type "int") (reparse-symbol arg-sub-list) [449 459])
+                    ("end" variable (:type "int") (reparse-symbol arg-sub-list) [460 468])
+                    ("step" variable (:type "int") (reparse-symbol arg-sub-list) [469 478]))                  
+                :type ("pclI" type (:type "class") nil nil))
+                nil [428 479])
+            ("repeat" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("it" variable (:type ("pclI" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [493 501])
+                    ("times" variable (:type "int") (reparse-symbol arg-sub-list) [502 512]))                  
+                :type ("pclI" type (:type "class") nil nil))
+                nil [480 513])
+            ("flatten" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("it" variable (:type ("pclI" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [529 537]))                  
+                :type ("pclI" type (:type "class") nil nil))
+                nil [515 538])
+            ("nth" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("it" variable (:type ("pclI" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [550 558])
+                    ("n" variable (:type "int") (reparse-symbol arg-sub-list) [559 565]))                  
+                :type "void")
+                nil [540 566]))          
+    :file "pcl_iterator_tools.h"
+    :pointmax 592
+    :fsize 591
+    :lastmodtime '(20759 55768)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("_PCL_ITERTOOLS_")
+          )
+
+    )
+   )
   :file "!home!pilen!code!pclib!semantic.cache"
   :semantic-tag-version "2.0"
   :semanticdb-version "2.0"
