@@ -21,8 +21,8 @@
 ;|                      |              |            |            |            |            |            |            |            |            |            |            |            |            |
 ;|______________________|______________|____________|____________|____________|___________(#)___________|____________|____________|____________|____________|____________|____________|____________|
 ;|Shift           |-             |z           |x           |c           |v           |b           |nk          |m           |,           |.           |/           |Shift                          |
-;|                |expand-region |undo        |            |ace-jmp-wd-l|goto-last-ch|toggle-case |erc         |isearch-forw|ahs-sym-bck |ahs-sym-fwd |query-replac|                               |
-;|                |contrct-region|            |            |ace-jmp-wd-g|pop-to-mark |caps-mode   |            |sprint      |ahs-def-bck |ahs-def-fwd |iedit       |                               |
+;|                |expand-region |undo        |xpdf-glo-up |ace-jmp-wd-l|goto-last-ch|toggle-case |erc         |isearch-forw|ahs-sym-bck |ahs-sym-fwd |query-replac|                               |
+;|                |contrct-region|            |xpdf-glo-dn |ace-jmp-wd-g|pop-to-mark |caps-mode   |            |sprint      |ahs-def-bck |ahs-def-fwd |iedit       |                               |
 ;|                |              |undo        |            |            |            |            |            |            |            |            |            |                               |
 ;|________________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|_______________________________|
 ;|Fn          |Ctrl              |S          |Alt        |SPC                                                               |AltGr       |[=]         |Ctrl        |                               |
@@ -507,6 +507,7 @@
 
 (global-set-key (kbd "H-k") 'erc-start-or-switch)
 
+(global-set-key (kbd "<XF86Launch1>") 'sr-speedbar-toggle)
 
 ;;______________________________________________________________________________
 ;π COMPILE
@@ -708,6 +709,8 @@
 (require 'xpdfremote)
 
 ;(semantic-mode 1)
+
+(setq speedbar-use-images nil)
 
 ;;______________________________________________________________________________
 ;π BATTERY
@@ -1117,6 +1120,9 @@
 
 (setq-default mode-line-position '(eval (list (sml-modeline-create))))
 (sml-modeline-mode 1)
+
+(require 'sr-speedbar)
+(define-key speedbar-mode-map (kbd "<tab>") 'speedbar-toggle-line-expansion)
 
 ;;______________________________________________________________________________
 ;π RAINBOW DELIMITERS
