@@ -710,8 +710,6 @@
 
 ;(semantic-mode 1)
 
-(setq speedbar-use-images nil)
-
 ;;______________________________________________________________________________
 ;π BATTERY
 ;;______________________________________________________________________________
@@ -1122,7 +1120,9 @@
 (sml-modeline-mode 1)
 
 (require 'sr-speedbar)
+(setq speedbar-use-images nil)
 (define-key speedbar-mode-map (kbd "<tab>") 'speedbar-toggle-line-expansion)
+(define-key speedbar-mode-map (kbd "<backspace>") 'speedbar-up-directory)
 
 ;;______________________________________________________________________________
 ;π RAINBOW DELIMITERS
