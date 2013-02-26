@@ -102,116 +102,6 @@
 ;π UNBIND
 ;;______________________________________________________________________________
 
-;; ;; open keyboard shortcut image with F8 key
-;; ;(global-set-key (kbd "<f8>")
-;; ;  (lambda ()
-;; ;    (interactive)
-;; ;    (find-file "~/.emacs.d/ergonomic_emacs_layout_qwerty_5.3.4.png")))
-
-
-
-;; ;; kicking the habit
-;; (global-unset-key (kbd "C-b")) ; backward-char
-;; (global-unset-key (kbd "C-f")) ; forward-char
-;; (global-unset-key (kbd "C-p")) ; previous-line
-;; (global-unset-key (kbd "C-n")) ; next-line
-
-;; (global-unset-key (kbd "M-b")) ; backward-word
-;; (global-unset-key (kbd "M-t")) ; forward-word
-
-;; (global-unset-key (kbd "M-s")) ; kill-word
-;; (global-unset-key (kbd "C-<backspace>")) ; backward-kill-word
-;; ;(global-unset-key (kbd "C-s")) ; delete-char
-
-;; (global-unset-key (kbd "M-j")) ; newline-and-indent
-;; (global-unset-key (kbd "M-h")) ; mark-paragraph
-
-;; (global-unset-key (kbd "M-o"))
-;; (global-unset-key (kbd "C-o"))
-;; (global-unset-key (kbd "M-'")) ; abbrev-prefix-mark
-
-;; (global-unset-key (kbd "M-u")) ;
-;; (global-unset-key (kbd "M-n")) ;
-;; (global-unset-key (kbd "M-e")) ;
-;; (global-unset-key (kbd "M-i")) ;
-;; (global-unset-key (kbd "M-U")) ;
-;; (global-unset-key (kbd "M-N")) ;
-;; (global-unset-key (kbd "M-E")) ;
-;; (global-unset-key (kbd "M-I")) ;
-
-;; (global-unset-key (kbd "M-a")) ;
-;; (global-unset-key (kbd "M-b")) ;
-;; (global-unset-key (kbd "M-c")) ;
-;; (global-unset-key (kbd "M-d")) ;
-;; (global-unset-key (kbd "M-e")) ;
-;; (global-unset-key (kbd "M-f")) ;
-;; (global-unset-key (kbd "M-g")) ;
-;; (global-unset-key (kbd "M-h")) ;
-;; (global-unset-key (kbd "M-i")) ;
-;; (global-unset-key (kbd "M-j")) ;
-;; (global-unset-key (kbd "M-k")) ;
-;; (global-unset-key (kbd "M-l")) ;
-;; (global-unset-key (kbd "M-m")) ;
-;; (global-unset-key (kbd "M-n")) ;
-;; (global-unset-key (kbd "M-o")) ;
-;; (global-unset-key (kbd "M-p")) ;
-;; (global-unset-key (kbd "M-q")) ;
-;; (global-unset-key (kbd "M-r")) ;
-;; (global-unset-key (kbd "M-s")) ;
-;; (global-unset-key (kbd "M-t")) ;
-;; (global-unset-key (kbd "M-u")) ;
-;; (global-unset-key (kbd "M-v")) ;
-;; ;(global-unset-key (kbd "M-w")) ;
-;; ;(global-unset-key (kbd "M-x")) ;
-;; (global-unset-key (kbd "M-y")) ;
-;; (global-unset-key (kbd "M-z")) ;
-
-;; (global-unset-key (kbd "M-A")) ;
-;; (global-unset-key (kbd "M-B")) ;
-;; (global-unset-key (kbd "M-C")) ;
-;; (global-unset-key (kbd "M-D")) ;
-;; (global-unset-key (kbd "M-E")) ;
-;; (global-unset-key (kbd "M-F")) ;
-;; (global-unset-key (kbd "M-G")) ;
-;; (global-unset-key (kbd "M-H")) ;
-;; (global-unset-key (kbd "M-I")) ;
-;; (global-unset-key (kbd "M-J")) ;
-;; (global-unset-key (kbd "M-K")) ;
-;; (global-unset-key (kbd "M-L")) ;
-;; (global-unset-key (kbd "M-M")) ;
-;; (global-unset-key (kbd "M-N")) ;
-;; (global-unset-key (kbd "M-O")) ;
-;; (global-unset-key (kbd "M-P")) ;
-;; (global-unset-key (kbd "M-Q")) ;
-;; (global-unset-key (kbd "M-R")) ;
-;; (global-unset-key (kbd "M-S")) ;
-;; (global-unset-key (kbd "M-T")) ;
-;; (global-unset-key (kbd "M-U")) ;
-;; (global-unset-key (kbd "M-V")) ;
-;; (global-unset-key (kbd "M-W")) ;
-;; (global-unset-key (kbd "M-X")) ;
-;; (global-unset-key (kbd "M-Y")) ;
-;; (global-unset-key (kbd "M-Z")) ;
-
-
-;; (global-unset-key (kbd "M-,")) ; tags-loop-continue
-;; (global-unset-key (kbd "M-.")) ; find-tag
-;; (global-unset-key (kbd "M-<")) ; beginning-of-buffer
-;; (global-unset-key (kbd "M->")) ; end-of-buffer
-;; (global-unset-key (kbd "M-;")) ; comment-dwim
-;; (global-unset-key (kbd "M-:")) ; eval-expresseion
-;; (global-unset-key (kbd "M--"))
-
-;; (global-unset-key (kbd "M-`"))
-;; (global-unset-key (kbd "M-~"))
-;; (global-unset-key (kbd "M-<insert>"))
-;; (global-unset-key (kbd "M-<delete>"))
-;; (global-unset-key (kbd "M-<home>"))
-;; (global-unset-key (kbd "M-<end>"))
-
-
-
-
 (global-unset-key (kbd "<f1>"))
 (global-unset-key (kbd "<f2>"))
 (global-unset-key (kbd "<f3>"))
@@ -224,8 +114,6 @@
 (global-unset-key (kbd "<f10>"))
 (global-unset-key (kbd "<f11>"))
 (global-unset-key (kbd "<f12>"))
-
-
 
 ;;______________________________________________________________________________
 ;π GLOBAL BINDINGS
