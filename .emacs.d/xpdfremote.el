@@ -201,7 +201,7 @@
     (define-key xpdfremote/mode-map (kbd "<home>")      'xpdfremote/xpdf-gotoPage_1)
     (define-key xpdfremote/mode-map (kbd "<end>")      'xpdfremote/xpdf-gotoLastPage)
 
-    (define-key xpdfremote/mode-map (kbd "<prev>") 'xpdfremote/xpdf-pageUp)
+    (define-key xpdfremote/mode-map (kbd "<prior>") 'xpdfremote/xpdf-pageUp)
     (define-key xpdfremote/mode-map (kbd "<next>") 'xpdfremote/xpdf-pageDown)
     (define-key xpdfremote/mode-map (kbd "<backspace>") 'xpdfremote/xpdf-pageUp)
     (define-key xpdfremote/mode-map (kbd "<space>") 'xpdfremote/xpdf-pageDown)

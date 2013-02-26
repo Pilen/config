@@ -52,6 +52,7 @@
 ;; xpdfremote
 ;; Pagefitted coding
 ;; Move by syllable. http://www.tug.org/docs/liang/ http://usuallyalex.wordpress.com/2009/06/15/detecting-syllables-programatically/
+;; autofix wrongtype of delimiters ([)) -> ([]) when typing closing delimiter
 
 ;;______________________________________________________________________________
 ;;
@@ -362,7 +363,7 @@
 ;(global-set-key (kbd "H-'") 'switch-to-buffer)
 ;(global-set-key (kbd "H-,") 'previous-buffer)
 ;(global-set-key (kbd "H-.") 'next-buffer)
-(global-set-key (kbd "H-g") 'goto-line)
+;(global-set-key (kbd "H-g") 'goto-line)
 (global-set-key (kbd "H-<return>") 'ido-switch-buffer)
 ;(global-set-key (kbd "H-<return>") 'idobuffer)
 (global-set-key (kbd "S-<return>") 'new-indented-line)
@@ -513,26 +514,36 @@
 ;π COMPILE
 ;;______________________________________________________________________________
 ;; H-g  =  compile
-(add-hook 'erlang-mode-hook  (lambda () (define-key erlang-mode-map  (kbd "H-g") (lambda () (interactive) (erlang-compile) (first-error)))))
-(add-hook 'LaTeX-mode-hook   (lambda () (define-key TeX-mode-map     (kbd "H-g") 'run-latex)))
-(add-hook 'haskell-mode-hook (lambda () (define-key haskell-mode-map (kbd "H-g") 'inferior-haskell-load-file)))
-(add-hook 'maple-mode-hook   (lambda () (define-key maple-mode-map   (kbd "H-g") 'maple-buffer)))
-(add-hook 'sml-mode-hook     (lambda () (define-key sml-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (call-interactively 'sml-prog-proc-load-file)))))
-(add-hook 'python-mode-hook  (lambda () (define-key python-mode-map  (kbd "H-g") 'python-compile)))
-(add-hook 'c-mode-hook       (lambda () (define-key c-mode-map       (kbd "H-g") 'my-c-compile)))
+(global-set-key (kbd "H-g") (lambda () (interactive) (message "Compile-key not defined for this mode.")))
+(add-hook 'erlang-mode-hook  (lambda () (define-key erlang-mode-map     (kbd "H-g") (lambda () (interactive) (erlang-compile) (first-error)))))
+(add-hook 'LaTeX-mode-hook   (lambda () (define-key TeX-mode-map        (kbd "H-g") 'run-latex)))
+(add-hook 'haskell-mode-hook (lambda () (define-key haskell-mode-map    (kbd "H-g") 'inferior-haskell-load-file)))
+(add-hook 'maple-mode-hook   (lambda () (define-key maple-mode-map      (kbd "H-g") 'maple-buffer)))
+(add-hook 'sml-mode-hook     (lambda () (define-key sml-mode-map        (kbd "H-g") (lambda () (interactive) (save-buffer) (call-interactively 'sml-prog-proc-load-file)))))
+(add-hook 'python-mode-hook  (lambda () (define-key python-mode-map     (kbd "H-g") 'python-compile)))
+(add-hook 'c-mode-hook       (lambda () (define-key c-mode-map          (kbd "H-g") 'my-c-compile)))
+;; (add-hook 'emacs-lisp-mode   (lambda () (define-key emacs-lisp-mode-map (kbd "H-g") 'my-elisp-eval-defun)))
 
 (defun my-c-compile ()
   (interactive)
   (save-buffer)
-  (if
-      (file-exists-p (concat (file-name-directory (buffer-file-name (current-buffer)))
-                             "Makefile"))
-      (compile "make")
+  (cond
+   ((file-exists-p (concat (file-name-directory (buffer-file-name (current-buffer))) "Makefile"))
+    (compile "make"))
+
+   ((eq (car compile-history) nil)
+    (compile (compilation-read-command (car compile-history))))
+
+   ('t
     (compile (compilation-read-command (concat "gcc "
-                                               (file-name-nondirectory (buffer-file-name)))))))
+                                               (file-name-nondirectory (buffer-file-name))))))))
 
-
-
+;; (defun my-elisp-eval-defun ()
+;;  (interactive)
+;;  (search-backward "\n(")
+;;  (right-char)
+;;  (goto-match-paren)
+;;  (eval-last-sexp nil))
 
 
 
@@ -709,6 +720,12 @@
 (require 'xpdfremote)
 
 ;(semantic-mode 1)
+
+(require 'quack)
+;;(quack-add-auto-mode-alist '((".rkt" . quack-pltfile-mode)))
+
+(fset 'el-headlines
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217786 40 111 99 99 117 114 32 34 59 960 34 41 return] 0 "%d")) arg)))
 
 ;;______________________________________________________________________________
 ;π BATTERY
@@ -2886,7 +2903,7 @@ current frame, create a new window and switch to it.
           (lambda ()
             (local-set-key (kbd "H-λ") 'gtags-find-tag)
             (local-set-key (kbd "H-=") 'gtags-pop-stack)
-            (local-set-key (kbd "H-=") 'gtags-find-rtag)))
+            (local-set-key (kbd "H-π") 'gtags-find-rtag)))
 
 (add-hook 'c-mode-common-hook
           (lambda ()
@@ -3176,10 +3193,10 @@ in that cyclic order."
       (goto-char pos)
       (beginning-of-defun))))
 
-(defun goto-match-paren (arg)
+(defun goto-match-paren ()
   "Go to the matching parenthesis if on parenthesis. Else go to the
    opening parenthesis one level up."
-  (interactive "p")
+  (interactive)
   (cond ((looking-at "\\s\(") (forward-list 1))
         (t
          (backward-char 1)
