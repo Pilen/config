@@ -24,9 +24,9 @@ export PATH=~/programs/osm/bin:$PATH
 export PATH=~/code/scripts:$PATH
 autoload -U colors && colors
 
-#if [[$hostname = *joker*]]; then
+#if [[$hostname = *penguin*]]; then
 PROMPT="";
-if [[ "$HOST" == joker ]]; then
+if [[ "$HOST" == penguin ]]; then
     PROMPT="%(!.#.$)";
     RPROMPT="%3~";
 else

@@ -402,15 +402,16 @@
 ;π COMPILE
 ;;______________________________________________________________________________
 ;; H-g  =  compile
-(global-set-key (kbd "H-g") (lambda () (interactive) (message "Compile-key not defined for this mode.")))
-(add-hook 'erlang-mode-hook  (lambda () (define-key erlang-mode-map     (kbd "H-g") (lambda () (interactive) (erlang-compile) (first-error)))))
-(add-hook 'LaTeX-mode-hook   (lambda () (define-key TeX-mode-map        (kbd "H-g") 'run-latex)))
-(add-hook 'haskell-mode-hook (lambda () (define-key haskell-mode-map    (kbd "H-g") 'inferior-haskell-load-file)))
-(add-hook 'maple-mode-hook   (lambda () (define-key maple-mode-map      (kbd "H-g") 'maple-buffer)))
-(add-hook 'sml-mode-hook     (lambda () (define-key sml-mode-map        (kbd "H-g") (lambda () (interactive) (save-buffer) (call-interactively 'sml-prog-proc-load-file)))))
-(add-hook 'python-mode-hook  (lambda () (define-key python-mode-map     (kbd "H-g") 'python-compile)))
-(add-hook 'c-mode-hook       (lambda () (define-key c-mode-map          (kbd "H-g") 'my-c-compile)))
-;; (add-hook 'emacs-lisp-mode   (lambda () (define-key emacs-lisp-mode-map (kbd "H-g") 'my-elisp-eval-defun)))
+(global-set-key (kbd "H-g")     (lambda () (interactive) (message "Compile-key not defined for this mode.")))
+(add-hook 'erlang-mode-hook     (lambda () (define-key erlang-mode-map     (kbd "H-g") (lambda () (interactive) (erlang-compile) (first-error)))))
+(add-hook 'LaTeX-mode-hook      (lambda () (define-key TeX-mode-map        (kbd "H-g") 'run-latex)))
+(add-hook 'haskell-mode-hook    (lambda () (define-key haskell-mode-map    (kbd "H-g") 'inferior-haskell-load-file)))
+(add-hook 'maple-mode-hook      (lambda () (define-key maple-mode-map      (kbd "H-g") 'maple-buffer)))
+(add-hook 'sml-mode-hook        (lambda () (define-key sml-mode-map        (kbd "H-g") (lambda () (interactive) (save-buffer) (call-interactively 'sml-prog-proc-load-file)))))
+(add-hook 'python-mode-hook     (lambda () (define-key python-mode-map     (kbd "H-g") 'python-compile)))
+(add-hook 'c-mode-hook          (lambda () (define-key c-mode-map          (kbd "H-g") 'my-c-compile)))
+(add-hook 'emacs-lisp-mode-hook (lambda () (define-key emacs-lisp-mode-map (kbd "H-g") 'my-elisp-eval)))
+(add-hook 'scheme-mode-hook     (lambda () (define-key scheme-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (scheme-send-region-and-go 1 (buffer-end 1))))))
 
 (defun my-c-compile ()
   (interactive)
@@ -426,13 +427,12 @@
     (compile (compilation-read-command (concat "gcc "
                                                (file-name-nondirectory (buffer-file-name))))))))
 
-;; (defun my-elisp-eval-defun ()
-;;  (interactive)
-;;  (search-backward "\n(")
-;;  (right-char)
-;;  (goto-match-paren)
-;;  (eval-last-sexp nil))
-
+(defun my-elisp-eval ()
+  (interactive)
+  (save-excursion
+  (let ((start (search-backward-regexp "^(")))
+    (goto-match-paren)
+    (eval-region start (point) standard-output))))
 
 
 ;;______________________________________________________________________________
@@ -757,7 +757,7 @@
 ;(require 'color-theme-solarized)
 ;(color-theme-solarized-dark)
 
-(if (string= (system-name) "joker")
+(if (or (string= (system-name) "joker") (string= (system-name) "penguin"))
     (set-background-color "grey30")
   (set-background-color "SteelBlue4"))
 (set-foreground-color "honeydew1")
