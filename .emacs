@@ -1644,7 +1644,7 @@ erc-modified-channels-alist. Should be executed on window change."
 ;;______________________________________________________________________________
 ;π ERLANG
 ;;______________________________________________________________________________
-(add-to-list 'load-path "/usr/lib/erlang/lib/tools-2.6.8/emacs/")
+(add-to-list 'load-path "/usr/lib/erlang/lib/tools-2.6.10/emacs/")
 (require 'erlang-start)
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
