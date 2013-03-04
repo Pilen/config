@@ -1,0 +1,4 @@
+#/bin/sh
+wmname LG3D
+./home/pilen/programs/maple15/bin/xmaple
+wmname xmonad

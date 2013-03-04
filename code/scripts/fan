@@ -1,0 +1,21 @@
+#!/usr/bin/perl
+$num = $#ARGV +1;
+
+if ($num == 1) {
+    $arg = @ARGV[0];
+    if ($arg eq "on") {
+        $command = "disengaged";
+    } elsif ($arg eq "off") {
+        $command = "auto";
+    } else {
+        print "Not a valid command use \"fan [on/off]\"\n";
+        exit;
+    }
+} else {
+    $command = "disengaged";
+}
+
+
+`sudo rmmod thinkpad_acpi`;
+`sudo modprobe thinkpad_acpi fan_control=1`;
+`sudo sh -c 'echo \"level $command\" > /proc/acpi/ibm/fan '`;

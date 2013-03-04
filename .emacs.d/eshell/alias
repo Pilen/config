@@ -16,7 +16,7 @@ alias nano nano -Simz $*
 alias eixt exit $*
 alias gcc32 /usr/bin/x86_64-unknown-linux-gnu-gcc $*
 alias pip curl http://ifconfig.me/ $*
-alias push ~/.pushconfig $*
+alias push ~/code/scripts/pushconfig $*
 alias p python2 $*
 alias pp python3 $*
 alias cortex cd ~/.wine/drive_c/Program\ Files\ \(x86\)/Data\ Realms/Cortex\ Command/; wine Cortex\ Command.exe $*

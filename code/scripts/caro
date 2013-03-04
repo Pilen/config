@@ -1,0 +1,4 @@
+#!/usr/bin/perl
+$cip = `ssh caroline\@tyr.diku.dk cat myip`;
+print $cip;
+exec "ssh caro\@$cip";

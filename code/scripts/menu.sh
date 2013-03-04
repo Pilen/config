@@ -12,13 +12,13 @@ menu=(\
         gimp      "gimp"
         inkscape  "inkscape"
         xlock     "xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0"
-        xpdf      "perl xpdf.pl"
+        xpdf      "perl /home/pilen/code/scripts/xpdf.pl"
         firefox   "firefox"
         python3   "urxvtc -bg #111111 -fg #51a366 -e python3"
-        python2   "urxvtc -bg #111111 -fg #6fbfe7 -e python2 -i .python2.py"
+        python2   "urxvtc -bg #111111 -fg #6fbfe7 -e python2 -i /home/pilen/code/scripts/python2.py"
         alsamixer "urxvtc -bg black -e alsamixer"
         htop      "urxvtc -bg black -e htop"
-        cal       "urxvtc -bg black -e perl .cal.pl"
+        cal       "urxvtc -bg black -e perl /home/pilen/code/scripts/cal.pl"
         update    "urxvtc -bg black -e sudo pacman -Syu"
         urxvt-nf  "urxvtc -fade 0"
         shutdown  "urxvtc -bg black -fg red -e sudo shutdown -h now"
@@ -34,11 +34,11 @@ menu=(\
         90%       "amixer set Master 61"
         100%      "amixer set Master 64"
         MAX       "amixer set Master 64"
-        maple     "maple"
+        maple     "/home/pilen/code/scripts/maple"
         dmenu     "dmenu_run"
-        omacs     "sh .omacs"
+        omacs     "sh /home/pilen/code/scripts/omacs"
 
-        links     "perl linkmenu.pl"
+        links     "perl /home/pilen/code/scripts/linkmenu.pl"
      )
 
 for (( count = 0 ; count < ${#menu[*]}; count++ )); do

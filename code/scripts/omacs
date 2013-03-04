@@ -1,0 +1,3 @@
+#!/bin/sh
+
+wget -qO/tmp/.emacs https://raw.github.com/Pilen/config/master/.emacs; emacs -q -bg red -l /tmp/.emacs; rm -f /tmp/.emacs

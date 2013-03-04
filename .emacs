@@ -54,14 +54,6 @@
 ;; Move by syllable. http://www.tug.org/docs/liang/ http://usuallyalex.wordpress.com/2009/06/15/detecting-syllables-programatically/
 ;; autofix wrongtype of delimiters ([)) -> ([]) when typing closing delimiter
 
-;; erlang
-;; gnuplot
-;; auctext
-;; gtags (global)
-;; w3m
-;; emacs-w3m
-;; email.el : (setq my-email-address "...")
-
 ;;______________________________________________________________________________
 ;;
 ;;
@@ -2867,7 +2859,6 @@ current frame, create a new window and switch to it.
 (add-to-list 'load-path "~/builds/emacs-w3m-1.4.4")
 (require 'w3m-e21)
 (provide 'w3m-e23)
-(require 'w3m-load)
 (autoload 'w3m-link-numbering-mode "w3m-lnum" nil t)
 (add-hook 'w3m-mode-hook (lambda ()
                            (setq show-trailing-whitespace nil)

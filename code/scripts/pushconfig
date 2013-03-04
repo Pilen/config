@@ -1,30 +1,33 @@
 # ! /bin/sh
 
+chmod +x code/scripts/*
+
 echo old size:
 wget -qO- https://raw.github.com/Pilen/config/master/.emacs | wc -l
 wc -l .emacs
-/home/pilen/.copyaliases.py
+/home/pilen/code/scripts/copyaliases.py
 echo
 
 #This is basicly a list of all the files i want to keep track of.
 
+git add ~/code/scripts/;
 git add ~/.emacs.d/;
 git add ~/.xmonad/xmonad.hs;
 git add ~/.bashrc;
 git add ~/.emacs;
 git add ~/.nanorc;
-git add ~/.pushconfig;
+#git add ~/.pushconfig;
 git add ~/.Xdefaults;
 git add ~/.xinitrc;
 git add ~/.zshrc;
 git add ~/.aliases;
-git add ~/.copyaliases.py;
+#git add ~/.copyaliases.py;
 git add ~/.Xmodmap;
 
-git add ~/.menu.sh
-git add ~/.cal.pl
-git add ~/.python2.py
-git add ~/linkmenu.pl
+#git add ~/.menu.sh
+#git add ~/.cal.pl
+#git add ~/.python2.py
+#git add ~/linkmenu.pl
 
 
 git commit -m "Configuration updated";
@@ -37,6 +40,3 @@ ssh pilgaard@tyr.diku.dk git pull origin master
 
 echo
 git show --pretty="format:" --name-only
-
-
-
