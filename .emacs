@@ -6,9 +6,9 @@
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |λ           |=           |Backspace             |
-;|flymake-next|bread-set     |bread-prev  |bread-next  |            |            |            |fold        |            |smart-backw |smart-forw  |find-tag    |pop-tag-mark|join-line             |
+;|flymake-next|bread-set     |bread-prev  |bread-next  |            |            |            |fold        |fwd-syntax  |smart-backw |smart-forw  |find-tag    |pop-tag-mark|join-line             |
 ;|~           |!             |@           |#           |$           |%           |^           |&           |*           |(           |)           |π           |+           |                      |
-;|flymake     |              |            |bread-list  |            |            |            |fold-column |            |            |            |tags-apropos|            |                      |
+;|flymake     |              |            |bread-list  |            |            |            |fold-column |bwd-syntax  |begn-defun  |end-defun   |tags-apropos|            |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
 ;|goto-match-paren   |mc-next-like  |copy-region |<del-wrd    |del-wrd>    |compile/run |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |golden-ratio|ido-sw-buf     |
@@ -53,6 +53,22 @@
 ;; Pagefitted coding
 ;; Move by syllable. http://www.tug.org/docs/liang/ http://usuallyalex.wordpress.com/2009/06/15/detecting-syllables-programatically/
 ;; autofix wrongtype of delimiters ([)) -> ([]) when typing closing delimiter
+
+;;______________________________________________________________________________
+;;
+;;
+;π                                DEPENDENCIES
+;;
+;;______________________________________________________________________________
+
+;; erlang
+;; gnuplot
+;; auctex
+;; gtags (global)
+;; w3m
+;; emacs-w3m
+;; email.el : (setq my-email-address "...")
+;; aspell, aspell-en, aspell-da (aur)
 
 ;;______________________________________________________________________________
 ;;
@@ -132,6 +148,7 @@
 (global-set-key (kbd "H-l") 'backward-word-to-newline) ;; geosoft-backward-word
 (global-set-key (kbd "H-y") 'forward-word-to-newline)  ;; forward-word
 (global-set-key (kbd "H-8") 'forward-same-syntax)
+(global-set-key (kbd "H-*") (lambda () (interactive) (forward-same-syntax -1)))
 ;; Move by paragraph
 ;(global-set-key (kbd "H-L") 'backward-paragraph)
 ;(global-set-key (kbd "H-Y") 'forward-paragraph)
@@ -411,7 +428,7 @@
 (add-hook 'python-mode-hook     (lambda () (define-key python-mode-map     (kbd "H-g") 'python-compile)))
 (add-hook 'c-mode-hook          (lambda () (define-key c-mode-map          (kbd "H-g") 'my-c-compile)))
 (add-hook 'emacs-lisp-mode-hook (lambda () (define-key emacs-lisp-mode-map (kbd "H-g") 'my-elisp-eval)))
-(add-hook 'scheme-mode-hook     (lambda () (define-key scheme-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (scheme-send-region-and-go 1 (buffer-end 1))))))
+(add-hook 'scheme-mode-hook     (lambda () (define-key scheme-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (geiser-mode-switch-to-repl-and-enter)))))
 
 (defun my-c-compile ()
   (interactive)
@@ -609,8 +626,16 @@
 
 ;(semantic-mode 1)
 
-(require 'quack)
-;;(quack-add-auto-mode-alist '((".rkt" . quack-pltfile-mode)))
+(add-to-list 'auto-mode-alist '("\\.rkt\\'$" . scheme-mode))
+(add-hook 'scheme-mode-hook (lambda ()
+                              (require 'quack)
+                              (setq quack-fontify-style 'emacs)
+                              (setq quack-default-program "racket")
+                              (setq quack-global-menu-p nil)))
+(add-to-list 'load-path "~/.emacs.d/geiser-0.3/")
+;(load-file "~/.emacs.d/geiser-0.3/")
+(require 'geiser)
+
 
 (fset 'el-headlines
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217786 40 111 99 99 117 114 32 34 59 960 34 41 return] 0 "%d")) arg)))
@@ -1657,7 +1682,7 @@ erc-modified-channels-alist. Should be executed on window change."
 
 (add-hook 'erlang-mode-hook (lambda ()
                               ;; when starting an Erlang shell in Emacs, default in the node name
-                              (setq inferior-erlang-machine-options '("-sname" "emacs"))
+                              (setq inferior-erlang-machine-options '("-sname" "emacs"))))
 (defun inferior-erlang-compile (arg)
   "Compile the file in the current buffer.
 
@@ -1697,7 +1722,7 @@ There exists two workarounds for this bug:
       (set-buffer inferior-erlang-buffer)
       (setq compilation-error-list nil)
       (set-marker compilation-parsing-end end))
-    (setq compilation-last-buffer inferior-erlang-buffer)))))
+    (setq compilation-last-buffer inferior-erlang-buffer)))
 
 ;;______________________________________________________________________________
 ;π ESHELL

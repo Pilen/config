@@ -3,12 +3,8 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        back-to-indentation-or-beginning
-        backward-kill-word-to-newline
-        c-electric-slash
-        indent-for-tab-command
-        perl-electric-terminator
-        python-backspace
+        quack-insert-closing-paren
+        quack-insert-opening-paren
         toggle-letter-case
         yank-or-pop
         ))
