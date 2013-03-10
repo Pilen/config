@@ -28,7 +28,7 @@ git add ~/.Xmodmap;
 #git add ~/.cal.pl
 #git add ~/.python2.py
 #git add ~/linkmenu.pl
-
+#git add ~/.config/chromium/Default/User StyleSheets/Custom.css
 
 git commit -m "Configuration updated";
 git push

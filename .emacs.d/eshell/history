@@ -1,0 +1,15 @@
+ls
+mkdir opskrifter
+mv cookies.txt opskrifter/
+cd Dropbox/
+ls
+cd FDF/
+l
+ls
+mkdir lejrbaal2013
+ls lejrbaal2012/
+rm lejrbaal2012/
+rm lejrbaal2012/ -rf
+ls lejrbaal2013/
+cd lejrbaal2013/
+ls

@@ -626,17 +626,6 @@
 
 ;(semantic-mode 1)
 
-(add-to-list 'auto-mode-alist '("\\.rkt\\'$" . scheme-mode))
-(add-hook 'scheme-mode-hook (lambda ()
-                              (require 'quack)
-                              (setq quack-fontify-style 'emacs)
-                              (setq quack-default-program "racket")
-                              (setq quack-global-menu-p nil)))
-(add-to-list 'load-path "~/.emacs.d/geiser-0.3/")
-;(load-file "~/.emacs.d/geiser-0.3/")
-(require 'geiser)
-
-
 (fset 'el-headlines
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217786 40 111 99 99 117 114 32 34 59 960 34 41 return] 0 "%d")) arg)))
 
@@ -2627,6 +2616,19 @@ current frame, create a new window and switch to it.
 ;π PYTHON
 ;;______________________________________________________________________________
 (setq python-command "/usr/bin/bpython")
+
+;;______________________________________________________________________________
+;π RACKET/SCHEME
+;;______________________________________________________________________________
+(add-to-list 'auto-mode-alist '("\\.rkt\\'$" . scheme-mode))
+(add-hook 'scheme-mode-hook (lambda ()
+                              (require 'quack)
+                              (setq quack-fontify-style 'emacs)
+                              (setq quack-default-program "racket")
+                              (setq quack-global-menu-p nil)))
+(add-to-list 'load-path "~/.emacs.d/geiser-0.3/")
+;(load-file "~/.emacs.d/geiser-0.3/")
+(require 'geiser)
 
 ;;______________________________________________________________________________
 ;π SAGE
