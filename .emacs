@@ -54,6 +54,12 @@
 ;; Move by syllable. http://www.tug.org/docs/liang/ http://usuallyalex.wordpress.com/2009/06/15/detecting-syllables-programatically/
 ;; autofix wrongtype of delimiters ([)) -> ([]) when typing closing delimiter
 
+;;;; 24.3 Look at
+;; set-temporary-overlay-map
+;; python-shell-send-buffer
+;; wavy underline
+;; erc notifications
+
 ;;______________________________________________________________________________
 ;;
 ;;
@@ -82,6 +88,7 @@
 ;; C-x -        Shrink window to buffersize
 
 ;; C-x r k      Kill (cut) rectangle
+;; C-x r M-w    Copy rectangle
 ;; C-x r y      Yank (paste) rectangle
 ;; C-x r o      Open (insert spaces into selection)
 ;; C-x r c      Clear (overwrite selection with spaces)
@@ -108,7 +115,8 @@
 ;; C-Y          yank
 ;; C-H-y        yank primary
 
-
+;; M-next       scroll-other-window
+;; M-prev       scroll-other-window-down
 ;; Debug on errors in .emacs
 (setq debug-on-error t)
 
@@ -429,6 +437,7 @@
 (add-hook 'c-mode-hook          (lambda () (define-key c-mode-map          (kbd "H-g") 'my-c-compile)))
 (add-hook 'emacs-lisp-mode-hook (lambda () (define-key emacs-lisp-mode-map (kbd "H-g") 'my-elisp-eval)))
 (add-hook 'scheme-mode-hook     (lambda () (define-key scheme-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (geiser-mode-switch-to-repl-and-enter)))))
+(add-hook 'ruby-mode-hook       (lambda () (define-key ruby-mode-map       (kbd "H-g") (lambda () (interactive) (save-excursion (when (null inf-ruby-buffer) (run-ruby) (sleep-for 1))) (ruby-send-region-and-go (point-min) (point-max))))))
 
 (defun my-c-compile ()
   (interactive)
@@ -505,6 +514,7 @@
 (setq shell-toggle-launch-shell 'shell-toggle-eshell)
 (require 'pager) ;For smarter scrolling
 
+;enabling this will cause an encoding warning as of Emacs 24.3
 ;(require 'follow-mouse) ;Active window follows mouse
 ;(turn-on-follow-mouse)
 ;(setq follow-mouse-deselect-active-minibuffer nil)
@@ -537,6 +547,9 @@
 ;(require 'rfringe)
 ;(set-fringe-mode '(1 . 0))
 (set-fringe-mode '(0 . 0))
+;; -i dont like $ or \ to be displayed at lines too long (forced from Emacs 24.3)
+(set-display-table-slot standard-display-table 'truncation ?\n)
+(set-display-table-slot standard-display-table 'wrap ?\n)
 
 (defalias 'el 'emacs-lisp-mode)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
@@ -628,6 +641,15 @@
 
 (fset 'el-headlines
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217786 40 111 99 99 117 114 32 34 59 960 34 41 return] 0 "%d")) arg)))
+
+(require 'inf-ruby)
+(define-key inf-ruby-mode-map (kbd "<up>") 'comint-previous-input)
+(define-key inf-ruby-mode-map (kbd "<down>") 'comint-next-input)
+
+(require 'help-mode)
+(define-key help-mode-map (kbd "H-J") 'help-goto-file)
+(fset 'help-goto-file
+   [?\M-: ?\( ?b ?e ?g ?i ?n ?n ?i ?n ?g ?- ?o ?f ?- ?b ?u ?f ?f ?e ?r ?\) return ?\M-: ?\( ?s ?e ?a ?r ?c ?h ?- ?f ?o ?r ?w ?a ?r ?d ?  ?\" ?` ?\" ?\) return return])
 
 ;;______________________________________________________________________________
 ;π BATTERY
@@ -785,7 +807,7 @@
 ;(custom-set-faces
 ;   '(mode-line-inactive ((t (:box (:line-width 0 :color "gray50"))))))
 
-(set-face-background 'modeline "slate gray")
+(set-face-background 'mode-line "slate gray")
 (set-face-background 'modeline-inactive "gray36")
 ;(set-face-foreground 'modeline-inactive "gray10")
 (set-face-foreground 'modeline-inactive "black")
@@ -1037,6 +1059,10 @@
 
 (setq-default mode-line-position '(eval (list (sml-modeline-create))))
 (sml-modeline-mode 1)
+
+;;______________________________________________________________________________
+;π SPEEDBAR
+;;______________________________________________________________________________
 
 (require 'sr-speedbar)
 (setq speedbar-use-images nil)
@@ -1596,10 +1622,27 @@ See `whitespace-line-column'."
 ;;______________________________________________________________________________
 ;π ERC
 ;;______________________________________________________________________________
-(setq erc-modules (quote (autojoin button completion irccontrols list match menu move-to-prompt netsplit networks noncommands readonly ring stamp track)))
+(setq erc-modules (quote (autojoin
+                          button
+                          completion
+                          irccontrols
+                          list
+                          match
+                          menu
+                          move-to-prompt
+                          netsplit
+                          networks
+                          noncommands
+                          readonly
+                          ring
+                          stamp
+                          track)))
 (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
                                  "324" "329" "332" "333" "353" "477"))
 (setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
+
+(setq erc-pals '("caroline"))
+(add-hook 'erc-mode-hook (lambda () (set-face-foreground 'erc-pal-face "red")))
 
 (defun my-erc-start ()
   (interactive)
@@ -3012,7 +3055,7 @@ current frame, create a new window and switch to it.
   (save-excursion
     (beginning-of-buffer)
     (insert (concat "print('evaluating: " (buffer-name) "')\n"))
-    (python-send-buffer)
+    (python-send-buffer) ;python-shell-send-buffer
     (beginning-of-buffer)
     (kill-whole-line)
     )
@@ -3630,3 +3673,4 @@ instead."
 
 ;; End of .emacs, go away debugger!
 (setq debug-on-error nil)
+(put 'downcase-region 'disabled nil)

@@ -3,6 +3,9 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        back-to-indentation-or-beginning
+        org-delete-backward-char
+        org-self-insert-command
         quack-insert-closing-paren
         quack-insert-opening-paren
         toggle-letter-case
