@@ -4,6 +4,9 @@
 (setq mc/cmds-to-run-for-all
       '(
         back-to-indentation-or-beginning
+        backward-word-to-newline
+        forward-kill-word-to-newline
+        forward-word-to-newline
         org-delete-backward-char
         org-self-insert-command
         overwrite-mode

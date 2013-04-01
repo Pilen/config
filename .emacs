@@ -6,7 +6,7 @@
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |λ           |=           |Backspace             |
-;|flymake-next|bread-set     |bread-prev  |bread-next  |            |            |            |fold        |fwd-syntax  |smart-backw |smart-forw  |find-tag    |pop-tag-mark|join-line             |
+;|flymake-next|bread-set     |bread-prev  |bread-next  |fill-par    |            |            |fold        |fwd-syntax  |smart-backw |smart-forw  |find-tag    |pop-tag-mark|join-line             |
 ;|~           |!             |@           |#           |$           |%           |^           |&           |*           |(           |)           |π           |+           |                      |
 ;|flymake     |              |            |bread-list  |            |            |            |fold-column |bwd-syntax  |begn-defun  |end-defun   |tags-apropos|            |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
@@ -360,6 +360,7 @@
 (global-set-key (kbd "H-2") 'bc-local-previous)
 (global-set-key (kbd "H-3") 'bc-local-next)
 (global-set-key (kbd "H-#") 'bc-list)
+(global-set-key (kbd "H-4") 'fill-paragraph)
 
 (global-set-key (kbd "H-7") 'toggle-selective-display)
 (global-set-key (kbd "H-&") 'cursor-selective-display)
@@ -2547,6 +2548,7 @@ current frame, create a new window and switch to it.
   (interactive)
   (TeX-save-document (TeX-master-file))
   (TeX-command "LaTeX" 'TeX-master-file)
+  (xpdfremote/xpdf-reload)
   ;(TeX-clean nil))
   )
 
