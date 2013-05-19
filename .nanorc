@@ -1,0 +1,564 @@
+## Sample initialization file for GNU nano.
+##
+## Please note that you must have configured nano with --enable-nanorc
+## for this file to be read!  Also note that this file should not be in
+## DOS or Mac format, and that characters specially interpreted by the
+## shell should not be escaped here.
+##
+## To make sure a value is disabled, use "unset <option>".
+##
+## For the options that take parameters, the default value is given.
+## Other options are unset by default.
+##
+## Quotes inside string parameters don't have to be escaped with
+## backslashes.  The last double quote in the string will be treated as
+## its end.  For example, for the "brackets" option, ""')>]}" will match
+## ", ', ), >, ], and }.
+
+## Use auto-indentation.
+# set autoindent
+
+## Backup files to filename~.
+# set backup
+
+## The directory to put unique backup files in.
+# set backupdir ""
+
+## Do backwards searches by default.
+# set backwards
+
+## Use bold text instead of reverse video text.
+# set boldtext
+
+## The characters treated as closing brackets when justifying
+## paragraphs.  They cannot contain blank characters.  Only closing
+## punctuation, optionally followed by closing brackets, can end
+## sentences.
+##
+# set brackets ""')>]}"
+
+## Do case sensitive searches by default.
+# set casesensitive
+
+## Constantly display the cursor position in the statusbar.  Note that
+## this overrides "quickblank".
+# set const
+
+## Use cut to end of line by default.
+# set cut
+
+## Set the line length for wrapping text and justifying paragraphs.
+## If fill is 0 or less, the line length will be the screen width less
+## this number.
+##
+# set fill -8
+
+## Enable ~/.nano_history for saving and reading search/replace strings.
+# set historylog
+
+## The opening and closing brackets that can be found by bracket
+## searches.  They cannot contain blank characters.  The former set must
+## come before the latter set, and both must be in the same order.
+##
+# set matchbrackets "(<[{)>]}"
+
+## Use the blank line below the titlebar as extra editing space.
+# set morespace
+
+## Enable mouse support, if available for your system.  When enabled,
+## mouse clicks can be used to place the cursor, set the mark (with a
+## double click), and execute shortcuts.  The mouse will work in the X
+## Window System, and on the console when gpm is running.
+##
+# set mouse
+
+## Allow multiple file buffers (inserting a file will put it into a
+## separate buffer).  You must have configured with --enable-multibuffer
+## for this to work.
+##
+# set multibuffer
+
+## Don't convert files from DOS/Mac format.
+# set noconvert
+
+## Don't follow symlinks when writing files.
+# set nofollow
+
+## Don't display the helpful shortcut lists at the bottom of the screen.
+# set nohelp
+
+## Don't add newlines to the ends of files.
+# set nonewlines
+
+## Don't wrap text at all.
+# set nowrap
+
+## Set operating directory.  nano will not read or write files outside
+## this directory and its subdirectories.  Also, the current directory
+## is changed to here, so any files are inserted from this dir.  A blank
+## string means the operating directory feature is turned off.
+##
+# set operatingdir ""
+
+## Preserve the XON and XOFF keys (^Q and ^S).
+# set preserve
+
+## The characters treated as closing punctuation when justifying
+## paragraphs.  They cannot contain blank characters.  Only closing
+## punctuation, optionally followed by closing brackets, can end
+## sentences.
+##
+# set punct "!.?"
+
+## Do quick statusbar blanking.  Statusbar messages will disappear after
+## 1 keystroke instead of 26.  Note that "const" overrides this.
+##
+# set quickblank
+
+## The email-quote string, used to justify email-quoted paragraphs.
+## This is an extended regular expression if your system supports them,
+## otherwise a literal string.  Default:
+# set quotestr "^([ 	]*[#:>\|}])+"
+## if you have extended regular expression support, otherwise:
+# set quotestr "> "
+
+## Fix Backspace/Delete confusion problem.
+# set rebinddelete
+
+## Fix numeric keypad key confusion problem.
+# set rebindkeypad
+
+## Do extended regular expression searches by default.
+# set regexp
+
+## Make the Home key smarter.  When Home is pressed anywhere but at the
+## very beginning of non-whitespace characters on a line, the cursor
+## will jump to that beginning (either forwards or backwards).  If the
+## cursor is already at that position, it will jump to the true
+## beginning of the line.
+# set smarthome
+
+## Use smooth scrolling as the default.
+# set smooth
+
+## Enable soft line wrapping (AKA full line display).
+# set softwrap
+
+## Use this spelling checker instead of the internal one.  This option
+## does not properly have a default value.
+##
+# set speller "aspell -x -c"
+
+## Allow nano to be suspended.
+# set suspend
+
+## Use this tab size instead of the default; it must be greater than 0.
+# set tabsize 8
+
+## Convert typed tabs to spaces.
+# set tabstospaces
+
+## Save automatically on exit, don't prompt.
+# set tempfile
+
+## Enable the new (EXPERIMENTAL) generic undo code, not just for line
+## cuts.
+# set undo
+
+## Disallow file modification.  Why would you want this in an rcfile? ;)
+# set view
+
+## The two single-column characters used to display the first characters
+## of tabs and spaces.  187 in ISO 8859-1 (0000BB in Unicode) and 183 in
+## ISO-8859-1 (0000B7 in Unicode) seem to be good values for these.
+# set whitespace "  "
+
+## Detect word boundaries more accurately by treating punctuation
+## characters as parts of words.
+# set wordbounds
+
+
+## Color setup
+##
+## Format:
+##
+## syntax "short description" ["filename regex" ...]
+##
+## The "none" syntax is reserved; specifying it on the command line is
+## the same as not having a syntax at all.  The "default" syntax is
+## special: it takes no filename regexes, and applies to files that
+## don't match any other syntax's filename regexes.
+##
+## color foreground,background "regex" ["regex"...]
+## or
+## icolor foreground,background "regex" ["regex"...]
+##
+## "color" will do case sensitive matches, while "icolor" will do case
+## insensitive matches.
+##
+## Valid colors: white, black, red, blue, green, yellow, magenta, cyan.
+## For foreground colors, you may use the prefix "bright" to get a
+## stronger highlight.
+##
+## To use multi-line regexes, use the start="regex" end="regex"
+## [start="regex" end="regex"...] format.
+##
+## If your system supports transparency, not specifying a background
+## color will use a transparent color.  If you don't want this, be sure
+## to set the background color to black or white.
+##
+## If you wish, you may put your syntaxes in separate files.  You can
+## make use of such files (which can only include "syntax", "color", and
+## "icolor" commands) as follows:
+##
+## include "/path/to/syntax_file.nanorc"
+##
+## Unless otherwise noted, the name of the syntax file (without the
+## ".nanorc" extension) should be the same as the "short description"
+## name inside that file.  These names are kept fairly short to make
+## them easier to remember and faster to type using nano's -Y option.
+##
+## All regexes should be extended regular expressions.
+
+## Key bindings
+## Please see nanorc(5) for more details on this
+##
+## Here are some samples to get you going
+##
+# bind M-W nowrap main
+# bind M-A casesens search
+# bind ^S research main
+
+## Set this if your backspace key sends delete most of the time (2.1.3+)
+# bind kdel backspace all
+
+
+## Nanorc files
+ include "/usr/share/nano/nanorc.nanorc"
+
+## C/C++
+ include "/usr/share/nano/c.nanorc"
+
+## Makefiles
+ include "/usr/share/nano/makefile.nanorc"
+
+## Cascading Style Sheets
+ include "/usr/share/nano/css.nanorc"
+
+## Debian files
+ include "/usr/share/nano/debian.nanorc"
+
+## Gentoo files
+ include "/usr/share/nano/gentoo.nanorc"
+
+## HTML
+ include "/usr/share/nano/html.nanorc"
+
+## PHP
+ include "/usr/share/nano/php.nanorc"
+
+## TCL
+ include "/usr/share/nano/tcl.nanorc"
+
+## TeX
+ include "/usr/share/nano/tex.nanorc"
+
+## Quoted emails (under e.g. mutt)
+ include "/usr/share/nano/mutt.nanorc"
+
+## Patch files
+ include "/usr/share/nano/patch.nanorc"
+
+## Manpages
+ include "/usr/share/nano/man.nanorc"
+
+## Groff
+ include "/usr/share/nano/groff.nanorc"
+
+## Perl
+ include "/usr/share/nano/perl.nanorc"
+
+## Python
+ include "/usr/share/nano/python.nanorc"
+
+## Ruby
+ include "/usr/share/nano/ruby.nanorc"
+
+## Java
+ include "/usr/share/nano/java.nanorc"
+
+## Fortran
+ include "/usr/share/nano/fortran.nanorc"
+
+## Objective-C
+ include "/usr/share/nano/objc.nanorc"
+
+## OCaml
+ include "/usr/share/nano/ocaml.nanorc"
+
+## AWK
+ include "/usr/share/nano/awk.nanorc"
+
+## Assembleuuur
+ include "/usr/share/nano/asm.nanorc"
+
+## Bourne shell scripts
+ include "/usr/share/nano/sh.nanorc"
+
+## POV-Ray
+ include "/usr/share/nano/pov.nanorc"
+
+## XML-type files
+ include "/usr/share/nano/xml.nanorc"
+
+
+## UNBIND ALL:
+
+unbind M-a all
+unbind M-b all
+unbind M-c all
+unbind M-d all
+unbind M-e all
+unbind M-f all
+unbind M-g all
+unbind M-h all
+unbind M-i all
+unbind M-j all
+unbind M-k all
+unbind M-l all
+unbind M-m all
+unbind M-n all
+unbind M-o all
+unbind M-p all
+unbind M-q all
+unbind M-r all
+unbind M-s all
+unbind M-t all
+unbind M-u all
+unbind M-v all
+unbind M-w all
+unbind M-x all
+unbind M-y all
+unbind M-z all
+
+unbind ^a all
+unbind ^b all
+unbind ^c all
+unbind ^d all
+unbind ^e all
+unbind ^f all
+unbind ^g all
+unbind ^h all
+unbind ^i all
+unbind ^j all
+unbind ^k all
+unbind ^l all
+unbind ^m all
+unbind ^n all
+unbind ^o all
+unbind ^p all
+unbind ^q all
+unbind ^r all
+unbind ^s all
+unbind ^t all
+unbind ^u all
+unbind ^v all
+unbind ^w all
+unbind ^x all
+unbind ^y all
+unbind ^z all
+
+##special chars
+unbind ^` all
+unbind ^- all
+unbind ^= all
+unbind ^; all
+unbind ^[ all
+unbind ^] all
+unbind ^' all
+unbind ^\ all
+unbind ^- all
+unbind ^, all
+unbind ^. all
+unbind ^/ all
+##shift
+unbind ^~ all
+unbind ^! all
+unbind ^@ all
+unbind ^# all
+unbind ^$ all
+unbind ^% all
+unbind ^^ all
+unbind ^& all
+unbind ^* all
+unbind ^( all
+unbind ^) all
+unbind ^_ all
+unbind ^+ all
+unbind ^: all
+unbind ^{ all
+unbind ^} all
+unbind ^" all
+unbind ^| all
+unbind ^_ all
+unbind ^< all
+unbind ^> all
+unbind ^? all
+
+##special chars
+unbind M-` all
+unbind M-- all
+unbind M-= all
+unbind M-; all
+unbind M-[ all
+unbind M-] all
+unbind M-' all
+unbind M-\ all
+unbind M-- all
+unbind M-, all
+unbind M-. all
+unbind M-/ all
+##shift
+unbind M-~ all
+unbind M-! all
+unbind M-@ all
+unbind M-# all
+unbind M-$ all
+unbind M-% all
+unbind M-^ all
+unbind M-& all
+unbind M-* all
+unbind M-( all
+unbind M-) all
+unbind M-_ all
+unbind M-+ all
+unbind M-: all
+unbind M-{ all
+unbind M-} all
+unbind M-" all
+unbind M-| all
+unbind M-_ all
+unbind M-< all
+unbind M-> all
+unbind M-? all
+
+unbind ^1 all
+unbind ^2 all
+unbind ^3 all
+unbind ^4 all
+unbind ^5 all
+unbind ^6 all
+unbind ^7 all
+unbind ^8 all
+unbind ^9 all
+unbind ^0 all
+
+unbind M-1 all
+unbind M-2 all
+unbind M-3 all
+unbind M-4 all
+unbind M-5 all
+unbind M-6 all
+unbind M-7 all
+unbind M-8 all
+unbind M-9 all
+unbind M-0 all
+
+##`-=;[]'\-,./
+##~_+:{}"|_<>?
+##!@#$%^&*()_+
+
+##unbind ^Space all
+##unbind M-Space all
+
+
+
+
+
+##herp
+## KEY BINDINGS:
+bind F1    help      all
+bind ^g    cancel    all
+bind ^x    exit      all
+bind ^o    writeout  all
+##bind justify
+##bind insert
+bind ^f  whereis     all
+bind M-f searchagain all
+
+bind M-u   up        all
+bind M-e   down      all
+bind M-n   left      all
+bind M-i   right     all
+bind ^k    cut       all
+bind M-k uncut     all
+##bind curpos
+##bind firstline
+##bind lastline
+##bind gotoline
+##bind replace
+##bind  mark
+####bind ^c  copytext    all
+####bind M-r indent      all
+####bind M-a unindent    all
+####bind M-y nextword    all
+####bind M-l prevword    all
+##bind home
+##bind end
+##bind beginpara
+##bind endpara
+##bind findbracket
+  ##bind M-j scrollup  all
+  ##bind M-h scrolldown all
+##bind prevbuf
+##bind nextbuf
+##bind verbatim
+##bind tab
+bind ^m enter all
+##bind delete
+##bind fulljustify
+##bind wordcount
+##bind refresh
+bind ^z undo all
+bind ^- redo all
+##bind suspend
+
+##bind casesens
+##bind regexp
+##bind prevhistory
+##bind nexthistory
+##bind dontreplace
+##bind gototext
+##bind dosformat
+##bind macformat
+##bind append
+##bind prepend
+##bind backup
+##bind firstfile
+##bind lastfile
+##bind hohelp
+##bind constupdate
+##bind morespace
+##bind smoothscroll
+##bind whitespacedisplay
+##bind smarthome
+##bind autoindent
+##bind cuttoend
+##bind nowrap
+##bind suspendenable
+
+bind ^r insert all
+
+## Haskell syntax highlighting
+## found here: http://www.wubutu.com/2011/05/syntax-highlighting-nano-ban.html
+syntax "haskell" "\.hs$"
+color green "(\||@|!|:|_|~|=|\\|;|\(|\)|,)"
+color magenta "(True|False|==|/=|&&|\|\||<|>|<=|>=)"
+color green "(->|<-|!)"
+color red "[\n\t](as|case|of|class|data|default|deriving|do|forall|foreign|hiding|if|then|else|import|infix|infixl|infixr|instance|let|in|mdo|module|newtype|qualified|type|where)[ \n\t]"
+color brightblue "'.'"
+color brightblue "'\\[ntfr]'"
+color brightblue ""[^\"]*""
+## Comment highlighting
+color brightblack "--.*"
+color brightblack start="\{-" end="-\}"

@@ -1,0 +1,253 @@
+;; Object strategies/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "strategies/"
+  :tables (list 
+   (semanticdb-table "RandomStrategy.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model.strategies" package nil nil [1 26])
+            ("java.util.Collection" include nil nil [28 56])
+            ("model.Direction" include nil nil [57 80])
+            ("model.Game" include nil nil [81 99])
+            ("model.Player" include nil nil [100 120])
+            ("RandomStrategy" type
+               (:typemodifiers ("public")
+                :interfaces ("IStrategy")
+                :members 
+                  ( ("RandomStrategy" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [351 391])
+                    ("getName" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [462 518])
+                    ("nextMove" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [653 662])
+                            ("player" variable (:type "Player") (reparse-symbol formal_parameters) [664 677]))                          
+                        :type "Direction")
+                        (reparse-symbol class_member_declaration) [627 1181]))                  
+                :type "class")
+                nil [296 1183]))          
+    :file "RandomStrategy.java"
+    :pointmax 1184
+    :fsize 1186
+    :lastmodtime '(19769 35199)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "StrategyFactory.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model.strategies" package nil nil [1 26])
+            ("java.util.HashMap" include nil nil [28 53])
+            ("StrategyFactory" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("StrategyFactory" function
+                       (:constructor-flag t
+                        :typemodifiers ("private"))
+                        (reparse-symbol class_member_declaration) [1427 1520])
+                    ("getStrategy" function
+                       (:throws ("InstantiationException" "IllegalAccessException")
+                        :typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("type" variable (:type "Type") (reparse-symbol formal_parameters) [1718 1727]))                          
+                        :type "IStrategy")
+                        (reparse-symbol class_member_declaration) [1682 1843])
+                    ("getStrategyTypes" function (:constructor-flag t) (reparse-symbol class_member_declaration) [2067 2276]))                  
+                :type "class")
+                nil [176 2278]))          
+    :file "StrategyFactory.java"
+    :pointmax 2279
+    :fsize 2278
+    :lastmodtime '(19771 34086)
+    :unmatched-syntax '((GT 2065 . 2066) (COMMA 2059 . 2060) (PUBLIC 2031 . 2037) (LT 2052 . 2053))
+    )
+   (semanticdb-table "IStrategy.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model.strategies" package nil nil [1 26])
+            ("model.Direction" include nil nil [28 51])
+            ("model.Game" include nil nil [52 70])
+            ("model.Player" include nil nil [71 91])
+            ("IStrategy" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("nextMove" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [451 460])
+                            ("player" variable (:type "Player") (reparse-symbol formal_parameters) [462 475]))                          
+                        :type "Direction")
+                        (reparse-symbol interface_member_declaration) [425 477])
+                    ("getName" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol interface_member_declaration) [570 594]))                  
+                :type "interface")
+                nil [156 600]))          
+    :file "IStrategy.java"
+    :pointmax 601
+    :fsize 602
+    :lastmodtime '(19769 27485)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Analyser.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model.strategies" package nil nil [1 26])
+            ("java.util.ArrayList" include nil nil [28 55])
+            ("model.Direction" include nil nil [57 80])
+            ("model.Position" include nil nil [81 103])
+            ("model.Game" include nil nil [104 122])
+            ("Analyser" type
+               (:typemodifiers ("public")
+                :type "class")
+                nil [124 462]))          
+    :file "Analyser.java"
+    :pointmax 463
+    :fsize 462
+    :lastmodtime '(19775 8797)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Mapper.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model.strategies" package nil nil [1 26])
+            ("java.util.ArrayList" include nil nil [28 55])
+            ("model.Direction" include nil nil [57 80])
+            ("model.Position" include nil nil [81 103])
+            ("model.Game" include nil nil [104 122])
+            ("Mapper" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("startPosition" variable
+                       (:typemodifiers ("private")
+                        :type "Position")
+                        (reparse-symbol class_member_declaration) [150 181])
+                    ("bestSteps" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [296 318])
+                    ("map" variable
+                       (:dereference 2
+                        :typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [323 347])
+                    ("game" variable
+                       (:typemodifiers ("private")
+                        :type "Game")
+                        (reparse-symbol class_member_declaration) [364 382])
+                    ("pickBest" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [721 730])
+                            ("position" variable (:type "Position") (reparse-symbol formal_parameters) [732 749]))                          )
+                        (reparse-symbol class_member_declaration) [712 2037])
+                    ("recursive" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("position" variable (:type "Position") (reparse-symbol formal_parameters) [2069 2086]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [2047 3307])
+                    ("countMap" function
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [3312 3595]))                  
+                :type "class")
+                nil [124 3597]))          
+    :file "Mapper.java"
+    :pointmax 3598
+    :fsize 3597
+    :lastmodtime '(19775 6840)
+    :unmatched-syntax '((GT 710 . 711) (PUBLIC 684 . 690) (LT 700 . 701) (SEMICOLON 281 . 282) (GT 265 . 266) (LT 255 . 256) (SEMICOLON 232 . 233) (GT 213 . 214) (PRIVATE 186 . 193) (LT 203 . 204))
+    )
+   (semanticdb-table "Trapper.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model.strategies" package nil nil [1 26])
+            ("model.strategies.IStrategy" include nil nil [28 62])
+            ("model.Direction" include nil nil [63 86])
+            ("model.Game" include nil nil [87 105])
+            ("model.Player" include nil nil [106 126])
+            ("Trapper" type
+               (:typemodifiers ("public")
+                :interfaces ("IStrategy")
+                :members 
+                  ( ("turning" variable
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [509 533])
+                    ("previous" variable
+                       (:typemodifiers ("private")
+                        :type "Direction")
+                        (reparse-symbol class_member_declaration) [580 607])
+                    ("Trap" variable
+                       (:typemodifiers ("private")
+                        :type "Direction")
+                        (reparse-symbol class_member_declaration) [612 635])
+                    ("Trapper" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [640 694])
+                    ("getName" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [769 826])
+                    ("nextMove" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [965 974])
+                            ("player" variable (:type "Player") (reparse-symbol formal_parameters) [976 989]))                          
+                        :type "Direction")
+                        (reparse-symbol class_member_declaration) [939 3067]))                  
+                :type "class")
+                nil [462 5279]))          
+    :file "Trapper.java"
+    :pointmax 5282
+    :fsize 5283
+    :lastmodtime '(19773 22531)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "WTurner.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model.strategies" package nil nil [1 26])
+            ("model.strategies.IStrategy" include nil nil [28 62])
+            ("model.Direction" include nil nil [63 86])
+            ("model.Game" include nil nil [87 105])
+            ("model.Player" include nil nil [106 126])
+            ("WTurner" type
+               (:typemodifiers ("public")
+                :interfaces ("IStrategy")
+                :members 
+                  ( ("WTurner" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [250 274])
+                    ("getName" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [349 408])
+                    ("nextMove" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [542 551])
+                            ("player" variable (:type "Player") (reparse-symbol formal_parameters) [553 566]))                          
+                        :type "Direction")
+                        (reparse-symbol class_member_declaration) [516 1677]))                  
+                :type "class")
+                nil [203 1679]))          
+    :file "WTurner.java"
+    :pointmax 1680
+    :fsize 1679
+    :lastmodtime '(19769 35186)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!Dropbox!Eclipse!workspace!OOPD eksamen 2010!src!model!strategies!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.0"
+  )

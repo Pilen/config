@@ -1,0 +1,428 @@
+;; Object model/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "model/"
+  :tables (list 
+   (semanticdb-table "Direction.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model" package nil nil [1 15])
+            ("java.util.Collection" include nil nil [17 45])
+            ("java.util.ArrayList" include nil nil [46 73])
+            ("java.util.Collections" include nil nil [74 103]))          
+    :file "Direction.java"
+    :pointmax 3145
+    :fsize 3147
+    :lastmodtime '(19769 34981)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Position.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model" package nil nil [1 15])
+            ("java.util.Collection" include nil nil [17 45])
+            ("java.util.ArrayList" include nil nil [46 73])
+            ("model.Direction" include nil nil [74 97])
+            ("Position" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("y" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [358 360])
+                    ("x" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [343 357])
+                    ("Position" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [603 608])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [610 615]))                          )
+                        (reparse-symbol class_member_declaration) [587 668])
+                    ("Position" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("position" variable (:type "Position") (reparse-symbol formal_parameters) [811 828]))                          )
+                        (reparse-symbol class_member_declaration) [795 905])
+                    ("getNeighbour" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("direction" variable (:type "Direction") (reparse-symbol formal_parameters) [1201 1220]))                          
+                        :type "Position")
+                        (reparse-symbol class_member_declaration) [1172 1530])
+                    ("getX" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1638 1690])
+                    ("getY" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1798 1846])
+                    ("getNeighbours" function (:constructor-flag t) (reparse-symbol class_member_declaration) [2164 2391])
+                    ("equals" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("object" variable (:type "Object") (reparse-symbol formal_parameters) [2624 2637]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2602 2873])
+                    ("toString" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [3029 3093]))                  
+                :type "class")
+                nil [315 3095]))          
+    :file "Position.java"
+    :pointmax 3096
+    :fsize 3098
+    :lastmodtime '(19765 62507)
+    :unmatched-syntax '((GT 2162 . 2163) (PUBLIC 2136 . 2142) (LT 2153 . 2154))
+    )
+   (semanticdb-table "Board.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model" package nil nil [1 15])
+            ("Board" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("height" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [389 396])
+                    ("width" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [370 388])
+                    ("board" variable
+                       (:dereference 2
+                        :typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [401 427])
+                    ("Board" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("width" variable (:type "int") (reparse-symbol formal_parameters) [705 714])
+                            ("height" variable (:type "int") (reparse-symbol formal_parameters) [716 726]))                          )
+                        (reparse-symbol class_member_declaration) [692 877])
+                    ("getWidth" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [966 1026])
+                    ("getHeight" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1117 1179])
+                    ("occupyField" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("position" variable (:type "Position") (reparse-symbol formal_parameters) [1395 1412]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1371 1483])
+                    ("isOccupied" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("position" variable (:type "Position") (reparse-symbol formal_parameters) [1776 1793]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [1750 1864])
+                    ("containsPosition" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("position" variable (:type "Position") (reparse-symbol formal_parameters) [2104 2121]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2072 2477])
+                    ("reset" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2563 2756]))                  
+                :type "class")
+                nil [345 2758]))          
+    :file "Board.java"
+    :pointmax 2759
+    :fsize 2761
+    :lastmodtime '(19764 36656)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "HumanPlayer.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model" package nil nil [1 15])
+            ("java.awt.Color" include nil nil [17 39])
+            ("java.util.Observer" include nil nil [40 66])
+            ("java.util.Observable" include nil nil [67 95])
+            ("HumanPlayer" type
+               (:typemodifiers ("public")
+                :interfaces ("Observer")
+                :superclasses "Player"
+                :members 
+                  ( ("nextDirection" variable
+                       (:typemodifiers ("private")
+                        :type "Direction")
+                        (reparse-symbol class_member_declaration) [368 400])
+                    ("HumanPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("color" variable (:type "Color") (reparse-symbol formal_parameters) [619 630])
+                            ("name" variable (:type "String") (reparse-symbol formal_parameters) [632 643]))                          )
+                        (reparse-symbol class_member_declaration) [600 804])
+                    ("nextMove" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [1003 1012]))                          
+                        :type "Direction")
+                        (reparse-symbol class_member_declaration) [977 1360])
+                    ("update" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("o" variable (:type "Observable") (reparse-symbol formal_parameters) [1641 1653])
+                            ("arg" variable (:type "Object") (reparse-symbol formal_parameters) [1655 1665]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1622 1765]))                  
+                :type "class")
+                nil [302 1767]))          
+    :file "HumanPlayer.java"
+    :pointmax 1768
+    :fsize 1770
+    :lastmodtime '(19769 22615)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Player.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model" package nil nil [1 15])
+            ("java.awt.Color" include nil nil [17 39])
+            ("Player" type
+               (:typemodifiers ("public" "abstract")
+                :members 
+                  ( ("position" variable
+                       (:typemodifiers ("private")
+                        :type "Position")
+                        (reparse-symbol class_member_declaration) [358 387])
+                    ("direction" variable
+                       (:typemodifiers ("private")
+                        :type "Direction")
+                        (reparse-symbol class_member_declaration) [392 422])
+                    ("color" variable
+                       (:typemodifiers ("private")
+                        :type "Color")
+                        (reparse-symbol class_member_declaration) [427 453])
+                    ("name" variable
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [458 483])
+                    ("alive" variable
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [488 514])
+                    ("score" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [519 545])
+                    ("Player" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("color" variable (:type "Color") (reparse-symbol formal_parameters) [897 908])
+                            ("name" variable (:type "String") (reparse-symbol formal_parameters) [910 921]))                          )
+                        (reparse-symbol class_member_declaration) [883 1168])
+                    ("nextMove" function
+                       (:typemodifiers ("abstract" "public")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [1516 1525]))                          
+                        :type "Direction")
+                        (reparse-symbol class_member_declaration) [1481 1527])
+                    ("performMove" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("direction" variable (:type "Direction") (reparse-symbol formal_parameters) [1811 1830]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1787 2059])
+                    ("getScore" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [2161 2221])
+                    ("isAlive" function
+                       (:typemodifiers ("public")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2358 2421])
+                    ("kill" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2515 2573])
+                    ("getPreviousPosition" function
+                       (:typemodifiers ("public")
+                        :type "Position")
+                        (reparse-symbol class_member_declaration) [2699 2880])
+                    ("setPosition" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("position" variable (:type "Position") (reparse-symbol formal_parameters) [3038 3055]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3014 3102])
+                    ("getPosition" function
+                       (:typemodifiers ("public")
+                        :type "Position")
+                        (reparse-symbol class_member_declaration) [3227 3298])
+                    ("getDirection" function
+                       (:typemodifiers ("public")
+                        :type "Direction")
+                        (reparse-symbol class_member_declaration) [3440 3514])
+                    ("getColor" function
+                       (:typemodifiers ("public")
+                        :type "Color")
+                        (reparse-symbol class_member_declaration) [3619 3681])
+                    ("getName" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [3784 3845]))                  
+                :type "class")
+                nil [323 3847]))          
+    :file "Player.java"
+    :pointmax 3848
+    :fsize 3848
+    :lastmodtime '(19764 18612)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "ComputerPlayer.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model" package nil nil [1 15])
+            ("model.strategies.IStrategy" include nil nil [17 51])
+            ("java.awt.Color" include nil nil [52 74])
+            ("ComputerPlayer" type
+               (:typemodifiers ("public")
+                :superclasses "Player"
+                :members 
+                  ( ("strategy" variable
+                       (:typemodifiers ("private")
+                        :type "IStrategy")
+                        (reparse-symbol class_member_declaration) [392 419])
+                    ("ComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("color" variable (:type "Color") (reparse-symbol formal_parameters) [717 728])
+                            ("name" variable (:type "String") (reparse-symbol formal_parameters) [730 741])
+                            ("strategy" variable (:type "IStrategy") (reparse-symbol formal_parameters) [743 761]))                          )
+                        (reparse-symbol class_member_declaration) [695 837])
+                    ("nextMove" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [1024 1033]))                          
+                        :type "Direction")
+                        (reparse-symbol class_member_declaration) [998 1093]))                  
+                :type "class")
+                nil [339 1095]))          
+    :file "ComputerPlayer.java"
+    :pointmax 1096
+    :fsize 1098
+    :lastmodtime '(19764 29119)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "GameManager.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model" package nil nil [1 15])
+            ("java.util.Collection" include nil nil [17 45])
+            ("java.util.Iterator" include nil nil [46 72])
+            ("java.util.Observable" include nil nil [73 101])
+            ("model.config.Configuration" include nil nil [103 137])
+            ("model.config.LineSegment" include nil nil [138 170])
+            ("GameManager" type
+               (:typemodifiers ("public")
+                :superclasses "Observable"
+                :members 
+                  ( ("board" variable
+                       (:typemodifiers ("private")
+                        :type "Board")
+                        (reparse-symbol class_member_declaration) [380 400])
+                    ("game" variable
+                       (:typemodifiers ("private")
+                        :type "Game")
+                        (reparse-symbol class_member_declaration) [445 464])
+                    ("GameManager" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("config" variable (:type "Configuration") (reparse-symbol formal_parameters) [876 896]))                          )
+                        (reparse-symbol class_member_declaration) [857 1076])
+                    ("takeTurn" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1198 2653])
+                    ("getWinner" function
+                       (:typemodifiers ("public")
+                        :type "Player")
+                        (reparse-symbol class_member_declaration) [2809 2992])
+                    ("getGame" function
+                       (:typemodifiers ("public")
+                        :type "Game")
+                        (reparse-symbol class_member_declaration) [3137 3196])
+                    ("getPlayers" function (:constructor-flag t) (reparse-symbol class_member_declaration) [3318 3371])
+                    ("createBoard" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("config" variable (:type "Configuration") (reparse-symbol formal_parameters) [3501 3521]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3476 4445]))                  
+                :type "class")
+                nil [330 4447]))          
+    :file "GameManager.java"
+    :pointmax 4448
+    :fsize 4450
+    :lastmodtime '(19769 16470)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Game.java"
+    :major-mode 'java-mode
+    :tags 
+        '( ("model" package nil nil [1 15])
+            ("java.util.ArrayList" include nil nil [17 44])
+            ("java.util.Collection" include nil nil [45 73])
+            ("Game" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("board" variable
+                       (:typemodifiers ("private")
+                        :type "Board")
+                        (reparse-symbol class_member_declaration) [263 283])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("board" variable (:type "Board") (reparse-symbol formal_parameters) [504 515]))                          )
+                        (reparse-symbol class_member_declaration) [492 618])
+                    ("gameOver" function
+                       (:typemodifiers ("public")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [760 964])
+                    ("getWidth" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1060 1126])
+                    ("getHeight" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1224 1292])
+                    ("isOccupied" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("position" variable (:type "Position") (reparse-symbol formal_parameters) [1531 1548]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [1505 1604])
+                    ("getPlayerPositions" function (:constructor-flag t) (reparse-symbol class_member_declaration) [1791 2016]))                  
+                :type "class")
+                nil [239 2018]))          
+    :file "Game.java"
+    :pointmax 2019
+    :fsize 2019
+    :lastmodtime '(19764 18612)
+    :unmatched-syntax '((GT 1789 . 1790) (PUBLIC 1763 . 1769) (LT 1780 . 1781) (GT 534 . 535) (IDENTIFIER 517 . 527) (LT 527 . 528) (SEMICOLON 322 . 323) (GT 313 . 314) (PRIVATE 288 . 295) (LT 306 . 307))
+    )
+   )
+  :file "!home!pilen!Dropbox!Eclipse!workspace!OOPD eksamen 2010!src!model!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.0"
+  )

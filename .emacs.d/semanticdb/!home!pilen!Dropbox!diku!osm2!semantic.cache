@@ -1,0 +1,286 @@
+;; Object osm2/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "osm2/"
+  :tables (list 
+   (semanticdb-table "stack.c"
+    :major-mode 'c-mode
+    :tags 
+        '( ("stdlib.h" include (:system-flag t) nil [1 20])
+            ("stack.h" include nil nil [21 39])
+            ("stack_init" function
+               (:arguments 
+                  ( ("st" variable
+                       (:pointer 1
+                        :type ("stack" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [57 67]))                  
+                :type "void")
+                nil [41 180])
+            ("stack_push" function
+               (:arguments 
+                  ( ("st" variable
+                       (:pointer 1
+                        :type ("stack" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [198 208])
+                    ("el" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [209 218]))                  
+                :type "void")
+                nil [182 340])
+            ("stack_top" function
+               (:pointer 1
+                :arguments 
+                  ( ("st" variable
+                       (:pointer 1
+                        :type ("stack" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [358 368]))                  
+                :type "void")
+                nil [342 476])
+            ("stack_pop" function
+               (:arguments 
+                  ( ("st" variable
+                       (:pointer 1
+                        :type ("stack" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [493 503]))                  
+                :type "void")
+                nil [478 586])
+            ("stack_empty" function
+               (:arguments 
+                  ( ("st" variable
+                       (:pointer 1
+                        :type ("stack" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [604 614]))                  
+                :type "int")
+                nil [588 676]))          
+    :file "stack.c"
+    :pointmax 614
+    :fsize 676
+    :lastmodtime '(20754 17111)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "stack.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("_STACK_H_" variable (:constant-flag t) nil [27 36])
+            ("MAX_STACK_SIZE" variable (:constant-flag t) nil [46 60])
+            ("stack" type
+               (:typedef ("stack" type (:type "struct") nil nil)
+                :superclasses "stack"
+                :type "typedef")
+                nil [65 138])
+            ("stack" type
+               (:members 
+                  ( ("data" variable
+                       (:pointer 1
+                        :dereference 1
+                        :type "void")
+                        (reparse-symbol classsubparts) [90 117])
+                    ("top" variable (:type "int") (reparse-symbol classsubparts) [120 128]))                  
+                :type "struct")
+                nil [65 138])
+            ("stack_init" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("st" variable
+                       (:pointer 1
+                        :type ("stack" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [156 166]))                  
+                :type "void")
+                nil [140 167])
+            ("stack_push" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("st" variable
+                       (:pointer 1
+                        :type ("stack" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [184 194])
+                    ("el" variable
+                       (:pointer 1
+                        :type "void")
+                        (reparse-symbol arg-sub-list) [195 204]))                  
+                :type "void")
+                nil [168 205])
+            ("stack_top" function
+               (:prototype-flag t
+                :pointer 1
+                :arguments 
+                  ( ("st" variable
+                       (:pointer 1
+                        :type ("stack" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [222 232]))                  
+                :type "void")
+                nil [206 233])
+            ("stack_pop" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("st" variable
+                       (:pointer 1
+                        :type ("stack" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [249 259]))                  
+                :type "void")
+                nil [234 260])
+            ("stack_empty" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("st" variable
+                       (:pointer 1
+                        :type ("stack" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [277 287]))                  
+                :type "int")
+                nil [261 288]))          
+    :file "stack.h"
+    :pointmax 297
+    :fsize 296
+    :lastmodtime '(20753 7627)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("MAX_STACK_SIZE" . ((number "100" 61 . 64)))
+          ("_STACK_H_")
+          )
+
+    )
+   (semanticdb-table "calc.c"
+    :major-mode 'c-mode
+    :tags 
+        '( ("stdio.h" include (:system-flag t) nil [1 19])
+            ("stdlib.h" include (:system-flag t) nil [20 39])
+            ("stack.h" include nil nil [40 58])
+            ("l" function (:type "void") nil [60 109])
+            ("la" function
+               (:arguments 
+                  ( ("st" variable
+                       (:pointer 1
+                        :type ("stack" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [119 129]))                  
+                :type "void")
+                nil [111 231])
+            ("binop" variable
+               (:functionpointer-flag t
+                :type "double")
+                nil [240 272])
+            ("add" function
+               (:arguments 
+                  ( ("x" variable (:type "double") (reparse-symbol arg-sub-list) [285 294])
+                    ("y" variable (:type "double") (reparse-symbol arg-sub-list) [295 304]))                  
+                :type "double")
+                nil [274 324])
+            ("minus" function
+               (:arguments 
+                  ( ("x" variable (:type "double") (reparse-symbol arg-sub-list) [338 347])
+                    ("y" variable (:type "double") (reparse-symbol arg-sub-list) [348 357]))                  
+                :type "double")
+                nil [325 377])
+            ("multiply" function
+               (:arguments 
+                  ( ("x" variable (:type "double") (reparse-symbol arg-sub-list) [394 403])
+                    ("y" variable (:type "double") (reparse-symbol arg-sub-list) [404 413]))                  
+                :type "double")
+                nil [378 433])
+            ("divide" function
+               (:arguments 
+                  ( ("x" variable (:type "double") (reparse-symbol arg-sub-list) [448 457])
+                    ("y" variable (:type "double") (reparse-symbol arg-sub-list) [458 467]))                  
+                :type "double")
+                nil [434 487])
+            ("perform_binop" function
+               (:arguments 
+                  ( ("st" variable
+                       (:pointer 1
+                        :type ("stack" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [508 518])
+                    ("f" variable (:type ("binop" type (:type "class") nil nil)) (reparse-symbol arg-sub-list) [519 527]))                  
+                :type "void")
+                nil [489 955])
+            ("out_of_mem" function (:type "void") nil [958 1031])
+            ("main" function (:type "int") nil [1033 2017]))          
+    :file "calc.c"
+    :pointmax 2018
+    :fsize 2017
+    :lastmodtime '(20755 2629)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Makefile"
+    :major-mode 'makefile-gmake-mode
+    :tags 
+        '( ("CC" variable (:default-value ("gcc")) nil [2 9])
+            ("CFLAGS" variable (:default-value ("-pedantic" "-Wall" "-Werror" "-std=c99" "-g")) nil [9 52])
+            ("default" function (:arguments ("calc")) nil [53 68])
+            ("all" function (:arguments ("calc")) nil [68 79])
+            ("stack.o" function (:arguments ("stack.c" "stack.h")) nil [80 134])
+            ("calc.o" function (:arguments ("calc.c" "stack.h" "stack.o")) nil [135 194])
+            ("calc" function (:arguments ("calc.o")) nil [195 249])
+            ("clean" function nil nil [250 290])
+            ("run" function nil nil [291 305]))          
+    :file "Makefile"
+    :pointmax 305
+    :fsize 304
+    :lastmodtime '(20755 3045)
+    :unmatched-syntax '((shell-command 298 . 304) (bol 297 . 297))
+    )
+   (semanticdb-table "foo.c"
+    :major-mode 'c-mode
+    :tags 
+        '( ("stdio.h" include (:system-flag t) nil [1 19])
+            ("stdlib.h" include (:system-flag t) nil [20 39])
+            ("string.h" include (:system-flag t) nil [40 59])
+            ("main" function (:type "int") nil [61 184]))          
+    :file "foo.c"
+    :pointmax 185
+    :fsize 184
+    :lastmodtime '(20755 3246)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "avg1.c"
+    :major-mode 'c-mode
+    :tags 
+        '( ("stdio.h" include (:system-flag t) nil [468 486])
+            ("avgNumbers" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("numbers" variable
+                       (:dereference 1
+                        :type "float")
+                        (reparse-symbol arg-sub-list) [627 643])
+                    ("howmany" variable (:type "int") (reparse-symbol arg-sub-list) [644 656]))                  
+                :type "float")
+                nil [610 657])
+            ("sumNumbers" function
+               (:prototype-flag t
+                :arguments 
+                  ( ("numbers" variable
+                       (:dereference 1
+                        :type "float")
+                        (reparse-symbol arg-sub-list) [723 739])
+                    ("howmany" variable (:type "int") (reparse-symbol arg-sub-list) [740 752]))                  
+                :type "float")
+                nil [706 753])
+            ("main" function (:type "int") nil [826 1561])
+            ("avgNumbers" function
+               (:arguments 
+                  ( ("numbers" variable
+                       (:dereference 1
+                        :type "float")
+                        (reparse-symbol arg-sub-list) [1652 1668])
+                    ("howmany" variable (:type "int") (reparse-symbol arg-sub-list) [1669 1681]))                  
+                :type "float")
+                nil [1635 1753])
+            ("sumNumbers" function
+               (:arguments 
+                  ( ("numbers" variable
+                       (:dereference 1
+                        :type "float")
+                        (reparse-symbol arg-sub-list) [1772 1788])
+                    ("howmany" variable (:type "int") (reparse-symbol arg-sub-list) [1789 1801]))                  
+                :type "float")
+                nil [1755 1903]))          
+    :file "avg1.c"
+    :pointmax 1882
+    :fsize 1903
+    :lastmodtime '(20755 5107)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!Dropbox!diku!osm2!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.0"
+  )

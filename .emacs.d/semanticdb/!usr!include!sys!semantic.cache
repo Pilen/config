@@ -1,0 +1,25 @@
+;; Object sys/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "sys/"
+  :tables (list 
+   (semanticdb-table "syscall.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("_SYSCALL_H" variable (:constant-flag t) nil [830 840])
+            ("asm/unistd.h" include (:system-flag t) nil [1019 1042])
+            ("bits/syscall.h" include (:system-flag t) nil [1307 1333]))          
+    :file "syscall.h"
+    :pointmax 1349
+    :fsize 1348
+    :lastmodtime '(20740 53932)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("_SYSCALL_H" . ((number "1" 841 . 842)))
+          )
+
+    )
+   )
+  :file "!usr!include!sys!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.0"
+  )

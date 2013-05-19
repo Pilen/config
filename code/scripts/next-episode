@@ -1,0 +1,74 @@
+#!/usr/bin/python3
+import sys
+import os
+import re
+import subprocess
+
+config = "/home/pilen/code/config/next-episode.conf"
+
+def trim(dirpath):
+    if os.path.isfile(dirpath):
+        return os.path.dirname(dirpath)
+    return dirpath
+
+def ls(dirpath):
+    files = os.listdir(trim(dirpath))
+    return [os.path.join(trim(dirpath), file) for file in files]
+
+def naturalsort(l):
+    def alphanum_key(s):
+        return [int(c) if c.isdigit() else c for c in re.split('([0-9]+)', s)]
+    return sorted(l, key=alphanum_key)
+
+def mplayer(filename):
+    output = subprocess.check_output(['mplayer', '-quiet', filename]).decode()
+    exitstatus = output.split('\n')[-2]
+    return exitstatus == 'Exiting... (End of file)'
+
+
+def openseries(path):
+    if os.path.isfile(path):
+        return os.path.abspath(path)
+    elif os.path.isdir(path):
+        dir = naturalsort(ls(path))
+        return dir[0]
+    print("Not a valid input")
+
+def continue_series():
+    with open(config) as conf:
+        filename = conf.read()
+
+    dir = naturalsort(ls(filename))
+    i = dir.index(filename) + 1 #advance
+    if i >= len(dir):
+        print("There are no more episodes in this series")
+        print(filename)
+        sys.exit(0)
+
+    filename = dir[i]
+    if not os.path.isfile(filename):
+        print("Not a file")
+        sys.exit(0)
+
+    return filename
+
+
+def save(filename):
+    with open(config, mode='w') as conf:
+        conf.write(filename)
+
+def main(args):
+    if len(args) >= 2:
+        filename = openseries(args[1])
+        save(filename)
+    else:
+        filename = continue_series()
+
+    print('mplayer: ' + filename)
+    print('\n')
+    if mplayer(filename):
+        save(filename)
+
+
+if __name__ == "__main__":
+    main(sys.argv)
