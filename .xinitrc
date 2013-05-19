@@ -4,5 +4,4 @@ xmodmap .Xmodmap
 xsetroot -cursor_name left_ptr
 urxvtd -q -f -o
 redshift -l 55.7:12.6 &
-dropbox start &
 exec xmonad
