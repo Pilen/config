@@ -39,3 +39,4 @@ alias sakre setxkbmap dk $*
 alias us setxkbmap us $*
 alias r cd /home/pilen/revy/2013/av $*
 alias brok ssh revy@192.168.0.100 $*
+alias pen ssh 192.168.0.3 $*
