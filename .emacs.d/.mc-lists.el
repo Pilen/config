@@ -4,6 +4,7 @@
 (setq mc/cmds-to-run-for-all
       '(
         TeX-insert-backslash
+        back-to-indentation-or-beginning
         backward-word-to-newline
         forward-word-to-newline
         xpdfremote/xpdf-pageDown

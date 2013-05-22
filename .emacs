@@ -2548,7 +2548,7 @@ current frame, create a new window and switch to it.
   (interactive)
   (TeX-save-document (TeX-master-file))
   (TeX-command "LaTeX" 'TeX-master-file)
-  (xpdfremote/xpdf-reload)
+  ;(xpdfremote/xpdf-reload)
   ;(TeX-clean nil))
   )
 
