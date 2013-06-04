@@ -12,3 +12,12 @@ cd lejrbaal2013/
 push
 cd Dropbox/RKG/
 ls
+brok
+ls
+exit
+ls
+ls *.sh
+e windowsHE.sh
+cat windowsHE.sh
+ls
+e teletublerne.sh 

@@ -307,7 +307,7 @@
 ;; turn on minor mode ergoemacs-mode
 ;;(ergoemacs-mode 1)
 
-(global-set-key (kbd "H-/") 'query-replace)
+(global-set-key (kbd "H-/") 'query-replace-with-region)
 (global-set-key (kbd "H-?") 'iedit-mode)
 ;;(global-set-key (kbd "H-?") 'query-replace-regexp)
 (global-set-key (kbd "H-\\") 'delete-window)
@@ -3057,16 +3057,30 @@ current frame, create a new window and switch to it.
 ;;
 ;;______________________________________________________________________________
 
+;; (defun python-compile ()
+;;   (interactive)
+;;   (save-excursion
+;;     (beginning-of-buffer)
+;;     (insert (concat "print('evaluating: " (buffer-name) "')\n"))
+;;     (python-shell-send-buffer) ;python-shell-send-buffer
+;;     (beginning-of-buffer)
+;;     (kill-whole-line)
+;;     )
+;;   (python-shell-switch-to-shell))
+
 (defun python-compile ()
   (interactive)
-  (save-excursion
-    (beginning-of-buffer)
-    (insert (concat "print('evaluating: " (buffer-name) "')\n"))
-    (python-send-buffer) ;python-shell-send-buffer
-    (beginning-of-buffer)
-    (kill-whole-line)
-    )
-  (python-switch-to-python t))
+  (python-shell-send-string (concat "print('evaluating: " (buffer-name) "')\n"))
+  (python-shell-send-buffer)
+  (save-selected-window
+    (python-shell-switch-to-shell)))
+
+
+(defun query-replace-with-region (start end)
+  (interactive "r")
+  (goto-char start)
+  (let ((text (buffer-substring-no-properties start end)))
+    (query-replace text (query-replace-read-to text "Query replace" nil))))
 
 (defun reindent-buffer ()
   "indent whole buffer"
@@ -3335,6 +3349,15 @@ in that cyclic order."
      (/= real-point-min (point-min))
      (/= real-point-max (point-max)))))
 
+
+(defun narrow-to-region-indirect (start end)
+  "Restrict editing in this buffer to the current region, indirectly."
+  (interactive "r")
+  (deactivate-mark)
+  (let ((buf (clone-indirect-buffer nil nil)))
+    (with-current-buffer buf
+      (narrow-to-region start end))
+      (switch-to-buffer buf)))
 
 
 ;;______________________________________________________________________________
