@@ -1,6 +1,6 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
-;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-tog| |shell-rplc|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
+;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-ind| |shell-rplc|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
 ;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |narrow-fun| |          |          |tex-clsenv|prev-clear||linum     |autoindent|          |zoomable  |
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
@@ -384,7 +384,8 @@
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "<f7>") 'toggle-window-dedicated)
-(global-set-key (kbd "<f8>") 'narrow-toggle)
+;; (global-set-key (kbd "<f8>") 'narrow-toggle)
+(global-set-key (kbd "<f8>") 'narrow-to-region-indirect)
 (global-set-key (kbd "S-<f8>") 'narrow-to-defun)
 (global-set-key (kbd "<f9>") 'shell-command-on-region-replace)
 (global-set-key (kbd "<f10>") 'reftex-toc)
