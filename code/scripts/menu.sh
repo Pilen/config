@@ -22,6 +22,7 @@ menu=(\
         update    "urxvtc -bg black -e sudo pacman -Syu"
         urxvt-nf  "urxvtc -fade 0"
         shutdown  "urxvtc -bg black -fg red -e sudo shutdown -h now"
+        politiken "chromium --purge-memory-button -new-window -incognito politiken.dk"
         0%        "amixer set Master 0"
         10%       "amixer set Master 18"
         20%       "amixer set Master 29"

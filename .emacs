@@ -60,6 +60,12 @@
 ;; wavy underline
 ;; erc notifications
 
+
+;;;; Contextaware button (context should be inserted before action is completed)
+;; search -> repeat search
+;; compile latex -> view latex/update xpdf
+;; M-x -> repeat last command
+
 ;;______________________________________________________________________________
 ;;
 ;;
@@ -3071,17 +3077,20 @@ current frame, create a new window and switch to it.
 
 (defun python-compile ()
   (interactive)
-  (python-shell-send-string (concat "print('evaluating: " (buffer-name) "')\n"))
   (python-shell-send-buffer)
+  (python-shell-send-string (concat "print('evaluating: " (buffer-name) "')"))
   (save-selected-window
     (python-shell-switch-to-shell)))
 
 
 (defun query-replace-with-region (start end)
   (interactive "r")
-  (goto-char start)
-  (let ((text (buffer-substring-no-properties start end)))
-    (query-replace text (query-replace-read-to text "Query replace" nil))))
+  (if (not (use-region-p))
+    (call-interactively 'query-replace)
+
+    (goto-char start)
+    (let ((text (buffer-substring-no-properties start end)))
+      (query-replace text (query-replace-read-to text "Query replace" nil)))))
 
 (defun reindent-buffer ()
   "indent whole buffer"
