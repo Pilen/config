@@ -1712,7 +1712,7 @@ erc-modified-channels-alist. Should be executed on window change."
 ;;______________________________________________________________________________
 ;π ERLANG
 ;;______________________________________________________________________________
-(add-to-list 'load-path "/usr/lib/erlang/lib/tools-2.6.10/emacs/")
+(add-to-list 'load-path "/usr/lib/erlang/lib/tools-2.6.11/emacs/")
 (require 'erlang-start)
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
@@ -2671,7 +2671,13 @@ current frame, create a new window and switch to it.
 ;π PYTHON
 ;;______________________________________________________________________________
 (setq python-command "/usr/bin/bpython")
+(add-hook 'python-mode-hook
+          (lambda ()
+            (message "kat")
+            (setq imenu-create-index-function 'imenu-default-create-index-function)))
 
+(defun semantic-create-imenu-index (&optional stream)
+  (imenu-default-create-index-function))
 ;;______________________________________________________________________________
 ;π RACKET/SCHEME
 ;;______________________________________________________________________________
@@ -3218,6 +3224,16 @@ in that cyclic order."
         (yank-pop arg)
       (yank-pop))))
 
+
+(defun horizontal-recenter ()
+  "make the point horizontally centered in the window"
+  (interactive)
+  (let ((mid (/ (window-width) 2))
+        (line-len (save-excursion (end-of-line) (current-column)))
+        (cur (current-column)))
+    (if (< mid cur)
+        (set-window-hscroll (selected-window)
+                            (- cur mid)))))
 ;;______________________________________________________________________________
 ;π JUMP TO MATCHING PARETHESIS
 ;;______________________________________________________________________________

@@ -1,23 +1,128 @@
-mkdir opskrifter
-mv cookies.txt opskrifter/
-cd Dropbox/
-cd FDF/
-l
-mkdir lejrbaal2013
-ls lejrbaal2012/
-rm lejrbaal2012/
-rm lejrbaal2012/ -rf
-ls lejrbaal2013/
-cd lejrbaal2013/
-push
-cd Dropbox/RKG/
-ls
-brok
-ls
-exit
-ls
-ls *.sh
 e windowsHE.sh
 cat windowsHE.sh
 ls
 e teletublerne.sh 
+ls
+ls static/
+ls templates/
+ls
+mkdir data
+rm rf data
+rm -rf data
+ls
+ls admin/
+cat applications/*.py | grep "front"
+grep
+grep "front" applications/*.py
+grep "front" templates/*.html
+grep "front" templates/schedule/*.html
+grep "front" templates/usermanager/*.html
+grep "front" templates/rusmanager/*.html
+ls templates/
+grep "front" *
+grep "front" applications/*/*
+grep "front" templates/*
+grep "front" templates/*/*
+grep "front" applications/*/*
+grep "front" applications/*
+grep "submenu" *
+cd ../
+cd templates/
+grep "submenu" *
+grep "submenu" -r 
+cd ..
+cd applications/
+grep "render_template" -r 
+cd ../../
+grep "form" -r
+grep "form" -r *
+grep "print" -r *
+grep "unicode_literals" -r *
+grep "unicode_literals" -r *.py
+cd ..
+grep "unicode_literals" -r *.py
+grep "request.method" -r *
+grep "<form" -r *
+cd ..
+grep "unicode_literals" -r *.py
+grep "unicode_literals" -r applications/*.py
+ls
+cd ../..
+ls
+cd static/
+ls
+ls js/
+grep "rid" -r *.py
+grep "rid" -r applications/*.py
+cd ..
+grep "rid" -r *.py
+grep "rid" -r applications/*.py
+grep "rid" -r templates/*.html
+grep "rid" -r templates/*/*.html
+grep "form" -r templates
+grep "Bucket" -r
+grep ">>" -r
+grep "Bucket" -r
+grep "Bucket" --include="*.py" -r
+grep "Bucket" --include="\*.py" -r
+grep "Bucket" --include="\\*.py" -r
+grep "Bucket" --include="*.py" -r
+grep "now" --include="*.py" -r
+grep "form|safe" --include="*.py" -r
+grep "form|safe" --include="*.html" -r
+cd ..
+ls
+grep "#" --include="*.py" -r
+grep "#" --include="*.py" -r .
+grep "form" -r .
+grep "<form" -r .
+grep "WebBuilder(" -r .
+grep "data" --include="*.py" -r .
+grep "data.data" --include="*.py" -r .
+grep "print" --include="*.py" -r .
+grep " print" --include="*.py" -r .
+grep "delete" --include="*.py" -r .
+grep "DELETE" --include="*.py" -r .
+cd ../..
+git status
+git add templates/bookkeeper/book.html 
+git status
+git add applications/bookkeeper.pyc
+git status
+git add applications/bookkeeper.py
+git status
+git commit -m "New menupoint added"
+git push
+cd ../../
+grep "$" --include="*.py" -r .
+grep "\$" --include="*.py" -r .
+grep "\\$" --include="*.py" -r .
+cd ../
+ls
+grep "form|safe" --include="*.py" -r .
+grep "form|safe" --include="*.html" -r .
+ls templates/
+ls templates/front/
+cd templates/
+rm rusmanager/new.html 
+rm usermanager/invite.html 
+rm usermanager/settings.html 
+rm bookkeeper/new_book.html
+rm bookkeeper/new_entry.html 
+rm bookkeeper/modify_book.html 
+cd ..
+ls
+grep "print" --include="*.py" -r .
+grep "delete" --include="*.py" -r .
+grep "back" --include="*.py" -r .
+grep "route" --include="*.py" -r .
+grep "TODO: .*" -o -r .
+grep "TODO" --include="*.py" -r .
+cd ../..
+grep "textarea" -r .
+ls
+rm datadump
+grep "url_for" -r .
+grep "interpret" -r .
+grep "type" -r .
+grep "type" --include="*.py" -r .

@@ -1,0 +1,298 @@
+;; Object lib/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "lib/"
+  :tables (list 
+   (semanticdb-table "html.py"
+    :major-mode 'python-mode
+    :tags 
+        '( ("__future__" include nil nil [25 64])
+            ("jinja" include nil nil [65 89])
+            ("calendar" function (:arguments 
+              ( ("id" variable nil (reparse-symbol function_parameters) [104 106])
+                ("d_Format" variable nil (reparse-symbol function_parameters) [108 116])
+                ("selector" variable nil (reparse-symbol function_parameters) [131 139])
+                ("time" variable nil (reparse-symbol function_parameters) [151 155])
+                ("t_Format" variable nil (reparse-symbol function_parameters) [165 173])
+                ("seconds" variable nil (reparse-symbol function_parameters) [180 187])
+                ("futurepast" variable nil (reparse-symbol function_parameters) [197 207]))              ) nil [91 482])
+            ("back" function (:documentation "Back is a little wonky when there are flashed messages.") nil [483 657])
+            ("WebBuilder" type
+               (:superclasses ("object")
+                :members 
+                  ( ("__init__" function
+                       (:suite 
+                          ( ("self" variable nil (reparse-symbol indented_block_body) [732 750])
+                            ("self" variable nil (reparse-symbol indented_block_body) [759 783]))                          
+                        :parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [702 706])
+                            ("db_query" variable nil (reparse-symbol function_parameters) [708 716]))                          
+                        :constructor-flag t)
+                        (reparse-symbol indented_block_body) [689 784])
+                    ("__lshift__" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [804 808])
+                            ("args" variable nil (reparse-symbol function_parameters) [810 814]))                          )
+                        (reparse-symbol indented_block_body) [789 863])
+                    ("_newobj" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [881 885])
+                            ("obj" variable nil (reparse-symbol function_parameters) [887 890]))                          )
+                        (reparse-symbol indented_block_body) [869 1115])
+                    ("create" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [1131 1135])
+                            ("kv" variable nil (reparse-symbol function_parameters) [1137 1139]))                          )
+                        (reparse-symbol indented_block_body) [1120 1944])
+                    ("close" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [1959 1963]))                          )
+                        (reparse-symbol indented_block_body) [1949 2004])
+                    ("form" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2018 2022]))                          )
+                        (reparse-symbol indented_block_body) [2009 2055])
+                    ("formtable" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2074 2078]))                          )
+                        (reparse-symbol indented_block_body) [2060 2116])
+                    ("waaah" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2131 2135]))                          )
+                        (reparse-symbol indented_block_body) [2121 2169])
+                    ("textfield" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2188 2192])
+                            ("dbq" variable nil (reparse-symbol function_parameters) [2194 2197])
+                            ("description" variable nil (reparse-symbol function_parameters) [2202 2213])
+                            ("kwargs" variable nil (reparse-symbol function_parameters) [2218 2226]))                          )
+                        (reparse-symbol indented_block_body) [2174 2288])
+                    ("textarea" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2306 2310])
+                            ("dbq" variable nil (reparse-symbol function_parameters) [2312 2315])
+                            ("description" variable nil (reparse-symbol function_parameters) [2320 2331])
+                            ("kwargs" variable nil (reparse-symbol function_parameters) [2336 2344]))                          )
+                        (reparse-symbol indented_block_body) [2293 2405])
+                    ("checkbox" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2423 2427])
+                            ("dbq" variable nil (reparse-symbol function_parameters) [2429 2432])
+                            ("description" variable nil (reparse-symbol function_parameters) [2437 2448])
+                            ("kwargs" variable nil (reparse-symbol function_parameters) [2453 2461]))                          )
+                        (reparse-symbol indented_block_body) [2410 2522]))                  
+                :type "class")
+                nil [659 2522])
+            ("_Webobject" type
+               (:superclasses ("object")
+                :members 
+                  ( ("__init__" function
+                       (:suite 
+                          ( ("self" variable nil (reparse-symbol indented_block_body) [2654 2684])
+                            ("self" variable nil (reparse-symbol indented_block_body) [2693 2707])
+                            ("self" variable nil (reparse-symbol indented_block_body) [2716 2744])
+                            ("self" variable nil (reparse-symbol indented_block_body) [2753 2774]))                          
+                        :parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2609 2613])
+                            ("dbq" variable nil (reparse-symbol function_parameters) [2615 2618])
+                            ("description" variable nil (reparse-symbol function_parameters) [2620 2631])
+                            ("attributes" variable nil (reparse-symbol function_parameters) [2633 2643]))                          
+                        :constructor-flag t)
+                        (reparse-symbol indented_block_body) [2596 2775])
+                    ("compile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2792 2796])
+                            ("dbqv" variable nil (reparse-symbol function_parameters) [2798 2802]))                          )
+                        (reparse-symbol indented_block_body) [2780 2823])
+                    ("close" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2838 2842]))                          )
+                        (reparse-symbol indented_block_body) [2828 2863])
+                    ("modify" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2879 2883])
+                            ("w" variable nil (reparse-symbol function_parameters) [2885 2886])
+                            ("html" variable nil (reparse-symbol function_parameters) [2888 2892]))                          )
+                        (reparse-symbol indented_block_body) [2868 2915])
+                    ("_attributes_convert" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [2944 2948])
+                            ("dbqv" variable nil (reparse-symbol function_parameters) [2950 2954]))                          )
+                        (reparse-symbol indented_block_body) [2920 3177])
+                    ("_attributes_string" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [3205 3209])
+                            ("attributes" variable nil (reparse-symbol function_parameters) [3211 3221]))                          )
+                        (reparse-symbol indented_block_body) [3182 3435]))                  
+                :type "class")
+                nil [2566 3435])
+            ("_Textfield" type
+               (:superclasses ("_Webobject")
+                :members 
+                  ( ("compile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [3482 3486])
+                            ("dbqv" variable nil (reparse-symbol function_parameters) [3488 3492]))                          )
+                        (reparse-symbol indented_block_body) [3470 3626]))                  
+                :type "class")
+                nil [3436 3626])
+            ("_Textarea" type
+               (:superclasses ("_Webobject")
+                :members 
+                  ( ("compile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [3672 3676])
+                            ("dbqv" variable nil (reparse-symbol function_parameters) [3678 3682]))                          )
+                        (reparse-symbol indented_block_body) [3660 3990]))                  
+                :type "class")
+                nil [3627 3990])
+            ("_Checkbox" type
+               (:superclasses ("_Webobject")
+                :members 
+                  ( ("compile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4036 4040])
+                            ("dbqv" variable nil (reparse-symbol function_parameters) [4042 4046]))                          )
+                        (reparse-symbol indented_block_body) [4024 4359]))                  
+                :type "class")
+                nil [3991 4359])
+            ("_Form" type
+               (:superclasses ("_Webobject")
+                :members 
+                  ( ("__init__" function
+                       (:suite 
+                          ( ("self" variable nil (reparse-symbol indented_block_body) [4417 4437]))                          
+                        :parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4402 4406]))                          
+                        :constructor-flag t)
+                        (reparse-symbol indented_block_body) [4389 4438])
+                    ("compile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4454 4458]))                          )
+                        (reparse-symbol indented_block_body) [4442 4497])
+                    ("close" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4511 4515]))                          )
+                        (reparse-symbol indented_block_body) [4501 4543]))                  
+                :type "class")
+                nil [4360 4543])
+            ("_FormTable" type
+               (:superclasses ("_Webobject")
+                :members 
+                  ( ("__init__" function
+                       (:suite 
+                          ( ("self" variable nil (reparse-symbol indented_block_body) [4606 4626]))                          
+                        :parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4591 4595]))                          
+                        :constructor-flag t)
+                        (reparse-symbol indented_block_body) [4578 4627])
+                    ("modify" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4642 4646])
+                            ("w" variable nil (reparse-symbol function_parameters) [4648 4649])
+                            ("html" variable nil (reparse-symbol function_parameters) [4651 4655]))                          )
+                        (reparse-symbol indented_block_body) [4631 4743])
+                    ("compile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4759 4763]))                          )
+                        (reparse-symbol indented_block_body) [4747 4809])
+                    ("close" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [4823 4827]))                          )
+                        (reparse-symbol indented_block_body) [4813 5024]))                  
+                :type "class")
+                nil [4544 5024])
+            ("_Waaah" type
+               (:superclasses ("_Webobject")
+                :members 
+                  ( ("__init__" function
+                       (:suite 
+                          ( ("self" variable nil (reparse-symbol indented_block_body) [5084 5104]))                          
+                        :parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [5069 5073]))                          
+                        :constructor-flag t)
+                        (reparse-symbol indented_block_body) [5056 5105])
+                    ("modify" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [5120 5124])
+                            ("w" variable nil (reparse-symbol function_parameters) [5126 5127])
+                            ("html" variable nil (reparse-symbol function_parameters) [5129 5133]))                          )
+                        (reparse-symbol indented_block_body) [5109 5203])
+                    ("compile" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [5219 5223]))                          )
+                        (reparse-symbol indented_block_body) [5207 5255])
+                    ("close" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [5269 5273]))                          )
+                        (reparse-symbol indented_block_body) [5259 5302]))                  
+                :type "class")
+                nil [5026 5302]))          
+    :file "html.py"
+    :pointmax 6289
+    :fsize 6292
+    :lastmodtime '(20932 31685 594238 640000)
+    :unmatched-syntax '((NAME 2965 . 2966) (IF 2982 . 2984) (ELSE 2994 . 2998))
+    )
+   (semanticdb-table "data.py"
+    :major-mode 'python-mode
+    :tags nil
+    :file "data.py"
+    :pointmax 3946
+    :fsize 3945
+    :lastmodtime '(20932 31219 644220 498000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "jinja.py"
+    :major-mode 'python-mode
+    :tags nil
+    :file "jinja.py"
+    :pointmax 622
+    :fsize 621
+    :lastmodtime '(20932 31245 54221 435000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "tools.py"
+    :major-mode 'python-mode
+    :tags nil
+    :file "tools.py"
+    :pointmax 758
+    :fsize 757
+    :lastmodtime '(20927 19704 221021 24000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!code!gris!lib!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

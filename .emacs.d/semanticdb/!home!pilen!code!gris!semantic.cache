@@ -1,0 +1,27 @@
+;; Object gris/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "gris/"
+  :tables (list 
+   (semanticdb-table "gris.py"
+    :major-mode 'python-mode
+    :tags nil
+    :file "gris.py"
+    :pointmax 2553
+    :fsize 2561
+    :lastmodtime '(20927 36947 787081 87000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "config.py"
+    :major-mode 'python-mode
+    :tags nil
+    :file "config.py"
+    :pointmax 270
+    :fsize 269
+    :lastmodtime '(20932 21079 577157 834000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!code!gris!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

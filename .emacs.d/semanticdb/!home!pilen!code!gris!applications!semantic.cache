@@ -1,0 +1,68 @@
+;; Object applications/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "applications/"
+  :tables (list 
+   (semanticdb-table "front.py"
+    :major-mode 'python-mode
+    :tags 
+        '( ("datetime" include nil nil [1 30])
+            ("string" include nil nil [1 30])
+            ("time" include nil nil [1 30])
+            ("flask" include nil nil [32 167])
+            ("lib" include nil nil [169 211])
+            ("lib.tools" include nil nil [212 266])
+            ("config" include nil nil [268 281])
+            ("front" variable nil nil [283 359])
+            ("" code nil nil [373 378])
+            ("frontpage" function (:decorators 
+              ( ("logged_in" function (:type "decorator") nil nil))              ) nil [379 690])
+            ("" code nil nil [703 741])
+            ("add_news" function (:decorators 
+              ( ("logged_in" function (:type "decorator") nil nil))              ) nil [742 1555]))          
+    :file "front.py"
+    :pointmax 1555
+    :fsize 1554
+    :lastmodtime '(20932 31363 737559 542000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "usermanager.py"
+    :major-mode 'python-mode
+    :tags nil
+    :file "usermanager.py"
+    :pointmax 6710
+    :fsize 6717
+    :lastmodtime '(20932 31256 17555 202000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "rusmanager.py"
+    :major-mode 'python-mode
+    :tags nil
+    :file "rusmanager.py"
+    :pointmax 3584
+    :fsize 3585
+    :lastmodtime '(20927 27119 610760 161000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "schedule.py"
+    :major-mode 'python-mode
+    :tags nil
+    :file "schedule.py"
+    :pointmax 1772
+    :fsize 1772
+    :lastmodtime '(20927 27140 514092 759000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "admin.py"
+    :major-mode 'python-mode
+    :tags nil
+    :file "admin.py"
+    :pointmax 818
+    :fsize 817
+    :lastmodtime '(20927 26989 624098 67000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!code!gris!applications!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

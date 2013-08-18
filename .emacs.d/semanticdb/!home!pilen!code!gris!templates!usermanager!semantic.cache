@@ -1,0 +1,18 @@
+;; Object usermanager/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "usermanager/"
+  :tables (list 
+   (semanticdb-table "settings.html"
+    :major-mode 'html-mode
+    :tags nil
+    :file "settings.html"
+    :pointmax 76
+    :fsize 75
+    :lastmodtime '(20932 29600 917490 663000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!code!gris!templates!usermanager!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )
