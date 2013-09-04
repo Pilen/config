@@ -927,6 +927,7 @@
                          (when (> length fill-column)
                            (propertize (concat "" (int-to-string length)) 'face 'mode-line-long-line))))
                 display-time-string
+                ;;(:eval (propertize "13:37" 'face 'display-time-face)) ;; RKG-time
                 battery-mode-line-string
                 (:eval (powerline-percent-xpm 'text nil powerline-color1))
                 erc-modified-channels-object
@@ -1781,7 +1782,7 @@ There exists two workarounds for this bug:
   (setq eshell-buffer-shorthand t)
   (setq eshell-hist-ignoredups t)
   (define-key eshell-mode-map (kbd "H-d") 'eshell-kill-input)
-  (define-key eshell-mode-map (kbd "H-n") 'eshell-bol)
+  (define-key eshell-mode-map (kbd "H-N") 'eshell-bol)
   (define-key eshell-mode-map (kbd "C-l") '(lambda () (interactive) (eshell/clear) (eshell-send-input)))
   (add-to-list 'eshell-visual-commands "nano")
   (add-to-list 'eshell-visual-commands "htop")
@@ -1989,14 +1990,15 @@ current frame, create a new window and switch to it.
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
-(add-to-list 'load-path "~/.emacs.d/ghc-mod/")
-(autoload 'ghc-init "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda ()
-                               (ghc-init)
-                               (flymake-mode)
-                               (define-key haskell-mode-map "\C-c\C-c" '(lambda () (interactive)
-                                                                          (ghc-flymake-toggle-command)
-                                                                          (flymake-start-syntax-check)))))
+;; ghc-mod not installed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+;; (add-to-list 'load-path "~/.emacs.d/ghc-mod/")
+;; (autoload 'ghc-init "ghc" nil t)
+;; (add-hook 'haskell-mode-hook (lambda ()
+;;                                (ghc-init)
+;;                                (flymake-mode)
+;;                                (define-key haskell-mode-map "\C-c\C-c" '(lambda () (interactive)
+;;                                                                           (ghc-flymake-toggle-command)
+;;                                                                           (flymake-start-syntax-check)))))
 
 
 ;; (require 'hs-lint)    ;; https://gist.github.com/1241059
@@ -2551,11 +2553,19 @@ current frame, create a new window and switch to it.
    (set-face-foreground 'font-latex-italic-face "OliveDrab3")
    (setq LaTeX-command "latex -file-line-error -synctex=1")))
 
+
+(eval-after-load "tex"
+  '(push `("LaTeX-updatexpdf"
+           ,(concat "%`%l%(mode)%' %t; xpdf -remote " xpdfremote/server-name " -exec reload")
+           TeX-run-TeX nil
+           (latex-mode doctex-mode)
+           :help "Run LaTeX")
+         TeX-command-list))
+
 (defun run-latex ()
   (interactive)
   (TeX-save-document (TeX-master-file))
-  (TeX-command "LaTeX" 'TeX-master-file)
-  ;(xpdfremote/xpdf-reload)
+  (TeX-command "LaTeX-updatexpdf" 'TeX-master-file)
   ;(TeX-clean nil))
   )
 

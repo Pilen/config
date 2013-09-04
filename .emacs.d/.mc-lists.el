@@ -3,7 +3,9 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        TeX-insert-backslash
+        back-to-indentation-or-beginning
+        fixup-whitespace
+        haskell-indentation-delete-backward-char
         org-delete-backward-char
         org-self-insert-command
         python-indent-dedent-line-backspace

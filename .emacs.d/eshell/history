@@ -1,15 +1,3 @@
-e windowsHE.sh
-cat windowsHE.sh
-ls
-e teletublerne.sh 
-ls
-ls static/
-ls templates/
-ls
-mkdir data
-rm rf data
-rm -rf data
-ls
 ls admin/
 cat applications/*.py | grep "front"
 grep
@@ -30,7 +18,6 @@ cd ../
 cd templates/
 grep "submenu" *
 grep "submenu" -r 
-cd ..
 cd applications/
 grep "render_template" -r 
 cd ../../
@@ -39,22 +26,16 @@ grep "form" -r *
 grep "print" -r *
 grep "unicode_literals" -r *
 grep "unicode_literals" -r *.py
-cd ..
 grep "unicode_literals" -r *.py
 grep "request.method" -r *
 grep "<form" -r *
-cd ..
 grep "unicode_literals" -r *.py
 grep "unicode_literals" -r applications/*.py
-ls
 cd ../..
-ls
 cd static/
-ls
 ls js/
 grep "rid" -r *.py
 grep "rid" -r applications/*.py
-cd ..
 grep "rid" -r *.py
 grep "rid" -r applications/*.py
 grep "rid" -r templates/*.html
@@ -70,8 +51,6 @@ grep "Bucket" --include="*.py" -r
 grep "now" --include="*.py" -r
 grep "form|safe" --include="*.py" -r
 grep "form|safe" --include="*.html" -r
-cd ..
-ls
 grep "#" --include="*.py" -r
 grep "#" --include="*.py" -r .
 grep "form" -r .
@@ -98,7 +77,6 @@ grep "$" --include="*.py" -r .
 grep "\$" --include="*.py" -r .
 grep "\\$" --include="*.py" -r .
 cd ../
-ls
 grep "form|safe" --include="*.py" -r .
 grep "form|safe" --include="*.html" -r .
 ls templates/
@@ -110,8 +88,6 @@ rm usermanager/settings.html
 rm bookkeeper/new_book.html
 rm bookkeeper/new_entry.html 
 rm bookkeeper/modify_book.html 
-cd ..
-ls
 grep "print" --include="*.py" -r .
 grep "delete" --include="*.py" -r .
 grep "back" --include="*.py" -r .
@@ -120,9 +96,28 @@ grep "TODO: .*" -o -r .
 grep "TODO" --include="*.py" -r .
 cd ../..
 grep "textarea" -r .
-ls
 rm datadump
 grep "url_for" -r .
 grep "interpret" -r .
 grep "type" -r .
 grep "type" --include="*.py" -r .
+cat caro-forhør.pdf | ssh pilgaard@tyr.diku.dk lp -d m1b
+mv ../2_brev.org ./
+cd 2_brev_done/
+rm 2_brev.
+rm 2_brev.*
+rm -rf auto/
+ls -lah
+cd ..
+rm fac.sml 
+rm hej.sml 
+rm iptuleri.sml 
+rm buf.sml 
+rm ip.sml 
+ls
+cd /usr/share/emacs/site-lisp/auctex/
+ls
+grep "hook" --include="*.el" -r .
+grep "hook" --include="*.el" .
+grep "hook" --include="*.el" *
+grep "run-hooks" --include="*.el" *
