@@ -54,6 +54,8 @@
 ;; Move by syllable. http://www.tug.org/docs/liang/ http://usuallyalex.wordpress.com/2009/06/15/detecting-syllables-programatically/
 ;; autofix wrongtype of delimiters ([)) -> ([]) when typing closing delimiter
 
+;; browse-kill-ring
+
 ;;;; 24.3 Look at
 ;; set-temporary-overlay-map
 ;; python-shell-send-buffer
@@ -662,6 +664,8 @@
 (require 'smex)
 (smex-initialize)
 
+
+(setq-default require-final-newline t)
 ;;______________________________________________________________________________
 ;π BATTERY
 ;;______________________________________________________________________________
@@ -1924,7 +1928,7 @@ current frame, create a new window and switch to it.
 (add-hook 'sml-mode 'flyspell-prog-mode)
 
 
-(add-hook 'LaTeX-mode-hook (lambda () (turn-on-flyspell) (setq ispell-dictionary "dansk")))
+(add-hook 'LaTeX-mode-hook (lambda () (turn-on-flyspell))); (setq ispell-dictionary "dansk"))) ; Commented out as aspell-da is not working
 
 (defun turn-on-flyspell ()
   "Force flyspell-mode on using a positive arg."
@@ -2565,7 +2569,9 @@ current frame, create a new window and switch to it.
 (defun run-latex ()
   (interactive)
   (TeX-save-document (TeX-master-file))
-  (TeX-command "LaTeX-updatexpdf" 'TeX-master-file)
+  (if (null xpdfremote/server)
+      (TeX-command "LaTeX" 'TeX-master-file)
+    (TeX-command "LaTeX-updatexpdf" 'TeX-master-file))
   ;(TeX-clean nil))
   )
 

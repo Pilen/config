@@ -6,6 +6,7 @@
   :prefix "xpdfremote/"
   :group 'external)
 
+;; obsolete - unless you use (split-string xpdfremote/xpdf-command " ")
 (defcustom xpdfremote/xpdf-command
   "xpdf -fullscreen -remote emacs-xpdfremote"
   "xpdf command, not currently used"
@@ -18,10 +19,6 @@
   :group 'xpdfremote
   :type 'string)
 
-(defcustom tetris-mode-hook nil
-  "Hook run upon starting Tetris."
-  :group 'xpdfremote
-  :type 'hook)
 
 (defcustom xpdfremote/mode-hook
   nil
@@ -29,12 +26,17 @@
   :group 'xpdfremote
   :type 'hook)
 
+(defcustom xpdfremote/fullscreen
+  t
+  ""
+  :group 'xpdfremote)
 
 
 (defvar xpdfremote/current-file)
 
 (defvar xpdfremote/buffer-name "*xpdfremote*")
 
+(defvar xpdfremote/server nil)
 
 ;; remotecontrol functions
 (defun xpdfremote/open-file (filename)
@@ -47,7 +49,8 @@
 
 (defun xpdfremote/send-command (command)
   (interactive "s")
-  (start-process "xpdfremote/processs" nil "xpdf" "-remote" xpdfremote/server-name "-exec" command))
+  (when xpdfremote/server
+    (start-process "xpdfremote/processs" nil "xpdf" "-remote" xpdfremote/server-name "-exec" command)))
 
 (defun xpdfremote/select-file ()
   (interactive)
@@ -69,7 +72,8 @@
     (newline)))
 
 (defun xpdfremote/xpdf-open-file (filename)
-   (start-process "xpdfremote/processs" nil "xpdf" "-remote" xpdfremote/server-name filename)
+   (setq xpdfremote/server (start-process "xpdfremote/processs" nil "xpdf" "-remote" xpdfremote/server-name filename
+                                          (when xpdfremote/fullscreen "-fullscreen")))
    (raise-frame)
    (x-focus-frame nil))
 ;; mode

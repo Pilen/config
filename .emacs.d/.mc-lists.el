@@ -3,8 +3,12 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        TeX-insert-backslash
+        TeX-insert-sub-or-superscript
         back-to-indentation-or-beginning
-        fixup-whitespace
+        backward-kill-word-to-newline
+        forward-kill-word-to-newline
+        forward-word-to-newline
         haskell-indentation-delete-backward-char
         org-delete-backward-char
         org-self-insert-command

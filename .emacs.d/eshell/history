@@ -114,10 +114,15 @@ rm hej.sml
 rm iptuleri.sml 
 rm buf.sml 
 rm ip.sml 
-ls
 cd /usr/share/emacs/site-lisp/auctex/
-ls
 grep "hook" --include="*.el" -r .
 grep "hook" --include="*.el" .
 grep "hook" --include="*.el" *
 grep "run-hooks" --include="*.el" *
+ls /home/pilen/revy/2013/av/overtex/*.sty
+cp /home/pilen/revy/2013/av/overtex/*.sty ./
+ls
+rm fuxux 
+cd code/ubertex/
+ls
+rm kat
