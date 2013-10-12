@@ -57,6 +57,9 @@
   (let ((line (buffer-substring-no-properties (point-at-bol) (point-at-eol))))
     (xpdfremote/open-file line)))
 
+(defun xpdfremote/close ()
+  (interactive)
+  (setq xpdfremote/server nil))
 
 ;; internal functions
 

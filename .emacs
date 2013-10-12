@@ -125,6 +125,8 @@
 
 ;; M-next       scroll-other-window
 ;; M-prev       scroll-other-window-down
+
+
 ;; Debug on errors in .emacs
 (setq debug-on-error t)
 
@@ -394,8 +396,10 @@
 (global-set-key (kbd "<f7>") 'toggle-window-dedicated)
 ;; (global-set-key (kbd "<f8>") 'narrow-toggle)
 (global-set-key (kbd "<f8>") 'narrow-to-region-indirect)
+(global-set-key (kbd "C-<f8>") 'clone-buffer)
 (global-set-key (kbd "S-<f8>") 'narrow-to-defun)
-(global-set-key (kbd "<f9>") 'shell-command-on-region-replace)
+;(global-set-key (kbd "<f9>") 'shell-command-on-region-replace)
+(global-set-key (kbd "<f9>") 'command-center)
 (global-set-key (kbd "<f10>") 'reftex-toc)
 (global-set-key (kbd "<f11>") 'LaTeX-environment)
 (global-set-key (kbd "H-<f11>") 'LaTeX-close-environment)
@@ -470,6 +474,51 @@
     (goto-match-paren)
     (eval-region start (point) standard-output))))
 
+
+;;______________________________________________________________________________
+;π COMMAND-CENTER
+;;______________________________________________________________________________
+
+(defvar command-center-commands '())
+
+(defun command-center-add (command &optional name)
+  (when (null name)
+    (if (symbolp command)
+        (setq name (symbol-name command))
+      (setq name (prin1-to-string command))))
+
+  (setq command-center-commands (append
+                                 command-center-commands
+                                 `((,name . ,command)))))
+
+(defun command-center-clear ()
+  (setq command-center-commands '()))
+
+(defun command-center ()
+  (interactive)
+  (let* ((name
+          (ido-completing-read ">:"
+                               (mapcar (lambda (x) (car x))
+                                       command-center-commands)))
+         (command (cdr (assoc name command-center-commands))))
+    (if (commandp command)
+        (call-interactively command)
+      (funcall command))))
+
+(progn
+  (command-center-clear)
+  (command-center-add 'eval-buffer)
+  (command-center-add 'rename-file-and-buffer)
+  (command-center-add 'emacs-lisp-mode)
+  (command-center-add 'delete-file)
+  (command-center-add 'whitespace-cleanup)
+  (command-center-add 'revy-ubertex-mode)
+  (command-center-add 'revy-ubersicht-mode)
+  (command-center-add 'revy-manus-clean)
+  (command-center-add 'auto-fill-mode)
+  (command-center-add 'show-all)
+  (command-center-add 'shell-command-on-region-replace)
+  )
 
 ;;______________________________________________________________________________
 ;;
@@ -2137,8 +2186,12 @@ current frame, create a new window and switch to it.
                ("emacs-config"
                 (or
                  (filename . ".emacs")))
+               ("emacslisp"
+                (mode . emacs-lisp-mode))
                ("Shell"
-                (mode . shell-script-mode))
+                (or
+                 (filename . "\\.sh")
+                 (mode . shell-script-mode)))
 
                ("Tex"
                 (or
@@ -2233,7 +2286,9 @@ current frame, create a new window and switch to it.
 (defun ido-my-keys ()
   "Add my keybindings for ido."
   (define-key ido-completion-map (kbd "H-e") 'ido-next-match)
-  (define-key ido-completion-map (kbd "H-u") 'ido-prev-match))
+  (define-key ido-completion-map (kbd "H-u") 'ido-prev-match)
+  (define-key ido-completion-map (kbd "<down>") 'ido-next-match)
+  (define-key ido-completion-map (kbd "<up>") 'ido-prev-match))
 
 
 ;; use ido to complete commands via M-X
@@ -3746,3 +3801,4 @@ instead."
 ;; End of .emacs, go away debugger!
 (setq debug-on-error nil)
 (put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
