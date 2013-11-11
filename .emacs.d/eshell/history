@@ -1,25 +1,3 @@
-ls admin/
-cat applications/*.py | grep "front"
-grep
-grep "front" applications/*.py
-grep "front" templates/*.html
-grep "front" templates/schedule/*.html
-grep "front" templates/usermanager/*.html
-grep "front" templates/rusmanager/*.html
-ls templates/
-grep "front" *
-grep "front" applications/*/*
-grep "front" templates/*
-grep "front" templates/*/*
-grep "front" applications/*/*
-grep "front" applications/*
-grep "submenu" *
-cd ../
-cd templates/
-grep "submenu" *
-grep "submenu" -r 
-cd applications/
-grep "render_template" -r 
 cd ../../
 grep "form" -r
 grep "form" -r *
@@ -126,3 +104,25 @@ rm fuxux
 cd code/ubertex/
 ls
 rm kat
+cd ~/revy/2013-jubilee-40/av/rusregnestykke/
+ls
+cd ..
+ls
+ls mid/
+titel_slide_01_07_det_meget_paener_i_ml.mp4
+ls
+ls mid
+ls
+ls mid
+ls
+ls mid
+occur
+occur replace
+cd /
+cd
+cd code/ubertex/
+rm auto/*.tex; rm auto/*.dot
+git status
+#	schneider.py
+git commit -am "Mere dokumentation"
+git push

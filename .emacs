@@ -1,6 +1,6 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
-;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-ind| |shell-rplc|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
+;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-ind| |cmd-center|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
 ;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |narrow-fun| |          |          |tex-clsenv|prev-clear||linum     |autoindent|          |zoomable  |
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
@@ -419,9 +419,8 @@
    (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
    (define-key comint-mode-map (kbd "<down>") 'comint-next-input)))
 
-
-(global-set-key (kbd "H-C-.") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "-> ") (insert " -> "))))
-(global-set-key (kbd "H-C-,") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "<- ") (insert " <- "))))
+(global-set-key (kbd "H-C-.") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "->") (insert " ->")) (if (not (char-equal (char-after) ?\s )) (insert " ") (forward-char))))
+(global-set-key (kbd "H-C-,") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "<-") (insert " <-")) (if (not (char-equal (char-after) ?\s )) (insert " ") (forward-char))))
 
 (add-hook 'multiple-cursors-mode-enabled-hook (lambda ()
                                                 (define-key mc/keymap (kbd "<return>") 'newline)))
@@ -441,8 +440,8 @@
 ;π COMPILE
 ;;______________________________________________________________________________
 ;; H-g  =  compile
-(global-set-key (kbd "H-g")     (lambda () (interactive) (message "Compile-key not defined for this mode.")))
-(add-hook 'erlang-mode-hook     (lambda () (define-key erlang-mode-map     (kbd "H-g") (lambda () (interactive) (erlang-compile) (first-error)))))
+(global-set-key (kbd "H-g")     (lambda () (interactive) (save-buffer) (message "Compile-key not defined for this mode.")))
+(add-hook 'erlang-mode-hook     (lambda () (define-key erlang-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (erlang-compile) (first-error)))))
 (add-hook 'LaTeX-mode-hook      (lambda () (define-key TeX-mode-map        (kbd "H-g") 'run-latex)))
 (add-hook 'haskell-mode-hook    (lambda () (define-key haskell-mode-map    (kbd "H-g") 'inferior-haskell-load-file)))
 (add-hook 'maple-mode-hook      (lambda () (define-key maple-mode-map      (kbd "H-g") 'maple-buffer)))
@@ -519,6 +518,10 @@
   (command-center-add 'show-all)
   (command-center-add 'shell-command-on-region-replace)
   )
+
+(command-center-add (lambda () (interactive) (find-file (concat (file-name-sans-extension (buffer-file-name)) ".pdf"))) "open-pdf")
+
+
 
 ;;______________________________________________________________________________
 ;;
@@ -1766,7 +1769,7 @@ erc-modified-channels-alist. Should be executed on window change."
 ;;______________________________________________________________________________
 ;π ERLANG
 ;;______________________________________________________________________________
-(add-to-list 'load-path "/usr/lib/erlang/lib/tools-2.6.11/emacs/")
+(add-to-list 'load-path (concat (car (directory-files "/usr/lib/erlang/lib/" t "^tools-.")) "/emacs/"))
 (require 'erlang-start)
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))

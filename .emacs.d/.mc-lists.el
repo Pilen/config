@@ -3,10 +3,9 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        TeX-insert-backslash
         org-delete-backward-char
         org-self-insert-command
-        pager-row-down
-        python-indent-dedent-line-backspace
         python-indent-electric-colon
         xpdfremote/xpdf-pageDown
         yank-or-pop
@@ -14,8 +13,6 @@
 
 (setq mc/cmds-to-run-once
       '(
-        TeX-insert-backslash
-        backward-kill-word-to-newline
         c-electric-backspace
         iedit-mode
         ))

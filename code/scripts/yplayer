@@ -1,0 +1,7 @@
+if [$# -eq 0]
+then
+    link = zenity --entry --text="Video:";
+else
+    link = $1;
+fi
+mplayer $(youtube-dl -g $link)
