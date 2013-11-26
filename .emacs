@@ -2598,6 +2598,9 @@ current frame, create a new window and switch to it.
     (other-window 1)
     (search-forward current-pos)))
 
+(define-key isearch-mode-map (kbd "H-m") 'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "H-M") 'isearch-repeat-backward)
+
 ;;______________________________________________________________________________
 ;π JABBER
 ;;______________________________________________________________________________
