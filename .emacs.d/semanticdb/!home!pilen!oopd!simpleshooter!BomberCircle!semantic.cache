@@ -1,0 +1,604 @@
+;; Object BomberCircle/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "BomberCircle/"
+  :tables (list 
+   (semanticdb-table "World.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.ArrayList" include nil nil [1 28])
+            ("World" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("width" variable
+                       (:typemodifiers ("private" "static")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [162 187])
+                    ("height" variable
+                       (:typemodifiers ("private" "static")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [192 218])
+                    ("player" variable
+                       (:typemodifiers ("private")
+                        :type "Player")
+                        (reparse-symbol class_member_declaration) [224 246])
+                    ("World" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("width" variable (:type "int") (reparse-symbol formal_parameters) [582 591])
+                            ("height" variable (:type "int") (reparse-symbol formal_parameters) [593 603]))                          )
+                        (reparse-symbol class_member_declaration) [569 888])
+                    ("update" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [991 1663])
+                    ("collision" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [1920 1925])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [1927 1932]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [1895 1974])
+                    ("destroyAt" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [2216 2221])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [2223 2228]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2191 2270])
+                    ("getPlayer" function
+                       (:typemodifiers ("public")
+                        :type "Player")
+                        (reparse-symbol class_member_declaration) [2436 2502])
+                    ("setPlayer" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("player" variable (:type "Player") (reparse-symbol formal_parameters) [2530 2543]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2508 2585])
+                    ("getEnemies" function (:constructor-flag t) (reparse-symbol class_member_declaration) [2708 2761])
+                    ("getObstacles" function (:constructor-flag t) (reparse-symbol class_member_declaration) [2891 2946])
+                    ("getBombs" function (:constructor-flag t) (reparse-symbol class_member_declaration) [3064 3115])
+                    ("getSmoke" function (:constructor-flag t) (reparse-symbol class_member_declaration) [3234 3285])
+                    ("removeBomb" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("bomb" variable (:type "Bomb") (reparse-symbol formal_parameters) [3425 3434]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3402 3476])
+                    ("removeSmoke" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("smoke" variable (:type "Smoke") (reparse-symbol formal_parameters) [3623 3634]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3599 3676])
+                    ("addEnemy" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("enemy" variable (:type "Enemy") (reparse-symbol formal_parameters) [3798 3809]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3777 3851])
+                    ("addObstacle" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("obstacle" variable (:type "Obstacle") (reparse-symbol formal_parameters) [3982 3999]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3958 4041])
+                    ("addBomb" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("bomb" variable (:type "Bomb") (reparse-symbol formal_parameters) [4159 4168]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4139 4210])
+                    ("addSmoke" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("smoke" variable (:type "Smoke") (reparse-symbol formal_parameters) [4344 4355]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4323 4397]))                  
+                :type "class")
+                nil [136 4399]))          
+    :file "World.java"
+    :pointmax 4400
+    :fsize 4399
+    :lastmodtime '(21140 54583 448959 480000)
+    :unmatched-syntax '((GT 3232 . 3233) (PUBLIC 3210 . 3216) (LT 3226 . 3227) (GT 3062 . 3063) (PUBLIC 3041 . 3047) (LT 3057 . 3058) (GT 2889 . 2890) (PUBLIC 2864 . 2870) (LT 2880 . 2881) (GT 2706 . 2707) (PUBLIC 2684 . 2690) (LT 2700 . 2701) (SEMICOLON 397 . 398) (GT 390 . 391) (LT 384 . 385) (SEMICOLON 361 . 362) (GT 354 . 355) (LT 349 . 350) (SEMICOLON 326 . 327) (GT 315 . 316) (LT 306 . 307) (SEMICOLON 283 . 284) (GT 274 . 275) (PRIVATE 251 . 258) (LT 268 . 269))
+    )
+   (semanticdb-table "Game.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("javax.swing.JFrame" include nil nil [1 27])
+            ("java.awt.Graphics" include nil nil [28 53])
+            ("java.awt.Graphics2D" include nil nil [54 81])
+            ("java.awt.Rectangle" include nil nil [82 108])
+            ("java.awt.image.BufferedImage" include nil nil [109 145])
+            ("javax.swing.JPanel" include nil nil [147 173])
+            ("java.awt.Canvas" include nil nil [174 197])
+            ("java.awt.Dimension" include nil nil [198 224])
+            ("java.awt.image.BufferStrategy" include nil nil [225 262])
+            ("Game" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("TILE_SIZE" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [322 361])
+                    ("WINDOW_WIDTH" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [366 417])
+                    ("WINDOW_HEIGHT" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [422 474])
+                    ("FRAME_LENGTH" variable
+                       (:typemodifiers ("private" "static" "final")
+                        :type "long")
+                        (reparse-symbol class_member_declaration) [479 525])
+                    ("lastTime" variable
+                       (:typemodifiers ("private")
+                        :type "long")
+                        (reparse-symbol class_member_declaration) [530 552])
+                    ("levelLoader" variable
+                       (:typemodifiers ("private")
+                        :type "LevelLoader")
+                        (reparse-symbol class_member_declaration) [558 590])
+                    ("world" variable
+                       (:typemodifiers ("private")
+                        :type "World")
+                        (reparse-symbol class_member_declaration) [595 615])
+                    ("renderer" variable
+                       (:typemodifiers ("private")
+                        :type "Renderer")
+                        (reparse-symbol class_member_declaration) [620 646])
+                    ("bufferStrategy" variable
+                       (:typemodifiers ("private")
+                        :type "BufferStrategy")
+                        (reparse-symbol class_member_declaration) [651 689])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [776 789]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [752 830])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [1031 2003])
+                    ("start" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2144 2596])
+                    ("loop" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2919 3127])
+                    ("isGameOver" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3319 3484])
+                    ("isLevelOver" function
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [3691 3780])
+                    ("sleep" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3929 4329])
+                    ("update" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4381 4439])
+                    ("render" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4561 4801])
+                    ("getWorld" function
+                       (:typemodifiers ("public")
+                        :type "World")
+                        (reparse-symbol class_member_declaration) [4894 4952]))                  
+                :type "class")
+                nil [298 4954]))          
+    :file "Game.java"
+    :pointmax 4955
+    :fsize 4954
+    :lastmodtime '(21140 54273 442306 291000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "LevelLoader.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.ArrayList" include nil nil [1 28])
+            ("LevelLoader" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("current" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [171 191])
+                    ("width" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [196 214])
+                    ("height" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [219 238])
+                    ("LevelLoader" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("width" variable (:type "int") (reparse-symbol formal_parameters) [507 516])
+                            ("height" variable (:type "int") (reparse-symbol formal_parameters) [518 528]))                          )
+                        (reparse-symbol class_member_declaration) [488 1365])
+                    ("load" function
+                       (:typemodifiers ("public")
+                        :type "World")
+                        (reparse-symbol class_member_declaration) [1479 2190])
+                    ("isLevelsLeft" function
+                       (:typemodifiers ("public")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2324 2411]))                  
+                :type "class")
+                nil [100 2414]))          
+    :file "LevelLoader.java"
+    :pointmax 2415
+    :fsize 2414
+    :lastmodtime '(21140 54601 152292 44000)
+    :unmatched-syntax '((SEMICOLON 165 . 166) (GT 157 . 158) (PRIVATE 131 . 138) (LT 148 . 149))
+    )
+   (semanticdb-table "Direction.java"
+    :major-mode 'jde-mode
+    :tags nil
+    :file "Direction.java"
+    :pointmax 114
+    :fsize 113
+    :lastmodtime '(21140 54109 168980 99000)
+    :unmatched-syntax '((BRACE_BLOCK 83 . 113) (IDENTIFIER 73 . 82) (IDENTIFIER 68 . 72))
+    )
+   (semanticdb-table "Obstacle.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("Obstacle" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("x" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [107 121])
+                    ("y" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [126 140])
+                    ("Obstacle" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [316 321])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [323 328]))                          )
+                        (reparse-symbol class_member_declaration) [300 377])
+                    ("getX" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [480 528])
+                    ("getY" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [631 679]))                  
+                :type "class")
+                nil [79 682]))          
+    :file "Obstacle.java"
+    :pointmax 683
+    :fsize 682
+    :lastmodtime '(21140 54109 168980 99000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Bomb.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("Bomb" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("world" variable
+                       (:typemodifiers ("private")
+                        :type "World")
+                        (reparse-symbol class_member_declaration) [93 113])
+                    ("x" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [118 132])
+                    ("y" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [137 151])
+                    ("DISTANCE" variable
+                       (:typemodifiers ("private" "final")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [156 187])
+                    ("FUSE_TIME" variable
+                       (:typemodifiers ("private" "final")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [192 224])
+                    ("timeLeft" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [229 250])
+                    ("Bomb" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [470 475])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [477 482])
+                            ("world" variable (:type "World") (reparse-symbol formal_parameters) [484 495]))                          )
+                        (reparse-symbol class_member_declaration) [458 612])
+                    ("update" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [988 1049])
+                    ("getX" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1148 1206])
+                    ("getY" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1305 1363]))                  
+                :type "class")
+                nil [68 1365]))          
+    :file "Bomb.java"
+    :pointmax 1366
+    :fsize 1365
+    :lastmodtime '(21140 55040 68939 629000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Smoke.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("Smoke" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("world" variable
+                       (:typemodifiers ("private")
+                        :type "World")
+                        (reparse-symbol class_member_declaration) [95 115])
+                    ("x" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [120 134])
+                    ("y" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [139 153])
+                    ("TIME_TO_LIVE" variable
+                       (:typemodifiers ("private" "final")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [158 193])
+                    ("timeLeft" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [198 219])
+                    ("Smoke" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [444 449])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [451 456])
+                            ("world" variable (:type "World") (reparse-symbol formal_parameters) [458 469]))                          )
+                        (reparse-symbol class_member_declaration) [431 589])
+                    ("update" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [754 815])
+                    ("getX" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [915 973])
+                    ("getY" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1073 1131]))                  
+                :type "class")
+                nil [70 1133]))          
+    :file "Smoke.java"
+    :pointmax 1134
+    :fsize 1133
+    :lastmodtime '(21140 55084 88937 715000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Player.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("Player" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("world" variable
+                       (:typemodifiers ("private")
+                        :type "World")
+                        (reparse-symbol class_member_declaration) [98 118])
+                    ("x" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [123 137])
+                    ("y" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [142 156])
+                    ("direction" variable
+                       (:typemodifiers ("private")
+                        :type "Direction")
+                        (reparse-symbol class_member_declaration) [161 189])
+                    ("move" variable
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [194 215])
+                    ("alive" variable
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [220 242])
+                    ("Player" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [472 477])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [479 484])
+                            ("world" variable (:type "World") (reparse-symbol formal_parameters) [486 497]))                          )
+                        (reparse-symbol class_member_declaration) [458 601])
+                    ("input" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("direction" variable (:type "Direction") (reparse-symbol formal_parameters) [896 915]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [878 986])
+                    ("placeBomb" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1136 1233])
+                    ("halt" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1417 1470])
+                    ("update" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1657 1785])
+                    ("move" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2002 2062])
+                    ("kill" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2149 2203])
+                    ("getX" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [2304 2352])
+                    ("getY" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [2453 2501])
+                    ("isAlive" function
+                       (:typemodifiers ("public")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2620 2679]))                  
+                :type "class")
+                nil [72 2682]))          
+    :file "Player.java"
+    :pointmax 2683
+    :fsize 2682
+    :lastmodtime '(21140 57180 95513 259000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Enemy.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("Enemy" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("world" variable
+                       (:typemodifiers ("private")
+                        :type "World")
+                        (reparse-symbol class_member_declaration) [97 117])
+                    ("x" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [122 136])
+                    ("y" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [141 155])
+                    ("Enemy" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [380 385])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [387 392])
+                            ("world" variable (:type "World") (reparse-symbol formal_parameters) [394 405]))                          )
+                        (reparse-symbol class_member_declaration) [367 482])
+                    ("update" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [683 744])
+                    ("getX" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [844 902])
+                    ("getY" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1002 1060]))                  
+                :type "class")
+                nil [72 1062]))          
+    :file "Enemy.java"
+    :pointmax 1063
+    :fsize 1062
+    :lastmodtime '(21140 55291 662262 25000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "AsciiRenderer.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.awt.Graphics2D" include nil nil [1 28])
+            ("java.awt.Color" include nil nil [29 51])
+            ("AsciiRenderer" type
+               (:typemodifiers ("public")
+                :interfaces ("Renderer")
+                :members 
+                  ( ("TILE_SIZE" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [146 168])
+                    ("WIDTH" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [173 191])
+                    ("HEIGHT" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [196 215])
+                    ("world" variable
+                       (:typemodifiers ("private")
+                        :type "World")
+                        (reparse-symbol class_member_declaration) [220 240])
+                    ("AsciiRenderer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("tileSize" variable (:type "int") (reparse-symbol formal_parameters) [527 539])
+                            ("width" variable (:type "int") (reparse-symbol formal_parameters) [541 550])
+                            ("height" variable (:type "int") (reparse-symbol formal_parameters) [552 562])
+                            ("world" variable (:type "World") (reparse-symbol formal_parameters) [564 575]))                          )
+                        (reparse-symbol class_member_declaration) [506 723])
+                    ("render" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("g" variable (:type "Graphics2D") (reparse-symbol formal_parameters) [923 935]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [904 977])
+                    ("renderObject" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [1389 1394])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [1396 1401]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1361 1443])
+                    ("printHorizontalLine" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1552 1627]))                  
+                :type "class")
+                nil [93 1630]))          
+    :file "AsciiRenderer.java"
+    :pointmax 1631
+    :fsize 1630
+    :lastmodtime '(21140 55371 415591 891000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!simpleshooter!BomberCircle!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

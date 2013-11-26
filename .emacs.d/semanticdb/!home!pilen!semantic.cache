@@ -2,116 +2,14 @@
 ;; SEMANTICDB Tags save file
 (semanticdb-project-database-file "pilen/"
   :tables (list 
-   (semanticdb-table "color.py"
-    :major-mode 'python-mode
-    :tags 
-        '( ("time" include nil nil [1 12])
-            ("os" include nil nil [13 22])
-            ("CODE" variable nil nil [24 810])
-            ("termcode" function (:arguments 
-              ( ("num" variable nil (reparse-symbol function_parameters) [825 828]))              ) nil [812 857])
-            ("colorstr" function (:arguments 
-              ( ("astr" variable nil (reparse-symbol function_parameters) [871 875])
-                ("color" variable nil (reparse-symbol function_parameters) [876 881]))              ) nil [858 945])
-            ("if" code nil nil [946 1288]))          
-    :file "color.py"
-    :pointmax 1288
-    :fsize 1287
-    :lastmodtime '(20668 48535)
-    :unmatched-syntax 'nil
-    )
-   (semanticdb-table "fac.py"
-    :major-mode 'python-mode
-    :tags 
-        '( ("fac" function (:arguments 
-              ( ("n" variable nil (reparse-symbol function_parameters) [78 79]))              ) nil [70 177])
-            ("fac10" function nil nil [178 297])
-            ("fac10unrolled" function nil nil [298 715])
-            ("fac10opitmized" function nil nil [716 757])
-            ("facr" function (:arguments 
-              ( ("n" variable nil (reparse-symbol function_parameters) [768 769]))              ) nil [759 843]))          
-    :file "fac.py"
-    :pointmax 843
-    :fsize 843
-    :lastmodtime '(20741 47263)
-    :unmatched-syntax 'nil
-    )
-   (semanticdb-table "lampy.py"
-    :major-mode 'python-mode
-    :tags 
-        '( ("sys" include nil nil [2 12])
-            ("LampyParseException" type
-               (:superclasses ("Exception")
-                :members 
-                  ( ("__init__" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [69 73])
-                        ("line" variable nil (reparse-symbol function_parameters) [74 78])
-                        ("msg" variable nil (reparse-symbol function_parameters) [79 82]))                      ) (reparse-symbol indented_block_body) [56 129])
-                    ("__str__" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [145 149]))                      ) (reparse-symbol indented_block_body) [133 182]))                  
-                :type "class")
-                nil [14 182])
-            ("translationtable" variable nil nil [183 1878])
-            ("contains_whitespace" function (:arguments 
-              ( ("s" variable nil (reparse-symbol function_parameters) [1904 1905]))              ) nil [1880 1989])
-            ("cut_end" function (:arguments 
-              ( ("s" variable nil (reparse-symbol function_parameters) [2002 2003])
-                ("end" variable nil (reparse-symbol function_parameters) [2004 2007]))              ) nil [1990 2120])
-            ("count_indent" function (:arguments 
-              ( ("s" variable nil (reparse-symbol function_parameters) [2138 2139]))              ) nil [2121 2383])
-            ("translate" function (:arguments 
-              ( ("s" variable nil (reparse-symbol function_parameters) [2398 2399])
-                ("t" variable nil (reparse-symbol function_parameters) [2400 2401]))              ) nil [2384 2461])
-            ("skip" function (:arguments 
-              ( ("i" variable nil (reparse-symbol function_parameters) [2471 2472])
-                ("n" variable nil (reparse-symbol function_parameters) [2474 2475]))              ) nil [2462 2534])
-            ("func" function (:arguments 
-              ( ("s" variable nil (reparse-symbol function_parameters) [2544 2545]))              ) nil [2535 2682])
-            ("lambdalize" function (:arguments 
-              ( ("s" variable nil (reparse-symbol function_parameters) [2698 2699]))              ) nil [2683 3036])
-            ("paralize" function (:arguments 
-              ( ("s" variable nil (reparse-symbol function_parameters) [3050 3051]))              ) nil [3037 3577])
-            ("parazone" function (:arguments 
-              ( ("s" variable nil (reparse-symbol function_parameters) [3592 3593]))              ) nil [3578 3788])
-            ("parse" function (:arguments 
-              ( ("file" variable nil (reparse-symbol function_parameters) [3799 3803]))              ) nil [3789 4162])
-            ("Reader" type
-               (:members 
-                  ( ("__init__" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [4196 4200])
-                        ("text" variable nil (reparse-symbol function_parameters) [4201 4205]))                      ) (reparse-symbol indented_block_body) [4183 4255])
-                    ("read" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [4268 4272]))                      ) (reparse-symbol indented_block_body) [4259 4398])
-                    ("peek" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [4411 4415])
-                        ("at" variable nil (reparse-symbol function_parameters) [4416 4418]))                      ) (reparse-symbol indented_block_body) [4402 4528])
-                    ("goto" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [4541 4545])
-                        ("new" variable nil (reparse-symbol function_parameters) [4547 4550]))                      ) (reparse-symbol indented_block_body) [4532 4576])
-                    ("isDone" function (:arguments 
-                      ( ("self" variable nil (reparse-symbol function_parameters) [4591 4595]))                      ) (reparse-symbol indented_block_body) [4580 4640]))                  
-                :type "class")
-                nil [4163 4640])
-            ("parse" function (:arguments 
-              ( ("code" variable nil (reparse-symbol function_parameters) [4651 4655]))              ) nil [4641 4748])
-            ("parse" function (:arguments 
-              ( ("code" variable nil (reparse-symbol function_parameters) [4759 4763]))              ) nil [4749 4823])
-            ("main" function nil nil [4833 5834])
-            ("if" code nil nil [5840 5874]))          
-    :file "lampy.py"
-    :pointmax 6843
-    :fsize 6851
-    :lastmodtime '(20503 18489)
-    :unmatched-syntax '((NEWLINE 6520 . 6521) (INDENT_BLOCK 6521 . 6639) (NEWLINE 6352 . 6353) (INDENT_BLOCK 6353 . 6470) (NAME 6161 . 6165) (NEWLINE 6211 . 6212) (INDENT_BLOCK 6212 . 6301) (NAME 5560 . 5565) (IF 5588 . 5590) (ELSE 5614 . 5618) (INDENT_BLOCK 4702 . 4748) (WHILE 4682 . 4687) (NEWLINE 4701 . 4702) (NAME 3514 . 3519) (IF 3539 . 3541) (ELSE 3547 . 3551))
-    )
-   (semanticdb-table ".copyaliases.py"
-    :major-mode 'python-mode
+       (semanticdb-table "makefile"
+    :major-mode 'makefile-gmake-mode
     :tags nil
-    :file ".copyaliases.py"
-    :pointmax 339
-    :fsize 338
-    :lastmodtime '(20741 45105)
-    :unmatched-syntax '((INDENT_BLOCK 67 . 292) (COLON 65 . 66) (NAME 26 . 30) (AS 59 . 61) (INDENT_BLOCK 67 . 338) (COLON 65 . 66) (NAME 26 . 30) (AS 59 . 61))
+    :file "makefile"
+    :pointmax 10
+    :fsize 9
+    :lastmodtime '(21130 12555 827335 153000)
+    :unmatched-syntax '((symbol 1 . 9) (bol 1 . 1))
     )
    )
   :file "!home!pilen!semantic.cache"

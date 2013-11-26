@@ -1,7 +1,10 @@
-if [$# -eq 0]
+if [ $# -eq 0 ]
 then
-    link = zenity --entry --text="Video:";
+    li=$(zenity --entry --text="Video:");
 else
-    link = $1;
+    li="$1";
 fi
-mplayer $(youtube-dl -g $link)
+
+echo $li;
+
+mplayer $(youtube-dl -g $li)

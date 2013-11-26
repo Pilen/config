@@ -1,0 +1,56 @@
+;; Object ovelse0/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "ovelse0/"
+  :tables (list 
+   (semanticdb-table "Game.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("Game" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("WIDTH" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [52 70])
+                    ("HEIGHT" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [75 94])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [124 137]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [100 208])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("width" variable (:type "int") (reparse-symbol formal_parameters) [226 235])
+                            ("height" variable (:type "int") (reparse-symbol formal_parameters) [237 247]))                          )
+                        (reparse-symbol class_member_declaration) [214 308])
+                    ("loop" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [314 1240])
+                    ("printHLine" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1246 1402]))                  
+                :type "class")
+                nil [28 1404]))          
+    :file "Game.java"
+    :pointmax 1405
+    :fsize 1404
+    :lastmodtime '(21131 35992 840788 411000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!ovelse0!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

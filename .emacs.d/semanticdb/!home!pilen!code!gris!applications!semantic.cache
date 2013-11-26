@@ -21,8 +21,8 @@
               ( ("logged_in" function (:type "decorator") nil nil))              ) nil [742 1555]))          
     :file "front.py"
     :pointmax 1555
-    :fsize 1554
-    :lastmodtime '(20932 31363 737559 542000)
+    :fsize 2408
+    :lastmodtime '(21009 192 186305 781000)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "usermanager.py"
@@ -30,26 +30,42 @@
     :tags nil
     :file "usermanager.py"
     :pointmax 6710
-    :fsize 6717
-    :lastmodtime '(20932 31256 17555 202000)
+    :fsize 7883
+    :lastmodtime '(21010 11983 535595 59000)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "rusmanager.py"
     :major-mode 'python-mode
-    :tags nil
+    :tags 
+        '( ("random" include nil nil [26 49])
+            ("datetime" include nil nil [26 49])
+            ("flask" include nil nil [51 186])
+            ("lib" include nil nil [188 224])
+            ("lib.tools" include nil nil [225 261])
+            ("rusmanager" variable nil nil [263 354])
+            ("" code nil nil [372 387])
+            ("" code nil nil [398 417])
+            ("overview" function nil nil [418 563])
+            ("" code nil nil [581 628])
+            ("" code nil nil [639 658])
+            ("rus" function (:arguments 
+              ( ("r_id" variable nil (reparse-symbol function_parameters) [667 671]))              ) nil [659 3706])
+            ("" code nil nil [3724 3768])
+            ("" code nil nil [3779 3798])
+            ("new" function nil nil [3799 4466]))          
     :file "rusmanager.py"
-    :pointmax 3584
-    :fsize 3585
-    :lastmodtime '(20927 27119 610760 161000)
-    :unmatched-syntax 'nil
+    :pointmax 4466
+    :fsize 4471
+    :lastmodtime '(21010 23431 485983 325000)
+    :unmatched-syntax '((NAME 1550 . 1551) (IF 1561 . 1563) (ELSE 1587 . 1591) (NAME 1494 . 1495) (IF 1507 . 1509) (ELSE 1535 . 1539) (NAME 1438 . 1439) (IF 1451 . 1453) (ELSE 1479 . 1483) (NAME 1386 . 1387) (IF 1397 . 1399) (ELSE 1423 . 1427) (NAME 942 . 943) (IF 955 . 957) (ELSE 983 . 987))
     )
    (semanticdb-table "schedule.py"
     :major-mode 'python-mode
     :tags nil
     :file "schedule.py"
     :pointmax 1772
-    :fsize 1772
-    :lastmodtime '(20927 27140 514092 759000)
+    :fsize 2185
+    :lastmodtime '(21010 850 201884 131000)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "admin.py"
@@ -57,8 +73,8 @@
     :tags nil
     :file "admin.py"
     :pointmax 818
-    :fsize 817
-    :lastmodtime '(20927 26989 624098 67000)
+    :fsize 882
+    :lastmodtime '(21008 64954 992946 225000)
     :unmatched-syntax 'nil
     )
    )

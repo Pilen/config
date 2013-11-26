@@ -4,9 +4,11 @@
 (setq mc/cmds-to-run-for-all
       '(
         TeX-insert-backslash
-        org-delete-backward-char
-        org-self-insert-command
-        python-indent-electric-colon
+        backward-kill-word-to-newline
+        c-electric-paren
+        c-electric-pound
+        c-electric-semi&comma
+        toggle-letter-case
         xpdfremote/xpdf-pageDown
         yank-or-pop
         ))

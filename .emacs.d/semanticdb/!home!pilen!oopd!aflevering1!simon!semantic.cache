@@ -1,0 +1,114 @@
+;; Object simon/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "simon/"
+  :tables (list 
+   (semanticdb-table "P312.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("P312" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("in" variable
+                       (:typemodifiers ("private" "static")
+                        :type "Scanner")
+                        (reparse-symbol class_member_declaration) [49 100])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [128 141]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [104 660])
+                    ("removeComma" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("userInput" variable (:type "String") (reparse-symbol formal_parameters) [697 713]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [664 945]))                  
+                :type "class")
+                nil [28 947]))          
+    :file "P312.java"
+    :pointmax 948
+    :fsize 947
+    :lastmodtime '(21139 33205 627013 123000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "P313.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("P313" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("in" variable
+                       (:typemodifiers ("private" "static")
+                        :type "Scanner")
+                        (reparse-symbol class_member_declaration) [49 100])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [128 141]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [104 658])
+                    ("inInterval" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("input" variable (:type "String") (reparse-symbol formal_parameters) [695 707]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [662 788])
+                    ("insertComma" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("userInput" variable (:type "String") (reparse-symbol formal_parameters) [824 840]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [791 1156]))                  
+                :type "class")
+                nil [28 1158]))          
+    :file "P313.java"
+    :pointmax 1159
+    :fsize 1158
+    :lastmodtime '(21139 33218 260345 907000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Test.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("Test" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [47 60]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [23 803])
+                    ("test" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("input" variable (:type "String") (reparse-symbol formal_parameters) [832 844])
+                            ("supposedOutput" variable (:type "String") (reparse-symbol formal_parameters) [846 867])
+                            ("no" variable (:type "int") (reparse-symbol formal_parameters) [869 875]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [807 1264]))                  
+                :type "class")
+                nil [2 1266]))          
+    :file "Test.java"
+    :pointmax 1267
+    :fsize 1266
+    :lastmodtime '(21139 33222 437012 392000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering1!simon!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

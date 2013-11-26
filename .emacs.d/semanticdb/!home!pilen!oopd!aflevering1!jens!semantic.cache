@@ -1,0 +1,77 @@
+;; Object jens/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "jens/"
+  :tables (list 
+   (semanticdb-table "P3_13.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("P3_13" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [243 256]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [219 384])
+                    ("promptUser" function
+                       (:typemodifiers ("private" "static")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [508 707])
+                    ("addComma" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("input" variable (:type "String") (reparse-symbol formal_parameters) [857 869]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [826 1059]))                  
+                :type "class")
+                nil [194 1061]))          
+    :file "P3_13.java"
+    :pointmax 1062
+    :fsize 1105
+    :lastmodtime '(21139 44699 333180 107000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "P3_12.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("P3_12" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [259 272]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [235 403])
+                    ("promptUser" function
+                       (:typemodifiers ("private" "static")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [527 728])
+                    ("removeComma" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("input" variable (:type "String") (reparse-symbol formal_parameters) [958 970]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [924 1154]))                  
+                :type "class")
+                nil [210 1156]))          
+    :file "P3_12.java"
+    :pointmax 1157
+    :fsize 1200
+    :lastmodtime '(21139 44691 13180 469000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering1!jens!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

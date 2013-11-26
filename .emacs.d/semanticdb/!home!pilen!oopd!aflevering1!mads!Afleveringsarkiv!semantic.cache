@@ -1,0 +1,101 @@
+;; Object Afleveringsarkiv/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "Afleveringsarkiv/"
+  :tables (list 
+   (semanticdb-table "NumberPrettifier.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("NumberPrettifier" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("string" variable
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [85 107])
+                    ("NumberPrettifier" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("string" variable (:type "String") (reparse-symbol formal_parameters) [284 297]))                          )
+                        (reparse-symbol class_member_declaration) [260 330])
+                    ("addComma" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [447 519])
+                    ("removeComma" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [613 690])
+                    ("allButLast" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("n" variable (:type "int") (reparse-symbol formal_parameters) [720 725]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [694 795])
+                    ("last" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("n" variable (:type "int") (reparse-symbol formal_parameters) [819 824]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [799 913]))                  
+                :type "class")
+                nil [51 915]))          
+    :file "NumberPrettifier.java"
+    :pointmax 916
+    :fsize 915
+    :lastmodtime '(21137 1577 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "P3_12.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("P3_12" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [75 88]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [51 432]))                  
+                :type "class")
+                nil [28 434]))          
+    :file "P3_12.java"
+    :pointmax 435
+    :fsize 434
+    :lastmodtime '(21137 1359 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "P3_13.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("P3_13" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [75 88]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [51 410]))                  
+                :type "class")
+                nil [28 412]))          
+    :file "P3_13.java"
+    :pointmax 413
+    :fsize 412
+    :lastmodtime '(21137 1557 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering1!mads!Afleveringsarkiv!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

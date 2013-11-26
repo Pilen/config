@@ -451,6 +451,7 @@
 (add-hook 'emacs-lisp-mode-hook (lambda () (define-key emacs-lisp-mode-map (kbd "H-g") 'my-elisp-eval)))
 (add-hook 'scheme-mode-hook     (lambda () (define-key scheme-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (geiser-mode-switch-to-repl-and-enter)))))
 (add-hook 'ruby-mode-hook       (lambda () (define-key ruby-mode-map       (kbd "H-g") (lambda () (interactive) (save-excursion (when (null inf-ruby-buffer) (run-ruby) (sleep-for 1))) (ruby-send-region-and-go (point-min) (point-max))))))
+(add-hook 'jde-mode-hook        (lambda () (define-key jde-mode-map        (kbd "H-g") 'jde-compile-or-run)))
 
 (defun my-c-compile ()
   (interactive)
@@ -496,7 +497,7 @@
 (defun command-center ()
   (interactive)
   (let* ((name
-          (ido-completing-read ">:"
+          (ido-completing-read ">: "
                                (mapcar (lambda (x) (car x))
                                        command-center-commands)))
          (command (cdr (assoc name command-center-commands))))
@@ -516,7 +517,13 @@
   (command-center-add 'revy-manus-clean)
   (command-center-add 'auto-fill-mode)
   (command-center-add 'show-all)
+  (command-center-add 'hide-sublevels "hide-all")
   (command-center-add 'shell-command-on-region-replace)
+  (command-center-add 'occur)
+  (command-center-add 'sort-lines)
+  (command-center-add 'gtags-create-or-update)
+  (command-center-add 'indent-region)
+  (command-center-add 'horizontal-recenter)
   )
 
 (command-center-add (lambda () (interactive) (find-file (concat (file-name-sans-extension (buffer-file-name)) ".pdf"))) "open-pdf")
@@ -1891,8 +1898,8 @@ current frame, create a new window and switch to it.
     ;; If we did not switch window then we only have one window and need to
     ;; create a new one.
     (if (eq this-window (selected-window))
-	(progn
-	  (split-window-horizontally)
+        (progn
+          (split-window-horizontally)
           (other-window 1)))))
 ;;______________________________________________________________________________
 ;π EXPAND-REGION
@@ -2178,6 +2185,8 @@ current frame, create a new window and switch to it.
                 (mode . sml-mode))
                ("Erlang"
                 (mode . erlang-mode))
+               ("Java"
+                (mode . jde-mode))
                ("Web"
                 (or
                  (mode . html-mode)
@@ -2485,6 +2494,27 @@ current frame, create a new window and switch to it.
    (if (string-match "\\`[-+]?[0-9]+\\'" string)
        t
      nil))
+
+
+
+;; (defun .emacs-imenu-create-index ()
+;;   (interactive)
+;;   (goto-char (point-max))
+;;   (let ((index-alist '())
+;;         (name nil)
+;;         (pos nil))
+;;     (while (search-backward-regexp ";π[ ]*" nil t)
+;;       (search-forward-regexp ";π[ ]*\\([a-zA-Z-]+\\)")
+;;       (setq name (match-string 1))
+;;       ;(setq pos (match-beginning 0))
+;;       (goto-char (match-beginning 0))
+;;       (push (cons name (if imenu-use-markers (point-marker) (point)))
+;;             index-alist))
+;;       index-alist))
+
+;; (setq imenu-create-index-function '.emacs-imenu-create-index)
+;; (setq imenu--index-alist nil)
+
 ;;______________________________________________________________________________
 ;π INCMOVE
 ;;______________________________________________________________________________
@@ -2573,6 +2603,14 @@ current frame, create a new window and switch to it.
 ;;______________________________________________________________________________
 (add-to-list 'load-path "~/.emacs.d/emacs-jabber-0.8.0/")
 (require 'jabber-autoloads)
+
+;;______________________________________________________________________________
+;π JAVA
+;;______________________________________________________________________________
+(add-to-list 'load-path "~/.emacs.d/jdee-2.4.1/lisp")
+(add-to-list 'load-path "~/.emacs.d/jde-hacks")
+(setq jde-hacks-dir "~/.emacs.d/jde-hacks")
+(require 'jde-hacks)
 
 ;;______________________________________________________________________________
 ;π LATEX
@@ -2794,6 +2832,7 @@ current frame, create a new window and switch to it.
  '(comint-prompt-read-only nil)
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
+ '(jde-jdk-registry (quote (("1.7.45" . "/usr/lib/jvm/java-7-openjdk"))))
  '(menu-bar-mode nil)
  '(protect-buffer-bury-p nil)
  '(show-paren-mode t)

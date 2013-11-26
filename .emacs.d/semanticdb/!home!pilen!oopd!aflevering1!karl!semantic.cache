@@ -1,0 +1,55 @@
+;; Object karl/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "karl/"
+  :tables (list 
+   (semanticdb-table "P3_12.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("P3_12" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [51 64]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [26 1468]))                  
+                :type "class")
+                nil [1 1470]))          
+    :file "P3_12.java"
+    :pointmax 1471
+    :fsize 1470
+    :lastmodtime '(21136 59687 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "P3_13.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("P3_13" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [101 114]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [76 1556]))                  
+                :type "class")
+                nil [1 1558]))          
+    :file "P3_13.java"
+    :pointmax 1559
+    :fsize 1558
+    :lastmodtime '(21136 59687 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering1!karl!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

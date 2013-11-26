@@ -1,128 +1,128 @@
-cd ../../
-grep "form" -r
-grep "form" -r *
-grep "print" -r *
-grep "unicode_literals" -r *
-grep "unicode_literals" -r *.py
-grep "unicode_literals" -r *.py
-grep "request.method" -r *
-grep "<form" -r *
-grep "unicode_literals" -r *.py
-grep "unicode_literals" -r applications/*.py
-cd ../..
-cd static/
-ls js/
-grep "rid" -r *.py
-grep "rid" -r applications/*.py
-grep "rid" -r *.py
-grep "rid" -r applications/*.py
-grep "rid" -r templates/*.html
-grep "rid" -r templates/*/*.html
-grep "form" -r templates
-grep "Bucket" -r
-grep ">>" -r
-grep "Bucket" -r
-grep "Bucket" --include="*.py" -r
-grep "Bucket" --include="\*.py" -r
-grep "Bucket" --include="\\*.py" -r
-grep "Bucket" --include="*.py" -r
-grep "now" --include="*.py" -r
-grep "form|safe" --include="*.py" -r
-grep "form|safe" --include="*.html" -r
-grep "#" --include="*.py" -r
-grep "#" --include="*.py" -r .
-grep "form" -r .
-grep "<form" -r .
-grep "WebBuilder(" -r .
-grep "data" --include="*.py" -r .
-grep "data.data" --include="*.py" -r .
-grep "print" --include="*.py" -r .
-grep " print" --include="*.py" -r .
-grep "delete" --include="*.py" -r .
-grep "DELETE" --include="*.py" -r .
-cd ../..
-git status
-git add templates/bookkeeper/book.html 
-git status
-git add applications/bookkeeper.pyc
-git status
-git add applications/bookkeeper.py
-git status
-git commit -m "New menupoint added"
-git push
-cd ../../
-grep "$" --include="*.py" -r .
-grep "\$" --include="*.py" -r .
-grep "\\$" --include="*.py" -r .
-cd ../
-grep "form|safe" --include="*.py" -r .
-grep "form|safe" --include="*.html" -r .
-ls templates/
-ls templates/front/
-cd templates/
-rm rusmanager/new.html 
-rm usermanager/invite.html 
-rm usermanager/settings.html 
-rm bookkeeper/new_book.html
-rm bookkeeper/new_entry.html 
-rm bookkeeper/modify_book.html 
-grep "print" --include="*.py" -r .
-grep "delete" --include="*.py" -r .
-grep "back" --include="*.py" -r .
-grep "route" --include="*.py" -r .
-grep "TODO: .*" -o -r .
-grep "TODO" --include="*.py" -r .
-cd ../..
-grep "textarea" -r .
-rm datadump
-grep "url_for" -r .
-grep "interpret" -r .
-grep "type" -r .
-grep "type" --include="*.py" -r .
-cat caro-forhør.pdf | ssh pilgaard@tyr.diku.dk lp -d m1b
-mv ../2_brev.org ./
-cd 2_brev_done/
-rm 2_brev.
-rm 2_brev.*
-rm -rf auto/
-ls -lah
+pdfinfo *-10-10* | grep "Pages"
+pdfinfo *-10-24* | grep "Pages"
+javac HelloWorld.class
+javac HelloWorld.java 
+java HelloWorld.class
+javac HelloWorld.java
+java HelloWorld.class
+javac HelloWorld.java
+rm HelloWorld.class
+javac HelloWorld.java
+java HelloWorld.class
+cd test/
+javac calc.java 
+javac Calc.java
+java Calc
+htop
+javac Calc.java
+javac CalcTest.java 
+javac CalcTest.java Calc.java
+javac CalcTest.java
+java CalcTest
+cd..
 cd ..
-rm fac.sml 
-rm hej.sml 
-rm iptuleri.sml 
-rm buf.sml 
-rm ip.sml 
-cd /usr/share/emacs/site-lisp/auctex/
-grep "hook" --include="*.el" -r .
-grep "hook" --include="*.el" .
-grep "hook" --include="*.el" *
-grep "run-hooks" --include="*.el" *
-ls /home/pilen/revy/2013/av/overtex/*.sty
-cp /home/pilen/revy/2013/av/overtex/*.sty ./
+javac HelloWorld.class
+javac HelloWorld.java 
+java HelloWorld
+cd ../code/test/
+cd ../../oopd/test/
 ls
-rm fuxux 
-cd code/ubertex/
+less GTAGS 
+rm oopd/test/makefile 
+make clean
 ls
-rm kat
-cd ~/revy/2013-jubilee-40/av/rusregnestykke/
+make clean
 ls
+make clean
+rm *.class
+rm makefile 
+javac Game2.java Player2.java
+java Game2
+javac Game.java 
+java Game.java
+javac Game.java 
+java Game.java
+java Game.class
 cd ..
 ls
-ls mid/
-titel_slide_01_07_det_meget_paener_i_ml.mp4
+rm -rf asteroids/
+cd simpleshooter/
 ls
-ls mid
 ls
-ls mid
+ls *.java
+cat makefile 
+clear;
+ls *.java
+make clean
 ls
-ls mid
-occur
-occur replace
-cd /
-cd
-cd code/ubertex/
-rm auto/*.tex; rm auto/*.dot
-git status
-#	schneider.py
-git commit -am "Mere dokumentation"
-git push
+rm Obstacle.class
+ls
+ls .class
+ls *.class
+make all
+javac -Xlint:unchecked *.java
+make all
+make clean
+make
+grep "^{" *.java
+make all
+make all
+ls
+make clean
+ls
+make 
+ls
+java Game
+javac P1_1.java 
+java P1_1.class
+java P1_1
+java P1_1.class
+javac P1_1.java 
+java P1_1
+javac P1_1.java 
+java P1_1
+javac P1_1.java 
+java P1_1
+javac P1_1.java 
+java P1_1
+5
+javac CarTester.java
+rm *.class
+javac CarTester.java
+javac CarTester.java Car.java
+ls
+make
+make clean
+make
+java CarTester
+javac Product.java ProductPrinter.java 
+java ProductPrinter
+javac Car.java PriceCalculator.java
+java PriceCalculator
+javac Car.java PriceCalculator.java
+java PriceCalculator
+javac Car.java PriceCalculator.java
+java PriceCalculator
+javac Car.java PriceCalculator.java
+java PriceCalculator
+javac Car.java PriceCalculator.java
+10
+java PriceCalculator
+javadoc Car.java
+ls
+firefox Car.html
+javadoc Car.java
+firefox Car.html
+javadoc Car.java
+firefox Car.html
+javadoc Car.java
+firefox Car.html
+cd ../simpleshooter/
+ls
+java Game
+javac KeyEventDemo.java 
+java KeyEventDemo
+Exception in thread "main" java.lang.NoClassDefFoundError: KeyEventDemo (wrong name: events/KeyEventDemo)
+javac KeyEventDemo.java 
+java KeyEventDemo
+java Game
