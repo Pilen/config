@@ -1,6 +1,6 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
-;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-ind| |cmd-center|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
+;|          | |translate |flyspl    |mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-ind| |cmd-center|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
 ;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |narrow-fun| |          |          |tex-clsenv|prev-clear||linum     |autoindent|          |zoomable  |
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
@@ -386,9 +386,11 @@
 
 (global-set-key (kbd "<f1>") 'google-translate-da/en)
 (global-set-key (kbd "S-<f1>") 'google-translate-en/da)
-(global-set-key (kbd "H-<f1>") 'flyspell-toggle)
-(global-set-key (kbd "<f2>") 'flyspell-my-buffer)
-(global-set-key (kbd "H-<f2>") 'fd-switch-dictionary)
+;; (global-set-key (kbd "H-<f1>") 'flyspell-mode)
+;; (global-set-key (kbd "<f2>") 'flyspell-buffer)
+(global-set-key (kbd "<f2>") 'flyspell-mode)
+;; (global-set-key (kbd "H-<f2>") 'fd-switch-dictionary)
+(global-set-key (kbd "S-<f2>") 'fd-switch-dictionary)
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<H-f3>") 'kmacro-name-last-macro)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
@@ -524,6 +526,12 @@
   (command-center-add 'gtags-create-or-update)
   (command-center-add 'indent-region)
   (command-center-add 'horizontal-recenter)
+  (command-center-add 'reindent-buffer)
+  (command-center-add 'make-directory)
+  (command-center-add 'google-translate-da/en)
+  (command-center-add 'google-translate-en/da)
+  (command-center-add 'eshell-command)
+  (command-center-add 'shell-toggle-cd "eshell-cd")
   )
 
 (command-center-add (lambda () (interactive) (find-file (concat (file-name-sans-extension (buffer-file-name)) ".pdf"))) "open-pdf")
@@ -915,6 +923,8 @@
 ;(set-face-background hl-line-face "gray34")
 
 
+(setq ansi-color-names-vector ["black" "red" "green" "yellow" "dodger blue" "magenta" "cyan" "white"])
+(setq ansi-color-map (ansi-color-make-color-map))
 
 ;;______________________________________________________________________________
 ;π MODELINE
@@ -1847,6 +1857,7 @@ There exists two workarounds for this bug:
   (define-key eshell-mode-map (kbd "H-d") 'eshell-kill-input)
   (define-key eshell-mode-map (kbd "H-N") 'eshell-bol)
   (define-key eshell-mode-map (kbd "C-l") '(lambda () (interactive) (eshell/clear) (eshell-send-input)))
+  (define-key eshell-mode-map (kbd "<return>") 'my-eshell-send-input)
   (add-to-list 'eshell-visual-commands "nano")
   (add-to-list 'eshell-visual-commands "htop")
   (add-to-list 'eshell-visual-commands "irssi")
@@ -1855,6 +1866,7 @@ There exists two workarounds for this bug:
   (add-to-list 'eshell-visual-commands "ssh")
   (add-to-list 'eshell-visual-commands "tail")
   )
+
 (add-hook 'eshell-mode-hook 'm-eshell-hook)
 (defun tyler-eshell-view-file (file)
   "A version of `view-file' which properly respects the eshell prompt."
@@ -1901,6 +1913,13 @@ current frame, create a new window and switch to it.
         (progn
           (split-window-horizontally)
           (other-window 1)))))
+
+(defun my-eshell-send-input ()
+  (interactive)
+  (goto-char (point-max))
+  (eshell-send-input))
+
+
 ;;______________________________________________________________________________
 ;π EXPAND-REGION
 ;;______________________________________________________________________________
@@ -1995,24 +2014,26 @@ current frame, create a new window and switch to it.
   (flyspell-mode 1)
   )
 
-(setq flyspell-is-on nil)
-(defun flyspell-toggle ()
-  (interactive)
-  (if flyspell-is-on
-      (progn
-        (message "Off")
-        (setq flyspell-is-on nil)
-        (flyspell-mode-off))
-    (progn
-      (message "On")
-      (setq flyspell-is-on t)
-      (flyspell-mode-on)
-      (flyspell-buffer))))
+;; (setq flyspell-is-on nil)
+;; (defun flyspell-toggle ()
+;;   (interactive)
+;;   (if flyspell-is-on
+;;       (progn
+;;         (message "Off")
+;;         (setq flyspell-is-on nil)
+;;         (flyspell-mode-off))
+;;     (progn
+;;       (message "On")
+;;       (setq flyspell-is-on t)
+;;       (flyspell-mode-on)
+;;       (flyspell-buffer))))
 
-(defun flyspell-my-buffer ()
-  (interactive)
-  (setq flyspell-is-on t)
-  (flyspell-buffer))
+;; (defun flyspell-my-buffer ()
+;;   (interactive)
+;;   (setq flyspell-is-on t)
+;;   (flyspell-buffer))
+
+(add-hook 'flyspell-mode-hook (lambda () (when flyspell-mode (flyspell-buffer))))
 
 ;; Better order of spelling suggestions
 ;(defadvice ispell-command-loop (before ispell-reverse-miss-list activate)
@@ -2223,6 +2244,8 @@ current frame, create a new window and switch to it.
                 (mode . erc-mode))
                ("Scratch"
                 (mode . scratch-mode))
+               ("Dired"
+                (mode . dired-mode))
 
                ))))
 
@@ -2842,7 +2865,7 @@ current frame, create a new window and switch to it.
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
 (ansi-color-for-comint-mode-on)
-(defvar my-shells '("*shell*" "*shell0*" "*shell1*" "*shell2*" "*shell3*"))
+(defvar my-shells '("*eshell*" "*shell*" "*shell0*" "*shell1*" "*shell2*" "*shell3*"))
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 (defun make-my-shell-output-read-only (text)
   "Add to comint-output-filter-functions to make stdout read only in my shells."

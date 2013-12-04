@@ -1,128 +1,95 @@
-pdfinfo *-10-10* | grep "Pages"
-pdfinfo *-10-24* | grep "Pages"
-javac HelloWorld.class
-javac HelloWorld.java 
-java HelloWorld.class
-javac HelloWorld.java
-java HelloWorld.class
-javac HelloWorld.java
-rm HelloWorld.class
-javac HelloWorld.java
-java HelloWorld.class
-cd test/
-javac calc.java 
-javac Calc.java
-java Calc
-htop
-javac Calc.java
-javac CalcTest.java 
-javac CalcTest.java Calc.java
-javac CalcTest.java
-java CalcTest
-cd..
 cd ..
-javac HelloWorld.class
-javac HelloWorld.java 
-java HelloWorld
-cd ../code/test/
-cd ../../oopd/test/
+javac MultiplicationTable.java 
+java MultiplicationTable
+javac MultiplicationTable.java 
+java MultiplicationTable
+javac MultiplicationTable.java 
+java MultiplicationTable
+javac MultiplicationTable.java 
+java MultiplicationTable
+javac ArrayReverser.java 
+java ArrayReverser
+javac ArrayReverser.java 
+java ArrayReverser
+javac ArrayReverser.java 
+java ArrayReverser
+javac ArrayReverser.java 
+java ArrayReverser
+javac ArrayReverser.java 
+java ArrayReverser
+javac ArrayReverser.java 
+java ArrayReverser
+mkdir aflevering2
+aflevering2/  ovelse0/   test/                ArrayReverser.java    jdk-7u45-apidocs.zip       u1.pdf
+echo bye
+echo hello
+cd oopd/aflevering2/
+cd karl/
+aunpack Aflevring.zip 
+cd Aflevring/
+e P6_28.java 
+cd ...
+cd christian/
+javac TicTacToe.java
+file -t TicTacToe.java
+file  TicTacToe.java
+javac TicTacToe.java
+java TicTacToe.java
+e aflevering.pdf 
+cd ../david/
+aunpack Archive.zip 
+cd Archive/
+javac TicTacToe.java 
+l
+e TicTacToe.java
+e *.pdf
+e Rapport.pdf 
+ls __MACOSX/
+cd 
+cd oopd/aflevering2/
+cd jens/
+javac TicTacToe.java 
+e TicTacToe.java
+e u2.pdf
+cd ../enevoldsen/
+e TicTacToe.java 
+javac TicTacToe.java 
+e Uge2.pdf
+cd ../niklas/
+javac TicTacToe.java 
+e TicTacToe.java
+e OOPD\ -\ Rapport\ uge\ 2.pdf
+cd ../robert/
+javac TicTacToe.java 
+java TicTacToe.java
+javac TicTacToe.java
+cd ../magnus/
+javac TicTacToe.java 
+java TicTacToe.java
+e rapport.pdf 
+e ../karl/Aflevring//Rapport.pdf
+cd ../robert/
+e Opgave\ uge\ 2\ OOPD.pdf
+cd ../magnus/
+e rapport.pdf 
+java TicTacToe
+l
+cd =
+cd 21
+cd -21
+cd =
+cd -24
+cd -
+cd =
+cd -1
+cd
+cd ../Downloads/
+ls ../
+cd oo
+cd
+ls -l
+ls --color=never
+cd
+cd
 ls
-less GTAGS 
-rm oopd/test/makefile 
-make clean
-ls
-make clean
-ls
-make clean
-rm *.class
-rm makefile 
-javac Game2.java Player2.java
-java Game2
-javac Game.java 
-java Game.java
-javac Game.java 
-java Game.java
-java Game.class
-cd ..
-ls
-rm -rf asteroids/
-cd simpleshooter/
-ls
-ls
-ls *.java
-cat makefile 
-clear;
-ls *.java
-make clean
-ls
-rm Obstacle.class
-ls
-ls .class
-ls *.class
-make all
-javac -Xlint:unchecked *.java
-make all
-make clean
-make
-grep "^{" *.java
-make all
-make all
-ls
-make clean
-ls
-make 
-ls
-java Game
-javac P1_1.java 
-java P1_1.class
-java P1_1
-java P1_1.class
-javac P1_1.java 
-java P1_1
-javac P1_1.java 
-java P1_1
-javac P1_1.java 
-java P1_1
-javac P1_1.java 
-java P1_1
-5
-javac CarTester.java
-rm *.class
-javac CarTester.java
-javac CarTester.java Car.java
-ls
-make
-make clean
-make
-java CarTester
-javac Product.java ProductPrinter.java 
-java ProductPrinter
-javac Car.java PriceCalculator.java
-java PriceCalculator
-javac Car.java PriceCalculator.java
-java PriceCalculator
-javac Car.java PriceCalculator.java
-java PriceCalculator
-javac Car.java PriceCalculator.java
-java PriceCalculator
-javac Car.java PriceCalculator.java
-10
-java PriceCalculator
-javadoc Car.java
-ls
-firefox Car.html
-javadoc Car.java
-firefox Car.html
-javadoc Car.java
-firefox Car.html
-javadoc Car.java
-firefox Car.html
-cd ../simpleshooter/
-ls
-java Game
-javac KeyEventDemo.java 
-java KeyEventDemo
-Exception in thread "main" java.lang.NoClassDefFoundError: KeyEventDemo (wrong name: events/KeyEventDemo)
-javac KeyEventDemo.java 
-java KeyEventDemo
-java Game
+cd oopd/

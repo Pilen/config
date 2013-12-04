@@ -188,7 +188,7 @@
                 :type "class")
                 nil [28 1001]))          
     :file "PriceCalculator.java"
-    :pointmax 438
+    :pointmax 1002
     :fsize 1001
     :lastmodtime '(21135 15001 767704 838000)
     :unmatched-syntax 'nil

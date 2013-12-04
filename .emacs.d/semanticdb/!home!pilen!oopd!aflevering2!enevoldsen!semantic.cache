@@ -1,0 +1,155 @@
+;; Object enevoldsen/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "enevoldsen/"
+  :tables (list 
+   (semanticdb-table "TicTacToe.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.awt.Point" include nil nil [153 175])
+            ("java.util.Scanner" include nil nil [176 201])
+            ("TicTacToe" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("scanner" variable
+                       (:typemodifiers ("private" "static")
+                        :type "Scanner")
+                        (reparse-symbol class_member_declaration) [233 289])
+                    ("VERTICAL" variable
+                       (:typemodifiers ("private" "static" "final")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [294 332])
+                    ("HORIZONTAL" variable
+                       (:typemodifiers ("private" "static" "final")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [337 377])
+                    ("DIAGONAL" variable
+                       (:typemodifiers ("private" "static" "final")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [382 420])
+                    ("currentPlayer" variable
+                       (:typemodifiers ("private" "static")
+                        :type "char")
+                        (reparse-symbol class_member_declaration) [425 465])
+                    ("piecesOnBoard" variable
+                       (:typemodifiers ("private" "static")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [470 503])
+                    ("board" variable
+                       (:dereference 2
+                        :typemodifiers ("public" "static")
+                        :type "char")
+                        (reparse-symbol class_member_declaration) [547 576])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [636 649]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [612 678])
+                    ("playGame" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [740 1171])
+                    ("newBoard" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1310 1716])
+                    ("runGameLoop" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1802 2147])
+                    ("anounceWinner" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2197 2344])
+                    ("oneMoreGame" function
+                       (:typemodifiers ("private" "static")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2480 2769])
+                    ("sayGoodbye" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2826 2918])
+                    ("promptPlayer" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2984 3323])
+                    ("getPlayerChoice" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("message" variable (:type "String") (reparse-symbol formal_parameters) [3612 3626]))                          
+                        :type "Point")
+                        (reparse-symbol class_member_declaration) [3575 4347])
+                    ("makePlayerPlacePiece" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4414 5160])
+                    ("makePlayerMovePiece" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [5231 6208])
+                    ("changePlayer" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [6257 6357])
+                    ("printBoard" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [6413 6762])
+                    ("isOccupied" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("row" variable (:type "int") (reparse-symbol formal_parameters) [7068 7075])
+                            ("column" variable (:type "int") (reparse-symbol formal_parameters) [7077 7087]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [7034 7138])
+                    ("getPiece" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [7394 7399])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [7401 7406]))                          
+                        :type "char")
+                        (reparse-symbol class_member_declaration) [7365 7443])
+                    ("setPiece" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [7706 7711])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [7713 7718])
+                            ("piece" variable (:type "char") (reparse-symbol formal_parameters) [7720 7730]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [7677 7768])
+                    ("gameOver" function
+                       (:typemodifiers ("private" "static")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [7889 8764])
+                    ("matchInSequence" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("sequence" variable
+                               (:dereference 1
+                                :type "char")
+                                (reparse-symbol formal_parameters) [9040 9055]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [9001 9206])
+                    ("getSequence" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("index" variable (:type "int") (reparse-symbol formal_parameters) [9591 9600])
+                            ("sequenceType" variable (:type "int") (reparse-symbol formal_parameters) [9602 9618]))                          
+                        :type "char[]")
+                        (reparse-symbol class_member_declaration) [9557 10305]))                  
+                :type "class")
+                nil [203 10308]))          
+    :file "TicTacToe.java"
+    :pointmax 10309
+    :fsize 10308
+    :lastmodtime '(21149 9224 173120 922000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering2!enevoldsen!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

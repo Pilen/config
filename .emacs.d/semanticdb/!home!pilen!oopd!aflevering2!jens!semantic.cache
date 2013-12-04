@@ -1,0 +1,130 @@
+;; Object jens/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "jens/"
+  :tables (list 
+   (semanticdb-table "TicTacToe.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("java.util.Random" include nil nil [27 51])
+            ("TicTacToe" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("boardSize" variable
+                       (:typemodifiers ("private" "static")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [120 149])
+                    ("board" variable
+                       (:dereference 2
+                        :typemodifiers ("private" "static")
+                        :type "char")
+                        (reparse-symbol class_member_declaration) [154 184])
+                    ("xMark" variable
+                       (:typemodifiers ("private" "static")
+                        :type "char")
+                        (reparse-symbol class_member_declaration) [189 215])
+                    ("oMark" variable
+                       (:typemodifiers ("private" "static")
+                        :type "char")
+                        (reparse-symbol class_member_declaration) [220 246])
+                    ("againstAI" variable
+                       (:typemodifiers ("private" "static")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [251 284])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [402 415]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [377 536])
+                    ("gameLoop" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [835 1856])
+                    ("printWelcomeMessage" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1911 2099])
+                    ("printGameOverMessage" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2156 2248])
+                    ("playAgainQuestion" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2254 2730])
+                    ("setOpponent" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2796 3257])
+                    ("readPosition" function
+                       (:typemodifiers ("private" "static")
+                        :type "int[]")
+                        (reparse-symbol class_member_declaration) [3320 5302])
+                    ("getChoiceAI" function
+                       (:typemodifiers ("private" "static")
+                        :type "int[]")
+                        (reparse-symbol class_member_declaration) [5437 6417])
+                    ("printFaultyInputMessage" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [6474 6578])
+                    ("printBoard" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [6625 7250])
+                    ("printHorizontalBar" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [7329 7504])
+                    ("newBoard" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [7551 7637])
+                    ("isOccupied" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("row" variable (:type "int") (reparse-symbol formal_parameters) [7816 7823])
+                            ("column" variable (:type "int") (reparse-symbol formal_parameters) [7825 7835]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [7782 8078])
+                    ("gameOver" function
+                       (:typemodifiers ("private" "static")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [8197 8730])
+                    ("isWinningRow" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("row" variable (:type "int") (reparse-symbol formal_parameters) [8895 8902]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [8859 9293])
+                    ("isWinningCol" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("col" variable (:type "int") (reparse-symbol formal_parameters) [9464 9471]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [9428 9861])
+                    ("hasWinningDiagonal" function
+                       (:typemodifiers ("private" "static")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [10000 10894])
+                    ("fullBoard" function
+                       (:typemodifiers ("private" "static")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [11011 11348]))                  
+                :type "class")
+                nil [91 11350]))          
+    :file "TicTacToe.java"
+    :pointmax 11351
+    :fsize 11726
+    :lastmodtime '(21149 4643 216653 410000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering2!jens!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )
