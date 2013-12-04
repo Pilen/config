@@ -192,6 +192,8 @@
 ;; Delete previous/next char
 (global-set-key (kbd "H-s") 'delete-backward-char)
 (global-set-key (kbd "H-t") 'delete-forward-char)
+(global-set-key (kbd "H-C-s") 'my-scroll-left)
+(global-set-key (kbd "H-C-t") 'my-scroll-right)
 ;; Delete previous/next word
 (global-set-key (kbd "H-f") 'backward-kill-word-to-newline)
 (global-set-key (kbd "H-p") 'forward-kill-word-to-newline)
@@ -511,9 +513,11 @@
   (command-center-clear)
   (command-center-add 'eval-buffer)
   (command-center-add 'rename-file-and-buffer)
+  (command-center-add 'move-buffer-file)
   (command-center-add 'emacs-lisp-mode)
   (command-center-add 'delete-file)
   (command-center-add 'whitespace-cleanup)
+  (command-center-add 'reindent-buffer)
   (command-center-add 'revy-ubertex-mode)
   (command-center-add 'revy-ubersicht-mode)
   (command-center-add 'revy-manus-clean)
@@ -580,6 +584,8 @@
 (put 'narrow-to-defun 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
 (put 'scroll-left 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
 
 (setq european-calendar-style t)
 
@@ -3642,6 +3648,33 @@ instead."
       (beginning-of-line)
     (back-to-indentation)))
 
+;;______________________________________________________________________________
+;π HORIZONTAL SCROLL
+;;______________________________________________________________________________
+(setq my-horizontal-scroll-factor 3)
+
+(defun my-scroll-right (&optional reverse)
+  (interactive)
+  (let* ((eol (save-excursion
+               (end-of-line)
+               (point)))
+        (bol (save-excursion
+               (beginning-of-line)
+               (point)))
+        (width (/ (window-width) my-horizontal-scroll-factor))
+        (width (if reverse (- width) width)))
+
+    (cond
+     ((< (+ (point) width) bol)
+      (goto-char bol))
+     ((> (+ (point) width) eol)
+      (goto-char eol))
+     (t
+      (goto-char (+ (point) width))))))
+
+(defun my-scroll-left ()
+  (interactive)
+  (my-scroll-right t))
 
 ;;______________________________________________________________________________
 ;π WINDOWS
@@ -3868,5 +3901,3 @@ instead."
 
 ;; End of .emacs, go away debugger!
 (setq debug-on-error nil)
-(put 'downcase-region 'disabled nil)
-(put 'upcase-region 'disabled nil)
