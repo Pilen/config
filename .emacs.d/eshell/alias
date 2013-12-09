@@ -52,3 +52,7 @@ alias bbbbbbbbb cd ../../../../../../../../.. $*
 alias bbbbbbbbbb cd ../../../../../../../../../.. $*
 alias bbbbbbbbbbb cd ../../../../../../../../../../.. $*
 alias bbbbbbbbbbbb cd ../../../../../../../../../../../.. $*
+alias bbbbbbbbbbbbb cd ../../../../../../../../../../../../.. $*
+alias bbbbbbbbbbbbbb cd ../../../../../../../../../../../../../.. $*
+alias bbbbbbbbbbbbbbb cd ../../../../../../../../../../../../../../.. $*
+alias bbbbbbbbbbbbbbbb cd ../../../../../../../../../../../../../../../.. $*
