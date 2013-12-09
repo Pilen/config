@@ -1,0 +1,242 @@
+;; Object client/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "client/"
+  :tables (list 
+   (semanticdb-table "BookStoreHTTPProxy.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("com.acertainbookstore.client" package nil nil [13 50])
+            ("java.io.UnsupportedEncodingException" include nil nil [52 96])
+            ("java.net.URLEncoder" include nil nil [97 124])
+            ("java.util.List" include nil nil [125 147])
+            ("java.util.Set" include nil nil [148 169])
+            ("org.eclipse.jetty.client.ContentExchange" include nil nil [171 219])
+            ("org.eclipse.jetty.client.HttpClient" include nil nil [220 263])
+            ("org.eclipse.jetty.io.Buffer" include nil nil [264 299])
+            ("org.eclipse.jetty.io.ByteArrayBuffer" include nil nil [300 344])
+            ("org.eclipse.jetty.util.thread.QueuedThreadPool" include nil nil [345 399])
+            ("com.acertainbookstore.business.Book" include nil nil [401 444])
+            ("com.acertainbookstore.business.BookCopy" include nil nil [445 492])
+            ("com.acertainbookstore.business.BookRating" include nil nil [493 542])
+            ("com.acertainbookstore.interfaces.BookStore" include nil nil [543 593])
+            ("com.acertainbookstore.utils.BookStoreConstants" include nil nil [594 648])
+            ("com.acertainbookstore.utils.BookStoreException" include nil nil [649 703])
+            ("com.acertainbookstore.utils.BookStoreMessageTag" include nil nil [704 759])
+            ("com.acertainbookstore.utils.BookStoreUtility" include nil nil [760 812])
+            ("BookStoreHTTPProxy" type
+               (:typemodifiers ("public")
+                :interfaces ("BookStore")
+                :members 
+                  ( ("client" variable
+                       (:typemodifiers ("protected")
+                        :type "HttpClient")
+                        (reparse-symbol class_member_declaration) [1000 1028])
+                    ("serverAddress" variable
+                       (:typemodifiers ("protected")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1030 1061])
+                    ("BookStoreHTTPProxy" function
+                       (:constructor-flag t
+                        :throws ("Exception")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("serverAddress" variable (:type "String") (reparse-symbol formal_parameters) [1133 1153]))                          )
+                        (reparse-symbol class_member_declaration) [1107 2076])
+                    ("getServerAddress" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [2079 2140])
+                    ("setServerAddress" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("serverAddress" variable (:type "String") (reparse-symbol formal_parameters) [2172 2192]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2143 2236])
+                    ("buyBooks" function
+                       (:throws ("BookStoreException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "isbnSet") (reparse-symbol formal_parameters) [2274 2281]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2239 2758])
+                    ("getBooks" function
+                       (:constructor-flag t
+                        :throws ("BookStoreException")
+                        :arguments 
+                          ( ("" variable (:type "isbnSet") (reparse-symbol formal_parameters) [2833 2840]))                          )
+                        (reparse-symbol class_member_declaration) [2811 3336])
+                    ("getEditorPicks" function
+                       (:constructor-flag t
+                        :throws ("BookStoreException")
+                        :arguments 
+                          ( ("numBooks" variable (:type "int") (reparse-symbol formal_parameters) [3404 3416]))                          )
+                        (reparse-symbol class_member_declaration) [3389 4014])
+                    ("stop" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4017 4158])
+                    ("rateBooks" function
+                       (:throws ("BookStoreException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "bookRating") (reparse-symbol formal_parameters) [4210 4220]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4172 4292])
+                    ("getTopRatedBooks" function
+                       (:constructor-flag t
+                        :throws ("BookStoreException")
+                        :arguments 
+                          ( ("numBooks" variable (:type "int") (reparse-symbol formal_parameters) [4341 4353]))                          )
+                        (reparse-symbol class_member_declaration) [4324 4437]))                  
+                :type "class")
+                nil [944 4440]))          
+    :file "BookStoreHTTPProxy.java"
+    :pointmax 4441
+    :fsize 4440
+    :lastmodtime '(21135 55134 0 0)
+    :unmatched-syntax '((GT 4322 . 4323) (IDENTIFIER 4295 . 4304) (PUBLIC 4306 . 4312) (LT 4317 . 4318) (GT 4208 . 4209) (IDENTIFIER 4194 . 4197) (LT 4197 . 4198) (GT 3387 . 3388) (IDENTIFIER 3339 . 3356) (PUBLIC 3371 . 3377) (LT 3382 . 3383) (STRING_LITERAL 3357 . 3368) (GT 2831 . 2832) (IDENTIFIER 2820 . 2823) (LT 2823 . 2824) (GT 2809 . 2810) (IDENTIFIER 2761 . 2778) (PUBLIC 2793 . 2799) (LT 2804 . 2805) (STRING_LITERAL 2779 . 2790) (GT 2272 . 2273) (IDENTIFIER 2260 . 2263) (LT 2263 . 2264))
+    )
+   (semanticdb-table "StockManagerHTTPProxy.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("com.acertainbookstore.client" package nil nil [13 50])
+            ("java.util.List" include nil nil [52 74])
+            ("java.util.Set" include nil nil [75 96])
+            ("org.eclipse.jetty.client.ContentExchange" include nil nil [98 146])
+            ("org.eclipse.jetty.client.HttpClient" include nil nil [147 190])
+            ("org.eclipse.jetty.io.Buffer" include nil nil [191 226])
+            ("org.eclipse.jetty.io.ByteArrayBuffer" include nil nil [227 271])
+            ("org.eclipse.jetty.util.thread.QueuedThreadPool" include nil nil [272 326])
+            ("com.acertainbookstore.business.BookCopy" include nil nil [328 375])
+            ("com.acertainbookstore.business.BookEditorPick" include nil nil [376 429])
+            ("com.acertainbookstore.business.StockBook" include nil nil [430 478])
+            ("com.acertainbookstore.interfaces.StockManager" include nil nil [479 532])
+            ("com.acertainbookstore.utils.BookStoreException" include nil nil [533 587])
+            ("com.acertainbookstore.utils.BookStoreMessageTag" include nil nil [588 643])
+            ("com.acertainbookstore.utils.BookStoreUtility" include nil nil [644 696])
+            ("StockManagerHTTPProxy" type
+               (:typemodifiers ("public")
+                :interfaces ("StockManager")
+                :members 
+                  ( ("client" variable
+                       (:typemodifiers ("protected")
+                        :type "HttpClient")
+                        (reparse-symbol class_member_declaration) [957 985])
+                    ("serverAddress" variable
+                       (:typemodifiers ("protected")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [987 1018])
+                    ("StockManagerHTTPProxy" function
+                       (:constructor-flag t
+                        :throws ("Exception")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("serverAddress" variable (:type "String") (reparse-symbol formal_parameters) [1093 1113]))                          )
+                        (reparse-symbol class_member_declaration) [1064 2036])
+                    ("getServerAddress" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [2039 2100])
+                    ("setServerAddress" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("serverAddress" variable (:type "String") (reparse-symbol formal_parameters) [2132 2152]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2103 2196])
+                    ("addBooks" function
+                       (:throws ("BookStoreException")
+                        :typemodifiers ("public" "synchronized")
+                        :arguments 
+                          ( ("" variable (:type "bookSet") (reparse-symbol formal_parameters) [2248 2255]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2199 2747])
+                    ("addCopies" function
+                       (:throws ("BookStoreException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "bookCopiesSet") (reparse-symbol formal_parameters) [2786 2799]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2750 3309])
+                    ("getBooks" function
+                       (:constructor-flag t
+                        :throws ("BookStoreException"))
+                        (reparse-symbol class_member_declaration) [3380 3663])
+                    ("updateEditorPicks" function
+                       (:throws ("BookStoreException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("" variable (:type "editorPicksValues") (reparse-symbol formal_parameters) [3716 3733]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3666 4260])
+                    ("stop" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4263 4404])
+                    ("getBooksInDemand" function
+                       (:constructor-flag t
+                        :throws ("BookStoreException"))
+                        (reparse-symbol class_member_declaration) [4441 4542]))                  
+                :type "class")
+                nil [895 4545]))          
+    :file "StockManagerHTTPProxy.java"
+    :pointmax 4546
+    :fsize 4545
+    :lastmodtime '(21135 55134 0 0)
+    :unmatched-syntax '((GT 4439 . 4440) (IDENTIFIER 4407 . 4416) (PUBLIC 4418 . 4424) (LT 4429 . 4430) (GT 3714 . 3715) (IDENTIFIER 3696 . 3699) (LT 3699 . 3700) (GT 3378 . 3379) (IDENTIFIER 3312 . 3329) (PUBLIC 3344 . 3350) (LT 3368 . 3369) (STRING_LITERAL 3330 . 3341) (GT 2784 . 2785) (IDENTIFIER 2772 . 2775) (LT 2775 . 2776) (GT 2246 . 2247) (IDENTIFIER 2233 . 2236) (LT 2236 . 2237))
+    )
+   (semanticdb-table "BookStoreClientConstants.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("com.acertainbookstore.client" package nil nil [13 50])
+            ("BookStoreClientConstants" type
+               (:typemodifiers ("public" "final")
+                :members 
+                  ( ("CLIENT_MAX_CONNECTION_ADDRESS" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [239 299])
+                    ("CLIENT_MAX_THREADSPOOL_THREADS" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [301 362])
+                    ("CLIENT_MAX_TIMEOUT_MILLISECS" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [364 425])
+                    ("strERR_CLIENT_REQUEST_SENDING" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [428 516])
+                    ("strERR_CLIENT_REQUEST_EXCEPTION" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [518 610])
+                    ("strERR_CLIENT_REQUEST_TIMEOUT" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [612 696])
+                    ("strERR_CLIENT_RESPONSE_DECODING" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [698 786])
+                    ("strERR_CLIENT_UNKNOWN" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [788 856])
+                    ("strERR_CLIENT_ENCODING" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [858 928]))                  
+                :type "class")
+                nil [191 931]))          
+    :file "BookStoreClientConstants.java"
+    :pointmax 932
+    :fsize 931
+    :lastmodtime '(21135 55134 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!pcsd!assignment2!acertainbookstore-1.0!src!com!acertainbookstore!client!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

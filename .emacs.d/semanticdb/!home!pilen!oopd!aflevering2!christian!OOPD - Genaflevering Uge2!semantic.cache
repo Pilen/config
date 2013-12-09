@@ -1,0 +1,111 @@
+;; Object OOPD - Genaflevering Uge2/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "OOPD - Genaflevering Uge2/"
+  :tables (list 
+   (semanticdb-table "TicTacToe.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("java.util.Scanner" include nil nil [26 51])
+            ("java.util.InputMismatchException" include nil nil [52 92])
+            ("TicTacToe" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("board" variable
+                       (:dereference 2
+                        :typemodifiers ("public" "static")
+                        :type "char")
+                        (reparse-symbol class_member_declaration) [123 169])
+                    ("currentGameMode" variable
+                       (:typemodifiers ("private" "static")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [175 210])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [276 289]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [252 1038])
+                    ("mainMenu" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1116 2156])
+                    ("endMenu" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2230 3329])
+                    ("randomGame" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3384 4898])
+                    ("playerVersusAI" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4977 5871])
+                    ("playerVersusPlayer" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [5950 6858])
+                    ("player" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("player" variable (:type "char") (reparse-symbol formal_parameters) [6992 7003]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [6965 7930])
+                    ("AI" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [7996 8483])
+                    ("checkInt" function
+                       (:typemodifiers ("private" "static")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [8610 8992])
+                    ("newBoard" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [9039 9242])
+                    ("printBoard" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [9297 9730])
+                    ("occupy" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("row" variable (:type "int") (reparse-symbol formal_parameters) [9987 9994])
+                            ("column" variable (:type "int") (reparse-symbol formal_parameters) [9996 10006])
+                            ("player" variable (:type "char") (reparse-symbol formal_parameters) [10008 10019]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [9960 10110])
+                    ("isOccupied" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("row" variable (:type "int") (reparse-symbol formal_parameters) [10357 10364])
+                            ("column" variable (:type "int") (reparse-symbol formal_parameters) [10366 10376]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [10323 10462])
+                    ("gameOver" function
+                       (:typemodifiers ("private" "static")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [10577 11031])
+                    ("playerWon" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("player" variable (:type "char") (reparse-symbol formal_parameters) [11217 11228]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [11184 12242]))                  
+                :type "class")
+                nil [94 12244]))          
+    :file "TicTacToe.java"
+    :pointmax 12245
+    :fsize 12692
+    :lastmodtime '(21153 58043 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering2!christian!OOPD - Genaflevering Uge2!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

@@ -1,0 +1,83 @@
+;; Object Genaflevering/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "Genaflevering/"
+  :tables (list 
+   (semanticdb-table "TicTacToe.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.*" include nil nil [2 21])
+            ("TicTacToe" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("TicTacToe" function
+                       (:constructor-flag t
+                        :typemodifiers ("private"))
+                        (reparse-symbol class_member_declaration) [190 213])
+                    ("board" variable
+                       (:dereference 2
+                        :typemodifiers ("private" "static")
+                        :type "char")
+                        (reparse-symbol class_member_declaration) [333 380])
+                    ("staticInvariant" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [636 1019])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [1129 1142]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1104 1690])
+                    ("getInput" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("turn" variable (:type "char") (reparse-symbol formal_parameters) [2050 2059])
+                            ("scn" variable (:type "Scanner") (reparse-symbol formal_parameters) [2061 2072]))                          
+                        :type "int[]")
+                        (reparse-symbol class_member_declaration) [2020 3456])
+                    ("cls" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3524 3652])
+                    ("newBoard" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3719 4043])
+                    ("printBoard" function
+                       (:typemodifiers ("private" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4105 4802])
+                    ("isOccupied" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("row" variable (:type "int") (reparse-symbol formal_parameters) [5096 5103])
+                            ("column" variable (:type "int") (reparse-symbol formal_parameters) [5105 5115]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [5062 5430])
+                    ("check" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("player" variable (:type "char") (reparse-symbol formal_parameters) [5770 5781])
+                            ("line" variable (:type "int") (reparse-symbol formal_parameters) [5783 5791]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [5741 7095])
+                    ("gameOver" function
+                       (:typemodifiers ("private" "static")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [7208 7513]))                  
+                :type "class")
+                nil [135 7515]))          
+    :file "TicTacToe.java"
+    :pointmax 7516
+    :fsize 7515
+    :lastmodtime '(21149 61008 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering2!karl!Genaflevering!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

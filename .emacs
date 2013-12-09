@@ -511,6 +511,7 @@
 
 (progn
   (command-center-clear)
+  (command-center-add 'find-file-other-window)
   (command-center-add 'eval-buffer)
   (command-center-add 'rename-file-and-buffer)
   (command-center-add 'move-buffer-file)
@@ -536,6 +537,7 @@
   (command-center-add 'google-translate-en/da)
   (command-center-add 'eshell-command)
   (command-center-add 'shell-toggle-cd "eshell-cd")
+  (command-center-add 'global-whitespace-mode)
   )
 
 (command-center-add (lambda () (interactive) (find-file (concat (file-name-sans-extension (buffer-file-name)) ".pdf"))) "open-pdf")
@@ -616,7 +618,8 @@
 (add-to-list 'recentf-exclude ".breadcrumb")
 (add-to-list 'recentf-exclude ".emacs")
 (add-to-list 'recentf-exclude ".ido.last")
-
+(setq recentf-save-timer (run-at-time t (* 60 60) (lambda () (recentf-save-list))))
+;(cancel-timer recentf-save-timer)
 
 (require 'goto-last-change)
 
@@ -1903,7 +1906,7 @@ There exists two workarounds for this bug:
       (tyler-eshell-view-file (pop args)))))
 (defalias 'eshell/more 'eshell/less)
 (defun eshell/e (file)
-  (find-file file))
+  (find-file-other-window file))
 
 (defun shell-toggle-buffer-switch-to-other-window ()
   "Switches to other window.  If the current window is the only window in the
@@ -3085,10 +3088,10 @@ current frame, create a new window and switch to it.
 (add-hook 'c-mode-common-hook
           (lambda ()
             (gtags-mode)))
-;; ;;______________________________________________________________________________
-;; ;π W3M
-;; ;;______________________________________________________________________________
-
+;;______________________________________________________________________________
+;π W3M
+;;______________________________________________________________________________
+(require 'w3m-load)
 ;; (add-to-list 'load-path "~/builds/emacs-w3m-1.4.4")
 ;; (require 'w3m-e21)
 ;; (provide 'w3m-e23)

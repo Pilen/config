@@ -5,84 +5,90 @@
    (semanticdb-table "TicTacToe.java"
     :major-mode 'jde-mode
     :tags 
-        '( ("TicTacToe" type
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("TicTacToe" type
                (:typemodifiers ("public")
                 :members 
                   ( ("board" variable
                        (:dereference 2
                         :typemodifiers ("public" "static")
                         :type "char")
-                        (reparse-symbol class_member_declaration) [28 74])
+                        (reparse-symbol class_member_declaration) [189 235])
                     ("CROSS" variable
                        (:typemodifiers ("public" "static" "final")
                         :type "char")
-                        (reparse-symbol class_member_declaration) [76 113])
+                        (reparse-symbol class_member_declaration) [237 274])
                     ("CIRCLE" variable
                        (:typemodifiers ("public" "static" "final")
                         :type "char")
-                        (reparse-symbol class_member_declaration) [115 153])
+                        (reparse-symbol class_member_declaration) [276 314])
                     ("EMPTY" variable
                        (:typemodifiers ("public" "static" "final")
                         :type "char")
-                        (reparse-symbol class_member_declaration) [155 192])
+                        (reparse-symbol class_member_declaration) [316 353])
+                    ("currentPlayer" variable
+                       (:typemodifiers ("public")
+                        :type "char")
+                        (reparse-symbol class_member_declaration) [355 389])
                     ("main" function
                        (:typemodifiers ("public" "static")
                         :arguments 
                           ( ("args" variable
                                (:dereference 1
                                 :type "String")
-                                (reparse-symbol formal_parameters) [219 232]))                          
+                                (reparse-symbol formal_parameters) [733 746]))                          
                         :type "void")
-                        (reparse-symbol class_member_declaration) [195 260])
+                        (reparse-symbol class_member_declaration) [709 1719])
+                    ("toIntCoord" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("number" variable (:type "String") (reparse-symbol formal_parameters) [1956 1969]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1927 2141])
                     ("TicTacToe" function
                        (:constructor-flag t
                         :typemodifiers ("public"))
-                        (reparse-symbol class_member_declaration) [263 301])
+                        (reparse-symbol class_member_declaration) [2185 2223])
                     ("newBoard" function
                        (:typemodifiers ("private" "static")
                         :type "void")
-                        (reparse-symbol class_member_declaration) [304 443])
+                        (reparse-symbol class_member_declaration) [2274 2413])
                     ("printBoard" function
                        (:typemodifiers ("private" "static")
                         :type "void")
-                        (reparse-symbol class_member_declaration) [446 832])
+                        (reparse-symbol class_member_declaration) [2475 2861])
                     ("isOccupied" function
                        (:typemodifiers ("private" "static")
                         :arguments 
-                          ( ("row" variable (:type "int") (reparse-symbol formal_parameters) [869 876])
-                            ("column" variable (:type "int") (reparse-symbol formal_parameters) [878 888]))                          
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [3086 3091])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [3093 3098]))                          
                         :type "boolean")
-                        (reparse-symbol class_member_declaration) [835 1005])
+                        (reparse-symbol class_member_declaration) [3052 3178])
                     ("gameOver" function
                        (:typemodifiers ("private" "static")
                         :type "boolean")
-                        (reparse-symbol class_member_declaration) [1009 1602])
+                        (reparse-symbol class_member_declaration) [3391 3982])
                     ("makeMove" function
                        (:typemodifiers ("public" "static")
                         :arguments 
-                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [1636 1641])
-                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [1643 1648])
-                            ("playerMove" variable (:type "char") (reparse-symbol formal_parameters) [1650 1665]))                          
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [4196 4201])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [4203 4208])
+                            ("playerMove" variable (:type "char") (reparse-symbol formal_parameters) [4210 4225]))                          
                         :type "boolean")
-                        (reparse-symbol class_member_declaration) [1605 1804])
+                        (reparse-symbol class_member_declaration) [4165 4364])
                     ("testGameOver" function
                        (:typemodifiers ("public" "static")
-                        :arguments 
-                          ( ("args" variable
-                               (:dereference 1
-                                :type "String")
-                                (reparse-symbol formal_parameters) [1839 1852]))                          
                         :type "void")
-                        (reparse-symbol class_member_declaration) [1807 2866]))                  
+                        (reparse-symbol class_member_declaration) [4433 5479]))                  
                 :type "class")
-                nil [2 2869]))          
+                nil [163 5482]))          
     :file "TicTacToe.java"
-    :pointmax 2869
-    :fsize 2997
-    :lastmodtime '(21149 52700 743561 777000)
+    :pointmax 5483
+    :fsize 5722
+    :lastmodtime '(21158 187 659705 451000)
     :unmatched-syntax 'nil
     )
-   )
+    )
   :file "!home!pilen!oopd!aflevering2!robert!semantic.cache"
   :semantic-tag-version "2.0"
   :semanticdb-version "2.2"

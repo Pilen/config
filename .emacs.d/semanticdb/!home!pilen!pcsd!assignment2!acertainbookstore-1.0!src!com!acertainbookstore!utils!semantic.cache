@@ -1,0 +1,72 @@
+;; Object utils/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "utils/"
+  :tables (list 
+   (semanticdb-table "BookStoreConstants.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("com.acertainbookstore.utils" package nil nil [13 49])
+            ("BookStoreConstants" type
+               (:typemodifiers ("public" "final")
+                :members 
+                  ( ("BOOKISBN_PARAM" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [251 302])
+                    ("BOOK_NUM_PARAM" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [304 366])
+                    ("XMLSTRINGLEN_PARAM" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [368 422])
+                    ("INVALID_PARAMS" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [484 528])
+                    ("INVALID" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [617 668])
+                    ("DUPLICATED" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [708 765])
+                    ("NOT_AVAILABLE" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [801 864])
+                    ("BOOK" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [866 913])
+                    ("ISBN" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [915 962])
+                    ("NUM_COPIES" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [964 1029])
+                    ("RATING" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1031 1082])
+                    ("NULL_INPUT" variable
+                       (:typemodifiers ("public" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1084 1148]))                  
+                :type "class")
+                nil [170 1151]))          
+    :file "BookStoreConstants.java"
+    :pointmax 1152
+    :fsize 1151
+    :lastmodtime '(21135 55134 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!pcsd!assignment2!acertainbookstore-1.0!src!com!acertainbookstore!utils!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

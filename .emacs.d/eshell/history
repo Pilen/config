@@ -1,95 +1,128 @@
-cd ..
-javac MultiplicationTable.java 
-java MultiplicationTable
-javac MultiplicationTable.java 
-java MultiplicationTable
-javac MultiplicationTable.java 
-java MultiplicationTable
-javac MultiplicationTable.java 
-java MultiplicationTable
-javac ArrayReverser.java 
-java ArrayReverser
-javac ArrayReverser.java 
-java ArrayReverser
-javac ArrayReverser.java 
-java ArrayReverser
-javac ArrayReverser.java 
-java ArrayReverser
-javac ArrayReverser.java 
-java ArrayReverser
-javac ArrayReverser.java 
-java ArrayReverser
-mkdir aflevering2
-aflevering2/  ovelse0/   test/                ArrayReverser.java    jdk-7u45-apidocs.zip       u1.pdf
-echo bye
-echo hello
-cd oopd/aflevering2/
-cd karl/
-aunpack Aflevring.zip 
-cd Aflevring/
-e P6_28.java 
-cd ...
-cd christian/
-javac TicTacToe.java
-file -t TicTacToe.java
-file  TicTacToe.java
-javac TicTacToe.java
-java TicTacToe.java
-e aflevering.pdf 
-cd ../david/
-aunpack Archive.zip 
-cd Archive/
-javac TicTacToe.java 
-l
-e TicTacToe.java
-e *.pdf
-e Rapport.pdf 
-ls __MACOSX/
-cd 
-cd oopd/aflevering2/
-cd jens/
-javac TicTacToe.java 
-e TicTacToe.java
-e u2.pdf
-cd ../enevoldsen/
-e TicTacToe.java 
-javac TicTacToe.java 
-e Uge2.pdf
-cd ../niklas/
-javac TicTacToe.java 
-e TicTacToe.java
-e OOPD\ -\ Rapport\ uge\ 2.pdf
-cd ../robert/
-javac TicTacToe.java 
-java TicTacToe.java
-javac TicTacToe.java
-cd ../magnus/
-javac TicTacToe.java 
-java TicTacToe.java
-e rapport.pdf 
-e ../karl/Aflevring//Rapport.pdf
-cd ../robert/
-e Opgave\ uge\ 2\ OOPD.pdf
-cd ../magnus/
-e rapport.pdf 
-java TicTacToe
-l
-cd =
-cd 21
-cd -21
-cd =
-cd -24
-cd -
-cd =
-cd -1
-cd
-cd ../Downloads/
-ls ../
-cd oo
-cd
-ls -l
 ls --color=never
 cd
 cd
 ls
 cd oopd/
+expr 1000000 * 5
+expr 1000000 \* 5
+gf
+ls
+echo echo
+echo echo hello
+echo hello
+echo echo hello
+echo bye hello
+echo hello
+ls
+ls *.el.gz
+less em-basic.elc
+e em-basic.el.gz
+ls *.el.gz
+e esh-proc.el.gz
+cd /home/pilen/
+cd /usr/share/emacs/24.3/lisp/
+echo hellocd /home/pilen/revy/2013-jubilee-40/av/
+cd /home/pilen/
+ls
+shell
+shell3
+cd oopd/simpleshooter/
+shell
+shell 2
+man shell
+cd 
+cd =
+cd 14
+cd -14
+cd
+cd oopd/
+javac P6_4.java 
+java P6_4
+javac P6_4.java 
+java P6_4
+javac P6_4.java 
+java P6_4
+javac P6_4.java 
+java P6_4
+javac P6_4.java 
+java P6_4
+javac P6_4.java 
+java P6_4
+javac solitaire.java 
+mv solitaire.java P6_26.java
+javac P6_26.java
+java P6_26.java
+java P6_26
+cd figures/
+ls
+javac Figure.java 
+javac Sphere.java Test.java Figure.java
+java Test
+javac Sphere.java Test.java Figure.java
+java Test
+javac Sphere.java Test.java Figure.java
+java Test
+javac Sphere.java Test.java Figure.java Box.java 
+java Test
+cd
+cd /home/pilen/pcsd/assignment2/
+ls
+cd .
+cd ..
+ls
+cd assignment1/
+ls
+cd ..
+cp acertainbookstore-1.0.zip assignment2/
+cd assignment2/
+ls
+aunpack acertainbookstore-1.0.zip 
+ls
+ls acertainbookstore-1.0/
+ls acertainbookstore-1.0/lib/
+ls acertainbookstore-1.0/src/
+ls acertainbookstore-1.0/src/com/
+ls acertainbookstore-1.0/src/com/acertainbookstore/
+ls acertainbookstore-1.0/src/com/acertainbookstore/utils/
+cd acertainbookstore-1.0/src//com/acertainbookstore/
+ls
+e utils/BookStoreConstants.java
+ls server/
+ls client/
+ls interfaces/
+ls business/
+e business/CertainBookStore.java 
+ls
+ls utils/
+e utils/BookStoreUtility.java
+ls interfaces/
+ls
+ls server/
+e server/BookStoreHTTPServer.java
+e server/BookStoreHTTPServerUtility.java
+ls client/
+ls
+ls *
+cd ..
+ls
+cd ../
+ls
+cd ..
+ls
+ls lib/
+cd src/com/acertainbookstore/
+ls
+ls client/
+ls client/tests/
+ls
+ls business/
+ls
+ls business/
+e business/ImmutableBook.java
+cd
+cd pcsd/assignment2/
+ls
+cd /tmp/
+ls
+ls *.pdf
+cat Anova.pdf | ssh pilgaard@tyr.diku.dk lp -d m1b

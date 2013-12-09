@@ -91,7 +91,39 @@
     :file "ArrayReverser.java"
     :pointmax 795
     :fsize 794
-    :lastmodtime '(21144 30228 368751 759000)
+    :lastmodtime '(21151 14865 449985 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "P6_4.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("P6_4" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [49 62]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [25 183])
+                    ("sumWithoutSmallest" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("array" variable
+                               (:dereference 1
+                                :type "int")
+                                (reparse-symbol formal_parameters) [219 230]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [189 761]))                  
+                :type "class")
+                nil [1 763]))          
+    :file "P6_4.java"
+    :pointmax 764
+    :fsize 763
+    :lastmodtime '(21153 40146 10368 372000)
     :unmatched-syntax 'nil
     )
    )
