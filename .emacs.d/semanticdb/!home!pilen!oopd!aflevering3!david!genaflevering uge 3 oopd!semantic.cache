@@ -1,0 +1,119 @@
+;; Object genaflevering uge 3 oopd/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "genaflevering uge 3 oopd/"
+  :tables (list 
+   (semanticdb-table "Game.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("Game" type
+               (:members 
+                  ( ("balls" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [291 309])
+                    ("isComputersTurn" variable
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [374 406])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("n" variable (:type "int") (reparse-symbol formal_parameters) [556 561]))                          )
+                        (reparse-symbol class_member_declaration) [544 604])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [669 785])
+                    ("getNumberOfBalls" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [889 947])
+                    ("setTurn" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1002 1120])
+                    ("removeBalls" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("n" variable (:type "int") (reparse-symbol formal_parameters) [1270 1275]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1246 1352])
+                    ("isOver" function
+                       (:typemodifiers ("public")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [1446 1503])
+                    ("getIsComputersTurn" function
+                       (:typemodifiers ("public")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [1615 1689])
+                    ("switchPlayer" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1737 1819]))                  
+                :type "class")
+                nil [199 1821]))          
+    :file "Game.java"
+    :pointmax 1822
+    :fsize 1821
+    :lastmodtime '(21160 19306 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "ComputerPlayer.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("ComputerPlayer" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("smart" variable
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [426 448])
+                    ("ComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [533 642])
+                    ("ComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("isSmart" variable (:type "boolean") (reparse-symbol formal_parameters) [838 853]))                          )
+                        (reparse-symbol class_member_declaration) [816 886])
+                    ("isStupid" function
+                       (:typemodifiers ("public")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [993 1048])
+                    ("makeMove" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [1221 1230]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1200 1767])
+                    ("takeRandomNumberOfBalls" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [1917 1926]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1880 2077])
+                    ("smartRemove" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [2295 2304])
+                            ("n" variable (:type "int") (reparse-symbol formal_parameters) [2306 2311]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2271 2404]))                  
+                :type "class")
+                nil [295 2406]))          
+    :file "ComputerPlayer.java"
+    :pointmax 2407
+    :fsize 2406
+    :lastmodtime '(21160 19575 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering3!david!genaflevering uge 3 oopd!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

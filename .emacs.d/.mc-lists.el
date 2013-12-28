@@ -3,11 +3,9 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        TeX-insert-backslash
-        backward-kill-word-to-newline
+        c-electric-brace
         c-electric-paren
-        c-electric-pound
-        c-electric-semi&comma
+        forward-word-to-newline
         toggle-letter-case
         xpdfremote/xpdf-pageDown
         yank-or-pop

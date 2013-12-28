@@ -1,0 +1,281 @@
+;; Object Nim_genafl/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "Nim_genafl/"
+  :tables (list 
+   (semanticdb-table "Nim.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("Nim" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [333 346]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [309 509])
+                    ("Nim" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [573 787])
+                    ("newGame" function
+                       (:typemodifiers ("private")
+                        :type "Game")
+                        (reparse-symbol class_member_declaration) [914 1661])
+                    ("answerIsYes" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("question" variable (:type "String") (reparse-symbol formal_parameters) [1900 1915]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [1865 2185])
+                    ("getUserInput" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("message" variable (:type "String") (reparse-symbol formal_parameters) [2378 2392]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [2343 2551])
+                    ("continueGame" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [2680 2689]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2654 3201])
+                    ("printStartTurnMessages" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("pileSize" variable (:type "int") (reparse-symbol formal_parameters) [3426 3438])
+                            ("playerName" variable (:type "String") (reparse-symbol formal_parameters) [3440 3457]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3390 3841])
+                    ("printEndTurnMessages" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("amount" variable (:type "int") (reparse-symbol formal_parameters) [4016 4026]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3982 4250]))                  
+                :type "class")
+                nil [140 4252]))          
+    :file "Nim.java"
+    :pointmax 4253
+    :fsize 4381
+    :lastmodtime '(21161 47150 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Player.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("Player" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("getName" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol interface_member_declaration) [155 179])
+                    ("getPreferredAmount" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("pileSize" variable (:type "int") (reparse-symbol formal_parameters) [423 435]))                          
+                        :type "int")
+                        (reparse-symbol interface_member_declaration) [393 437]))                  
+                :type "interface")
+                nil [34 439]))          
+    :file "Player.java"
+    :pointmax 440
+    :fsize 456
+    :lastmodtime '(21161 47084 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "HumanPlayer.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("HumanPlayer" type
+               (:typemodifiers ("public")
+                :interfaces ("Player")
+                :members 
+                  ( ("DEFAULT_NAME" variable
+                       (:typemodifiers ("private" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [134 186])
+                    ("name" variable
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [191 211])
+                    ("HumanPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [286 348])
+                    ("HumanPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("name" variable (:type "String") (reparse-symbol formal_parameters) [477 488]))                          )
+                        (reparse-symbol class_member_declaration) [458 523])
+                    ("getName" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [620 677])
+                    ("getPreferredAmount" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("pileSize" variable (:type "int") (reparse-symbol formal_parameters) [965 977]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [935 1169]))                  
+                :type "class")
+                nil [84 1171]))          
+    :file "HumanPlayer.java"
+    :pointmax 1171
+    :fsize 1216
+    :lastmodtime '(21161 46848 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "ComputerPlayer.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("ComputerPlayer" type
+               (:typemodifiers ("public")
+                :interfaces ("Player")
+                :members 
+                  ( ("DEFAULT_NAME" variable
+                       (:typemodifiers ("private" "static" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [141 195])
+                    ("smart" variable
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [200 222])
+                    ("name" variable
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [227 247])
+                    ("ComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [325 418])
+                    ("ComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("name" variable (:type "String") (reparse-symbol formal_parameters) [583 594]))                          )
+                        (reparse-symbol class_member_declaration) [561 657])
+                    ("ComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("name" variable (:type "String") (reparse-symbol formal_parameters) [921 932])
+                            ("smart" variable (:type "boolean") (reparse-symbol formal_parameters) [934 947]))                          )
+                        (reparse-symbol class_member_declaration) [899 1010])
+                    ("randomlySetSmart" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1114 1197])
+                    ("getName" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1313 1370])
+                    ("getPreferredAmount" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("pileSize" variable (:type "int") (reparse-symbol formal_parameters) [1664 1676]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1634 2295])
+                    ("isPowerOfTwoMinusOne" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("examinedValue" variable (:type "int") (reparse-symbol formal_parameters) [2631 2648]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2594 2741]))                  
+                :type "class")
+                nil [88 2743]))          
+    :file "ComputerPlayer.java"
+    :pointmax 2743
+    :fsize 2830
+    :lastmodtime '(21161 46876 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Game.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("Game" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("pileSize" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [168 189])
+                    ("playerOne" variable
+                       (:typemodifiers ("private")
+                        :type "Player")
+                        (reparse-symbol class_member_declaration) [194 219])
+                    ("playerTwo" variable
+                       (:typemodifiers ("private")
+                        :type "Player")
+                        (reparse-symbol class_member_declaration) [224 249])
+                    ("currentPlayer" variable
+                       (:typemodifiers ("private")
+                        :type "Player")
+                        (reparse-symbol class_member_declaration) [254 283])
+                    ("hasEnded" variable
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [288 313])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("playerOne" variable (:type "Player") (reparse-symbol formal_parameters) [476 492])
+                            ("playerTwo" variable (:type "Player") (reparse-symbol formal_parameters) [494 510]))                          )
+                        (reparse-symbol class_member_declaration) [464 717])
+                    ("playNextTurn" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("amount" variable (:type "int") (reparse-symbol formal_parameters) [999 1009]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [974 1208])
+                    ("getPileSize" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1310 1372])
+                    ("getCurrentPlayer" function
+                       (:typemodifiers ("public")
+                        :type "Player")
+                        (reparse-symbol class_member_declaration) [1522 1597])
+                    ("isValid" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("amount" variable (:type "int") (reparse-symbol formal_parameters) [1866 1876]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [1843 1953])
+                    ("isOver" function
+                       (:typemodifiers ("public")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2095 2156])
+                    ("takeFromPile" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("amount" variable (:type "int") (reparse-symbol formal_parameters) [2312 2322]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2286 2359])
+                    ("switchCurrentPlayer" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2424 2613]))                  
+                :type "class")
+                nil [143 2615]))          
+    :file "Game.java"
+    :pointmax 2615
+    :fsize 2710
+    :lastmodtime '(21161 46828 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering3!sverke!Nim!Nim_genafl!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

@@ -1,0 +1,151 @@
+;; Object simon/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "simon/"
+  :tables (list 
+   (semanticdb-table "Nim.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("Nim" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("g" variable
+                       (:typemodifiers ("private")
+                        :type "Game")
+                        (reparse-symbol class_member_declaration) [48 63])
+                    ("cP" variable
+                       (:typemodifiers ("private")
+                        :type "ComputerPlayer")
+                        (reparse-symbol class_member_declaration) [65 91])
+                    ("input" variable
+                       (:typemodifiers ("private")
+                        :type "Scanner")
+                        (reparse-symbol class_member_declaration) [93 115])
+                    ("computerCheated" variable
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [117 149])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [254 267]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [230 312])
+                    ("start" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [350 1927]))                  
+                :type "class")
+                nil [28 1930]))          
+    :file "Nim.java"
+    :pointmax 1931
+    :fsize 1930
+    :lastmodtime '(21159 37390 646293 672000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Game.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("Game" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("balls" variable
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [22 39])
+                    ("turn" variable
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [41 57])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [127 253])
+                    ("subtractBalls" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("n" variable (:type "int") (reparse-symbol formal_parameters) [387 392]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [361 413])
+                    ("isLegalMove" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("n" variable (:type "int") (reparse-symbol formal_parameters) [615 620]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [588 694])
+                    ("isGameOver" function
+                       (:typemodifiers ("public")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [803 893]))                  
+                :type "class")
+                nil [1 895]))          
+    :file "Game.java"
+    :pointmax 896
+    :fsize 895
+    :lastmodtime '(21159 37397 276293 384000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "ComputerPlayer.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("ComputerPlayer" type
+               (:members 
+                  ( ("mComputerLacksIQ" variable (:type "boolean") (reparse-symbol class_member_declaration) [109 142])
+                    ("ComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [368 448])
+                    ("takeBalls" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("pile" variable (:type "int") (reparse-symbol formal_parameters) [680 688]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [659 1014]))                  
+                :type "class")
+                nil [85 1016]))          
+    :file "ComputerPlayer.java"
+    :pointmax 1016
+    :fsize 1015
+    :lastmodtime '(21159 37399 959626 601000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "InstruktorTest.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("InstruktorTest" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("isLegalMove" function
+                       (:typemodifiers ("private" "static")
+                        :arguments 
+                          ( ("stack" variable (:type "int") (reparse-symbol formal_parameters) [96 105])
+                            ("amount" variable (:type "int") (reparse-symbol formal_parameters) [107 117]))                          
+                        :type "Boolean")
+                        (reparse-symbol class_member_declaration) [61 177])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [207 220]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [183 704]))                  
+                :type "class")
+                nil [27 706]))          
+    :file "InstruktorTest.java"
+    :pointmax 707
+    :fsize 706
+    :lastmodtime '(21159 41429 442784 755000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering3!simon!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

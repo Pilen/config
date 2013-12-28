@@ -1,0 +1,135 @@
+;; Object genaflevering/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "genaflevering/"
+  :tables (list 
+   (semanticdb-table "Nim_genaflev.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("Nim" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("game" variable
+                       (:typemodifiers ("private")
+                        :type "Game")
+                        (reparse-symbol class_member_declaration) [21 39])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [144 157]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [120 202])
+                    ("start" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [237 307]))                  
+                :type "class")
+                nil [1 310]))          
+    :file "Nim_genaflev.java"
+    :pointmax 311
+    :fsize 310
+    :lastmodtime '(21167 14229 550489 286000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Game_genaflev.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("java.util.Scanner" include nil nil [26 51])
+            ("Game" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("balls" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [74 92])
+                    ("turn" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [94 111])
+                    ("cheated" variable
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [113 137])
+                    ("input" variable
+                       (:typemodifiers ("private")
+                        :type "Scanner")
+                        (reparse-symbol class_member_declaration) [139 161])
+                    ("computer" variable
+                       (:typemodifiers ("private")
+                        :type "ComputerPlayer")
+                        (reparse-symbol class_member_declaration) [163 195])
+                    ("random" variable
+                       (:typemodifiers ("private")
+                        :type "Random")
+                        (reparse-symbol class_member_declaration) [197 219])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [289 402])
+                    ("gameStart" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [440 1415])
+                    ("subtractBalls" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("n" variable (:type "int") (reparse-symbol formal_parameters) [1636 1641]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1609 2203])
+                    ("isLegalMove" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("n" variable (:type "int") (reparse-symbol formal_parameters) [2406 2411]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2378 2451])
+                    ("isGameOver" function
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2560 2615]))                  
+                :type "class")
+                nil [53 2617]))          
+    :file "Game_genaflev.java"
+    :pointmax 2618
+    :fsize 2617
+    :lastmodtime '(21167 14232 100489 372000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "ComputerPlayer_genaflev.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("ComputerPlayer" type
+               (:members 
+                  ( ("mComputerLacksIQ" variable (:type "boolean") (reparse-symbol class_member_declaration) [109 142])
+                    ("ComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [368 448])
+                    ("takeBalls" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("pile" variable (:type "int") (reparse-symbol formal_parameters) [680 688]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [659 1029])
+                    ("randomizeBallsToTake" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("max" variable (:type "int") (reparse-symbol formal_parameters) [1225 1232]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1192 1283]))                  
+                :type "class")
+                nil [85 1285]))          
+    :file "ComputerPlayer_genaflev.java"
+    :pointmax 1285
+    :fsize 1284
+    :lastmodtime '(21167 14215 407155 473000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering3!simon!genaflevering!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

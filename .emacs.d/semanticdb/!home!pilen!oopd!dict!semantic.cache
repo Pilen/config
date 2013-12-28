@@ -1,0 +1,43 @@
+;; Object dict/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "dict/"
+  :tables (list 
+   (semanticdb-table "Dict.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.ArrayList" include nil nil [1 28])
+            ("java.util.Scanner" include nil nil [29 54])
+            ("java.io.File" include nil nil [55 75])
+            ("java.io.FileNotFoundException" include nil nil [76 113])
+            ("Dict" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [164 177]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [140 1211])
+                    ("hasWord" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("word" variable (:type "String") (reparse-symbol formal_parameters) [1247 1258])
+                            ("" variable (:type "dict") (reparse-symbol formal_parameters) [1278 1282]))                          
+                        :type "Boolean")
+                        (reparse-symbol class_member_declaration) [1217 1438]))                  
+                :type "class")
+                nil [115 1440]))          
+    :file "Dict.java"
+    :pointmax 1441
+    :fsize 1440
+    :lastmodtime '(21172 6123 982203 101000)
+    :unmatched-syntax '((GT 1276 . 1277) (IDENTIFIER 1260 . 1269) (LT 1269 . 1270))
+    )
+   )
+  :file "!home!pilen!oopd!dict!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

@@ -126,6 +126,55 @@
     :lastmodtime '(21153 40146 10368 372000)
     :unmatched-syntax 'nil
     )
+   (semanticdb-table "BetterRectangle.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.awt.Rectangle" include nil nil [1 27])
+            ("BetterRectangle" type
+               (:typemodifiers ("public")
+                :superclasses "Rectangle"
+                :members 
+                  ( ("BetterRectangle" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("x" variable (:type "int") (reparse-symbol formal_parameters) [106 111])
+                            ("y" variable (:type "int") (reparse-symbol formal_parameters) [113 118])
+                            ("width" variable (:type "int") (reparse-symbol formal_parameters) [120 129])
+                            ("height" variable (:type "int") (reparse-symbol formal_parameters) [131 141]))                          )
+                        (reparse-symbol class_member_declaration) [83 186])
+                    ("getPerimeter" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [192 264])
+                    ("getArea" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [270 340])
+                    ("grow" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("h" variable (:type "int") (reparse-symbol formal_parameters) [362 367])
+                            ("w" variable (:type "int") (reparse-symbol formal_parameters) [369 374]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [345 439])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [469 482]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [445 728]))                  
+                :type "class")
+                nil [29 731]))          
+    :file "BetterRectangle.java"
+    :pointmax 732
+    :fsize 731
+    :lastmodtime '(21162 55429 747375 74000)
+    :unmatched-syntax 'nil
+    )
    )
   :file "!home!pilen!oopd!semantic.cache"
   :semantic-tag-version "2.0"

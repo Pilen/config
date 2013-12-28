@@ -1,0 +1,74 @@
+;; Object poly/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "poly/"
+  :tables (list 
+   (semanticdb-table "Term.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("Term" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("coefficient" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [26 50])
+                    ("power" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [55 73])
+                    ("next" variable
+                       (:typemodifiers ("private")
+                        :type "Term")
+                        (reparse-symbol class_member_declaration) [78 96])
+                    ("Term" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("coefficient" variable (:type "int") (reparse-symbol formal_parameters) [114 129])
+                            ("power" variable (:type "int") (reparse-symbol formal_parameters) [131 140]))                          )
+                        (reparse-symbol class_member_declaration) [102 243])
+                    ("Term" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("coefficient" variable (:type "int") (reparse-symbol formal_parameters) [261 276])
+                            ("power" variable (:type "int") (reparse-symbol formal_parameters) [278 287])
+                            ("next" variable (:type "Term") (reparse-symbol formal_parameters) [289 298]))                          )
+                        (reparse-symbol class_member_declaration) [249 401])
+                    ("getPower" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [407 463])
+                    ("getNext" function
+                       (:typemodifiers ("public")
+                        :type "Term")
+                        (reparse-symbol class_member_declaration) [469 524])
+                    ("addCoefficient" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("value" variable (:type "int") (reparse-symbol formal_parameters) [557 566]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [530 610])
+                    ("setNext" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("next" variable (:type "Term") (reparse-symbol formal_parameters) [636 645]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [616 680])
+                    ("getCoefficient" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [686 754]))                  
+                :type "class")
+                nil [2 756]))          
+    :file "Term.java"
+    :pointmax 695
+    :fsize 756
+    :lastmodtime '(21172 9874 135663 624000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!poly!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

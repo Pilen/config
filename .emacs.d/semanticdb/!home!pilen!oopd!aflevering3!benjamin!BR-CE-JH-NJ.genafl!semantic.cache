@@ -1,0 +1,293 @@
+;; Object BR-CE-JH-NJ.genafl/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "BR-CE-JH-NJ.genafl/"
+  :tables (list 
+   (semanticdb-table "Nim.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("Nim" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("game" variable
+                       (:typemodifiers ("private")
+                        :type "Game")
+                        (reparse-symbol class_member_declaration) [104 122])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [153 166]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [128 195])
+                    ("Nim" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [244 307])
+                    ("loop" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [385 1024])
+                    ("printTurn" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [1163 1172]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1139 1361]))                  
+                :type "class")
+                nil [53 1363]))          
+    :file "Nim.java"
+    :pointmax 1364
+    :fsize 1363
+    :lastmodtime '(21160 32874 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Game.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("Game" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("stack" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [229 247])
+                    ("player" variable
+                       (:typemodifiers ("private")
+                        :type "APlayer")
+                        (reparse-symbol class_member_declaration) [252 275])
+                    ("computerPlayer" variable
+                       (:typemodifiers ("private")
+                        :type "APlayer")
+                        (reparse-symbol class_member_declaration) [280 311])
+                    ("currentPlayer" variable
+                       (:typemodifiers ("private")
+                        :type "APlayer")
+                        (reparse-symbol class_member_declaration) [316 346])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [400 611])
+                    ("init" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [661 971])
+                    ("take" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("n" variable (:type "int") (reparse-symbol formal_parameters) [1173 1178]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [1152 1459])
+                    ("isGameOver" function
+                       (:typemodifiers ("public")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [1564 1631])
+                    ("switchTurn" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1716 1852])
+                    ("getStack" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1967 2018])
+                    ("getCurrentPlayer" function
+                       (:typemodifiers ("public")
+                        :type "APlayer")
+                        (reparse-symbol class_member_declaration) [2105 2176])
+                    ("println" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2239 2324]))                  
+                :type "class")
+                nil [205 2326]))          
+    :file "Game.java"
+    :pointmax 2327
+    :fsize 2326
+    :lastmodtime '(21160 56987 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Rand.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("Rand" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("random" variable
+                       (:typemodifiers ("private" "static" "final")
+                        :type "Random")
+                        (reparse-symbol class_member_declaration) [52 102])
+                    ("next" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("min" variable (:type "int") (reparse-symbol formal_parameters) [294 301])
+                            ("max" variable (:type "int") (reparse-symbol formal_parameters) [303 310]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [270 378]))                  
+                :type "class")
+                nil [27 380]))          
+    :file "Rand.java"
+    :pointmax 381
+    :fsize 380
+    :lastmodtime '(21160 56936 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "APlayer.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("APlayer" type
+               (:typemodifiers ("public" "abstract")
+                :members 
+                  ( ("name" variable
+                       (:typemodifiers ("protected")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [169 191])
+                    ("_isHuman" variable
+                       (:typemodifiers ("protected")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [196 223])
+                    ("APlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("name" variable (:type "String") (reparse-symbol formal_parameters) [376 387]))                          )
+                        (reparse-symbol class_member_declaration) [360 423])
+                    ("getName" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [510 562])
+                    ("setName" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("newName" variable (:type "String") (reparse-symbol formal_parameters) [681 695]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [660 729])
+                    ("toString" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [804 862])
+                    ("takeTurn" function
+                       (:typemodifiers ("public" "abstract")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [1096 1105]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1066 1108])
+                    ("isHuman" function
+                       (:typemodifiers ("public")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [1114 1171]))                  
+                :type "class")
+                nil [85 1174]))          
+    :file "APlayer.java"
+    :pointmax 1175
+    :fsize 1174
+    :lastmodtime '(21160 32880 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Player.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("Player" type
+               (:typemodifiers ("public")
+                :superclasses "APlayer"
+                :members 
+                  ( ("scanner" variable
+                       (:typemodifiers ("private")
+                        :type "Scanner")
+                        (reparse-symbol class_member_declaration) [151 202])
+                    ("Player" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("name" variable (:type "String") (reparse-symbol formal_parameters) [223 234]))                          )
+                        (reparse-symbol class_member_declaration) [208 292])
+                    ("takeTurn" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [595 604]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [574 875]))                  
+                :type "class")
+                nil [108 877]))          
+    :file "Player.java"
+    :pointmax 878
+    :fsize 877
+    :lastmodtime '(21160 32878 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "SmartComputerPlayer.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("SmartComputerPlayer" type
+               (:typemodifiers ("public")
+                :superclasses "APlayer"
+                :members 
+                  ( ("SmartComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [308 385])
+                    ("SmartComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("name" variable (:type "String") (reparse-symbol formal_parameters) [419 430]))                          )
+                        (reparse-symbol class_member_declaration) [391 463])
+                    ("takeTurn" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [615 624]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [594 1254])
+                    ("powerOfTwo" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("n" variable (:type "int") (reparse-symbol formal_parameters) [1449 1454]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [1421 1590]))                  
+                :type "class")
+                nil [252 1593]))          
+    :file "SmartComputerPlayer.java"
+    :pointmax 1594
+    :fsize 1593
+    :lastmodtime '(21160 56969 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "StupidComputerPlayer.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("StupidComputerPlayer" type
+               (:typemodifiers ("public")
+                :superclasses "APlayer"
+                :members 
+                  ( ("StupidComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [58 137])
+                    ("StupidComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("name" variable (:type "String") (reparse-symbol formal_parameters) [172 183]))                          )
+                        (reparse-symbol class_member_declaration) [143 216])
+                    ("takeTurn" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("game" variable (:type "Game") (reparse-symbol formal_parameters) [321 330]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [300 481]))                  
+                :type "class")
+                nil [1 483]))          
+    :file "StupidComputerPlayer.java"
+    :pointmax 484
+    :fsize 483
+    :lastmodtime '(21160 56940 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering3!benjamin!BR-CE-JH-NJ.genafl!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

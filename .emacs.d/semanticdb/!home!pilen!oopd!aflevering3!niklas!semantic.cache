@@ -1,0 +1,149 @@
+;; Object niklas/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "niklas/"
+  :tables (list 
+   (semanticdb-table "Nim.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("java.util.Random" include nil nil [27 51])
+            ("Nim" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [849 862]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [824 2460]))                  
+                :type "class")
+                nil [801 2462]))          
+    :file "Nim.java"
+    :pointmax 2463
+    :fsize 2462
+    :lastmodtime '(21158 9792 552621 218000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Game.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("Game" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("ballsLeft" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [210 232])
+                    ("currentPlayer" variable
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [237 267])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("min" variable (:type "int") (reparse-symbol formal_parameters) [711 718])
+                            ("max" variable (:type "int") (reparse-symbol formal_parameters) [720 727]))                          )
+                        (reparse-symbol class_member_declaration) [698 996])
+                    ("getPlayer" function
+                       (:typemodifiers ("public")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [1150 1214])
+                    ("getPlayerString" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1361 1515])
+                    ("getBalls" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1626 1681])
+                    ("nextPlayer" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1749 1822])
+                    ("gameOver" function
+                       (:typemodifiers ("public")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [1940 2048])
+                    ("move" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("balls" variable (:type "int") (reparse-symbol formal_parameters) [2338 2347]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2321 2406])
+                    ("legalMove" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("balls" variable (:type "int") (reparse-symbol formal_parameters) [2799 2808]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2774 2873]))                  
+                :type "class")
+                nil [186 2875]))          
+    :file "Game.java"
+    :pointmax 2876
+    :fsize 2875
+    :lastmodtime '(21158 9780 865955 59000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "ComputerPlayer.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("ComputerPlayer" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("difficulty" variable
+                       (:typemodifiers ("private")
+                        :type "DifficultyLevels")
+                        (reparse-symbol class_member_declaration) [168 204])
+                    ("ComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("difficulty" variable (:type "boolean") (reparse-symbol formal_parameters) [395 413]))                          )
+                        (reparse-symbol class_member_declaration) [373 615])
+                    ("getDifficultyString" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [723 907])
+                    ("move" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("ballsLeft" variable (:type "int") (reparse-symbol formal_parameters) [1200 1213]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1184 1376])
+                    ("stupid" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("ballsLeft" variable (:type "int") (reparse-symbol formal_parameters) [1740 1753]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1721 1924])
+                    ("closestPowerOfTwo" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("max" variable (:type "int") (reparse-symbol formal_parameters) [2248 2255]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [2218 2401])
+                    ("smart" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("ballsLeft" variable (:type "int") (reparse-symbol formal_parameters) [2918 2931]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [2900 3188]))                  
+                :type "class")
+                nil [84 3190]))          
+    :file "ComputerPlayer.java"
+    :pointmax 3191
+    :fsize 3190
+    :lastmodtime '(21158 9795 149287 772000)
+    :unmatched-syntax '((PRIVATE 118 . 125) (BRACE_BLOCK 148 . 162) (SEMICOLON 162 . 163))
+    )
+   )
+  :file "!home!pilen!oopd!aflevering3!niklas!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

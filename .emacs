@@ -538,6 +538,8 @@
   (command-center-add 'eshell-command)
   (command-center-add 'shell-toggle-cd "eshell-cd")
   (command-center-add 'global-whitespace-mode)
+  (command-center-add 'ediff)
+  (command-center-add 'ediff-buffers)
   )
 
 (command-center-add (lambda () (interactive) (find-file (concat (file-name-sans-extension (buffer-file-name)) ".pdf"))) "open-pdf")
@@ -1859,7 +1861,9 @@ There exists two workarounds for this bug:
 (setq eshell-buffer-shorthand t)
 (setq eshell-hist-ignoredups t)
 (setq eshell-aliases-file "~/.emacs.d/eshell/alias")
+(setq eshell-cmpl-cycle-completions nil)
 (defun m-eshell-hook ()
+  (setq pcomplete-cycle-completions nil)
   (setq eshell-visual-commands '("nano"))
   (setq eshell-buffer-shorthand t)
   (setq eshell-hist-ignoredups t)

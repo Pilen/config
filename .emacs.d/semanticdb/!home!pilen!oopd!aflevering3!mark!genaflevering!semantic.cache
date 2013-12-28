@@ -1,0 +1,226 @@
+;; Object genaflevering/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "genaflevering/"
+  :tables (list 
+   (semanticdb-table "Nim.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("Nim" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("userin" variable
+                       (:typemodifiers ("private")
+                        :type "Scanner")
+                        (reparse-symbol class_member_declaration) [249 297])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [327 340]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [303 379])
+                    ("Nim" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [595 1056])
+                    ("roundPrint" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("nimGame" variable (:type "Game") (reparse-symbol formal_parameters) [1136 1148]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1112 1607])
+                    ("getInput" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("nimGame" variable (:type "Game") (reparse-symbol formal_parameters) [1691 1703]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1670 2328])
+                    ("printGameStart" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("nimGame" variable (:type "Game") (reparse-symbol formal_parameters) [2418 2430]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2390 3030]))                  
+                :type "class")
+                nil [225 5669]))          
+    :file "Nim.java"
+    :pointmax 5670
+    :fsize 5669
+    :lastmodtime '(21167 11507 137063 620000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "Game.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("Game" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("stack" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [312 330])
+                    ("random" variable
+                       (:typemodifiers ("private")
+                        :type "Random")
+                        (reparse-symbol class_member_declaration) [335 357])
+                    ("whosTurn" variable
+                       (:typemodifiers ("private")
+                        :type "Intelligence")
+                        (reparse-symbol class_member_declaration) [362 392])
+                    ("bot" variable
+                       (:typemodifiers ("private")
+                        :type "ComputerPlayer")
+                        (reparse-symbol class_member_declaration) [397 424])
+                    ("lastBotMove" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [429 453])
+                    ("startingPlayer" variable
+                       (:typemodifiers ("private")
+                        :type "Intelligence")
+                        (reparse-symbol class_member_declaration) [458 494])
+                    ("startingStack" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [499 525])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [605 853])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("startStackSize" variable (:type "int") (reparse-symbol formal_parameters) [1100 1118]))                          )
+                        (reparse-symbol class_member_declaration) [1088 1469])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("startStackSize" variable (:type "int") (reparse-symbol formal_parameters) [1915 1933])
+                            ("startingPlayer" variable (:type "int") (reparse-symbol formal_parameters) [1935 1953]))                          )
+                        (reparse-symbol class_member_declaration) [1903 2428])
+                    ("Game" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("startStackSize" variable (:type "int") (reparse-symbol formal_parameters) [3083 3101])
+                            ("startingPlayer" variable (:type "int") (reparse-symbol formal_parameters) [3103 3121])
+                            ("hardOrEasy" variable (:type "int") (reparse-symbol formal_parameters) [3123 3137]))                          )
+                        (reparse-symbol class_member_declaration) [3071 3660])
+                    ("initialise" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("startAmmount" variable (:type "int") (reparse-symbol formal_parameters) [3763 3779])
+                            ("hardOrEasy" variable (:type "int") (reparse-symbol formal_parameters) [3781 3795])
+                            ("start" variable (:type "int") (reparse-symbol formal_parameters) [3797 3806]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3739 4539])
+                    ("takeTurn" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("removeFromStack" variable (:type "int") (reparse-symbol formal_parameters) [4885 4904]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4864 5494])
+                    ("getLastBotMove" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [5588 5657])
+                    ("getWhosTurn" function
+                       (:typemodifiers ("public")
+                        :type "Intelligence")
+                        (reparse-symbol class_member_declaration) [5718 5790])
+                    ("getStackSize" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [5870 5931])
+                    ("validInput" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("input" variable (:type "int") (reparse-symbol formal_parameters) [6088 6097]))                          
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [6062 6165])
+                    ("legalUpperBound" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [6256 6433])
+                    ("getAISetting" function
+                       (:typemodifiers ("public")
+                        :type "AISetting")
+                        (reparse-symbol class_member_declaration) [6498 6578])
+                    ("getStartingPlayer" function
+                       (:typemodifiers ("public")
+                        :type "Intelligence")
+                        (reparse-symbol class_member_declaration) [6682 6766])
+                    ("getStartingStack" function
+                       (:typemodifiers ("public")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [6863 6936]))                  
+                :type "class")
+                nil [287 6938]))          
+    :file "Game.java"
+    :pointmax 6939
+    :fsize 6938
+    :lastmodtime '(21167 11530 333731 74000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "ComputerPlayer.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Random" include nil nil [1 25])
+            ("ComputerPlayer" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("INTELLIGENCE" variable
+                       (:typemodifiers ("private" "final")
+                        :type "AISetting")
+                        (reparse-symbol class_member_declaration) [367 404])
+                    ("random" variable
+                       (:typemodifiers ("private")
+                        :type "Random")
+                        (reparse-symbol class_member_declaration) [409 446])
+                    ("ComputerPlayer" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("stupidOrSmart" variable (:type "AISetting") (reparse-symbol formal_parameters) [605 628]))                          )
+                        (reparse-symbol class_member_declaration) [583 681])
+                    ("takeTurn" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("stackSize" variable (:type "int") (reparse-symbol formal_parameters) [972 985]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [952 1346])
+                    ("takeStupidTurn" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("stackSize" variable (:type "int") (reparse-symbol formal_parameters) [1379 1392]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1352 1617])
+                    ("takeSmartTurn" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("stackSize" variable (:type "int") (reparse-symbol formal_parameters) [1649 1662]))                          
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [1623 2037])
+                    ("getAISetting" function
+                       (:typemodifiers ("public")
+                        :type "AISetting")
+                        (reparse-symbol class_member_declaration) [2043 2117]))                  
+                :type "class")
+                nil [332 2119]))          
+    :file "ComputerPlayer.java"
+    :pointmax 2120
+    :fsize 2119
+    :lastmodtime '(21167 11536 723731 290000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering3!mark!genaflevering!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )
