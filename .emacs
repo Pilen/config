@@ -1,6 +1,6 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
-;|          | |flyspell  |flyspl-buf|mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-tog| |shell-rplc|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
+;|          | |translate |flyspl    |mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-ind| |cmd-center|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
 ;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |narrow-fun| |          |          |tex-clsenv|prev-clear||linum     |autoindent|          |zoomable  |
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
@@ -54,11 +54,19 @@
 ;; Move by syllable. http://www.tug.org/docs/liang/ http://usuallyalex.wordpress.com/2009/06/15/detecting-syllables-programatically/
 ;; autofix wrongtype of delimiters ([)) -> ([]) when typing closing delimiter
 
+;; browse-kill-ring
+
 ;;;; 24.3 Look at
 ;; set-temporary-overlay-map
 ;; python-shell-send-buffer
 ;; wavy underline
 ;; erc notifications
+
+
+;;;; Contextaware button (context should be inserted before action is completed)
+;; search -> repeat search
+;; compile latex -> view latex/update xpdf
+;; M-x -> repeat last command
 
 ;;______________________________________________________________________________
 ;;
@@ -66,8 +74,6 @@
 ;π                                DEPENDENCIES
 ;;
 ;;______________________________________________________________________________
-
-;; hej
 
 ;; erlang
 ;; gnuplot
@@ -119,6 +125,8 @@
 
 ;; M-next       scroll-other-window
 ;; M-prev       scroll-other-window-down
+
+
 ;; Debug on errors in .emacs
 (setq debug-on-error t)
 
@@ -184,6 +192,8 @@
 ;; Delete previous/next char
 (global-set-key (kbd "H-s") 'delete-backward-char)
 (global-set-key (kbd "H-t") 'delete-forward-char)
+(global-set-key (kbd "H-C-s") 'my-scroll-left)
+(global-set-key (kbd "H-C-t") 'my-scroll-right)
 ;; Delete previous/next word
 (global-set-key (kbd "H-f") 'backward-kill-word-to-newline)
 (global-set-key (kbd "H-p") 'forward-kill-word-to-newline)
@@ -309,7 +319,7 @@
 ;; turn on minor mode ergoemacs-mode
 ;;(ergoemacs-mode 1)
 
-(global-set-key (kbd "H-/") 'query-replace)
+(global-set-key (kbd "H-/") 'query-replace-with-region)
 (global-set-key (kbd "H-?") 'iedit-mode)
 ;;(global-set-key (kbd "H-?") 'query-replace-regexp)
 (global-set-key (kbd "H-\\") 'delete-window)
@@ -378,17 +388,22 @@
 
 (global-set-key (kbd "<f1>") 'google-translate-da/en)
 (global-set-key (kbd "S-<f1>") 'google-translate-en/da)
-(global-set-key (kbd "H-<f1>") 'flyspell-toggle)
-(global-set-key (kbd "<f2>") 'flyspell-my-buffer)
-(global-set-key (kbd "H-<f2>") 'fd-switch-dictionary)
+;; (global-set-key (kbd "H-<f1>") 'flyspell-mode)
+;; (global-set-key (kbd "<f2>") 'flyspell-buffer)
+(global-set-key (kbd "<f2>") 'flyspell-mode)
+;; (global-set-key (kbd "H-<f2>") 'fd-switch-dictionary)
+(global-set-key (kbd "S-<f2>") 'fd-switch-dictionary)
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<H-f3>") 'kmacro-name-last-macro)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
 (global-set-key (kbd "<f5>") 'revert-buffer)
 (global-set-key (kbd "<f7>") 'toggle-window-dedicated)
-(global-set-key (kbd "<f8>") 'narrow-toggle)
+;; (global-set-key (kbd "<f8>") 'narrow-toggle)
+(global-set-key (kbd "<f8>") 'narrow-to-region-indirect)
+(global-set-key (kbd "C-<f8>") 'clone-buffer)
 (global-set-key (kbd "S-<f8>") 'narrow-to-defun)
-(global-set-key (kbd "<f9>") 'shell-command-on-region-replace)
+;(global-set-key (kbd "<f9>") 'shell-command-on-region-replace)
+(global-set-key (kbd "<f9>") 'command-center)
 (global-set-key (kbd "<f10>") 'reftex-toc)
 (global-set-key (kbd "<f11>") 'LaTeX-environment)
 (global-set-key (kbd "H-<f11>") 'LaTeX-close-environment)
@@ -408,9 +423,8 @@
    (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
    (define-key comint-mode-map (kbd "<down>") 'comint-next-input)))
 
-
-(global-set-key (kbd "H-C-.") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "-> ") (insert " -> "))))
-(global-set-key (kbd "H-C-,") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "<- ") (insert " <- "))))
+(global-set-key (kbd "H-C-.") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "->") (insert " ->")) (if (not (char-equal (char-after) ?\s )) (insert " ") (forward-char))))
+(global-set-key (kbd "H-C-,") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "<-") (insert " <-")) (if (not (char-equal (char-after) ?\s )) (insert " ") (forward-char))))
 
 (add-hook 'multiple-cursors-mode-enabled-hook (lambda ()
                                                 (define-key mc/keymap (kbd "<return>") 'newline)))
@@ -430,8 +444,8 @@
 ;π COMPILE
 ;;______________________________________________________________________________
 ;; H-g  =  compile
-(global-set-key (kbd "H-g")     (lambda () (interactive) (message "Compile-key not defined for this mode.")))
-(add-hook 'erlang-mode-hook     (lambda () (define-key erlang-mode-map     (kbd "H-g") (lambda () (interactive) (erlang-compile) (first-error)))))
+(global-set-key (kbd "H-g")     (lambda () (interactive) (save-buffer) (message "Compile-key not defined for this mode.")))
+(add-hook 'erlang-mode-hook     (lambda () (define-key erlang-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (erlang-compile) (first-error)))))
 (add-hook 'LaTeX-mode-hook      (lambda () (define-key TeX-mode-map        (kbd "H-g") 'run-latex)))
 (add-hook 'haskell-mode-hook    (lambda () (define-key haskell-mode-map    (kbd "H-g") 'inferior-haskell-load-file)))
 (add-hook 'maple-mode-hook      (lambda () (define-key maple-mode-map      (kbd "H-g") 'maple-buffer)))
@@ -441,6 +455,7 @@
 (add-hook 'emacs-lisp-mode-hook (lambda () (define-key emacs-lisp-mode-map (kbd "H-g") 'my-elisp-eval)))
 (add-hook 'scheme-mode-hook     (lambda () (define-key scheme-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (geiser-mode-switch-to-repl-and-enter)))))
 (add-hook 'ruby-mode-hook       (lambda () (define-key ruby-mode-map       (kbd "H-g") (lambda () (interactive) (save-excursion (when (null inf-ruby-buffer) (run-ruby) (sleep-for 1))) (ruby-send-region-and-go (point-min) (point-max))))))
+(add-hook 'jde-mode-hook        (lambda () (define-key jde-mode-map        (kbd "H-g") 'jde-compile-or-run)))
 
 (defun my-c-compile ()
   (interactive)
@@ -462,6 +477,73 @@
   (let ((start (search-backward-regexp "^(")))
     (goto-match-paren)
     (eval-region start (point) standard-output))))
+
+
+;;______________________________________________________________________________
+;π COMMAND-CENTER
+;;______________________________________________________________________________
+
+(defvar command-center-commands '())
+
+(defun command-center-add (command &optional name)
+  (when (null name)
+    (if (symbolp command)
+        (setq name (symbol-name command))
+      (setq name (prin1-to-string command))))
+
+  (setq command-center-commands (append
+                                 command-center-commands
+                                 `((,name . ,command)))))
+
+(defun command-center-clear ()
+  (setq command-center-commands '()))
+
+(defun command-center ()
+  (interactive)
+  (let* ((name
+          (ido-completing-read ">: "
+                               (mapcar (lambda (x) (car x))
+                                       command-center-commands)))
+         (command (cdr (assoc name command-center-commands))))
+    (if (commandp command)
+        (call-interactively command)
+      (funcall command))))
+
+(progn
+  (command-center-clear)
+  (command-center-add 'find-file-other-window)
+  (command-center-add 'eval-buffer)
+  (command-center-add 'rename-file-and-buffer)
+  (command-center-add 'move-buffer-file)
+  (command-center-add 'emacs-lisp-mode)
+  (command-center-add 'delete-file)
+  (command-center-add 'whitespace-cleanup)
+  (command-center-add 'reindent-buffer)
+  (command-center-add 'revy-ubertex-mode)
+  (command-center-add 'revy-ubersicht-mode)
+  (command-center-add 'revy-manus-clean)
+  (command-center-add 'auto-fill-mode)
+  (command-center-add 'show-all)
+  (command-center-add 'hide-sublevels "hide-all")
+  (command-center-add 'shell-command-on-region-replace)
+  (command-center-add 'occur)
+  (command-center-add 'sort-lines)
+  (command-center-add 'gtags-create-or-update)
+  (command-center-add 'indent-region)
+  (command-center-add 'horizontal-recenter)
+  (command-center-add 'reindent-buffer)
+  (command-center-add 'make-directory)
+  (command-center-add 'google-translate-da/en)
+  (command-center-add 'google-translate-en/da)
+  (command-center-add 'eshell-command)
+  (command-center-add 'shell-toggle-cd "eshell-cd")
+  (command-center-add 'global-whitespace-mode)
+  (command-center-add 'ediff)
+  (command-center-add 'ediff-buffers)
+  )
+
+(command-center-add (lambda () (interactive) (find-file (concat (file-name-sans-extension (buffer-file-name)) ".pdf"))) "open-pdf")
+
 
 
 ;;______________________________________________________________________________
@@ -506,6 +588,8 @@
 (put 'narrow-to-defun 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
 (put 'scroll-left 'disabled nil)
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
 
 (setq european-calendar-style t)
 
@@ -536,7 +620,8 @@
 (add-to-list 'recentf-exclude ".breadcrumb")
 (add-to-list 'recentf-exclude ".emacs")
 (add-to-list 'recentf-exclude ".ido.last")
-
+(setq recentf-save-timer (run-at-time t (* 60 60) (lambda () (recentf-save-list))))
+;(cancel-timer recentf-save-timer)
 
 (require 'goto-last-change)
 
@@ -657,6 +742,8 @@
 (require 'smex)
 (smex-initialize)
 
+
+(setq-default require-final-newline t)
 ;;______________________________________________________________________________
 ;π BATTERY
 ;;______________________________________________________________________________
@@ -847,6 +934,8 @@
 ;(set-face-background hl-line-face "gray34")
 
 
+(setq ansi-color-names-vector ["black" "red" "green" "yellow" "dodger blue" "magenta" "cyan" "white"])
+(setq ansi-color-map (ansi-color-make-color-map))
 
 ;;______________________________________________________________________________
 ;π MODELINE
@@ -922,6 +1011,7 @@
                          (when (> length fill-column)
                            (propertize (concat "" (int-to-string length)) 'face 'mode-line-long-line))))
                 display-time-string
+                ;;(:eval (propertize "13:37" 'face 'display-time-face)) ;; RKG-time
                 battery-mode-line-string
                 (:eval (powerline-percent-xpm 'text nil powerline-color1))
                 erc-modified-channels-object
@@ -1707,7 +1797,7 @@ erc-modified-channels-alist. Should be executed on window change."
 ;;______________________________________________________________________________
 ;π ERLANG
 ;;______________________________________________________________________________
-(add-to-list 'load-path "/usr/lib/erlang/lib/tools-2.6.10/emacs/")
+(add-to-list 'load-path (concat (car (directory-files "/usr/lib/erlang/lib/" t "^tools-.")) "/emacs/"))
 (require 'erlang-start)
 
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
@@ -1771,13 +1861,16 @@ There exists two workarounds for this bug:
 (setq eshell-buffer-shorthand t)
 (setq eshell-hist-ignoredups t)
 (setq eshell-aliases-file "~/.emacs.d/eshell/alias")
+(setq eshell-cmpl-cycle-completions nil)
 (defun m-eshell-hook ()
+  (setq pcomplete-cycle-completions nil)
   (setq eshell-visual-commands '("nano"))
   (setq eshell-buffer-shorthand t)
   (setq eshell-hist-ignoredups t)
   (define-key eshell-mode-map (kbd "H-d") 'eshell-kill-input)
-  (define-key eshell-mode-map (kbd "H-n") 'eshell-bol)
+  (define-key eshell-mode-map (kbd "H-N") 'eshell-bol)
   (define-key eshell-mode-map (kbd "C-l") '(lambda () (interactive) (eshell/clear) (eshell-send-input)))
+  (define-key eshell-mode-map (kbd "<return>") 'my-eshell-send-input)
   (add-to-list 'eshell-visual-commands "nano")
   (add-to-list 'eshell-visual-commands "htop")
   (add-to-list 'eshell-visual-commands "irssi")
@@ -1786,6 +1879,7 @@ There exists two workarounds for this bug:
   (add-to-list 'eshell-visual-commands "ssh")
   (add-to-list 'eshell-visual-commands "tail")
   )
+
 (add-hook 'eshell-mode-hook 'm-eshell-hook)
 (defun tyler-eshell-view-file (file)
   "A version of `view-file' which properly respects the eshell prompt."
@@ -1816,7 +1910,7 @@ There exists two workarounds for this bug:
       (tyler-eshell-view-file (pop args)))))
 (defalias 'eshell/more 'eshell/less)
 (defun eshell/e (file)
-  (find-file file))
+  (find-file-other-window file))
 
 (defun shell-toggle-buffer-switch-to-other-window ()
   "Switches to other window.  If the current window is the only window in the
@@ -1829,9 +1923,16 @@ current frame, create a new window and switch to it.
     ;; If we did not switch window then we only have one window and need to
     ;; create a new one.
     (if (eq this-window (selected-window))
-	(progn
-	  (split-window-horizontally)
+        (progn
+          (split-window-horizontally)
           (other-window 1)))))
+
+(defun my-eshell-send-input ()
+  (interactive)
+  (goto-char (point-max))
+  (eshell-send-input))
+
+
 ;;______________________________________________________________________________
 ;π EXPAND-REGION
 ;;______________________________________________________________________________
@@ -1918,7 +2019,7 @@ current frame, create a new window and switch to it.
 (add-hook 'sml-mode 'flyspell-prog-mode)
 
 
-(add-hook 'LaTeX-mode-hook (lambda () (turn-on-flyspell) (setq ispell-dictionary "dansk")))
+(add-hook 'LaTeX-mode-hook (lambda () (turn-on-flyspell))); (setq ispell-dictionary "dansk"))) ; Commented out as aspell-da is not working
 
 (defun turn-on-flyspell ()
   "Force flyspell-mode on using a positive arg."
@@ -1926,24 +2027,26 @@ current frame, create a new window and switch to it.
   (flyspell-mode 1)
   )
 
-(setq flyspell-is-on nil)
-(defun flyspell-toggle ()
-  (interactive)
-  (if flyspell-is-on
-      (progn
-        (message "Off")
-        (setq flyspell-is-on nil)
-        (flyspell-mode-off))
-    (progn
-      (message "On")
-      (setq flyspell-is-on t)
-      (flyspell-mode-on)
-      (flyspell-buffer))))
+;; (setq flyspell-is-on nil)
+;; (defun flyspell-toggle ()
+;;   (interactive)
+;;   (if flyspell-is-on
+;;       (progn
+;;         (message "Off")
+;;         (setq flyspell-is-on nil)
+;;         (flyspell-mode-off))
+;;     (progn
+;;       (message "On")
+;;       (setq flyspell-is-on t)
+;;       (flyspell-mode-on)
+;;       (flyspell-buffer))))
 
-(defun flyspell-my-buffer ()
-  (interactive)
-  (setq flyspell-is-on t)
-  (flyspell-buffer))
+;; (defun flyspell-my-buffer ()
+;;   (interactive)
+;;   (setq flyspell-is-on t)
+;;   (flyspell-buffer))
+
+(add-hook 'flyspell-mode-hook (lambda () (when flyspell-mode (flyspell-buffer))))
 
 ;; Better order of spelling suggestions
 ;(defadvice ispell-command-loop (before ispell-reverse-miss-list activate)
@@ -1984,14 +2087,15 @@ current frame, create a new window and switch to it.
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
-(add-to-list 'load-path "~/.emacs.d/ghc-mod/")
-(autoload 'ghc-init "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda ()
-                               (ghc-init)
-                               (flymake-mode)
-                               (define-key haskell-mode-map "\C-c\C-c" '(lambda () (interactive)
-                                                                          (ghc-flymake-toggle-command)
-                                                                          (flymake-start-syntax-check)))))
+;; ghc-mod not installed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+;; (add-to-list 'load-path "~/.emacs.d/ghc-mod/")
+;; (autoload 'ghc-init "ghc" nil t)
+;; (add-hook 'haskell-mode-hook (lambda ()
+;;                                (ghc-init)
+;;                                (flymake-mode)
+;;                                (define-key haskell-mode-map "\C-c\C-c" '(lambda () (interactive)
+;;                                                                           (ghc-flymake-toggle-command)
+;;                                                                           (flymake-start-syntax-check)))))
 
 
 ;; (require 'hs-lint)    ;; https://gist.github.com/1241059
@@ -2115,6 +2219,8 @@ current frame, create a new window and switch to it.
                 (mode . sml-mode))
                ("Erlang"
                 (mode . erlang-mode))
+               ("Java"
+                (mode . jde-mode))
                ("Web"
                 (or
                  (mode . html-mode)
@@ -2126,8 +2232,12 @@ current frame, create a new window and switch to it.
                ("emacs-config"
                 (or
                  (filename . ".emacs")))
+               ("emacslisp"
+                (mode . emacs-lisp-mode))
                ("Shell"
-                (mode . shell-script-mode))
+                (or
+                 (filename . "\\.sh")
+                 (mode . shell-script-mode)))
 
                ("Tex"
                 (or
@@ -2147,6 +2257,8 @@ current frame, create a new window and switch to it.
                 (mode . erc-mode))
                ("Scratch"
                 (mode . scratch-mode))
+               ("Dired"
+                (mode . dired-mode))
 
                ))))
 
@@ -2222,7 +2334,9 @@ current frame, create a new window and switch to it.
 (defun ido-my-keys ()
   "Add my keybindings for ido."
   (define-key ido-completion-map (kbd "H-e") 'ido-next-match)
-  (define-key ido-completion-map (kbd "H-u") 'ido-prev-match))
+  (define-key ido-completion-map (kbd "H-u") 'ido-prev-match)
+  (define-key ido-completion-map (kbd "<down>") 'ido-next-match)
+  (define-key ido-completion-map (kbd "<up>") 'ido-prev-match))
 
 
 ;; use ido to complete commands via M-X
@@ -2416,6 +2530,27 @@ current frame, create a new window and switch to it.
    (if (string-match "\\`[-+]?[0-9]+\\'" string)
        t
      nil))
+
+
+
+;; (defun .emacs-imenu-create-index ()
+;;   (interactive)
+;;   (goto-char (point-max))
+;;   (let ((index-alist '())
+;;         (name nil)
+;;         (pos nil))
+;;     (while (search-backward-regexp ";π[ ]*" nil t)
+;;       (search-forward-regexp ";π[ ]*\\([a-zA-Z-]+\\)")
+;;       (setq name (match-string 1))
+;;       ;(setq pos (match-beginning 0))
+;;       (goto-char (match-beginning 0))
+;;       (push (cons name (if imenu-use-markers (point-marker) (point)))
+;;             index-alist))
+;;       index-alist))
+
+;; (setq imenu-create-index-function '.emacs-imenu-create-index)
+;; (setq imenu--index-alist nil)
+
 ;;______________________________________________________________________________
 ;π INCMOVE
 ;;______________________________________________________________________________
@@ -2499,11 +2634,22 @@ current frame, create a new window and switch to it.
     (other-window 1)
     (search-forward current-pos)))
 
+(define-key isearch-mode-map (kbd "H-m") 'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "H-M") 'isearch-repeat-backward)
+
 ;;______________________________________________________________________________
 ;π JABBER
 ;;______________________________________________________________________________
 (add-to-list 'load-path "~/.emacs.d/emacs-jabber-0.8.0/")
 (require 'jabber-autoloads)
+
+;;______________________________________________________________________________
+;π JAVA
+;;______________________________________________________________________________
+(add-to-list 'load-path "~/.emacs.d/jdee-2.4.1/lisp")
+(add-to-list 'load-path "~/.emacs.d/jde-hacks")
+(setq jde-hacks-dir "~/.emacs.d/jde-hacks")
+(require 'jde-hacks)
 
 ;;______________________________________________________________________________
 ;π LATEX
@@ -2546,11 +2692,21 @@ current frame, create a new window and switch to it.
    (set-face-foreground 'font-latex-italic-face "OliveDrab3")
    (setq LaTeX-command "latex -file-line-error -synctex=1")))
 
+
+(eval-after-load "tex"
+  '(push `("LaTeX-updatexpdf"
+           ,(concat "%`%l%(mode)%' %t; xpdf -remote " xpdfremote/server-name " -exec reload")
+           TeX-run-TeX nil
+           (latex-mode doctex-mode)
+           :help "Run LaTeX")
+         TeX-command-list))
+
 (defun run-latex ()
   (interactive)
   (TeX-save-document (TeX-master-file))
-  (TeX-command "LaTeX" 'TeX-master-file)
-  (xpdfremote/xpdf-reload)
+  (if (null xpdfremote/server)
+      (TeX-command "LaTeX" 'TeX-master-file)
+    (TeX-command "LaTeX-updatexpdf" 'TeX-master-file))
   ;(TeX-clean nil))
   )
 
@@ -2666,7 +2822,13 @@ current frame, create a new window and switch to it.
 ;π PYTHON
 ;;______________________________________________________________________________
 (setq python-command "/usr/bin/bpython")
+(add-hook 'python-mode-hook
+          (lambda ()
+            (message "kat")
+            (setq imenu-create-index-function 'imenu-default-create-index-function)))
 
+(defun semantic-create-imenu-index (&optional stream)
+  (imenu-default-create-index-function))
 ;;______________________________________________________________________________
 ;π RACKET/SCHEME
 ;;______________________________________________________________________________
@@ -2709,13 +2871,14 @@ current frame, create a new window and switch to it.
  '(comint-prompt-read-only nil)
  '(comint-scroll-show-maximum-output t)
  '(comint-scroll-to-bottom-on-input t)
+ '(jde-jdk-registry (quote (("1.7.45" . "/usr/lib/jvm/java-7-openjdk"))))
  '(menu-bar-mode nil)
  '(protect-buffer-bury-p nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
  '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
 (ansi-color-for-comint-mode-on)
-(defvar my-shells '("*shell*" "*shell0*" "*shell1*" "*shell2*" "*shell3*"))
+(defvar my-shells '("*eshell*" "*shell*" "*shell0*" "*shell1*" "*shell2*" "*shell3*"))
 (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 (defun make-my-shell-output-read-only (text)
   "Add to comint-output-filter-functions to make stdout read only in my shells."
@@ -2932,77 +3095,79 @@ current frame, create a new window and switch to it.
 ;;______________________________________________________________________________
 ;π W3M
 ;;______________________________________________________________________________
+(require 'w3m-load)
+;; (add-to-list 'load-path "~/builds/emacs-w3m-1.4.4")
+;; (require 'w3m-e21)
+;; (provide 'w3m-e23)
 
-(add-to-list 'load-path "~/builds/emacs-w3m-1.4.4")
-(require 'w3m-e21)
-(provide 'w3m-e23)
-(autoload 'w3m-link-numbering-mode "w3m-lnum" nil t)
-(add-hook 'w3m-mode-hook (lambda ()
-                           (setq show-trailing-whitespace nil)
-                           ;;(w3m-lnum-mode)
-                           (w3m-link-numbering-mode)))
-;;(setq browse-url-browser-function 'browse-url-generic
-;;          browse-url-generic-program "chromium")'
-(setq browse-url-browser-function 'w3m-browse-url)
-;;(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
-;; optional keyboard short-cut
-;;(global-set-key "\C-xm" 'browse-url-at-point)
+;; (autoload 'w3m-link-numbering-mode "w3m-lnum" nil t)
+;; (add-hook 'w3m-mode-hook (lambda ()
+;;                            (setq show-trailing-whitespace nil)
+;;                            ;;(w3m-lnum-mode)
+;;                            (w3m-link-numbering-mode)))
+;; ;;(setq browse-url-browser-function 'browse-url-generic
+;; ;;          browse-url-generic-program "chromium")'
+;; (setq browse-url-browser-function 'w3m-browse-url)
+;; ;;(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+;; ;; optional keyboard short-cut
+;; ;;(global-set-key "\C-xm" 'browse-url-at-point)
 
 
-(defvar w3m-isearch-links-do-wrap t
-  "Used internally for fast search wrapping.")
+;; (defvar w3m-isearch-links-do-wrap t
+;;   "Used internally for fast search wrapping.")
 
-(defun w3m-isearch-links (&optional regexp)
-  (interactive "P")
-  (let ((isearch-wrap-function
-         #'(lambda ()
-             (setq w3m-isearch-links-do-wrap nil)
-             (if isearch-forward
-                 (goto-char (window-start))
-               (goto-char (window-end)))))
-        (isearch-search-fun-function
-         #'(lambda () 'w3m-isearch-links-search-fun))
-        post-command-hook               ;inhibit link echoing
-        do-follow-link
-        (isearch-mode-end-hook
-         (list  #'(lambda nil
-                    (when (and (not isearch-mode-end-hook-quit)
-                               (w3m-anchor))
-                      (setq do-follow-link t))))))
-    (setq w3m-isearch-links-do-wrap t)
-    (isearch-mode t
-                  regexp
-                  ;; fast wrap
-                  #'(lambda nil
-                      (if isearch-success
-                          (setq w3m-isearch-links-do-wrap t)
-                        (when w3m-isearch-links-do-wrap
-                          (setq w3m-isearch-links-do-wrap nil)
-                          (setq isearch-forward
-                                (not isearch-forward))
-                          (isearch-repeat isearch-forward))))
-                  t)
-    (when do-follow-link
-      (w3m-view-this-url))))
-(defun w3m-isearch-links-search-fun (string &optional bound no-error)
-  (let* (isearch-search-fun-function
-         (search-fun  (isearch-search-fun))
-         error
-         (bound  (if isearch-forward
-                     (max (or bound 0)
-                          (window-end))
-                   (min (or bound (window-start))
-                        (window-start)))))
-    (condition-case err
-        (while (and (apply search-fun (list string bound))
-                    (not (w3m-anchor (point)))))
-      (error (setq error err)))
-    (if error
-        (if (not no-error)
-            (signal (car error) (cadr error)))
-      (point))))
-(require 'w3m)
-(define-key w3m-mode-map [?f] 'w3m-isearch-links)
+;; (defun w3m-isearch-links (&optional regexp)
+;;   (interactive "P")
+;;   (let ((isearch-wrap-function
+;;          #'(lambda ()
+;;              (setq w3m-isearch-links-do-wrap nil)
+;;              (if isearch-forward
+;;                  (goto-char (window-start))
+;;                (goto-char (window-end)))))
+;;         (isearch-search-fun-function
+;;          #'(lambda () 'w3m-isearch-links-search-fun))
+;;         post-command-hook               ;inhibit link echoing
+;;         do-follow-link
+;;         (isearch-mode-end-hook
+;;          (list  #'(lambda nil
+;;                     (when (and (not isearch-mode-end-hook-quit)
+;;                                (w3m-anchor))
+;;                       (setq do-follow-link t))))))
+;;     (setq w3m-isearch-links-do-wrap t)
+;;     (isearch-mode t
+;;                   regexp
+;;                   ;; fast wrap
+;;                   #'(lambda nil
+;;                       (if isearch-success
+;;                           (setq w3m-isearch-links-do-wrap t)
+;;                         (when w3m-isearch-links-do-wrap
+;;                           (setq w3m-isearch-links-do-wrap nil)
+;;                           (setq isearch-forward
+;;                                 (not isearch-forward))
+;;                           (isearch-repeat isearch-forward))))
+;;                   t)
+;;     (when do-follow-link
+;;       (w3m-view-this-url))))
+;; (defun w3m-isearch-links-search-fun (string &optional bound no-error)
+;;   (let* (isearch-search-fun-function
+;;          (search-fun  (isearch-search-fun))
+;;          error
+;;          (bound  (if isearch-forward
+;;                      (max (or bound 0)
+;;                           (window-end))
+;;                    (min (or bound (window-start))
+;;                         (window-start)))))
+;;     (condition-case err
+;;         (while (and (apply search-fun (list string bound))
+;;                     (not (w3m-anchor (point)))))
+;;       (error (setq error err)))
+;;     (if error
+;;         (if (not no-error)
+;;             (signal (car error) (cadr error)))
+;;       (point))))
+;; (require 'w3m)
+;; (define-key w3m-mode-map [?f] 'w3m-isearch-links)
+
 ;;______________________________________________________________________________
 ;π WANDERLUST
 ;;______________________________________________________________________________
@@ -3057,16 +3222,33 @@ current frame, create a new window and switch to it.
 ;;
 ;;______________________________________________________________________________
 
+;; (defun python-compile ()
+;;   (interactive)
+;;   (save-excursion
+;;     (beginning-of-buffer)
+;;     (insert (concat "print('evaluating: " (buffer-name) "')\n"))
+;;     (python-shell-send-buffer) ;python-shell-send-buffer
+;;     (beginning-of-buffer)
+;;     (kill-whole-line)
+;;     )
+;;   (python-shell-switch-to-shell))
+
 (defun python-compile ()
   (interactive)
-  (save-excursion
-    (beginning-of-buffer)
-    (insert (concat "print('evaluating: " (buffer-name) "')\n"))
-    (python-send-buffer) ;python-shell-send-buffer
-    (beginning-of-buffer)
-    (kill-whole-line)
-    )
-  (python-switch-to-python t))
+  (python-shell-send-buffer)
+  (python-shell-send-string (concat "print('evaluating: " (buffer-name) "')"))
+  (save-selected-window
+    (python-shell-switch-to-shell)))
+
+
+(defun query-replace-with-region (start end)
+  (interactive "r")
+  (if (not (use-region-p))
+    (call-interactively 'query-replace)
+
+    (goto-char start)
+    (let ((text (buffer-substring-no-properties start end)))
+      (query-replace text (query-replace-read-to text "Query replace" nil)))))
 
 (defun reindent-buffer ()
   "indent whole buffer"
@@ -3194,6 +3376,16 @@ in that cyclic order."
         (yank-pop arg)
       (yank-pop))))
 
+
+(defun horizontal-recenter ()
+  "make the point horizontally centered in the window"
+  (interactive)
+  (let ((mid (/ (window-width) 2))
+        (line-len (save-excursion (end-of-line) (current-column)))
+        (cur (current-column)))
+    (if (< mid cur)
+        (set-window-hscroll (selected-window)
+                            (- cur mid)))))
 ;;______________________________________________________________________________
 ;π JUMP TO MATCHING PARETHESIS
 ;;______________________________________________________________________________
@@ -3336,6 +3528,15 @@ in that cyclic order."
      (/= real-point-max (point-max)))))
 
 
+(defun narrow-to-region-indirect (start end)
+  "Restrict editing in this buffer to the current region, indirectly."
+  (interactive "r")
+  (deactivate-mark)
+  (let ((buf (clone-indirect-buffer nil nil)))
+    (with-current-buffer buf
+      (narrow-to-region start end))
+      (switch-to-buffer buf)))
+
 
 ;;______________________________________________________________________________
 ;π SMARTSCAN
@@ -3454,6 +3655,33 @@ instead."
       (beginning-of-line)
     (back-to-indentation)))
 
+;;______________________________________________________________________________
+;π HORIZONTAL SCROLL
+;;______________________________________________________________________________
+(setq my-horizontal-scroll-factor 3)
+
+(defun my-scroll-right (&optional reverse)
+  (interactive)
+  (let* ((eol (save-excursion
+               (end-of-line)
+               (point)))
+        (bol (save-excursion
+               (beginning-of-line)
+               (point)))
+        (width (/ (window-width) my-horizontal-scroll-factor))
+        (width (if reverse (- width) width)))
+
+    (cond
+     ((< (+ (point) width) bol)
+      (goto-char bol))
+     ((> (+ (point) width) eol)
+      (goto-char eol))
+     (t
+      (goto-char (+ (point) width))))))
+
+(defun my-scroll-left ()
+  (interactive)
+  (my-scroll-right t))
 
 ;;______________________________________________________________________________
 ;π WINDOWS
@@ -3680,4 +3908,3 @@ instead."
 
 ;; End of .emacs, go away debugger!
 (setq debug-on-error nil)
-(put 'downcase-region 'disabled nil)

@@ -1,0 +1,10 @@
+if [ $# -eq 0 ]
+then
+    li=$(zenity --entry --text="Video:");
+else
+    li="$1";
+fi
+
+echo $li;
+
+mplayer $(youtube-dl -g $li)

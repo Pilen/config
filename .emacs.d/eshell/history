@@ -1,14 +1,128 @@
-mkdir opskrifter
-mv cookies.txt opskrifter/
-cd Dropbox/
-cd FDF/
-l
-mkdir lejrbaal2013
-ls lejrbaal2012/
-rm lejrbaal2012/
-rm lejrbaal2012/ -rf
-ls lejrbaal2013/
-cd lejrbaal2013/
-push
-cd Dropbox/RKG/
+javac P6_4.java 
+java P6_4
+javac solitaire.java 
+mv solitaire.java P6_26.java
+javac P6_26.java
+java P6_26.java
+java P6_26
+cd figures/
 ls
+javac Figure.java 
+javac Sphere.java Test.java Figure.java
+java Test
+javac Sphere.java Test.java Figure.java
+java Test
+javac Sphere.java Test.java Figure.java
+java Test
+javac Sphere.java Test.java Figure.java Box.java 
+java Test
+cd
+cd /home/pilen/pcsd/assignment2/
+ls
+cd .
+cd ..
+ls
+cd assignment1/
+ls
+cd ..
+cp acertainbookstore-1.0.zip assignment2/
+cd assignment2/
+ls
+aunpack acertainbookstore-1.0.zip 
+ls
+ls acertainbookstore-1.0/
+ls acertainbookstore-1.0/lib/
+ls acertainbookstore-1.0/src/
+ls acertainbookstore-1.0/src/com/
+ls acertainbookstore-1.0/src/com/acertainbookstore/
+ls acertainbookstore-1.0/src/com/acertainbookstore/utils/
+cd acertainbookstore-1.0/src//com/acertainbookstore/
+ls
+e utils/BookStoreConstants.java
+ls server/
+ls client/
+ls interfaces/
+ls business/
+e business/CertainBookStore.java 
+ls
+ls utils/
+e utils/BookStoreUtility.java
+ls interfaces/
+ls
+ls server/
+e server/BookStoreHTTPServer.java
+e server/BookStoreHTTPServerUtility.java
+ls client/
+ls
+ls *
+cd ..
+ls
+cd ../
+ls
+cd ..
+ls
+ls lib/
+cd src/com/acertainbookstore/
+ls
+ls client/
+ls client/tests/
+ls
+ls business/
+ls
+ls business/
+e business/ImmutableBook.java
+cd
+cd pcsd/assignment2/
+ls
+cd /tmp/
+ls
+ls *.pdf
+cat Anova.pdf | ssh pilgaard@tyr.diku.dk lp -d m1b
+cd 
+cd oopd/aflevering2/
+ls
+cd karl/
+aunpack Genaflevering.zip
+cd Genaflevering/
+ls
+e TicTacToe.java 
+cd .../
+ls
+cd robert/
+ls
+e TicTacToe_genaflev.java
+javac TicTacToe_genaflev.java
+mv TicTacToe.java TicTacToe_first.java
+mv TicTacToe_genaflev.java TicTacToe.java
+e TicTacToe.java
+javac TicTacToe.java
+e ../feedback.org 
+javac TicTacToe.java
+java TicTacToe
+e Opgave\ uge\ 2\ OOPD.pdf
+cd 
+cd oopd/aflevering2/christian/
+ls
+aun OOPD\ -\ Genaflevering\ Uge2.rar 
+aunpack OOPD\ -\ Genaflevering\ Uge2.rar
+cd OOPD\ -\ Genaflevering\ Uge2/
+ls
+ls Javadoc/
+javac TicTacToe.java 
+java TicTacToe
+e TicTacToe.java
+wc -l TicTacToe.java
+wc -l ../TicTacToe.java
+e aflevering.pdf
+cd .../magnus
+ls
+ls -l
+e TicTacToe\ \(1\).java
+cd ....
+cd
+cd oopd/aflevering3/
+cd karl/
+aunpack Aflevering.zip 
+cd Aflevering/
+ls
+cd ..

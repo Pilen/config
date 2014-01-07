@@ -3,16 +3,11 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        back-to-indentation-or-beginning
-        backward-word-to-newline
-        forward-kill-word-to-newline
+        c-electric-brace
+        c-electric-paren
         forward-word-to-newline
-        org-delete-backward-char
-        org-self-insert-command
-        overwrite-mode
-        quack-insert-closing-paren
-        quack-insert-opening-paren
         toggle-letter-case
+        xpdfremote/xpdf-pageDown
         yank-or-pop
         ))
 

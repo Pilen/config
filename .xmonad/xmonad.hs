@@ -137,7 +137,7 @@ main = xmonad $ defaultConfig {
   terminal         = "urxvtc",
   workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
   -- Visuals
-  borderWidth        = 1,
+  borderWidth        = 0,
   normalBorderColor  = "#000000",
   focusedBorderColor = "#aa0000",
 
