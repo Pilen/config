@@ -6,6 +6,7 @@
         c-electric-brace
         c-electric-paren
         forward-word-to-newline
+        org-self-insert-command
         toggle-letter-case
         xpdfremote/xpdf-pageDown
         yank-or-pop

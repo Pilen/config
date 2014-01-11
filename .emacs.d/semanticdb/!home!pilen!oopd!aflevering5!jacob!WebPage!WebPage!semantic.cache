@@ -1,0 +1,182 @@
+;; Object WebPage/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "WebPage/"
+  :tables (list 
+   (semanticdb-table "WebPage.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.io.File" include nil nil [1 21])
+            ("java.io.FileNotFoundException" include nil nil [22 59])
+            ("java.io.PrintWriter" include nil nil [60 87])
+            ("java.io.BufferedReader" include nil nil [88 118])
+            ("java.io.InputStreamReader" include nil nil [119 152])
+            ("java.util.ArrayList" include nil nil [153 180])
+            ("java.util.Scanner" include nil nil [181 206])
+            ("java.util.regex.Matcher" include nil nil [207 238])
+            ("java.util.regex.Pattern" include nil nil [239 270])
+            ("java.net.URL" include nil nil [271 291])
+            ("java.net.URLConnection" include nil nil [292 322])
+            ("WebPage" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("caste" variable
+                       (:typemodifiers ("private")
+                        :type "int")
+                        (reparse-symbol class_member_declaration) [348 370])
+                    ("address" variable
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [416 444])
+                    ("contents" variable
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [446 475])
+                    ("WebPage" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [716 737])
+                    ("WebPage" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("caste" variable (:type "int") (reparse-symbol formal_parameters) [858 867]))                          )
+                        (reparse-symbol class_member_declaration) [843 894])
+                    ("getLinks" function (:constructor-flag t) (reparse-symbol class_member_declaration) [1033 1080])
+                    ("getNestedLinks" function (:constructor-flag t) (reparse-symbol class_member_declaration) [1223 1288])
+                    ("updateNestedLinks" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1357 1565])
+                    ("updateLinks" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1626 2031])
+                    ("loadAsText" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2124 2197])
+                    ("loadAsText" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("filename" variable (:type "String") (reparse-symbol formal_parameters) [2318 2333]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2295 2726])
+                    ("print" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2795 2850])
+                    ("read" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("url" variable (:type "String") (reparse-symbol formal_parameters) [2966 2976]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2949 3480])
+                    ("printLinks" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3537 3639])
+                    ("printNestedLinks" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3701 3821])
+                    ("storeAsText" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3926 4001])
+                    ("storeAsText" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("filename" variable (:type "String") (reparse-symbol formal_parameters) [4149 4164]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4125 4369])
+                    ("getAddress" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [4457 4514])
+                    ("println" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4597 4663]))                  
+                :type "class")
+                nil [324 4665]))          
+    :file "WebPage.java"
+    :pointmax 4666
+    :fsize 4665
+    :lastmodtime '(21192 27176 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "WebPageTest.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("org.junit.Test" include nil nil [1 23])
+            ("java.util.ArrayList" include nil nil [24 51])
+            ("org.junit.runner.RunWith" include nil nil [52 84])
+            ("org.junit.runners.JUnit4" include nil nil [85 117])
+            ("java.util.Scanner" include nil nil [118 143])
+            ("java.io.File" include nil nil [144 164])
+            ("WebPageTest" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("getLinksTest" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [231 765])
+                    ("storeAsTextTest" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1176 1911]))                  
+                :type "class")
+                nil [189 1913]))          
+    :file "WebPageTest.java"
+    :pointmax 1914
+    :fsize 1913
+    :lastmodtime '(21192 26114 0 0)
+    :unmatched-syntax '((PAREN_BLOCK 174 . 188) (IDENTIFIER 166 . 174))
+    )
+   (semanticdb-table "Main.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.Scanner" include nil nil [1 26])
+            ("Main" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("in" variable
+                       (:typemodifiers ("private")
+                        :type "Scanner")
+                        (reparse-symbol class_member_declaration) [52 98])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [129 142]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [104 180])
+                    ("demo" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [186 232])
+                    ("mainMenu" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [238 1554])
+                    ("onPageReadLoad" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("page" variable (:type "WebPage") (reparse-symbol formal_parameters) [1589 1601]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1560 3064]))                  
+                :type "class")
+                nil [28 3067]))          
+    :file "Main.java"
+    :pointmax 3068
+    :fsize 3067
+    :lastmodtime '(21192 26100 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering5!jacob!WebPage!WebPage!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

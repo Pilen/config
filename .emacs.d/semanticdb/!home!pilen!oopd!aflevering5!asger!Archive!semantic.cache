@@ -1,0 +1,139 @@
+;; Object Archive/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "Archive/"
+  :tables (list 
+   (semanticdb-table "hjemmeside.html"
+    :major-mode 'html-mode
+    :tags 
+        '( ("Foo" anchor nil nil [1 4])
+            ("Bar" anchor nil nil [41 44]))          
+    :file "hjemmeside.html"
+    :pointmax 71
+    :fsize 70
+    :lastmodtime '(21175 253 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "nySide.html"
+    :major-mode 'html-mode
+    :tags 
+        '( ("Foo" anchor nil nil [1 4])
+            ("Bar" anchor nil nil [39 42]))          
+    :file "nySide.html"
+    :pointmax 70
+    :fsize 69
+    :lastmodtime '(21175 253 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "WebPage.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.io.File" include nil nil [1 21])
+            ("java.io.FileNotFoundException" include nil nil [22 59])
+            ("java.util.Scanner" include nil nil [60 85])
+            ("java.io.PrintWriter" include nil nil [86 113])
+            ("java.util.regex.Pattern" include nil nil [114 145])
+            ("java.util.ArrayList" include nil nil [146 173])
+            ("java.util.regex.Matcher" include nil nil [174 205])
+            ("WebPage" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("content" variable
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [234 257])
+                    ("WebPage" function
+                       (:constructor-flag t
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("url" variable (:type "String") (reparse-symbol formal_parameters) [419 429]))                          )
+                        (reparse-symbol class_member_declaration) [404 782])
+                    ("storeAsText" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("filename" variable (:type "String") (reparse-symbol formal_parameters) [946 961]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [922 1227])
+                    ("getContent" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1327 1390])
+                    ("getLinks" function (:constructor-flag t) (reparse-symbol class_member_declaration) [1576 1805])
+                    ("grep" function
+                       (:constructor-flag t
+                        :arguments 
+                          ( ("val" variable (:type "String") (reparse-symbol formal_parameters) [2193 2203])
+                            ("pattern" variable (:type "String") (reparse-symbol formal_parameters) [2205 2219]))                          )
+                        (reparse-symbol class_member_declaration) [2188 2541]))                  
+                :type "class")
+                nil [207 2543]))          
+    :file "WebPage.java"
+    :pointmax 2543
+    :fsize 2542
+    :lastmodtime '(21175 3702 0 0)
+    :unmatched-syntax '((GT 2186 . 2187) (PRIVATE 2155 . 2162) (LT 2179 . 2180) (GT 1574 . 1575) (PUBLIC 1551 . 1557) (LT 1567 . 1568))
+    )
+   (semanticdb-table "WebPageTester.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.*" include nil nil [1 20])
+            ("org.junit.Test" include nil nil [100 122])
+            ("org.junit.Before" include nil nil [136 160])
+            ("org.junit.Ignore" include nil nil [176 200])
+            ("org.junit.runner.RunWith" include nil nil [216 248])
+            ("org.junit.runners.JUnit4" include nil nil [249 281])
+            ("WebPageTester" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("storeAsText" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [346 679])
+                    ("getLinks" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [691 930]))                  
+                :type "class")
+                nil [307 932]))          
+    :file "WebPageTester.java"
+    :pointmax 932
+    :fsize 931
+    :lastmodtime '(21175 1673 0 0)
+    :unmatched-syntax '((PAREN_BLOCK 292 . 306) (IDENTIFIER 284 . 292) (MULT 96 . 97) (DOT 95 . 96) (IDENTIFIER 83 . 95) (DOT 82 . 83) (IDENTIFIER 74 . 82) (DOT 73 . 74) (IMPORT 56 . 62) (STATIC 63 . 69) (IDENTIFIER 70 . 73) (MULT 53 . 54) (DOT 52 . 53) (IDENTIFIER 46 . 52) (DOT 45 . 46) (IDENTIFIER 40 . 45) (DOT 39 . 40) (IMPORT 22 . 28) (STATIC 29 . 35) (IDENTIFIER 36 . 39))
+    )
+   (semanticdb-table "InstruktorTest.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("InstruktorTest" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [59 72]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [35 224]))                  
+                :type "class")
+                nil [1 226]))          
+    :file "InstruktorTest.java"
+    :pointmax 227
+    :fsize 226
+    :lastmodtime '(21197 50035 676322 240000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "empty.html"
+    :major-mode 'html-mode
+    :tags nil
+    :file "empty.html"
+    :pointmax 31
+    :fsize 30
+    :lastmodtime '(21195 9779 676724 688000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering5!asger!Archive!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

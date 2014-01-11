@@ -1,70 +1,3 @@
-javac P6_4.java 
-java P6_4
-javac solitaire.java 
-mv solitaire.java P6_26.java
-javac P6_26.java
-java P6_26.java
-java P6_26
-cd figures/
-ls
-javac Figure.java 
-javac Sphere.java Test.java Figure.java
-java Test
-javac Sphere.java Test.java Figure.java
-java Test
-javac Sphere.java Test.java Figure.java
-java Test
-javac Sphere.java Test.java Figure.java Box.java 
-java Test
-cd
-cd /home/pilen/pcsd/assignment2/
-ls
-cd .
-cd ..
-ls
-cd assignment1/
-ls
-cd ..
-cp acertainbookstore-1.0.zip assignment2/
-cd assignment2/
-ls
-aunpack acertainbookstore-1.0.zip 
-ls
-ls acertainbookstore-1.0/
-ls acertainbookstore-1.0/lib/
-ls acertainbookstore-1.0/src/
-ls acertainbookstore-1.0/src/com/
-ls acertainbookstore-1.0/src/com/acertainbookstore/
-ls acertainbookstore-1.0/src/com/acertainbookstore/utils/
-cd acertainbookstore-1.0/src//com/acertainbookstore/
-ls
-e utils/BookStoreConstants.java
-ls server/
-ls client/
-ls interfaces/
-ls business/
-e business/CertainBookStore.java 
-ls
-ls utils/
-e utils/BookStoreUtility.java
-ls interfaces/
-ls
-ls server/
-e server/BookStoreHTTPServer.java
-e server/BookStoreHTTPServerUtility.java
-ls client/
-ls
-ls *
-cd ..
-ls
-cd ../
-ls
-cd ..
-ls
-ls lib/
-cd src/com/acertainbookstore/
-ls
-ls client/
 ls client/tests/
 ls
 ls business/
@@ -126,3 +59,70 @@ aunpack Aflevering.zip
 cd Aflevering/
 ls
 cd ..
+cd jens/
+aunpack U5-Adrian-Jens-Pelle-Sverke.zip 
+ls
+cd U5-Adrian-Jens-Pelle-Sverke/
+ls
+e WebPage.java 
+ls
+java *.java
+javac *.java
+java *Demo*
+java WebPageDemo
+bb
+ls
+cd asger/
+aunpack Archive.zip 
+cd Archive/
+ls
+rm *.class
+ls
+less hjemmeside.html 
+less tanker.txt 
+less LICENSE.txt 
+less nySide.html 
+ls org/
+ls
+ls *.java
+e WebPage
+e WebPage.java 
+javac *.java
+java InstruktorTest
+bb
+cd niklas/
+aunpack WebPageFilesAflevering.zip 
+cd WebPageFilesAflevering/
+ls
+less testWebPageJUnit.html 
+ls
+e WebPage
+e WebPage.java 
+ls
+ls *.java
+javac *.java
+ls
+javac WebPage.java WebPageTest.java 
+javac WebPage.java Demo.java 
+java Demo
+ls
+rm *.class
+ls
+bb
+ls
+cd jacob/
+aunpack 
+ls
+aunpack WebPage.zip 
+ls
+e 05WebPageRapport01.txt 
+ls
+cd WebPage/
+ls
+cd WebPage/
+ls
+rm *.class
+ls
+less stavnsgaard.txt 
+ls
+ls 

@@ -175,6 +175,17 @@
     :lastmodtime '(21162 55429 747375 74000)
     :unmatched-syntax 'nil
     )
+   (semanticdb-table "O17_11.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.util.ArrayList" include nil nil [1 28])
+            ("java.util.Iterator" include nil nil [29 55]))          
+    :file "O17_11.java"
+    :pointmax 779
+    :fsize 778
+    :lastmodtime '(21199 53638 466392 918000)
+    :unmatched-syntax '((BRACE_BLOCK 81 . 778) (GT 79 . 80) (IDENTIFIER 78 . 79) (PUBLIC 57 . 63) (LT 77 . 78) (BRACE_BLOCK 81 . 730) (GT 79 . 80) (IDENTIFIER 78 . 79) (PUBLIC 57 . 63) (LT 77 . 78) (BRACE_BLOCK 81 . 711) (GT 79 . 80) (IDENTIFIER 78 . 79) (PUBLIC 57 . 63) (LT 77 . 78) (BRACE_BLOCK 81 . 705) (GT 79 . 80) (IDENTIFIER 78 . 79) (PUBLIC 57 . 63) (LT 77 . 78) (BRACE_BLOCK 81 . 703) (GT 79 . 80) (IDENTIFIER 78 . 79) (PUBLIC 57 . 63) (LT 77 . 78) (BRACE_BLOCK 81 . 698) (GT 79 . 80) (IDENTIFIER 78 . 79) (PUBLIC 57 . 63) (LT 77 . 78))
+    )
    )
   :file "!home!pilen!oopd!semantic.cache"
   :semantic-tag-version "2.0"

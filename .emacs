@@ -2198,6 +2198,8 @@ current frame, create a new window and switch to it.
 ;;______________________________________________________________________________
 (require 'ibuffer)
 
+(setq ibuffer-default-sorting-mode 'filename/process)
+
 ;; From emacs-fu
 (setq ibuffer-saved-filter-groups
       (quote (("default"
@@ -3095,7 +3097,9 @@ current frame, create a new window and switch to it.
 ;;______________________________________________________________________________
 ;π W3M
 ;;______________________________________________________________________________
-(require 'w3m-load)
+(when (executable-find "w3m")
+  (require 'w3m-load))
+
 ;; (add-to-list 'load-path "~/builds/emacs-w3m-1.4.4")
 ;; (require 'w3m-e21)
 ;; (provide 'w3m-e23)

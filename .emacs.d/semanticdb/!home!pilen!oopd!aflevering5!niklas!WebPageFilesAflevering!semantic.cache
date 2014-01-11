@@ -1,0 +1,359 @@
+;; Object WebPageFilesAflevering/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "WebPageFilesAflevering/"
+  :tables (list 
+   (semanticdb-table "testWebPageJUnit.html"
+    :major-mode 'html-mode
+    :tags 
+        '( ("JUnit Test" section nil nil [18 60])
+            ("JUnit Test" section (:members 
+              ( ("Google.com" anchor nil nil [101 104])
+                ("ku.dk" anchor nil nil [157 160])
+                ("Google.dk" anchor nil nil [203 206]))              ) nil [60 268]))          
+    :file "testWebPageJUnit.html"
+    :pointmax 268
+    :fsize 276
+    :lastmodtime '(21192 2128 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "WebPage.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.io.IOException" include nil nil [1 28])
+            ("java.io.File" include nil nil [29 49])
+            ("java.io.FileNotFoundException" include nil nil [50 87])
+            ("java.io.PrintWriter" include nil nil [88 115])
+            ("java.net.URL" include nil nil [116 136])
+            ("java.net.URI" include nil nil [137 157])
+            ("java.net.URISyntaxException" include nil nil [158 193])
+            ("java.util.Scanner" include nil nil [194 219])
+            ("java.util.ArrayList" include nil nil [220 247])
+            ("WebPage" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("webPage" variable
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [335 363])
+                    ("WebPage" function
+                       (:constructor-flag t
+                        :throws ("IOException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("address" variable (:type "String") (reparse-symbol formal_parameters) [565 579]))                          )
+                        (reparse-symbol class_member_declaration) [549 808])
+                    ("WebPage" function
+                       (:constructor-flag t
+                        :throws ("FileNotFoundException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("inputFile" variable (:type "File") (reparse-symbol formal_parameters) [1002 1016]))                          )
+                        (reparse-symbol class_member_declaration) [986 1212])
+                    ("storeAsText" function
+                       (:throws ("FileNotFoundException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("fileName" variable (:type "String") (reparse-symbol formal_parameters) [1358 1373]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1334 1518])
+                    ("getWebPage" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1613 1676])
+                    ("getHyperlinks" function (:constructor-flag t) (reparse-symbol class_member_declaration) [2126 3246]))                  
+                :type "class")
+                nil [308 3248]))          
+    :file "WebPage.java"
+    :pointmax 3249
+    :fsize 3248
+    :lastmodtime '(21192 1996 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "WebPageTest.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("org.junit.After" include nil nil [35 58])
+            ("org.junit.Before" include nil nil [59 83])
+            ("org.junit.Test" include nil nil [84 106])
+            ("java.io.File" include nil nil [107 127])
+            ("java.util.ArrayList" include nil nil [128 155])
+            ("java.io.FileNotFoundException" include nil nil [156 193])
+            ("WebPageTest" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("testWebPageFile" variable
+                       (:typemodifiers ("private")
+                        :type "WebPage")
+                        (reparse-symbol class_member_declaration) [322 354])
+                    ("setUp" function
+                       (:throws ("FileNotFoundException")
+                        :typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [372 506])
+                    ("getHyperlinksTest" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [522 840]))                  
+                :type "class")
+                nil [291 842]))          
+    :file "WebPageTest.java"
+    :pointmax 843
+    :fsize 842
+    :lastmodtime '(21192 1522 0 0)
+    :unmatched-syntax '((MULT 32 . 33) (DOT 31 . 32) (IDENTIFIER 25 . 31) (DOT 24 . 25) (IDENTIFIER 19 . 24) (DOT 18 . 19) (STATIC 8 . 14) (IDENTIFIER 15 . 18))
+    )
+   (semanticdb-table "Demo.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.io.File" include nil nil [1 21])
+            ("java.io.IOException" include nil nil [22 49])
+            ("java.io.FileNotFoundException" include nil nil [50 87])
+            ("Demo" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [294 307]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [270 976]))                  
+                :type "class")
+                nil [246 978]))          
+    :file "Demo.java"
+    :pointmax 978
+    :fsize 977
+    :lastmodtime '(21192 1456 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "testwebpage.html"
+    :major-mode 'html-mode
+    :tags 
+        '( ("Detexify LaTeX handwritten symbol recognition" section nil nil [37 504])
+            ("/* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */" section nil nil [504 578])
+            ("/* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */" section nil nil [578 650])
+            ("/* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */" section nil nil [650 723])
+            ("/* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */" section nil nil [723 807])
+            ("/* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */" section nil nil [807 884])
+            ("/* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */" section nil nil [884 947])
+            ("/* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */" section nil nil [947 1011])
+            ("/* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */" section nil nil [1011 1083])
+            ("/* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */" section nil nil [1083 1152])
+            ("/* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */" section nil nil [1152 1235])
+            ("/* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */" section nil nil [1235 1301])
+            ("/* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */" section nil nil [1301 1367])
+            ("/* <![CDATA[ */
+        (function() {
+            var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = 'http://api.flattr.com/js/0.5.0/load.js?mode=auto';
+
+            t.parentNode.insertBefore(s, t);
+        })();
+    /* ]]> */" section nil nil [1367 1784])
+            ("Detexify<sup>2" section (:members 
+              ( ("Detexify<sup>2" section (:members 
+                  ( ("classify" anchor nil nil [2021 2024])
+                    ("symbols" anchor nil nil [2092 2095])
+                    ("blog" anchor nil nil [2158 2161])
+                    ("What is this?" section (:members 
+                      ( ("symbols-a4.pdf" anchor nil nil [3072 3075]))                      ) nil [2924 3270])
+                    ("How do I use it?" section nil nil [3270 3430])
+                    ("My symbol isn't found!" section nil nil [3430 3941])
+                    ("I like this. How can I help?" section (:members 
+                      ( ("backend" anchor nil nil [4098 4101])
+                        ("frontend" anchor nil nil [4169 4172])
+                        ("new version" anchor nil nil [4259 4262])
+                        ("or
+        <a class=\"FlattrButton\" style=\"display:none;\"
+        href=\"http://detexify.kirelabs.org\">" anchor nil nil [4377 4380]))                      ) nil [3941 4729])
+                    ("Why should I donate?" section (:members 
+                      ( ("Zweitag GmbH" anchor nil nil [4986 4989]))                      ) nil [4729 5126])
+                    ("This doesn't work at all!?" section nil nil [5126 5351])
+                    ("Do you support Unicode?" section (:members 
+                      ( ("new version" anchor nil nil [5414 5417])
+                        ("http://shapecatcher.com" anchor nil nil [5465 5468]))                      ) nil [5351 5549])
+                    ("What is that new version you are talking about?" section (:members 
+                      ( ("here" anchor nil nil [5728 5731])
+                        ("sketch-a-char" anchor nil nil [5848 5851]))                      ) nil [5549 5947])
+                    ("Who created Detexify?" section (:members 
+                      ( ("Daniel Kirsch" anchor nil nil [6048 6051])
+                        ("Did this help?" anchor nil nil [6223 6226])
+                        ("The symbol is not in the list?
+          <a id=\"more\" href='#'>Select from the complete list!" anchor nil nil [6593 6596]))                      ) nil [5947 7252]))                  ) nil [1906 7252]))              ) nil [1784 7252])
+            ("var gaJsHost = ((\"https:\" == document.location.protocol) ? \"https://ssl.\" : \"http://www.\");
+    document.write(unescape(\"%3Cscript src='\" + gaJsHost + \"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E\"));" section nil nil [7252 7529])
+            ("try {
+    var pageTracker = _gat._getTracker(\"UA-8668142-3\");
+    pageTracker._trackPageview();
+    } catch(err) {}" section nil nil [7529 7708]))          
+    :file "testwebpage.html"
+    :pointmax 7708
+    :fsize 7708
+    :lastmodtime '(21195 12312 206609 592000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "InstruktorTest.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.io.File" include nil nil [1 21])
+            ("InstruktorTest" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [82 95]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [58 453]))                  
+                :type "class")
+                nil [23 455]))          
+    :file "InstruktorTest.java"
+    :pointmax 456
+    :fsize 455
+    :lastmodtime '(21197 49130 143030 60000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "test.html"
+    :major-mode 'html-mode
+    :tags 
+        '( ("Foo" anchor nil nil [1 4])
+            ("Bar" anchor nil nil [41 44]))          
+    :file "test.html"
+    :pointmax 72
+    :fsize 71
+    :lastmodtime '(21197 48826 266377 204000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering5!niklas!WebPageFilesAflevering!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

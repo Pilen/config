@@ -1,0 +1,765 @@
+;; Object U5-Adrian-Jens-Pelle-Sverke/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "U5-Adrian-Jens-Pelle-Sverke/"
+  :tables (list 
+   (semanticdb-table "WebPage.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.net.URL" include nil nil [1 21])
+            ("java.net.MalformedURLException" include nil nil [22 60])
+            ("java.util.Scanner" include nil nil [61 86])
+            ("java.io.PrintWriter" include nil nil [87 114])
+            ("java.io.File" include nil nil [115 135])
+            ("java.io.IOException" include nil nil [136 163])
+            ("java.io.FileNotFoundException" include nil nil [164 201])
+            ("java.util.ArrayList" include nil nil [202 229])
+            ("WebPage" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("url" variable
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [381 400])
+                    ("WebPage" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [467 613])
+                    ("WebPage" function
+                       (:constructor-flag t
+                        :throws ("IOException" "MalformedURLException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("url" variable (:type "String") (reparse-symbol formal_parameters) [753 763]))                          )
+                        (reparse-symbol class_member_declaration) [738 932])
+                    ("getContent" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1050 1290])
+                    ("getHyperlinks" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1414 1663])
+                    ("getHyperlink" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("i" variable (:type "int") (reparse-symbol formal_parameters) [1837 1842]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1810 1885])
+                    ("getURL" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1987 2042])
+                    ("read" function
+                       (:throws ("IOException" "MalformedURLException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("url" variable (:type "String") (reparse-symbol formal_parameters) [2213 2223]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2196 2556])
+                    ("readHyperlinks" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2697 3149])
+                    ("isolateBody" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("content" variable (:type "String") (reparse-symbol formal_parameters) [3425 3439]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [3398 3540])
+                    ("storeAsText" function
+                       (:throws ("FileNotFoundException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("filename" variable (:type "String") (reparse-symbol formal_parameters) [3695 3710]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3671 3895])
+                    ("loadAsText" function
+                       (:throws ("FileNotFoundException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("filename" variable (:type "String") (reparse-symbol formal_parameters) [4061 4076]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [4038 4298]))                  
+                :type "class")
+                nil [272 4300]))          
+    :file "WebPage.java"
+    :pointmax 4301
+    :fsize 4446
+    :lastmodtime '(21197 48597 19720 955000)
+    :unmatched-syntax '((SEMICOLON 375 . 376) (GT 366 . 367) (LT 359 . 360) (SEMICOLON 336 . 337) (GT 324 . 325) (PRIVATE 300 . 307) (LT 317 . 318))
+    )
+   (semanticdb-table "WebPageDemo.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.net.MalformedURLException" include nil nil [1 39])
+            ("java.io.IOException" include nil nil [40 67])
+            ("java.util.Scanner" include nil nil [68 93])
+            ("WebPageDemo" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("webPage" variable (:type "WebPage") (reparse-symbol class_member_declaration) [182 198])
+                    ("view" variable (:type "ConsoleView") (reparse-symbol class_member_declaration) [203 220])
+                    ("WebPageDemo" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [287 1040])
+                    ("prompt" function
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1128 1266])
+                    ("prompt" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("message" variable (:type "String") (reparse-symbol formal_parameters) [1450 1464]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1428 1535])
+                    ("loadWebPage" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1657 1873])
+                    ("saveWebPage" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1993 2210])
+                    ("urlWebPage" function
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2346 2564])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [2709 2722]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2685 2758]))                  
+                :type "class")
+                nil [150 2760]))          
+    :file "WebPageDemo.java"
+    :pointmax 2760
+    :fsize 2863
+    :lastmodtime '(21192 15406 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "ConsoleView.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("ConsoleView" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("ConsoleView" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [183 285])
+                    ("printCommands" function
+                       (:typemodifiers ("public" "static")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [345 858])
+                    ("display" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("message" variable (:type "String") (reparse-symbol formal_parameters) [1043 1057])
+                            ("content" variable (:type "String") (reparse-symbol formal_parameters) [1059 1073]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1023 1154])
+                    ("helpMessage" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1206 1306])
+                    ("urlError" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1395 1476])
+                    ("loadError" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1534 1622])
+                    ("loadSuccessful" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1685 1791])
+                    ("saveError" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1849 1935])
+                    ("saveSuccessful" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1998 2101]))                  
+                :type "class")
+                nil [73 2103]))          
+    :file "ConsoleView.java"
+    :pointmax 2103
+    :fsize 2179
+    :lastmodtime '(21193 25412 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "WebPageTest.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("WebPageTest" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("page" variable
+                       (:typemodifiers ("private")
+                        :type "WebPage")
+                        (reparse-symbol class_member_declaration) [68 89])
+                    ("hyperlink_1" variable
+                       (:typemodifiers ("private" "final")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [94 251])
+                    ("WebPageTest" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [331 386])
+                    ("firstLink_junit" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [490 1139])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [1238 1251]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1214 1287]))                  
+                :type "class")
+                nil [37 1289]))          
+    :file "WebPageTest.java"
+    :pointmax 1289
+    :fsize 1329
+    :lastmodtime '(21193 25588 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "kage"
+    :major-mode 'html-mode
+    :tags 
+        '( ("Wikipedia, the free encyclopedia" section nil nil [95 2164])
+            ("if(window.mw){
+mw.config.set({\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Main_Page\",\"wgTitle\":\"Main Page\",\"wgCurRevisionId\":574690625,\"wgRevisionId\":574690625,\"wgArticleId\":15580374,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[],\"wgBreakFrames\":false,\"wgPageContentLanguage\":\"en\",\"wgPageContentModel\":\"wikitext\",\"wgSeparatorTransformTable\":[\"\",\"\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"wgMonthNamesShort\":[\"\",\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\",\"Jul\",\"Aug\",\"Sep\",\"Oct\",\"Nov\",\"Dec\"],\"wgRelevantPageName\":\"Main_Page\",\"wgIsProbablyEditable\":false,\"wgRestrictionEdit\":[\"sysop\"],\"wgRestrictionMove\":[\"sysop\"],\"wgIsMainPage\":true,\"wgWikiEditorEnabledModules\":{\"toolbar\":true,\"dialogs\":true,\"hidesig\":true,\"templateEditor\":false,\"templates\":false,\"preview\":false,\"previewDialog\":false,\"publish\":false,\"toc\":false},\"wgArticleFeedbackv5Permissions\":{\"aft-reader\":true,\"aft-member\":false,\"aft-editor\":false,\"aft-monitor\":false,\"aft-administrator\":false,\"aft-oversighter\":false,\"aft-noone\":false},\"wgBetaFeaturesFeatures\":[],\"wgVisualEditor\":{\"isPageWatched\":false,\"magnifyClipIconURL\":\"//bits.wikimedia.org/static-1.23wmf8/skins/common/images/magnify-clip.png\",\"pageLanguageCode\":\"en\",\"pageLanguageDir\":\"ltr\"},\"wikilove-recipient\":\"\",\"wikilove-anon\":0,\"wgGuidedTourHelpGuiderUrl\":\"Help:Guided tours/guider\",\"wgULSAcceptLanguageList\":[],\"wgULSCurrentAutonym\":\"English\",\"wgFlaggedRevsParams\":{\"tags\":{\"status\":{\"levels\":1,\"quality\":2,\"pristine\":3}}},\"wgStableRevisionId\":null,\"wgCategoryTreePageCategoryOptions\":\"{\\\"mode\\\":0,\\\"hideprefix\\\":20,\\\"showcount\\\":true,\\\"namespaces\\\":false}\",\"Geo\":{\"city\":\"\",\"country\":\"\"},\"wgNoticeProject\":\"wikipedia\",\"aftv5Article\":{\"id\":15580374,\"title\":\"Main Page\",\"namespace\":0,\"categories\":[],\"permissionLevel\":\"aft-noone\"},\"wgWikibaseItemId\":\"Q5296\"});
+}" section nil nil [2164 2318])
+            ("if(window.mw){
+mw.config.set({\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Main_Page\",\"wgTitle\":\"Main Page\",\"wgCurRevisionId\":574690625,\"wgRevisionId\":574690625,\"wgArticleId\":15580374,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[],\"wgBreakFrames\":false,\"wgPageContentLanguage\":\"en\",\"wgPageContentModel\":\"wikitext\",\"wgSeparatorTransformTable\":[\"\",\"\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"wgMonthNamesShort\":[\"\",\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\",\"Jul\",\"Aug\",\"Sep\",\"Oct\",\"Nov\",\"Dec\"],\"wgRelevantPageName\":\"Main_Page\",\"wgIsProbablyEditable\":false,\"wgRestrictionEdit\":[\"sysop\"],\"wgRestrictionMove\":[\"sysop\"],\"wgIsMainPage\":true,\"wgWikiEditorEnabledModules\":{\"toolbar\":true,\"dialogs\":true,\"hidesig\":true,\"templateEditor\":false,\"templates\":false,\"preview\":false,\"previewDialog\":false,\"publish\":false,\"toc\":false},\"wgArticleFeedbackv5Permissions\":{\"aft-reader\":true,\"aft-member\":false,\"aft-editor\":false,\"aft-monitor\":false,\"aft-administrator\":false,\"aft-oversighter\":false,\"aft-noone\":false},\"wgBetaFeaturesFeatures\":[],\"wgVisualEditor\":{\"isPageWatched\":false,\"magnifyClipIconURL\":\"//bits.wikimedia.org/static-1.23wmf8/skins/common/images/magnify-clip.png\",\"pageLanguageCode\":\"en\",\"pageLanguageDir\":\"ltr\"},\"wikilove-recipient\":\"\",\"wikilove-anon\":0,\"wgGuidedTourHelpGuiderUrl\":\"Help:Guided tours/guider\",\"wgULSAcceptLanguageList\":[],\"wgULSCurrentAutonym\":\"English\",\"wgFlaggedRevsParams\":{\"tags\":{\"status\":{\"levels\":1,\"quality\":2,\"pristine\":3}}},\"wgStableRevisionId\":null,\"wgCategoryTreePageCategoryOptions\":\"{\\\"mode\\\":0,\\\"hideprefix\\\":20,\\\"showcount\\\":true,\\\"namespaces\\\":false}\",\"Geo\":{\"city\":\"\",\"country\":\"\"},\"wgNoticeProject\":\"wikipedia\",\"aftv5Article\":{\"id\":15580374,\"title\":\"Main Page\",\"namespace\":0,\"categories\":[],\"permissionLevel\":\"aft-noone\"},\"wgWikibaseItemId\":\"Q5296\"});
+}" section nil nil [2318 4386])
+            ("if(window.mw){
+mw.loader.implement(\"user.options\",function(){mw.user.options.set({\"ccmeonemails\":0,\"cols\":80,\"date\":\"default\",\"diffonly\":0,\"disablemail\":0,\"editfont\":\"default\",\"editondblclick\":0,\"editsection\":1,\"editsectiononrightclick\":0,\"enotifminoredits\":0,\"enotifrevealaddr\":0,\"enotifusertalkpages\":1,\"enotifwatchlistpages\":0,\"extendwatchlist\":0,\"fancysig\":0,\"forceeditsummary\":0,\"gender\":\"unknown\",\"hideminor\":0,\"hidepatrolled\":0,\"imagesize\":2,\"justify\":0,\"math\":0,\"minordefault\":0,\"newpageshidepatrolled\":0,\"nickname\":\"\",\"noconvertlink\":0,\"norollbackdiff\":0,\"numberheadings\":0,\"previewonfirst\":0,\"previewontop\":1,\"rcdays\":7,\"rclimit\":50,\"rememberpassword\":0,\"rows\":25,\"searchlimit\":20,\"showhiddencats\":false,\"shownumberswatching\":1,\"showtoc\":1,\"showtoolbar\":1,\"skin\":\"vector\",\"stubthreshold\":0,\"thumbsize\":4,\"underline\":2,\"uselivepreview\":0,\"usenewrc\":0,\"vector-simplesearch\":1,\"watchcreations\":1,\"watchdefault\":0,\"watchdeletion\":0,\"watchlistdays\":3,\"watchlisthideanons\":0,\"watchlisthidebots\":0,
+\"watchlisthideliu\":0,\"watchlisthideminor\":0,\"watchlisthideown\":0,\"watchlisthidepatrolled\":0,\"watchmoves\":0,\"wllimit\":250,\"useeditwarning\":1,\"prefershttps\":1,\"flaggedrevssimpleui\":1,\"flaggedrevsstable\":0,\"flaggedrevseditdiffs\":true,\"flaggedrevsviewdiffs\":false,\"usebetatoolbar\":1,\"usebetatoolbar-cgd\":1,\"aftv5-last-filter\":null,\"visualeditor-enable\":0,\"visualeditor-enable-experimental\":0,\"visualeditor-enable-mwmath\":0,\"visualeditor-betatempdisable\":0,\"wikilove-enabled\":1,\"echo-subscriptions-web-page-review\":true,\"echo-subscriptions-email-page-review\":false,\"ep_showtoplink\":false,\"ep_bulkdelorgs\":false,\"ep_bulkdelcourses\":true,\"ep_showdyk\":true,\"echo-notify-show-link\":true,\"echo-show-alert\":true,\"echo-email-frequency\":0,\"echo-email-format\":\"html\",\"echo-subscriptions-email-system\":true,\"echo-subscriptions-web-system\":true,\"echo-subscriptions-email-other\":false,\"echo-subscriptions-web-other\":true,\"echo-subscriptions-email-edit-user-talk\":false,\"echo-subscriptions-web-edit-user-talk\":true,
+\"echo-subscriptions-email-reverted\":false,\"echo-subscriptions-web-reverted\":true,\"echo-subscriptions-email-article-linked\":false,\"echo-subscriptions-web-article-linked\":false,\"echo-subscriptions-email-mention\":false,\"echo-subscriptions-web-mention\":true,\"echo-subscriptions-web-edit-thank\":true,\"echo-subscriptions-email-edit-thank\":false,\"gettingstarted-task-toolbar-show-intro\":true,\"uls-preferences\":\"\",\"language\":\"en\",\"variant-gan\":\"gan\",\"variant-iu\":\"iu\",\"variant-kk\":\"kk\",\"variant-ku\":\"ku\",\"variant-shi\":\"shi\",\"variant-sr\":\"sr\",\"variant-tg\":\"tg\",\"variant-uz\":\"uz\",\"variant-zh\":\"zh\",\"searchNs0\":true,\"searchNs1\":false,\"searchNs2\":false,\"searchNs3\":false,\"searchNs4\":false,\"searchNs5\":false,\"searchNs6\":false,\"searchNs7\":false,\"searchNs8\":false,\"searchNs9\":false,\"searchNs10\":false,\"searchNs11\":false,\"searchNs12\":false,\"searchNs13\":false,\"searchNs14\":false,\"searchNs15\":false,\"searchNs100\":false,\"searchNs101\":false,\"searchNs108\":false,\"searchNs109\":false,\"searchNs118\":false,\"searchNs119\":false
+,\"searchNs446\":false,\"searchNs447\":false,\"searchNs710\":false,\"searchNs711\":false,\"searchNs828\":false,\"searchNs829\":false,\"gadget-teahouse\":1,\"gadget-ReferenceTooltips\":1,\"gadget-DRN-wizard\":1,\"gadget-charinsert\":1,\"gadget-mySandbox\":1,\"variant\":\"en\"});},{},{});mw.loader.implement(\"user.tokens\",function(){mw.user.tokens.set({\"editToken\":\"+\\\\\",\"patrolToken\":false,\"watchToken\":false});},{},{});
+/* cache key: enwiki:resourceloader:filter:minify-js:7:6a22f123799da906351b1c42c87d9ab1 */
+}" section nil nil [4386 7892])
+            ("if(window.mw){
+mw.loader.load([\"mediawiki.page.startup\",\"mediawiki.legacy.wikibits\",\"mediawiki.legacy.ajax\",\"ext.centralauth.centralautologin\",\"ext.visualEditor.viewPageTarget.init\",\"ext.wikimediaShopLink.core\",\"ext.uls.init\",\"ext.uls.interface\",\"wikibase.client.init\",\"ext.centralNotice.bannerController\",\"skins.vector.js\"]);
+}" section nil nil [7892 8238])
+            ("[if lt IE 7]><style type=\"text/css\">body{behavior:url(\"/w/static-1.23wmf8/skins/vector/csshover.min.htc\")}" section nil nil [8238 8487])
+            ("Main Page" section (:members 
+              ( ("Main Page" section (:members 
+                  ( ("navigation" anchor nil nil [9180 9183])
+                    ("search" anchor nil nil [9226 9229])
+                    ("Wikipedia" anchor nil nil [9723 9726])
+                    ("free" anchor nil nil [9832 9835])
+                    ("encyclopedia" anchor nil nil [9891 9894])
+                    ("anyone can edit" anchor nil nil [9963 9966])
+                    ("4,416,872" anchor nil nil [10106 10109])
+                    ("English" anchor nil nil [10194 10197])
+                    ("Arts" anchor nil nil [10345 10348])
+                    ("Biography" anchor nil nil [10411 10414])
+                    ("Geography" anchor nil nil [10492 10495])
+                    ("History" anchor nil nil [10629 10632])
+                    ("Mathematics" anchor nil nil [10704 10707])
+                    ("Science" anchor nil nil [10791 10794])
+                    ("Society" anchor nil nil [10922 10925])
+                    ("Technology" anchor nil nil [10997 11000])
+                    ("All portals" anchor nil nil [11084 11087])
+                    ("From today's featured article" section (:members 
+                      ( ("Weather Machine" anchor nil nil [11958 11961])
+                        ("Weather Machine" anchor nil nil [12558 12561])
+                        ("lumino-kinetic" anchor nil nil [12647 12650])
+                        ("bronze sculpture" anchor nil nil [12728 12731])
+                        ("Portland, Oregon" anchor nil nil [12827 12830])
+                        ("weather beacon" anchor nil nil [12924 12927])
+                        ("weather prediction" anchor nil nil [13017 13020])
+                        ("Pioneer Courthouse Square" anchor nil nil [13287 13290])
+                        ("Today" anchor nil nil [13497 13500])
+                        ("Willard Scott" anchor nil nil [13594 13597])
+                        ("fanfare" anchor nil nil [13728 13731])
+                        ("blue heron" anchor nil nil [13957 13960])
+                        ("drizzle" anchor nil nil [14034 14037])
+                        ("dragon" anchor nil nil [14117 14120])
+                        ("bronze" anchor nil nil [14231 14234])
+                        ("wind scoops" anchor nil nil [14280 14283])
+                        ("air quality index" anchor nil nil [14419 14422])
+                        ("stainless steel" anchor nil nil [14547 14550])
+                        ("Full&#160;article..." anchor nil nil [14747 14750])
+                        ("Deepika Padukone" anchor nil nil [14862 14865])
+                        ("Weight Gain 4000" anchor nil nil [14949 14952])
+                        ("False potto" anchor nil nil [15036 15039])
+                        ("Archive" anchor nil nil [15155 15158])
+                        ("By email" anchor nil nil [15298 15301])
+                        ("More featured articles..." anchor nil nil [15434 15437]))                      ) nil [11545 15604])
+                    ("Did you know..." section (:members 
+                      ( ("new and recently improved content" anchor nil nil [15952 15955])
+                        ("... that up to 100,000 pairs of the BBC's <b><a href=\"/wiki/LS3/5A\" title=\"LS3/5A\">LS3/5A" anchor nil nil [16125 16128])
+                        ("LS3/5A" anchor nil nil [16602 16605])
+                        ("Herbert Thomas Johnson" anchor nil nil [16783 16786])
+                        ("William H. Gilmore" anchor nil nil [16908 16911])
+                        ("adjutant general" anchor nil nil [17027 17030])
+                        ("Vermont National Guard" anchor nil nil [17125 17128])
+                        ("assassination of Archduke Ferdinand" anchor nil nil [17255 17258])
+                        ("anti-Serb pogrom in Sarajevo" anchor nil nil [17440 17443])
+                        ("Raadi Manor" anchor nil nil [17581 17584])
+                        ("Estonian National Museum" anchor nil nil [17670 17673])
+                        ("La Sila" anchor nil nil [17916 17919])
+                        ("Silaum" anchor nil nil [18020 18023])
+                        ("flowering plants" anchor nil nil [18089 18092])
+                        ("Jane Aitken" anchor nil nil [18210 18213])
+                        ("Jürgen Klinsmann" anchor nil nil [18373 18376])
+                        ("Who Do You Think You Are Kidding Jurgen Klinsmann?" anchor nil nil [18486 18489])
+                        ("Archive" anchor nil nil [18779 18782])
+                        ("Start a new article" anchor nil nil [18878 18881])
+                        ("Nominate an article" anchor nil nil [18993 18996]))                      ) nil [15604 19409])
+                    ("In the news" section (:members 
+                      ( ("The <a href=\"/wiki/Al-Qaeda\" title=\"Al-Qaeda\">al-Qaeda" anchor nil nil [19766 19769])
+                        ("al-Qaeda" anchor nil nil [20262 20265])
+                        ("Islamic State of Iraq and the Levant" anchor nil nil [20328 20331])
+                        ("captures" anchor nil nil [20470 20473])
+                        ("Fallujah" anchor nil nil [20579 20582])
+                        ("Latvia" anchor nil nil [20644 20647])
+                        ("becomes" anchor nil nil [20696 20699])
+                        ("EU" anchor nil nil [20785 20788])
+                        ("euro" anchor nil nil [20872 20875])
+                        ("attack" anchor nil nil [20988 20991])
+                        ("Kinshasa" anchor nil nil [21106 21109])
+                        ("Democratic Republic of the Congo" anchor nil nil [21162 21165])
+                        ("Soyuz-2-1v" anchor nil nil [21334 21337])
+                        ("Aist 1" anchor nil nil [21415 21418])
+                        ("Two suicide bombings" anchor nil nil [21514 21517])
+                        ("Volgograd" anchor nil nil [21661 21664])
+                        ("fears of civil war" anchor nil nil [21793 21796])
+                        ("United Nations Security Council" anchor nil nil [21935 21938])
+                        ("UNMISS" anchor nil nil [22079 22082])
+                        ("South Sudan" anchor nil nil [22202 22205])
+                        ("Recent deaths" anchor nil nil [22284 22287])
+                        ("Eusébio" anchor nil nil [22382 22385])
+                        ("Phil Everly" anchor nil nil [22469 22472])
+                        ("More&#160;current&#160;events..." anchor nil nil [22611 22614]))                      ) nil [19409 22776])
+                    ("On this day..." section (:members 
+                      ( ("January 6" anchor nil nil [23105 23108])
+                        ("Epiphany" anchor nil nil [23171 23174])
+                        ("1449" anchor nil nil [23322 23325])
+                        ("1449" anchor nil nil [23788 23791])
+                        ("Byzantine-Roman Emperor" anchor nil nil [23842 23845])
+                        ("Constantine&#160;XI Palaiologos" anchor nil nil [23972 23975])
+                        ("Fall of Constantinople" anchor nil nil [24126 24129])
+                        ("1839" anchor nil nil [24233 24236])
+                        ("most damaging storm in 300 years" anchor nil nil [24285 24288])
+                        ("knot" anchor nil nil [24425 24428])
+                        ("Dublin" anchor nil nil [24542 24545])
+                        ("1907" anchor nil nil [24601 24604])
+                        ("Maria Montessori" anchor nil nil [24666 24669])
+                        ("Rome" anchor nil nil [24823 24826])
+                        ("philosophy of education that now bears her name" anchor nil nil [24881 24884])
+                        ("1941" anchor nil nil [25009 25012])
+                        ("State of the Union Address" anchor nil nil [25065 25068])
+                        ("U.S. President" anchor nil nil [25195 25198])
+                        ("Franklin D. Roosevelt" anchor nil nil [25300 25303])
+                        ("Four Freedoms" anchor nil nil [25411 25414])
+                        ("freedoms" anchor nil nil [25500 25503])
+                        ("1994" anchor nil nil [25653 25656])
+                        ("Olympic" anchor nil nil [25716 25719])
+                        ("figure skating" anchor nil nil [25780 25783])
+                        ("Nancy Kerrigan" anchor nil nil [25865 25868])
+                        ("Tonya Harding" anchor nil nil [26060 26063])
+                        ("January 5" anchor nil nil [26190 26193])
+                        ("January 6" anchor nil nil [26281 26284])
+                        ("January 7" anchor nil nil [26373 26376])
+                        ("Archive" anchor nil nil [26514 26517])
+                        ("By email" anchor nil nil [26669 26672])
+                        ("List of historical anniversaries" anchor nil nil [26833 26836])
+                        ("UTC" anchor nil nil [27071 27074]))                      ) nil [22776 27767])
+                    ("From today's featured list" section (:members 
+                      ( ("The <b><a href=\"/wiki/Carry_On_series_on_screen_and_stage\" title=\"Carry On series on screen and stage\"><i>Carry On" anchor nil nil [28171 28174])
+                        ("Carry On" anchor nil nil [28803 28806])
+                        ("thirty-one films" anchor nil nil [28943 28946])
+                        ("one television series" anchor nil nil [29081 29084])
+                        ("West End" anchor nil nil [29199 29202])
+                        ("franchise" anchor nil nil [29320 29323])
+                        ("Peter Rogers" anchor nil nil [29401 29404])
+                        ("Gerald Thomas" anchor nil nil [29472 29475])
+                        ("group of actors" anchor nil nil [29637 29640])
+                        ("innuendo" anchor nil nil [29802 29805])
+                        ("double entendre" anchor nil nil [29861 29864])
+                        ("Anglo-Amalgamated" anchor nil nil [30080 30083])
+                        ("Rank Organisation" anchor nil nil [30183 30186])
+                        ("Pinewood Studios" anchor nil nil [30300 30303])
+                        ("James Bond" anchor nil nil [30473 30476])
+                        ("Full&#160;list..." anchor nil nil [30639 30642])
+                        ("International cricket five-wicket hauls by Waqar Younis" anchor nil nil [30832 30835])
+                        ("International Space Station spacewalks" anchor nil nil [31046 31049])
+                        ("Mayor of Pichilemu" anchor nil nil [31209 31212])
+                        ("Archive" anchor nil nil [31350 31353])
+                        ("More featured lists..." anchor nil nil [31487 31490]))                      ) nil [27767 31998])
+                    ("Today's featured picture" section (:members 
+                      ( ("A satellite image showing <b><a href=\"/wiki/Fogo,_Cape_Verde\" title=\"Fogo, Cape Verde\">Fogo" anchor nil nil [32492 32495])
+                        ("Fogo" anchor nil nil [33085 33088])
+                        ("Cape Verde" anchor nil nil [33186 33189])
+                        ("Pico do Fogo" anchor nil nil [33252 33255])
+                        ("NASA Earth Observatory" anchor nil nil [33441 33444])
+                        ("SNCB Class 77" anchor nil nil [33612 33615])
+                        ("The Ardabil Carpet" anchor nil nil [33706 33709])
+                        ("Chesme Church" anchor nil nil [33805 33808])
+                        ("Archive" anchor nil nil [33931 33934])
+                        ("More featured pictures..." anchor nil nil [34060 34063]))                      ) nil [31998 34322])
+                    ("Other areas of Wikipedia" section (:members 
+                      ( ("Community portal" anchor nil nil [34431 34434])
+                        ("Help desk" anchor nil nil [34641 34644])
+                        ("Local embassy" anchor nil nil [34774 34777])
+                        ("Reference desk" anchor nil nil [34951 34954])
+                        ("Site news" anchor nil nil [35165 35168])
+                        ("Village pump" anchor nil nil [35346 35349]))                      ) nil [34322 35569])
+                    ("Wikipedia's sister projects" section (:members 
+                      ( ("Wikimedia Foundation" anchor nil nil [35704 35707])
+                        ("projects" anchor nil nil [35855 35858])
+                        ("Commons" anchor nil nil [36123 36126])
+                        ("MediaWiki" anchor nil nil [36491 36494])
+                        ("Meta-Wiki" anchor nil nil [37097 37100])
+                        ("Wikibooks" anchor nil nil [37482 37485])
+                        ("Wikidata" anchor nil nil [37842 37845])
+                        ("Wikinews" anchor nil nil [38435 38438])
+                        ("Wikiquote" anchor nil nil [38791 38794])
+                        ("Wikisource" anchor nil nil [39149 39152])
+                        ("Wikispecies" anchor nil nil [39509 39512])
+                        ("Wikiversity" anchor nil nil [39892 39895])
+                        ("Wikivoyage" anchor nil nil [40276 40279])
+                        ("Wiktionary" anchor nil nil [40921 40924]))                      ) nil [35569 41282])
+                    ("Wikipedia languages" section (:members 
+                      ( ("English" anchor nil nil [41463 41466])
+                        ("4,416,872" anchor nil nil [41671 41674])
+                        ("Complete list of Wikipedias" anchor nil nil [49175 49178])
+                        ("http://en.wikipedia.org/w/index.php?title=Main_Page&amp;oldid=574690625" anchor nil nil [50084 50087]))                      ) nil [41282 50423])
+                    ("Navigation menu" section (:members 
+                      ( ("Personal tools" section (:members 
+                          ( ("Create account" anchor nil nil [50637 50640])
+                            ("Log in" anchor nil nil [50764 50767]))                          ) nil [50559 51082])
+                        ("Namespaces" section (:members 
+                          ( ("Main Page" anchor nil nil [51184 51187])
+                            ("Talk" anchor nil nil [51314 51317]))                          ) nil [51082 51551])
+                        ("Variants" section nil nil [51551 51596])
+                        ("Variants" section (:members 
+                          ( ("Views" anchor nil nil [51643 51646]))                          ) nil [51596 51855])
+                        ("Views" section (:members 
+                          ( ("Read" anchor nil nil [51940 51943])
+                            ("View source" anchor nil nil [52022 52025])
+                            ("View history" anchor nil nil [52235 52238]))                          ) nil [51855 52500])
+                        ("Actions" section (:members 
+                          ( ("Search" anchor nil nil [52546 52549]))                          ) nil [52500 52656])
+                        ("Search" section nil nil [52656 53543])
+                        ("Navigation" section (:members 
+                          ( ("Main page" anchor nil nil [53649 53652])
+                            ("Contents" anchor nil nil [53763 53766])
+                            ("Featured content" anchor nil nil [53880 53883])
+                            ("Current events" anchor nil nil [54023 54026])
+                            ("Random article" anchor nil nil [54164 54167])
+                            ("Donate to Wikipedia" anchor nil nil [54293 54296]))                          ) nil [53543 54628])
+                        ("Interaction" section (:members 
+                          ( ("Help" anchor nil nil [54720 54723])
+                            ("About Wikipedia" anchor nil nil [54838 54841])
+                            ("Community portal" anchor nil nil [54949 54952])
+                            ("Recent changes" anchor nil nil [55111 55114])
+                            ("Contact page" anchor nil nil [55262 55265]))                          ) nil [54628 55441])
+                        ("Tools" section (:members 
+                          ( ("What links here" anchor nil nil [55527 55530])
+                            ("Related changes" anchor nil nil [55726 55729])
+                            ("Upload file" anchor nil nil [55898 55901])
+                            ("Special pages" anchor nil nil [56030 56033])
+                            ("Permanent link" anchor nil nil [56168 56171])
+                            ("Page information" anchor nil nil [56322 56325])
+                            ("Data item" anchor nil nil [56426 56429])
+                            ("Cite this page" anchor nil nil [56566 56569]))                          ) nil [55441 56844])
+                        ("Print/export" section (:members 
+                          ( ("Create a book" anchor nil nil [56955 56958])
+                            ("Download as PDF" anchor nil nil [57099 57102])
+                            ("Printable version" anchor nil nil [57270 57273]))                          ) nil [56844 57517])
+                        ("Languages" section (:members 
+                          ( ("Simple English" anchor nil nil [57632 57635])
+                            ("العربية" anchor nil nil [57797 57800])
+                            ("Bahasa Indonesia" anchor nil nil [57935 57938])
+                            ("Bahasa Melayu" anchor nil nil [58086 58089])
+                            ("Български" anchor nil nil [58229 58232])
+                            ("Català" anchor nil nil [58372 58375])
+                            ("Čeština" anchor nil nil [58510 58513])
+                            ("Dansk" anchor nil nil [58647 58650])
+                            ("Deutsch" anchor nil nil [58783 58786])
+                            ("Eesti" anchor nil nil [58921 58924])
+                            ("Ελληνικά" anchor nil nil [59059 59062])
+                            ("Español" anchor nil nil [59197 59200])
+                            ("Esperanto" anchor nil nil [59336 59339])
+                            ("Euskara" anchor nil nil [59479 59482])
+                            ("فارسی" anchor nil nil [59617 59620])
+                            ("Français" anchor nil nil [59754 59757])
+                            ("Galego" anchor nil nil [59893 59896])
+                            ("한국어" anchor nil nil [60032 60035])
+                            ("עברית" anchor nil nil [60166 60169])
+                            ("Hrvatski" anchor nil nil [60302 60305])
+                            ("Italiano" anchor nil nil [60443 60446])
+                            ("ქართული" anchor nil nil [60583 60586])
+                            ("Latviešu" anchor nil nil [60723 60726])
+                            ("Lietuvių" anchor nil nil [60863 60866])
+                            ("Magyar" anchor nil nil [61006 61009])
+                            ("Nederlands" anchor nil nil [61146 61149])
+                            ("日本語" anchor nil nil [61286 61289])
+                            ("Norsk bokmål" anchor nil nil [61422 61425])
+                            ("Norsk nynorsk" anchor nil nil [61577 61580])
+                            ("Polski" anchor nil nil [61732 61735])
+                            ("Português" anchor nil nil [61869 61872])
+                            ("Română" anchor nil nil [62013 62016])
+                            ("Русский" anchor nil nil [62152 62155])
+                            ("Slovenčina" anchor nil nil [62291 62294])
+                            ("Slovenščina" anchor nil nil [62432 62435])
+                            ("Српски / srpski" anchor nil nil [62577 62580])
+                            ("Srpskohrvatski / српскохрватски" anchor nil nil [62724 62727])
+                            ("Suomi" anchor nil nil [62894 62897])
+                            ("Svenska" anchor nil nil [63031 63034])
+                            ("ไทย" anchor nil nil [63170 63173])
+                            ("Tiếng Việt" anchor nil nil [63302 63305])
+                            ("Türkçe" anchor nil nil [63447 63450])
+                            ("Українська" anchor nil nil [63585 63588])
+                            ("中文" anchor nil nil [63729 63732])
+                            ("This page was last modified on 27 September 2013 at 03:10.<br />" anchor nil nil [63848 63851])
+                            ("Terms of Use" anchor nil nil [64499 64502])
+                            ("Privacy Policy." anchor nil nil [64574 64577])
+                            ("Wikimedia Foundation, Inc." anchor nil nil [64700 64703])
+                            ("Privacy policy" anchor nil nil [64893 64896])
+                            ("About Wikipedia" anchor nil nil [65046 65049])
+                            ("Disclaimers" anchor nil nil [65172 65175])
+                            ("Contact Wikipedia" anchor nil nil [65317 65320])
+                            ("Mobile view" anchor nil nil [65604 65607])
+                            ("/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/" anchor nil nil [65817 65820])
+                            ("/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/" anchor nil nil [66022 66025]))                          ) nil [57517 66277]))                      ) nil [50423 66277]))                  ) nil [8887 66277]))              ) nil [8487 66277])
+            ("/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/" section nil nil [66277 66346])
+            ("if(window.mw){
+mw.loader.state({\"site\":\"loading\",\"user\":\"ready\",\"user.groups\":\"ready\"});
+}" section nil nil [66346 66454])
+            ("if(window.mw){
+mw.loader.load([\"mediawiki.action.view.postEdit\",\"mobile.desktop\",\"mediawiki.user\",\"mediawiki.hidpi\",\"mediawiki.page.ready\",\"mediawiki.searchSuggest\",\"ext.gadget.teahouse\",\"ext.gadget.ReferenceTooltips\",\"ext.gadget.DRN-wizard\",\"ext.gadget.charinsert\",\"mw.MwEmbedSupport.style\",\"ext.articleFeedbackv5.startup\",\"ext.wikimediaEvents.moduleStorage\",\"ext.navigationTiming\",\"schema.UniversalLanguageSelector\",\"ext.uls.eventlogger\",\"mw.PopUpMediaTransform\",\"skins.vector.collapsibleNav\"],null,true);
+}" section nil nil [66454 66981])
+            ("" section nil nil [66981 67190]))          
+    :file "kage"
+    :pointmax 67190
+    :fsize 67506
+    :lastmodtime '(21195 6234 563552 469000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "test.html"
+    :major-mode 'html-mode
+    :tags 
+        '( ("Foo" section (:members 
+              ( ("Foo" anchor nil nil [8 11])
+                ("Bar" anchor nil nil [49 52]))              ) nil [1 88]))          
+    :file "test.html"
+    :pointmax 88
+    :fsize 87
+    :lastmodtime '(21197 48439 9728 136000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "InstruktorTest.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("InstruktorTest" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [61 74]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [37 319]))                  
+                :type "class")
+                nil [2 321]))          
+    :file "InstruktorTest.java"
+    :pointmax 322
+    :fsize 321
+    :lastmodtime '(21197 47384 949776 40000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "wiki.html"
+    :major-mode 'html-mode
+    :tags 
+        '( ("Lagkage - Wikipedia, den frie encyklopædi" section nil nil [237 31625])
+            ("if(window.mw){
+mw.config.set({\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Lagkage\",\"wgTitle\":\"Lagkage\",\"wgCurRevisionId\":7065584,\"wgRevisionId\":7065584,\"wgArticleId\":236670,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[\"Påbegyndte artikler om mad og drikke\",\"Kager\"],\"wgBreakFrames\":false,\"wgPageContentLanguage\":\"da\",\"wgPageContentModel\":\"wikitext\",\"wgSeparatorTransformTable\":[\",\\t.\",\".\\t,\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"januar\",\"februar\",\"marts\",\"april\",\"maj\",\"juni\",\"juli\",\"august\",\"september\",\"oktober\",\"november\",\"december\"],\"wgMonthNamesShort\":[\"\",\"jan\",\"feb\",\"mar\",\"apr\",\"maj\",\"jun\",\"jul\",\"aug\",\"sep\",\"okt\",\"nov\",\"dec\"],\"wgRelevantPageName\":\"Lagkage\",\"wgIsProbablyEditable\":true,\"wgRestrictionEdit\":[],\"wgRestrictionMove\":[],\"wgWikiEditorEnabledModules\":{\"toolbar\":true,\"dialogs\":true,\"hidesig\":true,\"templateEditor\":false,\"templates\":false,\"preview\":false,\"previewDialog\":false,\"publish\":false,\"toc\":false},\"wgBetaFeaturesFeatures\":[],\"wgVisualEditor\":{\"isPageWatched\":false,\"magnifyClipIconURL\":\"//bits.wikimedia.org/static-1.23wmf8/skins/common/images/magnify-clip.png\",\"pageLanguageCode\":\"da\",\"pageLanguageDir\":\"ltr\"},\"wgULSAcceptLanguageList\":[\"en-us\",\"en\",\"da\"],\"wgULSCurrentAutonym\":\"dansk\",\"wgCategoryTreePageCategoryOptions\":\"{\\\"mode\\\":0,\\\"hideprefix\\\":20,\\\"showcount\\\":true,\\\"namespaces\\\":false}\",\"Geo\":{\"city\":\"\",\"country\":\"\"},\"wgNoticeProject\":\"wikipedia\",\"wgWikibaseItemId\":\"Q130186\"});
+}" section nil nil [31625 31670])
+            ("if(window.mw){
+mw.config.set({\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Lagkage\",\"wgTitle\":\"Lagkage\",\"wgCurRevisionId\":7065584,\"wgRevisionId\":7065584,\"wgArticleId\":236670,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[\"Påbegyndte artikler om mad og drikke\",\"Kager\"],\"wgBreakFrames\":false,\"wgPageContentLanguage\":\"da\",\"wgPageContentModel\":\"wikitext\",\"wgSeparatorTransformTable\":[\",\\t.\",\".\\t,\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"januar\",\"februar\",\"marts\",\"april\",\"maj\",\"juni\",\"juli\",\"august\",\"september\",\"oktober\",\"november\",\"december\"],\"wgMonthNamesShort\":[\"\",\"jan\",\"feb\",\"mar\",\"apr\",\"maj\",\"jun\",\"jul\",\"aug\",\"sep\",\"okt\",\"nov\",\"dec\"],\"wgRelevantPageName\":\"Lagkage\",\"wgIsProbablyEditable\":true,\"wgRestrictionEdit\":[],\"wgRestrictionMove\":[],\"wgWikiEditorEnabledModules\":{\"toolbar\":true,\"dialogs\":true,\"hidesig\":true,\"templateEditor\":false,\"templates\":false,\"preview\":false,\"previewDialog\":false,\"publish\":false,\"toc\":false},\"wgBetaFeaturesFeatures\":[],\"wgVisualEditor\":{\"isPageWatched\":false,\"magnifyClipIconURL\":\"//bits.wikimedia.org/static-1.23wmf8/skins/common/images/magnify-clip.png\",\"pageLanguageCode\":\"da\",\"pageLanguageDir\":\"ltr\"},\"wgULSAcceptLanguageList\":[\"en-us\",\"en\",\"da\"],\"wgULSCurrentAutonym\":\"dansk\",\"wgCategoryTreePageCategoryOptions\":\"{\\\"mode\\\":0,\\\"hideprefix\\\":20,\\\"showcount\\\":true,\\\"namespaces\\\":false}\",\"Geo\":{\"city\":\"\",\"country\":\"\"},\"wgNoticeProject\":\"wikipedia\",\"wgWikibaseItemId\":\"Q130186\"});
+}" section nil nil [31670 31749])
+            ("if(window.mw){
+mw.config.set({\"wgCanonicalNamespace\":\"\",\"wgCanonicalSpecialPageName\":false,\"wgNamespaceNumber\":0,\"wgPageName\":\"Lagkage\",\"wgTitle\":\"Lagkage\",\"wgCurRevisionId\":7065584,\"wgRevisionId\":7065584,\"wgArticleId\":236670,\"wgIsArticle\":true,\"wgIsRedirect\":false,\"wgAction\":\"view\",\"wgUserName\":null,\"wgUserGroups\":[\"*\"],\"wgCategories\":[\"Påbegyndte artikler om mad og drikke\",\"Kager\"],\"wgBreakFrames\":false,\"wgPageContentLanguage\":\"da\",\"wgPageContentModel\":\"wikitext\",\"wgSeparatorTransformTable\":[\",\\t.\",\".\\t,\"],\"wgDigitTransformTable\":[\"\",\"\"],\"wgDefaultDateFormat\":\"dmy\",\"wgMonthNames\":[\"\",\"januar\",\"februar\",\"marts\",\"april\",\"maj\",\"juni\",\"juli\",\"august\",\"september\",\"oktober\",\"november\",\"december\"],\"wgMonthNamesShort\":[\"\",\"jan\",\"feb\",\"mar\",\"apr\",\"maj\",\"jun\",\"jul\",\"aug\",\"sep\",\"okt\",\"nov\",\"dec\"],\"wgRelevantPageName\":\"Lagkage\",\"wgIsProbablyEditable\":true,\"wgRestrictionEdit\":[],\"wgRestrictionMove\":[],\"wgWikiEditorEnabledModules\":{\"toolbar\":true,\"dialogs\":true,\"hidesig\":true,\"templateEditor\":false,\"templates\":false,\"preview\":false,\"previewDialog\":false,\"publish\":false,\"toc\":false},\"wgBetaFeaturesFeatures\":[],\"wgVisualEditor\":{\"isPageWatched\":false,\"magnifyClipIconURL\":\"//bits.wikimedia.org/static-1.23wmf8/skins/common/images/magnify-clip.png\",\"pageLanguageCode\":\"da\",\"pageLanguageDir\":\"ltr\"},\"wgULSAcceptLanguageList\":[\"en-us\",\"en\",\"da\"],\"wgULSCurrentAutonym\":\"dansk\",\"wgCategoryTreePageCategoryOptions\":\"{\\\"mode\\\":0,\\\"hideprefix\\\":20,\\\"showcount\\\":true,\\\"namespaces\\\":false}\",\"Geo\":{\"city\":\"\",\"country\":\"\"},\"wgNoticeProject\":\"wikipedia\",\"wgWikibaseItemId\":\"Q130186\"});
+}" section nil nil [31749 33346])
+            ("if(window.mw){
+mw.loader.implement(\"user.options\",function(){mw.user.options.set({\"ccmeonemails\":0,\"cols\":80,\"date\":\"default\",\"diffonly\":0,\"disablemail\":0,\"editfont\":\"default\",\"editondblclick\":0,\"editsection\":1,\"editsectiononrightclick\":0,\"enotifminoredits\":0,\"enotifrevealaddr\":0,\"enotifusertalkpages\":1,\"enotifwatchlistpages\":0,\"extendwatchlist\":0,\"fancysig\":0,\"forceeditsummary\":0,\"gender\":\"unknown\",\"hideminor\":0,\"hidepatrolled\":0,\"imagesize\":2,\"justify\":0,\"math\":0,\"minordefault\":0,\"newpageshidepatrolled\":0,\"nickname\":\"\",\"noconvertlink\":0,\"norollbackdiff\":0,\"numberheadings\":0,\"previewonfirst\":0,\"previewontop\":1,\"rcdays\":7,\"rclimit\":50,\"rememberpassword\":0,\"rows\":25,\"searchlimit\":20,\"showhiddencats\":false,\"shownumberswatching\":1,\"showtoc\":1,\"showtoolbar\":1,\"skin\":\"vector\",\"stubthreshold\":0,\"thumbsize\":4,\"underline\":2,\"uselivepreview\":0,\"usenewrc\":0,\"vector-simplesearch\":1,\"watchcreations\":1,\"watchdefault\":0,\"watchdeletion\":0,\"watchlistdays\":3,\"watchlisthideanons\":0,\"watchlisthidebots\":0,
+\"watchlisthideliu\":0,\"watchlisthideminor\":0,\"watchlisthideown\":0,\"watchlisthidepatrolled\":0,\"watchmoves\":0,\"wllimit\":250,\"useeditwarning\":1,\"prefershttps\":1,\"usebetatoolbar\":1,\"usebetatoolbar-cgd\":1,\"visualeditor-enable\":1,\"visualeditor-enable-experimental\":0,\"visualeditor-enable-mwmath\":0,\"visualeditor-betatempdisable\":0,\"echo-notify-show-link\":true,\"echo-show-alert\":true,\"echo-email-frequency\":0,\"echo-email-format\":\"html\",\"echo-subscriptions-email-system\":true,\"echo-subscriptions-web-system\":true,\"echo-subscriptions-email-other\":false,\"echo-subscriptions-web-other\":true,\"echo-subscriptions-email-edit-user-talk\":false,\"echo-subscriptions-web-edit-user-talk\":true,\"echo-subscriptions-email-reverted\":false,\"echo-subscriptions-web-reverted\":true,\"echo-subscriptions-email-article-linked\":false,\"echo-subscriptions-web-article-linked\":false,\"echo-subscriptions-email-mention\":false,\"echo-subscriptions-web-mention\":true,\"echo-subscriptions-web-edit-thank\":true,
+\"echo-subscriptions-email-edit-thank\":false,\"uls-preferences\":\"\",\"language\":\"da\",\"variant-gan\":\"gan\",\"variant-iu\":\"iu\",\"variant-kk\":\"kk\",\"variant-ku\":\"ku\",\"variant-shi\":\"shi\",\"variant-sr\":\"sr\",\"variant-tg\":\"tg\",\"variant-uz\":\"uz\",\"variant-zh\":\"zh\",\"searchNs0\":true,\"searchNs1\":false,\"searchNs2\":false,\"searchNs3\":false,\"searchNs4\":false,\"searchNs5\":false,\"searchNs6\":false,\"searchNs7\":false,\"searchNs8\":false,\"searchNs9\":false,\"searchNs10\":false,\"searchNs11\":false,\"searchNs12\":false,\"searchNs13\":false,\"searchNs14\":false,\"searchNs15\":false,\"searchNs100\":false,\"searchNs101\":false,\"searchNs102\":false,\"searchNs103\":false,\"searchNs828\":false,\"searchNs829\":false,\"variant\":\"da\"});},{},{});mw.loader.implement(\"user.tokens\",function(){mw.user.tokens.set({\"editToken\":\"+\\\\\",\"patrolToken\":false,\"watchToken\":false});},{},{});
+/* cache key: dawiki:resourceloader:filter:minify-js:7:5467213f0f20db4c325ce7e0eb9edb4c */
+}" section nil nil [33346 36246])
+            ("if(window.mw){
+mw.loader.load([\"mediawiki.page.startup\",\"mediawiki.legacy.wikibits\",\"mediawiki.legacy.ajax\",\"ext.centralauth.centralautologin\",\"ext.visualEditor.viewPageTarget.init\",\"ext.uls.init\",\"ext.uls.interface\",\"wikibase.client.init\",\"ext.centralNotice.bannerController\",\"skins.vector.js\"]);
+}" section nil nil [36246 36562])
+            ("[if lt IE 7]><style type=\"text/css\">body{behavior:url(\"/w/static-1.23wmf8/skins/vector/csshover.min.htc\")}" section nil nil [36562 36611])
+            ("[if lt IE 7]><style type=\"text/css\">body{behavior:url(\"/w/static-1.23wmf8/skins/vector/csshover.min.htc\")}" section nil nil [36611 37403])
+            ("document.write(\"\\u003Cdiv id=\\\"localNotice\\\" lang=\\\"da\\\" dir=\\\"ltr\\\"\\u003E\\u003Cp\\u003ETil \\u003Ca href=\\\"/wiki/Wikipedia:WW2014#Januar\\\" title=\\\"Wikipedia:WW2014\\\" class=\\\"mw-redirect\\\"\\u003EWikiWednesday\\u003C/a\\u003E den 8. januar planlægger vi WikiWednesday for foråret.\\u003Cbr/\\u003E\\n\\u003Ci\\u003E\\u003Csmall\\u003E(\\u003Ca href=\\\"/wiki/Hj%C3%A6lp:Sitenotice\\\" title=\\\"Hjælp:Sitenotice\\\"\\u003ELæs her om sitenotice\\u003C/a\\u003E)\\u003C/small\\u003E\\u003C/i\\u003E\\n\\u003C/p\\u003E\\u003C/div\\u003E\");" section nil nil [37403 37460])
+            ("document.write(\"\\u003Cdiv id=\\\"localNotice\\\" lang=\\\"da\\\" dir=\\\"ltr\\\"\\u003E\\u003Cp\\u003ETil \\u003Ca href=\\\"/wiki/Wikipedia:WW2014#Januar\\\" title=\\\"Wikipedia:WW2014\\\" class=\\\"mw-redirect\\\"\\u003EWikiWednesday\\u003C/a\\u003E den 8. januar planlægger vi WikiWednesday for foråret.\\u003Cbr/\\u003E\\n\\u003Ci\\u003E\\u003Csmall\\u003E(\\u003Ca href=\\\"/wiki/Hj%C3%A6lp:Sitenotice\\\" title=\\\"Hjælp:Sitenotice\\\"\\u003ELæs her om sitenotice\\u003C/a\\u003E)\\u003C/small\\u003E\\u003C/i\\u003E\\n\\u003C/p\\u003E\\u003C/div\\u003E\");" section nil nil [37460 37529])
+            ("document.write(\"\\u003Cdiv id=\\\"localNotice\\\" lang=\\\"da\\\" dir=\\\"ltr\\\"\\u003E\\u003Cp\\u003ETil \\u003Ca href=\\\"/wiki/Wikipedia:WW2014#Januar\\\" title=\\\"Wikipedia:WW2014\\\" class=\\\"mw-redirect\\\"\\u003EWikiWednesday\\u003C/a\\u003E den 8. januar planlægger vi WikiWednesday for foråret.\\u003Cbr/\\u003E\\n\\u003Ci\\u003E\\u003Csmall\\u003E(\\u003Ca href=\\\"/wiki/Hj%C3%A6lp:Sitenotice\\\" title=\\\"Hjælp:Sitenotice\\\"\\u003ELæs her om sitenotice\\u003C/a\\u003E)\\u003C/small\\u003E\\u003C/i\\u003E\\n\\u003C/p\\u003E\\u003C/div\\u003E\");" section nil nil [37529 37609])
+            ("document.write(\"\\u003Cdiv id=\\\"localNotice\\\" lang=\\\"da\\\" dir=\\\"ltr\\\"\\u003E\\u003Cp\\u003ETil \\u003Ca href=\\\"/wiki/Wikipedia:WW2014#Januar\\\" title=\\\"Wikipedia:WW2014\\\" class=\\\"mw-redirect\\\"\\u003EWikiWednesday\\u003C/a\\u003E den 8. januar planlægger vi WikiWednesday for foråret.\\u003Cbr/\\u003E\\n\\u003Ci\\u003E\\u003Csmall\\u003E(\\u003Ca href=\\\"/wiki/Hj%C3%A6lp:Sitenotice\\\" title=\\\"Hjælp:Sitenotice\\\"\\u003ELæs her om sitenotice\\u003C/a\\u003E)\\u003C/small\\u003E\\u003C/i\\u003E\\n\\u003C/p\\u003E\\u003C/div\\u003E\");" section nil nil [37609 38024])
+            ("document.write(\"\\u003Cdiv id=\\\"localNotice\\\" lang=\\\"da\\\" dir=\\\"ltr\\\"\\u003E\\u003Cp\\u003ETil \\u003Ca href=\\\"/wiki/Wikipedia:WW2014#Januar\\\" title=\\\"Wikipedia:WW2014\\\" class=\\\"mw-redirect\\\"\\u003EWikiWednesday\\u003C/a\\u003E den 8. januar planlægger vi WikiWednesday for foråret.\\u003Cbr/\\u003E\\n\\u003Ci\\u003E\\u003Csmall\\u003E(\\u003Ca href=\\\"/wiki/Hj%C3%A6lp:Sitenotice\\\" title=\\\"Hjælp:Sitenotice\\\"\\u003ELæs her om sitenotice\\u003C/a\\u003E)\\u003C/small\\u003E\\u003C/i\\u003E\\n\\u003C/p\\u003E\\u003C/div\\u003E\");" section (:members 
+              ( ("WikiWednesday" anchor nil nil [38592 38595])
+                ("Læs her om sitenotice" anchor nil nil [38788 38791])
+                ("Lagkage" section (:members 
+                  ( ("navigation" anchor nil nil [39224 39227])
+                    ("søg" anchor nil nil [39306 39309])
+                    ("Kagestykke med skiftende lag af fyld" anchor nil nil [39526 39529])
+                    ("Kagestykke med skiftende lag af fyld" anchor nil nil [39935 39938])
+                    ("Lagkage fra polsk Wikipedias 6-års fødselsdag" anchor nil nil [40236 40239])
+                    ("Lagkage fra polsk Wikipedias 6-års fødselsdag" anchor nil nil [40813 40816])
+                    ("kage" anchor nil nil [41113 41116])
+                    ("chokolade" anchor nil nil [41736 41739])
+                    ("glasur" anchor nil nil [41865 41868])
+                    ("[1]" anchor nil nil [42208 42211])
+                    ("Frøken Jensens Kogebog" anchor nil nil [42284 42287])
+                    ("[2]" anchor nil nil [42562 42565])
+                    ("Kilder" section (:members 
+                      ( ("redigér" anchor nil nil [42817 42820])
+                        ("redigér wikikode" anchor nil nil [43026 43029])
+                        ("Hoppe op" anchor nil nil [43324 43327])
+                        ("ISBN 8785160350" anchor nil nil [43648 43651])
+                        ("Hoppe op" anchor nil nil [44267 44270])
+                        ("ISBN 87-00-49946-3" anchor nil nil [44678 44681]))                      ) nil [42640 45332])
+                    ("Eksterne henvisninger" section (:members 
+                      ( ("redigér" anchor nil nil [45539 45542])
+                        ("redigér wikikode" anchor nil nil [45763 45766])
+                        ("Wikimedia Commons" anchor nil nil [46332 46335])
+                        ("Kager" anchor nil nil [46470 46473])
+                        ("Stub" anchor nil nil [46910 46913])
+                        ("mad" anchor nil nil [47431 47434])
+                        ("drikke" anchor nil nil [47500 47503])
+                        ("påbegyndt" anchor nil nil [47575 47578])
+                        ("hjælpe" anchor nil nil [47698 47701])
+                        ("http://da.wikipedia.org/w/index.php?title=Lagkage&amp;oldid=7065584" anchor nil nil [48777 48780])
+                        ("Kategori" anchor nil nil [49038 49041])
+                        ("Kager" anchor nil nil [49145 49148])
+                        ("Påbegyndte artikler om mad og drikke" anchor nil nil [49350 49353]))                      ) nil [45332 49653])
+                    ("Navigationsmenu" section (:members 
+                      ( ("Personlige værktøjer" section (:members 
+                          ( ("Opret en ny brugerkonto" anchor nil nil [49873 49876])
+                            ("Log på" anchor nil nil [50024 50027]))                          ) nil [49789 50373])
+                        ("Navnerum" section (:members 
+                          ( ("Artikel" anchor nil nil [50472 50475])
+                            ("Diskussion" anchor nil nil [50618 50621]))                          ) nil [50373 50931])
+                        ("Varianter" section nil nil [50931 50976])
+                        ("Varianter" section (:members 
+                          ( ("Visninger" anchor nil nil [51037 51040]))                          ) nil [50976 51299])
+                        ("Visninger" section (:members 
+                          ( ("Læs" anchor nil nil [51388 51391])
+                            ("Redigér" anchor nil nil [51472 51475])
+                            ("Redigér wikikode" anchor nil nil [51665 51668])
+                            ("Se historik" anchor nil nil [51930 51933]))                          ) nil [51299 52227])
+                        ("Handlinger" section (:members 
+                          ( ("Søg" anchor nil nil [52289 52292]))                          ) nil [52227 52449])
+                        ("Søg" section nil nil [52449 53420])
+                        ("Navigation" section (:members 
+                          ( ("Forside" anchor nil nil [53514 53517])
+                            ("Kategorier" anchor nil nil [53654 53657])
+                            ("Fremhævet indhold" anchor nil nil [53771 53774])
+                            ("Tilfældig side" anchor nil nil [53895 53898])
+                            ("Tilfældige artikler" anchor nil nil [54086 54089])
+                            ("Aktuelle begivenheder" anchor nil nil [54225 54228]))                          ) nil [53420 54454])
+                        ("Deltagelse" section (:members 
+                          ( ("Deltagelse" anchor nil nil [54495 54498])
+                            ("Velkommen" anchor nil nil [54771 54774])
+                            ("Skribentforside" anchor nil nil [54885 54888])
+                            ("Landsbybrønden" anchor nil nil [55061 55064])
+                            ("Ambassaden" anchor nil nil [55179 55182])
+                            ("Projekter" anchor nil nil [55283 55286])
+                            ("Kalender" anchor nil nil [55384 55387])
+                            ("Seneste ændringer" anchor nil nil [55488 55491])
+                            ("Hjælp" anchor nil nil [55683 55686]))                          ) nil [54454 55896])
+                        ("Værktøjer" section (:members 
+                          ( ("Værktøjer" anchor nil nil [55929 55932])
+                            ("Hvad henviser hertil" anchor nil nil [56170 56173])
+                            ("Relaterede ændringer" anchor nil nil [56385 56388])
+                            ("Læg en fil op" anchor nil nil [56607 56610])
+                            ("Specialsider" anchor nil nil [56820 56823])
+                            ("Permanent link" anchor nil nil [56991 56994])
+                            ("Oplysninger om siden" anchor nil nil [57169 57172])
+                            ("Wikidata-emne" anchor nil nil [57294 57297])
+                            ("Citér denne artikel" anchor nil nil [57452 57455]))                          ) nil [55896 57760])
+                        ("Organisation" section (:members 
+                          ( ("Organisation" anchor nil nil [57803 57806])
+                            ("Donation" anchor nil nil [58065 58068])
+                            ("Kontakt Wikipedia" anchor nil nil [58282 58285])
+                            ("Wikimedia Danmark" anchor nil nil [58408 58411])
+                            ("GLAM" anchor nil nil [58515 58518]))                          ) nil [57760 58725])
+                        ("Udskriv/eksportér" section (:members 
+                          ( ("Udskriv/eksportér" anchor nil nil [58773 58776])
+                            ("Lav en bog" anchor nil nil [59055 59058])
+                            ("Download som PDF" anchor nil nil [59208 59211])
+                            ("Udskriftsvenlig udgave" anchor nil nil [59382 59385]))                          ) nil [58725 59800])
+                        ("Andre sprog" section (:members 
+                          ( ("Andre sprog" anchor nil nil [59835 59838])
+                            ("Беларуская" anchor nil nil [60123 60126])
+                            ("Беларуская (тарашкевіца)‎" anchor nil nil [60312 60315])
+                            ("Čeština" anchor nil nil [60541 60544])
+                            ("Cymraeg" anchor nil nil [60697 60700])
+                            ("Deutsch" anchor nil nil [60855 60858])
+                            ("English" anchor nil nil [61009 61012])
+                            ("Esperanto" anchor nil nil [61166 61169])
+                            ("Suomi" anchor nil nil [61327 61330])
+                            ("Français" anchor nil nil [61482 61485])
+                            ("Hrvatski" anchor nil nil [61659 61662])
+                            ("Íslenska" anchor nil nil [61818 61821])
+                            ("日本語" anchor nil nil [61981 61984])
+                            ("Қазақша" anchor nil nil [62154 62157])
+                            ("Lietuvių" anchor nil nil [62352 62355])
+                            ("Latviešu" anchor nil nil [62513 62516])
+                            ("Македонски" anchor nil nil [62671 62674])
+                            ("Монгол" anchor nil nil [62858 62861])
+                            ("Polski" anchor nil nil [63077 63080])
+                            ("Română" anchor nil nil [63229 63232])
+                            ("Русский" anchor nil nil [63383 63386])
+                            ("Srpskohrvatski / српскохрватски" anchor nil nil [63558 63561])
+                            ("Svenska" anchor nil nil [63745 63748])
+                            ("Українська" anchor nil nil [63906 63909])
+                            ("Rediger links" anchor nil nil [64070 64073])
+                            ("Creative Commons Navngivelse/Del på samme vilkår 3.0" anchor nil nil [64471 64474])
+                            ("brugsbetingelserne" anchor nil nil [64638 64641])
+                            ("Behandling af personlige oplysninger" anchor nil nil [64836 64839])
+                            ("Om Wikipedia" anchor nil nil [65063 65066])
+                            ("Forbehold" anchor nil nil [65203 65206])
+                            ("Mobilvisning" anchor nil nil [65533 65536])
+                            ("/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/" anchor nil nil [65750 65753])
+                            ("/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/" anchor nil nil [65944 65947]))                          ) nil [59800 66158]))                      ) nil [49653 66158]))                  ) nil [38936 66158]))              ) nil [38024 66158])
+            ("/*<![CDATA[*/window.jQuery && jQuery.ready();/*]]>*/" section nil nil [66158 66227])
+            ("if(window.mw){
+mw.loader.state({\"site\":\"loading\",\"user\":\"ready\",\"user.groups\":\"ready\"});
+}" section nil nil [66227 66335])
+            ("if(window.mw){
+mw.loader.load([\"ext.cite\",\"mobile.desktop\",\"mediawiki.action.view.postEdit\",\"mediawiki.user\",\"mediawiki.hidpi\",\"mediawiki.page.ready\",\"mediawiki.searchSuggest\",\"mw.MwEmbedSupport.style\",\"ext.wikimediaEvents.moduleStorage\",\"ext.navigationTiming\",\"schema.UniversalLanguageSelector\",\"ext.uls.eventlogger\",\"mw.PopUpMediaTransform\",\"skins.vector.collapsibleNav\"],null,true);
+}" section nil nil [66335 66740])
+            ("" section nil nil [66740 66788])
+            ("" section nil nil [66788 67068]))          
+    :file "wiki.html"
+    :pointmax 67068
+    :fsize 67392
+    :lastmodtime '(21197 48119 413075 994000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering5!jens!U5-Adrian-Jens-Pelle-Sverke!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

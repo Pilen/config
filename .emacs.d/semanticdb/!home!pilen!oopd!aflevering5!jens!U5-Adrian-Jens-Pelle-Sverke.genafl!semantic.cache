@@ -1,0 +1,248 @@
+;; Object U5-Adrian-Jens-Pelle-Sverke.genafl/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "U5-Adrian-Jens-Pelle-Sverke.genafl/"
+  :tables (list 
+   (semanticdb-table "WebPageTest.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("junit.framework.TestCase" include nil nil [84 116])
+            ("org.junit.Test" include nil nil [117 139])
+            ("org.junit.Ignore" include nil nil [140 164])
+            ("org.junit.runner.RunWith" include nil nil [165 197])
+            ("org.junit.runners.JUnit4" include nil nil [198 230])
+            ("java.net.URL" include nil nil [232 252])
+            ("java.net.MalformedURLException" include nil nil [253 291])
+            ("java.util.Scanner" include nil nil [292 317])
+            ("java.io.PrintWriter" include nil nil [318 345])
+            ("java.io.File" include nil nil [346 366])
+            ("java.io.IOException" include nil nil [367 394])
+            ("java.io.FileNotFoundException" include nil nil [395 432])
+            ("java.util.ArrayList" include nil nil [433 460])
+            ("WebPageTest" type
+               (:typemodifiers ("public")
+                :superclasses "TestCase"
+                :members 
+                  ( ("cryptoSource" variable (:type "String") (reparse-symbol class_member_declaration) [567 1962])
+                    ("read_getContent" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1974 2265])
+                    ("getHyperlinks" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2277 2724])
+                    ("getURL" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2736 3053])
+                    ("IOTest" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3065 3495]))                  
+                :type "class")
+                nil [521 3497]))          
+    :file "WebPageTest.java"
+    :pointmax 3498
+    :fsize 3581
+    :lastmodtime '(21200 20987 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "WebPage.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.net.URL" include nil nil [1 21])
+            ("java.net.MalformedURLException" include nil nil [22 60])
+            ("java.util.Scanner" include nil nil [61 86])
+            ("java.io.PrintWriter" include nil nil [87 114])
+            ("java.io.File" include nil nil [115 135])
+            ("java.io.IOException" include nil nil [136 163])
+            ("java.io.FileNotFoundException" include nil nil [164 201])
+            ("java.util.ArrayList" include nil nil [202 229])
+            ("WebPage" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("url" variable
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [381 400])
+                    ("WebPage" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [467 613])
+                    ("WebPage" function
+                       (:constructor-flag t
+                        :throws ("IOException" "MalformedURLException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("url" variable (:type "String") (reparse-symbol formal_parameters) [753 763]))                          )
+                        (reparse-symbol class_member_declaration) [738 932])
+                    ("getContent" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1050 1290])
+                    ("getHyperlinks" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1414 1663])
+                    ("getHyperlink" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("i" variable (:type "int") (reparse-symbol formal_parameters) [1837 1842]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1810 1885])
+                    ("getURL" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1987 2042])
+                    ("read" function
+                       (:throws ("IOException" "MalformedURLException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("url" variable (:type "String") (reparse-symbol formal_parameters) [2213 2223]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2196 2556])
+                    ("readHyperlinks" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2697 3048])
+                    ("isolateBody" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("content" variable (:type "String") (reparse-symbol formal_parameters) [3324 3338]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [3297 3439])
+                    ("storeAsText" function
+                       (:throws ("FileNotFoundException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("filename" variable (:type "String") (reparse-symbol formal_parameters) [3594 3609]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3570 3794])
+                    ("loadAsText" function
+                       (:throws ("FileNotFoundException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("filename" variable (:type "String") (reparse-symbol formal_parameters) [3960 3975]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3937 4281]))                  
+                :type "class")
+                nil [272 4283]))          
+    :file "WebPage.java"
+    :pointmax 4284
+    :fsize 4431
+    :lastmodtime '(21200 20296 0 0)
+    :unmatched-syntax '((SEMICOLON 375 . 376) (GT 366 . 367) (LT 359 . 360) (SEMICOLON 336 . 337) (GT 324 . 325) (PRIVATE 300 . 307) (LT 317 . 318))
+    )
+   (semanticdb-table "WebPageDemo.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.net.MalformedURLException" include nil nil [1 39])
+            ("java.io.FileNotFoundException" include nil nil [40 77])
+            ("java.io.IOException" include nil nil [78 105])
+            ("java.util.Scanner" include nil nil [106 131])
+            ("WebPageDemo" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("webPage" variable (:type "WebPage") (reparse-symbol class_member_declaration) [220 236])
+                    ("view" variable (:type "ConsoleView") (reparse-symbol class_member_declaration) [241 258])
+                    ("WebPageDemo" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [325 1117])
+                    ("prompt" function
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1205 1343])
+                    ("prompt" function
+                       (:typemodifiers ("private")
+                        :arguments 
+                          ( ("message" variable (:type "String") (reparse-symbol formal_parameters) [1527 1541]))                          
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1505 1612])
+                    ("loadWebPage" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1734 1962])
+                    ("saveWebPage" function
+                       (:typemodifiers ("private")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2082 2311])
+                    ("urlWebPage" function
+                       (:typemodifiers ("private")
+                        :type "boolean")
+                        (reparse-symbol class_member_declaration) [2447 2667])
+                    ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [2812 2825]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2788 2861]))                  
+                :type "class")
+                nil [188 2868]))          
+    :file "WebPageDemo.java"
+    :pointmax 2869
+    :fsize 2970
+    :lastmodtime '(21200 19566 0 0)
+    :unmatched-syntax '((SEMICOLON 2866 . 2867))
+    )
+   (semanticdb-table "ConsoleView.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("ConsoleView" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("ConsoleView" function
+                       (:constructor-flag t
+                        :typemodifiers ("public"))
+                        (reparse-symbol class_member_declaration) [183 285])
+                    ("printCommands" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [345 851])
+                    ("display" function
+                       (:typemodifiers ("public")
+                        :arguments 
+                          ( ("message" variable (:type "String") (reparse-symbol formal_parameters) [1036 1050])
+                            ("content" variable (:type "String") (reparse-symbol formal_parameters) [1052 1066]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1016 1147])
+                    ("helpMessage" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1199 1299])
+                    ("urlError" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1388 1469])
+                    ("loadError" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1527 1615])
+                    ("loadSuccessful" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1678 1784])
+                    ("saveError" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1842 1928])
+                    ("saveSuccessful" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1991 2094]))                  
+                :type "class")
+                nil [73 2096]))          
+    :file "ConsoleView.java"
+    :pointmax 2097
+    :fsize 2174
+    :lastmodtime '(21200 19532 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering5!jens!U5-Adrian-Jens-Pelle-Sverke.genafl!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )
