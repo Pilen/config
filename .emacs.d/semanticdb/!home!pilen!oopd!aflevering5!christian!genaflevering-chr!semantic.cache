@@ -1,0 +1,127 @@
+;; Object genaflevering-chr/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "genaflevering-chr/"
+  :tables (list 
+   (semanticdb-table "Demo.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("Demo" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [49 62]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [25 340]))                  
+                :type "class")
+                nil [1 342]))          
+    :file "Demo.java"
+    :pointmax 343
+    :fsize 355
+    :lastmodtime '(21198 64516 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "WebPage.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.io.*" include nil nil [1 18])
+            ("java.net.*" include nil nil [19 37])
+            ("java.util.ArrayList" include nil nil [38 65])
+            ("java.util.Scanner" include nil nil [66 91])
+            ("java.util.regex.*" include nil nil [92 117])
+            ("WebPage" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("body" variable
+                       (:typemodifiers ("private")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [146 171])
+                    ("read" function
+                       (:throws ("IOException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("address" variable (:type "String") (reparse-symbol formal_parameters) [342 356]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [325 647])
+                    ("getLinks" function (:constructor-flag t) (reparse-symbol class_member_declaration) [769 1204])
+                    ("print" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1274 1337])
+                    ("getBody" function
+                       (:typemodifiers ("public")
+                        :type "String")
+                        (reparse-symbol class_member_declaration) [1391 1447])
+                    ("storeAsText" function
+                       (:throws ("IOException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("filepath" variable (:type "String") (reparse-symbol formal_parameters) [1573 1588]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1549 1816])
+                    ("loadAsText" function
+                       (:throws ("IOException")
+                        :typemodifiers ("public")
+                        :arguments 
+                          ( ("filepath" variable (:type "String") (reparse-symbol formal_parameters) [1943 1958]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1920 2110]))                  
+                :type "class")
+                nil [119 2112]))          
+    :file "WebPage.java"
+    :pointmax 2113
+    :fsize 2112
+    :lastmodtime '(21198 65200 0 0)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "WebPageTest.java"
+    :major-mode 'jde-mode
+    :tags 
+        '( ("java.io.File" include nil nil [1 21])
+            ("java.io.IOException" include nil nil [22 49])
+            ("java.util.ArrayList" include nil nil [50 77])
+            ("java.util.Scanner" include nil nil [78 103])
+            ("WebPageTest" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("testRead" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [203 676])
+                    ("testReadException" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [767 1138])
+                    ("testGetLinks" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1215 1755])
+                    ("testStoreAsText" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [1835 2625])
+                    ("testLoadAsText" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [2704 3330])
+                    ("testLoadAsTextException" function
+                       (:typemodifiers ("public")
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [3427 3900]))                  
+                :type "class")
+                nil [105 3902]))          
+    :file "WebPageTest.java"
+    :pointmax 3903
+    :fsize 3902
+    :lastmodtime '(21198 65358 0 0)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!pilen!oopd!aflevering5!christian!genaflevering-chr!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

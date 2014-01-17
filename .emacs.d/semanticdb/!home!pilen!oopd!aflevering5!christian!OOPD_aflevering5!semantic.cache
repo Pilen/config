@@ -49,8 +49,8 @@
                 nil [158 3668]))          
     :file "WebPage.java"
     :pointmax 3669
-    :fsize 3669
-    :lastmodtime '(21197 61826 742453 39000)
+    :fsize 3253
+    :lastmodtime '(21192 61056 0 0)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "WebPageTest.java"
@@ -69,15 +69,14 @@
                 nil [50 1364]))          
     :file "WebPageTest.java"
     :pointmax 1365
-    :fsize 1356
-    :lastmodtime '(21197 63537 105708 641000)
+    :fsize 1265
+    :lastmodtime '(21193 18944 0 0)
     :unmatched-syntax 'nil
     )
    (semanticdb-table "Demo.java"
     :major-mode 'jde-mode
     :tags 
-        '( ("java.util.Scanner" include nil nil [1 26])
-            ("Demo" type
+        '( ("Demo" type
                (:typemodifiers ("public")
                 :members 
                   ( ("main" function
@@ -86,16 +85,16 @@
                           ( ("args" variable
                                (:dereference 1
                                 :type "String")
-                                (reparse-symbol formal_parameters) [76 89]))                          
+                                (reparse-symbol formal_parameters) [77 90]))                          
                         :type "void")
-                        (reparse-symbol class_member_declaration) [52 440]))                  
+                        (reparse-symbol class_member_declaration) [53 441]))                  
                 :type "class")
-                nil [28 442]))          
+                nil [29 443]))          
     :file "Demo.java"
-    :pointmax 443
+    :pointmax 444
     :fsize 460
     :lastmodtime '(21192 60380 0 0)
-    :unmatched-syntax 'nil
+    :unmatched-syntax '((IDENTIFIER 19 . 26) (DOT 18 . 19) (IDENTIFIER 14 . 18) (DOT 13 . 14) (IDENTIFIER 9 . 13) (IDENTIFIER 1 . 8) (IDENTIFIER 19 . 26) (DOT 18 . 19) (IDENTIFIER 14 . 18) (DOT 13 . 14) (IDENTIFIER 9 . 13) (IDENTIFIER 1 . 8))
     )
    (semanticdb-table "Test.java"
     :major-mode 'jde-mode
@@ -117,8 +116,6 @@
                 nil [189 298]))          
     :file "Test.java"
     :pointmax 299
-    :fsize 298
-    :lastmodtime '(21197 63669 749035 946000)
     :unmatched-syntax '((PAREN_BLOCK 174 . 188) (IDENTIFIER 166 . 174))
     )
    )

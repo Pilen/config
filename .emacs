@@ -538,8 +538,12 @@
   (command-center-add 'eshell-command)
   (command-center-add 'shell-toggle-cd "eshell-cd")
   (command-center-add 'global-whitespace-mode)
+  (command-center-add 'delete-other-frames "frame-close-others")
+  (command-center-add 'make-frame-command "frame-new")
+  (command-center-add 'delete-frame "frame-close")
   (command-center-add 'ediff)
   (command-center-add 'ediff-buffers)
+  (command-center-add 'ediff-directories)
   )
 
 (command-center-add (lambda () (interactive) (find-file (concat (file-name-sans-extension (buffer-file-name)) ".pdf"))) "open-pdf")
