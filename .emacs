@@ -68,6 +68,28 @@
 ;; compile latex -> view latex/update xpdf
 ;; M-x -> repeat last command
 
+
+
+;; Look into:
+;; initial-buffer-choice
+;; blink-cursor-blinks
+;; split-window change!
+;; eval-defun use this!
+;; read-regexp-defaults-function
+;; load-prefer-newer
+;; C-x TAB (indent-rigidly)
+;; electric-indent-mode enabled by default
+;; tab-stop-list
+;; cycle-spacing
+;; try out electric pairing with electric-pair-preserve-balance and electric-pair-delete-adjacent-pairs
+;; remember-notes
+;; eww BUILD IN BROWSER!!!!!!!!
+;; define-alternatives
+;; subr-x.el
+;; :distant-foreground
+
+
+
 ;;______________________________________________________________________________
 ;;
 ;;
@@ -79,8 +101,8 @@
 ;; gnuplot
 ;; auctex
 ;; gtags (global)
-;; w3m
-;; emacs-w3m
+;; w3m (optional)
+;; emacs-w3m (optional)
 ;; email.el : (setq my-email-address "...")
 ;; aspell, aspell-en, aspell-da (aur)
 
@@ -542,6 +564,7 @@
   (command-center-add 'delete-other-frames "frame-close-others")
   (command-center-add 'make-frame-command "frame-new")
   (command-center-add 'delete-frame "frame-close")
+  (command-center-add 'repunctuate-sentences)
   (command-center-add 'ediff)
   (command-center-add 'ediff-buffers)
   (command-center-add 'ediff-directories)
@@ -749,6 +772,8 @@
 
 
 (setq-default require-final-newline t)
+
+(setq delete-active-region nil)
 ;;______________________________________________________________________________
 ;π BATTERY
 ;;______________________________________________________________________________
