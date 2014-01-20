@@ -3,9 +3,9 @@
 chmod +x ~/code/scripts/*
 hostname > .last_pusher
 
-echo "old size: " -n
+echo -n "old size: "
 wget -qO- https://raw.github.com/Pilen/config/master/.emacs | wc -l
-echo "new size: " -n
+echo -n "new size: "
 wc -l .emacs
 /home/pilen/code/scripts/copyaliases.py
 echo
