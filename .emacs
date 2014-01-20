@@ -537,6 +537,7 @@
   (command-center-add 'google-translate-en/da)
   (command-center-add 'eshell-command)
   (command-center-add 'shell-toggle-cd "eshell-cd")
+  (command-center-add 'eshell-execute-current-line)
   (command-center-add 'global-whitespace-mode)
   (command-center-add 'delete-other-frames "frame-close-others")
   (command-center-add 'make-frame-command "frame-new")
@@ -1937,6 +1938,28 @@ current frame, create a new window and switch to it.
   (eshell-send-input))
 
 
+(defun eshell-execute-current-line ()
+  "Insert text of current line in eshell and execute."
+  (interactive)
+  (require 'eshell)
+  (let ((command (buffer-substring
+                  (save-excursion
+                    (beginning-of-line)
+                    (point))
+                  (save-excursion
+                    (end-of-line)
+                    (point)))))
+    (let ((buf (current-buffer)))
+      (unless (get-buffer eshell-buffer-name)
+        (eshell))
+      (display-buffer eshell-buffer-name t)
+      (switch-to-buffer-other-window eshell-buffer-name)
+      (end-of-buffer)
+      (eshell-kill-input)
+      (insert command)
+      (eshell-send-input)
+      (end-of-buffer)
+      (switch-to-buffer-other-window buf))))
 ;;______________________________________________________________________________
 ;π EXPAND-REGION
 ;;______________________________________________________________________________
