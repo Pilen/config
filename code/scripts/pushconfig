@@ -41,6 +41,6 @@ echo
 echo Updating remote addreses:
 ssh pilgaard@tyr.diku.dk git pull origin master
 
-echo
+echo "\n\n"
 echo Files touched:
 git show --pretty="format:" --name-only
