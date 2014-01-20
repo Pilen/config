@@ -38,6 +38,7 @@ git push
 
 #Locales to update
 echo
+echo
 echo Updating remote addreses:
 ssh pilgaard@tyr.diku.dk git pull origin master
 
