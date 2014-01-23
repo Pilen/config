@@ -1,5 +1,12 @@
 # ! /bin/sh
 
+if [ $# -ne 0 ];
+then
+    commitmsg=$*;
+else
+    commitmsg="Configuration updated";
+fi
+
 chmod +x ~/code/scripts/*
 hostname > .last_pusher
 
@@ -33,7 +40,7 @@ git add ~/.last_pusher
 #git add ~/.config/chromium/Default/User StyleSheets/Custom.css
 git add .gitignore
 
-git commit -m "Configuration updated";
+git commit -m commitmsg;
 git push
 
 #Locales to update
