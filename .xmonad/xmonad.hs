@@ -97,8 +97,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
 
   -- --Restart xmonad                                           mod-backspace
   -- ((modm, xK_BackSpace), spawn "xmonad --recompile; xmonad --restart")
-  -- ]
-  -- ++
+  ]
+  ++
 
   --Switch to workspace N                                    mod-[1..9]
   ----Using W.view instead of W.greedyView (wont swap screens, only focus)
