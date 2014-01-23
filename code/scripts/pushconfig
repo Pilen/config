@@ -8,12 +8,12 @@ else
 fi
 
 chmod +x ~/code/scripts/*
-hostname > .last_pusher
+hostname > ~/.last_pusher
 
 echo -n "old size: "
 wget -qO- https://raw.github.com/Pilen/config/master/.emacs | wc -l
 echo -n "new size: "
-wc -l .emacs
+wc -l ~/.emacs
 /home/pilen/code/scripts/copyaliases.py
 echo
 
@@ -38,7 +38,7 @@ git add ~/.last_pusher
 #git add ~/.python2.py
 #git add ~/linkmenu.pl
 #git add ~/.config/chromium/Default/User StyleSheets/Custom.css
-git add .gitignore
+git add ~/.gitignore
 
 git commit -m "$commitmsg";
 git push
