@@ -84,7 +84,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
   ((modm, xK_comma), sendMessage (IncMasterN 1)),
 
   --Deincrement the number of windows in the master area     mod-period
-  ((modm, xK_period), sendMessage (IncMasterN (-1))),
+  ((modm, xK_period), sendMessage (IncMasterN (-1)))
 
   --Toggle the status bar gap                                mod-b
   --  Use this binding with avoidStruts from Hooks.ManageDocks.
@@ -92,10 +92,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
   --
   -- ((modm, xK_b), sendMessage ToggleStruts),
 
-  -- --Quit Xmonad                                              mod-shift-backspace
+  --Quit Xmonad                                              mod-shift-backspace
   -- ((modm .|. shiftMask, xK_BackSpace), io (exitWith ExitSuccess)),
 
-  -- --Restart xmonad                                           mod-backspace
+  --Restart xmonad                                           mod-backspace
   -- ((modm, xK_BackSpace), spawn "xmonad --recompile; xmonad --restart")
   ]
   ++
