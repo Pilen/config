@@ -40,7 +40,7 @@ git add ~/.last_pusher
 #git add ~/.config/chromium/Default/User StyleSheets/Custom.css
 git add .gitignore
 
-git commit -m commitmsg;
+git commit -m "$commitmsg";
 git push
 
 #Locales to update
