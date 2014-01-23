@@ -9,6 +9,7 @@ import XMonad.Layout.NoBorders
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
+import XMonad.Actions.CycleWS (toggleOrView, swapNextScreen)
 
 --KEY BINDINGS--
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
@@ -84,7 +85,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
   ((modm, xK_comma), sendMessage (IncMasterN 1)),
 
   --Deincrement the number of windows in the master area     mod-period
-  ((modm, xK_period), sendMessage (IncMasterN (-1)))
+  ((modm, xK_period), sendMessage (IncMasterN (-1))),
 
   --Toggle the status bar gap                                mod-b
   --  Use this binding with avoidStruts from Hooks.ManageDocks.
@@ -97,6 +98,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
 
   --Restart xmonad                                           mod-backspace
   -- ((modm, xK_BackSpace), spawn "xmonad --recompile; xmonad --restart")
+  ((modm, xK_s), swapNextScreen)
   ]
   ++
 
@@ -105,7 +107,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
   --Move client to workspace N                               mod-shift-[1..9]
   [((m .|. modm, k), windows $ f i)
    | (i, k) <- zip (XMonad.workspaces conf) [xK_0 .. xK_9]
-   , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+   , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
   ++
 
   --Switch to physical/Xinerama screens 1, 2, or 3           mod-{l,u,y}
