@@ -380,6 +380,7 @@
 
 (global-set-key (kbd "H-<home>") '(lambda nil (interactive) (defaultface)))
 (global-set-key (kbd "H-<end>") '(lambda nil (interactive) (zoom 1)))
+(global-set-key (kbd "H-C-<end>") (lambda () (interactive) (zoom -1)))
 (global-set-key (kbd "H-S-<end>") '(lambda nil (interactive) (zoomableface)))
 
 (global-set-key (kbd "H-<tab>") 'goto-match-paren-or-defun)
@@ -479,6 +480,7 @@
 (add-hook 'ruby-mode-hook       (lambda () (define-key ruby-mode-map       (kbd "H-g") (lambda () (interactive) (save-excursion (when (null inf-ruby-buffer) (run-ruby) (sleep-for 1))) (ruby-send-region-and-go (point-min) (point-max))))))
 (add-hook 'jde-mode-hook        (lambda () (define-key jde-mode-map        (kbd "H-g") 'jde-compile-or-run)))
 (add-hook 'sh-mode              (lambda () (define-key sh-mode-map         (kbd "H-g") 'eshell-execute-current-line)))
+(add-hook 'shell-script-mode    (lambda () (define-key sh-mode-map         (kbd "H-g") 'eshell-execute-current-line)))
 
 (defun my-c-compile ()
   (interactive)
