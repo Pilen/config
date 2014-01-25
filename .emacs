@@ -1318,6 +1318,8 @@
 ;(setq tab-always-indent 'complete)
 (setq tab-always-indent t)
 
+(setq-default tab-width 4)
+
 
 ;;Autoindentation on yanking
 (dolist (command '(yank yank-pop))
