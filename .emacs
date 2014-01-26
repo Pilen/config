@@ -568,6 +568,7 @@
   (command-center-add 'revy-ubertex-mode)
   (command-center-add 'revy-ubersicht-mode)
   (command-center-add 'revy-manus-clean)
+  (command-center-add 'set-buffer-file-coding-system)
   (command-center-add 'ediff)
   (command-center-add 'ediff-buffers)
   (command-center-add 'ediff-directories)
@@ -2327,6 +2328,19 @@ current frame, create a new window and switch to it.
             (ibuffer-switch-to-saved-filter-groups "default")))
 
 (setq ibuffer-show-empty-filter-groups nil)
+
+(define-ibuffer-column lines (:name "Lines") (int-to-string (count-lines (point-min) (point-max))))
+
+(setq ibuffer-formats '((mark modified read-only " "
+                              (name 18 18 :left :elide)
+                              " "
+                              (lines 9 -1 :right)
+                              " "
+                              (mode 16 16 :left :elide)
+                              " " filename-and-process)
+                        (mark " "
+                              (name 16 -1)
+                              " " filename)))
 
 (defun idobuffer ()
   "Open ibuffer and start ido"
