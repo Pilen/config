@@ -569,6 +569,7 @@
   (command-center-add 'revy-ubersicht-mode)
   (command-center-add 'revy-manus-clean)
   (command-center-add 'set-buffer-file-coding-system)
+  (command-center-add 'change-directory)
   (command-center-add 'ediff)
   (command-center-add 'ediff-buffers)
   (command-center-add 'ediff-directories)
