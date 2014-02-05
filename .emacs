@@ -105,6 +105,7 @@
 ;; emacs-w3m (optional)
 ;; email.el : (setq my-email-address "...")
 ;; aspell, aspell-en, aspell-da (aur)
+;; emacs-python-mode - should start using elpa
 
 ;;______________________________________________________________________________
 ;;
@@ -570,13 +571,25 @@
   (command-center-add 'revy-manus-clean)
   (command-center-add 'set-buffer-file-coding-system)
   (command-center-add 'change-directory)
+  (command-center-add 'customize-group)
+  (command-center-add 'list-processes)
+  (command-center-add (lambda () (interactive) (find-file (concat (file-name-sans-extension (buffer-file-name)) ".pdf"))) "open-pdf")
   (command-center-add 'ediff)
   (command-center-add 'ediff-buffers)
   (command-center-add 'ediff-directories)
   )
 
-(command-center-add (lambda () (interactive) (find-file (concat (file-name-sans-extension (buffer-file-name)) ".pdf"))) "open-pdf")
 
+(defun goto-command-center ()
+  (interactive)
+  (switch-to-buffer ".emacs")
+  (goto-char (point-min))
+  (search-forward ";;______________________________________________________________________________
+;π COMMAND-CENTER
+;;______________________________________________________________________________
+")
+  (goto-char (match-beginning 0))
+  (recenter 0))
 
 
 ;;______________________________________________________________________________
@@ -2464,9 +2477,12 @@ current frame, create a new window and switch to it.
                     (string< a b))
                    (a-tramp-file-p nil)
                    (b-tramp-file-p t)
-                   (t (time-less-p
+                   (t (if (or (null (file-attributes (concat ido-current-directory b)))
+                              (null (file-attributes (concat ido-current-directory a))))
+                          nil
+                      (time-less-p
                        (sixth (file-attributes (concat ido-current-directory b)))
-                       (sixth (file-attributes (concat ido-current-directory a))))))))))
+                       (sixth (file-attributes (concat ido-current-directory a)))))))))))
   (ido-to-end  ;; move . files to end (again)
    (delq nil (mapcar
               (lambda (x) (and (char-equal (string-to-char x) ?.) x))
@@ -2895,14 +2911,19 @@ current frame, create a new window and switch to it.
 ;;______________________________________________________________________________
 ;π PYTHON
 ;;______________________________________________________________________________
-(setq python-command "/usr/bin/bpython")
-(add-hook 'python-mode-hook
-          (lambda ()
-            (message "kat")
-            (setq imenu-create-index-function 'imenu-default-create-index-function)))
+;; (setq python-command "/usr/bin/bpython")
+;; (add-hook 'python-mode-hook
+;;           (lambda ()
+;;             (message "kat")
+;;             (setq imenu-create-index-function 'imenu-default-create-index-function)))
 
-(defun semantic-create-imenu-index (&optional stream)
-  (imenu-default-create-index-function))
+;; (defun semantic-create-imenu-index (&optional stream)
+;;   (imenu-default-create-index-function))
+
+;; (autoload 'python-mode "python-mode" "Python Mode." t)
+;; (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+;; (require 'python-mode)
+
 ;;______________________________________________________________________________
 ;π RACKET/SCHEME
 ;;______________________________________________________________________________
