@@ -1,5 +1,5 @@
 
-(defcustom toast-time "10 minutes"
+(defcustom toast-time "8 minutes"
   "How long it shoud take to bake a toast.
 The values should be either a number of seconds or a string with
 a relative time (the acceptable formats are those recognized by
