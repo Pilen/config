@@ -3,10 +3,12 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        TeX-insert-backslash
         c-electric-brace
         c-electric-paren
         forward-word-to-newline
         org-self-insert-command
+        python-indent-dedent-line-backspace
         toggle-letter-case
         xpdfremote/xpdf-pageDown
         yank-or-pop

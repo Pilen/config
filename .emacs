@@ -47,6 +47,7 @@
 ;; mail
 ;; org-mode
 ;; minimap
+;; eshell ido ctrl-r
 
 ;; windowmanager
 ;; xpdfremote
@@ -416,7 +417,7 @@
 ;; (global-set-key (kbd "<f2>") 'flyspell-buffer)
 (global-set-key (kbd "<f2>") 'flyspell-mode)
 ;; (global-set-key (kbd "H-<f2>") 'fd-switch-dictionary)
-(global-set-key (kbd "S-<f2>") 'fd-switch-dictionary)
+(global-set-key (kbd "S-<f2>") 'fd-switch-dictionary-flyspell)
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<H-f3>") 'kmacro-name-last-macro)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
@@ -482,6 +483,7 @@
 (add-hook 'jde-mode-hook        (lambda () (define-key jde-mode-map        (kbd "H-g") 'jde-compile-or-run)))
 (add-hook 'sh-mode              (lambda () (define-key sh-mode-map         (kbd "H-g") 'eshell-execute-current-line)))
 (add-hook 'shell-script-mode    (lambda () (define-key sh-mode-map         (kbd "H-g") 'eshell-execute-current-line)))
+(add-hook 'c++-mode             (lambda () (define-key c++-mode-map        (kbd "H-g") (lambda () (interactive) (save-buffer) (call-interactively 'compile)))))
 
 (defun my-c-compile ()
   (interactive)
@@ -574,6 +576,10 @@
   (command-center-add 'customize-group)
   (command-center-add 'list-processes)
   (command-center-add (lambda () (interactive) (find-file (concat (file-name-sans-extension (buffer-file-name)) ".pdf"))) "open-pdf")
+  (command-center-add (lambda () (interactive) (untabify (point-min) (point-max))) "untabify-buffer")
+  (command-center-add 'goto-command-center)
+  (command-center-add 'tramp-cleanup-all-connections)
+  (command-center-add 'tramp-cleanup-all-buffers)
   (command-center-add 'ediff)
   (command-center-add 'ediff-buffers)
   (command-center-add 'ediff-directories)
@@ -2283,6 +2289,8 @@ current frame, create a new window and switch to it.
                  (filename . "~/Dropbox/diku/osm2/")))
                ("C"
                 (mode . c-mode))
+               ("C++"
+                (mode . c++-mode))
                ("Python"
                 (mode . python-mode))
                ("Java"
@@ -2312,7 +2320,8 @@ current frame, create a new window and switch to it.
                 (or
                  (filename . "\\.sh")
                  (mode . shell-script-mode)))
-
+               ("Perl"
+                (mode . perl-mode))
                ("Tex"
                 (or
                  (mode . auctex)
@@ -3725,7 +3734,12 @@ instead."
 ;π DICTIONARIES
 ;;______________________________________________________________________________
 
-(defun fd-switch-dictionary()
+(defun fd-switch-dictionary-flyspell ()
+  (interactive)
+  (call-interactively 'fd-switch-dictionary)
+  (turn-on-flyspell))
+
+(defun fd-switch-dictionary ()
   (interactive)
   (let* ((dic ispell-current-dictionary)
          (change (if (string= dic "dansk") "english" "dansk")))
