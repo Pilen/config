@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
-if [ $# -eq 0 ]
+cd ~/youtube;
+
+if [ $# -eq 0 ];
 then
     link=$(zenity --entry --text="Video:");
 else
@@ -8,5 +10,13 @@ else
 fi
 
 echo $link;
+file=$(youtube-dl --get-filename $link)
+echo $file;
+echo;
+if [ ! -f "$file" ];
+then
+    youtube-dl $link;
+fi
+echo;
 
-mplayer $(youtube-dl -g $link)
+mplayer "$file";
