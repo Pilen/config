@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 if [ $# -eq 0 ]
 then
     link=$(zenity --entry --text="Video:");
