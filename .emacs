@@ -3347,13 +3347,13 @@ current frame, create a new window and switch to it.
     (python-shell-switch-to-shell)))
 
 
-(defun query-replace-with-region (start end)
-  (interactive "r")
+(defun query-replace-with-region ()
+  (interactive)
   (if (not (use-region-p))
     (call-interactively 'query-replace)
 
     (goto-char start)
-    (let ((text (buffer-substring-no-properties start end)))
+    (let ((text (buffer-substring-no-properties (region-beginning) (region-end))))
       (query-replace text (query-replace-read-to text "Query replace" nil)))))
 
 (defun reindent-buffer ()
