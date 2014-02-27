@@ -3352,7 +3352,7 @@ current frame, create a new window and switch to it.
   (if (not (use-region-p))
     (call-interactively 'query-replace)
 
-    (goto-char start)
+    (goto-char (region-beginning))
     (let ((text (buffer-substring-no-properties (region-beginning) (region-end))))
       (query-replace text (query-replace-read-to text "Query replace" nil)))))
 
