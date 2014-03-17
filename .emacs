@@ -512,6 +512,7 @@
 ;;______________________________________________________________________________
 
 (defvar command-center-commands '())
+(defvar command-center-last-command nil)
 
 (defun command-center-add (command &optional name)
   (when (null name)
@@ -528,11 +529,14 @@
 
 (defun command-center ()
   (interactive)
-  (let* ((name
-          (ido-completing-read ">: "
-                               (mapcar (lambda (x) (car x))
-                                       command-center-commands)))
+  (let* ((name (ido-completing-read
+                ">: "
+                (mapcar (lambda (x) (car x))
+                        (if (null command-center-last-command)
+                            command-center-commands
+                          (cons command-center-last-command command-center-commands)))))
          (command (cdr (assoc name command-center-commands))))
+    (setq command-center-last-command (cons name command))
     (if (commandp command)
         (call-interactively command)
       (funcall command))))
