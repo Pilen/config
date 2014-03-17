@@ -48,6 +48,7 @@
 ;; org-mode
 ;; minimap
 ;; eshell ido ctrl-r
+;;     call (eshell-save-some-history), ido on eshell-history-file-name, insert result into eshell
 
 ;; windowmanager
 ;; xpdfremote
@@ -548,6 +549,7 @@
   (command-center-add 'move-buffer-file)
   (command-center-add 'eval-buffer)
   (command-center-add 'emacs-lisp-mode)
+  (command-center-add 'edebug-eval-top-level-form "edebug-current")
   (command-center-add 'delete-file)
   (command-center-add 'whitespace-cleanup)
   (command-center-add 'reindent-buffer)
@@ -1345,7 +1347,7 @@
 
 (setq-default tab-width 4)
 
-
+(setq-default c-basic-offset 4)
 ;;Autoindentation on yanking
 (dolist (command '(yank yank-pop))
   (eval `(defadvice ,command (after indent-region activate)
@@ -1364,14 +1366,17 @@
 (add-hook 'c-mode-hook
           (lambda ()
             (setq indent-tabs-mode nil)
+            (setq c-basic-offset 4)
             (setq c-indent-level 4)))
 (add-hook 'objc-mode-hook
           (lambda ()
             (setq indent-tabs-mode nil)
+            (setq c-basic-offset 4)
             (setq c-indent-level 4)))
 (add-hook 'c++-mode-hook
           (lambda ()
             (setq indent-tabs-mode nil)
+            (setq c-basic-offset 4)
             (setq c-indent-level 4)))
 ;;______________________________________________________________________________
 ;π AUTO-INDENT
@@ -1938,6 +1943,8 @@ There exists two workarounds for this bug:
   (add-to-list 'eshell-visual-commands "alsamixer")
   (add-to-list 'eshell-visual-commands "ssh")
   (add-to-list 'eshell-visual-commands "tail")
+
+  (setq eshell-history-size 1000)
   )
 
 (add-hook 'eshell-mode-hook 'm-eshell-hook)
@@ -2813,10 +2820,10 @@ current frame, create a new window and switch to it.
   ;(TeX-clean nil))
   )
 
-
+(setq LaTeX-insert-matrix-type "bmatrix")
 (defun LaTeX-insert-matrix ()
   (interactive)
-  (let ((r "\\begin{pmatrix}\n")
+  (let ((r (concat"\\begin{" LaTeX-insert-matrix-type "}\n"))
         (i " "))
     (while (not (string= i ""))
       (setq i (read-string "row: "))
@@ -2825,7 +2832,7 @@ current frame, create a new window and switch to it.
                       (replace-regexp-in-string " +" " & " i)
                         " \\\\\n")))
     (setq r (substring r 0 -10))
-    (setq r (concat r "\n\\end{pmatrix}\n"))
+    (setq r (concat r "\n\\end{" LaTeX-insert-matrix-type "}\n"))
     ;;(message r)
     (insert r)))
 
@@ -3356,8 +3363,8 @@ current frame, create a new window and switch to it.
   (if (not (use-region-p))
     (call-interactively 'query-replace)
 
-    (goto-char (region-beginning))
     (let ((text (buffer-substring-no-properties (region-beginning) (region-end))))
+      (goto-char (region-beginning))
       (query-replace text (query-replace-read-to text "Query replace" nil)))))
 
 (defun reindent-buffer ()
