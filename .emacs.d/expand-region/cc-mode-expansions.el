@@ -46,6 +46,8 @@
 ;;; Code:
 
 (require 'expand-region-core)
+(require 'er-basic-expansions)
+(require 'cc-cmds)
 
 (defun er/c-mark-statement ()
   "Mark the current C statement.
@@ -101,7 +103,7 @@ This function captures identifiers composed of multiple
   (when (use-region-p)
     (when (> (point) (mark))
       (exchange-point-and-mark))
-    (while (looking-back "::")
+    (while (er/looking-back-exact "::")
       (backward-char 2)
       (skip-syntax-backward "_w"))
     (exchange-point-and-mark)
@@ -144,7 +146,10 @@ This function captures identifiers composed of multiple
            (when (> (point) (mark))
              (exchange-point-and-mark))
            (when (looking-at ,open-brace)
-             (let ((end (mark)))
+             (let ((beg (point))
+                   (end (progn (forward-sexp 1)
+                               (point))))
+               (goto-char beg)
                (skip-syntax-backward " ")
                (backward-char)
                (deactivate-mark)
@@ -168,7 +173,13 @@ This function captures identifiers composed of multiple
                  er/c-mark-statement-block-1 er/c-mark-statement-block-2
                  er/c-mark-vector-access-1   er/c-mark-vector-access-2))))
 
-(add-hook 'c-mode-common-hook 'er/add-cc-mode-expansions)
+(er/enable-mode-expansions 'c-mode 'er/add-cc-mode-expansions)
+(er/enable-mode-expansions 'c++-mode 'er/add-cc-mode-expansions)
+(er/enable-mode-expansions 'objc-mode 'er/add-cc-mode-expansions)
+(er/enable-mode-expansions 'java-mode 'er/add-cc-mode-expansions)
+(er/enable-mode-expansions 'idl-mode 'er/add-cc-mode-expansions)
+(er/enable-mode-expansions 'pike-mode 'er/add-cc-mode-expansions)
+(er/enable-mode-expansions 'awk-mode 'er/add-cc-mode-expansions)
 
 (provide 'cc-mode-expansions)
 

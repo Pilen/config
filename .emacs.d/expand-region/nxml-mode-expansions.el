@@ -29,16 +29,17 @@
 
 (require 'expand-region-core)
 (require 'html-mode-expansions)
+(require 'nxml-mode)
 
 (defun er/mark-nxml-tag ()
   "Marks one nxml element e.g. <p>"
   (interactive)
   (cond ((looking-at "<")
          (nxml-mark-token-after))
-        ((looking-back ">")
+        ((er/looking-back-exact ">")
          (backward-char 1)
          (nxml-mark-token-after))
-        ((looking-back "<[^<>]*")
+        ((er/looking-back-max "<[^<>]*" 1000)
          (nxml-mark-token-after))))
 
 (defun er/mark-nxml-element ()
@@ -70,7 +71,8 @@
 (defun er/mark-nxml-attribute-string ()
   "Marks an attribute string."
   (interactive)
-  (when (looking-back "[\"']")
+  (when (or (er/looking-back-exact "\"")
+            (er/looking-back-exact "'"))
     (backward-char 1))
   ;; Using syntax highlighting is a hack, but I can't figure out how
   ;; to use nxml-mode functions to do it.
@@ -107,7 +109,7 @@
                 (remove 'er/mark-symbol-with-prefix
                         (remove 'er/mark-symbol er/try-expand-list))))))
 
-(add-hook 'nxml-mode-hook 'er/add-nxml-mode-expansions)
+(er/enable-mode-expansions 'nxml-mode 'er/add-nxml-mode-expansions)
 
 (provide 'nxml-mode-expansions)
 

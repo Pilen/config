@@ -45,7 +45,8 @@
   (when (not (xpdfremote/find-string-in-current-buffer filename))
     (xpdfremote/insert-file filename))
   (setq xpdfremote/current-file filename)
-  (xpdfremote/xpdf-open-file filename))
+  (xpdfremote/xpdf-open-file filename)
+  (cd (file-name-directory filename)))
 
 (defun xpdfremote/send-command (command)
   (interactive "s")

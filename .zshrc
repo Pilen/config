@@ -3,6 +3,7 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory autocd extendedglob nomatch
+setopt hist_ignore_space
 unsetopt beep notify
 bindkey -e
 # End of lines configured by zsh-newuser-install
@@ -39,6 +40,8 @@ fi
 #else
 #PROMT="[%n@%m:%C]$"
 #fi
+
+source ~/git_prompt.zsh
 
 function mkcd {
     mkdir $1 && cd $1;

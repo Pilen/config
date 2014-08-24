@@ -30,13 +30,17 @@ nature of the basic expansions:
 
     er/mark-word
     er/mark-symbol
+    er/mark-symbol-with-prefix
+    er/mark-next-accessor
     er/mark-method-call
-    er/mark-comment
-    er/mark-comment-block
     er/mark-inside-quotes
     er/mark-outside-quotes
     er/mark-inside-pairs
     er/mark-outside-pairs
+    er/mark-comment
+    er/mark-url
+    er/mark-email
+    er/mark-defun
 
 However, most languages also will benefit from some specially crafted
 expansions. For instance, expand-region comes with these extra expansions for
@@ -87,15 +91,16 @@ great if you opened a pull-request. The repo is at:
 All changes must be accompanied by feature tests.
 They are written in [Ecukes](http://ecukes.info), a Cucumber for Emacs.
 
-To fetch the test dependencies:
+To fetch the test dependencies, install
+[cask](https://github.com/rejeep/cask.el) if you haven't already,
+then:
 
     $ cd /path/to/expand-region
-    $ git submodule init
-    $ git submodule update
+    $ cask
 
 Run the tests with:
 
-    $ ./util/ecukes/ecukes features
+    $ ./run-tests.sh
 
 If feature tests are missing for the mode you are changing, please make
 sure to add a set of basic tests around the functionality you're changing.
@@ -104,18 +109,50 @@ sure to add a set of basic tests around the functionality you're changing.
 
 * [Josh Johnston](https://github.com/joshwnj) contributed `er/contract-region`
 * [Le Wang](https://github.com/lewang) contributed consistent handling of the mark ring, expanding into pairs/quotes just left of the cursor, and general code clean-up.
-* [Matt Briggs](https://github.com/mbriggs) contributed expansions for ruby-mode.
-* [Ivan Andrus](https://github.com/gvol) contributed expansions for python-mode, text-mode, LaTeX-mode and nxml-mode.
 * [Raimon Grau](https://github.com/kidd) added support for when transient-mark-mode is off.
-* [Gleb Peregud](https://github.com/gleber) contributed expansions for erlang-mode.
-* [fgeller](https://github.com/fgeller) and [edmccard](https://github.com/edmccard) contributed better support for python and its multiple modes.
-* [François Févotte](https://github.com/ffevotte) contributed expansions for C and C++.
 * [Roland Walker](https://github.com/rolandwalker) added option to copy the contents of the most recent action to a register, and some fixes.
 * [Damien Cassou](https://github.com/DamienCassou) added option to continue expanding/contracting with fast keys after initial expand.
+* [Sylvain Rousseau](https://github.com/thisirs) fixed loads of little annoyances.
+* [Ryan Mulligan](https://github.com/ryantm) cleaned up a lot of byte compilation warnings.
+
+### Language specific contributions
+
+* [Matt Briggs](https://github.com/mbriggs), [Jorge Dias](https://github.com/diasjorge) and [Le Wang](https://github.com/lewang) contributed Ruby expansions.
+* [Ivan Andrus](https://github.com/gvol), [fgeller](https://github.com/fgeller), [edmccard](https://github.com/edmccard) and [Rotem Yaari](https://github.com/vmalloc) contributed Python expansions.
+* [François Févotte](https://github.com/ffevotte) contributed C and C++ expansions.
+* [Ivan Andrus](https://github.com/gvol) contributed text-mode, LaTeX-mode and nxml-mode expansions.
+* [Gleb Peregud](https://github.com/gleber) contributed Erlang expansions.
+* [Mark Hepburn](https://github.com/markhepburn) contributed Octave expansions.
+* [Rotem Yaari](https://github.com/vmalloc) also contributed an adapter for the region expansion in web-mode.
+* [Kang-min Liu](https://github.com/gugod) contributed Perl expansions.
+* [Alexis Gallagher](https://github.com/algal) contributs Standard ML expansions.
+* [Matt Price](https://github.com/titaniumbones) improved on org-mode expansions.
 
 Thanks!
 
-## Changelist
+## Changelog
+
+### From 0.9 to 0.10
+
+* Smarter expansion of ruby heredoc contents (Steve Purcell)
+* Add enh-ruby-mode expansions (Bradley Wright)
+* Add basic expansion er/mark-defun
+* Big cleanup of byte compilation warnings (Ryan Mulligan)
+* Better performance
+* Lots of bugfixes
+
+### From 0.8 to 0.9
+
+* Improve org-, clojure-, python-, latex-, cc- and ruby-modes
+* Add basic expansions: email and url
+* Add sml-mode expansions (Alexis Gallagher)
+* Add cperl-mode expansions (Kang-min Liu)
+* Add octave-mode expansions (Mark Hepburn)
+* Add web-mode expansions (Rotem Yaari)
+* Use Carton for dev-dependencies
+* Fix bad behavior in minibuffer (Sylvain Rousseau)
+* More robust comment expansions
+* Improve loading of expansions for all major modes
 
 ### From 0.7 to 0.8
 
@@ -130,7 +167,7 @@ Thanks!
 
 ## License
 
-Copyright (C) 2011 Magnar Sveen
+Copyright (C) 2011-2013 Magnar Sveen
 
 Author: Magnar Sveen <magnars@gmail.com>
 Keywords: marking region

@@ -2,7 +2,17 @@
 
 date=`date +%H:%M`
 bat=`acpi | grep -o '[0-9]*%'`
+
+if [[ $(acpi | grep "Charging") ]]
+then
+    bat="$bat+"
+elif [[ $(acpi | grep "Discharging") ]]
+then
+    bat="$bat-"
+fi
+
 title="$date $bat"
+
 
 menu=(\
         chromium  "chromium --purge-memory-button"
@@ -24,6 +34,7 @@ menu=(\
         shutdown  "urxvtc -bg black -fg red -e sudo shutdown -h now"
         youtube   "yplayer"
         politiken "chromium --purge-memory-button -new-window -incognito politiken.dk"
+        pong      "urxvtc -bg black -e ping google.com"
         # 0%        "amixer set Master 0"
         # 10%       "amixer set Master 18"
         # 20%       "amixer set Master 29"
@@ -60,6 +71,7 @@ menu=(\
         # 90%       "amixer set Master 90%"
         # 100%      "amixer set Master 100%"
         # MAX       "amixer set Master 100%"
+        maps      "chromium --purge-memory-button -new-window https://maps.google.com/"
         maple     "/home/pilen/code/scripts/maple"
         dmenu     "dmenu_run"
         omacs     "sh /home/pilen/code/scripts/omacs"

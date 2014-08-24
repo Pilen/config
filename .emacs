@@ -38,6 +38,22 @@
 ;;
 ;;______________________________________________________________________________
 
+;; Build the perfect editor!
+;; speedbar + ibuffer like behaviour
+;; maybe a project like file
+;; an outline?
+;; http://leoeditor.com/
+;; Build and extend the editor based on what you are doing
+;; A bit like acme
+;; Macros are to 'small'
+;; Lispcode is a one time write thing (for modes and stuff)
+
+;; Lookup stackoverflow (Could be cool)
+;; https://atom.io/packages/ask-stack
+;; https://github.com/gleitz/howdoi
+;; https://github.com/atykhonov/emacs-howdoi
+
+
 ;; Port to Emacs 24
 ;; Code navigation
 ;; Code folding
@@ -58,6 +74,8 @@
 
 ;; browse-kill-ring
 
+;; Semantic highlight? https://medium.com/@evnbr/coding-in-color-3a6db2743a1e
+
 ;;;; 24.3 Look at
 ;; set-temporary-overlay-map
 ;; python-shell-send-buffer
@@ -70,7 +88,7 @@
 ;; compile latex -> view latex/update xpdf
 ;; M-x -> repeat last command
 
-
+;; checkdoc your elisp code
 
 ;; Look into:
 ;; initial-buffer-choice
@@ -90,6 +108,11 @@
 ;; subr-x.el
 ;; :distant-foreground
 
+
+
+;; If you ever get to code:
+;; clojure:
+;; https://github.com/clojure-emacs/cider
 
 
 ;;______________________________________________________________________________
@@ -352,7 +375,7 @@
 (global-set-key (kbd "H-:") 'split-window-vertically)
 (global-set-key (kbd "H-;") 'split-window-horizontally)
 ;(global-set-key (kbd "H-r") 'transpose-lines)
-(global-set-key (kbd "H-r") 'comment-or-uncomment-region)
+(global-set-key (kbd "H-r") 'comment-or-uncomment-region-or-line)
 (global-set-key (kbd "H-R") 'align-regexp)
 (global-set-key (kbd "H-]") 'golden-ratio)
 (global-set-key (kbd "H-C-]") 'golden-ratio-toggle)
@@ -485,6 +508,7 @@
 (add-hook 'sh-mode              (lambda () (define-key sh-mode-map         (kbd "H-g") 'eshell-execute-current-line)))
 (add-hook 'shell-script-mode    (lambda () (define-key sh-mode-map         (kbd "H-g") 'eshell-execute-current-line)))
 (add-hook 'c++-mode             (lambda () (define-key c++-mode-map        (kbd "H-g") (lambda () (interactive) (save-buffer) (call-interactively 'compile)))))
+(add-hook 'sql-mode             (lambda () (define-key sql-mode-map        (kbd "H-g") 'sql-send-line)))
 
 (defun my-c-compile ()
   (interactive)
@@ -544,21 +568,34 @@
 
 (progn
   (command-center-clear)
-  (command-center-add 'find-file-other-window)
+  ;; (command-center-add 'revy-abort)
+  ;; (command-center-add 'revy-show-text)
+  ;; (command-center-add 'revy-ubertex-mode)
+  ;; (command-center-add 'revy-ubersicht-mode)
+  ;; (command-center-add 'revy-manus-break)
+  ;; (command-center-add 'revy-manus-comment)
+  ;; (command-center-add 'revy-manus-preamble)
+  ;; (command-center-add 'revy-manus-clean)
+  ;; (command-center-add (lambda () (interactive) (insert "\\pause{}")) "revy manus \\pause{}")
+
+  (command-center-add 'my-find-file-other-window "find-file-other-window")
   (command-center-add 'rename-file-and-buffer)
   (command-center-add 'move-buffer-file)
   (command-center-add 'eval-buffer)
   (command-center-add 'emacs-lisp-mode)
+  (command-center-add 'compile)
   (command-center-add 'edebug-eval-top-level-form "edebug-current")
   (command-center-add 'delete-file)
   (command-center-add 'whitespace-cleanup)
   (command-center-add 'reindent-buffer)
   (command-center-add 'auto-fill-mode)
   (command-center-add 'fill-region)
+  (command-center-add (lambda () (interactive) (fill-region (point-min) (point-max))) "fill buffer")
   (command-center-add 'show-all)
   (command-center-add 'hide-sublevels "hide-all")
   (command-center-add 'shell-command-on-region-replace)
   (command-center-add 'occur)
+  (command-center-add (lambda () (interactive) (occur (buffer-substring (region-beginning) (region-end)))) "occur-region")
   (command-center-add 'sort-lines)
   (command-center-add 'gtags-create-or-update)
   (command-center-add 'indent-region)
@@ -566,6 +603,7 @@
   (command-center-add 'make-directory)
   (command-center-add 'google-translate-da/en)
   (command-center-add 'google-translate-en/da)
+  (command-center-add 'eshell-execute-my-command)
   (command-center-add 'eshell-execute-current-line)
   (command-center-add 'eshell-command)
   (command-center-add 'shell-toggle-cd "eshell-cd")
@@ -574,21 +612,25 @@
   (command-center-add 'make-frame-command "frame-new")
   (command-center-add 'delete-frame "frame-close")
   (command-center-add 'repunctuate-sentences)
-  (command-center-add 'revy-ubertex-mode)
-  (command-center-add 'revy-ubersicht-mode)
-  (command-center-add 'revy-manus-clean)
   (command-center-add 'set-buffer-file-coding-system)
   (command-center-add 'change-directory)
   (command-center-add 'customize-group)
   (command-center-add 'list-processes)
   (command-center-add (lambda () (interactive) (find-file (concat (file-name-sans-extension (buffer-file-name)) ".pdf"))) "open-pdf")
   (command-center-add (lambda () (interactive) (untabify (point-min) (point-max))) "untabify-buffer")
+  (command-center-add (lambda () (interactive) (let ((before-save-hook nil)) (save-buffer))) "save-buffer-no-hook")
   (command-center-add 'goto-command-center)
   (command-center-add 'tramp-cleanup-all-connections)
   (command-center-add 'tramp-cleanup-all-buffers)
+  (command-center-add 'sql-clear)
+  (command-center-add 'sudo-edit-current-file "edit current file sudo root")
   (command-center-add 'ediff)
   (command-center-add 'ediff-buffers)
   (command-center-add 'ediff-directories)
+  (command-center-add 'fit-window-to-buffer)
+  (command-center-add (lambda () (interactive) (quick-calc) (yank)) "quick-calc-insert")
+  (command-center-add 'quick-calc)
+  (command-center-add (lambda () (interactive) (jde-import-all) (jde-import-organize)) "java import-all + organize")
   )
 
 
@@ -628,6 +670,8 @@
 (column-number-mode t)
 
 (setq-default fill-column 80)
+(setq sentence-end-double-space nil)
+(setq colon-double-space nil)
 
 (show-paren-mode t)
 (setq show-paren-delay 0)
@@ -650,6 +694,10 @@
 (put 'upcase-region 'disabled nil)
 
 (setq european-calendar-style t)
+(setq calendar-week-start-day 1)
+(add-hook 'calendar-mode-hook
+          (lambda ()
+            (set-face-attribute 'calendar-today nil :bold t)))
 
 (setq temporary-file-directory "/tmp/")
 (setq kill-buffer-query-functions
@@ -783,6 +831,7 @@
 
 (require 'xpdfremote)
 
+(require 'semantic)
 ;(semantic-mode 1)
 
 (fset 'el-headlines
@@ -804,6 +853,40 @@
 (setq-default require-final-newline t)
 
 (setq delete-active-region nil)
+
+(require 'wrap-region)
+(wrap-region-global-mode)
+(wrap-region-add-wrapper "(" ")" ")")
+(wrap-region-add-wrapper "[" "]" "]")
+(wrap-region-add-wrapper "{" "}" "}")
+(wrap-region-add-wrapper "<" ">" ">")
+(wrap-region-add-wrapper "``" "''" "`")
+(wrap-region-add-wrapper "``" "''" "'")
+
+(defun wrap-region-with (left right)
+  "Wraps region with LEFT and RIGHT."
+  (run-hooks 'wrap-region-before-wrap-hook)
+  (let ((beg (region-beginning))
+        (end (region-end))
+        (pos (point))
+        (deactivate-mark nil))
+    (save-excursion
+      (goto-char beg)
+      (insert left)
+      (goto-char (+ end (length left)))
+      (insert right))
+    (if (= pos end) (forward-char (length right)))
+    (if wrap-region-keep-mark
+        (let* ((beg-p (eq beg pos))
+               (beg* (+ beg (length left)))
+               (end* (+ end (length left))))
+          (push-mark (if beg-p end* beg*) nil t)
+          (goto-char (if beg-p beg* end*)))
+      (deactivate-mark)))
+  (run-hooks 'wrap-region-after-wrap-hook))
+
+(require 'zeal-at-point)
+
 ;;______________________________________________________________________________
 ;π BATTERY
 ;;______________________________________________________________________________
@@ -928,6 +1011,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "Schumacher" :family "Clean"))))
+ '(eshell-prompt ((t (:foreground "LightSkyBlue1" :weight bold))))
  '(flymake-errline ((((class color)) (:underline "red"))))
  '(flymake-warnline ((((class color)) (:underline "yellow"))))
  '(whitespace-line ((t (:inherit nil :background "gray20")))))
@@ -1558,6 +1642,17 @@ See `whitespace-line-column'."
 (win-switch-define-key "o" 'tiling-cycle t)
 (win-switch-define-key "|" 'delete-other-windows t)
 
+(win-switch-define-key "0" 'select-window-0)
+(win-switch-define-key "1" 'select-window-1)
+(win-switch-define-key "2" 'select-window-2)
+(win-switch-define-key "3" 'select-window-3)
+(win-switch-define-key "4" 'select-window-4)
+(win-switch-define-key "5" 'select-window-5)
+(win-switch-define-key "6" 'select-window-6)
+(win-switch-define-key "7" 'select-window-7)
+(win-switch-define-key "8" 'select-window-8)
+(win-switch-define-key "9" 'select-window-9)
+
 
 (defadvice split-window (after move-point-to-new-window activate)
   "Moves the point to the newly created window after splitting."
@@ -1977,6 +2072,7 @@ There exists two workarounds for this bug:
       (tyler-eshell-view-file (pop args)))))
 (defalias 'eshell/more 'eshell/less)
 (defun eshell/e (file)
+  (message default-directory)
   (find-file-other-window file))
 
 (defun shell-toggle-buffer-switch-to-other-window ()
@@ -1999,6 +2095,42 @@ current frame, create a new window and switch to it.
   (goto-char (point-max))
   (eshell-send-input))
 
+(defvar eshell-execute-my-command-history nil)
+
+;; Does not work with "clear"
+(defun eshell-execute-my-command (&optional command)
+  (interactive)
+  (let ((window-number  (window-numbering-get-number))
+        (start nil)
+        (result command))
+    (when (null command)
+      (let ((history (cdr eshell-execute-my-command-history)))
+        (setq command (read-string
+                       "kat$: "
+                       (car eshell-execute-my-command-history)
+                       'history)))
+      (when (not (string= command (car eshell-execute-my-command-history)))
+        (push command eshell-execute-my-command-history)))
+
+    (shell-toggle nil)
+    (eshell-kill-input)
+    (insert command)
+    (setq start (1+ (point)))
+    (eshell-send-input)
+    (message command)
+    (when (not (string= "" command)) ;; should be if it is empty or only contains whitespace
+      ;; (let ((time (current-time)))
+      ;; (>= 1 (float-time (time-subtract time (current-time)))));; Should have a max time of 1 sec
+      (while (>= start eshell-last-output-start)
+        (sleep-for 0 20))
+      (when (= 1 (count-lines start eshell-last-output-start))
+        (setq result
+              (substring
+               (buffer-substring-no-properties start
+                                               eshell-last-output-start)
+               0 -1))))
+    (select-window-by-number window-number)
+    (message result)))
 
 (defun eshell-execute-current-line ()
   "Insert text of current line in eshell and execute."
@@ -2037,6 +2169,14 @@ current frame, create a new window and switch to it.
 ;;           mark-page))))
 
 ;; (add-hook 'text-mode-hook 'er/add-text-mode-expansions)
+(defun er/add-text-mode-expansions ()
+  (make-variable-buffer-local 'er/try-expand-list)
+  (setq er/try-expand-list (append
+                            er/try-expand-list
+                            '(mark-paragraph
+                              mark-page))))
+
+(er/enable-mode-expansions 'text-mode 'er/add-text-mode-expansions)
 
 ;; (setq er/try-expand-list
 ;;       (append er/try-expand-list
@@ -2113,8 +2253,10 @@ current frame, create a new window and switch to it.
 (defun turn-on-flyspell ()
   "Force flyspell-mode on using a positive arg."
   (interactive)
-  (flyspell-mode 1)
-  )
+  (if (and TeX-mode-p
+           (string= ".log" (substring (buffer-name (current-buffer)) -4 nil)))
+      (message "turn-on-flyspell called on latex .log file, but ignored")
+    (flyspell-mode 1)))
 
 ;; (setq flyspell-is-on nil)
 ;; (defun flyspell-toggle ()
@@ -2735,6 +2877,10 @@ current frame, create a new window and switch to it.
 (define-key isearch-mode-map (kbd "H-e") 'isearch-repeat-forward)
 (define-key isearch-mode-map (kbd "H-m") 'isearch-edit-string)
 (define-key isearch-mode-map (kbd "C-o") 'isearch-occur)
+(define-key isearch-mode-map (kbd "H-v") (lambda () (interactive) (isearch-yank-string (buffer-substring (region-beginning) (region-end)))))
+(define-key isearch-mode-map (kbd "H-n") (lambda () (interactive) (isearch-done) ;; (push-mark)
+                                           (goto-char isearch-other-end)))
+
 (defun isearch-occur ()
   (interactive)
   (let ((case-fold-search isearch-case-fold-search))
@@ -2746,7 +2892,7 @@ current frame, create a new window and switch to it.
 
 (define-key isearch-mode-map (kbd "H-m") 'isearch-repeat-forward)
 (define-key isearch-mode-map (kbd "H-M") 'isearch-repeat-backward)
-
+(define-key isearch-mode-map [remap isearch-delete-char] 'isearch-del-char)
 ;;______________________________________________________________________________
 ;π JABBER
 ;;______________________________________________________________________________
@@ -2932,10 +3078,42 @@ current frame, create a new window and switch to it.
 ;π PYTHON
 ;;______________________________________________________________________________
 ;; (setq python-command "/usr/bin/bpython")
-;; (add-hook 'python-mode-hook
-;;           (lambda ()
-;;             (message "kat")
-;;             (setq imenu-create-index-function 'imenu-default-create-index-function)))
+(remove-hook 'python-mode-hook (lambda () (setq imenu-create-index-function 'python-imenu-create-index)))
+(add-hook 'python-mode-hook
+          (lambda ()
+            (setq imenu-create-index-function 'imenu-default-create-index-function)))
+
+(defun wisent-python-wy--install-parser () nil)
+
+(defun wisent-python-default-setup ()
+  "Setup buffer for parse."
+  (wisent-python-wy--install-parser)
+  (set (make-local-variable 'parse-sexp-ignore-comments) t)
+  ;; Give python modes the possibility to overwrite this:
+  (if (not comment-start-skip)
+      (set (make-local-variable 'comment-start-skip) "#+\\s-*"))
+  (setq
+   ;; Character used to separation a parent/child relationship
+   semantic-type-relation-separator-character '(".")
+   semantic-command-separation-character ";"
+   ;; Parsing
+   semantic-tag-expand-function 'semantic-python-expand-tag
+
+   ;; Semantic to take over from the one provided by python.
+   ;; The python one, if it uses the senator advice, will hang
+   ;; Emacs unrecoverably.
+   imenu-create-index-function 'imenu-default-create-index-function
+
+   ;; I need a python guru to update this list:
+   semantic-symbol->name-assoc-list-for-type-parts '((variable . "Variables")
+                                                     (function . "Methods"))
+   semantic-symbol->name-assoc-list '((type . "Classes")
+                                      (variable . "Variables")
+                                      (function . "Functions")
+                                      (include  . "Imports")
+                                      (package  . "Package")
+                                      (code . "Code")))
+  )
 
 ;; (defun semantic-create-imenu-index (&optional stream)
 ;;   (imenu-default-create-index-function))
@@ -3011,6 +3189,8 @@ current frame, create a new window and switch to it.
 ;;______________________________________________________________________________
 ;π SML
 ;;______________________________________________________________________________
+;; Kig i user-init-file
+
 ;;(add-to-list 'load-path "~/.emacs.d/sml-mode-4.1/")
 
 (require 'sml-mode "sml-mode-6.1")
@@ -3030,6 +3210,90 @@ current frame, create a new window and switch to it.
             (setq sml-indent-level 2)        ; conserve on horizontal space
             (setq words-include-escape t)    ; \ loses word break status
             (setq indent-tabs-mode nil)))    ; never ever indent with tabs
+
+;;______________________________________________________________________________
+;π SQL
+;;______________________________________________________________________________
+(defvar sql-last-prompt-pos 1
+  "position of last prompt when added recording started")
+(make-variable-buffer-local 'sql-last-prompt-pos)
+(put 'sql-last-prompt-pos 'permanent-local t)
+
+(defun sql-add-newline-first (output)
+  "Add newline to beginning of OUTPUT for `comint-preoutput-filter-functions'
+    This fixes up the display of queries sent to the inferior buffer
+    programatically."
+  (let ((begin-of-prompt
+         (or (and comint-last-prompt-overlay
+                  ;; sometimes this overlay is not on prompt
+                  (save-excursion
+                    (goto-char (overlay-start comint-last-prompt-overlay))
+                    (looking-at-p comint-prompt-regexp)
+                    (point)))
+             1)))
+    (if (> begin-of-prompt sql-last-prompt-pos)
+        (progn
+          (setq sql-last-prompt-pos begin-of-prompt)
+          (concat "\n" output))
+      output)))
+
+(defun sqli-add-hooks ()
+  "Add hooks to `sql-interactive-mode-hook'."
+  (add-hook 'comint-preoutput-filter-functions
+            'sql-add-newline-first))
+
+(add-hook 'sql-interactive-mode-hook 'sqli-add-hooks)
+
+(defun sql-send-line ()
+  (interactive)
+  (save-excursion
+    (let ((start (progn (beginning-of-line) (point)))
+          (end (progn (end-of-line) (point))))
+      (sql-send-region start end))))
+
+(defun sql-send-string (str)
+  "Send the string STR to the SQL process."
+  (interactive "sSQL Text: ")
+
+  (when (not (string= ";" (substring str -1)))
+    (setq str (concat str ";")))
+
+  (let ((comint-input-sender-no-newline nil)
+        (s (replace-regexp-in-string "[[:space:]\n\r]+\\'" "" str)))
+    (if (sql-buffer-live-p sql-buffer)
+        (progn
+          ;; Ignore the hoping around...
+          (save-excursion
+            ;; Set product context
+            (with-current-buffer sql-buffer
+              ;; Send the string (trim the trailing whitespace)
+              (sql-input-sender (get-buffer-process sql-buffer) s)
+
+              ;; Send a command terminator if we must
+              (if sql-send-terminator
+                  (sql-send-magic-terminator sql-buffer s sql-send-terminator))
+
+              (message "Sent string to buffer %s." sql-buffer)))
+
+          ;; Display the sql buffer
+          (if sql-pop-to-buffer-after-send-region
+              (pop-to-buffer sql-buffer)
+            (display-buffer sql-buffer)))
+
+      ;; We don't have no stinkin' sql
+      (message "No SQL process started."))))
+
+(defun sql-clear ()
+  (interactive)
+  (eshell/clear)
+  (comint-send-input)
+  (setq sql-last-prompt-pos 1))
+
+(add-hook 'sql-interactive-mode-hook
+          (lambda ()
+            (define-key sql-interactive-mode-map (kbd "C-l") 'sql-clear)))
+;; (add-hook 'sql-mode-hook
+;;           (lambda () (local-set-minor-mode-key 'sql-mode (kbd "C-l") 'sql-clear)))
 
 ;;______________________________________________________________________________
 ;π TABBAR
@@ -3352,6 +3616,7 @@ current frame, create a new window and switch to it.
 
 (defun python-compile ()
   (interactive)
+  (python-shell-send-string "__name__ = '__emacs__'")
   (python-shell-send-buffer)
   (python-shell-send-string (concat "print('evaluating: " (buffer-name) "')"))
   (save-selected-window
@@ -3372,7 +3637,8 @@ current frame, create a new window and switch to it.
   (interactive)
   (delete-trailing-whitespace)
   (indent-region (point-min) (point-max) nil)
-  (untabify (point-min) (point-max)))
+  (untabify (point-min) (point-max))
+  (whitespace-cleanup))
 
 (defun switch-to-minibuffer-window ()
   "switch to minibuffer window (if active)"
@@ -3503,6 +3769,43 @@ in that cyclic order."
     (if (< mid cur)
         (set-window-hscroll (selected-window)
                             (- cur mid)))))
+
+(defun my-find-file-other-window (filename &optional wildcards)
+  (interactive
+   (find-file-read-args "Find file in other window: "
+                        (confirm-nonexistent-file-or-buffer)))
+  (let ((value (find-file-noselect filename nil nil wildcards)))
+    (if (listp value)
+        (progn
+          (setq value (nreverse value))
+          (cons (switch-to-buffer-other-window (car value))
+                (mapcar 'switch-to-buffer (cdr value))))
+
+      (let* ((windows (car (gethash (selected-frame) window-numbering-table)))
+             (number-of-windows (count 'nil windows :test-not 'eq))
+             (window-number (window-numbering-get-number))
+
+             (chosen-window (loop for i from 1 to number-of-windows
+                                  if (not (or (= i window-number) (window-dedicated-p (elt windows i)))) return i)))
+
+             (if (null chosen-window)
+                 (switch-to-buffer-other-window value)
+               (save-excursion
+                 (select-window-by-number chosen-window)
+                 (message default-directory)
+                 (find-file filename)))))))
+
+(defun local-set-minor-mode-key (mode key def)
+  "Overrides a minor mode keybinding for the local
+   buffer, by creating or altering keymaps stored in buffer-local
+   `minor-mode-overriding-map-alist'."
+  (let* ((oldmap (cdr (assoc mode minor-mode-map-alist)))
+         (newmap (or (cdr (assoc mode minor-mode-overriding-map-alist))
+                     (let ((map (make-sparse-keymap)))
+                       (set-keymap-parent map oldmap)
+                       (push `(,mode . ,map) minor-mode-overriding-map-alist)
+                       map))))
+    (define-key newmap key def)))
 ;;______________________________________________________________________________
 ;π JUMP TO MATCHING PARETHESIS
 ;;______________________________________________________________________________
@@ -3542,6 +3845,13 @@ in that cyclic order."
                          (backward-char 1)))
                   ))))))
 
+(defun comment-or-uncomment-region-or-line ()
+  (interactive)
+  (if (region-active-p)
+      (comment-or-uncomment-region (region-beginning) (region-end))
+    (save-excursion
+    (comment-or-uncomment-region (progn (beginning-of-line) (point))
+                                 (progn (end-of-line) (point))))))
 
 ;;______________________________________________________________________________
 ;π ZOOM

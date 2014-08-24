@@ -33,21 +33,32 @@ alias bc='bc -q'
 alias d="cd ~/Dropbox/diku/"
 alias eduroam='sudo wpa_supplicant -B -D wired -i eth0 -c /root/bla.txt'
 alias net='sudo killall dhcpcd -w; sudo dhcpcd eth0;dropbox stop; dropbox start; dropbox status'
-alias net='sudo killall wpa_supplicant dhcpcd; sudo wpa_supplicant -iwlp3s0 -c/root/wpa_supplicant.conf -B; sleep 2; sudo dhcpcd wlp3s0'
-alias net='sudo killall wpa_supplicant dhclient; sudo wpa_supplicant -iwlp3s0 -c/root/wpa_supplicant.conf -B; sleep 2; sudo dhclient wlp3s0'
+alias anet='sudo killall wpa_supplicant dhcpcd; sudo wpa_supplicant -iwlp3s0 -c/root/wpa_supplicant.conf -B; sleep 2; sudo dhcpcd wlp3s0'
+alias net='sudo killall wpa_supplicant dhclient; sudo wpa_supplicant -iwlp3s0 -c/root/wpa_supplicant.conf -B; sleep 2; sudo dhclient -v wlp3s0'
 #alias net='sudo dhcpcd -k; sudo dhcpcd eth0'
 alias arkham='sudo wpa_supplicant -iwlan0 -c/root/bla2.txt -B;sudo dhcpcd wlan0'
-alias knet='sudo killall wpa_supplicant dhcpcd'
-alias inet='sudo killall wpa_supplicant dhcpcd; /lib/udev/ipheth-pair; sudo dhcpcd eth1'
+alias knet='sudo killall wpa_supplicant dhcpcd dhclient'
+alias inet='sudo killall wpa_supplicant dhcpcd dhclient; /lib/udev/ipheth-pair; sudo dhcpcd eth1'
 alias netscan='sudo ifconfig wlan0 up; sudo iwlist wlan0 scan | grep SSID; sudo ifconfig wlan0 down'
 alias rf='rm -rf'
+alias u='urxvtc'
+alias music="mplayer -novideo"
+
+alias gs='git status'
+alias gd='git diff --color=always | less -R'
+alias gwd='git wdiff --color=always | less -R'
+alias gg='git log --pretty=format:"%Cred%d%Creset %s - %Cgreen%aN %Cblue%aD%Creset" --graph'
+alias gl='git log --name-status -n 4'
+alias gl='git log --stat -n 2'
 
 alias colemak='setxkbmap us -variant colemak; xmodmap .Xmodmap'
 alias dansk='setxkbmap dk'
 alias sakre='setxkbmap dk'
 alias us='setxkbmap us'
 
-alias r="cd /home/pilen/revy/2013-jubilee-40/av"
+alias r="cd /home/pilen/revy/2014"
+alias a="cd /home/pilen/av/2014"
+alias av="cd /home/pilen/av/2014"
 alias brok="ssh revy@192.168.0.100"
 alias pen="ssh 192.168.0.3"
 

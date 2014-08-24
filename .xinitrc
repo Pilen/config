@@ -1,4 +1,4 @@
-synclient TouchpadOff=1
+touchpad-off
 setxkbmap us -variant colemak; xset r 66
 xmodmap .Xmodmap
 xsetroot -cursor_name left_ptr

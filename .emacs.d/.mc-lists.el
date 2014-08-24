@@ -3,7 +3,10 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        org-self-insert-command
+        back-to-indentation-or-beginning
+        backward-kill-word-to-newline
+        forward-word-to-newline
+        python-indent-dedent-line-backspace
         python-indent-electric-colon
         toggle-letter-case
         xpdfremote/xpdf-pageDown
@@ -12,6 +15,6 @@
 
 (setq mc/cmds-to-run-once
       '(
-        c-electric-backspace
+        ido-find-file
         iedit-mode
         ))

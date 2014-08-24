@@ -4,7 +4,7 @@ import os
 import re
 import subprocess
 
-config = "/home/pilen/code/config/next-episode.conf"
+config = os.path.expanduser("~/.next-episode.conf")
 
 def trim(dirpath):
     if os.path.isfile(dirpath):
@@ -27,8 +27,9 @@ def mplayer(filename):
 
 
 def openseries(path):
+    path = os.path.abspath(os.path.expanduser(path))
     if os.path.isfile(path):
-        return os.path.abspath(path)
+        return path
     elif os.path.isdir(path):
         dir = naturalsort(ls(path))
         return dir[0]

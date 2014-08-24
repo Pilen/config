@@ -3,7 +3,7 @@
 
 (setq url-cookie-storage
  '((".google.com"
-  [url-cookie "PREF" "ID=0ed2bcdba22e4be0:TM=1351823799:LM=1385919649:S=xjY9iqip4jQq20qs" "01-Dec-2015 17:40:49.00 GMT" "/" ".google.com" nil]))
+  [url-cookie "PREF" "ID=0ed2bcdba22e4be0:TM=1351823799:LM=1403171993:S=87d0XvoM1BQuM4NF" "18-Jun-2016 09:59:53.00 GMT" "/" ".google.com" nil]))
 )
 (setq url-cookie-secure-storage
  'nil)

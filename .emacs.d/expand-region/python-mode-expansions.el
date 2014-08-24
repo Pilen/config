@@ -43,6 +43,8 @@
 
 (defvar er--python-string-delimiter "'\"")
 
+(defalias 'py-goto-beyond-clause 'py-end-of-clause-bol)
+
 (defun er/mark-outside-python-string ()
   "Marks region outside a (possibly multi-line) Python string"
   (interactive)
@@ -104,10 +106,10 @@ line and selecting the surrounding block."
         (while (> (current-column) start-col)
           (forward-line -1) (back-to-indentation)))
       (set-mark (point))
-      (py-goto-beyond-clause) (forward-line) (back-to-indentation)
+      (py-end-of-clause-bol) (forward-line) (back-to-indentation)
       (while (and (looking-at secondary-re)
                   (>= (current-column) start-col))
-        (py-goto-beyond-clause) (forward-line) (back-to-indentation))
+        (py-end-of-clause-bol) (forward-line) (back-to-indentation))
       (forward-line -1) (end-of-line)
       (exchange-point-and-mark))))
 
@@ -125,16 +127,13 @@ line and selecting the surrounding block."
                                      er/mark-outer-python-block
                                      py-mark-class
                                      )))
+    (set (make-local-variable 'expand-region-skip-whitespace) nil)
     (set (make-local-variable 'er/try-expand-list)
          (remove 'er/mark-inside-quotes
                  (remove 'er/mark-outside-quotes
                          (append er/try-expand-list try-expand-list-additions))))))
 
-
-(add-hook 'python-mode-hook
-          #'(lambda ()
-              (set (make-local-variable 'expand-region-skip-whitespace) nil)
-              (er/add-python-mode-expansions)))
+(er/enable-mode-expansions 'python-mode 'er/add-python-mode-expansions)
 
 (provide 'python-mode-expansions)
 

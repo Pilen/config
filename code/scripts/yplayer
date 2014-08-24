@@ -9,14 +9,19 @@ else
     link="$1";
 fi
 
-echo $link;
-file=$(youtube-dl --get-filename $link)
-echo $file;
-echo;
-if [ ! -f "$file" ];
+if [[ -z $link ]]
 then
-    youtube-dl $link;
+    file=$(ls -c *.mp4 | head -n 1)
+else
+    echo $link;
+    file=$(youtube-dl --get-filename $link)
+    echo $file;
+    echo;
+    if [ ! -f "$file" ];
+    then
+        youtube-dl $link;
+    fi
+    echo;
 fi
-echo;
 
 mplayer "$file";
