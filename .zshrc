@@ -41,7 +41,7 @@ fi
 #PROMT="[%n@%m:%C]$"
 #fi
 
-source ~/git_prompt.zsh
+source ~/.git_prompt.zsh
 
 function mkcd {
     mkdir $1 && cd $1;
