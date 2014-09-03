@@ -7,6 +7,7 @@
         back-to-indentation-or-beginning
         backward-kill-word-to-newline
         forward-word-to-newline
+        pager-page-up
         python-indent-dedent-line-backspace
         python-indent-electric-colon
         toggle-letter-case
