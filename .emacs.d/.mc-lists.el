@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        TeX-insert-backslash
         back-to-indentation-or-beginning
         backward-kill-word-to-newline
         forward-word-to-newline

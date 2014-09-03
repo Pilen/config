@@ -453,7 +453,7 @@
 (global-set-key (kbd "S-<f8>") 'narrow-to-defun)
 ;(global-set-key (kbd "<f9>") 'shell-command-on-region-replace)
 (global-set-key (kbd "<f9>") 'command-center)
-(global-set-key (kbd "<f10>") 'reftex-toc)
+(global-set-key (kbd "<f10>") 'reftex-toc-other-window)
 (global-set-key (kbd "<f11>") 'LaTeX-environment)
 (global-set-key (kbd "H-<f11>") 'LaTeX-close-environment)
 (global-set-key (kbd "S-<f11>") 'LaTeX-insert-matrix)
@@ -3034,6 +3034,12 @@ current frame, create a new window and switch to it.
                                      maxlen)
                         "\n\\end{pmatrix}\n"))))
 
+(defun reftex-toc-other-window ()
+  (interactive)
+  (save-excursion
+    (pop-to-buffer "*toc*"))
+  (reftex-toc))
+
 ;;______________________________________________________________________________
 ;π MINIMAP
 ;;______________________________________________________________________________
@@ -3201,12 +3207,13 @@ current frame, create a new window and switch to it.
             (define-key inferior-sml-mode-map (kbd "<return>") (lambda ()
                                                                  (interactive)
                                                                  (end-of-line)
-                                                                 (insert ";")
+                                                                 (when (not (looking-back "; *"))
+                                                                   (insert ";"))
                                                                  (comint-send-input)))
             (define-key inferior-sml-mode-map (kbd "S-<return>") 'comint-send-input)
             (setq sml-program-name "mosml")
-            ;(setq sml-default-arg "-P full")
-            (setq sml-default-arg "-Ccontrol.poly-eq-warn=false")
+            (setq sml-default-arg "-P full")
+            ;; (setq sml-default-arg "-Ccontrol.poly-eq-warn=false")
             (setq sml-indent-level 2)        ; conserve on horizontal space
             (setq words-include-escape t)    ; \ loses word break status
             (setq indent-tabs-mode nil)))    ; never ever indent with tabs
