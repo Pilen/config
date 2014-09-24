@@ -39,8 +39,8 @@ alias knet sudo killall wpa_supplicant dhcpcd dhclient $*
 alias inet sudo killall wpa_supplicant dhcpcd dhclient; /lib/udev/ipheth-pair; sudo dhcpcd eth1 $*
 alias netscan sudo ifconfig wlan0 up; sudo iwlist wlan0 scan | grep SSID; sudo ifconfig wlan0 down $*
 alias gs git status $*
-alias gd git diff --color=always | less -R $*
-alias gwd git wdiff --color=always | less -R $*
+alias gd git diff $*
+alias gwd git wdiff $*
 alias gg git log --pretty=format:"%Cred%d%Creset %s - %Cgreen%aN %Cblue%aD%Creset" --graph $*
 alias gl git log --name-status -n 4 $*
 alias gl git log --stat -n 2 $*
@@ -53,6 +53,7 @@ alias a cd /home/pilen/av/2014 $*
 alias av cd /home/pilen/av/2014 $*
 alias brok ssh revy@192.168.0.100 $*
 alias pen ssh 192.168.0.3 $*
+alias f source ~/code/scripts/f $*
 alias b cd .. $*
 alias bb cd ../.. $*
 alias bbb cd ../../.. $*

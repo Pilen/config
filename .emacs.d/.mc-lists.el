@@ -3,10 +3,11 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        TeX-insert-backslash
         back-to-indentation-or-beginning
-        backward-kill-word-to-newline
-        forward-word-to-newline
+        org-cycle
+        org-delete-backward-char
+        org-kill-line
+        org-self-insert-command
         pager-page-up
         python-indent-dedent-line-backspace
         python-indent-electric-colon
@@ -17,6 +18,4 @@
 
 (setq mc/cmds-to-run-once
       '(
-        ido-find-file
-        iedit-mode
         ))

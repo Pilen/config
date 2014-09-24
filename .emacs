@@ -65,6 +65,10 @@
 ;; minimap
 ;; eshell ido ctrl-r
 ;;     call (eshell-save-some-history), ido on eshell-history-file-name, insert result into eshell
+;; python - elpy with jedi or rope
+;;     http://www.reddit.com/r/emacs/comments/2g3sbf/recommendations_for_python_ide_under_emacs/
+;; C/C++ - http://tuhdo.github.io/c-ide.html
+;; I want to go home/to diku http://labs.rejseplanen.dk/labs/data__brug/rejseplanens_api/
 
 ;; windowmanager
 ;; xpdfremote
@@ -422,6 +426,7 @@
 (global-set-key (kbd "H-3") 'bc-local-next)
 (global-set-key (kbd "H-#") 'bc-list)
 (global-set-key (kbd "H-4") 'fill-paragraph)
+(global-set-key (kbd "H-$") 'fill-paragraph-from-current-line)
 
 (global-set-key (kbd "H-7") 'toggle-selective-display)
 (global-set-key (kbd "H-&") 'cursor-selective-display)
@@ -494,20 +499,20 @@
 ;;______________________________________________________________________________
 ;; H-g  =  compile
 (global-set-key (kbd "H-g")     (lambda () (interactive) (save-buffer) (message "Compile-key not defined for this mode.")))
-(add-hook 'erlang-mode-hook     (lambda () (define-key erlang-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (erlang-compile) (first-error)))))
 (add-hook 'LaTeX-mode-hook      (lambda () (define-key TeX-mode-map        (kbd "H-g") 'run-latex)))
-(add-hook 'haskell-mode-hook    (lambda () (define-key haskell-mode-map    (kbd "H-g") 'inferior-haskell-load-file)))
-(add-hook 'maple-mode-hook      (lambda () (define-key maple-mode-map      (kbd "H-g") 'maple-buffer)))
-(add-hook 'sml-mode-hook        (lambda () (define-key sml-mode-map        (kbd "H-g") (lambda () (interactive) (save-buffer) (call-interactively 'sml-prog-proc-load-file)))))
-(add-hook 'python-mode-hook     (lambda () (define-key python-mode-map     (kbd "H-g") 'python-compile)))
+(add-hook 'c++-mode             (lambda () (define-key c++-mode-map        (kbd "H-g") (lambda () (interactive) (save-buffer) (call-interactively 'compile)))))
 (add-hook 'c-mode-hook          (lambda () (define-key c-mode-map          (kbd "H-g") 'my-c-compile)))
 (add-hook 'emacs-lisp-mode-hook (lambda () (define-key emacs-lisp-mode-map (kbd "H-g") 'my-elisp-eval)))
-(add-hook 'scheme-mode-hook     (lambda () (define-key scheme-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (geiser-mode-switch-to-repl-and-enter)))))
-(add-hook 'ruby-mode-hook       (lambda () (define-key ruby-mode-map       (kbd "H-g") (lambda () (interactive) (save-excursion (when (null inf-ruby-buffer) (run-ruby) (sleep-for 1))) (ruby-send-region-and-go (point-min) (point-max))))))
+(add-hook 'erlang-mode-hook     (lambda () (define-key erlang-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (erlang-compile) (first-error)))))
+(add-hook 'haskell-mode-hook    (lambda () (define-key haskell-mode-map    (kbd "H-g") 'inferior-haskell-load-file)))
 (add-hook 'jde-mode-hook        (lambda () (define-key jde-mode-map        (kbd "H-g") 'jde-compile-or-run)))
+(add-hook 'maple-mode-hook      (lambda () (define-key maple-mode-map      (kbd "H-g") 'maple-buffer)))
+(add-hook 'python-mode-hook     (lambda () (define-key python-mode-map     (kbd "H-g") 'python-compile)))
+(add-hook 'ruby-mode-hook       (lambda () (define-key ruby-mode-map       (kbd "H-g") (lambda () (interactive) (save-excursion (when (null inf-ruby-buffer) (run-ruby) (sleep-for 1))) (ruby-send-region-and-go (point-min) (point-max))))))
+(add-hook 'scheme-mode-hook     (lambda () (define-key scheme-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (geiser-mode-switch-to-repl-and-enter)))))
 (add-hook 'sh-mode              (lambda () (define-key sh-mode-map         (kbd "H-g") 'eshell-execute-current-line)))
 (add-hook 'shell-script-mode    (lambda () (define-key sh-mode-map         (kbd "H-g") 'eshell-execute-current-line)))
-(add-hook 'c++-mode             (lambda () (define-key c++-mode-map        (kbd "H-g") (lambda () (interactive) (save-buffer) (call-interactively 'compile)))))
+(add-hook 'sml-mode-hook        (lambda () (define-key sml-mode-map        (kbd "H-g") (lambda () (interactive) (save-buffer) (call-interactively 'sml-prog-proc-load-file)))))
 (add-hook 'sql-mode             (lambda () (define-key sql-mode-map        (kbd "H-g") 'sql-send-line)))
 
 (defun my-c-compile ()
@@ -631,6 +636,14 @@
   (command-center-add (lambda () (interactive) (quick-calc) (yank)) "quick-calc-insert")
   (command-center-add 'quick-calc)
   (command-center-add (lambda () (interactive) (jde-import-all) (jde-import-organize)) "java import-all + organize")
+  (command-center-add 'org-indent-block)
+  (command-center-add 'org-indent-region)
+  (command-center-add 'increment-number-at-point)
+  (command-center-add 'decrement-number-at-point)
+
+  ;; kmacros
+  (command-center-add 'ret-tilføj-punkt)
+  (command-center-add 'ret-svar)
   )
 
 
@@ -657,6 +670,8 @@
 ;π SETTINGS
 ;;______________________________________________________________________________
 (add-to-list 'load-path "~/.emacs.d/")
+(load-file "~/.private.el")
+
 (require 'cl)
 
 (setq inhibit-startup-message t)
@@ -761,16 +776,19 @@
 
 (defun google-translate-da/en ()
   (interactive)
-  (let ((google-translate-default-source-language "da")
-        (google-translate-default-target-language "en"))
-    (google-translate-query-translate)))
+  (if (region-active-p)
+      (google-translate-translate "da" "en" (buffer-substring (region-beginning) (region-end)))
+    (let ((google-translate-default-source-language "da")
+          (google-translate-default-target-language "en"))
+      (google-translate-query-translate))))
 
 (defun google-translate-en/da ()
   (interactive)
-  (let ((google-translate-default-source-language "en")
-        (google-translate-default-target-language "da"))
-    (google-translate-query-translate)))
-
+  (if (region-active-p)
+      (google-translate-translate "en" "da" (buffer-substring (region-beginning) (region-end)))
+    (let ((google-translate-default-source-language "en")
+          (google-translate-default-target-language "da"))
+      (google-translate-query-translate))))
 
 ;; (add-to-list 'load-path "~/.emacs.d/predictive/")
 ;; (require 'predictive)
@@ -1790,8 +1808,11 @@ See `whitespace-line-column'."
 (set-face-background ahs-face "grey40")
 (set-face-foreground ahs-face nil)
 
-(set-face-background ahs-plugin-whole-buffer-face "olive drab")
+;; (set-face-background ahs-plugin-whole-buffer-face "olive drab")
+;; (set-face-foreground ahs-plugin-whole-buffer-face nil)
+(set-face-background ahs-plugin-whole-buffer-face (face-background 'default))
 (set-face-foreground ahs-plugin-whole-buffer-face nil)
+
 
 (defun ahs-mode ()
   "Always fire up ahs-mode, except in minibuffer"
@@ -1878,9 +1899,12 @@ See `whitespace-line-column'."
 ;;______________________________________________________________________________
 ;π ERC
 ;;______________________________________________________________________________
+(require 'erc)
+;; (require 'erc-highlight-nicknames)
 (setq erc-modules (quote (autojoin
                           button
                           completion
+                          highlight-nicknames
                           irccontrols
                           list
                           match
@@ -1893,6 +1917,7 @@ See `whitespace-line-column'."
                           ring
                           stamp
                           track)))
+
 (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
                                  "324" "329" "332" "333" "353" "477"))
 (setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
@@ -1900,15 +1925,22 @@ See `whitespace-line-column'."
 (setq erc-pals '("caroline"))
 (add-hook 'erc-mode-hook (lambda () (set-face-foreground 'erc-pal-face "red")))
 
+(erc-autojoin-mode t)
+(setq erc-autojoin-channels-alist
+      '((".*\\.freenode.net" "#emacs" "#diku" "#eggsml")))
+
+(setq erc-interpret-mirc-color t)
+
 (defun my-erc-start ()
   (interactive)
-  (erc :server "localhost" :port "6667" :nick "pilen" :password (read-passwd "Password: ")))
+  ;; (erc :server "localhost" :port "6667" :nick "pilen" :password (read-passwd "Password: ")))
+  (erc :server "irc.freenode.net" :port "6667" :nick private-irc-username :password private-irc-password))
 
 (defun erc-start-or-switch ()
   "Connect to ERC, or switch to last active buffer"
   (interactive)
-  (if (get-buffer "localhost:6667") ;; ERC already active?
-
+  (if (or (get-buffer "localhost:6667") ;; ERC already active?
+          (get-buffer "irc.freenode.net:6667"))
     (erc-track-switch-buffer 1) ;; yes: switch to last active
     (when (y-or-n-p "Start ERC? ") ;; no: maybe start ERC
       (my-erc-start))))
@@ -3044,9 +3076,9 @@ current frame, create a new window and switch to it.
 ;π MINIMAP
 ;;______________________________________________________________________________
 (add-to-list 'load-path "~/.emacs.d/")
-(require 'minimap)
+;; (require 'minimap)
 ;(setq minimap-window-location 'right)
-(setq minimap-width-fraction 0.8)
+;; (setq minimap-width-fraction 0.8)
 ;(setq minimap-display-semantic-overlays nil)
 ;(setq minimap-display-semantic-overlays nil)
 ;(setq minimap-enlarge-certain-faces nil)
@@ -3055,6 +3087,7 @@ current frame, create a new window and switch to it.
 
 ;(set-face-attribute 'minimap-font-face '((default :family "DejaVu Sans Mono" :height 5)))
 
+(setq outline-view-change-hook nil)
 ;;______________________________________________________________________________
 ;π MAPLE
 ;;______________________________________________________________________________
@@ -3199,14 +3232,14 @@ current frame, create a new window and switch to it.
 
 ;;(add-to-list 'load-path "~/.emacs.d/sml-mode-4.1/")
 
-(require 'sml-mode "sml-mode-6.1")
+(require 'sml-mode "sml-mode-6.4")
 (setq auto-mode-alist (cons '("\\.sml$" . sml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.sig$" . sml-mode) auto-mode-alist))
 (add-hook 'sml-mode-hook
           (lambda() ;;; *** SML-mode Customization
             (define-key inferior-sml-mode-map (kbd "<return>") (lambda ()
                                                                  (interactive)
-                                                                 (end-of-line)
+                                                                 (end-of-buffer)
                                                                  (when (not (looking-back "; *"))
                                                                    (insert ";"))
                                                                  (comint-send-input)))
@@ -3560,15 +3593,13 @@ current frame, create a new window and switch to it.
 ;π WANDERLUST
 ;;______________________________________________________________________________
 ;; wanderlust
-(load-file "~/.email.el")
-
 (autoload 'wl "wl" "Wanderlust" t)
 (autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)
 (autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
 
 ;; IMAP
 (setq elmo-imap4-default-server "imap.gmail.com")
-(setq elmo-imap4-default-user my-email-address)
+(setq elmo-imap4-default-user private-email-address)
 (setq elmo-imap4-default-authenticate-type 'clear)
 (setq elmo-imap4-default-port '993)
 (setq elmo-imap4-default-stream-type 'ssl)
@@ -3636,6 +3667,7 @@ current frame, create a new window and switch to it.
     (call-interactively 'query-replace)
 
     (let ((text (buffer-substring-no-properties (region-beginning) (region-end))))
+      (deactivate-mark)
       (goto-char (region-beginning))
       (query-replace text (query-replace-read-to text "Query replace" nil)))))
 
@@ -3813,6 +3845,38 @@ in that cyclic order."
                        (push `(,mode . ,map) minor-mode-overriding-map-alist)
                        map))))
     (define-key newmap key def)))
+
+(defun increment-number-at-point (&optional amount)
+  "Increment number found at point"
+  (interactive)
+  (save-excursion
+    (save-match-data
+      (skip-chars-backward "0123456789")
+      (if (looking-at "[0123456789]+")
+          (replace-match (number-to-string
+                          (+ (if (null amount)
+                                 1
+                               amount)
+                             (string-to-number (match-string 0)))))
+        (error "No number at point")))))
+
+(defun decrement-number-at-point (&optional amount)
+  "Decrement number found at point"
+  (interactive)
+  (increment-number-at-point (- (if (null amount)
+                                    1
+                                  amount))))
+
+(defun fill-paragraph-from-current-line ()
+  "Fill current paragraph starting from current line"
+  (interactive)
+  (let ((start (line-beginning-position))
+        end)
+    (save-excursion
+      (forward-paragraph)
+      (setq end (point)))
+    (fill-region start end)))
+
 ;;______________________________________________________________________________
 ;π JUMP TO MATCHING PARETHESIS
 ;;______________________________________________________________________________

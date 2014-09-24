@@ -15,7 +15,7 @@ title="$date $bat"
 
 
 menu=(\
-        chromium  "chromium --purge-memory-button"
+        firefox   "firefox"
         emacs     "emacs"
         ranger    "urxvt -e ranger"
         zathura   "zathura"
@@ -23,7 +23,7 @@ menu=(\
         inkscape  "inkscape"
         xlock     "xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0"
         xpdf      "perl /home/pilen/code/scripts/xpdf.pl"
-        firefox   "firefox"
+        chromium  "chromium --purge-memory-button"
         python3   "urxvtc -bg #111111 -fg #51a366 -e python3"
         python2   "urxvtc -bg #111111 -fg #6fbfe7 -e python2 -i /home/pilen/code/scripts/python2.py"
         alsamixer "urxvtc -bg black -e alsamixer"
