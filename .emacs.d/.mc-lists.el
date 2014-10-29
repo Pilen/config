@@ -3,14 +3,10 @@
 
 (setq mc/cmds-to-run-for-all
       '(
-        back-to-indentation-or-beginning
-        org-cycle
         org-delete-backward-char
-        org-kill-line
         org-self-insert-command
-        pager-page-up
-        python-indent-dedent-line-backspace
-        python-indent-electric-colon
+        org-yank
+        sml-electric-space
         toggle-letter-case
         xpdfremote/xpdf-pageDown
         yank-or-pop

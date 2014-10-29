@@ -86,6 +86,26 @@
 ;; wavy underline
 ;; erc notifications
 
+;;;; 24.4
+;; Cursor only blinks 10 times?! blink-cursor-blink
+;; electric-indent-mode is on by default
+;; look at cycle-spacing
+;; look at C-x spc
+;; isearch-forward-symbol-at-point
+;; or take a look at the smart scan package instead.
+;; look at todo mode
+;; look at trace-function
+;; look at superword-mode and subword-mode
+;; look at define-alternatives
+;; look at subr-x.el
+;; FIX sr-speedbar!!!!
+;; FIX load-path
+;; set load-prefer-newer to t
+;; look at defvar-local and setq-local
+;; look at get-lru-window and get-mru-window
+;; set-temporary-overlay-map
+
+
 
 ;;;; Contextaware button (context should be inserted before action is completed)
 ;; search -> repeat search
@@ -367,7 +387,7 @@
 ;;New layout
 ;;(setenv "ERGOEMACS_KEYBOARD_LAYOUT" "colemak")
 ;; load ErgoEmacs keybinding
-;;(load "~/.emacs.d/ergoemacs-keybindings-5.3.4/ergoemacs-mode")
+;;(load "~/.emacs.d/plugins/ergoemacs-keybindings-5.3.4/ergoemacs-mode")
 ;; turn on minor mode ergoemacs-mode
 ;;(ergoemacs-mode 1)
 
@@ -494,6 +514,7 @@
 
 (global-set-key (kbd "<XF86Launch1>") 'sr-speedbar-toggle)
 
+(global-set-key (kbd "C-x C-x") (lambda () (interactive) (exchange-point-and-mark) (deactivate-mark) ))
 ;;______________________________________________________________________________
 ;π COMPILE
 ;;______________________________________________________________________________
@@ -512,7 +533,7 @@
 (add-hook 'scheme-mode-hook     (lambda () (define-key scheme-mode-map     (kbd "H-g") (lambda () (interactive) (save-buffer) (geiser-mode-switch-to-repl-and-enter)))))
 (add-hook 'sh-mode              (lambda () (define-key sh-mode-map         (kbd "H-g") 'eshell-execute-current-line)))
 (add-hook 'shell-script-mode    (lambda () (define-key sh-mode-map         (kbd "H-g") 'eshell-execute-current-line)))
-(add-hook 'sml-mode-hook        (lambda () (define-key sml-mode-map        (kbd "H-g") (lambda () (interactive) (save-buffer) (call-interactively 'sml-prog-proc-load-file)))))
+(add-hook 'sml-mode-hook        (lambda () (define-key sml-mode-map        (kbd "H-g") 'sml-compile)))
 (add-hook 'sql-mode             (lambda () (define-key sql-mode-map        (kbd "H-g") 'sql-send-line)))
 
 (defun my-c-compile ()
@@ -573,15 +594,15 @@
 
 (progn
   (command-center-clear)
-  ;; (command-center-add 'revy-abort)
-  ;; (command-center-add 'revy-show-text)
-  ;; (command-center-add 'revy-ubertex-mode)
-  ;; (command-center-add 'revy-ubersicht-mode)
-  ;; (command-center-add 'revy-manus-break)
-  ;; (command-center-add 'revy-manus-comment)
-  ;; (command-center-add 'revy-manus-preamble)
-  ;; (command-center-add 'revy-manus-clean)
-  ;; (command-center-add (lambda () (interactive) (insert "\\pause{}")) "revy manus \\pause{}")
+  (command-center-add 'revy-abort)
+  (command-center-add 'revy-show-text)
+  (command-center-add 'revy-ubertex-mode)
+  (command-center-add 'revy-ubersicht-mode)
+  (command-center-add 'revy-manus-break)
+  (command-center-add 'revy-manus-comment)
+  (command-center-add 'revy-manus-preamble)
+  (command-center-add 'revy-manus-clean)
+  (command-center-add (lambda () (interactive) (insert "\\pause{}")) "revy manus \\pause{}")
 
   (command-center-add 'my-find-file-other-window "find-file-other-window")
   (command-center-add 'rename-file-and-buffer)
@@ -669,7 +690,8 @@
 ;;______________________________________________________________________________
 ;π SETTINGS
 ;;______________________________________________________________________________
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/plugins")
+(add-to-list 'load-path "~/.emacs.d/my-plugins")
 (load-file "~/.private.el")
 
 (require 'cl)
@@ -732,7 +754,7 @@
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 
-;(load "~/.emacs.d/fixed-point-completion.el")
+;(load "~/.emacs.d/plugins/fixed-point-completion.el")
 ;(enable-fixed-point-completions)
 
 (require 'recentf)
@@ -790,7 +812,7 @@
           (google-translate-default-target-language "da"))
       (google-translate-query-translate))))
 
-;; (add-to-list 'load-path "~/.emacs.d/predictive/")
+;; (add-to-list 'load-path "~/.emacs.d/plugins/predictive/")
 ;; (require 'predictive)
 ;; (set-default 'predictive-auto-add-to-dict t)
 ;; (setq predictive-main-dict 'rpg-dictionary
@@ -824,8 +846,8 @@
 (setq visible-mark-inhibit-trailing-overlay nil)
 
 
-(add-to-list 'load-path "~/.emacs.d/multiple-cursors/")
-(load-file "~/.emacs.d/multiple-cursors/multiple-cursors.el")
+(add-to-list 'load-path "~/.emacs.d/plugins/multiple-cursors/")
+(load-file "~/.emacs.d/plugins/multiple-cursors/multiple-cursors.el")
 
 ;; This is what you probably want if you are using a tiling window
 ;; manager under X, such as ratpoison.
@@ -945,10 +967,10 @@
 ;;______________________________________________________________________________
 ;π FUN
 ;;______________________________________________________________________________
-(load-file "~/.emacs.d/minesweeper-mode.el")
+(load-file "~/.emacs.d/plugins/minesweeper-mode.el")
 (require 'reddit)
 (require 'typing)
-(setq tetris-score-file "~/Dropbox/emacs/tetris-scores")
+(setq tetris-score-file "~/.emacs.d/tetris-scores")
 
 (add-hook 'tetris-mode-hook (lambda ()
                               (define-key tetris-mode-map (kbd "n") 'tetris-move-left)
@@ -1040,7 +1062,7 @@
 ;(require 'color-theme)
 ;(require 'color-theme-tomorrow)
 
-;(add-to-list 'load-path "~/.emacs.d/solarized")
+;(add-to-list 'load-path "~/.emacs.d/themes/solarized")
 ;(eval-after-load "color-theme"
 ;  '(progn
 ;     (color-theme-initialize)
@@ -1322,10 +1344,10 @@
 ;π SPEEDBAR
 ;;______________________________________________________________________________
 
-(require 'sr-speedbar)
-(setq speedbar-use-images nil)
-(define-key speedbar-mode-map (kbd "<tab>") 'speedbar-toggle-line-expansion)
-(define-key speedbar-mode-map (kbd "<backspace>") 'speedbar-up-directory)
+;; (require 'sr-speedbar)
+;; (setq speedbar-use-images nil)
+;; (define-key speedbar-mode-map (kbd "<tab>") 'speedbar-toggle-line-expansion)
+;; (define-key speedbar-mode-map (kbd "<backspace>") 'speedbar-up-directory)
 
 ;;______________________________________________________________________________
 ;π RAINBOW DELIMITERS
@@ -1825,6 +1847,7 @@ See `whitespace-line-column'."
   :group 'auto-highlight-symbol)
 
 (my-global-auto-highlight-symbol-mode 1)
+
 ;;______________________________________________________________________________
 ;π AUTO-INSERT
 ;;______________________________________________________________________________
@@ -2189,8 +2212,8 @@ current frame, create a new window and switch to it.
 ;;______________________________________________________________________________
 ;π EXPAND-REGION
 ;;______________________________________________________________________________
-(add-to-list 'load-path "~/.emacs.d/expand-region/")
-;; (load-file "~/.emacs.d/expand-region/expand-region.el")
+(add-to-list 'load-path "~/.emacs.d/plugins/expand-region/")
+;; (load-file "~/.emacs.d/plugins/expand-region/expand-region.el")
 (require 'expand-region)
 
 ;; (defun er/add-text-mode-expansions ()
@@ -2333,7 +2356,7 @@ current frame, create a new window and switch to it.
 ;;______________________________________________________________________________
 ;π GRAPHVIZ
 ;;______________________________________________________________________________
-(load-file "~/.emacs.d/graphviz-dot-mode.el")
+(load-file "~/.emacs.d/plugins/graphviz-dot-mode.el")
 
 ;;______________________________________________________________________________
 ;π HASKELL
@@ -2344,14 +2367,14 @@ current frame, create a new window and switch to it.
 ;; echo >> ~/.ghci ':def hoogle \x -> return $ ":!hoogle \"" ++ x ++ "\""'
 ;;echo >> ~/.ghci ':def doc \x -> return $ ":!hoogle --info \"" ++ x ++ "\""'
 
-(load "~/.emacs.d/haskell-mode/haskell-site-file.el")
+(load "~/.emacs.d/plugins/haskell-mode/haskell-site-file.el")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 ;; ghc-mod not installed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
-;; (add-to-list 'load-path "~/.emacs.d/ghc-mod/")
+;; (add-to-list 'load-path "~/.emacs.d/plugins/ghc-mod/")
 ;; (autoload 'ghc-init "ghc" nil t)
 ;; (add-hook 'haskell-mode-hook (lambda ()
 ;;                                (ghc-init)
@@ -2467,6 +2490,9 @@ current frame, create a new window and switch to it.
 (setq ibuffer-saved-filter-groups
       (quote (("default"
 
+               ("Revy"
+                (or (mode . revy-ubersicht-mode)
+                    (mode . revy-ubertex-mode)))
 
                ("OSM"
                 (or
@@ -2640,7 +2666,7 @@ current frame, create a new window and switch to it.
       (when file
         (find-file file)))))
 
-;(load-file "~/.emacs.d/ido-better-flex-0.0.2.el")
+;(load-file "~/.emacs.d/plugins/ido-better-flex-0.0.2.el")
 ;(ido-better-flex/enable)
 
 ; sort ido filelist by mtime instead of alphabetically
@@ -2935,8 +2961,8 @@ current frame, create a new window and switch to it.
 ;π JAVA
 ;;______________________________________________________________________________
 (add-to-list 'load-path "~/.emacs.d/jdee-2.4.1/lisp")
-(add-to-list 'load-path "~/.emacs.d/jde-hacks")
-(setq jde-hacks-dir "~/.emacs.d/jde-hacks")
+(add-to-list 'load-path "~/.emacs.d/my-plugins/jde-hacks")
+(setq jde-hacks-dir "~/.emacs.d/my-plugins/jde-hacks")
 (require 'jde-hacks)
 
 ;;______________________________________________________________________________
@@ -3075,7 +3101,6 @@ current frame, create a new window and switch to it.
 ;;______________________________________________________________________________
 ;π MINIMAP
 ;;______________________________________________________________________________
-(add-to-list 'load-path "~/.emacs.d/")
 ;; (require 'minimap)
 ;(setq minimap-window-location 'right)
 ;; (setq minimap-width-fraction 0.8)
@@ -3106,7 +3131,7 @@ current frame, create a new window and switch to it.
 ;;______________________________________________________________________________
 ;π MATLAB
 ;;______________________________________________________________________________
-(add-to-list 'load-path "~/.emacs.d/matlab-emacs")
+(add-to-list 'load-path "~/.emacs.d/plugins/matlab-emacs")
 (autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
 (add-to-list 'auto-mode-alist
              '("\\.m$" . matlab-mode))
@@ -3170,8 +3195,8 @@ current frame, create a new window and switch to it.
                               (setq quack-fontify-style 'emacs)
                               (setq quack-default-program "racket")
                               (setq quack-global-menu-p nil)))
-(add-to-list 'load-path "~/.emacs.d/geiser-0.3/")
-;(load-file "~/.emacs.d/geiser-0.3/")
+(add-to-list 'load-path "~/.emacs.d/plugins/geiser-0.3/")
+;(load-file "~/.emacs.d/plugins/geiser-0.3/")
 (require 'geiser)
 
 ;;______________________________________________________________________________
@@ -3230,7 +3255,7 @@ current frame, create a new window and switch to it.
 ;;______________________________________________________________________________
 ;; Kig i user-init-file
 
-;;(add-to-list 'load-path "~/.emacs.d/sml-mode-4.1/")
+;;(add-to-list 'load-path "~/.emacs.d/plugins/sml-mode-4.1/")
 
 (require 'sml-mode "sml-mode-6.4")
 (setq auto-mode-alist (cons '("\\.sml$" . sml-mode) auto-mode-alist))
@@ -3251,6 +3276,18 @@ current frame, create a new window and switch to it.
             (setq words-include-escape t)    ; \ loses word break status
             (setq indent-tabs-mode nil)))    ; never ever indent with tabs
 
+(defvar sml-current-file "")
+
+(defun sml-compile ()
+  (interactive)
+  (save-buffer)
+  (unless (string= sml-current-file (buffer-file-name))
+    (save-window-excursion
+      (setq sml-current-file (buffer-file-name))
+      (sml-prog-proc-switch-to)
+      (comint-send-eof)
+      (sleep-for 1)))
+  (call-interactively 'sml-prog-proc-load-file))
 ;;______________________________________________________________________________
 ;π SQL
 ;;______________________________________________________________________________

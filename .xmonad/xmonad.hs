@@ -149,5 +149,5 @@ main = xmonad $ defaultConfig {
   mouseBindings = myMouseBindings,
 
 
-  layoutHook = smartBorders $ layoutHook  defaultConfig
+  layoutHook = smartBorders $ layoutHook defaultConfig
   }
