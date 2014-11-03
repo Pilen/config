@@ -104,6 +104,8 @@ echo
 git add *
 git commit -m "$commitmsg";
 git push
+
+rm -rf ~/config/tmp/.git
 cp -r ~/config/tmp/.git ~/config/
 
 # git add ~/code/scripts/;
