@@ -1,5 +1,29 @@
 # ! /bin/sh
 
+# pushconfig is a huge hack to avoid having the entire $HOME dir under version
+# control without using symlinks.
+# The script assumes the repository is located in ~/config/ and the contents in
+# ~/
+# The script will then create a subfolder ~/config/tmp, copy all content into
+# that, copy the .git repository into it too and try to push it.
+#
+# If you abort/cancel you can instead push specific changes yourself from the
+# ~/config/tmp folder.
+#
+# Beaware that any changes in this folder are NOT mirrored to the system. If you
+# pull you must therefore manually copy any changes back into ~/.
+#
+# Alternatively you can do:
+# cd ~/
+# cp -r ~/config/.git ~/
+# git pull
+# ... other stuff ...
+# rm -rf .git
+#
+#
+
+cd ~
+
 if [ $# -ne 0 ];
 then
     commitmsg=$*;
@@ -10,39 +34,102 @@ fi
 chmod +x ~/code/scripts/*
 hostname > ~/.last_pusher
 
-echo -n "old size: "
-wget -qO- https://raw.github.com/Pilen/config/master/.emacs | wc -l
-echo -n "new size: "
-wc -l ~/.emacs
-/home/pilen/code/scripts/copyaliases.py
+# echo -n "old size: "
+# wget -qO- https://raw.github.com/Pilen/config/master/.emacs | wc -l
+# echo -n "new size: "
+# wc -l ~/.emacs
+# ~/code/scripts/copyaliases.py
+# echo
+
+echo "Lines in Configuration: "
+find ~/.emacs.d/init.el ~/.emacs.d/config ~/.emacs.d/my-plugins -name "*.el" | xargs wc -l | tail -n 1
 echo
+echo "Total lines: "
+find ~/.emacs.d/ -name "*.el" | xargs wc -l | tail -n 1
+echo "\n\n"
 
 #This is basicly a list of all the files i want to keep track of.
+files=(
+    # directories:
+    '.emacs.d'
+    '.xmonad/xmonad.hs'
+    'code/scripts'
+    # files:
+    '.Xdefaults'
+    '.Xmodmap'
+    '.aliases'
+    '.bashrc'
+    '.git_prompt.zsh'
+    # '.gitignore'
+    '.last_pusher'
+    '.nanorc'
+    '.xinitrc'
+    '.zshrc'
+    );
 
-git add ~/code/scripts/;
-git add ~/.emacs.d/;
-git add ~/.xmonad/xmonad.hs;
-git add ~/.bashrc;
-git add ~/.emacs;
-git add ~/.nanorc;
-#git add ~/.pushconfig;
-git add ~/.Xdefaults;
-git add ~/.xinitrc;
-git add ~/.zshrc;
-git add ~/.aliases;
-#git add ~/.copyaliases.py;
-git add ~/.Xmodmap;
-git add ~/.last_pusher
-#git add ~/.menu.sh
-#git add ~/.cal.pl
-#git add ~/.python2.py
-#git add ~/linkmenu.pl
-#git add ~/.config/chromium/Default/User StyleSheets/Custom.css
-git add ~/.gitignore
-git add ~/.git_prompt.zsh
+rm -rf ~/config/tmp
+mkdir ~/config/tmp
+for file in "${files[@]}"
+do
+    # echo "$file"
+    # rsync -r ~/"$file" ~/config/tmp/
+    if [[ -d $file ]]
+    then
+        cp -r --parent "$file" ~/config/tmp/
+    else
+        dir=~/config/tmp/$(dirname "$file");
+        if [[ ! -d $dir ]]
+        then
+            mkdir $dir
+        fi
+        cp "$file" $dir;
+    fi;
+done
 
+cp -r ~/config/.git ~/config/tmp/
+cp -r ~/config/.gitignore ~/config/tmp/
+cd ~/config/tmp/
+git status
+
+read -p "Do you wish to push? [Yy]: " reply
+if [[ ! $reply =~ ^[Yy]$ ]]
+then
+    exit
+fi;
+
+echo "pushing"
+echo
+echo
+
+git add *
 git commit -m "$commitmsg";
 git push
+cp -r ~/config/tmp/.git ~/config/
+
+# git add ~/code/scripts/;
+# git add ~/.emacs.d/;
+# git add ~/.xmonad/xmonad.hs;
+# git add ~/.bashrc;
+# git add ~/.emacs;
+# git add ~/.nanorc;
+# #git add ~/.pushconfig;
+# git add ~/.Xdefaults;
+# git add ~/.xinitrc;
+# git add ~/.zshrc;
+# git add ~/.aliases;
+# #git add ~/.copyaliases.py;
+# git add ~/.Xmodmap;
+# git add ~/.last_pusher
+# #git add ~/.menu.sh
+# #git add ~/.cal.pl
+# #git add ~/.python2.py
+# #git add ~/linkmenu.pl
+# #git add ~/.config/chromium/Default/User StyleSheets/Custom.css
+# git add ~/.gitignore
+# git add ~/.git_prompt.zsh
+
+# git commit -m "$commitmsg";
+# git push
 
 #Locales to update
 echo
