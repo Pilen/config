@@ -86,9 +86,8 @@ do
     fi;
 done
 
-# cp -r ~/config/.git ~/config/tmp/
-# cp -r ~/config/.gitignore ~/config/tmp/
 ln -s ~/config/.git ~/config/tmp/.git
+cp ~/config/.gitignore ~/config/tmp/.gitignore
 
 cd ~/config/tmp/
 git status
@@ -99,23 +98,26 @@ then
     exit
 fi;
 
-echo "pushing"
 echo
+echo "Adding files..."
 echo
 
 git add *
 git status
+
 read -p "Do you wish to continue? [Yy]: " reply
 if [[ ! $reply =~ ^[Yy]$ ]]
 then
     exit
 fi;
 
+echo
+echo "Pushing..."
+echo
+
 git commit -m "$commitmsg";
 git push
 
-# rm -rf ~/config/.git
-# cp -r ~/config/tmp/.git ~/config/
 
 # git add ~/code/scripts/;
 # git add ~/.emacs.d/;
