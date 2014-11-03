@@ -46,7 +46,7 @@ find ~/.emacs.d/init.el ~/.emacs.d/config ~/.emacs.d/my-plugins -name "*.el" | x
 echo
 echo -n "Total lines: "
 find ~/.emacs.d/ -name "*.el" | xargs wc -l | tail -n 1
-echo -e"\n\n"
+echo -e "\n\n"
 
 #This is basicly a list of all the files i want to keep track of.
 files=(
