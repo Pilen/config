@@ -9,8 +9,8 @@ else
     commitmsg="Configuration updated";
 fi
 
-chmod +x ~/code/scripts/*
-hostname > ~/.last_pusher
+# chmod +x ~/code/scripts/*
+# hostname > ~/.last_pusher
 
 # echo -n "old size: "
 # wget -qO- https://raw.github.com/Pilen/config/master/.emacs | wc -l
