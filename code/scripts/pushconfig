@@ -152,7 +152,7 @@ git push
 # git push
 
 #Locales to update
-echo
+echo -e "\n\n\n\n"
 echo "Updating remote addreses:"
 echo
 ssh pilgaard@tyr.diku.dk git pull origin master
