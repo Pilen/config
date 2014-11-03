@@ -1,0 +1,17 @@
+#!/bin/bash
+if [[ 1 == $# ]]
+then
+    cd $1;
+elif [[ 1 == $(find * -maxdepth 0 -type d | wc -l) ]]
+then
+    for file in *;
+    do
+        if [[ -d $file ]]
+        then
+            cd $file;
+            break
+        fi;
+    done;
+else
+    cd `find * -maxdepth 0 -type d | percol`;
+fi;
