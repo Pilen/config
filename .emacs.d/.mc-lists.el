@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        forward-kill-word-to-newline
         org-delete-backward-char
         org-self-insert-command
         org-yank

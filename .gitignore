@@ -1,3 +1,5 @@
+.emacs.d/elpa/gnupg
+.emacs.d/elpa
 .emacs.d/semanticdb
 .emacs.d/auto-save-list
 .emacs.d/saveplace
@@ -6,4 +8,5 @@
 .emacs.d/image-dired
 .emacs.d/tramp
 .emacs.d/.private.el
-*
+
+\#*#
