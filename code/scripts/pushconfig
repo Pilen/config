@@ -92,10 +92,17 @@ cp ~/config/.gitignore ~/config/tmp/.gitignore
 cd ~/config/tmp/
 git status
 
+git status | grep "nothing to commit, working directory clean"
+if [[ $? == 0 ]]
+then
+    echo "Nothing to push"
+    exit 0
+fi
+
 read -p "Do you wish to continue? [Yy]: " reply
 if [[ ! $reply =~ ^[Yy]$ ]]
 then
-    exit
+    exit 0
 fi;
 
 echo
@@ -108,7 +115,7 @@ git status
 read -p "Do you wish to continue? [Yy]: " reply
 if [[ ! $reply =~ ^[Yy]$ ]]
 then
-    exit
+    exit 0
 fi;
 
 echo
