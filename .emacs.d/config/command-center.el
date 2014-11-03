@@ -1,0 +1,120 @@
+;;______________________________________________________________________________
+;π COMMAND-CENTER
+;;______________________________________________________________________________
+
+(defvar command-center-commands '())
+(defvar command-center-last-command nil)
+
+(defun command-center-add (command &optional name)
+  (when (null name)
+    (if (symbolp command)
+        (setq name (symbol-name command))
+      (setq name (prin1-to-string command))))
+
+  (setq command-center-commands (append
+                                 command-center-commands
+                                 `((,name . ,command)))))
+
+(defun command-center-clear ()
+  (setq command-center-commands '()))
+
+(defun command-center ()
+  (interactive)
+  (let* ((name (ido-completing-read
+                ">: "
+                (mapcar (lambda (x) (car x))
+                        (if (null command-center-last-command)
+                            command-center-commands
+                          (cons command-center-last-command command-center-commands)))))
+         (command (cdr (assoc name command-center-commands))))
+    (setq command-center-last-command (cons name command))
+    (if (commandp command)
+        (call-interactively command)
+      (funcall command))))
+
+(progn
+  (command-center-clear)
+  (command-center-add 'revy-abort)
+  (command-center-add 'revy-show-text)
+  (command-center-add 'revy-ubertex-mode)
+  (command-center-add 'revy-ubersicht-mode)
+  (command-center-add 'revy-manus-break)
+  (command-center-add 'revy-manus-comment)
+  (command-center-add 'revy-manus-preamble)
+  (command-center-add 'revy-manus-clean)
+  (command-center-add (lambda () (interactive) (insert "\\pause{}")) "revy manus \\pause{}")
+
+  (command-center-add 'my-find-file-other-window "find-file-other-window")
+  (command-center-add 'rename-file-and-buffer)
+  (command-center-add 'move-buffer-file)
+  (command-center-add 'eval-buffer)
+  (command-center-add 'emacs-lisp-mode)
+  (command-center-add 'compile)
+  (command-center-add 'edebug-eval-top-level-form "edebug-current")
+  (command-center-add 'delete-file)
+  (command-center-add 'whitespace-cleanup)
+  (command-center-add 'reindent-buffer)
+  (command-center-add 'auto-fill-mode)
+  (command-center-add 'fill-region)
+  (command-center-add (lambda () (interactive) (fill-region (point-min) (point-max))) "fill buffer")
+  (command-center-add 'show-all)
+  (command-center-add 'hide-sublevels "hide-all")
+  (command-center-add 'shell-command-on-region-replace)
+  (command-center-add 'occur)
+  (command-center-add (lambda () (interactive) (occur (buffer-substring (region-beginning) (region-end)))) "occur-region")
+  (command-center-add 'sort-lines)
+  (command-center-add 'gtags-create-or-update)
+  (command-center-add 'indent-region)
+  (command-center-add 'horizontal-recenter)
+  (command-center-add 'make-directory)
+  (command-center-add 'google-translate-da/en)
+  (command-center-add 'google-translate-en/da)
+  (command-center-add 'eshell-execute-my-command)
+  (command-center-add 'eshell-execute-current-line)
+  (command-center-add 'eshell-command)
+  (command-center-add 'shell-toggle-cd "eshell-cd")
+  (command-center-add 'global-whitespace-mode)
+  (command-center-add 'delete-other-frames "frame-close-others")
+  (command-center-add 'make-frame-command "frame-new")
+  (command-center-add 'delete-frame "frame-close")
+  (command-center-add 'repunctuate-sentences)
+  (command-center-add 'set-buffer-file-coding-system)
+  (command-center-add 'change-directory)
+  (command-center-add 'customize-group)
+  (command-center-add 'list-processes)
+  (command-center-add (lambda () (interactive) (find-file (concat (file-name-sans-extension (buffer-file-name)) ".pdf"))) "open-pdf")
+  (command-center-add (lambda () (interactive) (untabify (point-min) (point-max))) "untabify-buffer")
+  (command-center-add (lambda () (interactive) (let ((before-save-hook nil)) (save-buffer))) "save-buffer-no-hook")
+  (command-center-add 'goto-command-center)
+  (command-center-add 'tramp-cleanup-all-connections)
+  (command-center-add 'tramp-cleanup-all-buffers)
+  (command-center-add 'sql-clear)
+  (command-center-add 'sudo-edit-current-file "edit current file sudo root")
+  (command-center-add 'ediff)
+  (command-center-add 'ediff-buffers)
+  (command-center-add 'ediff-directories)
+  (command-center-add 'fit-window-to-buffer)
+  (command-center-add (lambda () (interactive) (quick-calc) (yank)) "quick-calc-insert")
+  (command-center-add 'quick-calc)
+  (command-center-add (lambda () (interactive) (jde-import-all) (jde-import-organize)) "java import-all + organize")
+  (command-center-add 'org-indent-block)
+  (command-center-add 'org-indent-region)
+  (command-center-add 'increment-number-at-point)
+  (command-center-add 'decrement-number-at-point)
+
+  ;; kmacros
+  (command-center-add 'ret-tilføj-punkt)
+  (command-center-add 'ret-svar)
+  )
+
+
+(defun goto-command-center ()
+  (interactive)
+  (switch-to-buffer ".emacs")
+  (goto-char (point-min))
+  (search-forward ";;______________________________________________________________________________
+;π COMMAND-CENTER
+;;______________________________________________________________________________
+")
+  (goto-char (match-beginning 0))
+  (recenter 0))
