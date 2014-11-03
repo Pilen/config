@@ -92,7 +92,7 @@ cp ~/config/.gitignore ~/config/tmp/.gitignore
 cd ~/config/tmp/
 git status
 
-git status | grep "nothing to commit, working directory clean"
+git status | grep "nothing to commit, working directory clean" > /dev/null
 if [[ $? == 0 ]]
 then
     echo "Nothing to push"
