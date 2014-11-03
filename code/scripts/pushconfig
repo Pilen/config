@@ -153,11 +153,11 @@ git push
 
 #Locales to update
 echo
+echo "Updating remote addreses:"
 echo
-echo Updating remote addreses:
 ssh pilgaard@tyr.diku.dk git pull origin master
 
 echo
+echo "Files touched:"
 echo
-echo Files touched:
 git show --pretty="format:" --name-only
