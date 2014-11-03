@@ -1,4 +1,4 @@
-# ! /bin/sh
+#!/bin/sh
 
 # pushconfig is a huge hack to avoid having the entire $HOME dir under version
 # control without using symlinks.
@@ -41,12 +41,12 @@ hostname > ~/.last_pusher
 # ~/code/scripts/copyaliases.py
 # echo
 
-echo "Lines in Configuration: "
+echo -n "Lines in Configuration: "
 find ~/.emacs.d/init.el ~/.emacs.d/config ~/.emacs.d/my-plugins -name "*.el" | xargs wc -l | tail -n 1
 echo
-echo "Total lines: "
+echo -n "Total lines: "
 find ~/.emacs.d/ -name "*.el" | xargs wc -l | tail -n 1
-echo "\n\n"
+echo -e"\n\n"
 
 #This is basicly a list of all the files i want to keep track of.
 files=(
