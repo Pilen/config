@@ -32,6 +32,7 @@ All packages here will automatically be installed if not present.")
         inf-ruby
         keyfreq
         lorem-ipsum
+        magit
         markdown-mode
         matlab-mode
         mic-paren             ;; Not used
