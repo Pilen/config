@@ -153,15 +153,16 @@
 (setq prolog-system (quote gnu))
 
 (require 'visible-mark)
-(set-face-background 'visible-mark-face "DarkSlateGray4")
-(set-face-background 'visible-mark-face "SkyBlue4")
-(set-face-background 'visible-mark-face "DodgerBlue4")
+(set-face-background 'visible-mark-face1 "DarkSlateGray4")
+(set-face-background 'visible-mark-face1 "SkyBlue4")
+(set-face-background 'visible-mark-face1 "DodgerBlue4")
 (global-visible-mark-mode)
 (setq visible-mark-inhibit-trailing-overlay nil)
 
 
-(add-to-list 'load-path "~/.emacs.d/plugins/multiple-cursors/")
-(load-file "~/.emacs.d/plugins/multiple-cursors/multiple-cursors.el")
+;; (add-to-list 'load-path "~/.emacs.d/plugins/multiple-cursors/")
+;; (load-file "~/.emacs.d/plugins/multiple-cursors/multiple-cursors.el")
+(require 'multiple-cursors)
 
 ;; This is what you probably want if you are using a tiling window
 ;; manager under X, such as ratpoison.
@@ -241,6 +242,8 @@
 
 (require 'zeal-at-point)
 
+(require 'lorem-ipsum)
+
 ;;______________________________________________________________________________
 ;π FILL-COLUMN-INDICATOR
 ;;______________________________________________________________________________
@@ -251,19 +254,22 @@
 ;; (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
 ;; (global-fci-mode 1)
 
-
+;; todo why is this not working add hook to fundamental mode
 (require 'column-marker)
 (column-marker-1 fill-column)
 (set-face-attribute 'column-marker-1 nil
-                    :background "gray44")
+                    ;; :background "gray44")
+                    :background "gray20")
 (column-marker-1 fill-column)
+(add-hook 'prog-mode-hook (lambda () (column-marker-1 fill-column)))
+
 ;;______________________________________________________________________________
 ;π STARTUP
 ;;______________________________________________________________________________
 (setq inhibit-startup-message t)
 (defun display-startup-echo-area-message ()
   (message ""))
-(find-file "~/.emacs")
+(find-file "~/.emacs.d/init.el")
                                         ;(switch-to-buffer "blank")
 (if (not (eq nil (get-buffer "*scratch*")))
     (kill-buffer "*scratch*"))

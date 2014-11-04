@@ -5,7 +5,8 @@
 
 ;;(add-to-list 'load-path "~/.emacs.d/plugins/sml-mode-4.1/")
 
-(require 'sml-mode "sml-mode-6.4")
+;; (require 'sml-mode "sml-mode-6.4")
+(require 'sml-mode)
 (setq auto-mode-alist (cons '("\\.sml$" . sml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.sig$" . sml-mode) auto-mode-alist))
 (add-hook 'sml-mode-hook

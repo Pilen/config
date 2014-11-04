@@ -75,6 +75,7 @@ menu=(\
         maple     "/home/pilen/code/scripts/maple"
         dmenu     "dmenu_run"
         omacs     "sh /home/pilen/code/scripts/omacs"
+        pmacs     "emacs -Q"
 
         links     "perl /home/pilen/code/scripts/linkmenu.pl"
      )

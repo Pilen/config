@@ -17,15 +17,4 @@
 (set-face-background ahs-plugin-whole-buffer-face (face-background 'default))
 (set-face-foreground ahs-plugin-whole-buffer-face nil)
 
-
-(defun ahs-mode ()
-  "Always fire up ahs-mode, except in minibuffer"
-  (if (not (minibufferp (current-buffer)))
-      (auto-highlight-symbol-mode t)))
-
-
-(define-globalized-minor-mode my-global-auto-highlight-symbol-mode
-  auto-highlight-symbol-mode-map ahs-mode
-  :group 'auto-highlight-symbol)
-
-(my-global-auto-highlight-symbol-mode 1)
+(global-auto-highlight-symbol-mode 1)

@@ -101,6 +101,7 @@
   (command-center-add 'org-indent-region)
   (command-center-add 'increment-number-at-point)
   (command-center-add 'decrement-number-at-point)
+  (command-center-add 'lorem-ipsum-insert-paragraphs)
 
   ;; kmacros
   (command-center-add 'ret-tilføj-punkt)

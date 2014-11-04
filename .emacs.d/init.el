@@ -138,9 +138,13 @@
 
 
 
-;; If you ever get to code:
-;; clojure:
+;;;;;; If you ever get to code:
+;;;; Clojure:
 ;; https://github.com/clojure-emacs/cider
+;;
+;;;; Common lisp:
+;; https://github.com/capitaomorte/sly
+;;
 
 
 ;;______________________________________________________________________________
@@ -211,16 +215,17 @@
 ;;______________________________________________________________________________
 ;π Settings
 ;;______________________________________________________________________________
+(load-file "~/.emacs.d/config/my-packages.el")
+
 (load-file "~/.emacs.d/.private.el")
 
-(load-file "~/.emacs.d/config/settings.el")
+(load-file "~/.emacs.d/config/keybindings.el")
+(load-file "~/.emacs.d/config/settings.el") ;; what is fuzzy?, smex?
 (load-file "~/.emacs.d/config/command-center.el")
 (load-file "~/.emacs.d/config/compile.el")
 (load-file "~/.emacs.d/config/custom.el")
 (load-file "~/.emacs.d/config/indentation.el")
-(load-file "~/.emacs.d/config/keybindings.el")
 (load-file "~/.emacs.d/config/modeline.el")
-(load-file "~/.emacs.d/config/my-packages.el")
 (load-file "~/.emacs.d/config/theme.el")
 (load-file "~/.emacs.d/config/whitespace.el")
 (load-file "~/.emacs.d/config/windows.el")
@@ -230,13 +235,13 @@
 ;π MODES
 ;;______________________________________________________________________________
 (load-file "~/.emacs.d/config/ace-jump.el")
-(load-file "~/.emacs.d/config/anything.el")
-(load-file "~/.emacs.d/config/auto-highlight-symbol.el")
+;; (load-file "~/.emacs.d/config/anything.el") ;; Should use helm instead
+(load-file "~/.emacs.d/config/auto-highlight-symbol.el") ;; disable in help buffer
 (load-file "~/.emacs.d/config/auto-insert.el")
-(load-file "~/.emacs.d/config/erc.el")
+(load-file "~/.emacs.d/config/erc.el") ;; todo
 (load-file "~/.emacs.d/config/erlang.el")
 (load-file "~/.emacs.d/config/eshell.el")
-(load-file "~/.emacs.d/config/expand-region.el")
+(load-file "~/.emacs.d/config/expand-region.el") ;; + smart-forward look into this
 (load-file "~/.emacs.d/config/flymake.el")
 (load-file "~/.emacs.d/config/flyspell.el")
 (load-file "~/.emacs.d/config/haskell.el")
@@ -244,20 +249,20 @@
 (load-file "~/.emacs.d/config/ibuffer.el")
 (load-file "~/.emacs.d/config/ido.el")
 (load-file "~/.emacs.d/config/ido-imenu.el")
-(load-file "~/.emacs.d/config/incmove.el")
+(load-file "~/.emacs.d/config/incmove.el") ;; move to my-plugins
 (load-file "~/.emacs.d/config/isearch.el")
-(load-file "~/.emacs.d/config/latex.el")
-(load-file "~/.emacs.d/config/python.el")
+(load-file "~/.emacs.d/config/latex.el") ;; use elpa instead?
+(load-file "~/.emacs.d/config/python.el") ;; todo!!
 (load-file "~/.emacs.d/config/rainbow-delimiters.el")
 (load-file "~/.emacs.d/config/shell.el")
 (load-file "~/.emacs.d/config/sml.el")
 (load-file "~/.emacs.d/config/sql.el")
-(load-file "~/.emacs.d/config/tabbar.el")
+(load-file "~/.emacs.d/config/tabbar.el") ;; not in use
 (load-file "~/.emacs.d/config/tags.el")
-(load-file "~/.emacs.d/config/w3m.el")
-(load-file "~/.emacs.d/config/wanderlust.el")
+(load-file "~/.emacs.d/config/w3m.el") ;; not in use
+(load-file "~/.emacs.d/config/wanderlust.el") ;; not in use
 
-(load-file "~/.emacs.d/config/other-modes.el")
+(load-file "~/.emacs.d/config/other-modes.el") ;; look into fastnav full-ack
 
 ;;______________________________________________________________________________
 ;π FUNCTIONALITY

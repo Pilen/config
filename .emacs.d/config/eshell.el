@@ -57,9 +57,16 @@
           (goto-line line))
       (tyler-eshell-view-file (pop args)))))
 (defalias 'eshell/more 'eshell/less)
-(defun eshell/e (file)
+;; (defun eshell/e (file)
+;;   (message file)
+;;   (find-file-other-window file))
+(defun eshell/e (file &rest files)
   (message default-directory)
-  (find-file-other-window file))
+  (setq files (mapcar (lambda (x) (if (stringp x) (list x) x))
+                      (cons file files)))
+  (dolist (filelist files)
+    (dolist (file filelist)
+      (find-file-other-window file t))))
 
 (defun shell-toggle-buffer-switch-to-other-window ()
   "Switches to other window.  If the current window is the only window in the

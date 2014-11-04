@@ -2,6 +2,7 @@
 ;π RAINBOW DELIMITERS
 ;;______________________________________________________________________________
 (require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (setq-default frame-background-mode 'dark)
 
 ;; (set-face-attribute
@@ -89,7 +90,7 @@
 
 ;(rainbow-delimiters-mode 1)
 ;;(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-(global-rainbow-delimiters-mode)
+;; (global-rainbow-delimiters-mode)
 
 
 ;(show-paren-mode t)

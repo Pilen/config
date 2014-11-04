@@ -1,8 +1,6 @@
 ;;______________________________________________________________________________
 ;π EXPAND-REGION
 ;;______________________________________________________________________________
-(add-to-list 'load-path "~/.emacs.d/plugins/expand-region/")
-;; (load-file "~/.emacs.d/plugins/expand-region/expand-region.el")
 (require 'expand-region)
 
 ;; (defun er/add-text-mode-expansions ()
