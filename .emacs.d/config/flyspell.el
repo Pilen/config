@@ -23,10 +23,89 @@
 (defun turn-on-flyspell ()
   "Force flyspell-mode on using a positive arg."
   (interactive)
-  (if (and TeX-mode-p
+  (if (and (boundp 'TeX-mode-p)
+           TeX-mode-p
            (string= ".log" (substring (buffer-name (current-buffer)) -4 nil)))
       (message "turn-on-flyspell called on latex .log file, but ignored")
     (flyspell-mode 1)))
+
+;; TODO: fix
+;; There seems to be a bug in flyspell causing the following error:
+;; Blocking call to accept-process-output with quit inhibited!!
+;;
+;; This is probably what has caused the trouble, when that is out of the way we
+;; can probably go forward with either an idle-timer pr. buffer, or with an
+;; idle-timer looping until no more buffers are listed.
+;;
+;; (defvar flyspell-turn-on-delay 3 "The amount of time to idle before turning on flyspell in the buffer")
+;; (defvar flyspell-init-timer nil)
+;; (defvar flyspell-buffers-awaiting nil)
+
+;; (defun turn-on-flyspell ()
+;;   "Turn flyspell on.
+;; Flyspell wont be turned on until Emacs has been idle for some time.
+;; This way opening serveral buffers wont stall everything. "
+;;   (interactive)
+;;   (message "init flyspell")
+;;   (if (and (boundp 'TeX-mode-p)
+;;            TeX-mode-p
+;;            (string= ".log" (substring (buffer-name (current-buffer)) -4 nil)))
+;;       (message "turn-on-flyspell called on latex .log file, but ignored")
+;;     (setq flyspell-init-timer
+;;           (run-with-idle-timer flyspell-turn-on-delay nil
+;;                                (lambda (buffer)
+;;                                  (message "Spellchecking")
+;;                                  (when (buffer-live-p buffer)
+;;                                    (with-current-buffer buffer
+;;                                      (flyspell-mode 1))))
+;;                                (current-buffer)))))
+;; (defun turn-on-flyspell ()
+;;   "Turn flyspell on.
+;; Flyspell wont be turned on until Emacs has been idle for some time.
+;; This way opening serveral buffers wont stall everything. "
+;;   (interactive)
+;;   (message "init flyspell")
+;;   (if (and (boundp 'TeX-mode-p)
+;;            TeX-mode-p
+;;            (string= ".log" (substring (buffer-name (current-buffer)) -4 nil)))
+;;       (message "turn-on-flyspell called on latex .log file, but ignored")
+;;     (add-to-list 'flyspell-buffers-awaiting (current-buffer))
+;;     (message "Adding buffer '%s' to flyspell list" (buffer-name))
+;;     (flyspell-start-timer)))
+
+;; (defun flyspell-start-timer ()
+;;   "Start a timer that will actually run flyspell"
+;;   (message "start-timer-started")
+;;   (unless (timerp flyspell-init-timer)
+;;     (message "no timer active")
+;;     (setq flyspell-init-timer
+;;           (run-with-timer 3 3
+;;                           (lambda ()
+;;                             (message "running timer")
+;;                             ;; (run-with-idle-timer
+;;                             ;; flyspell-turn-on-delay nil
+;;                             ;; (lambda ()
+;;                             (if (null flyspell-buffers-awaiting)
+;;                                 (progn
+;;                                   (message "cancelling timer")
+;;                                     (cancel-timer flyspell-init-timer)
+;;                                     (setq flyspell-init-timer nil))
+;;                               (message "timer doing stuff")
+;;                               (let ((buffer (pop flyspell-buffers-awaiting)))
+;;                                    (when (buffer-live-p buffer)
+;;                                      (with-current-buffer buffer
+;;                                        (message "spellchecking buffer '%s'" (buffer-name))
+;;                                        (flyspell-mode 1))))
+;;                                  ;; (flyspell-run-timer)))))))))
+;;                                  ))))))
+;; (defun flyspell-prog-mode ()
+;;   "Turn on `flyspell-mode' for comments and strings."
+;;   (interactive)
+;;   (setq flyspell-generic-check-word-predicate
+;;         'flyspell-generic-progmode-verify)
+;;   (turn-on-flyspell)
+;;   (run-hooks 'flyspell-prog-mode-hook))
+
 
 ;; (setq flyspell-is-on nil)
 ;; (defun flyspell-toggle ()

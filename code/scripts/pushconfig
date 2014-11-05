@@ -86,8 +86,15 @@ do
     fi;
 done
 
+# setup tmp folder
 ln -s ~/config/.git ~/config/tmp/.git
 cp ~/config/.gitignore ~/config/tmp/.gitignore
+
+# setup home-dir
+cp ~/config/.gitignore ~/.gitignore
+echo "*" >> ~/.gitignore
+rm -rf ~/.git
+ln -s ~/config/.git ~/.git
 
 cd ~/config/tmp/
 git status
@@ -99,7 +106,9 @@ then
     exit 0
 fi
 
-read -p "Do you wish to continue? [Yy]: " reply
+echo
+echo
+read -p "Do you wish to add all these changes? [Yy]: " reply
 if [[ ! $reply =~ ^[Yy]$ ]]
 then
     exit 0
@@ -110,9 +119,17 @@ echo "Adding files..."
 echo
 
 git add *
+for file in "${files[@]}"
+do
+    git add $file;
+done;
+git add .gitignore
+
 git status
 
-read -p "Do you wish to continue? [Yy]: " reply
+echo
+echo
+read -p "Do you wish to commit and push? [Yy]: " reply
 if [[ ! $reply =~ ^[Yy]$ ]]
 then
     exit 0

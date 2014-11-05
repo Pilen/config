@@ -32,6 +32,10 @@
 
 (set-default 'truncate-lines t)
 
+(setq echo-keystrokes 0.01)
+(setq use-dialog-box nil)
+;; (setq visible-bell t)
+
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 ;(require 'linum+)
@@ -203,6 +207,7 @@
 
 (require 'smex)
 (smex-initialize)
+(setq smex-save-file "~/.emacs.d/.smex-items")
 
 
 (setq-default require-final-newline t)
@@ -310,7 +315,7 @@
 (setq make-backup-files t)
 (setq backup-by-copying t)
 (setq version-control t)
-(setq backup-directory-alist (quote ((".*" . "~/Dropbox/emacs/backups"))))
+(setq backup-directory-alist (quote ((".*" . "~/.emacs.d/backups"))))
 (setq delete-old-versions t)
 
 ;;______________________________________________________________________________

@@ -38,7 +38,7 @@
 ;;
 ;;______________________________________________________________________________
 
-;; Build the perfect editor!
+;;;; Build the perfect editor!
 ;; speedbar + ibuffer like behaviour
 ;; maybe a project like file
 ;; an outline?
@@ -48,12 +48,8 @@
 ;; Macros are to 'small'
 ;; Lispcode is a one time write thing (for modes and stuff)
 
-;; Lookup stackoverflow (Could be cool)
-;; https://atom.io/packages/ask-stack
-;; https://github.com/gleitz/howdoi
-;; https://github.com/atykhonov/emacs-howdoi
 
-
+;;;; Things to look into/examine
 ;; Port to Emacs 24
 ;; Code navigation
 ;; Code folding
@@ -62,6 +58,7 @@
 ;; Windownavigation/manipulation
 ;; mail
 ;; org-mode
+;;   org-agenda http://www.aaronbedra.com/emacs.d/#org-agenda
 ;; minimap
 ;; eshell ido ctrl-r
 ;;     call (eshell-save-some-history), ido on eshell-history-file-name, insert result into eshell
@@ -69,6 +66,11 @@
 ;;     http://www.reddit.com/r/emacs/comments/2g3sbf/recommendations_for_python_ide_under_emacs/
 ;; C/C++ - http://tuhdo.github.io/c-ide.html
 ;; I want to go home/to diku http://labs.rejseplanen.dk/labs/data__brug/rejseplanens_api/
+
+;; Lookup stackoverflow (Could be cool)
+;; https://atom.io/packages/ask-stack
+;; https://github.com/gleitz/howdoi
+;; https://github.com/atykhonov/emacs-howdoi
 
 ;; windowmanager
 ;; xpdfremote
@@ -80,6 +82,8 @@
 
 ;; Semantic highlight? https://medium.com/@evnbr/coding-in-color-3a6db2743a1e
 
+
+;;;;;; Updates to emacs
 ;;;; 24.3 Look at
 ;; set-temporary-overlay-map
 ;; python-shell-send-buffer
@@ -118,7 +122,7 @@
 
 ;; checkdoc your elisp code
 
-;; Look into:
+;; Look into: (cool features of emacs not yet explored)
 ;; initial-buffer-choice
 ;; blink-cursor-blinks
 ;; split-window change!
@@ -135,8 +139,11 @@
 ;; define-alternatives
 ;; subr-x.el
 ;; :distant-foreground
+;; expand-file-name
 
-
+;; paredit
+;; restclient
+;; web-mode
 
 ;;;;;; If you ever get to code:
 ;;;; Clojure:

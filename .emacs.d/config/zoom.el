@@ -1,6 +1,8 @@
 ;;______________________________________________________________________________
 ;π ZOOM
 ;;______________________________________________________________________________
+;; We might want to simply use text-scale-adjust instead
+;; Though we would still need a way to change font
 
 (defun defaultface ()
   (interactive)

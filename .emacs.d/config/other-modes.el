@@ -141,20 +141,6 @@
 
 
 ;;______________________________________________________________________________
-;π RACKET/SCHEME
-;;______________________________________________________________________________
-(add-to-list 'auto-mode-alist '("\\.rkt\\'$" . scheme-mode))
-(add-hook 'scheme-mode-hook (lambda ()
-                              (require 'quack)
-                              (setq quack-fontify-style 'emacs)
-                              (setq quack-default-program "racket")
-                              (setq quack-global-menu-p nil)))
-(add-to-list 'load-path "~/.emacs.d/plugins/geiser-0.3/")
-;(load-file "~/.emacs.d/plugins/geiser-0.3/")
-(require 'geiser)
-
-
-;;______________________________________________________________________________
 ;π SAGE
 ;;______________________________________________________________________________
 (add-to-list 'load-path (expand-file-name "/opt/sage/data/emacs"))
