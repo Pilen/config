@@ -21,11 +21,13 @@ menu=(\
         zathura   "zathura"
         gimp      "gimp"
         inkscape  "inkscape"
+        krita     "krita"
         xlock     "xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0"
         xpdf      "perl /home/pilen/code/scripts/xpdf.pl"
         chromium  "chromium --purge-memory-button"
-        python3   "urxvtc -bg #111111 -fg #51a366 -e python3"
-        python2   "urxvtc -bg #111111 -fg #6fbfe7 -e python2 -i /home/pilen/code/scripts/python2.py"
+        python3   "urxvtc -bg #111111 -e bpython"
+        # python3   "urxvtc -bg #111111 -fg #51a366 -e ipython3"
+        python2   "urxvtc -bg #111111 -fg #6fbfe7 -e ipython2 -i /home/pilen/code/scripts/python2.py"
         alsamixer "urxvtc -bg black -e alsamixer"
         htop      "urxvtc -bg black -e htop"
         cal       "urxvtc -bg black -e perl /home/pilen/code/scripts/cal.pl"
@@ -34,7 +36,9 @@ menu=(\
         shutdown  "urxvtc -bg black -fg red -e sudo shutdown -h now"
         youtube   "yplayer"
         politiken "chromium --purge-memory-button -new-window -incognito politiken.dk"
+        netflix   "netflix.sh"
         pong      "urxvtc -bg black -e ping google.com"
+        color     "zenity --color-selection"
         # 0%        "amixer set Master 0"
         # 10%       "amixer set Master 18"
         # 20%       "amixer set Master 29"
@@ -95,7 +99,7 @@ for (( count = 0 ; count < ${#menu[*]}; count++ )); do
 
 done
 
-select=`echo -e $menu_labels | dmenu -i -p "$title"`
+select=`echo -e $menu_labels | dmenu -i -p "$title" -fn "Clean-10"`
 
 if [ "$select" != "" ]; then
 

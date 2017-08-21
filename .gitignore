@@ -1,3 +1,5 @@
+*.elc
+
 .emacs.d/elpa/gnupg
 .emacs.d/elpa
 .emacs.d/semanticdb

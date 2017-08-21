@@ -22,6 +22,9 @@
 #
 #
 
+# set -eu
+# set -x
+
 cd ~
 
 if [ $# -ne 0 ];
@@ -38,7 +41,7 @@ hostname > ~/.last_pusher
 # wget -qO- https://raw.github.com/Pilen/config/master/.emacs | wc -l
 # echo -n "new size: "
 # wc -l ~/.emacs
-# ~/code/scripts/copyaliases.py
+~/code/scripts/copyaliases.py
 # echo
 
 echo -n "Lines in Configuration: "
@@ -51,7 +54,11 @@ echo -e "\n\n"
 #This is basicly a list of all the files i want to keep track of.
 files=(
     # directories:
-    '.emacs.d'
+    '.emacs.d/config'
+    '.emacs.d/my-plugins'
+    '.emacs.d/plugins'
+    '.emacs.d/templates'
+    '.emacs.d/init.el'
     '.xmonad/xmonad.hs'
     'code/scripts'
     # files:
@@ -121,7 +128,8 @@ echo
 git add *
 for file in "${files[@]}"
 do
-    git add $file;
+    echo $file
+    # git add $file;
 done;
 git add .gitignore
 
