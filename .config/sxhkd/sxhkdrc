@@ -1,0 +1,128 @@
+
+
+# Launch terminal
+super + shift + Return
+    urxvtc
+
+# Launch menu
+super + p
+    /home/pilen/code/scripts/menu.sh
+
+# Reload keybindings (sxhkd)
+super + Escape
+    pkill -USR1 -x sxhkd
+
+
+# Close window
+super + shift + c
+    bspc node -c
+
+super + {t,shift + t,f,shift + f}
+    bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# Cycle layout
+#   cancel the preselection for the focused desktop
+super + space
+    bspc desktop -l next;\
+    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+
+
+### Focus / Swap ###
+# Directional
+super + {_,shift + }{u,n,e,i}
+    bspc node -{f,s} {north,west,south,east} || bspc node -f next.local
+
+# Next/Previous
+super + {_,shift + } Tab
+    bspc node -f {next,prev}.local
+
+##
+# Swap current to biggest node
+super + Return
+    bspc node -s biggest.local
+
+
+### Move / Resize ###
+# NEW STYLE, doesn't work yet
+# # Expand a window by moving one of its side outward
+# super + alt + {u,n,e,i}
+#     bspc node -z {top 0 -20,left -20 0,bottom 0 20,right 20 0}
+# # Contract a window by moving one of its side inward
+# super + alt + shift + {u,n,e,i}
+#     bspc node -z {bottom 0 -20,right -20 0,top 0 20,left 20 0}
+
+# Expand a window by moving one of its side outward
+super + {w,a,r,s}
+    bspc node {@north -r -10,@west -r -10,@south -r +10,@east -r +10}
+# Contract a window by moving one of its side inward
+super + shift + {w,a,r,s}
+    bspc node {@south -r -10,@east -r -10,@north -r +10,@west -r +10}
+
+
+### Desktops ###
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f,node -d} 'd{1-9,0}'
+
+# super + {k,m}
+#     bspc desktop -f {prev,next}.local
+
+### Preselect ###
+# Preselect the direction
+super + ctrl + {u,n,e,i}
+    bspc node -p {north,west,south,east}
+
+# Preselect the ratio
+super + ctrl + {1-9}
+    bspc node -o 0.{1-9}
+
+# Cancel preselect
+super + ctrl + space
+    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+    # bspc node -p cancel
+
+
+### External Screen ###
+super {_,shift} + grave
+    bspc {desktop -f,node -d} 'Ex1'
+
+
+# Select more
+super + comma
+    bspc node @parent -f
+
+# # Select less
+# super + period
+#     bspc node @ -f
+
+# Flip selection
+super + {h,v,k,m}
+    bspc node $(bspc query -T -n @ | isleaf.py "@/" "@") -F {horizontal,vertical,horizontal,vertical}
+
+# Rotate selection
+super + period
+    bspc node $(bspc query -T -n @ | isleaf.py "@/" "@") -R 90
+
+# Balance / Reset (selection or all)
+super + {_,shift + }b
+    bspc node $(bspc query -T -n @ | isleaf.py "@/" "@") -{B,E}
+
+super + x
+    bspc query -T -n @ | isleaf.py a b
+
+
+### Mouse ###
+# super + button{1-3}
+#     bspc pointer -g {move,resize_side,resize_corner}
+# super + !button{1-3}
+#     bspc pointer -t %i %i
+# super + @button{1-3}
+#     bspc pointer -u
+
+### Volume ###
+XF86AudioRaiseVolume
+    amixer -q set Master 1+
+XF86AudioLowerVolume
+    amixer -q set Master 1-
+XF86AudioMute
+    amixer -q set Master toggle

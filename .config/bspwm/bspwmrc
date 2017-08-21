@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# Uses numbers
+
+bspc config window_gap 0 # Must be done before desktops are created
+bspc config border_width 1
+bspc config split_ratio 0.50
+
+bspc config normal_border_color "#000000"
+bspc config focused_border_color "#aa0000"
+bspc config borderless_monocle true
+bspc config gapless_monocle true
+bspc config single_monocle true
+
+bspc config focus_follows_pointer true
+
+bspc config focus_by_distance true
+# bspc rule -a \* node=focused split_dir=south
+
+bspc monitor -d d1 d2 d3 d4 d5 d6 d7 d8 d9 d0 Ex1
+# bspc monitor VGA1 -d Ex1
+
+bspc desktop -f d0
+
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
+# bspc config remove_disabled_monitors false
+# bspc config remove_unplugged_monitors false
+
+
+python ~/.config/bspwm/bspwm_monitor.py &

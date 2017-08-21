@@ -60,6 +60,8 @@ files=(
     '.emacs.d/templates'
     '.emacs.d/init.el'
     '.xmonad/xmonad.hs'
+    '.config/bspwm'
+    '.config/sxhkd'
     'code/scripts'
     # files:
     '.Xdefaults'
