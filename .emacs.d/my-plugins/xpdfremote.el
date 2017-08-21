@@ -36,7 +36,17 @@
 
 (defvar xpdfremote/buffer-name "*xpdfremote*")
 
-(defvar xpdfremote/server nil)
+;; (defvar xpdfremote/server nil)
+
+(defun xpdfremote/open-matching-file ()
+  (interactive)
+  (let ((file (concat (file-name-sans-extension (buffer-file-name)) ".pdf")))
+    (if (file-exists-p file)
+        (xpdfremote/open-file file)
+      (message "No obvious matching file"))))
+
+(defun xpdfremote/live ()
+  (process-live-p (get-process "xpdfremote/processs")))
 
 ;; remotecontrol functions
 (defun xpdfremote/open-file (filename)
@@ -50,7 +60,7 @@
 
 (defun xpdfremote/send-command (command)
   (interactive "s")
-  (when xpdfremote/server
+  (when (xpdfremote/live)
     (start-process "xpdfremote/processs" nil "xpdf" "-remote" xpdfremote/server-name "-exec" command)))
 
 (defun xpdfremote/select-file ()
@@ -76,10 +86,10 @@
     (newline)))
 
 (defun xpdfremote/xpdf-open-file (filename)
-   (setq xpdfremote/server (start-process "xpdfremote/processs" nil "xpdf" "-remote" xpdfremote/server-name filename
-                                          (when xpdfremote/fullscreen "-fullscreen")))
-   (raise-frame)
-   (x-focus-frame nil))
+  (start-process "xpdfremote/processs" nil "xpdf" "-remote" xpdfremote/server-name filename
+                 (when xpdfremote/fullscreen "-fullscreen"))
+  (raise-frame)
+  (x-focus-frame nil))
 ;; mode
 
 (defun xpdfremote ()

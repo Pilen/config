@@ -7,6 +7,7 @@
                           button
                           completion
                           highlight-nicknames
+                          hl-nicks
                           irccontrols
                           list
                           match

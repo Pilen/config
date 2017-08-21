@@ -8,8 +8,8 @@
       (global-set-key (kbd key) command))
   (define-key comando-mode-map (if (string= (substring key 0 (string-width comando-key)) comando-key)
                                    (substring key (string-width comando-key))
-                                 (key)) 
-    command))
+                                 (key))
+    command)
 
 
 (define-minor-mode comando-mode

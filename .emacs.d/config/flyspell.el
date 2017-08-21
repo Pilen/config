@@ -5,20 +5,23 @@
 (setq flyspell-issue-welcome-flag nil)
                                         ;(setq ispell-dictionary "dansk")
 (setq ispell-dictionary "english")
-;(add-hook 'flyspell-mode-hook 'flyspell-buffer)
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
-(add-hook 'c-mode-common-hook 'flyspell-prog-mode)
-(add-hook 'c-mode-hook 'flyspell-prog-mode)
-(add-hook 'sh-mode-hook 'flyspell-prog-mode)
-(add-hook 'c++-mode-hook 'flyspell-prog-mode)
-(add-hook 'ruby-mode-hook 'flyspell-prog-mode)
-(add-hook 'perl-mode-hook 'flyspell-prog-mode)
-(add-hook 'haskell-mode-hook 'flyspell-prog-mode)
-(add-hook 'python-mode-hook 'flyspell-prog-mode)
-(add-hook 'sml-mode 'flyspell-prog-mode)
+;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
+;; (add-hook 'c-mode-common-hook 'flyspell-prog-mode)
+;; (add-hook 'c-mode-hook 'flyspell-prog-mode)
+;; (add-hook 'sh-mode-hook 'flyspell-prog-mode)
+;; (add-hook 'c++-mode-hook 'flyspell-prog-mode)
+;; (add-hook 'ruby-mode-hook 'flyspell-prog-mode)
+;; (add-hook 'perl-mode-hook 'flyspell-prog-mode)
+;; (add-hook 'haskell-mode-hook 'flyspell-prog-mode)
+;; (add-hook 'python-mode-hook 'flyspell-prog-mode)
+;; (add-hook 'sml-mode-hook 'flyspell-prog-mode)
 
 
-(add-hook 'LaTeX-mode-hook (lambda () (turn-on-flyspell))); (setq ispell-dictionary "dansk"))) ; Commented out as aspell-da is not working
+;; (add-hook 'LaTeX-mode-hook 'turn-on-flyspell); (setq ispell-dictionary "dansk"))) ; Commented out as aspell-da is not working
+
+;; Do this to avoid fireing both flyspell-correct-word and mouse-yank-primary
+(define-key flyspell-mouse-map [down-mouse-2] 'ignore)
+(define-key flyspell-mouse-map [mouse-2] #'flyspell-correct-word)
 
 (defun turn-on-flyspell ()
   "Force flyspell-mode on using a positive arg."
@@ -37,6 +40,7 @@
 ;; can probably go forward with either an idle-timer pr. buffer, or with an
 ;; idle-timer looping until no more buffers are listed.
 ;;
+
 ;; (defvar flyspell-turn-on-delay 3 "The amount of time to idle before turning on flyspell in the buffer")
 ;; (defvar flyspell-init-timer nil)
 ;; (defvar flyspell-buffers-awaiting nil)
@@ -57,8 +61,15 @@
 ;;                                  (message "Spellchecking")
 ;;                                  (when (buffer-live-p buffer)
 ;;                                    (with-current-buffer buffer
-;;                                      (flyspell-mode 1))))
+;;                                      (with-local-quit
+;;                                        (flyspell-mode 1)))))
 ;;                                (current-buffer)))))
+
+;; (progn
+;;   (cancel-timer flyspell-init-timer)
+;;   (setq flyspell-init-timer nil)
+;;   (setq flyspell-buffers-awaiting nil))
+
 ;; (defun turn-on-flyspell ()
 ;;   "Turn flyspell on.
 ;; Flyspell wont be turned on until Emacs has been idle for some time.
@@ -75,11 +86,11 @@
 
 ;; (defun flyspell-start-timer ()
 ;;   "Start a timer that will actually run flyspell"
-;;   (message "start-timer-started")
+;;   (message "start-timer started")
 ;;   (unless (timerp flyspell-init-timer)
 ;;     (message "no timer active")
 ;;     (setq flyspell-init-timer
-;;           (run-with-timer 3 3
+;;           (run-with-idle-timer 3 3
 ;;                           (lambda ()
 ;;                             (message "running timer")
 ;;                             ;; (run-with-idle-timer
@@ -88,16 +99,19 @@
 ;;                             (if (null flyspell-buffers-awaiting)
 ;;                                 (progn
 ;;                                   (message "cancelling timer")
-;;                                     (cancel-timer flyspell-init-timer)
-;;                                     (setq flyspell-init-timer nil))
+;;                                   (cancel-timer flyspell-init-timer)
+;;                                   (setq flyspell-init-timer nil))
 ;;                               (message "timer doing stuff")
 ;;                               (let ((buffer (pop flyspell-buffers-awaiting)))
-;;                                    (when (buffer-live-p buffer)
-;;                                      (with-current-buffer buffer
-;;                                        (message "spellchecking buffer '%s'" (buffer-name))
-;;                                        (flyspell-mode 1))))
-;;                                  ;; (flyspell-run-timer)))))))))
-;;                                  ))))))
+;;                                 (when (buffer-live-p buffer)
+;;                                   (with-current-buffer buffer
+;;                                     (message "spellchecking buffer '%s'" (buffer-name))
+;;                                     (with-local-quit
+;;                                       (flyspell-mode 1))
+;;                                     (internal-timer-start-idle))))
+;;                               ;; (flyspell-run-timer)))))))))
+;;                               ))))))
+
 ;; (defun flyspell-prog-mode ()
 ;;   "Turn on `flyspell-mode' for comments and strings."
 ;;   (interactive)
@@ -154,6 +168,7 @@
 (let ((langs '("american" "francais" "brasileiro")))
   (setq lang-ring (make-ring (length langs)))
   (dolist (elem langs) (ring-insert lang-ring elem)))
+
 (defun cycle-ispell-languages ()
   (interactive)
   (let ((lang (ring-ref lang-ring -1)))

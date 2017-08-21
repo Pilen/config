@@ -1,6 +1,8 @@
 ;;______________________________________________________________________________
 ;π FLYMAKE
 ;;______________________________________________________________________________
+;; TODO: use flycheck instead?
+
 (require 'flymake)
 (require 'flymake-cursor)
 (setq flymake-no-changes-timeout 5)

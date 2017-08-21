@@ -74,9 +74,10 @@
 (win-switch-define-key "9" 'select-window-9)
 
 
-(defadvice split-window (after move-point-to-new-window activate)
-  "Moves the point to the newly created window after splitting."
-  (other-window 1))
+;; ;; Broken in emacs 25.1, where pressing tab creates a completion buffer and focus other
+;; (defadvice split-window (after move-point-to-new-window activate)
+;;   "Moves the point to the newly created window after splitting."
+;;   (other-window 1))
 
 
 ;; Toggle window dedication

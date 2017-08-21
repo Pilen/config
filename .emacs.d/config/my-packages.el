@@ -1,17 +1,30 @@
 
+;; Alternativly theese packages could be specified in the config files
+;; like https://github.com/expez/.emacs.d/blob/master/lisp/init-package.el
+
 (defconst required-packages
   '()
   "List of required packages.
 All packages here will automatically be installed if not present.")
 (setq required-packages
       '(
+        ag
         auto-highlight-symbol
         ace-jump-mode
+        auctex
+        arduino-mode
         buffer-move
         c-eldoc
         column-marker
+        company
+        company-go
+        company-jedi
+        company-quickhelp
         dash
         dtrt-indent
+        elpy
+        ensime                ;; Scala stuff - auto enables it self
+        erc-hl-nicks
         expand-region
         fastnav               ;; todo use me more
         fill-column-indicator ;; not really used (could come in handy)
@@ -20,6 +33,7 @@ All packages here will automatically be installed if not present.")
         fuzzy                 ;; not used, what is it exactly?
         geiser
         ghc
+        go-mode
         golden-ratio          ;; Not used often
         google-translate
         goto-last-change
@@ -29,8 +43,15 @@ All packages here will automatically be installed if not present.")
         hlinum
         idomenu               ;; I rolled my own instead
         iedit
+        impatient-mode
         inf-ruby
+        js2-mode
+        jss
         keyfreq
+        kite
+        less-css-mode
+        livid-mode
+        loccur
         lorem-ipsum
         magit
         markdown-mode
@@ -39,19 +60,27 @@ All packages here will automatically be installed if not present.")
         minesweeper
         multiple-cursors
         nav                   ;; Not really used yet
+        neotree
         pager
+        paredit
         powerline             ;; Not used
+        ;; python-mode        ;; Very heavy (26000 lines+)
         quack
         rainbow-delimiters
         rfringe               ;; Not used
+        scala-mode
+        skewer-mode
         smart-forward         ;; Not really used yet
         smex                  ;; Not used, i use my own instead
         sml-mode
         sr-speedbar
+        swiper
         tabbar                ;; Not used
         typing
         visible-mark
         volatile-highlights
+        web-mode
+        web                   ;; For my sharelatex.el package
         win-switch
         window-numbering
         wrap-region

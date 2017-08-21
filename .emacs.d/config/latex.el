@@ -1,9 +1,10 @@
 ;;______________________________________________________________________________
 ;π LATEX
 ;;______________________________________________________________________________
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/")
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
+(require 'tex-site) ;; Auctex
+(require 'preview) ;; preview-latex
+;; (load "auctex.el" nil t t)
+;; (load "preview-latex.el" nil t t)
 (require 'reftex-toc)
 (setq TeX-PDF-mode t)
 (setq TeX-auto-save t)
@@ -14,6 +15,8 @@
 (setq TeX-fold-env-spec-list t)
 (setq TeX-fold-macro-spec-list t)
 (setq TeX-fold-math-spec-list t)
+
+(setq reftex-plug-into-AUCTeX t)
 
 (setq preview-auto-cache-preamble t)
 (define-key reftex-toc-map (kbd "u") 'reftex-toc-previous)
@@ -28,16 +31,15 @@
 
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
-(add-hook
- 'LaTeX-mode-hook
- (lambda nil
-;(visual-line-mode)
-   (reftex-mode)
-   (LaTeX-math-mode)
-   (auto-fill-mode)
-   (set-face-foreground 'font-latex-bold-face "OliveDrab3")
-   (set-face-foreground 'font-latex-italic-face "OliveDrab3")
-   (setq LaTeX-command "latex -file-line-error -synctex=1")))
+(defun my-latex-mode-hook ()
+  ;; (visual-line-mode)
+  (reftex-mode t)
+  (LaTeX-math-mode)
+  (auto-fill-mode)
+  (set-face-foreground 'font-latex-bold-face "OliveDrab3")
+  (set-face-foreground 'font-latex-italic-face "OliveDrab3")
+  (setq LaTeX-command "latex -file-line-error -synctex=1"))
+(add-hook 'LaTeX-mode-hook 'my-latex-mode-hook)
 
 
 (eval-after-load "tex"
@@ -51,11 +53,31 @@
 (defun run-latex ()
   (interactive)
   (TeX-save-document (TeX-master-file))
-  (if (null xpdfremote/server)
-      (TeX-command "LaTeX" 'TeX-master-file)
-    (TeX-command "LaTeX-updatexpdf" 'TeX-master-file))
+  (if (xpdfremote/live)
+      (TeX-command "LaTeX-updatexpdf" 'TeX-master-file)
+    (TeX-command "LaTeX" 'TeX-master-file))
   ;(TeX-clean nil))
   )
+
+(defun check-item-entry ()
+  "This function is meant to be used as advice for the
+`LaTeX-insert-item' function. The purpose behind this is to delete
+the extra blank line that is naively added by `LaTeX-insert-item'
+when not already on an item line."
+  (interactive)
+  (save-excursion
+    ;; Backward one line, check if it happened if the line we're
+    ;; looking is empty, delete it
+    (if (and (= (forward-line -1) 0)
+             (looking-at "^\\s-*$"))
+        (kill-line))))
+
+(defadvice LaTeX-insert-item (after remove-whitespace-first-item activate)
+  "This advice is meant to fix the issue where an extra blank
+line is naively added by `LaTeX-insert-item' when not already on
+an item line."
+  (check-item-entry))
+
 
 (setq LaTeX-insert-matrix-type "bmatrix")
 (defun LaTeX-insert-matrix ()

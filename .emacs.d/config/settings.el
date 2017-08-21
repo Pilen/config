@@ -10,6 +10,8 @@
 ;;______________________________________________________________________________
 (require 'cl)
 
+(setq text-quoting-style 'grave)
+
 (setq inhibit-startup-message t)
 (setq default-frame-alist (append (list
                                    '(width  . 80)  ; Width set to 80 characters
@@ -30,8 +32,9 @@
 ;(paren-activate)
 (setq show-paren-style 'expression)
 
-(set-default 'truncate-lines t)
+(setq-default truncate-lines t)
 
+(setq font-lock-maximum-decoration '((arduino-mode . 2) (t . t)))
 (setq echo-keystrokes 0.01)
 (setq use-dialog-box nil)
 ;; (setq visible-bell t)
@@ -39,6 +42,7 @@
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 ;(require 'linum+)
+(setq linum-eager nil)
 (global-linum-mode t)
 (winner-mode 1)
 (put 'narrow-to-region 'disabled nil)
@@ -47,6 +51,7 @@
 (put 'scroll-left 'disabled nil)
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
+(put 'erase-buffer 'disabled nil)
 
 (setq european-calendar-style t)
 (setq calendar-week-start-day 1)
@@ -77,12 +82,16 @@
 
 (require 'recentf)
 (recentf-mode t)
+(setq recentf-save-file "~/.emacs.d/recentf")
 (setq recentf-max-saved-items 10000)
 (add-to-list 'recentf-exclude ".breadcrumb")
-(add-to-list 'recentf-exclude ".emacs")
+;; (add-to-list 'recentf-exclude ".emacs")
 (add-to-list 'recentf-exclude ".ido.last")
-(setq recentf-save-timer (run-at-time t (* 60 60) (lambda () (recentf-save-list))))
-;(cancel-timer recentf-save-timer)
+(progn
+  (when (bound-and-true-p recentf-save-timer)
+    (cancel-timer recentf-save-timer)
+    (setq recentf-save-timer nil))
+  (setq recentf-save-timer (run-at-time t (* 60 60) (lambda () (recentf-save-list)))))
 
 (require 'goto-last-change)
 
@@ -103,8 +112,8 @@
 (defalias 'el 'emacs-lisp-mode)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (setq eldoc-idle-delay 0)
-(require 'c-eldoc)
-(add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
+;; (require 'c-eldoc)
+;; (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
 
 
 (setq recenter-positions '(top middle bottom))
@@ -170,12 +179,13 @@
 
 ;; This is what you probably want if you are using a tiling window
 ;; manager under X, such as ratpoison.
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-window-setup-function 'ediff-setup-windows-plain) ;; Same frame
+;; (setq ediff-window-setup-function 'ediff-setup-windows-default) ;; Same frame
 (setq ediff-split-window-function 'split-window-horizontally)
 
 (require 'fuzzy)
 
-(require 'cafeen)
+;(require 'cafeen)
 
 (add-hook 'erlang-shell-mode-hook 'next-error-follow-minor-mode)
 (add-hook 'compilation-mode-hook 'next-error-follow-minor-mode)
@@ -200,10 +210,15 @@
 (define-key inf-ruby-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key inf-ruby-mode-map (kbd "<down>") 'comint-next-input)
 
+(setq comint-prompt-read-only t)
+(define-key comint-mode-map (kbd "C-l") 'my-clear)
+(defun my-clear ()
+  (interactive)
+  (eshell/clear)
+  (comint-send-input))
+
 (require 'help-mode)
-(define-key help-mode-map (kbd "H-J") 'help-goto-file)
-(fset 'help-goto-file
-   [?\M-: ?\( ?b ?e ?g ?i ?n ?n ?i ?n ?g ?- ?o ?f ?- ?b ?u ?f ?f ?e ?r ?\) return ?\M-: ?\( ?s ?e ?a ?r ?c ?h ?- ?f ?o ?r ?w ?a ?r ?d ?  ?\" ?` ?\" ?\) return return])
+(define-key help-mode-map (kbd "H-J") (lambda () (interactive) (goto-char (point-min)) (forward-button 1) (push-button)))
 
 (require 'smex)
 (smex-initialize)
@@ -249,6 +264,80 @@
 
 (require 'lorem-ipsum)
 
+(setq tramp-default-method "ssh")
+
+(setq view-read-only t)
+
+(defadvice message (after message-tail activate)
+  nil)
+
+(defadvice message (after message-tail activate)
+  "Go to point max after a message"
+  (unless (string-equal (buffer-name) "*Messages*")
+    (with-current-buffer "*Messages*"
+      (goto-char (point-max))
+      (skip-syntax-backward " ")
+      (let ((p (point)))
+        (walk-windows
+         (lambda (window)
+           (if (string-equal (buffer-name (window-buffer window)) "*Messages*")
+               (set-window-point window p)))
+         nil
+         t)))))
+
+(glasses-mode t)
+(setq glasses-original-separator "")
+(setq glasses-separate-parentheses-p nil)
+(setq glasses-separate-capital-groups nil)
+;; (setq glasses-separator "‿")
+;; (setq glasses-separator "﹀")
+;; (setq glasses-separator "︿")
+;; (setq glasses-separator "␣")
+;; (setq glasses-separator "▿")
+;; (setq glasses-separator "▾")
+;; (setq glasses-separator "▶")
+;; (setq glasses-separator "▷")
+;; (setq glasses-separator "▹")
+;; (setq glasses-separator "▸")
+;; (setq glasses-separator "◣")
+;; (setq glasses-separator "◺")
+;; (setq glasses-separator "▲")
+;; (setq glasses-separator "△")
+;; (setq glasses-separator "▵")
+(setq glasses-separator "▴")
+(glasses-set-overlay-properties)
+
+;; (set-face-background)
+;; HTMLabs
+;; abcHTMLabsDEF
+;; unReadable_stuff
+;; unreadableIdentifiersLikeThis
+
+
+(setq browse-url-browser-function 'browse-url-default-browser)
+(setq browse-url-browser-function 'browse-url-chromium)
+(setq browse-url-chromium-arguments nil)
+(setq browse-url-chromium-arguments '("--new-window"))
+
+
+(require 'man)
+(define-key Man-mode-map (kbd "u") (lambda () (interactive) (pager-scroll-screen -8)))
+(define-key Man-mode-map (kbd "e") (lambda () (interactive) (pager-scroll-screen 8)))
+
+
+;; If deleting the prompts is suddenly possible, it might be that comint-prompt-read-only is somehow set to nil (should be t)
+(setq comint-prompt-read-only t)
+
+
+(setq save-interprogram-paste-before-kill t)
+
+;;______________________________________________________________________________
+;π COMPLETIONS
+;;______________________________________________________________________________
+
+(define-key completion-list-mode-map (kbd "H-e") 'next-completion)
+(define-key completion-list-mode-map (kbd "H-u") 'previous-completion)
+
 ;;______________________________________________________________________________
 ;π FILL-COLUMN-INDICATOR
 ;;______________________________________________________________________________
@@ -265,8 +354,9 @@
 (set-face-attribute 'column-marker-1 nil
                     ;; :background "gray44")
                     :background "gray20")
-(column-marker-1 fill-column)
 (add-hook 'prog-mode-hook (lambda () (column-marker-1 fill-column)))
+(add-hook 'jde-mode-hook (lambda () (column-marker-1 fill-column)))
+
 
 ;;______________________________________________________________________________
 ;π STARTUP
@@ -275,7 +365,7 @@
 (defun display-startup-echo-area-message ()
   (message ""))
 (find-file "~/.emacs.d/init.el")
-                                        ;(switch-to-buffer "blank")
+                                        ;; (switch-to-buffer "blank")
 (if (not (eq nil (get-buffer "*scratch*")))
     (kill-buffer "*scratch*"))
 (if (not (eq nil (get-buffer "*Messages*")))
@@ -289,6 +379,9 @@
 ;; (setq speedbar-use-images nil)
 ;; (define-key speedbar-mode-map (kbd "<tab>") 'speedbar-toggle-line-expansion)
 ;; (define-key speedbar-mode-map (kbd "<backspace>") 'speedbar-up-directory)
+
+;; Using neotree instead
+(setq neo-theme 'ascii)
 
 ;;______________________________________________________________________________
 ;π CONSOLE
@@ -304,7 +397,8 @@
 (setq check-auto-save 1) ;;check wether autosave is the most recent on revert-buffer
                                         ;(require 'auto-save)
 
-(setq auto-save-list-file-prefix "~/Dropbox/emacs/autosaves/")
+;; (setq auto-save-list-file-prefix "~/Dropbox/emacs/autosaves/")
+(setq auto-save-list-file-prefix "~/.emacs.d/auto-save-list/.saves-")
 ;; (setq auto-save-file-name-transforms
 ;;       (quote ((".*" . "~/Dropbox/emacs/autosavefiles"))))
 
@@ -344,3 +438,12 @@
 (setq save-place-file "~/.emacs.d/saveplace")
 (setq-default save-place t)
 (require 'saveplace)
+
+
+(add-to-list 'load-path "~/.emacs.d/plugins/emacs-colorpicker")
+(require 'colorpicker)
+
+;;______________________________________________________________________________
+;π DIRED
+;;______________________________________________________________________________
+(setq dired-listing-switches "-alhF --group-directories-first")

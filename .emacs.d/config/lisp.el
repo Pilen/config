@@ -10,7 +10,8 @@
                        clojure-mode)
   "Lisp of lisp modes.")
 
-(define-minor-mode lisp-power-map
+
+(define-minor-mode lisp-power-mode
   "Add common keybindings for all lisp modes"
   :lighter "lisp"
   :keymap (let ((lisp-power-map (make-sparse-keymap)))
@@ -23,6 +24,10 @@
 (dolist (mode lisp-modes)
   (add-hook (intern (format "%s-hook" mode))
             #'lisp-power-mode-activate))
+
+(dolist (mode lisp-modes)
+  (add-hook (intern (format "%s-hook" mode))
+            #'paredit-mode))
 
 ;;______________________________________________________________________________
 ;π RACKET/SCHEME

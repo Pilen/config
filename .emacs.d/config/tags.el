@@ -50,10 +50,21 @@
 
 (add-hook 'gtags-mode-hook
           (lambda ()
-            (local-set-key (kbd "H-λ") 'gtags-find-tag)
-            (local-set-key (kbd "H-=") 'gtags-pop-stack)
-            (local-set-key (kbd "H-π") 'gtags-find-rtag)))
+            ;; (local-set-key (kbd "H-λ") 'gtags-find-tag)
+            ;; (local-set-key (kbd "H-=") 'gtags-pop-stack)
+            ;; (local-set-key (kbd "H-π") 'gtags-find-rtag)))
+            (define-key gtags-mode-map (kbd "H-λ") 'gtags-find-tag-other-window)
+            (define-key gtags-mode-map (kbd "H-=") 'gtags-pop-stack)
+            (define-key gtags-mode-map (kbd "H-π") 'gtags-find-rtag)))
 
 (add-hook 'c-mode-common-hook
           (lambda ()
             (gtags-mode)))
+
+(setq tags-revert-without-query t)
+
+
+
+;; So GNU Global supplies gtags.el (in /usr/share/gtags)
+;; ggtags is an external mode build on top of GNU Global providing an alternative interface
+;; look into ggtags

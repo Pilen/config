@@ -138,6 +138,7 @@
 
 
 (global-set-key (kbd "H-m") 'isearch-forward)
+(global-set-key (kbd "H-m") 'swiper)
 (global-set-key (kbd "H-M") 'sprint-forward)
 (global-set-key (kbd "H-c") 'ace-jump-char-local)
 (global-set-key (kbd "H-C") 'ace-jump-char-global)
@@ -186,7 +187,7 @@
 ;;(ergoemacs-mode 1)
 
 (global-set-key (kbd "H-/") 'query-replace-with-region)
-(global-set-key (kbd "H-?") 'iedit-mode)
+(global-set-key (kbd "H-?") 'loccur-current)
 ;;(global-set-key (kbd "H-?") 'query-replace-regexp)
 (global-set-key (kbd "H-\\") 'delete-window)
 (global-set-key (kbd "H-|") 'delete-other-windows)
@@ -245,17 +246,19 @@
 (global-set-key (kbd "H-7") 'toggle-selective-display)
 (global-set-key (kbd "H-&") 'cursor-selective-display)
 
-(global-set-key (kbd "H-λ") 'find-tag)
-(global-set-key (kbd "H-π") 'tags-apropos)
-(global-set-key (kbd "H-=") 'pop-tag-mark)
+;; (global-set-key (kbd "H-λ") 'find-tag)
+;; (global-set-key (kbd "H-π") 'tags-apropos)
+;; (global-set-key (kbd "H-=") 'pop-tag-mark)
 
 (global-set-key (kbd "H-9") 'smart-backward)
 (global-set-key (kbd "H-0") 'smart-forward)
 (global-set-key (kbd "H-(") 'beginning-of-defun)
 (global-set-key (kbd "H-)") 'end-of-defun)
 
-(global-set-key (kbd "<f1>") 'google-translate-da/en)
-(global-set-key (kbd "S-<f1>") 'google-translate-en/da)
+(global-set-key (kbd "<f1>") 'my-help)
+(global-set-key (kbd "S-<f1>") 'man)
+;; (global-set-key (kbd "<f1>") 'google-translate-da/en)
+;; (global-set-key (kbd "S-<f1>") 'google-translate-en/da)
 ;; (global-set-key (kbd "H-<f1>") 'flyspell-mode)
 ;; (global-set-key (kbd "<f2>") 'flyspell-buffer)
 (global-set-key (kbd "<f2>") 'flyspell-mode)
@@ -278,6 +281,8 @@
 (global-set-key (kbd "S-<f11>") 'LaTeX-insert-matrix)
 (global-set-key (kbd "<f12>") (lambda () (interactive) (save-buffer) (preview-buffer)))
 (global-set-key (kbd "<H-f12>") 'preview-clearout-buffer)
+
+(global-set-key (kbd "<print>") 'magit-status)
 
 (global-set-key (kbd "<home>") 'beginning-of-buffer)
 (global-set-key (kbd "<end>") 'end-of-buffer)
@@ -303,9 +308,10 @@
 
 (global-set-key (kbd "H-x") 'xpdfremote/xpdf-pageDown)
 (global-set-key (kbd "H-X") 'xpdfremote/xpdf-pageUp)
+(global-set-key (kbd "H-C-x") 'xpdfremote/open-matching-file)
 
 (global-set-key (kbd "H-k") 'erc-start-or-switch)
 
-(global-set-key (kbd "<XF86Launch1>") 'sr-speedbar-toggle)
+;; (global-set-key (kbd "<XF86Launch1>") 'sr-speedbar-toggle)
 
 (global-set-key (kbd "C-x C-x") (lambda () (interactive) (exchange-point-and-mark) (deactivate-mark) ))

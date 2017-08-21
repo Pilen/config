@@ -77,6 +77,8 @@ URxvt.foreground: #bac8ae
 URxvt.borderLess: false
 !URxvt.borderColor: #888888
 
+! URxvt.keysym.C-l: echo -ne '\\033c'\n
+
 ! !*foreground:       #bac8ae
 ! !*background:       #220802
 ! !black

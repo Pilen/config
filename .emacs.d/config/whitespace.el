@@ -9,7 +9,7 @@
 (require 'whitespace)
 (setq whitespace-line-column 80)
 (set-face-attribute 'whitespace-trailing nil :background "grey60")
-(set-face-attribute 'whitespace-tab nil :background "grey60")
+(set-face-attribute 'whitespace-tab nil :background "grey40")
 ;;(set-face-attribute 'whitespace-line nil :foreground nil)  ;; I actually want it to use its default color.
 ;;(set-face-attribute 'whitespace-line nil :background nil)
 ;(set-face-foreground 'whitespace-line nil)

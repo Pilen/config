@@ -42,7 +42,11 @@
         (message "Buffer '%s' is not visiting a file!" name)
       (if (get-buffer new-name)
           (message "A buffer named '%s' already exists!" new-name)
-        (progn   (rename-file name new-name 1)   (rename-buffer new-name)        (set-visited-file-name new-name)        (set-buffer-modified-p nil))))))
+        (progn
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil))))))
 (defalias 'rfb 'rename-file-and-buffer)
 
 ;; Never understood why Emacs doesn't have this function, either.
@@ -255,6 +259,25 @@ def|abc"
   (let ((pos (point)))
     (find-alternate-file (concat "/sudo:root@localhost:" (buffer-file-name (current-buffer))))
     (goto-char pos)))
+
+(defun revert-all-buffers ()
+  "Revert all non-modified buffers associated with a file.
+This is to update existing buffers after a Git pull of their underlying files."
+  (interactive)
+  (save-current-buffer
+    (dolist (buffer (buffer-list))
+      (set-buffer buffer)
+      (unless (or (null (buffer-file-name)) (buffer-modified-p))
+              (revert-buffer t t)
+              (message "Reverted %s\n" (buffer-file-name))))))
+
+(defun insert-current-date (&optional format)
+  (interactive "Mformat: \n")
+  (if (or (not format) (string-empty-p format))
+      (setq format "%Y-%m-%d"))
+  (insert (shell-command-to-string (concat "echo -n $(date +'" format "')"))))
+
+
 
 ;;______________________________________________________________________________
 ;π CODE FOLDING

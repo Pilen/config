@@ -3,9 +3,29 @@
 ;;______________________________________________________________________________
 ;; (setq python-command "/usr/bin/bpython")
 (remove-hook 'python-mode-hook (lambda () (setq imenu-create-index-function 'python-imenu-create-index)))
-(add-hook 'python-mode-hook
-          (lambda ()
-            (setq imenu-create-index-function 'imenu-default-create-index-function)))
+(defun my-python-mode-hook ()
+  ;; (setq imenu-create-index-function 'imenu-default-create-index-function)
+  (setq imenu-create-index-function 'python-imenu-create-index)
+  (setq tab-width (default-value 'tab-width)) ;; Don't fuck with my tab-width!!!
+  (add-to-list 'company-backends 'company-jedi)
+  (jedi:setup))
+
+(jedi:install-server)
+
+(setq jedi:get-in-function-call-delay 100)
+(setq jedi:use-shortcuts t) ;; Enable M-. and M-, for jumping to tags
+
+
+(add-hook 'python-mode-hook 'my-python-mode-hook)
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt"
+      python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+      python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+)
+
+(setq jedi:tooltip-method nil)
+;; (elpy-enable)
+;; (elpy-disable)
 
 (defun wisent-python-wy--install-parser () nil)
 
@@ -60,8 +80,13 @@
 
 (defun python-compile ()
   (interactive)
-  (python-shell-send-string "__name__ = '__emacs__'")
-  (python-shell-send-buffer)
-  (python-shell-send-string (concat "print('evaluating: " (buffer-name) "')"))
-  (save-selected-window
-    (python-shell-switch-to-shell)))
+  (save-excursion
+    (unless (python-shell-get-process)
+      (run-python)
+      (python-shell-send-string "__name__ = '__emacs__'"))
+    (save-restriction
+      (widen)
+      (let ((string (python-shell-buffer-substring (point-min) (point-max))))
+        (python-shell-send-string (concat string "\n" "print('evaluating: " (buffer-name) "', end='')"))))
+    (save-selected-window
+      (python-shell-switch-to-shell))))

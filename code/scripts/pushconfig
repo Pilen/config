@@ -128,8 +128,7 @@ echo
 git add *
 for file in "${files[@]}"
 do
-    echo $file
-    # git add $file;
+    git add $file;
 done;
 git add .gitignore
 
@@ -177,10 +176,10 @@ git push
 # git push
 
 #Locales to update
-echo -e "\n\n\n\n"
-echo "Updating remote addreses:"
-echo
-ssh pilgaard@tyr.diku.dk git pull origin master
+# echo -e "\n\n\n\n"
+# echo "Updating remote addreses:"
+# echo
+# ssh pilgaard@tyr.diku.dk git pull origin master
 
 echo
 echo "Files touched:"

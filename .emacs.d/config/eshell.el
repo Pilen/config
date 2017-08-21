@@ -1,7 +1,15 @@
 ;;______________________________________________________________________________
 ;π ESHELL
 ;;______________________________________________________________________________
+
+;; http://www.masteringemacs.org/article/complete-guide-mastering-eshell
+;; http://www.howardism.org/Technical/Emacs/eshell-fun.html
+
+
 (require 'eshell)
+(require 'em-alias)
+(require 'em-ls)
+(require 'ag)
 (setq eshell-directory-name "~/.emacs.d/eshell/")
 (setq eshell-visual-commands '("nano"))
 (setq eshell-buffer-shorthand t)
@@ -10,13 +18,14 @@
 (setq eshell-cmpl-cycle-completions nil)
 (defun m-eshell-hook ()
   (setq pcomplete-cycle-completions nil)
-  (setq eshell-visual-commands '("nano"))
   (setq eshell-buffer-shorthand t)
   (setq eshell-hist-ignoredups t)
-  (define-key eshell-mode-map (kbd "H-d") 'eshell-kill-input)
-  (define-key eshell-mode-map (kbd "H-N") 'eshell-bol)
+  ;; (define-key eshell-mode-map (kbd "H-d") 'eshell-kill-input)
+  (define-key eshell-mode-map (kbd "C-a") 'eshell-my-bol)
+  (define-key eshell-mode-map (kbd "H-N") 'eshell-my-bol)
   (define-key eshell-mode-map (kbd "C-l") '(lambda () (interactive) (eshell/clear) (eshell-send-input)))
   (define-key eshell-mode-map (kbd "<return>") 'my-eshell-send-input)
+  (define-key eshell-mode-map (kbd "H-r") 'eshell-ido-history)
   (add-to-list 'eshell-visual-commands "nano")
   (add-to-list 'eshell-visual-commands "htop")
   (add-to-list 'eshell-visual-commands "irssi")
@@ -24,9 +33,26 @@
   (add-to-list 'eshell-visual-commands "alsamixer")
   (add-to-list 'eshell-visual-commands "ssh")
   (add-to-list 'eshell-visual-commands "tail")
-
-  (setq eshell-history-size 1000)
+  (add-to-list 'eshell-visual-commands "tmux")
+  (add-to-list 'eshell-command-aliases-list  '("f" "eshell-goto"))
+  (add-to-list 'eshell-command-aliases-list  '("ag" "ag-eshell $1"))
+  ;; (add-to-list 'eshell-command-aliases-list  '("ls" "eshell/ls"))
+  (setq eshell-command-aliases-list (remove-if
+                                     (lambda (alias)
+                                       (string= (car alias) "ls")) eshell-command-aliases-list))
+  (setq eshell-history-size 10000)
   )
+
+(defun eshell/new (&optional arg)
+  (if arg
+        (with-current-buffer (eshell arg)
+          (rename-buffer (format "*eshell - %s*" arg) )
+          (when (file-directory-p arg)
+            (insert "cd " arg)
+            (eshell-send-input)))
+    (eshell t)))
+
+(defalias 'eshell/n 'eshell/new)
 
 (add-hook 'eshell-mode-hook 'm-eshell-hook)
 (defun tyler-eshell-view-file (file)
@@ -56,10 +82,12 @@
           (tyler-eshell-view-file file)
           (goto-line line))
       (tyler-eshell-view-file (pop args)))))
+
 (defalias 'eshell/more 'eshell/less)
 ;; (defun eshell/e (file)
 ;;   (message file)
 ;;   (find-file-other-window file))
+
 (defun eshell/e (file &rest files)
   (message default-directory)
   (setq files (mapcar (lambda (x) (if (stringp x) (list x) x))
@@ -67,6 +95,11 @@
   (dolist (filelist files)
     (dolist (file filelist)
       (find-file-other-window file t))))
+
+(defalias 'eshell/o 'ido-find-file)
+
+(defun eshell/s (command &rest args)
+  (shell-command (mapconcat 'identity (cons command args) " ")))
 
 (defun shell-toggle-buffer-switch-to-other-window ()
   "Switches to other window.  If the current window is the only window in the
@@ -148,6 +181,40 @@ current frame, create a new window and switch to it.
       (end-of-buffer)
       (switch-to-buffer-other-window buf))))
 
+
+(defun eshell-goto (dir)
+  "Use ido to go to dir"
+  (interactive)
+  (let ((dir (ido-read-directory-name "goto: "))
+        (inhibit-read-only t))
+    (insert "cd " "\"" dir "\"")
+    (eshell-send-input)
+    (search-backward-regexp eshell-prompt-regexp)
+    (previous-line)
+    (kill-region (point) (point-max))
+    (ring-remove eshell-history-ring 0)
+    ;; (ring-remove eshell-history-ring 0) ;; delete the call to this function
+    ))
+
+
+(setq eshell-prompt-function (lambda () (concat (abbreviate-file-name (eshell/pwd))
+                                                "\n" (if (= (user-uid) 0) "# " "$ "))))
+(setq eshell-prompt-regexp "^[^#$\n]*\n[#$] ")
+
+
+(defun eshell-bol ()
+  "Goes to the beggining of the line, after the last prompt"
+  (interactive)
+  (save-match-data
+    (search-backward-regexp eshell-prompt-regexp)
+    (goto-char (match-end 0))))
+
+(defun eshell-ido-history ()
+  "Complete history using ido"
+  (interactive)
+  (goto-char (point-max))
+  (insert (ido-completing-read "execute: " (ring-elements eshell-history-ring))))
+
 ;;______________________________________________________________________________
 ;π ESHELLCONTROL
 ;;______________________________________________________________________________
@@ -175,7 +242,85 @@ current frame, create a new window and switch to it.
       (end-of-buffer)
       (switch-to-buffer-other-window buf))))
 
+
+;; If deleting the eshell prompt is suddenly possible, it might be that inhibit-read-only is somehow set to t (should be nil)
 (defun eshell/clear ()
   (interactive)
   (let ((inhibit-read-only t))
     (erase-buffer)))
+
+
+;;______________________________________________________________________________
+;π SORT
+;;______________________________________________________________________________
+
+
+(defun eshell-ls-sort-entries_orig (entries)
+  "Sort the given ENTRIES, which may be files, directories or both.
+In Eshell's implementation of ls, ENTRIES is always reversed."
+  (if (eq sort-method 'unsorted)
+      (nreverse entries)
+    (sort entries
+          (function
+           (lambda (l r)
+             (let ((result
+                    (cond
+                     ((eq sort-method 'by-atime)
+                      (eshell-ls-compare-entries l r 4 'time-less-p))
+                     ((eq sort-method 'by-mtime)
+                      (eshell-ls-compare-entries l r 5 'time-less-p))
+                     ((eq sort-method 'by-ctime)
+                      (eshell-ls-compare-entries l r 6 'time-less-p))
+                     ((eq sort-method 'by-size)
+                      (eshell-ls-compare-entries l r 7 '<))
+                     ((eq sort-method 'by-extension)
+                      (let ((lx (file-name-extension
+                                 (directory-file-name (car l))))
+                            (rx (file-name-extension
+                                 (directory-file-name (car r)))))
+                        (cond
+                         ((or (and (not lx) (not rx))
+                              (equal lx rx))
+                          (string-lessp (directory-file-name (car l))
+                                        (directory-file-name (car r))))
+                         ((not lx) t)
+                         ((not rx) nil)
+                         (t
+                          (string-lessp lx rx)))))
+                     (t
+                      (string-lessp (directory-file-name (car l))
+                                    (directory-file-name (car r)))))))
+               (if reverse-list
+                   (not result)
+                 result)))))))
+
+(defun eshell-ls-sort-entries (entries)
+  "Sort the given ENTRIES, with directories first"
+  ;; (print entries)
+  ;; (print (car (car entries)))
+  (let ((sorted (eshell-ls-sort-entries_orig entries))
+        (directories nil)
+        (files nil))
+    (dolist (entry sorted)
+      (if (file-directory-p (car entry))
+          (push (cons (concat (car entry) "/") (cdr entry)) directories)
+        (push entry files)))
+    (setq sorted (append files directories))
+    (setq sorted (nreverse sorted))
+    sorted))
+
+
+(defun eshell-my-bol ()
+  "Go to beginning of line or beggining of prompt"
+  (interactive)
+  (if (= (line-number-at-pos) (line-number-at-pos (point-max)))
+      (eshell-bol)
+    (beginning-of-line)))
+
+(defun ag-eshell (string)
+  "Search with ag using the current eshell directory and a given string.
+   To be used from within an eshell alias
+   (`alias ag 'ag-eshell $1'` within eshell)"
+  (ag/search string (eshell/pwd) :regexp t)
+  "")
+(setq ag-reuse-buffers t)

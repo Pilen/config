@@ -64,7 +64,8 @@
 
 (set-face-attribute
  'rainbow-delimiters-depth-5-face nil
- :foreground "pink4")
+ ;; :foreground "Pink4")
+ :foreground "hot pink")
 
 (set-face-attribute
  'rainbow-delimiters-depth-6-face nil
@@ -76,17 +77,18 @@
 
 (set-face-attribute
  'rainbow-delimiters-depth-8-face nil
- :foreground "purple4")
+ ;; :foreground "purple4")
+ :foreground "LightGoldenrod")
 
 (set-face-attribute
  'rainbow-delimiters-depth-9-face nil
- :foreground "gray50")
+ :foreground "gray60")
 
 (set-face-attribute
  'rainbow-delimiters-unmatched-face nil
  :foreground "red")
 
-;((((((((((t))))))))))
+'((((((((((t))))))))))
 
 ;(rainbow-delimiters-mode 1)
 ;;(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)

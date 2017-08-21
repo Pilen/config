@@ -29,25 +29,26 @@
 
 (defun forward-word-to-newline ()
   (interactive)
-  (if (char-equal (char-after) ?\n)
-      (search-forward-regexp "[a-zA-Z0-9æøåÆØÅ]+")
-    (search-forward-regexp "[[a-zA-Z0-9æøåÆØÅ]+\\|$")))
+  (unless (= (point) (point-max))
+    (if (char-equal (char-after) ?\n)
+        (search-forward-regexp "[a-zA-Z0-9æøåÆØÅ]+")
+      (search-forward-regexp "[[a-zA-Z0-9æøåÆØÅ]+\\|$"))))
 
-;;theres an error, as it needs a non a-Z0-9 char before the word
+;; Alternatively look at https://github.com/nivaca/nv-delete-back
+;;theres an error, as it needs a non a-0-9 char before the word
 (defun backward-word-to-newline ()
   (interactive)
-  (if (char-equal (char-before) ?\n)
+  (unless (= (point) (point-min))
+    (if (char-equal (char-before) ?\n)
+        (progn ;; At beginning of line
+          (backward-char)
+          (search-backward-regexp "[^a-zA-Z0-9æøåÆØÅ]+[a-zA-Z0-9æøåÆØÅ]+")
+          (forward-char))
       (progn
-        (message "before")
-        (backward-char)
-        (backward-char)
-        (search-backward-regexp "[^a-zA-Z0-9æøåÆØÅ]+[a-zA-Z0-9æøåÆØÅ]+")
-        (forward-char))
-    (progn
-      (when (or (eobp) (char-equal (char-after) ?\n))
-        (backward-char))
-      (search-backward-regexp "[^a-zA-Z0-9æøåÆØÅ]+[a-zA-Z0-9æøåÆØÅ]+\\|$")
-      (forward-char))))
+        (when (or (eobp) (char-equal (char-after) ?\n))
+          (backward-char))
+        (search-backward-regexp "[^a-zA-Z0-9æøåÆØÅ]+[a-zA-Z0-9æøåÆØÅ]+\\|$")
+        (forward-char)))))
 
 (defun forward-kill-word-to-newline ()
   (interactive)

@@ -55,13 +55,14 @@
 (setq display-time-string-forms
       '((propertize (concat " " 24-hours ":" minutes " ")
                     'face 'display-time-face)))
+;; (setq display-time-string-forms '((propertize (concat " 13:37 ") 'face 'display-time-face)))
 
 (display-time)
 
 ;;______________________________________________________________________________
 ;π MODELINE
 ;;______________________________________________________________________________
-(require 'powerline)
+;; (require 'powerline)
 (defvar my-mode-line-buffer-line-count nil)
 (make-variable-buffer-local 'my-mode-line-buffer-line-count)
 
@@ -134,7 +135,7 @@
                 display-time-string
                 ;;(:eval (propertize "13:37" 'face 'display-time-face)) ;; RKG-time
                 battery-mode-line-string
-                (:eval (powerline-percent-xpm 'text nil powerline-color1))
+                ;; (:eval (powerline-percent-xpm 'text nil powerline-color1)) ;; TODO make me work
                 erc-modified-channels-object
                 ("" which-func-format
                  #(" " 0 1

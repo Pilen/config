@@ -5,6 +5,7 @@
 (setq ido-everywhere t)
 (setq ido-create-new-buffer 'always)
 (setq ido-file-extension-order '("/" ".tex" ".emacs" ".txt" ".py" ".pl" ".c" ".h" ".hs" ".cfg" ".asm" ".xml" ".org"))
+(setq ido-default-buffer-method 'selected-window)
 (ido-mode 1)
 
 (set-face-attribute
@@ -21,6 +22,17 @@
 ;(remove-hook 'ido-minibuffer-setup-hook 'ido-disable-line-trucation)
 
 (add-hook 'ido-setup-hook 'ido-my-keys)
+
+(add-hook 'ido-setup-hook
+          (lambda ()
+            ;; Go straight home
+            (define-key ido-file-completion-map
+              (kbd "~")
+              (lambda ()
+                (interactive)
+                (if (looking-back "/")
+                    (insert "~/")
+                  (call-interactively 'self-insert-command))))))
 
 (defun ido-my-keys ()
   "Add my keybindings for ido."

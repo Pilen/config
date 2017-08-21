@@ -21,6 +21,8 @@
                 (mode . c-mode))
                ("C++"
                 (mode . c++-mode))
+               ("Go"
+                (mode . go-mode))
                ("Python"
                 (mode . python-mode))
                ("Java"
@@ -37,6 +39,11 @@
                 (or
                  (mode . html-mode)
                  (mode . css-mode)))
+               ("Javascript"
+                (or
+                 (mode . js-mode)
+                 (mode . javascript-mode) ;; alias for js-mode
+                 (mode . js2-mode)))
                ("MATLAB"
                 (or
                  (mode . matlab-mode)
@@ -72,7 +79,10 @@
                 (mode . scratch-mode))
                ("Dired"
                 (mode . dired-mode))
-
+               ("man"
+                (mode . Man-mode))
+               ("Eshell"
+                (mode . eshell-mode))
                ))))
 
 (add-hook 'ibuffer-mode-hook

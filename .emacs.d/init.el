@@ -1,7 +1,7 @@
 ; __________   ___________________________________________   ___________________________________________   ___________________________________________  ___________________________________________
 ;|Esc       | |F1        |F2        |F3        |F4        | |F5        |F6        |F7        |F8        | |F9        |F10       |F11       |F12       ||insert    |delete    |home      |end       |
-;|          | |translate |flyspl    |mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-ind| |cmd-center|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
-;|          | |          |flyspl-dic|mcro-name |          | |          |          |          |narrow-fun| |          |          |tex-clsenv|prev-clear||linum     |autoindent|          |zoomable  |
+;|          | |help      |flyspl    |mcro-start|mcro-end/c| |revert-bu |          |dedic-win |narrow-ind| |cmd-center|reftex-toc|tex-insenv|prev-latex||hl-line   |whitespace|deflt-face|zoom      |
+;|          | |man       |flyspl-dic|mcro-name |          | |          |          |          |narrow-fun| |          |          |tex-clsenv|prev-clear||linum     |autoindent|          |zoomable  |
 ;|          | |          |          |          |          | |          |          |          |          | |          |          |          |          ||          |          |          |          |
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
@@ -38,6 +38,16 @@
 ;;
 ;;______________________________________________________________________________
 
+;;;; Regressions in updating 24.5 to 25.1:
+;; jdee mode no longer works
+;; eldoc can print in modeline? Is this bad
+;; eldoc slow
+;; linum mode extremely slow
+;;   ag is extremely slow (due to linum)
+;; scrolling in big buffers very slow (eg .emacs.d/config
+;; Focus of opened windows is wonky
+;; Arduino
+
 ;;;; Build the perfect editor!
 ;; speedbar + ibuffer like behaviour
 ;; maybe a project like file
@@ -62,10 +72,10 @@
 ;; minimap
 ;; eshell ido ctrl-r
 ;;     call (eshell-save-some-history), ido on eshell-history-file-name, insert result into eshell
-;; python - elpy with jedi or rope
-;;     http://www.reddit.com/r/emacs/comments/2g3sbf/recommendations_for_python_ide_under_emacs/
 ;; C/C++ - http://tuhdo.github.io/c-ide.html
 ;; I want to go home/to diku http://labs.rejseplanen.dk/labs/data__brug/rejseplanens_api/
+
+;; look at define-keys last arg
 
 ;; Lookup stackoverflow (Could be cool)
 ;; https://atom.io/packages/ask-stack
@@ -153,6 +163,74 @@
 ;; https://github.com/capitaomorte/sly
 ;;
 
+;; fix forward-word-to-newline
+;; can use forward-word now
+
+;; Auto-highlight-symbol virker ikke!!!!!!!!!!!!
+;; powerline-percent-xpm virker ikke i modeline!!!!
+;; Spring-forward virker ikke!!!
+;;                ;; (:eval (powerline-percent-xpm 'text nil powerline-color1)) ;; TODO make me work
+
+;; https://github.com/Valloric/YouCompleteMe commpletions in vim
+
+
+
+
+;; https://github.com/knupfer/haskell-emacs
+;; https://commercialhaskell.github.io/intero/
+
+;; integrate ag (or ack) to do almost live searching
+;; helm-projectile-ag
+
+
+;; skewer, for integrating with webbrowser/javascript
+;; http://nullprogram.com/blog/2012/10/31/
+;; http://www.50ply.com/blog/2012/08/13/introducing-impatient-mode/
+
+
+;; swiper - search results in buffer, spaces in search query are separate groups
+;; stuff from http://oremacs.com/
+
+;; In settings.el
+;; Should c-eldoc be reenabled?
+;; ;; (require 'c-eldoc)
+;; ;; (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
+
+
+
+;; Create a python mode
+;; Elpy is not ideal
+;; Create a custom mode using some of elpy's functionality
+;; Should it use the default python.el or python-mode.el?
+;;
+;; python - elpy with jedi or rope
+;;     http://www.reddit.com/r/emacs/comments/2g3sbf/recommendations_for_python_ide_under_emacs/
+;; Projectile?
+;; eval-buffer
+;; eval-region
+;; eval-block (newline,char (not comment), to next newline,char)
+;; eval-statement
+;; eval-project
+;; browse documentation, from code/project, or from web
+;; goto-definition (not only for projects loaded)
+;; 2to3 helper
+
+
+
+;; http://www.wilfred.me.uk/blog/2015/03/19/adding-a-new-language-to-emacs/
+;; http://www.wilfred.me.uk/blog/2016/04/28/effortless-major-mode-development/
+;; http://www.wilfred.me.uk/blog/2014/09/27/the-definitive-guide-to-syntax-highlighting/
+
+;; http://www.wilfred.me.uk/blog/2013/03/31/essential-elisp-libraries/
+
+
+
+
+;; Use xdotool to interact with other programs
+;; IE, remote control evince instead of xpdf
+;; xdotool search "evince"
+;; xdotool windowactivate --sync 12582920; xdotool key Next
+;; xdotool windowactivate --sync 33554435;xdotool key ctrl+l; xdotool type 10; xdotool key KP_Enter
 
 ;;______________________________________________________________________________
 ;;
@@ -213,10 +291,23 @@
 ;; M-next       scroll-other-window
 ;; M-prev       scroll-other-window-down
 
+;; C-x `        next-error
+
 
 ;; Debug on errors in .emacs
-(setq debug-on-error t)
 
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
+(setq debug-on-error t)
+(setq load-prefer-newer t)
+(byte-recompile-directory "~/.emacs.d/" 0)
+;; (byte-recompile-directory "~/.emacs.d/" 0 t) ;; force all
+
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/")
 (add-to-list 'load-path "~/.emacs.d/plugins")
 (add-to-list 'load-path "~/.emacs.d/my-plugins")
 ;;______________________________________________________________________________
@@ -234,9 +325,22 @@
 (load-file "~/.emacs.d/config/indentation.el")
 (load-file "~/.emacs.d/config/modeline.el")
 (load-file "~/.emacs.d/config/theme.el")
+(load-file "~/.emacs.d/config/help.el")
 (load-file "~/.emacs.d/config/whitespace.el")
 (load-file "~/.emacs.d/config/windows.el")
 
+
+;;______________________________________________________________________________
+;π LANGUAGES
+;;______________________________________________________________________________
+(load-file "~/.emacs.d/config/c-programming.el")
+(load-file "~/.emacs.d/config/erlang.el")
+(load-file "~/.emacs.d/config/haskell.el")
+(load-file "~/.emacs.d/config/latex.el") ;; use elpa instead?
+(load-file "~/.emacs.d/config/lisp.el")
+(load-file "~/.emacs.d/config/python.el") ;; todo!!
+(load-file "~/.emacs.d/config/scala.el")
+(load-file "~/.emacs.d/config/sml.el")
 
 ;;______________________________________________________________________________
 ;π MODES
@@ -246,26 +350,23 @@
 (load-file "~/.emacs.d/config/auto-highlight-symbol.el") ;; disable in help buffer
 (load-file "~/.emacs.d/config/auto-insert.el")
 (load-file "~/.emacs.d/config/erc.el") ;; todo
-(load-file "~/.emacs.d/config/erlang.el")
 (load-file "~/.emacs.d/config/eshell.el")
 (load-file "~/.emacs.d/config/expand-region.el") ;; + smart-forward look into this
 (load-file "~/.emacs.d/config/flymake.el")
 (load-file "~/.emacs.d/config/flyspell.el")
-(load-file "~/.emacs.d/config/haskell.el")
-(load-file "~/.emacs.d/config/hippie-expand.el")
+(load-file "~/.emacs.d/config/debugger.el")
+(load-file "~/.emacs.d/config/auto-completion.el")
 (load-file "~/.emacs.d/config/ibuffer.el")
 (load-file "~/.emacs.d/config/ido.el")
 (load-file "~/.emacs.d/config/ido-imenu.el")
 (load-file "~/.emacs.d/config/incmove.el") ;; move to my-plugins
-(load-file "~/.emacs.d/config/isearch.el")
-(load-file "~/.emacs.d/config/latex.el") ;; use elpa instead?
-(load-file "~/.emacs.d/config/python.el") ;; todo!!
+(load-file "~/.emacs.d/config/search.el")
 (load-file "~/.emacs.d/config/rainbow-delimiters.el")
 (load-file "~/.emacs.d/config/shell.el")
-(load-file "~/.emacs.d/config/sml.el")
 (load-file "~/.emacs.d/config/sql.el")
 (load-file "~/.emacs.d/config/tabbar.el") ;; not in use
 (load-file "~/.emacs.d/config/tags.el")
+(load-file "~/.emacs.d/config/web.el")
 (load-file "~/.emacs.d/config/w3m.el") ;; not in use
 (load-file "~/.emacs.d/config/wanderlust.el") ;; not in use
 
@@ -282,6 +383,46 @@
 (load-file "~/.emacs.d/config/scratch.el")
 (load-file "~/.emacs.d/config/smartscan.el")
 (load-file "~/.emacs.d/config/zoom.el")
+(load-file "~/.emacs.d/config/symbols.el")
+
+(load-file "~/.emacs.d/config/revy.el")
+(load-file "~/.emacs.d/my-plugins/arduinel.el")
+
 
 ;; End of .emacs, go away debugger!
-(setq debug-on-error nil)
+(setq debug-on-error t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(comint-buffer-maximum-size 10000)
+ '(comint-completion-addsuffix t)
+ '(comint-completion-autolist t)
+ '(comint-get-old-input (lambda nil "") t)
+ '(comint-input-ignoredups t)
+ '(comint-input-ring-size 100)
+ '(comint-move-point-for-output t)
+ '(comint-process-echoes t)
+ '(comint-scroll-show-maximum-output t)
+ '(comint-scroll-to-bottom-on-input t)
+ '(jde-jdk-registry (quote (("1.7.45" . "/usr/lib/jvm/java-7-openjdk"))))
+ '(menu-bar-mode nil)
+ '(package-selected-packages
+   (quote
+    (auctex keyfreq matlab-mode mic-paren quack rainbow-delimiters tabbar volatile-highlights window-numbering swiper less-css-mode zeal-at-point wrap-region win-switch web-mode web visible-mark typing sr-speedbar sml-mode smex smart-forward rfringe python-mode powerline paredit pager neotree nav multiple-cursors minesweeper markdown-mode magit lorem-ipsum loccur livid-mode kite jss inf-ruby impatient-mode iedit idomenu hlinum highlight-tail graphviz-dot-mode goto-last-change google-translate golden-ratio ghc geiser fuzzy full-ack flymake-cursor fill-column-indicator fastnav erc-hl-nicks ensime elpy dtrt-indent company-quickhelp company-jedi company-go column-marker c-eldoc buffer-move auto-highlight-symbol arduino-mode ag ace-jump-mode)))
+ '(protect-buffer-bury-p nil)
+ '(show-paren-mode t)
+ '(tool-bar-mode nil)
+ '(uniquify-buffer-name-style (quote post-forward-angle-brackets) nil (uniquify)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "Schumacher" :family "Clean"))))
+ '(eshell-prompt ((t (:foreground "LightSkyBlue1" :weight bold))))
+ '(flymake-errline ((((class color)) (:underline "red"))))
+ '(flymake-warnline ((((class color)) (:underline "yellow"))))
+ '(whitespace-line ((t (:inherit nil :background "gray20")))))

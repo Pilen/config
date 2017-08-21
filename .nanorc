@@ -312,253 +312,253 @@
  include "/usr/share/nano/xml.nanorc"
 
 
-## UNBIND ALL:
+# ## UNBIND ALL:
 
-unbind M-a all
-unbind M-b all
-unbind M-c all
-unbind M-d all
-unbind M-e all
-unbind M-f all
-unbind M-g all
-unbind M-h all
-unbind M-i all
-unbind M-j all
-unbind M-k all
-unbind M-l all
-unbind M-m all
-unbind M-n all
-unbind M-o all
-unbind M-p all
-unbind M-q all
-unbind M-r all
-unbind M-s all
-unbind M-t all
-unbind M-u all
-unbind M-v all
-unbind M-w all
-unbind M-x all
-unbind M-y all
-unbind M-z all
+# unbind M-a all
+# unbind M-b all
+# unbind M-c all
+# unbind M-d all
+# unbind M-e all
+# unbind M-f all
+# unbind M-g all
+# unbind M-h all
+# unbind M-i all
+# unbind M-j all
+# unbind M-k all
+# unbind M-l all
+# unbind M-m all
+# unbind M-n all
+# unbind M-o all
+# unbind M-p all
+# unbind M-q all
+# unbind M-r all
+# unbind M-s all
+# unbind M-t all
+# unbind M-u all
+# unbind M-v all
+# unbind M-w all
+# unbind M-x all
+# unbind M-y all
+# unbind M-z all
 
-unbind ^a all
-unbind ^b all
-unbind ^c all
-unbind ^d all
-unbind ^e all
-unbind ^f all
-unbind ^g all
-unbind ^h all
-unbind ^i all
-unbind ^j all
-unbind ^k all
-unbind ^l all
-unbind ^m all
-unbind ^n all
-unbind ^o all
-unbind ^p all
-unbind ^q all
-unbind ^r all
-unbind ^s all
-unbind ^t all
-unbind ^u all
-unbind ^v all
-unbind ^w all
-unbind ^x all
-unbind ^y all
-unbind ^z all
+# unbind ^a all
+# unbind ^b all
+# unbind ^c all
+# unbind ^d all
+# unbind ^e all
+# unbind ^f all
+# unbind ^g all
+# unbind ^h all
+# unbind ^i all
+# unbind ^j all
+# unbind ^k all
+# unbind ^l all
+# unbind ^m all
+# unbind ^n all
+# unbind ^o all
+# unbind ^p all
+# unbind ^q all
+# unbind ^r all
+# unbind ^s all
+# unbind ^t all
+# unbind ^u all
+# unbind ^v all
+# unbind ^w all
+# unbind ^x all
+# unbind ^y all
+# unbind ^z all
 
-##special chars
-unbind ^` all
-unbind ^- all
-unbind ^= all
-unbind ^; all
-unbind ^[ all
-unbind ^] all
-unbind ^' all
-unbind ^\ all
-unbind ^- all
-unbind ^, all
-unbind ^. all
-unbind ^/ all
-##shift
-unbind ^~ all
-unbind ^! all
-unbind ^@ all
-unbind ^# all
-unbind ^$ all
-unbind ^% all
-unbind ^^ all
-unbind ^& all
-unbind ^* all
-unbind ^( all
-unbind ^) all
-unbind ^_ all
-unbind ^+ all
-unbind ^: all
-unbind ^{ all
-unbind ^} all
-unbind ^" all
-unbind ^| all
-unbind ^_ all
-unbind ^< all
-unbind ^> all
-unbind ^? all
+# ##special chars
+# unbind ^` all
+# unbind ^- all
+# unbind ^= all
+# unbind ^; all
+# unbind ^[ all
+# unbind ^] all
+# unbind ^' all
+# unbind ^\ all
+# unbind ^- all
+# unbind ^, all
+# unbind ^. all
+# unbind ^/ all
+# ##shift
+# unbind ^~ all
+# unbind ^! all
+# unbind ^@ all
+# unbind ^# all
+# unbind ^$ all
+# unbind ^% all
+# unbind ^^ all
+# unbind ^& all
+# unbind ^* all
+# unbind ^( all
+# unbind ^) all
+# unbind ^_ all
+# unbind ^+ all
+# unbind ^: all
+# unbind ^{ all
+# unbind ^} all
+# unbind ^" all
+# unbind ^| all
+# unbind ^_ all
+# unbind ^< all
+# unbind ^> all
+# unbind ^? all
 
-##special chars
-unbind M-` all
-unbind M-- all
-unbind M-= all
-unbind M-; all
-unbind M-[ all
-unbind M-] all
-unbind M-' all
-unbind M-\ all
-unbind M-- all
-unbind M-, all
-unbind M-. all
-unbind M-/ all
-##shift
-unbind M-~ all
-unbind M-! all
-unbind M-@ all
-unbind M-# all
-unbind M-$ all
-unbind M-% all
-unbind M-^ all
-unbind M-& all
-unbind M-* all
-unbind M-( all
-unbind M-) all
-unbind M-_ all
-unbind M-+ all
-unbind M-: all
-unbind M-{ all
-unbind M-} all
-unbind M-" all
-unbind M-| all
-unbind M-_ all
-unbind M-< all
-unbind M-> all
-unbind M-? all
+# ##special chars
+# unbind M-` all
+# unbind M-- all
+# unbind M-= all
+# unbind M-; all
+# unbind M-[ all
+# unbind M-] all
+# unbind M-' all
+# unbind M-\ all
+# unbind M-- all
+# unbind M-, all
+# unbind M-. all
+# unbind M-/ all
+# ##shift
+# unbind M-~ all
+# unbind M-! all
+# unbind M-@ all
+# unbind M-# all
+# unbind M-$ all
+# unbind M-% all
+# unbind M-^ all
+# unbind M-& all
+# unbind M-* all
+# unbind M-( all
+# unbind M-) all
+# unbind M-_ all
+# unbind M-+ all
+# unbind M-: all
+# unbind M-{ all
+# unbind M-} all
+# unbind M-" all
+# unbind M-| all
+# unbind M-_ all
+# unbind M-< all
+# unbind M-> all
+# unbind M-? all
 
-unbind ^1 all
-unbind ^2 all
-unbind ^3 all
-unbind ^4 all
-unbind ^5 all
-unbind ^6 all
-unbind ^7 all
-unbind ^8 all
-unbind ^9 all
-unbind ^0 all
+# unbind ^1 all
+# unbind ^2 all
+# unbind ^3 all
+# unbind ^4 all
+# unbind ^5 all
+# unbind ^6 all
+# unbind ^7 all
+# unbind ^8 all
+# unbind ^9 all
+# unbind ^0 all
 
-unbind M-1 all
-unbind M-2 all
-unbind M-3 all
-unbind M-4 all
-unbind M-5 all
-unbind M-6 all
-unbind M-7 all
-unbind M-8 all
-unbind M-9 all
-unbind M-0 all
+# unbind M-1 all
+# unbind M-2 all
+# unbind M-3 all
+# unbind M-4 all
+# unbind M-5 all
+# unbind M-6 all
+# unbind M-7 all
+# unbind M-8 all
+# unbind M-9 all
+# unbind M-0 all
 
-##`-=;[]'\-,./
-##~_+:{}"|_<>?
-##!@#$%^&*()_+
+# ##`-=;[]'\-,./
+# ##~_+:{}"|_<>?
+# ##!@#$%^&*()_+
 
-##unbind ^Space all
-##unbind M-Space all
-
-
+# ##unbind ^Space all
+# ##unbind M-Space all
 
 
 
-##herp
-## KEY BINDINGS:
-bind F1    help      all
-bind ^g    cancel    all
-bind ^x    exit      all
-bind ^o    writeout  all
-##bind justify
-##bind insert
-bind ^f  whereis     all
-bind M-f searchagain all
 
-bind M-u   up        all
-bind M-e   down      all
-bind M-n   left      all
-bind M-i   right     all
-bind ^k    cut       all
-bind M-k uncut     all
-##bind curpos
-##bind firstline
-##bind lastline
-##bind gotoline
-##bind replace
-##bind  mark
-####bind ^c  copytext    all
-####bind M-r indent      all
-####bind M-a unindent    all
-####bind M-y nextword    all
-####bind M-l prevword    all
-##bind home
-##bind end
-##bind beginpara
-##bind endpara
-##bind findbracket
-  ##bind M-j scrollup  all
-  ##bind M-h scrolldown all
-##bind prevbuf
-##bind nextbuf
-##bind verbatim
-##bind tab
-bind ^m enter all
-##bind delete
-##bind fulljustify
-##bind wordcount
-##bind refresh
-bind ^z undo all
-bind ^- redo all
-##bind suspend
 
-##bind casesens
-##bind regexp
-##bind prevhistory
-##bind nexthistory
-##bind dontreplace
-##bind gototext
-##bind dosformat
-##bind macformat
-##bind append
-##bind prepend
-##bind backup
-##bind firstfile
-##bind lastfile
-##bind hohelp
-##bind constupdate
-##bind morespace
-##bind smoothscroll
-##bind whitespacedisplay
-##bind smarthome
-##bind autoindent
-##bind cuttoend
-##bind nowrap
-##bind suspendenable
+# ##herp
+# ## KEY BINDINGS:
+# bind F1    help      all
+# bind ^g    cancel    all
+# bind ^x    exit      all
+# bind ^o    writeout  all
+# ##bind justify
+# ##bind insert
+# bind ^f  whereis     all
+# bind M-f searchagain all
 
-bind ^r insert all
+# bind M-u   up        all
+# bind M-e   down      all
+# bind M-n   left      all
+# bind M-i   right     all
+# bind ^k    cut       all
+# bind M-k uncut     all
+# ##bind curpos
+# ##bind firstline
+# ##bind lastline
+# ##bind gotoline
+# ##bind replace
+# ##bind  mark
+# ####bind ^c  copytext    all
+# ####bind M-r indent      all
+# ####bind M-a unindent    all
+# ####bind M-y nextword    all
+# ####bind M-l prevword    all
+# ##bind home
+# ##bind end
+# ##bind beginpara
+# ##bind endpara
+# ##bind findbracket
+#   ##bind M-j scrollup  all
+#   ##bind M-h scrolldown all
+# ##bind prevbuf
+# ##bind nextbuf
+# ##bind verbatim
+# ##bind tab
+# bind ^m enter all
+# ##bind delete
+# ##bind fulljustify
+# ##bind wordcount
+# ##bind refresh
+# bind ^z undo all
+# bind ^- redo all
+# ##bind suspend
 
-## Haskell syntax highlighting
-## found here: http://www.wubutu.com/2011/05/syntax-highlighting-nano-ban.html
-syntax "haskell" "\.hs$"
-color green "(\||@|!|:|_|~|=|\\|;|\(|\)|,)"
-color magenta "(True|False|==|/=|&&|\|\||<|>|<=|>=)"
-color green "(->|<-|!)"
-color red "[\n\t](as|case|of|class|data|default|deriving|do|forall|foreign|hiding|if|then|else|import|infix|infixl|infixr|instance|let|in|mdo|module|newtype|qualified|type|where)[ \n\t]"
-color brightblue "'.'"
-color brightblue "'\\[ntfr]'"
-color brightblue ""[^\"]*""
-## Comment highlighting
-color brightblack "--.*"
-color brightblack start="\{-" end="-\}"
+# ##bind casesens
+# ##bind regexp
+# ##bind prevhistory
+# ##bind nexthistory
+# ##bind dontreplace
+# ##bind gototext
+# ##bind dosformat
+# ##bind macformat
+# ##bind append
+# ##bind prepend
+# ##bind backup
+# ##bind firstfile
+# ##bind lastfile
+# ##bind hohelp
+# ##bind constupdate
+# ##bind morespace
+# ##bind smoothscroll
+# ##bind whitespacedisplay
+# ##bind smarthome
+# ##bind autoindent
+# ##bind cuttoend
+# ##bind nowrap
+# ##bind suspendenable
+
+# bind ^r insert all
+
+# ## Haskell syntax highlighting
+# ## found here: http://www.wubutu.com/2011/05/syntax-highlighting-nano-ban.html
+# syntax "haskell" "\.hs$"
+# color green "(\||@|!|:|_|~|=|\\|;|\(|\)|,)"
+# color magenta "(True|False|==|/=|&&|\|\||<|>|<=|>=)"
+# color green "(->|<-|!)"
+# color red "[\n\t](as|case|of|class|data|default|deriving|do|forall|foreign|hiding|if|then|else|import|infix|infixl|infixr|instance|let|in|mdo|module|newtype|qualified|type|where)[ \n\t]"
+# color brightblue "'.'"
+# color brightblue "'\\[ntfr]'"
+# color brightblue ""[^\"]*""
+# ## Comment highlighting
+# color brightblack "--.*"
+# color brightblack start="\{-" end="-\}"

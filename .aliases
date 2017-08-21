@@ -7,6 +7,7 @@ alias xlock='xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0'
 alias xlcok='xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0'
 alias ls='ls --color=auto'
 alias ls='ls -CF --group-directories-first --color=auto'
+alias lsc='exa -lhg --git --group-directories-first --color=always'
 alias c='clear'
 alias feh='feh -.qB checks'
 alias fehb='feh -.qB black'
@@ -14,7 +15,6 @@ alias fehw='feh -.qB white'
 alias cal='cal -m -3'
 alias ,='./a.out'
 alias diablo='wine /home/pilen/.wine/drive_c/Program\ Files\ \(x86\)/Diablo\ II/Diablo\ II.exe'
-alias teeworlds='./games/teeworlds-0.5.2-linux_x86_64/teeworlds'
 alias pong='ping -c10 google.dk'
 alias nano='nano -Simz'
 alias eixt='exit'
@@ -34,10 +34,14 @@ alias d="cd ~/Dropbox/diku/"
 alias rf='rm -rf'
 alias u='urxvtc'
 alias music="mplayer -novideo"
+alias rsync="rsync -hPr"
+alias grep='grep --color=auto'
+alias ifind='find . -iname '
 
 alias eduroam='sudo wpa_supplicant -B -D wired -i eth0 -c /root/bla.txt'
 alias net='sudo killall dhcpcd -w; sudo dhcpcd eth0;dropbox stop; dropbox start; dropbox status'
 alias net='sudo killall wpa_supplicant dhclient; sudo wpa_supplicant -i wlp3s0 -D wext -c/root/wpa_supplicant.conf -B; sleep 2; sudo dhclient -v wlp3s0'
+alias povlsen='sudo killall wpa_supplicant dhclient; sudo wpa_supplicant -i wlp3s0 -D wext -c/root/povlsen.conf -B; sleep 2; sudo dhclient -v wlp3s0'
 alias wnet='sudo killall wpa_supplicant dhclient; sudo wpa_supplicant -i enp0s25 -D wired -c/root/wpa_supplicant.conf -B; sleep 2; sudo dhclient -v enp0s25'
 alias anet='sudo killall wpa_supplicant dhcpcd; sudo wpa_supplicant -iwlp3s0 -c/root/wpa_supplicant.conf -B; sleep 2; sudo dhcpcd wlp3s0'
 #alias net='sudo dhcpcd -k; sudo dhcpcd eth0'
@@ -46,8 +50,11 @@ alias arkham='sudo killall wpa_supplicant dhclient; sudo wpa_supplicant -i wlp3s
 alias knet='sudo killall wpa_supplicant dhcpcd dhclient'
 alias inet='sudo killall wpa_supplicant dhcpcd dhclient; /lib/udev/ipheth-pair; sudo dhcpcd eth1'
 alias netscan='sudo ifconfig wlan0 up; sudo iwlist wlan0 scan | grep SSID; sudo ifconfig wlan0 down'
+alias net='sudo net.py'
 
 alias gs='git status'
+alias ga='fc -l -1 | awk "{print \$NF}" | xargs git add'
+alias gcm='git commit -m'
 # alias gd='git diff --color=always | less -R'
 # alias gwd='git wdiff --color=always | less -R'
 alias gd='git diff'
@@ -55,6 +62,10 @@ alias gwd='git wdiff'
 alias gg='git log --pretty=format:"%Cred%d%Creset %s - %Cgreen%aN %Cblue%aD%Creset" --graph'
 alias gl='git log --name-status -n 4'
 alias gl='git log --stat -n 2'
+alias gp='git pull && git push'
+alias glg1='git log --graph --abbrev-commit --decorate --date=relative --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
+alias glg2='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n""          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)" --all'
+alias glg3='git log --pretty="format:\"%C(yellow)%h %ad%Cred%d %Creset%s%Cblue [%an]\"" --decorate --date=relative --abbrev-commit --abbrev=10 --graph'
 
 alias colemak='setxkbmap us -variant colemak; xmodmap .Xmodmap'
 alias dansk='setxkbmap dk'
@@ -69,8 +80,12 @@ alias pen="ssh 192.168.0.3"
 
 alias f="source ~/code/scripts/f"
 
+alias cls="clear; ls"
+alias line="echo -e '\e[1;32m$line'"
+
 alias screen-same1024='xrandr --output VGA1 --mode 1024x768 --same-as LVDS1 && xrandr --output LVDS1 --mode 1024x768'
 alias screen-off='xrandr --output LVDS1 --mode 1600x900; xrandr --output VGA1 --off'
+alias screen-left='xrandr --output VGA1 --auto --left-of LVDS1'
 
 alias b="cd .."
 alias bb="cd ../.."
