@@ -4,12 +4,7 @@ cd ~
 
 files=(
     # directories:
-    '.emacs.d/config'
-    '.emacs.d/my-plugins'
-    '.emacs.d/plugins'
-    '.emacs.d/templates'
-    '.emacs.d/init.el'
-    '.xmonad/xmonad.hs'
+    '.emacs.d'
     '.config/bspwm'
     '.config/sxhkd'
     'code/scripts'
@@ -19,14 +14,14 @@ files=(
     '.aliases'
     '.bashrc'
     '.git_prompt.zsh'
-    # '.gitignore'
-    '.last_pusher'
     '.nanorc'
     '.xinitrc'
     '.zshrc'
-    );
+);
+
+files=(
 
 for file in "${files[@]}"
 do
-    ln "config/$file" "$file"
+    ln -s "config/$file" "$file"
 done
