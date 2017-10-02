@@ -1,0 +1,32 @@
+#!/bin/sh
+
+cd ~
+
+files=(
+    # directories:
+    '.emacs.d/config'
+    '.emacs.d/my-plugins'
+    '.emacs.d/plugins'
+    '.emacs.d/templates'
+    '.emacs.d/init.el'
+    '.xmonad/xmonad.hs'
+    '.config/bspwm'
+    '.config/sxhkd'
+    'code/scripts'
+    # files:
+    '.Xdefaults'
+    '.Xmodmap'
+    '.aliases'
+    '.bashrc'
+    '.git_prompt.zsh'
+    # '.gitignore'
+    '.last_pusher'
+    '.nanorc'
+    '.xinitrc'
+    '.zshrc'
+    );
+
+for file in "${files[@]}"
+do
+    echo ln "config/$file" "$file"
+done
