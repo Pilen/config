@@ -20,8 +20,9 @@
 ;; (add-hook 'LaTeX-mode-hook 'turn-on-flyspell); (setq ispell-dictionary "dansk"))) ; Commented out as aspell-da is not working
 
 ;; Do this to avoid fireing both flyspell-correct-word and mouse-yank-primary
-(define-key flyspell-mouse-map [down-mouse-2] 'ignore)
-(define-key flyspell-mouse-map [mouse-2] #'flyspell-correct-word)
+(add-hook 'flyspell-mode-hook (lambda ()
+                                (define-key flyspell-mouse-map [down-mouse-2] 'ignore)
+                                (define-key flyspell-mouse-map [mouse-2] #'flyspell-correct-word)))
 
 (defun turn-on-flyspell ()
   "Force flyspell-mode on using a positive arg."
