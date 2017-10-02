@@ -12,7 +12,10 @@ def modify():
     driver = webdriver.Chrome()
 
     login = "admin:1234spacey@"
-    driver.get("http://"+login+"192.168.0.1/WirelessSettings.htm")
+    # driver.get("http://"+login+"192.168.0.1/WirelessSettings.htm")
+    driver.get("http://"+login+"192.168.0.1")
+    driver.get("http://192.168.0.1/WirelessSettings.htm")
+    # driver.get("http://192.168.0.1")
 
     ssid = driver.find_element_by_css_selector("input[name=ssid]")
     ssid.clear()
