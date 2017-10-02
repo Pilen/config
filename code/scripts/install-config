@@ -28,5 +28,5 @@ files=(
 
 for file in "${files[@]}"
 do
-    echo ln "config/$file" "$file"
+    ln "config/$file" "$file"
 done
