@@ -19,8 +19,6 @@ files=(
     '.zshrc'
 );
 
-files=(
-
 for file in "${files[@]}"
 do
     ln -s "config/$file" "$file"
