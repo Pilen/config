@@ -1,0 +1,108 @@
+* Excluded URLs and keys
+http*://mail.google.com/*
+* Custom key mappings
+unmapAll
+#Navigation
+map e scrollPageDown
+map u scrollPageUp
+map n scrollLeft
+map i scrollRight
+
+map J scrollToTop
+map H scrollToBottom
+
+map E scrollDown
+map h scrollPageDown
+map U scrollUp
+map j scrollPageUp
+
+map r reload
+
+#Links
+map k focusInput
+map ' LinkHints.activateMode
+map o LinkHints.activateModeToOpenInNewTab
+map O LinkHints.activateModeWithQueue
+
+map a Vomnibar.activate
+map A Vomnibar.activateWithCurrentUrl
+map d Vomnibar.activateTabSelection
+map z Vomnibar.activateEditUrl
+
+map q goToRoot
+
+#search
+map / enterFindMode
+#map . performFind
+#map , performBackwardsFind
+
+map . goNext
+map , goPrevious
+#History
+map L goBack
+map Y goForward
+
+#Tabs
+map y nextTab
+map l previousTab
+map t removeTab
+map s restoreTab
+map w moveTabToNewWindow
+map c copyCurrentUrl
+map x duplicateTab
+map [ moveTabLeft
+map ] moveTabRight
+
+#Misc
+map ? showHelp
+map m enterInsertMode
+
+#sadfjklewcmpgh
+* Custom search engines
+w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
+
+# More examples.
+#
+# (Vimium supports search completion Wikipedia, as
+# above, and for these.)
+#
+# g: https://www.google.com/search?q=%s Google
+# l: https://www.google.com/search?q=%s&btnI I'm feeling lucky...
+# y: https://www.youtube.com/results?search_query=%s Youtube
+# gm: https://www.google.com/maps?q=%s Google maps
+# b: https://www.bing.com/search?q=%s Bing
+# d: https://duckduckgo.com/?q=%s DuckDuckGo
+# az: https://www.amazon.com/s/?field-keywords=%s Amazon
+# qw: https://www.qwant.com/?q=%s Qwant
+* Scroll step size
+60
+* Characters used for link hints
+neioluy;km,./hdtsra
+* Miscellaneous options
+Use smooth scrolling
+* Previous patterns
+prev,previous,back,older,<,‹,←,«,≪,<<
+* Next patterns
+next,more,newer,>,›,→,»,≫,>>
+* New tab URL
+about:newtab
+* Default search
+https://www.google.com/search?q=
+* CSS for link hints
+div > .vimiumHintMarker {
+/* linkhint boxes */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFF785),
+  color-stop(100%,#FFC542));
+border: 1px solid #E3BE23;
+}
+
+div > .vimiumHintMarker span {
+/* linkhint text */
+color: black;
+font-weight: bold;
+font-size: 10px;
+}
+
+div > .vimiumHintMarker > .matchingCharacter {
+}
+* done
