@@ -127,6 +127,7 @@
   (command-center-add 'swiper)
   (command-center-add 'neotree)
   (command-center-add 'increment-number-at-point)
+  (command-center-add 'ibuffer)
   ;; kmacros
   (command-center-add 'ret-tilføj-punkt)
   (command-center-add 'ret-svar)

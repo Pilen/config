@@ -2,5 +2,6 @@
 ;π Revy
 ;;______________________________________________________________________________
 
-(add-to-list 'load-path "~/code/ubertex/emacs/")
-(require 'revy)
+(when (file-exists-p "~/code/ubertex/")
+  (add-to-list 'load-path "~/code/ubertex/emacs/")
+  (require 'revy))
