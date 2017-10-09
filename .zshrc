@@ -27,7 +27,7 @@ export LESS="-R"
 
 export PATH="${PATH}:/opt/mosml/bin"
 export PATH=~/programs/osm/bin:$PATH
-export PATH=~/code/scripts:$PATH
+export PATH=~/config/scripts:$PATH
 export PATH=~/.config/bspwm:$PATH
 autoload -U colors && colors
 

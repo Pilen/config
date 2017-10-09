@@ -30,7 +30,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
 
   --Launch dmenu                                             mod-p
   --((modm, xK_p),                    spawn "dmenu_run"),
-  ((modm, xK_p),                    spawn "exec /home/pilen/code/scripts/menu.sh"),
+  ((modm, xK_p),                    spawn "exec ~/config/scripts/menu.sh"),
 
   --Launch gmrun                                             mod-shift-p
   ((modm .|. shiftMask, xK_p),      spawn "gmrun"),
