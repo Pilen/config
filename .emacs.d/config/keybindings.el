@@ -311,6 +311,7 @@
 (global-set-key (kbd "H-C-x") 'xpdfremote/open-matching-file)
 
 (global-set-key (kbd "H-k") 'erc-start-or-switch)
+(global-set-key (kbd "H-k") 'company-complete)
 
 ;; (global-set-key (kbd "<XF86Launch1>") 'sr-speedbar-toggle)
 
