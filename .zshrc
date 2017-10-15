@@ -27,7 +27,7 @@ export LESS="-R"
 
 export PATH="${PATH}:/opt/mosml/bin"
 export PATH=~/programs/osm/bin:$PATH
-export PATH=~/code/scripts:$PATH
+export PATH=~/config/scripts:$PATH
 export PATH=~/.config/bspwm:$PATH
 autoload -U colors && colors
 
@@ -107,7 +107,7 @@ export PERL_MM_OPT="INSTALL_BASE=/home/pilen/perl5";
 export PERL5LIB="/home/pilen/perl5/lib/perl5/x86_64-linux-thread-multi:/home/pilen/perl5/lib/perl5";
 export PATH="/home/pilen/perl5/bin:$PATH";
 
-export PYTHONPATH="/home/pilen/code/pwntools:$PYTHONPATH"
+export PYTHONPATH="$PYTHONPATH"
 
 export GIT_PAGER="less";
 

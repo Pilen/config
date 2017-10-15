@@ -224,6 +224,9 @@
 ;; http://www.wilfred.me.uk/blog/2013/03/31/essential-elisp-libraries/
 
 
+;; Create / find a better color-picker
+;; Tried emacs-colorpicker https://github.com/syohex/emacs-colorpicker not in melpa, uses python script with dependencies
+;; zenity-color-picker uses zentiy, not nice
 
 
 ;; Use xdotool to interact with other programs

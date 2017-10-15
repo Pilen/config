@@ -2,12 +2,23 @@
 
 cd ~
 
+chmod +x ~/config/scripts/*
+~/config/scripts/copyaliases.py
+
+echo -n "Lines in Configuration: "
+find ~/.emacs.d/init.el ~/.emacs.d/config ~/.emacs.d/my-plugins -name "*.el" | xargs wc -l | tail -n 1
+echo
+echo -n "Total lines: "
+find ~/.emacs.d/ -name "*.el" | xargs wc -l | tail -n 1
+echo -e "\n\n"
+
+
 files=(
     # directories:
     '.emacs.d'
+    'code/scripts'
     '.config/bspwm'
     '.config/sxhkd'
-    'code/scripts'
     # files:
     '.Xdefaults'
     '.Xmodmap'
@@ -17,9 +28,12 @@ files=(
     '.nanorc'
     '.xinitrc'
     '.zshrc'
+    '.xsessionrc'
 );
 
 for file in "${files[@]}"
 do
-    ln -s "config/$file" "$file"
+    ln -s "$(realpath config/$file)" "$(realpath $file)" -T
 done
+
+# head -n -1 ~/config/.xinitrc > .xsessionrc

@@ -23,14 +23,14 @@ menu=(\
         inkscape  "inkscape"
         krita     "krita"
         xlock     "xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0"
-        xpdf      "perl /home/pilen/code/scripts/xpdf.pl"
+        xpdf      "perl ~/config/scripts/xpdf.pl"
         chromium  "chromium --purge-memory-button"
         python3   "urxvtc -bg #111111 -e bpython"
         # python3   "urxvtc -bg #111111 -fg #51a366 -e ipython3"
-        python2   "urxvtc -bg #111111 -fg #6fbfe7 -e ipython2 -i /home/pilen/code/scripts/python2.py"
+        python2   "urxvtc -bg #111111 -fg #6fbfe7 -e ipython2 -i ~/config/scripts/python2.py"
         alsamixer "urxvtc -bg black -e alsamixer"
         htop      "urxvtc -bg black -e htop"
-        cal       "urxvtc -bg black -e perl /home/pilen/code/scripts/cal.pl"
+        cal       "urxvtc -bg black -e perl ~/config/scripts/cal.pl"
         update    "urxvtc -bg black -e sudo pacman -Syu"
         urxvt-nf  "urxvtc -fade 0"
         shutdown  "urxvtc -bg black -fg red -e sudo shutdown -h now"
@@ -76,12 +76,12 @@ menu=(\
         # 100%      "amixer set Master 100%"
         # MAX       "amixer set Master 100%"
         maps      "chromium --purge-memory-button -new-window https://maps.google.com/"
-        maple     "/home/pilen/code/scripts/maple"
+        maple     "~/config/scripts/maple"
         dmenu     "dmenu_run"
-        omacs     "sh /home/pilen/code/scripts/omacs"
+        omacs     "sh ~/config/scripts/omacs"
         pmacs     "emacs -Q"
 
-        links     "perl /home/pilen/code/scripts/linkmenu.pl"
+        links     "perl ~/config/scripts/linkmenu.pl"
      )
 
 for (( count = 0 ; count < ${#menu[*]}; count++ )); do

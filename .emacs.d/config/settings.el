@@ -196,7 +196,7 @@
 (require 'keyfreq)
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
-(setq keyfreq-file "~/Dropbox/emacs/keyfreq")
+(setq keyfreq-file "~/.emacs.d/keyfreq")
 
 (require 'xpdfremote)
 
@@ -368,8 +368,8 @@
                                         ;; (switch-to-buffer "blank")
 (if (not (eq nil (get-buffer "*scratch*")))
     (kill-buffer "*scratch*"))
-(if (not (eq nil (get-buffer "*Messages*")))
-    (kill-buffer "*Messages*"))
+;; (if (not (eq nil (get-buffer "*Messages")))
+;;    (kill-buffer "*Messages*"))
 
 ;;______________________________________________________________________________
 ;π SPEEDBAR
@@ -440,8 +440,9 @@
 (require 'saveplace)
 
 
-(add-to-list 'load-path "~/.emacs.d/plugins/emacs-colorpicker")
-(require 'colorpicker)
+;; TODO: do better
+;; (add-to-list 'load-path "~/.emacs.d/plugins/emacs-colorpicker")
+;; (require 'colorpicker)
 
 ;;______________________________________________________________________________
 ;π DIRED

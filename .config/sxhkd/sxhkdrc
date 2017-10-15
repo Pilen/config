@@ -6,7 +6,7 @@ super + shift + Return
 
 # Launch menu
 super + p
-    /home/pilen/code/scripts/menu.sh
+    ~/config/scripts/menu.sh
 
 # Reload keybindings (sxhkd)
 super + Escape
