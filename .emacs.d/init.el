@@ -414,7 +414,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (auctex keyfreq matlab-mode mic-paren quack rainbow-delimiters tabbar volatile-highlights window-numbering swiper less-css-mode zeal-at-point wrap-region win-switch web-mode web visible-mark typing sr-speedbar sml-mode smex smart-forward rfringe python-mode powerline paredit pager neotree nav multiple-cursors minesweeper markdown-mode magit lorem-ipsum loccur livid-mode kite jss inf-ruby impatient-mode iedit idomenu hlinum highlight-tail graphviz-dot-mode goto-last-change google-translate golden-ratio ghc geiser fuzzy full-ack flymake-cursor fill-column-indicator fastnav erc-hl-nicks ensime elpy dtrt-indent company-quickhelp company-jedi company-go column-marker c-eldoc buffer-move auto-highlight-symbol arduino-mode ag ace-jump-mode)))
+    (diredfl auctex keyfreq matlab-mode mic-paren quack rainbow-delimiters tabbar volatile-highlights window-numbering swiper less-css-mode zeal-at-point wrap-region win-switch web-mode web visible-mark typing sr-speedbar sml-mode smex smart-forward rfringe python-mode powerline paredit pager neotree nav multiple-cursors minesweeper markdown-mode magit lorem-ipsum loccur livid-mode kite jss inf-ruby impatient-mode iedit idomenu hlinum highlight-tail graphviz-dot-mode goto-last-change google-translate golden-ratio ghc geiser fuzzy full-ack flymake-cursor fill-column-indicator fastnav erc-hl-nicks ensime elpy dtrt-indent company-quickhelp company-jedi company-go column-marker c-eldoc buffer-move auto-highlight-symbol arduino-mode ag ace-jump-mode)))
  '(protect-buffer-bury-p nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)

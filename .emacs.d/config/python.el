@@ -14,7 +14,7 @@
 
 (setq jedi:get-in-function-call-delay 100)
 (setq jedi:use-shortcuts t) ;; Enable M-. and M-, for jumping to tags
-
+(setq jedi:complete-on-dot t)
 
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 (setq python-shell-interpreter "ipython"

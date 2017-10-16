@@ -21,6 +21,7 @@ All packages here will automatically be installed if not present.")
         company-jedi
         company-quickhelp
         dash
+        diredfl
         dtrt-indent
         elpy
         ensime                ;; Scala stuff - auto enables it self
