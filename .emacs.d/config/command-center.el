@@ -128,9 +128,11 @@
   (command-center-add 'neotree)
   (command-center-add 'increment-number-at-point)
   (command-center-add 'ibuffer)
+  (command-center-add 'font-lock-fontify-buffer)
   ;; kmacros
   (command-center-add 'ret-tilføj-punkt)
   (command-center-add 'ret-svar)
+  (length command-center-commands)
   )
 
 
