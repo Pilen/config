@@ -35,7 +35,7 @@
   (add-to-list 'eshell-visual-commands "tail")
   (add-to-list 'eshell-visual-commands "tmux")
   (add-to-list 'eshell-command-aliases-list  '("f" "eshell-goto"))
-  (add-to-list 'eshell-command-aliases-list  '("ag" "ag-eshell $1"))
+  ;; (add-to-list 'eshell-command-aliases-list  '("ag" "ag-eshell $*"))
   ;; (add-to-list 'eshell-command-aliases-list  '("ls" "eshell/ls"))
   (setq eshell-command-aliases-list (remove-if
                                      (lambda (alias)
@@ -318,10 +318,13 @@ In Eshell's implementation of ls, ENTRIES is always reversed."
       (eshell-bol)
     (beginning-of-line)))
 
-(defun ag-eshell (string)
+(defun eshell/ag (string &rest args)
   "Search with ag using the current eshell directory and a given string.
    To be used from within an eshell alias
    (`alias ag 'ag-eshell $1'` within eshell)"
-  (ag/search string (eshell/pwd) :regexp t)
+  (message "in ag-eshell")
+  (let ((ag-arguments (cons "--smart-case" (cons "--stats" args))))
+    (ag/search string (eshell/pwd) :regexp t))
   "")
+
 (setq ag-reuse-buffers t)
