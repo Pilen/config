@@ -66,6 +66,14 @@ alias glg1='git log --graph --abbrev-commit --decorate --date=relative --format=
 alias glg2='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n""          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)" --all'
 alias glg3='git log --pretty="format:\"%C(yellow)%h %ad%Cred%d %Creset%s%Cblue [%an]\"" --decorate --date=relative --abbrev-commit --abbrev=10 --graph'
 
+#alias vs="vagrant ssh || (vagrant up && vagrant ssh)"
+alias vs="vagrant status --machine-readable | grep "state,running" -q || vagrant up && vagrant ssh"
+alias vu="vagrant up"
+alias vh="vagrant halt"
+alias vhs="vh; vs"
+alias vr="vagrant reload"
+alias vsmxi="cd ~/Development/smx-interface/; vs"
+alias vsmxp="cd ~/Development/smx-processor/; vs"
 alias colemak='setxkbmap us -variant colemak; xmodmap .Xmodmap'
 alias dansk='setxkbmap dk'
 alias sakre='setxkbmap dk'
