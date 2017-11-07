@@ -14,7 +14,6 @@ bspc config single_monocle true
 
 bspc config focus_follows_pointer true
 
-bspc config focus_by_distance true
 # bspc rule -a \* node=focused split_dir=south
 
 bspc monitor -d d1 d2 d3 d4 d5 d6 d7 d8 d9 d0 Ex1

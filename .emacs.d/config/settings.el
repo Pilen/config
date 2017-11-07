@@ -448,3 +448,9 @@
 ;π DIRED
 ;;______________________________________________________________________________
 (setq dired-listing-switches "-alhF --group-directories-first")
+
+;;______________________________________________________________________________
+;π MAGIT
+;;______________________________________________________________________________
+(setq magit-commit-show-diff nil)
+;; (let ((status-buffers (--filter (with-current-buffer it (derived-mode-p 'magit-status-mode)) (buffer-list)))) (car status-buffers))

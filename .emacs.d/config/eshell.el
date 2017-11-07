@@ -11,7 +11,7 @@
 (require 'em-ls)
 (require 'ag)
 (setq eshell-directory-name "~/.emacs.d/eshell/")
-(setq eshell-visual-commands '("nano"))
+(setq eshell-visual-commands '("vi" "screen" "top" "less" "more" "lynx" "ncftp" "pine" "tin" "trn" "elm"))
 (setq eshell-buffer-shorthand t)
 (setq eshell-hist-ignoredups t)
 (setq eshell-aliases-file "~/.emacs.d/eshell/alias")
@@ -23,7 +23,7 @@
   ;; (define-key eshell-mode-map (kbd "H-d") 'eshell-kill-input)
   (define-key eshell-mode-map (kbd "C-a") 'eshell-my-bol)
   (define-key eshell-mode-map (kbd "H-N") 'eshell-my-bol)
-  (define-key eshell-mode-map (kbd "C-l") '(lambda () (interactive) (eshell/clear) (eshell-send-input)))
+  (define-key eshell-mode-map (kbd "C-l") 'eshell/clear)
   (define-key eshell-mode-map (kbd "<return>") 'my-eshell-send-input)
   (define-key eshell-mode-map (kbd "H-r") 'eshell-ido-history)
   (add-to-list 'eshell-visual-commands "nano")
@@ -247,7 +247,8 @@ current frame, create a new window and switch to it.
 (defun eshell/clear ()
   (interactive)
   (let ((inhibit-read-only t))
-    (erase-buffer)))
+    (erase-buffer)
+    (eshell-send-input)))
 
 
 ;;______________________________________________________________________________
