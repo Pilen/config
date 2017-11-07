@@ -6,6 +6,7 @@
 (setq ido-create-new-buffer 'always)
 (setq ido-file-extension-order '("/" ".tex" ".emacs" ".txt" ".py" ".pl" ".c" ".h" ".hs" ".cfg" ".asm" ".xml" ".org"))
 (setq ido-default-buffer-method 'selected-window)
+(setq ido-case-fold t)
 (ido-mode 1)
 
 (set-face-attribute
