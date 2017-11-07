@@ -34,6 +34,7 @@
 ;;     (visit-tags-table default-directory nil)))
 
 ;; GNU Global - Gtags:
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/global")
 (require 'gtags)
 (defun gtags-create-or-update ()
   "create or update the gnu global tag file"

@@ -20,6 +20,7 @@ All packages here will automatically be installed if not present.")
         company-go
         company-jedi
         company-quickhelp
+        csv-mode
         dash
         diredfl
         dtrt-indent
@@ -77,6 +78,7 @@ All packages here will automatically be installed if not present.")
         sr-speedbar
         swiper
         tabbar                ;; Not used
+        typescript-mode
         typing
         visible-mark
         volatile-highlights
