@@ -6,6 +6,7 @@ setopt appendhistory autocd extendedglob nomatch
 setopt hist_ignore_space
 setopt hist_expire_dups_first
 setopt HIST_IGNORE_DUPS
+setopt HIST_FIND_NO_DUPS
 setopt transient_rprompt
 unsetopt beep notify
 bindkey -e
