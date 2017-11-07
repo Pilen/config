@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# https://gist.github.com/nabetama/a4ca03dd88541e065cff
+# https://jackal777.wordpress.com/2013/03/07/automate-ssh-sudo-using-expect/
+expect -c "
+set timeout 10
+spawn ssh \"$@\"
+expect \"$ \"; send \"sudo -i\n\"
+# expect \": \"; send \"\n\"
+interact
+"
