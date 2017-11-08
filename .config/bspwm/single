@@ -1,0 +1,20 @@
+#!/usr/bin/python3
+
+import subprocess
+import socket
+
+def run_capture(*args):
+    return subprocess.run(args, stdout=subprocess.PIPE, universal_newlines=True)
+
+def main():
+    desktops = run_capture("bspc", "query", "-D", "--names").stdout.split("\n")
+    xrandr = run_capture("xrandr").stdout.split("\n")
+    # connected = [line.split() for line in xrandr if "connected" in line and "disconnected" not in line]
+    primary = [line for line in xrandr if "primary" in line][0][0]
+    # displays = run_capture("bspc", "query", "-D", "--names").stdout.split("\n")
+
+    for desktop in desktops:
+        run_capture("bspc", "desktop", desktop, "-m", primary)
+
+if __name__ == "__main__":
+    main()

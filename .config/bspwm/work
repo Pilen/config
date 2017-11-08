@@ -1,0 +1,45 @@
+#!/usr/bin/python3
+
+import subprocess
+import socket
+import sys
+
+def run_capture(*args):
+    return subprocess.run(args, stdout=subprocess.PIPE, universal_newlines=True)
+
+monitor_to_desktops = {"DP-1-3": ("d4", "d5", "d6", "Ex1"), # left
+                       "DP-1-2": ("d1", "d2", "d3"),        # mid
+                       "eDP-1": ("d7", "d8", "d9", "d0")}   # right
+
+def setup_monitors():
+    hostname = socket.gethostname()
+    if hostname != "LA0107":
+        return False
+    xrandr = run_capture("xrandr", "--output", "DP-1-2", "--auto", "--left-of", "eDP-1", "--output", "DP-1-3", "--auto", "--left-of", "DP-1-2")
+    return xrandr.returncode == 0
+
+def setup_desktops():
+    hostname = socket.gethostname()
+    monitors = [x for x in run_capture("bspc", "query", "-M", "--names").stdout.split("\n") if x]
+
+    if (hostname != "LA0107" or
+        len(monitors) != 3 or
+        any(monitor not in monitor_to_desktops for monitor in monitors)):
+        return False
+
+    for monitor, desktops in monitor_to_desktops.items():
+        for desktop in desktops:
+            run_capture("bspc", "desktop", desktop, "-m", monitor)
+    return True
+
+def main():
+    if not setup_monitors():
+        print("ERROR: Could not set up monitors")
+        sys.exit(1)
+    if not setup_desktops():
+        print("ERROR: Could not set up desktops")
+        sys.exit(1)
+    sys.exit(0)
+
+if __name__ == "__main__":
+    main()

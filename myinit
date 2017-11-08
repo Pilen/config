@@ -1,0 +1,4 @@
+#!/usr/bin/zsh
+
+source /home/spi/config/.zshrc
+source /home/spi/config/.xinitrc
