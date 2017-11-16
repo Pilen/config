@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+find . ! -readable -prune -o -iname "*${1}*" -print

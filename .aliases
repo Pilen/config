@@ -35,7 +35,6 @@ alias u='urxvtc'
 alias music="mplayer -novideo"
 alias rsync="rsync -hPr"
 alias grep='grep --color=auto'
-alias ifind='find . -iname '
 
 alias eduroam='sudo wpa_supplicant -B -D wired -i eth0 -c /root/bla.txt'
 alias net='sudo killall dhcpcd -w; sudo dhcpcd eth0;dropbox stop; dropbox start; dropbox status'
