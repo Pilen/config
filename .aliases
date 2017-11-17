@@ -76,6 +76,7 @@ alias vsmxi="cd ~/Development/smx-interface/; vs"
 alias vsmxp="cd ~/Development/smx-processor/; vs"
 
 alias sshs="sshsudo"
+alias sss="sshsudo"
 
 alias colemak='setxkbmap us -variant colemak; xmodmap .Xmodmap'
 alias dansk='setxkbmap dk'
