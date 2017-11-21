@@ -66,6 +66,7 @@ All packages here will automatically be installed if not present.")
         pager
         paredit
         powerline             ;; Not used
+        projectile
         ;; python-mode        ;; Very heavy (26000 lines+)
         quack
         rainbow-delimiters

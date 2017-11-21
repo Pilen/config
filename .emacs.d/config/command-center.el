@@ -42,6 +42,8 @@
   (command-center-add (lambda () (interactive) (insert "\\pause{}")) "revy manus \\pause{}")
 
   (command-center-add 'my-find-file-other-window "find-file-other-window")
+  (command-center-add 'projectile-find-file-dwim)
+  (command-center-add 'projectile-find-file-dwim-other-window)
   (command-center-add 'rename-file-and-buffer)
   (command-center-add 'magit-status)
   (command-center-add 'magit-pull-from-upstream)
@@ -79,9 +81,10 @@
   (command-center-add 'shell-toggle-cd "eshell-cd")
   (command-center-add 'glasses-mode)
   (command-center-add 'global-whitespace-mode)
-  (command-center-add (lambda () (interactive) (with-selected-frame (make-frame-command) (set-background-color "grey20"))) "frame-new") ;; 35?
-  (command-center-add 'delete-frame "frame-close")
-  (command-center-add 'delete-other-frames "frame-close-others")
+  (command-center-add 'my-frame-new "frame-new") ;; 35?
+  (command-center-add 'my-frame-close "frame-close")
+  (command-center-add 'my-frame-close-others "frame-close-others")
+  (command-center-add 'my-frame-close-extra "frame-close-extra")
   (command-center-add 'repunctuate-sentences)
   (command-center-add 'set-buffer-file-coding-system)
   (command-center-add 'change-directory)
@@ -109,6 +112,7 @@
   (command-center-add 'org-demote-subtree)
   (command-center-add 'org-indent-block)
   (command-center-add 'org-indent-region)
+  (command-center-add 'org-store-link)
   (command-center-add 'increment-number-at-point)
   (command-center-add 'decrement-number-at-point)
   (command-center-add 'lorem-ipsum-insert-paragraphs)
@@ -129,6 +133,8 @@
   (command-center-add 'increment-number-at-point)
   (command-center-add 'ibuffer)
   (command-center-add 'font-lock-fontify-buffer)
+  (command-center-add 'beginning-of-defun)
+  (command-center-add 'apply-macro-to-region-lines)
   ;; kmacros
   (command-center-add 'ret-tilføj-punkt)
   (command-center-add 'ret-svar)

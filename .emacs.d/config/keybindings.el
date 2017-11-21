@@ -15,6 +15,26 @@
 (global-unset-key (kbd "<f11>"))
 (global-unset-key (kbd "<f12>"))
 
+
+;; (define-key input-decode-map [#x2000009] [#x6000069]) ; C-S-i
+;; (define-key input-decode-map [#x200000d] [#x600006d]) ; C-S-m
+;; (define-key input-decode-map "\C-i" [#x4000069])
+;; (define-key input-decode-map "\C-m" [#x400006d])
+;; (define-key input-decode-map "\C-[" [#x400005b])
+
+;; (define-key input-decode-map [#x2000009] nil) ; C-S-i
+;; (define-key input-decode-map [#x200000d] nil) ; C-S-m
+;; (define-key input-decode-map "\C-i" nil)
+;; (define-key input-decode-map "\C-m" nil)
+;; (define-key input-decode-map "\C-[" nil)
+;; (setq input-decode-map (delq '(9) input-decode-map))
+;; (setq input-decode-map '(keymap))i
+
+;; (setq local-function-key-map (remove '(kp-tab . [9]) local-function-key-map))
+;; (setq function-key-map (remove '(kp-tab . [9]) function-key-map))
+;; (equal (remove '(kp-tab . [9]) local-function-key-map)
+;;        local-function-key-map)
+
 ;;______________________________________________________________________________
 ;π GLOBAL BINDINGS
 ;;______________________________________________________________________________
@@ -98,7 +118,8 @@
 ;; Mark point
 (global-set-key (kbd "C-SPC") 'set-mark-command)
 (global-set-key (kbd "H-a") 'execute-extended-command)
-(global-set-key (kbd "H-A") 'shell-toggle)
+;; (global-set-key (kbd "H-A") 'shell-toggle)
+(global-set-key (kbd "H-A") 'my-eshell-open)
 (global-set-key (kbd "H-C-a") 'ido-M-X)
 
 ;;;; WINDOW SPLITTING
@@ -210,8 +231,11 @@
 
 ;(global-set-key (kbd "H-q") 'goto-match-paren)
 ;(global-set-key (kbd "H-j") 'my-anything)
-(global-set-key (kbd "H-j") 'recentf-ido-find-file)
-(global-set-key (kbd "H-J") 'find-file-at-point-no-enter)
+;; (global-set-key (kbd "H-j") 'recentf-ido-find-file)
+;; (global-set-key (kbd "H-J") 'find-file-at-point-no-enter)
+(global-set-key (kbd "H-j") 'projectile-find-file-dwim)
+(global-set-key (kbd "H-J") 'recentf-ido-find-file)
+(global-set-key (kbd "H-C-j") 'find-file-at-point-no-enter)
 
 (global-set-key (kbd "H-q") 'mc/mark-next-like-this)
 (global-set-key (kbd "H-Q") 'mc/edit-lines)
@@ -280,9 +304,9 @@
 (global-set-key (kbd "H-<f11>") 'LaTeX-close-environment)
 (global-set-key (kbd "S-<f11>") 'LaTeX-insert-matrix)
 (global-set-key (kbd "<f12>") (lambda () (interactive) (save-buffer) (preview-buffer)))
-(global-set-key (kbd "<H-f12>") 'preview-clearout-buffer)
+(global-set-key (kbd "H-<f12>") 'preview-clearout-buffer)
 
-(global-set-key (kbd "<print>") 'magit-status)
+(global-set-key (kbd "<print>") 'my-magit-status)
 
 (global-set-key (kbd "<home>") 'beginning-of-buffer)
 (global-set-key (kbd "<end>") 'end-of-buffer)
@@ -316,3 +340,5 @@
 ;; (global-set-key (kbd "<XF86Launch1>") 'sr-speedbar-toggle)
 
 (global-set-key (kbd "C-x C-x") (lambda () (interactive) (exchange-point-and-mark) (deactivate-mark) ))
+
+(global-set-key (kbd "<pause>") 'stop-using-minibuffer)

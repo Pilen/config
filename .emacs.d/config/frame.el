@@ -4,7 +4,10 @@
 (defun my-frame-new ()
   "Create a new frame"
   (interactive)
-  (make-frame '((:background-color "yellow"))))
+  (with-selected-frame (make-frame-command)
+    ;; (set-background-color "grey28")
+    (my-frame-random-background (length (frame-list)))))
+
 
 (defun my-frame-close ()
   "Close current frame"
@@ -29,3 +32,16 @@
           (setq my-frame-main (selected-frame))
           (delete-other-frames))
         (message "No frames closed"))))
+
+
+(defun my-frame-random-background (&optional c)
+  (interactive)
+  0.27951899509803924
+  (let* ((h (if c (+ (* 0.37 c) (random* 0.1))
+              (random* 1.0)))
+         (s (+ 0.25 (random* 0.05)))
+         (l (+ 0.15 (random* 0.05))))
+    (while (> h 1.0)
+      (decf h))
+    (set-background-color (apply 'color-rgb-to-hex (color-hsl-to-rgb h s l)))))
+(my-frame-random-background )

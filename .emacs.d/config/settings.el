@@ -155,9 +155,9 @@
 
 ;(setq line-move-visual nil)
 
-;; uses find-file-at-point
+;;
 (fset 'find-file-at-point-no-enter
-      (lambda (&optional arg) "Keyboard macro."
+      (lambda (&optional arg) "Keyboard macro.\nM-x find-file-at-point return return"
         (interactive "p")
         (kmacro-exec-ring-item
          (quote ([16777313 102 105 110 100 45 102 105 108 101 45 97 116 45 112 111 105 110 116 return return] 0 "%d")) arg)))
@@ -453,4 +453,23 @@
 ;π MAGIT
 ;;______________________________________________________________________________
 (setq magit-commit-show-diff nil)
-;; (let ((status-buffers (--filter (with-current-buffer it (derived-mode-p 'magit-status-mode)) (buffer-list)))) (car status-buffers))
+(defun my-magit-status ()
+  (interactive)
+  (if (derived-mode-p 'magit-status-mode)
+      (let* ((status-buffers-raw (--filter (with-current-buffer it (derived-mode-p 'magit-status-mode)) (buffer-list)))
+             (status-buffers (-rotate -1 status-buffers-raw))
+             (names (--map (buffer-name it) status-buffers))
+             (alist (-zip-pair names status-buffers))
+             (selected (ido-completing-read "Magit: " names)))
+        (switch-to-buffer (alist-get selected alist)))
+    (call-interactively 'magit-status)))
+
+;;______________________________________________________________________________
+;π SHELL SCRIPTS
+;;______________________________________________________________________________
+(require 'sh-script)
+(set-face-attribute 'sh-heredoc-face nil :weight 'normal)
+;; (set-face-foreground 'sh-heredoc-face "dark salmon")
+;; (set-face-foreground 'sh-heredoc-face "salmon1")
+(set-face-foreground 'sh-heredoc-face "lightsalmon")
+;; (set-face-foreground 'sh-heredoc-face "rosy brown")
