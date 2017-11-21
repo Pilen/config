@@ -30,8 +30,12 @@ super + space
 
 ### Focus / Swap ###
 # Directional
-super + {_,shift + }{u,n,e,i}
-    bspc node -{f,s} {north,west,south,east} || bspc node -f next.local
+# super + {_,shift + }{u,n,e,i}
+#     bspc node -{f,s} {north,west,south,east} || bspc node -f next.local
+super + {_,shift + }{u,n}
+    bspc node -{f,s} {north,west} || bspc node -f prev.local
+super + {_,shift + }{e,i}
+    bspc node -{f,s} {south,east} || bspc node -f next.local
 
 # Next/Previous
 super + {_,shift + } Tab
@@ -126,3 +130,9 @@ XF86AudioLowerVolume
     amixer -q set Master 1-
 XF86AudioMute
     amixer -q set Master toggle
+
+XF86AudioPlay
+    ~/config/scripts/spotify-pause
+
+super + Pause
+    ~/config/scripts/spotify-pause

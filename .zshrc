@@ -30,6 +30,7 @@ export PATH="${PATH}:/opt/mosml/bin"
 export PATH=~/programs/osm/bin:$PATH
 export PATH=~/config/scripts:$PATH
 export PATH=~/.config/bspwm:$PATH
+export PATH=~/tools/mongodb/bin:$PATH
 autoload -U colors && colors
 
 
