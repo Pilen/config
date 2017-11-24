@@ -482,3 +482,8 @@
 (setq aw-scope 'global)
 (set-face-attribute 'aw-leading-char-face nil :family "DejaVu Sans Mono")
 (set-face-attribute 'aw-leading-char-face nil :height 500)
+(setq aw-reverse-frame-list t)
+(defun my-aw-hide-cursor (orig-func &rest args)
+  (let ((cursor-type nil))
+    (apply orig-func args)))
+(advice-add 'ace-window :around 'my-aw-hide-cursor)
