@@ -11,6 +11,7 @@ All packages here will automatically be installed if not present.")
         ag
         auto-highlight-symbol
         ace-jump-mode
+        ace-window
         auctex
         arduino-mode
         buffer-move

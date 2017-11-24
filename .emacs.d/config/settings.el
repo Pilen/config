@@ -473,3 +473,12 @@
 ;; (set-face-foreground 'sh-heredoc-face "salmon1")
 (set-face-foreground 'sh-heredoc-face "lightsalmon")
 ;; (set-face-foreground 'sh-heredoc-face "rosy brown")
+
+
+;;______________________________________________________________________________
+;π ACE-WINDOW
+;;______________________________________________________________________________
+;; (setq aw-scope 'visible)
+(setq aw-scope 'global)
+(set-face-attribute 'aw-leading-char-face nil :family "DejaVu Sans Mono")
+(set-face-attribute 'aw-leading-char-face nil :height 500)

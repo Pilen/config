@@ -1,5 +1,5 @@
 ;;______________________________________________________________________________
-                                        ;π AUTO-HIGHLIGHT-SYMBOL
+;π AUTO-HIGHLIGHT-SYMBOL
 ;;______________________________________________________________________________
 (require 'auto-highlight-symbol)
 (ahs-set-idle-interval 0.2)
@@ -15,6 +15,7 @@
 ;; (set-face-background ahs-plugin-whole-buffer-face "olive drab")
 ;; (set-face-foreground ahs-plugin-whole-buffer-face nil)
 (set-face-background ahs-plugin-whole-buffer-face (face-background 'default))
+(set-face-background ahs-plugin-whole-buffer-face "SteelBlue4")
 (set-face-foreground ahs-plugin-whole-buffer-face nil)
 
 (defun ahs-mode-maybe ()
@@ -26,49 +27,18 @@
 
 
 ;; Hack to make ahs work with emacs 25.1, simply ignore all errors
-(defun ahs-fontify ()
-  "Fontify symbols for strict check."
-  ;;;;
-  ;;
-  ;; (@* "Note" )
-  ;;
-  ;;  If symbol has no text properties, will be called `jit-lock-fontify-now'
-  ;; to strict check.
-  ;;
-  ;; Some old PCs performance may be degraded when:
-  ;;  * Editing large file.
-  ;;  * So many matched symbols exists outside the display area.
-  ;;
-  ;; Tested on my old pentium4 pc (bought in 2002 xD)
-  ;;  So dirty `font-lock-keywords' and use `whole buffer' plugin.
-  ;; Result:
-  ;;  +---------------+-----------+----------------+----------+
-  ;;  | filename      | filesize  | matched symbol | result   |
-  ;;  +---------------+-----------+----------------+----------+
-  ;;  | `loaddefs.el' | 1,207,715 | `autoload'     | so slow  |
-  ;;  | `org.el'      |   753,991 | `if'           | slow     |
-  ;;  +---------------+-----------+----------------+----------+
-  ;;
-  ;; If you feel slow, please use `display area' plugin instead of `whole buffer' plugin.
-  ;; And use `ahs-onekey-edit' to use `whole buffer' plugin.
-  ;;
+(defun my-ignore-errors-in-func (orig-fun &rest args)
   (ignore-errors
-    (loop with beg = nil
-          with end = nil
+    (apply orig-fun args)))
+(advice-add 'ahs-fontify :around 'my-ignore-errors-in-func)
 
-          for symbol in ahs-search-work
-          for fontified = (or (nth 2 symbol)
-                              (nth 3 symbol))
+;; Delete all ahs overlays in buffer
+(defun my-ahs-clear-overlays ()
+  (interactive)
+  (dolist (overlay (overlays-in (point-min) (point-max)))
+    (let ((face (overlay-get overlay 'face)))
+      (when (or (eq face 'ahs-face)
+                (eq face 'ahs-plugin-whole-buffer-face))
+        (delete-overlay o)))))
 
-          unless (or beg fontified) do (setq beg (nth 0 symbol))
-          unless fontified          do (setq end (nth 1 symbol))
-
-          when (and beg end fontified)
-          do (progn
-               (jit-lock-fontify-now beg end)
-               (setq beg nil
-                     end nil))
-
-          finally
-          do (when (and beg end)
-               (jit-lock-fontify-now beg end)))))
+(add-hook 'ag-search-finished-hook 'my-ahs-clear-overlays)
