@@ -478,7 +478,7 @@
 ;;______________________________________________________________________________
 ;π ACE-WINDOW
 ;;______________________________________________________________________________
-;; (setq aw-scope 'visible)
+(setq aw-scope 'visible)
 (setq aw-scope 'global)
 (set-face-attribute 'aw-leading-char-face nil :family "DejaVu Sans Mono")
 (set-face-attribute 'aw-leading-char-face nil :height 500)
