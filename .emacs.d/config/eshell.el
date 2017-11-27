@@ -326,5 +326,6 @@ In Eshell's implementation of ls, ENTRIES is always reversed."
   (let ((ag-arguments (cons "--smart-case" (cons "--stats" args))))
     (ag/search string (eshell/pwd) :regexp t))
   "")
+(add-to-list 'ag-ignore-list "#*#")
 
 (setq ag-reuse-buffers t)
