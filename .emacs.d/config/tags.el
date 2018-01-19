@@ -64,6 +64,9 @@
 
 (setq tags-revert-without-query t)
 
+(require 'ivy-xref) ; unless installed from a package
+;; (setq xref-show-xrefs-function 'xref--show-xref-buffer)
+(setq xref-show-xrefs-function 'ivy-xref-show-xrefs)
 
 
 ;; So GNU Global supplies gtags.el (in /usr/share/gtags)

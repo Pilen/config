@@ -23,6 +23,7 @@ All packages here will automatically be installed if not present.")
         company-quickhelp
         csv-mode
         dash
+        dimmer
         diredfl
         dtrt-indent
         elpy
@@ -48,6 +49,7 @@ All packages here will automatically be installed if not present.")
         iedit
         impatient-mode
         inf-ruby
+        ivy-xref
         js2-mode
         jss
         keyfreq
@@ -64,6 +66,7 @@ All packages here will automatically be installed if not present.")
         multiple-cursors
         nav                   ;; Not really used yet
         neotree
+        notmuch
         pager
         paredit
         powerline             ;; Not used

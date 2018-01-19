@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+chromium --new-window "https://torvekoekken.dk/img/cms/menuer/Favorit%20uge%20$(date +%-V).pdf"

@@ -6,9 +6,9 @@
 ;|__________| |__________|__________|__________|__________| |__________|__________|__________|__________| |__________|__________|__________|__________||__________|__________|__________|__________|
 ; _________________________________________________________________________________________________________________________________________________________________________________________________
 ;|`           |1             |2           |3           |4           |5           |6           |7           |8           |9           |0           |λ           |=           |Backspace             |
-;|flymake-next|bread-set     |bread-prev  |bread-next  |fill-par    |            |            |fold        |fwd-syntax  |smart-backw |smart-forw  |find-tag    |pop-tag-mark|join-line             |
+;|flymake-next|bread-set     |bread-prev  |bread-next  |fill-par    |            |            |fold        |fwd-syntax  |begn-defun  |end-defun   |find-tag    |pop-tag-mark|join-line             |
 ;|~           |!             |@           |#           |$           |%           |^           |&           |*           |(           |)           |π           |+           |                      |
-;|flymake     |              |            |bread-list  |            |            |            |fold-column |bwd-syntax  |begn-defun  |end-defun   |tags-apropos|            |                      |
+;|flymake     |              |            |bread-list  |            |            |            |fold-column |bwd-syntax  |smart-backw |smart-forw  |tags-apropos|            |                      |
 ;|____________|______________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|______________________|
 ;|TAB                |q             |w           |ef          |rp          |tg          |yj          |ul          |iu          |oy          |p;          |[           |]           |<_|            |
 ;|goto-match-paren   |mc-next-like  |copy-region |<del-wrd    |del-wrd>    |compile/run |recent-file |<-W         |^           |W->         |splt-w-vert |winner-undo |golden-ratio|ido-sw-buf     |
@@ -417,7 +417,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (ace-window projectile csv-mode typescript-mode diredfl auctex keyfreq matlab-mode mic-paren quack rainbow-delimiters tabbar volatile-highlights window-numbering swiper less-css-mode zeal-at-point wrap-region win-switch web-mode web visible-mark typing sr-speedbar sml-mode smex smart-forward rfringe python-mode powerline paredit pager neotree nav multiple-cursors minesweeper markdown-mode magit lorem-ipsum loccur livid-mode kite jss inf-ruby impatient-mode iedit idomenu hlinum highlight-tail graphviz-dot-mode goto-last-change google-translate golden-ratio ghc geiser fuzzy full-ack flymake-cursor fill-column-indicator fastnav erc-hl-nicks ensime elpy dtrt-indent company-quickhelp company-jedi company-go column-marker c-eldoc buffer-move auto-highlight-symbol arduino-mode ag ace-jump-mode)))
+    (dimmer ivy-xref notmuch ace-window projectile csv-mode typescript-mode diredfl auctex keyfreq matlab-mode mic-paren quack rainbow-delimiters tabbar volatile-highlights window-numbering swiper less-css-mode zeal-at-point wrap-region win-switch web-mode web visible-mark typing sr-speedbar sml-mode smex smart-forward rfringe python-mode powerline paredit pager neotree nav multiple-cursors minesweeper markdown-mode magit lorem-ipsum loccur livid-mode kite jss inf-ruby impatient-mode iedit idomenu hlinum highlight-tail graphviz-dot-mode goto-last-change google-translate golden-ratio ghc geiser fuzzy full-ack flymake-cursor fill-column-indicator fastnav erc-hl-nicks ensime elpy dtrt-indent company-quickhelp company-jedi company-go column-marker c-eldoc buffer-move auto-highlight-symbol arduino-mode ag ace-jump-mode)))
  '(protect-buffer-bury-p nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)

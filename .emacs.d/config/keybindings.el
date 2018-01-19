@@ -51,8 +51,6 @@
 ;; (global-set-key (kbd "H-l") 'geosoft-backward-word)
 (global-set-key (kbd "H-l") 'backward-word-to-newline) ;; geosoft-backward-word
 (global-set-key (kbd "H-y") 'forward-word-to-newline)  ;; forward-word
-(global-set-key (kbd "H-8") 'forward-same-syntax)
-(global-set-key (kbd "H-*") (lambda () (interactive) (forward-same-syntax -1)))
 ;; Move by paragraph
 ;(global-set-key (kbd "H-L") 'backward-paragraph)
 ;(global-set-key (kbd "H-Y") 'forward-paragraph)
@@ -76,8 +74,11 @@
 
 ;;;; MAJOR EDITING COMMANDS
 ;; Delete previous/next char
-(global-set-key (kbd "H-s") 'delete-backward-char)
-(global-set-key (kbd "H-t") 'delete-forward-char)
+;; (global-set-key (kbd "H-s") 'delete-backward-char)
+;; (global-set-key (kbd "H-t") 'delete-forward-char)
+(global-set-key (kbd "H-s") 'paredit-backward-delete)
+(global-set-key (kbd "H-t") 'paredit-forward-delete)
+
 (global-set-key (kbd "H-C-s") 'my-scroll-left)
 (global-set-key (kbd "H-C-t") 'my-scroll-right)
 ;; Delete previous/next word
@@ -165,7 +166,8 @@
 (global-set-key (kbd "H-C") 'ace-jump-char-global)
 
 ;(global-set-key (kbd "H-V") '(lambda () (interactive) (global-hl-line-mode) (my-global-auto-highlight-symbol-mode)))
-(global-set-key (kbd "H-S-<return>") 'ido-goto-symbol-or-line)
+;; (global-set-key (kbd "H-S-<return>") 'ido-goto-symbol-or-line)
+(global-set-key (kbd "H-S-<return>") 'my-counsel-imenu)
 
 (global-set-key (kbd "H-SPC") 'hippie-expand)
 (global-set-key (kbd "H-C-SPC") 'my-ido-hippie-expand)
@@ -274,11 +276,16 @@
 ;; (global-set-key (kbd "H-λ") 'find-tag)
 ;; (global-set-key (kbd "H-π") 'tags-apropos)
 ;; (global-set-key (kbd "H-=") 'pop-tag-mark)
+(global-set-key (kbd "H-λ") 'xref-find-definitions-other-window)
+(global-set-key (kbd "H-π") 'xref-find-apropos)
+(global-set-key (kbd "H-=") 'xref-pop-marker-stack)
 
-(global-set-key (kbd "H-9") 'smart-backward)
-(global-set-key (kbd "H-0") 'smart-forward)
-(global-set-key (kbd "H-(") 'beginning-of-defun)
-(global-set-key (kbd "H-)") 'end-of-defun)
+(global-set-key (kbd "H-8") 'forward-same-syntax)
+(global-set-key (kbd "H-*") (lambda () (interactive) (forward-same-syntax -1)))
+(global-set-key (kbd "H-9") 'beginning-of-defun)
+(global-set-key (kbd "H-0") 'end-of-defun)
+(global-set-key (kbd "H-(") 'smart-backward)
+(global-set-key (kbd "H-)") 'smart-forward)
 
 (global-set-key (kbd "<f1>") 'my-help)
 (global-set-key (kbd "S-<f1>") 'man)

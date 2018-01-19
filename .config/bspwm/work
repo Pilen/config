@@ -3,13 +3,21 @@
 import subprocess
 import socket
 import sys
+import time
+
+logfile = open("/home/spi/work.log", "w")
+def log(*args, **kwargs):
+    print(*args, file=logfile, *kwargs)
+    print(*args, *kwargs)
+    logfile.flush()
 
 def run_capture(*args):
+    log("running:", " ".join(args))
     return subprocess.run(args, stdout=subprocess.PIPE, universal_newlines=True)
 
-monitor_to_desktops = {"DP-1-3": ("d4", "d5", "d6", "Ex1"), # left
-                       "DP-1-2": ("d1", "d2", "d3"),        # mid
-                       "eDP-1": ("d7", "d8", "d9", "d0")}   # right
+monitor_to_desktops = {"DP-1-3": ("Ex1", "d1", "d2", "d5", "d6", "d7", "Ex1"), # left
+                       "DP-1-2": ("d3", "d4"),        # mid
+                       "eDP-1": ("d8", "d9", "d0")}   # right
 
 def setup_monitors():
     hostname = socket.gethostname()
@@ -32,13 +40,25 @@ def setup_desktops():
             run_capture("bspc", "desktop", desktop, "-m", monitor)
     return True
 
+def remove_unused():
+    time.sleep(10)
+    all_desktops = set()
+    for desktops in monitor_to_desktops.values():
+        all_desktops.update(desktops)
+    current_desktops = run_capture("bspc", "query", "-D", "--names").stdout.strip().split("\n")
+    for desktop in current_desktops:
+        if desktop not in all_desktops:
+            log("Removing desktop", desktop)
+            run_capture("bspc", "desktop", desktop, "-r")
+
 def main():
     if not setup_monitors():
-        print("ERROR: Could not set up monitors")
+        log("ERROR: Could not set up monitors")
         sys.exit(1)
     if not setup_desktops():
-        print("ERROR: Could not set up desktops")
+        log("ERROR: Could not set up desktops")
         sys.exit(1)
+    remove_unused()
     sys.exit(0)
 
 if __name__ == "__main__":

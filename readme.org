@@ -1,0 +1,5 @@
+
+
+* bspwm
+  https://github.com/windelicato/dotfiles/wiki/bspwm-for-dummies
+  http://profectium.blogspot.dk/2016/07/how-to-install-bspwm_85.html

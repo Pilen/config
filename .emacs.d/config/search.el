@@ -60,6 +60,20 @@
             (buffer-substring-no-properties (region-beginning) (region-end))
           (read-regexp "Occur" (symbol-name (symbol-at-point)) 'occur-history))))
 
+(defun occur-show-function ()
+  (interactive)
+  (save-selected-window
+    (occur-mode-goto-occurrence)
+    (let* ((to-show (point))
+           ;; (show-line (string-to-number (format-mode-line "%l"))
+           (defun (progn (beginning-of-defun) (point)))
+           ;; (defun-line (string-to-number (format-mode-line "%l")))
+           ;; (block-size (- show-line defun-line))
+           )
+      (recenter-top-bottom 'top)
+      (goto-char to-show))))
+(define-key occur-mode-map (kbd "f") 'occur-show-function)
+
 ;;______________________________________________________________________________
 ;π LOCCUR
 ;;______________________________________________________________________________

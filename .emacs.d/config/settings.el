@@ -192,6 +192,9 @@
 (add-hook 'occur-mode-hook 'next-error-follow-minor-mode)
 
 
+(dimmer-mode)
+(setq dimmer-percent 0.1)
+
 
 (require 'keyfreq)
 (keyfreq-mode 1)
@@ -382,6 +385,12 @@
 
 ;; Using neotree instead
 (setq neo-theme 'ascii)
+(define-key neotree-mode-map (kbd "e") (lambda () (interactive)
+                                         (let ((default-directory (neo-buffer--get-filename-current-line)))
+                                           (when (not (file-directory-p default-directory))
+                                             (setq default-directory (file-name-directory default-directory)))
+                                           (eshell/new default-directory))))
+;; (setq neo-vc-integration nil)
 
 ;;______________________________________________________________________________
 ;π CONSOLE
@@ -478,6 +487,7 @@
 ;;______________________________________________________________________________
 ;π ACE-WINDOW
 ;;______________________________________________________________________________
+(require 'ace-window)
 (setq aw-scope 'visible)
 (setq aw-scope 'global)
 (set-face-attribute 'aw-leading-char-face nil :family "DejaVu Sans Mono")
@@ -487,3 +497,9 @@
   (let ((cursor-type nil))
     (apply orig-func args)))
 (advice-add 'ace-window :around 'my-aw-hide-cursor)
+
+;;______________________________________________________________________________
+;π SERVER
+;;______________________________________________________________________________
+(server-force-delete)
+(server-start)

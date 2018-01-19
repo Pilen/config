@@ -43,6 +43,7 @@ menu=(\
         pong      "urxvtc -bg black -e ping google.com"
         color     "zenity --color-selection"
         suspend   "systemctl suspend"
+        frokost   "frokost"
         # 0%        "amixer set Master 0"
         # 10%       "amixer set Master 18"
         # 20%       "amixer set Master 29"
