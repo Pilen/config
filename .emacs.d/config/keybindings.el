@@ -74,10 +74,10 @@
 
 ;;;; MAJOR EDITING COMMANDS
 ;; Delete previous/next char
-;; (global-set-key (kbd "H-s") 'delete-backward-char)
-;; (global-set-key (kbd "H-t") 'delete-forward-char)
-(global-set-key (kbd "H-s") 'paredit-backward-delete)
-(global-set-key (kbd "H-t") 'paredit-forward-delete)
+(global-set-key (kbd "H-s") 'delete-backward-char)
+(global-set-key (kbd "H-t") 'delete-forward-char)
+;; (global-set-key (kbd "H-s") 'paredit-backward-delete)
+;; (global-set-key (kbd "H-t") 'paredit-forward-delete)
 
 (global-set-key (kbd "H-C-s") 'my-scroll-left)
 (global-set-key (kbd "H-C-t") 'my-scroll-right)
@@ -236,8 +236,8 @@
 ;(global-set-key (kbd "H-j") 'my-anything)
 ;; (global-set-key (kbd "H-j") 'recentf-ido-find-file)
 ;; (global-set-key (kbd "H-J") 'find-file-at-point-no-enter)
-(global-set-key (kbd "H-j") 'projectile-find-file-dwim)
-(global-set-key (kbd "H-J") 'recentf-ido-find-file)
+(global-set-key (kbd "H-j") 'recentf-ido-find-file)
+(global-set-key (kbd "H-J") 'projectile-find-file-dwim)
 (global-set-key (kbd "H-C-j") 'find-file-at-point-no-enter)
 
 (global-set-key (kbd "H-q") 'mc/mark-next-like-this)
@@ -276,8 +276,9 @@
 ;; (global-set-key (kbd "H-λ") 'find-tag)
 ;; (global-set-key (kbd "H-π") 'tags-apropos)
 ;; (global-set-key (kbd "H-=") 'pop-tag-mark)
-(global-set-key (kbd "H-λ") 'xref-find-definitions-other-window)
-(global-set-key (kbd "H-π") 'xref-find-apropos)
+(global-set-key (kbd "H-λ") 'my-xref-find-definitions-other-window)
+;; (global-set-key (kbd "H-π") 'xref-find-apropos)
+(global-set-key (kbd "H-π") 'xref-find-definitions-other-window)
 (global-set-key (kbd "H-=") 'xref-pop-marker-stack)
 
 (global-set-key (kbd "H-8") 'forward-same-syntax)

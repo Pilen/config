@@ -63,7 +63,7 @@
   (command-center-add 'occur)
   (command-center-add 'loccur-current)
   (command-center-add 'loccur-previous-match)
-  (command-center-add 'ag-project "ag")
+  (command-center-add 'ag-project-regexp "ag")
   (command-center-add 'swiper)
 
   ;; Elisp

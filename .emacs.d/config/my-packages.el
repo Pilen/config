@@ -9,6 +9,7 @@ All packages here will automatically be installed if not present.")
 (setq required-packages
       '(
         ag
+        all-the-icons
         auto-highlight-symbol
         ace-jump-mode
         ace-window

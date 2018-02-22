@@ -26,6 +26,7 @@
   (define-key eshell-mode-map (kbd "C-l") 'eshell/clear)
   (define-key eshell-mode-map (kbd "<return>") 'my-eshell-send-input)
   (define-key eshell-mode-map (kbd "H-r") 'eshell-ido-history)
+  (define-key eshell-mode-map (kbd "H-d") 'my-eshell-kill-whole-line)
   (add-to-list 'eshell-visual-commands "nano")
   (add-to-list 'eshell-visual-commands "htop")
   (add-to-list 'eshell-visual-commands "irssi")
@@ -215,6 +216,10 @@ current frame, create a new window and switch to it.
   (goto-char (point-max))
   (insert (ido-completing-read "execute: " (ring-elements eshell-history-ring))))
 
+(defun my-eshell-kill-whole-line ()
+  (interactive)
+  (eshell-my-bol)
+  (kill-line))
 ;;______________________________________________________________________________
 ;π ESHELLCONTROL
 ;;______________________________________________________________________________
@@ -246,9 +251,14 @@ current frame, create a new window and switch to it.
 ;; If deleting the eshell prompt is suddenly possible, it might be that inhibit-read-only is somehow set to t (should be nil)
 (defun eshell/clear ()
   (interactive)
-  (let ((inhibit-read-only t))
+  (goto-char (point-max))
+  (eshell-my-bol)
+  (let ((inhibit-read-only t)
+        (current (buffer-substring (point) (point-max))))
+    (delete-region (point) (point-max))
     (erase-buffer)
-    (eshell-send-input)))
+    (eshell-send-input)
+    (insert current)))
 
 
 ;;______________________________________________________________________________
@@ -318,6 +328,8 @@ In Eshell's implementation of ls, ENTRIES is always reversed."
       (eshell-bol)
     (beginning-of-line)))
 
+
+
 (defun eshell/ag (string &rest args)
   "Search with ag using the current eshell directory and a given string.
    To be used from within an eshell alias
@@ -326,9 +338,41 @@ In Eshell's implementation of ls, ENTRIES is always reversed."
   (let ((ag-arguments (cons "--smart-case" (cons "--stats" args))))
     (ag/search string (eshell/pwd) :regexp t))
   "")
+(defun eshell/agp (string &rest args)
+  "Search with ag using the current eshell directory and a given string.
+   To be used from within an eshell alias
+   (`alias ag 'ag-eshell $1'` within eshell)"
+  (let ((ag-arguments (cons "--smart-case" (cons "--stats" args))))
+    (ag/search string (ag/project-root (eshell/pwd)) :regexp t))
+  "")
+
+(defvar my-ag-history nil)
+(defun ag/read-from-minibuffer (prompt)
+  "Read a value from the minibuffer with PROMPT.
+If there's a string at point, offer that as a default."
+  (let* ((suggested (ag/dwim-at-point))
+         (final-prompt
+          (if suggested
+              (format "%s (default %s): " prompt suggested)
+            (format "%s: " prompt)))
+         ;; Ask the user for input, but add `suggested' to the history
+         ;; so they can use M-n if they want to modify it.
+         (user-input (read-from-minibuffer
+                      final-prompt
+                      nil nil nil
+                      'my-ag-history
+                      suggested)))
+    ;; Return the input provided by the user, or use `suggested' if
+    ;; the input was empty.
+    (if (> (length user-input) 0)
+        user-input
+      suggested)))
 
 (setq ag-reuse-buffers t)
 
+;; Updating linums while ag runs causes it to slow down enormously, so turn it off temporarily
+(add-hook 'ag-mode-hook '(lambda () (linum-mode -1)))
+(add-hook 'ag-search-finished-hook '(lambda () (linum-mode t)))
 
 
 ;;______________________________________________________________________________

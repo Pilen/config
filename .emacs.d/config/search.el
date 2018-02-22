@@ -102,6 +102,7 @@
 (require 'swiper)
 (define-key ivy-minibuffer-map (kbd "H-e") 'ivy-next-line)
 (define-key ivy-minibuffer-map (kbd "H-u") 'ivy-previous-line)
+(define-key ivy-minibuffer-map (kbd "C-SPC") 'ivy-restrict-to-matches)
 (setq ivy-wrap t)
 (setq ivy-count-format "%d/%d ")
 (define-key ivy-minibuffer-map (kbd "H-i") 'my-ivy-hook)

@@ -193,7 +193,7 @@
 
 
 (dimmer-mode)
-(setq dimmer-percent 0.1)
+(setq dimmer-percent 0.15)
 
 
 (require 'keyfreq)
@@ -365,6 +365,8 @@
 ;π STARTUP
 ;;______________________________________________________________________________
 (setq inhibit-startup-message t)
+(with-current-buffer (get-buffer-create (generate-new-buffer-name "lock"))
+  (emacs-lock-mode 'exit))
 (defun display-startup-echo-area-message ()
   (message ""))
 (find-file "~/.emacs.d/init.el")
@@ -384,18 +386,24 @@
 ;; (define-key speedbar-mode-map (kbd "<backspace>") 'speedbar-up-directory)
 
 ;; Using neotree instead
+(require 'neotree)
 (setq neo-theme 'ascii)
 (define-key neotree-mode-map (kbd "e") (lambda () (interactive)
                                          (let ((default-directory (neo-buffer--get-filename-current-line)))
                                            (when (not (file-directory-p default-directory))
                                              (setq default-directory (file-name-directory default-directory)))
                                            (eshell/new default-directory))))
+
+(setq neo-window-width 35)
 ;; (setq neo-vc-integration nil)
 
 ;;______________________________________________________________________________
 ;π CONSOLE
 ;;______________________________________________________________________________
 (xterm-mouse-mode t)
+
+(when (display-graphic-p)
+  (global-set-key (kbd "C-x C-z") nil))
 
 ;;______________________________________________________________________________
 ;π AUTO-SAVE

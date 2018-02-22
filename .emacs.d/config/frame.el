@@ -45,3 +45,6 @@
       (decf h))
     (set-background-color (apply 'color-rgb-to-hex (color-hsl-to-rgb h s l)))))
 (my-frame-random-background )
+
+(defvar my-nice-background-colors '("#203538" "#1e2034" "#1d2031"))
+;; (frame-parameter nil 'background-color)
