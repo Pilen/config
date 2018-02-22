@@ -20,6 +20,9 @@ super + shift + c
 super + {t,shift + t,f,shift + f}
     bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
+super + z
+    bspc node -g sticky
+
 # Cycle layout
 #   cancel the preselection for the focused desktop
 super + space
@@ -70,6 +73,9 @@ super + {_,shift + }{1-9,0}
 
 # super + {k,m}
 #     bspc desktop -f {prev,next}.local
+
+super + {l, y}
+    bspc monitor -f {west,east}
 
 ### Preselect ###
 # Preselect the direction

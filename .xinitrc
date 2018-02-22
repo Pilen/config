@@ -1,5 +1,6 @@
 touchpad-off
-setxkbmap us -variant colemak; xset r 66
+setxkbmap us -variant colemak
+xset r 66
 xmodmap .Xmodmap
 xsetroot -cursor_name left_ptr
 xset -b

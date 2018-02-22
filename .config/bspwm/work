@@ -51,7 +51,20 @@ def remove_unused():
             log("Removing desktop", desktop)
             run_capture("bspc", "desktop", desktop, "-r")
 
+def is_at_work():
+    hostname = socket.gethostname()
+    return hostname == "LA0107"
+
+def work_config():
+    run_capture("bspc", "config", "borderless_monocle", "false")
+
 def main():
+    if not is_at_work():
+        log("ERROR: Not at work machine")
+        sys.exit(1)
+
+    work_config()
+
     if not setup_monitors():
         log("ERROR: Could not set up monitors")
         sys.exit(1)
