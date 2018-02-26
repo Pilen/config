@@ -37,6 +37,8 @@ alias d="cd ~/Dropbox/diku/"
 alias rf='rm -rf'
 alias u='urxvtc'
 alias rsync="rsync -hPr"
+alias rsyncs="rsync -hPr --rsync-path='sudo rsync'"
+
 alias grep='grep --color=auto'
 
 alias eduroam='sudo wpa_supplicant -B -D wired -i eth0 -c /root/bla.txt'
