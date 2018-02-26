@@ -250,10 +250,10 @@
 (global-set-key (kbd "H-<delete>") 'global-whitespace-mode)
 (global-set-key (kbd "H-S-<delete>") 'auto-indent-mode)
 
-(global-set-key (kbd "H-<home>") '(lambda nil (interactive) (defaultface)))
-(global-set-key (kbd "H-<end>") '(lambda nil (interactive) (zoom 1)))
+(global-set-key (kbd "H-<home>") 'defaultface)
+(global-set-key (kbd "H-<end>") (lambda nil (interactive) (zoom 1)))
 (global-set-key (kbd "H-C-<end>") (lambda () (interactive) (zoom -1)))
-(global-set-key (kbd "H-S-<end>") '(lambda nil (interactive) (zoomableface)))
+(global-set-key (kbd "H-S-<end>") 'zoomableface)
 
 (global-set-key (kbd "H-<tab>") 'goto-match-paren-or-defun)
 (global-set-key (kbd "<H-S-iso-lefttab>") 'switch-to-minibuffer-window)
