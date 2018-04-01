@@ -94,3 +94,15 @@
   "Like `xref-find-definitions' but switch to the other window."
   (interactive (list (my-xref--read-identifier "Find definitions of: ")))
   (xref--find-definitions identifier 'window))
+
+
+
+
+
+
+
+
+(defun etags-create ()
+  (interactive)
+  (let ((directory (read-directory-name "Directory: ")))
+    ()))
