@@ -1,17 +1,14 @@
 ;;______________________________________________________________________________
 ;π BATTERY
 ;;______________________________________________________________________________
+;; https://raw.githubusercontent.com/lunaryorn/fancy-battery.el/master/fancy-battery.el
+
 (display-battery-mode t) ;; my battery seems to be dead, and battery-mode cant handle that correctly
-(defun battery-format (format alist)
-  "Substitute %-sequences in FORMAT."
-  (replace-regexp-in-string "\\..\\|\\[\\|\\]" ""
-  (replace-regexp-in-string
-   "%."
-   (lambda (str)
-     (let ((char (aref str 1)))
-       (if (eq char ?%) "%"
-         (or (cdr (assoc char alist)) ""))))
-   format t t)))
+
+(defun my-battery-format-advice (orig-fun &rest args)
+  "Remove decimals and grouping"
+  (replace-regexp-in-string "\\..\\|\\[\\|\\]" "" (apply orig-fun args)))
+(advice-add 'battery-format :around 'my-battery-format-advice)
 
 (defface battery-level-low
   '((((type x w32 mac))
@@ -20,20 +17,19 @@
 
 (defun battery-update ()
   "Update battery status information in the mode line."
-  (let ((data (and battery-status-function (funcall battery-status-function))))
+  (let* ((data (and battery-status-function (funcall battery-status-function)))
+         (percentage (car (read-from-string (cdr (assq ?p data))))))
     (setq battery-mode-line-string
-          (propertize (if (and battery-mode-line-format
-                               (<= (car (read-from-string (cdr (assq ?p data))))
-                                   battery-mode-line-limit))
-                          (battery-format
-                           battery-mode-line-format
-                           data)
-                        "")
-                      'face
-                      (and (<= (car (read-from-string (cdr (assq ?p data))))
-                               battery-load-critical)
+	  (propertize (if (and battery-mode-line-format
+			       (numberp percentage)
+                               (<= percentage battery-mode-line-limit))
+			  (battery-format battery-mode-line-format data)
+			"")
+		      'face
+                      (and (numberp percentage)
+                           (<= percentage battery-load-critical)
                            'battery-level-low)
-                      'help-echo "Battery status information")))
+		      'help-echo "Battery status information")))
   (force-mode-line-update))
 
 ;;______________________________________________________________________________

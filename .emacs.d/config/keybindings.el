@@ -15,6 +15,26 @@
 (global-unset-key (kbd "<f11>"))
 (global-unset-key (kbd "<f12>"))
 
+
+;; (define-key input-decode-map [#x2000009] [#x6000069]) ; C-S-i
+;; (define-key input-decode-map [#x200000d] [#x600006d]) ; C-S-m
+;; (define-key input-decode-map "\C-i" [#x4000069])
+;; (define-key input-decode-map "\C-m" [#x400006d])
+;; (define-key input-decode-map "\C-[" [#x400005b])
+
+;; (define-key input-decode-map [#x2000009] nil) ; C-S-i
+;; (define-key input-decode-map [#x200000d] nil) ; C-S-m
+;; (define-key input-decode-map "\C-i" nil)
+;; (define-key input-decode-map "\C-m" nil)
+;; (define-key input-decode-map "\C-[" nil)
+;; (setq input-decode-map (delq '(9) input-decode-map))
+;; (setq input-decode-map '(keymap))i
+
+;; (setq local-function-key-map (remove '(kp-tab . [9]) local-function-key-map))
+;; (setq function-key-map (remove '(kp-tab . [9]) function-key-map))
+;; (equal (remove '(kp-tab . [9]) local-function-key-map)
+;;        local-function-key-map)
+
 ;;______________________________________________________________________________
 ;π GLOBAL BINDINGS
 ;;______________________________________________________________________________
@@ -31,8 +51,6 @@
 ;; (global-set-key (kbd "H-l") 'geosoft-backward-word)
 (global-set-key (kbd "H-l") 'backward-word-to-newline) ;; geosoft-backward-word
 (global-set-key (kbd "H-y") 'forward-word-to-newline)  ;; forward-word
-(global-set-key (kbd "H-8") 'forward-same-syntax)
-(global-set-key (kbd "H-*") (lambda () (interactive) (forward-same-syntax -1)))
 ;; Move by paragraph
 ;(global-set-key (kbd "H-L") 'backward-paragraph)
 ;(global-set-key (kbd "H-Y") 'forward-paragraph)
@@ -58,6 +76,9 @@
 ;; Delete previous/next char
 (global-set-key (kbd "H-s") 'delete-backward-char)
 (global-set-key (kbd "H-t") 'delete-forward-char)
+;; (global-set-key (kbd "H-s") 'paredit-backward-delete)
+;; (global-set-key (kbd "H-t") 'paredit-forward-delete)
+
 (global-set-key (kbd "H-C-s") 'my-scroll-left)
 (global-set-key (kbd "H-C-t") 'my-scroll-right)
 ;; Delete previous/next word
@@ -98,7 +119,8 @@
 ;; Mark point
 (global-set-key (kbd "C-SPC") 'set-mark-command)
 (global-set-key (kbd "H-a") 'execute-extended-command)
-(global-set-key (kbd "H-A") 'shell-toggle)
+;; (global-set-key (kbd "H-A") 'shell-toggle)
+(global-set-key (kbd "H-A") 'my-eshell-open)
 (global-set-key (kbd "H-C-a") 'ido-M-X)
 
 ;;;; WINDOW SPLITTING
@@ -144,14 +166,16 @@
 (global-set-key (kbd "H-C") 'ace-jump-char-global)
 
 ;(global-set-key (kbd "H-V") '(lambda () (interactive) (global-hl-line-mode) (my-global-auto-highlight-symbol-mode)))
-(global-set-key (kbd "H-S-<return>") 'ido-goto-symbol-or-line)
+;; (global-set-key (kbd "H-S-<return>") 'ido-goto-symbol-or-line)
+(global-set-key (kbd "H-S-<return>") 'my-counsel-imenu)
 
 (global-set-key (kbd "H-SPC") 'hippie-expand)
 (global-set-key (kbd "H-C-SPC") 'my-ido-hippie-expand)
 (global-set-key (kbd "H-o") 'other-window)
 (global-set-key (kbd "H-O") '(lambda () (interactive) (other-window -1)))
-(global-set-key (kbd "H-'") 'win-switch-dispatch)
-(global-set-key (kbd "H-\"") 'set-80-columns)
+(global-set-key (kbd "H-'") 'ace-window)
+(global-set-key (kbd "H-\"") 'win-switch-dispatch)
+(global-set-key (kbd "H-C-'") 'set-80-columns)
 ;(global-set-key (kbd "H-'") 'switch-to-buffer)
 ;(global-set-key (kbd "H-,") 'previous-buffer)
 ;(global-set-key (kbd "H-.") 'next-buffer)
@@ -210,8 +234,11 @@
 
 ;(global-set-key (kbd "H-q") 'goto-match-paren)
 ;(global-set-key (kbd "H-j") 'my-anything)
+;; (global-set-key (kbd "H-j") 'recentf-ido-find-file)
+;; (global-set-key (kbd "H-J") 'find-file-at-point-no-enter)
 (global-set-key (kbd "H-j") 'recentf-ido-find-file)
-(global-set-key (kbd "H-J") 'find-file-at-point-no-enter)
+(global-set-key (kbd "H-J") 'projectile-find-file-dwim)
+(global-set-key (kbd "H-C-j") 'find-file-at-point-no-enter)
 
 (global-set-key (kbd "H-q") 'mc/mark-next-like-this)
 (global-set-key (kbd "H-Q") 'mc/edit-lines)
@@ -249,11 +276,17 @@
 ;; (global-set-key (kbd "H-λ") 'find-tag)
 ;; (global-set-key (kbd "H-π") 'tags-apropos)
 ;; (global-set-key (kbd "H-=") 'pop-tag-mark)
+(global-set-key (kbd "H-λ") 'my-xref-find-definitions-other-window)
+;; (global-set-key (kbd "H-π") 'xref-find-apropos)
+(global-set-key (kbd "H-π") 'xref-find-definitions-other-window)
+(global-set-key (kbd "H-=") 'xref-pop-marker-stack)
 
-(global-set-key (kbd "H-9") 'smart-backward)
-(global-set-key (kbd "H-0") 'smart-forward)
-(global-set-key (kbd "H-(") 'beginning-of-defun)
-(global-set-key (kbd "H-)") 'end-of-defun)
+(global-set-key (kbd "H-8") 'forward-same-syntax)
+(global-set-key (kbd "H-*") (lambda () (interactive) (forward-same-syntax -1)))
+(global-set-key (kbd "H-9") 'beginning-of-defun)
+(global-set-key (kbd "H-0") 'end-of-defun)
+(global-set-key (kbd "H-(") 'smart-backward)
+(global-set-key (kbd "H-)") 'smart-forward)
 
 (global-set-key (kbd "<f1>") 'my-help)
 (global-set-key (kbd "S-<f1>") 'man)
@@ -280,9 +313,9 @@
 (global-set-key (kbd "H-<f11>") 'LaTeX-close-environment)
 (global-set-key (kbd "S-<f11>") 'LaTeX-insert-matrix)
 (global-set-key (kbd "<f12>") (lambda () (interactive) (save-buffer) (preview-buffer)))
-(global-set-key (kbd "<H-f12>") 'preview-clearout-buffer)
+(global-set-key (kbd "H-<f12>") 'preview-clearout-buffer)
 
-(global-set-key (kbd "<print>") 'magit-status)
+(global-set-key (kbd "<print>") 'my-magit-status)
 
 (global-set-key (kbd "<home>") 'beginning-of-buffer)
 (global-set-key (kbd "<end>") 'end-of-buffer)
@@ -316,3 +349,5 @@
 ;; (global-set-key (kbd "<XF86Launch1>") 'sr-speedbar-toggle)
 
 (global-set-key (kbd "C-x C-x") (lambda () (interactive) (exchange-point-and-mark) (deactivate-mark) ))
+
+(global-set-key (kbd "<pause>") 'stop-using-minibuffer)

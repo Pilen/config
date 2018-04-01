@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+
+import sys
+import datetime
+import subprocess
+import pathlib
+
+# Copied from `etags --help`
+languages = """
+  ada        .ads .adb .ada
+  asm        .a .asm .def .inc .ins .s .sa .S .src
+  c          .c .h
+  c++        .C .c++ .cc .cpp .cxx .H .h++ .hh .hpp .hxx .M .pdb
+  c*         .cs .hs
+  cobol      .COB .cob
+  erlang     .erl .hrl
+  forth      .fth .tok
+  fortran    .F .f .f90 .for
+  go         .go
+  html       .htm .html .shtml
+  java       .java
+  lisp       .cl .clisp .el .l .lisp .LSP .lsp .ml
+  lua        .lua .LUA
+  makefile   Makefile makefile GNUMakefile Makefile.in Makefile.am
+  objc       .lm .m
+  pascal     .p .pas
+  perl       .pl .pm
+  php        .php .php3 .php4
+  postscript .ps .psw
+  proc       .pc
+  prolog     .prolog
+  python     .py
+  ruby       Rakefile Thorfile .rb .ru .rbw
+  scheme     .oak .sch .scheme .SCM .scm .SM .sm .ss .t
+  tex        .bib .clo .cls .ltx .sty .TeX .tex
+  texinfo    .texi .texinfo .txi
+  yacc       .y .y++ .ym .yxx .yy
+"""
+
+def run_capture(*args, **kwargs):
+    return subprocess.run(args, stdout=subprocess.PIPE, universal_newlines=True, **kwargs)
+
+def parse_filetypes(selection=None):
+    selection = set(selection)
+    filetypes = set()
+    for line in languages.strip().split("\n"):
+        language, *tokens = line.strip().split()
+        if selection and language not in selection:
+            continue
+        filetypes.update(tokens)
+    return filetypes
+
+def get_files():
+    files = run_capture("git", "ls-files").stdout.strip()
+    return (pathlib.Path(file) for file in files.split("\n"))
+
+def match_files(files, types):
+    return (file for file in files if file.suffix in types)
+
+def etags(files):
+    input = "\n".join(str(file) for file in files)
+    run_capture("etags", "-", input=input)
+
+def main():
+    selection = (language.lower() for language in sys.argv[1:])
+    filetypes = parse_filetypes(selection)
+    files = get_files()
+    matched = match_files(files, filetypes)
+    etags(matched)
+
+
+if __name__ == "__main__":
+    main()

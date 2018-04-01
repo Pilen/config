@@ -20,6 +20,9 @@ super + shift + c
 super + {t,shift + t,f,shift + f}
     bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
+super + z
+    bspc node -g sticky
+
 # Cycle layout
 #   cancel the preselection for the focused desktop
 super + space
@@ -30,8 +33,12 @@ super + space
 
 ### Focus / Swap ###
 # Directional
-super + {_,shift + }{u,n,e,i}
-    bspc node -{f,s} {north,west,south,east} || bspc node -f next.local
+# super + {_,shift + }{u,n,e,i}
+#     bspc node -{f,s} {north,west,south,east} || bspc node -f next.local
+super + {_,shift + }{u,n}
+    bspc node -{f,s} {north,west} || bspc node -f prev.local
+super + {_,shift + }{e,i}
+    bspc node -{f,s} {south,east} || bspc node -f next.local
 
 # Next/Previous
 super + {_,shift + } Tab
@@ -66,6 +73,9 @@ super + {_,shift + }{1-9,0}
 
 # super + {k,m}
 #     bspc desktop -f {prev,next}.local
+
+super + {l, y}
+    bspc monitor -f {west,east}
 
 ### Preselect ###
 # Preselect the direction
@@ -126,3 +136,9 @@ XF86AudioLowerVolume
     amixer -q set Master 1-
 XF86AudioMute
     amixer -q set Master toggle
+
+XF86AudioPlay
+    ~/config/scripts/spotify-pause
+
+super + Pause
+    ~/config/scripts/spotify-pause

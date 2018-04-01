@@ -1,7 +1,7 @@
 #!/bin/bash
 
 date=`date +%H:%M`
-bat=`acpi | grep -o '[0-9]*%'`
+bat=`acpi | grep "Battery 0" | grep -o '[0-9]*%'`
 
 if [[ $(acpi | grep "Charging") ]]
 then
@@ -13,7 +13,6 @@ fi
 
 title="$date $bat"
 
-
 menu=(\
         firefox   "firefox"
         emacs     "emacs"
@@ -22,23 +21,29 @@ menu=(\
         gimp      "gimp"
         inkscape  "inkscape"
         krita     "krita"
+        lock-screen "lock-screen"
         xlock     "xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0"
-        xpdf      "perl ~/config/scripts/xpdf.pl"
+        xpdf      "perl $HOME/config/scripts/xpdf.pl"
         chromium  "chromium --purge-memory-button"
-        python3   "urxvtc -bg #111111 -e bpython"
-        # python3   "urxvtc -bg #111111 -fg #51a366 -e ipython3"
-        python2   "urxvtc -bg #111111 -fg #6fbfe7 -e ipython2 -i ~/config/scripts/python2.py"
+        thunderbird "thunderbird.sh"
+        # python3   "urxvtc -bg #111111 -e bpython"
+        python3   "urxvtc -bg #111111 -fg #51a366 -e ipython3 -i $HOME/config/python-defaults.py"
+        python2   "urxvtc -bg #111111 -fg #6fbfe7 -e ipython2 -i $HOME/config/python-defaults.py"
         alsamixer "urxvtc -bg black -e alsamixer"
         htop      "urxvtc -bg black -e htop"
-        cal       "urxvtc -bg black -e perl ~/config/scripts/cal.pl"
+        cal       "urxvtc -bg black -e perl $HOME/config/scripts/cal.pl"
         update    "urxvtc -bg black -e sudo pacman -Syu"
         urxvt-nf  "urxvtc -fade 0"
         shutdown  "urxvtc -bg black -fg red -e sudo shutdown -h now"
+        spotify   "spotify"
+        pause     "spotify-pause"
         youtube   "yplayer"
         politiken "chromium --purge-memory-button -new-window -incognito politiken.dk"
         netflix   "netflix.sh"
         pong      "urxvtc -bg black -e ping google.com"
         color     "zenity --color-selection"
+        suspend   "suspend-computer"
+        frokost   "frokost"
         # 0%        "amixer set Master 0"
         # 10%       "amixer set Master 18"
         # 20%       "amixer set Master 29"
@@ -76,12 +81,12 @@ menu=(\
         # 100%      "amixer set Master 100%"
         # MAX       "amixer set Master 100%"
         maps      "chromium --purge-memory-button -new-window https://maps.google.com/"
-        maple     "~/config/scripts/maple"
+        maple     "$HOME/config/scripts/maple"
         dmenu     "dmenu_run"
-        omacs     "sh ~/config/scripts/omacs"
+        omacs     "sh $HOME/config/scripts/omacs"
         pmacs     "emacs -Q"
 
-        links     "perl ~/config/scripts/linkmenu.pl"
+        links     "perl $HOME/config/scripts/linkmenu.pl"
      )
 
 for (( count = 0 ; count < ${#menu[*]}; count++ )); do
@@ -110,6 +115,7 @@ if [ "$select" != "" ]; then
     part=`echo -e ${menu_commands[*]} | head -$index`
     exe=`echo -e "$part" | tail -1`
 
+    echo $exe
 #   execute
     $exe &
 fi

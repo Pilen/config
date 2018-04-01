@@ -6,6 +6,7 @@ setopt appendhistory autocd extendedglob nomatch
 setopt hist_ignore_space
 setopt hist_expire_dups_first
 setopt HIST_IGNORE_DUPS
+setopt HIST_FIND_NO_DUPS
 setopt transient_rprompt
 unsetopt beep notify
 bindkey -e
@@ -29,6 +30,7 @@ export PATH="${PATH}:/opt/mosml/bin"
 export PATH=~/programs/osm/bin:$PATH
 export PATH=~/config/scripts:$PATH
 export PATH=~/.config/bspwm:$PATH
+export PATH=~/tools/mongodb/bin:$PATH
 autoload -U colors && colors
 
 

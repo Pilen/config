@@ -151,3 +151,74 @@
 
 ;; (setq imenu-create-index-function '.emacs-imenu-create-index)
 ;; (setq imenu--index-alist nil)
+
+
+
+
+;;______________________________________________________________________________
+;π COUNSEL-IMENU
+;;______________________________________________________________________________
+;; Expanded from from counsel.el
+
+;;** `counsel-imenu'
+(defvar imenu-auto-rescan)
+(defvar imenu-auto-rescan-maxout)
+(declare-function imenu--subalist-p "imenu")
+(declare-function imenu--make-index-alist "imenu")
+
+(defun counsel-imenu-get-candidates-from (alist &optional prefix)
+  "Create a list of (key . value) from ALIST.
+PREFIX is used to create the key."
+  (cl-mapcan (lambda (elm)
+               (if (imenu--subalist-p elm)
+                   (counsel-imenu-get-candidates-from
+                    (cl-loop for (e . v) in (cdr elm) collect
+                         (cons e (if (integerp v) (copy-marker v) v)))
+                    ;; pass the prefix to next recursive call
+                    (concat prefix (if prefix ".") (car elm)))
+                 (let ((key (concat
+                             (when prefix
+                               (concat
+                                (propertize prefix 'face 'compilation-info)
+                                ": "))
+                             (car elm))))
+                   (list (cons key
+                               ;; create a imenu candidate here
+                               (cons key (if (overlayp (cdr elm))
+                                             (overlay-start (cdr elm))
+                                           (cdr elm))))))))
+             alist))
+
+(defvar counsel-imenu-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-l") 'ivy-call-and-recenter)
+    map))
+
+;;;###autoload
+(defun my-counsel-imenu ()
+  "Jump to a buffer position indexed by imenu."
+  (interactive)
+  (unless (featurep 'imenu)
+    (require 'imenu nil t))
+  (let* ((imenu-auto-rescan t)
+         (imenu-auto-rescan-maxout (if current-prefix-arg
+                                       (buffer-size)
+                                     imenu-auto-rescan-maxout))
+         (items (imenu--make-index-alist t))
+         (items (delete (assoc "*Rescan*" items) items)))
+    (ivy-read "imenu items: " (counsel-imenu-get-candidates-from items)
+              :preselect (thing-at-point 'symbol)
+              :require-match nil
+              :action (lambda (candidate)
+                        (if (stringp candidate)
+                            (let ((numeric (cl-parse-integer candidate :junk-allowed t)))
+                              (if numeric
+                                  (goto-line numeric)
+                                (beginning-of-buffer)
+                                (swiper candidate)))
+                          (with-ivy-window
+                            ;; In org-mode, (imenu candidate) will expand child node
+                            ;; after jump to the candidate position
+                            (imenu (cdr candidate)))))
+              :keymap counsel-imenu-map
+              :caller 'counsel-imenu)))

@@ -155,9 +155,9 @@
 
 ;(setq line-move-visual nil)
 
-;; uses find-file-at-point
+;;
 (fset 'find-file-at-point-no-enter
-      (lambda (&optional arg) "Keyboard macro."
+      (lambda (&optional arg) "Keyboard macro.\nM-x find-file-at-point return return"
         (interactive "p")
         (kmacro-exec-ring-item
          (quote ([16777313 102 105 110 100 45 102 105 108 101 45 97 116 45 112 111 105 110 116 return return] 0 "%d")) arg)))
@@ -191,6 +191,9 @@
 (add-hook 'compilation-mode-hook 'next-error-follow-minor-mode)
 (add-hook 'occur-mode-hook 'next-error-follow-minor-mode)
 
+
+(dimmer-mode)
+(setq dimmer-percent 0.15)
 
 
 (require 'keyfreq)
@@ -362,6 +365,8 @@
 ;π STARTUP
 ;;______________________________________________________________________________
 (setq inhibit-startup-message t)
+(with-current-buffer (get-buffer-create (generate-new-buffer-name "lock"))
+  (emacs-lock-mode 'exit))
 (defun display-startup-echo-area-message ()
   (message ""))
 (find-file "~/.emacs.d/init.el")
@@ -381,12 +386,24 @@
 ;; (define-key speedbar-mode-map (kbd "<backspace>") 'speedbar-up-directory)
 
 ;; Using neotree instead
+(require 'neotree)
 (setq neo-theme 'ascii)
+(define-key neotree-mode-map (kbd "e") (lambda () (interactive)
+                                         (let ((default-directory (neo-buffer--get-filename-current-line)))
+                                           (when (not (file-directory-p default-directory))
+                                             (setq default-directory (file-name-directory default-directory)))
+                                           (eshell/new default-directory))))
+
+(setq neo-window-width 35)
+;; (setq neo-vc-integration nil)
 
 ;;______________________________________________________________________________
 ;π CONSOLE
 ;;______________________________________________________________________________
 (xterm-mouse-mode t)
+
+(when (display-graphic-p)
+  (global-set-key (kbd "C-x C-z") nil))
 
 ;;______________________________________________________________________________
 ;π AUTO-SAVE
@@ -453,4 +470,44 @@
 ;π MAGIT
 ;;______________________________________________________________________________
 (setq magit-commit-show-diff nil)
-;; (let ((status-buffers (--filter (with-current-buffer it (derived-mode-p 'magit-status-mode)) (buffer-list)))) (car status-buffers))
+(defun my-magit-status ()
+  (interactive)
+  (if (derived-mode-p 'magit-status-mode)
+      (let* ((status-buffers-raw (--filter (with-current-buffer it (derived-mode-p 'magit-status-mode)) (buffer-list)))
+             (status-buffers (-rotate -1 status-buffers-raw))
+             (names (--map (buffer-name it) status-buffers))
+             (alist (-zip-pair names status-buffers))
+             (selected (ido-completing-read "Magit: " names)))
+        (switch-to-buffer (alist-get selected alist)))
+    (call-interactively 'magit-status)))
+
+;;______________________________________________________________________________
+;π SHELL SCRIPTS
+;;______________________________________________________________________________
+(require 'sh-script)
+(set-face-attribute 'sh-heredoc-face nil :weight 'normal)
+;; (set-face-foreground 'sh-heredoc-face "dark salmon")
+;; (set-face-foreground 'sh-heredoc-face "salmon1")
+(set-face-foreground 'sh-heredoc-face "lightsalmon")
+;; (set-face-foreground 'sh-heredoc-face "rosy brown")
+
+
+;;______________________________________________________________________________
+;π ACE-WINDOW
+;;______________________________________________________________________________
+(require 'ace-window)
+(setq aw-scope 'visible)
+(setq aw-scope 'global)
+(set-face-attribute 'aw-leading-char-face nil :family "DejaVu Sans Mono")
+(set-face-attribute 'aw-leading-char-face nil :height 500)
+(setq aw-reverse-frame-list t)
+(defun my-aw-hide-cursor (orig-func &rest args)
+  (let ((cursor-type nil))
+    (apply orig-func args)))
+(advice-add 'ace-window :around 'my-aw-hide-cursor)
+
+;;______________________________________________________________________________
+;π SERVER
+;;______________________________________________________________________________
+(server-force-delete)
+(server-start)

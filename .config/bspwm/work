@@ -1,0 +1,78 @@
+#!/usr/bin/python3
+
+import subprocess
+import socket
+import sys
+import time
+
+logfile = open("/home/spi/work.log", "w")
+def log(*args, **kwargs):
+    print(*args, file=logfile, *kwargs)
+    print(*args, *kwargs)
+    logfile.flush()
+
+def run_capture(*args):
+    log("running:", " ".join(args))
+    return subprocess.run(args, stdout=subprocess.PIPE, universal_newlines=True)
+
+monitor_to_desktops = {"DP-1-3": ("Ex1", "d1", "d2", "d5", "d6", "d7", "Ex1"), # left
+                       "DP-1-2": ("d3", "d4"),        # mid
+                       "eDP-1": ("d8", "d9", "d0")}   # right
+
+def setup_monitors():
+    hostname = socket.gethostname()
+    if hostname != "LA0107":
+        return False
+    xrandr = run_capture("xrandr", "--output", "DP-1-2", "--auto", "--left-of", "eDP-1", "--output", "DP-1-3", "--auto", "--left-of", "DP-1-2")
+    return xrandr.returncode == 0
+
+def setup_desktops():
+    hostname = socket.gethostname()
+    monitors = [x for x in run_capture("bspc", "query", "-M", "--names").stdout.split("\n") if x]
+
+    if (hostname != "LA0107" or
+        len(monitors) != 3 or
+        any(monitor not in monitor_to_desktops for monitor in monitors)):
+        return False
+
+    for monitor, desktops in monitor_to_desktops.items():
+        for desktop in desktops:
+            run_capture("bspc", "desktop", desktop, "-m", monitor)
+    return True
+
+def remove_unused():
+    time.sleep(10)
+    all_desktops = set()
+    for desktops in monitor_to_desktops.values():
+        all_desktops.update(desktops)
+    current_desktops = run_capture("bspc", "query", "-D", "--names").stdout.strip().split("\n")
+    for desktop in current_desktops:
+        if desktop not in all_desktops:
+            log("Removing desktop", desktop)
+            run_capture("bspc", "desktop", desktop, "-r")
+
+def is_at_work():
+    hostname = socket.gethostname()
+    return hostname == "LA0107"
+
+def work_config():
+    run_capture("bspc", "config", "borderless_monocle", "false")
+
+def main():
+    if not is_at_work():
+        log("ERROR: Not at work machine")
+        sys.exit(1)
+
+    work_config()
+
+    if not setup_monitors():
+        log("ERROR: Could not set up monitors")
+        sys.exit(1)
+    if not setup_desktops():
+        log("ERROR: Could not set up desktops")
+        sys.exit(1)
+    remove_unused()
+    sys.exit(0)
+
+if __name__ == "__main__":
+    main()

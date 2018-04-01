@@ -44,25 +44,32 @@
                  (mode . js-mode)
                  (mode . javascript-mode) ;; alias for js-mode
                  (mode . js2-mode)))
-               ("MATLAB"
+               ("Typescript"
+                (or
+                 (mode . typescript-mode)))
+               ("Matlab"
                 (or
                  (mode . matlab-mode)
                  (name . "*MATLAB*")))
-               ("emacs-config"
-                (or
-                 (filename . ".emacs")))
-               ("emacslisp"
+               ;; ("emacs-config"
+               ;;  (or
+               ;;   (filename . ".emacs")))
+               ("Emacslisp"
                 (mode . emacs-lisp-mode))
                ("Shell"
                 (or
                  (filename . "\\.sh")
-                 (mode . shell-script-mode)))
+                 (mode . shell-script-mode)
+                 (mode . sh-mode)))
                ("Perl"
                 (mode . perl-mode))
                ("Tex"
                 (or
                  (mode . auctex)
                  (mode . latex-mode)))
+               ("Markdown"
+                (or
+                 (mode . markdown-mode)))
                ("Org" ;; all org-related buffers
                 (mode . org-mode))
                ("Text"
@@ -83,6 +90,9 @@
                 (mode . Man-mode))
                ("Eshell"
                 (mode . eshell-mode))
+               ("Magit"
+                (or
+                 (name . "magit")))
                ))))
 
 (add-hook 'ibuffer-mode-hook

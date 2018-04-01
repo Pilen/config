@@ -6,6 +6,7 @@
 (setq ido-create-new-buffer 'always)
 (setq ido-file-extension-order '("/" ".tex" ".emacs" ".txt" ".py" ".pl" ".c" ".h" ".hs" ".cfg" ".asm" ".xml" ".org"))
 (setq ido-default-buffer-method 'selected-window)
+(setq ido-case-fold t)
 (ido-mode 1)
 
 (set-face-attribute
@@ -103,3 +104,18 @@
    (delq nil (mapcar
               (lambda (x) (and (char-equal (string-to-char x) ?.) x))
               ido-temp-list))))
+
+(defun my-find-file-in-selected-window ()
+  "https://emacs.stackexchange.com/questions/9447/pick-a-window-for-ido-find-file-other-window-and-ido-switch-buffer-other-window"
+  (interactive)
+  (if (not (window-parent))
+      (ido-find-file-other-window)
+    (let* ((start-window (selected-window))
+           (buffer (find-file-noselect (ido-read-file-name "File: ")))
+           (aw-scope 'visible)
+           (window (aw-select " window: ")))
+      (unwind-protect
+          (progn
+            (aw-switch-to-window window)
+            (switch-to-buffer buffer))
+        (aw-switch-to-window start-window)))))

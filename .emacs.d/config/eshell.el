@@ -26,6 +26,7 @@
   (define-key eshell-mode-map (kbd "C-l") 'eshell/clear)
   (define-key eshell-mode-map (kbd "<return>") 'my-eshell-send-input)
   (define-key eshell-mode-map (kbd "H-r") 'eshell-ido-history)
+  (define-key eshell-mode-map (kbd "H-d") 'my-eshell-kill-whole-line)
   (add-to-list 'eshell-visual-commands "nano")
   (add-to-list 'eshell-visual-commands "htop")
   (add-to-list 'eshell-visual-commands "irssi")
@@ -215,6 +216,10 @@ current frame, create a new window and switch to it.
   (goto-char (point-max))
   (insert (ido-completing-read "execute: " (ring-elements eshell-history-ring))))
 
+(defun my-eshell-kill-whole-line ()
+  (interactive)
+  (eshell-my-bol)
+  (kill-line))
 ;;______________________________________________________________________________
 ;π ESHELLCONTROL
 ;;______________________________________________________________________________
@@ -246,9 +251,14 @@ current frame, create a new window and switch to it.
 ;; If deleting the eshell prompt is suddenly possible, it might be that inhibit-read-only is somehow set to t (should be nil)
 (defun eshell/clear ()
   (interactive)
-  (let ((inhibit-read-only t))
+  (goto-char (point-max))
+  (eshell-my-bol)
+  (let ((inhibit-read-only t)
+        (current (buffer-substring (point) (point-max))))
+    (delete-region (point) (point-max))
     (erase-buffer)
-    (eshell-send-input)))
+    (eshell-send-input)
+    (insert current)))
 
 
 ;;______________________________________________________________________________
@@ -318,6 +328,8 @@ In Eshell's implementation of ls, ENTRIES is always reversed."
       (eshell-bol)
     (beginning-of-line)))
 
+
+
 (defun eshell/ag (string &rest args)
   "Search with ag using the current eshell directory and a given string.
    To be used from within an eshell alias
@@ -328,4 +340,98 @@ In Eshell's implementation of ls, ENTRIES is always reversed."
   "")
 (add-to-list 'ag-ignore-list "#*#")
 
+(defun eshell/agp (string &rest args)
+  "Search with ag using the current eshell directory and a given string.
+   To be used from within an eshell alias
+   (`alias ag 'ag-eshell $1'` within eshell)"
+  (let ((ag-arguments (cons "--smart-case" (cons "--stats" args))))
+    (ag/search string (ag/project-root (eshell/pwd)) :regexp t))
+  "")
+
+(defvar my-ag-history nil)
+(defun ag/read-from-minibuffer (prompt)
+  "Read a value from the minibuffer with PROMPT.
+If there's a string at point, offer that as a default."
+  (let* ((suggested (ag/dwim-at-point))
+         (final-prompt
+          (if suggested
+              (format "%s (default %s): " prompt suggested)
+            (format "%s: " prompt)))
+         ;; Ask the user for input, but add `suggested' to the history
+         ;; so they can use M-n if they want to modify it.
+         (user-input (read-from-minibuffer
+                      final-prompt
+                      nil nil nil
+                      'my-ag-history
+                      suggested)))
+    ;; Return the input provided by the user, or use `suggested' if
+    ;; the input was empty.
+    (if (> (length user-input) 0)
+        user-input
+      suggested)))
+
 (setq ag-reuse-buffers t)
+
+;; Updating linums while ag runs causes it to slow down enormously, so turn it off temporarily
+(add-hook 'ag-mode-hook '(lambda () (linum-mode -1)))
+(add-hook 'ag-search-finished-hook '(lambda () (linum-mode t)))
+
+
+;;______________________________________________________________________________
+;π Enhanced LS
+;;______________________________________________________________________________
+;; https://www.emacswiki.org/emacs/EshellEnhancedLS
+
+(defun ted-eshell-ls-find-file-at-point (point)
+  "RET on Eshell's `ls' output to open files."
+  (interactive "d")
+  (find-file (buffer-substring-no-properties
+              (previous-single-property-change point 'help-echo)
+              (next-single-property-change point 'help-echo))))
+
+(defun pat-eshell-ls-find-file-at-mouse-click (event)
+  "Middle click on Eshell's `ls' output to open files.
+ From Patrick Anderson via the wiki."
+  (interactive "e")
+  (ted-eshell-ls-find-file-at-point (posn-point (event-end event))))
+
+(let ((map (make-sparse-keymap)))
+  (define-key map (kbd "RET")      'ted-eshell-ls-find-file-at-point)
+  (define-key map (kbd "<return>") 'ted-eshell-ls-find-file-at-point)
+  (define-key map (kbd "<mouse-2>") 'pat-eshell-ls-find-file-at-mouse-click)
+  (defvar ted-eshell-ls-keymap map))
+
+(defadvice eshell-ls-decorated-name (after ted-electrify-ls activate)
+  "Eshell's `ls' now lets you click or RET on file names to open them."
+  (add-text-properties 0 (length ad-return-value)
+                       (list 'help-echo "RET, mouse-2: visit this file"
+                             'mouse-face 'highlight
+                             'keymap ted-eshell-ls-keymap)
+                       ad-return-value)
+  ad-return-value)
+
+
+;;______________________________________________________________________________
+;π ESHELL OPEN
+;;______________________________________________________________________________
+(defun my-eshell-open ()
+  (interactive)
+  (if (derived-mode-p 'eshell-mode)
+      (let* ((eshell-buffers-raw (--filter
+                                  (with-current-buffer it
+                                    (derived-mode-p 'eshell-mode))
+                                  (buffer-list)))
+             (eshell-buffers (-rotate -1 eshell-buffers-raw))
+             (names (--map (buffer-name it) eshell-buffers))
+             (alist (-zip-pair names eshell-buffers))
+             (selected (ido-completing-read "Eshell: " names)))
+        (switch-to-buffer (alist-get selected alist)))
+    (let* ((current-buffer (current-buffer))
+           (buffer (--first
+                    (with-current-buffer it
+                      (and (derived-mode-p 'eshell-mode)
+                           (not (eq it current-buffer))))
+                    (buffer-list))))
+      (if buffer
+          (switch-to-buffer-other-window buffer)
+        (eshell)))))

@@ -25,9 +25,69 @@
   (add-hook (intern (format "%s-hook" mode))
             #'lisp-power-mode-activate))
 
+;;______________________________________________________________________________
+;π RACKET/SCHEME
+;;______________________________________________________________________________
+
 (dolist (mode lisp-modes)
   (add-hook (intern (format "%s-hook" mode))
             #'paredit-mode))
+
+;; M-s	paredit-splice-sexp
+;; (foo (bar| baz) quux)
+;;   --->
+;; (foo bar| baz quux)
+
+
+;; <C-right> <C-)>	paredit-forward-slurp-sexp
+;; (foo (bar |baz) quux zot)
+;;   --->
+;; (foo (bar |baz quux) zot)
+
+;; (a b ((c| d)) e f)
+;;   --->
+;; (a b ((c| d) e) f)
+
+
+;; <C-left>	paredit-forward-barf-sexp
+;; (foo (bar |baz quux) zot)
+;;   --->
+;; (foo (bar |baz) quux zot)
+
+
+;; <C-M-left> <C-(>	paredit-backward-slurp-sexp
+;; (foo bar (baz| quux) zot)
+;;   --->
+;; (foo (bar baz| quux) zot)
+
+;; (a b ((c| d)) e f)
+;;   --->
+;; (a (b (c| d)) e f)
+
+
+;; <C-M-right>	paredit-backward-barf-sexp
+;; (foo (bar baz |quux) zot)
+;;   --->
+;; (foo bar (baz |quux) zot)
+
+
+;; M-J	paredit-join-sexps
+;; (hello)| (world)
+;;   --->
+;; (hello| world)
+
+;; "Hello, "| "world!"
+;;   --->
+;; "Hello, |world!"
+
+;; hello-
+;; |  world
+;;   --->
+;; hello-|world
+
+
+;; M-q	paredit-reindent-defun
+;;   (no examples)
 
 ;;______________________________________________________________________________
 ;π RACKET/SCHEME

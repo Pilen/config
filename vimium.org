@@ -33,10 +33,10 @@ map q goToRoot
 
 #search
 map / enterFindMode
-#map . performFind
-#map , performBackwardsFind
+map = performFind
+map λ performBackwardsFind
 
-map . goNext
+map . goNext
 map , goPrevious
 #History
 map L goBack
@@ -48,7 +48,7 @@ map l previousTab
 map t removeTab
 map s restoreTab
 map w moveTabToNewWindow
-map c copyCurrentUrl
+map c copyCurrentUrl
 map x duplicateTab
 map [ moveTabLeft
 map ] moveTabRight

@@ -88,3 +88,11 @@
 
 (setq ansi-color-names-vector ["black" "red" "green" "yellow" "dodger blue" "magenta" "cyan" "white"])
 (setq ansi-color-map (ansi-color-make-color-map))
+
+
+(set-face-foreground 'font-lock-comment-face "chocolate1") ; default
+;; (set-face-foreground 'font-lock-comment-face "rosy brown")
+;; (set-face-foreground 'font-lock-comment-face "chocolate2")
+;; (set-face-foreground 'font-lock-comment-face "chocolate3")
+;; (set-face-foreground 'font-lock-comment-face "chocolate4")
+;; (set-face-foreground 'font-lock-comment-face "chocolate")

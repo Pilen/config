@@ -44,3 +44,11 @@
 
 See `whitespace-line-column'."
   :group 'whitespace)
+
+
+
+;; Because magit fucks with whitespace-mode
+(defun prevent-whitespace-mode-for-magit ()
+  (not (derived-mode-p 'magit-mode)))
+
+(add-function :before-while whitespace-enable-predicate 'prevent-whitespace-mode-for-magit)

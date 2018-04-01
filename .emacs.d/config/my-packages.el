@@ -9,8 +9,10 @@ All packages here will automatically be installed if not present.")
 (setq required-packages
       '(
         ag
+        all-the-icons
         auto-highlight-symbol
         ace-jump-mode
+        ace-window
         auctex
         arduino-mode
         buffer-move
@@ -20,7 +22,9 @@ All packages here will automatically be installed if not present.")
         company-go
         company-jedi
         company-quickhelp
+        csv-mode
         dash
+        dimmer
         diredfl
         dtrt-indent
         elpy
@@ -46,6 +50,7 @@ All packages here will automatically be installed if not present.")
         iedit
         impatient-mode
         inf-ruby
+        ivy-xref
         js2-mode
         jss
         keyfreq
@@ -62,9 +67,11 @@ All packages here will automatically be installed if not present.")
         multiple-cursors
         nav                   ;; Not really used yet
         neotree
+        notmuch
         pager
         paredit
         powerline             ;; Not used
+        projectile
         ;; python-mode        ;; Very heavy (26000 lines+)
         quack
         rainbow-delimiters
@@ -77,6 +84,7 @@ All packages here will automatically be installed if not present.")
         sr-speedbar
         swiper
         tabbar                ;; Not used
+        typescript-mode
         typing
         visible-mark
         volatile-highlights

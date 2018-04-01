@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "$1"
+emacs -Q "$1" --eval '(progn (ps-print-buffer-with-faces) (save-buffers-kill-terminal))'

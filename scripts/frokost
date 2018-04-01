@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+function fetch {
+    url="$1"
+    echo "$url"
+    if curl -s -I "$url" | grep "200 OK"; then
+        chromium --new-window "$url";
+        exit;
+    #     echo "open chromium"
+    #     return 0;
+    # else
+    #     echo "dont open chromium"
+    #     return 1;
+    fi
+}
+
+# false ||
+#     fetch "https://torvekoekken.dk/img/cms/menuer/Favorit%20uge%20$(date +%-V).pdf" ||
+#     fetch "https://torvekoekken.dk/img/cms/Favorit%20uge%20$(date +%-V).pdf"
+
+fetch "https://torvekoekken.dk/img/cms/menuer/Favorit%20uge%20$(date +%-V).pdf"
+fetch "https://torvekoekken.dk/img/cms/Favorit%20uge%20$(date +%-V).pdf"

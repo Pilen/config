@@ -27,5 +27,5 @@ bspc config remove_unplugged_monitors true
 # bspc config remove_disabled_monitors false
 # bspc config remove_unplugged_monitors false
 
-
-python ~/.config/bspwm/bspwm_monitor.py &
+~/.config/bspwm/work
+~/.config/bspwm/monitor.py &
