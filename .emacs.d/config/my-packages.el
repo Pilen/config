@@ -62,6 +62,7 @@ All packages here will automatically be installed if not present.")
         magit
         markdown-mode
         matlab-mode
+        memory-usage
         mic-paren             ;; Not used
         minesweeper
         multiple-cursors
