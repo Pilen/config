@@ -18,5 +18,6 @@ function fetch {
 #     fetch "https://torvekoekken.dk/img/cms/menuer/Favorit%20uge%20$(date +%-V).pdf" ||
 #     fetch "https://torvekoekken.dk/img/cms/Favorit%20uge%20$(date +%-V).pdf"
 
-fetch "https://torvekoekken.dk/img/cms/menuer/Favorit%20uge%20$(date +%-V).pdf"
-fetch "https://torvekoekken.dk/img/cms/Favorit%20uge%20$(date +%-V).pdf"
+# fetch "https://torvekoekken.dk/img/cms/menuer/Favorit%20uge%20$(date +%-V).pdf"
+# fetch "https://torvekoekken.dk/img/cms/Favorit%20uge%20$(date +%-V).pdf"
+fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20uge%20$(date +%-V).pdf"

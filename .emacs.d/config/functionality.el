@@ -284,7 +284,6 @@ This is to update existing buffers after a Git pull of their underlying files."
   (insert (shell-command-to-string (concat "echo -n $(date +'" format "')"))))
 
 
-
 (defun my-align-regexp ()
   (interactive)
   (align-regexp
@@ -293,6 +292,21 @@ This is to update existing buffers after a Git pull of their underlying files."
    (concat (read-string "Align regex: ")
            "\\(\s+\\)")))
 
+(require 'json)
+(defun my-json-sort (point)
+  "Sort JSON-like structure surrounding the point."
+  (interactive "d")
+  (let ((object-begin (nth 1 (syntax-ppss point)))
+        (begin-point (point)))
+    (when object-begin
+      (goto-char object-begin)
+      (forward-list)
+
+      (with-current-buffer (current-buffer)
+        (json-pretty-print-ordered object-begin (point))
+        (indent-region object-begin (point)))
+
+      (goto-char begin-point))))
 ;;______________________________________________________________________________
 ;π CODE FOLDING
 ;;______________________________________________________________________________
