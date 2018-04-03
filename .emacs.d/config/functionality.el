@@ -285,6 +285,14 @@ This is to update existing buffers after a Git pull of their underlying files."
 
 
 
+(defun my-align-regexp ()
+  (interactive)
+  (align-regexp
+   (region-beginning)
+   (region-end)
+   (concat (read-string "Align regex: ")
+           "\\(\s+\\)")))
+
 ;;______________________________________________________________________________
 ;π CODE FOLDING
 ;;______________________________________________________________________________
