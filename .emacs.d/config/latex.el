@@ -19,6 +19,13 @@
 (setq reftex-plug-into-AUCTeX t)
 
 (setq preview-auto-cache-preamble t)
+
+(define-key LaTeX-mode-map (kbd "<f10>") 'reftex-toc-other-window)
+(define-key LaTeX-mode-map (kbd "<f11>") 'LaTeX-environment)
+(define-key LaTeX-mode-map (kbd "H-<f11>") 'LaTeX-close-environment)
+(define-key LaTeX-mode-map (kbd "S-<f11>") 'LaTeX-insert-matrix)
+(define-key LaTeX-mode-map (kbd "<f12>") (lambda () (interactive) (save-buffer) (preview-buffer)))
+
 (define-key reftex-toc-map (kbd "u") 'reftex-toc-previous)
 (define-key reftex-toc-map (kbd "e") 'reftex-toc-next)
 ;(add-hook 'LaTeX-mode-hook 'flyspell-mode)

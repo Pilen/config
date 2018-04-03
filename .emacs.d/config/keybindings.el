@@ -308,12 +308,12 @@
 (global-set-key (kbd "S-<f8>") 'narrow-to-defun)
 ;(global-set-key (kbd "<f9>") 'shell-command-on-region-replace)
 (global-set-key (kbd "<f9>") 'command-center)
-(global-set-key (kbd "<f10>") 'reftex-toc-other-window)
-(global-set-key (kbd "<f11>") 'LaTeX-environment)
-(global-set-key (kbd "H-<f11>") 'LaTeX-close-environment)
-(global-set-key (kbd "S-<f11>") 'LaTeX-insert-matrix)
-(global-set-key (kbd "<f12>") (lambda () (interactive) (save-buffer) (preview-buffer)))
-(global-set-key (kbd "H-<f12>") 'preview-clearout-buffer)
+(global-set-key (kbd "<f10>") nil)
+(global-set-key (kbd "<f11>") nil)
+(global-set-key (kbd "H-<f11>") nil)
+(global-set-key (kbd "S-<f11>") nil)
+(global-set-key (kbd "<f12>") nil)
+(global-set-key (kbd "H-<f12>") nil)
 
 (global-set-key (kbd "<print>") 'my-magit-status)
 
