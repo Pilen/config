@@ -480,6 +480,9 @@
              (selected (ido-completing-read "Magit: " names)))
         (switch-to-buffer (alist-get selected alist)))
     (call-interactively 'magit-status)))
+;; (setq magit-display-file-buffer-function 'magit-display-file-buffer-traditional)
+;; (setq magit-display-file-buffer-function 'magit-display-file-buffer-other-window)
+(setq magit-display-file-buffer-function 'switch-to-buffer-other-window)
 
 ;;______________________________________________________________________________
 ;π SHELL SCRIPTS
