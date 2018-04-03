@@ -2,6 +2,6 @@
 
 synclient TouchpadOff=1
 
-declare -i DEVICE
+# declare -i DEVICE # DEVICE is an integer
 DEVICE=$(xinput list | grep -Eo 'TouchPad\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}')
-xinput set-prop $DEVICE "Device Enabled" 0
+xinput set-prop "$DEVICE" "Device Enabled" 0
