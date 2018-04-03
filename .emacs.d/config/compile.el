@@ -30,6 +30,8 @@
   (save-some-buffers)
   (let ((already-visible (and (get-buffer "*compilation*") (get-buffer-window-list "*compilation*" nil t))))
     (cond
+     ((file-exists-p (concat (file-name-directory (buffer-file-name (current-buffer))) ".Makefile.emacs"))
+      (compile "./.Makefile.emacs"))
      ((file-exists-p (concat (file-name-directory (buffer-file-name (current-buffer))) "Makefile"))
       (compile "make"))
      ((null (car compile-history))
