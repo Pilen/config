@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+if [[ $# -eq  0 ]]; then
+    # No arguments given
+    ls -CF --group-directories-first --color=auto "$@";
+else
+    if [[ -d "${@: -1}" ]]; then
+        # Last argument is dir
+        ls  -CF --group-directories-first --color=auto "$@";
+    else
+        less "$@"
+    fi
+fi

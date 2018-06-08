@@ -43,6 +43,7 @@ menu=(\
         pong      "urxvtc -bg black -e ping google.com"
         color     "zenity --color-selection"
         suspend   "suspend-computer"
+        starleaf  "starleaf-breeze"
         frokost   "frokost"
         # 0%        "amixer set Master 0"
         # 10%       "amixer set Master 18"

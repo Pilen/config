@@ -1,13 +1,12 @@
 #!/usr/bin/env sh
 
-ssh "$@" -t "sudo -i bash -O globstar"
+REMOTE_CONFIG_DIR="$HOME/remoteconfig" # Assume remote user and local user has same $HOME
+LOCAL_CONFIG_DIR="$HOME/config/remoteconfig"
 
-# # https://gist.github.com/nabetama/a4ca03dd88541e065cff
-# # https://jackal777.wordpress.com/2013/03/07/automate-ssh-sudo-using-expect/
-# expect -c "
-# set timeout 10
-# spawn ssh \"$@\"
-# expect \"$ \"; send \"sudo -i\n\"
-# # expect \": \"; send \"\n\"
-# interact
-# "
+cp "$HOME/config/.aliases" "$LOCAL_CONFIG_DIR/"
+cp "$HOME/config/scripts/highlight" "$LOCAL_CONFIG_DIR/scripts/"
+cp "$HOME/config/scripts/ifind" "$LOCAL_CONFIG_DIR/scripts/"
+cp "$HOME/config/scripts/lss" "$LOCAL_CONFIG_DIR/scripts/"
+
+rsync -r "$LOCAL_CONFIG_DIR/" "$@:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1
+ssh "$@" -t "sudo -i REMOTE_CONFIG_DIR=${REMOTE_CONFIG_DIR} bash --rcfile ${REMOTE_CONFIG_DIR}/bashrc -O globstar"

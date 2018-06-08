@@ -35,10 +35,15 @@ super + space
 # Directional
 # super + {_,shift + }{u,n,e,i}
 #     bspc node -{f,s} {north,west,south,east} || bspc node -f next.local
-super + {_,shift + }{u,n}
-    bspc node -{f,s} {north,west} || bspc node -f prev.local
-super + {_,shift + }{e,i}
-    bspc node -{f,s} {south,east} || bspc node -f next.local
+# super + {_,shift + }{u,n}
+#     bspc node -{f,s} {north,west} || bspc node -f prev.local
+# super + {_,shift + }{e,i}
+#     bspc node -{f,s} {south,east} || bspc node -f next.local
+super + {_,shift + }{u,n,e,i}
+    bspc node -{f,s} {north,west,south,east}
+
+super + k
+    bspc node -f next.floating
 
 # Next/Previous
 super + {_,shift + } Tab
@@ -68,8 +73,12 @@ super + shift + {w,a,r,s}
 
 
 ### Desktops ###
-super + {_,shift + }{1-9,0}
-    bspc {desktop -f,node -d} 'd{1-9,0}'
+# super + {_,shift + }{1-9,0}
+#     bspc {desktop -f,node -d} 'd{1-9,0}'
+super + {1-9,0}
+    bspc desktop -f 'd{1-9,0}'
+super + shift + {1-9,0}
+    bspc node -d 'd{1-9,0}'; bspc desktop -f last
 
 # super + {k,m}
 #     bspc desktop -f {prev,next}.local
@@ -106,8 +115,8 @@ super + comma
 #     bspc node @ -f
 
 # Flip selection
-super + {h,v,k,m}
-    bspc node $(bspc query -T -n @ | isleaf.py "@/" "@") -F {horizontal,vertical,horizontal,vertical}
+super + {h,v}
+    bspc node $(bspc query -T -n @ | isleaf.py "@/" "@") -F {horizontal,vertical}
 
 # Rotate selection
 super + period

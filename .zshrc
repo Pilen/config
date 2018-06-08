@@ -71,18 +71,6 @@ function mkcd {
 function cl {
     cd $1 && ls
 }
-function lss {
-    if [[ -n $1 ]]; then
-        if [[ -d $1 ]]; then
-            ls  -CF --group-directories-first --color=auto "$@";
-            else
-            less "$@";
-        fi
-    else
-        ls -CF --group-directories-first --color=auto "$@";
-    fi
-}
-
 cman() {
     env \
         LESS_TERMCAP_mb=$(printf "\e[1;31m") \
