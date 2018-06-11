@@ -268,6 +268,12 @@
 (require 'lorem-ipsum)
 
 (setq tramp-default-method "ssh")
+;; ;; http://irreal.org/blog/?p=895
+;; Not needed, just works now    cd /sudo:root@smxp:/opt/
+;; (add-to-list 'tramp-default-proxies-alist
+;;              '(nil "\\`root\\'" "/ssh:%h:"))
+;; (add-to-list 'tramp-default-proxies-alist
+;;              '((regexp-quote (system-name)) nil nil))
 
 (setq view-read-only t)
 
@@ -334,12 +340,15 @@
 
 (setq save-interprogram-paste-before-kill t)
 
+(define-key minibuffer-local-map (kbd "H-u") 'previous-line-or-history-element)
+(define-key minibuffer-local-map (kbd "H-e") 'next-line-or-history-element)
+
 ;;______________________________________________________________________________
 ;π COMPLETIONS
 ;;______________________________________________________________________________
 
-(define-key completion-list-mode-map (kbd "H-e") 'next-completion)
 (define-key completion-list-mode-map (kbd "H-u") 'previous-completion)
+(define-key completion-list-mode-map (kbd "H-e") 'next-completion)
 
 ;;______________________________________________________________________________
 ;π FILL-COLUMN-INDICATOR
@@ -393,6 +402,8 @@
                                            (when (not (file-directory-p default-directory))
                                              (setq default-directory (file-name-directory default-directory)))
                                            (eshell/new default-directory))))
+(define-key neotree-mode-map (kbd "b") (lambda () (interactive) (goto-char (point-min)) (neotree-change-root)))
+(define-key neotree-mode-map (kbd "c") 'neotree-change-root)
 
 (setq neo-window-width 35)
 ;; (setq neo-vc-integration nil)

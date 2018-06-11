@@ -17,6 +17,7 @@ All packages here will automatically be installed if not present.")
         arduino-mode
         buffer-move
         c-eldoc
+        counsel
         column-marker
         company
         company-go
@@ -65,6 +66,7 @@ All packages here will automatically be installed if not present.")
         memory-usage
         mic-paren             ;; Not used
         minesweeper
+        ;; mu4e
         multiple-cursors
         nav                   ;; Not really used yet
         neotree

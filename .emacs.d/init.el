@@ -394,6 +394,8 @@
 (load-file "~/.emacs.d/config/zoom.el")
 (load-file "~/.emacs.d/config/symbols.el")
 
+(require 'vagrant)
+
 (load-file "~/.emacs.d/config/revy.el")
 (load-file "~/.emacs.d/my-plugins/arduinel.el")
 
@@ -422,7 +424,7 @@
  '(menu-bar-mode nil)
  '(package-selected-packages
    (quote
-    (ace-jump-mode ace-window ag all-the-icons arduino-mode auctex auto-highlight-symbol buffer-move c-eldoc column-marker company-go company-jedi company-quickhelp csv-mode dimmer diredfl dtrt-indent elpy ensime erc-hl-nicks fastnav fill-column-indicator flymake-cursor full-ack fuzzy geiser ghc golden-ratio google-translate goto-last-change graphviz-dot-mode highlight-tail hlinum idomenu iedit impatient-mode inf-ruby ivy-xref jss keyfreq kite less-css-mode livid-mode loccur lorem-ipsum magit markdown-mode matlab-mode memory-usage mic-paren minesweeper multiple-cursors nav neotree notmuch pager paredit powerline projectile python-mode quack rainbow-delimiters rfringe smart-forward smex sml-mode sr-speedbar swiper tabbar typescript-mode typing visible-mark volatile-highlights web web-mode win-switch window-numbering wrap-region zeal-at-point)))
+    (mu4e ace-jump-mode ace-window ag all-the-icons arduino-mode auctex auto-highlight-symbol buffer-move c-eldoc column-marker company-go company-jedi company-quickhelp csv-mode dimmer diredfl dtrt-indent elpy ensime erc-hl-nicks fastnav fill-column-indicator flymake-cursor full-ack fuzzy geiser ghc golden-ratio google-translate goto-last-change graphviz-dot-mode highlight-tail hlinum idomenu iedit impatient-mode inf-ruby ivy-xref jss keyfreq kite less-css-mode livid-mode loccur lorem-ipsum magit markdown-mode matlab-mode memory-usage mic-paren minesweeper multiple-cursors nav neotree notmuch pager paredit powerline projectile python-mode quack rainbow-delimiters rfringe smart-forward smex sml-mode sr-speedbar swiper tabbar typescript-mode typing visible-mark volatile-highlights web web-mode win-switch window-numbering wrap-region zeal-at-point)))
  '(protect-buffer-bury-p nil)
  '(show-paren-mode t)
  '(tool-bar-mode nil)

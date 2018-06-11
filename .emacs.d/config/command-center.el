@@ -49,6 +49,7 @@
   (command-center-add (lambda () (interactive) (call-interactively 'set-buffer-file-coding-system)) "set-encoding")
   (command-center-add (lambda () (interactive) (let ((before-save-hook nil)) (save-buffer))) "save-buffer-no-hook")
   (command-center-add 'sudo-edit-current-file "edit current file sudo root")
+  (command-center-add 'count-words "count-lines/words")
 
   ;; Project
   (command-center-add 'projectile-find-file-dwim)
@@ -157,6 +158,9 @@
   (command-center-add (lambda () (interactive) (ido-find-file-in-dir "~/.emacs.d/config/")) "find config file")
   (command-center-add 'goto-command-center)
 
+  (command-center-add 'dired-toggle-read-only "dired-edit")
+  (command-center-add 'wdired-finish-edit "dired-finish-edit")
+  (command-center-add (lambda () (interactive) (mc/insert-numbers (string-to-number (read-from-minibuffer "start: ")))) "multiple-cursors-insert-number")
   ;; Revy
   (command-center-add 'revy-abort)
   (command-center-add 'revy-show-text)
