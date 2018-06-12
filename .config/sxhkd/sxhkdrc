@@ -39,8 +39,12 @@ super + space
 #     bspc node -{f,s} {north,west} || bspc node -f prev.local
 # super + {_,shift + }{e,i}
 #     bspc node -{f,s} {south,east} || bspc node -f next.local
-super + {_,shift + }{u,n,e,i}
-    bspc node -{f,s} {north,west,south,east}
+# super + {_,shift + }{u,n,e,i}
+#     bspc node -{f,s} {north,west,south,east} --follow
+super + {u,n,e,i}
+    bspc node -f {north,west,south,east}
+super + shift + {u,n,e,i}
+    bspc node -s {north,west,south,east} --follow
 
 super + k
     bspc node -f next.floating
@@ -78,7 +82,7 @@ super + shift + {w,a,r,s}
 super + {1-9,0}
     bspc desktop -f 'd{1-9,0}'
 super + shift + {1-9,0}
-    bspc node -d 'd{1-9,0}'; bspc desktop -f last
+    bspc node -d 'd{1-9,0}'
 
 # super + {k,m}
 #     bspc desktop -f {prev,next}.local

@@ -20,21 +20,19 @@ monitor_to_desktops = {"DP-1-3": ("Ex1", "d1", "d2", "d5", "d6", "d7", "Ex1"), #
                        "eDP-1": ("d8", "d9", "d0")}   # right
 
 def setup_monitors():
-    hostname = socket.gethostname()
-    if hostname != "LA0107":
-        return False
-    xrandr = run_capture("xrandr", "--output", "DP-1-2", "--auto", "--left-of", "eDP-1", "--output", "DP-1-3", "--auto", "--left-of", "DP-1-2")
+    xrandr = run_capture("xrandr",
+                         "--output", "DP-1-2", "--auto", "--left-of", "eDP-1",
+                         "--output", "DP-1-3", "--auto", "--left-of", "DP-1-2")
     return xrandr.returncode == 0
 
 def setup_desktops():
-    hostname = socket.gethostname()
-    monitors = [x for x in run_capture("bspc", "query", "-M", "--names").stdout.split("\n") if x]
-
-    if (hostname != "LA0107" or
-        len(monitors) != 3 or
-        any(monitor not in monitor_to_desktops for monitor in monitors)):
+    # Are the monitors setup correctly?
+    monitors_output = run_capture("bspc", "query", "-M", "--names")
+    monitors = [x for x in monitors_output.stdout.split("\n") if x]
+    if (len(monitors) != 3 or any(monitor not in monitor_to_desktops for monitor in monitors)):
         return False
 
+    # Setup desktops
     for monitor, desktops in monitor_to_desktops.items():
         for desktop in desktops:
             run_capture("bspc", "desktop", desktop, "-m", monitor)
@@ -57,6 +55,14 @@ def is_at_work():
 
 def work_config():
     run_capture("bspc", "config", "borderless_monocle", "false")
+
+    run_capture("bspc", "config", "border_width", "2")
+    run_capture("bspc", "config", "window_gap", "-2")
+    for side in ("top", "right", "bottom", "left"):
+        run_capture("bspc", "config", side+"_padding", "2")
+    run_capture("bspc", "config", "paddingless_monocle", "true")
+
+
 
 def main():
     if not is_at_work():
