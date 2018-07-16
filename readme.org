@@ -3,3 +3,11 @@
 * bspwm
   https://github.com/windelicato/dotfiles/wiki/bspwm-for-dummies
   http://profectium.blogspot.dk/2016/07/how-to-install-bspwm_85.html
+
+* GTK
+Fuck dconf!
+
+sudo apt install dconf-tools
+dconf-editor
+org > gtk > settings > file-chooser > startup-mode = recent
+org > gnome > evince > default > sizing-mode = fit-page
