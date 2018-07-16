@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+file="$(zenity --file-selection --file-filter="*.pdf")"
+if [[ $file ]]
+then
+    evince "$file"
+fi

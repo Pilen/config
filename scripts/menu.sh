@@ -23,6 +23,7 @@ menu=(\
         krita     "krita"
         lock-screen "lock-screen"
         xlock     "xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0"
+        evince    "my-evince"
         xpdf      "perl $HOME/config/scripts/xpdf.pl"
         chromium  "chromium --purge-memory-button"
         thunderbird "thunderbird.sh"
