@@ -151,7 +151,16 @@ XF86AudioMute
     amixer -q set Master toggle
 
 XF86AudioPlay
-    ~/config/scripts/spotify-pause
+    ~/config/scripts/spotify-control playpause
 
 super + Pause
-    ~/config/scripts/spotify-pause
+    ~/config/scripts/spotify-control playpause
+
+XF86AudioNext
+    ~/config/scripts/spotify-control next
+
+XF86AudioPrev
+    ~/config/scripts/spotify-control previous
+
+# XF86AudioStop
+#     ~/config/scripts/spotify-control stop

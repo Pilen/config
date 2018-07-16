@@ -36,7 +36,7 @@ menu=(\
         urxvt-nf  "urxvtc -fade 0"
         shutdown  "urxvtc -bg black -fg red -e sudo shutdown -h now"
         spotify   "spotify"
-        pause     "spotify-pause"
+        pause     "spotify-control playpause"
         youtube   "yplayer"
         politiken "chromium --purge-memory-button -new-window -incognito politiken.dk"
         netflix   "netflix.sh"
