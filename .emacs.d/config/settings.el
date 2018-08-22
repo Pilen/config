@@ -483,7 +483,7 @@
 ;; (setq magit-display-file-buffer-function 'magit-display-file-buffer-traditional)
 ;; (setq magit-display-file-buffer-function 'magit-display-file-buffer-other-window)
 (setq magit-display-file-buffer-function 'switch-to-buffer-other-window)
-
+(setq magit-log-margin '(t "%F %T" magit-log-margin-width t 18))
 ;;______________________________________________________________________________
 ;π SHELL SCRIPTS
 ;;______________________________________________________________________________
