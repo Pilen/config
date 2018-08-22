@@ -157,6 +157,11 @@
   (command-center-add (lambda () (interactive) (ido-find-file-in-dir "~/.emacs.d/config/")) "find config file")
   (command-center-add 'goto-command-center)
 
+  (command-center-add (lambda () (interactive) (insert (prin1-to-string (call-interactively 'eval-expression)))) "insert")
+
+  (command-center-add 'my-antialias-toggle)
+
+
   ;; Revy
   (command-center-add 'revy-abort)
   (command-center-add 'revy-show-text)

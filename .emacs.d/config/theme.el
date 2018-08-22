@@ -24,6 +24,12 @@
  '(flymake-warnline ((((class color)) (:underline "yellow"))))
  '(whitespace-line ((t (:inherit nil :background "gray20")))))
 
+(setq my-antialias-toggle nil)
+(defun my-antialias-toggle ()
+  (interactive)
+  (setq my-antialias-toggle (not my-antialias-toggle))
+  (set-face-font 'default (if my-antialias-toggle ":" ":antialias=false")))
+
 ;;______________________________________________________________________________
 ;π THEME
 ;;______________________________________________________________________________
