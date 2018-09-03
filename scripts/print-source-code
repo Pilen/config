@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
+export NO_AT_BRIDGE=1 # Makes Emacs not throw the warning: ** (emacs:3616): WARNING **: Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus
+
 echo "$1"
-emacs -Q "$1" --eval '(progn (ps-print-buffer-with-faces) (save-buffers-kill-terminal))'
+emacs -Q "$1" --eval '(progn (setq ps-paper-type (quote a4)) (setq ps-right-margin 20) (setq ps-left-margin 20) (ps-print-buffer-with-faces) (save-buffers-kill-terminal))'
