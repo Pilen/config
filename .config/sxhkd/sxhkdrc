@@ -41,8 +41,10 @@ super + space
 #     bspc node -{f,s} {south,east} || bspc node -f next.local
 # super + {_,shift + }{u,n,e,i}
 #     bspc node -{f,s} {north,west,south,east} --follow
+# super + {u,n,e,i}
+#     bspc node -f {north,west,south,east}
 super + {u,n,e,i}
-    bspc node -f {north,west,south,east}
+    subwindow-moving.py {north,west,south,east}
 super + shift + {u,n,e,i}
     bspc node -s {north,west,south,east} --follow
 
