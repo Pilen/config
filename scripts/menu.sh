@@ -70,6 +70,7 @@ menu=(\
         90%       "amixer set Master 72"
         100%      "amixer set Master 74"
         MAX       "amixer set Master 100%"
+        mute      "amixer -q set Master toggle"
         # 0%        "amixer set Master  0%"
         # 10%       "amixer set Master 10%"
         # 20%       "amixer set Master 20%"
