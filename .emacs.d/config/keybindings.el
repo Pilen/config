@@ -313,7 +313,7 @@
 (global-set-key (kbd "H-<f11>") nil)
 (global-set-key (kbd "S-<f11>") nil)
 (global-set-key (kbd "<f12>") 'neotree)
-(global-set-key (kbd "H-<f12>") nil)
+(global-set-key (kbd "H-<f12>") 'neotree-toggle)
 
 (global-set-key (kbd "<print>") 'my-magit-status)
 

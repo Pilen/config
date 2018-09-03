@@ -338,7 +338,9 @@ In Eshell's implementation of ls, ENTRIES is always reversed."
   (let ((ag-arguments (cons "--smart-case" (cons "--stats" args))))
     (ag/search string (eshell/pwd) :regexp t))
   "")
-(add-to-list 'ag-ignore-list "#*#")
+(setq-default ag-ignore-list '("#*#" "venv"))
+;; (add-to-list 'ag-ignore-list "#*#")
+;; (add-to-list 'ag-ignore-list "venv")
 
 (defun eshell/agp (string &rest args)
   "Search with ag using the current eshell directory and a given string.

@@ -44,7 +44,10 @@
     (while (> h 1.0)
       (decf h))
     (set-background-color (apply 'color-rgb-to-hex (color-hsl-to-rgb h s l)))))
-(my-frame-random-background )
+
+(defun my-frame-reset-background ()
+  (interactive)
+  (set-background-color (frame-parameter my-frame-main 'background-color)))
 
 (defvar my-nice-background-colors '("#203538" "#1e2034" "#1d2031"))
 ;; (frame-parameter nil 'background-color)

@@ -15,3 +15,12 @@
     (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
 
 (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
+
+
+(defun my-org-shift-return ()
+  (interactive)
+  (if (org-table-check-inside-data-field t)
+      (call-interactively 'org-table-copy-down)
+    (call-interactively 'new-indented-line)))
+
+(define-key org-mode-map (kbd "S-<return>") 'my-org-shift-return)

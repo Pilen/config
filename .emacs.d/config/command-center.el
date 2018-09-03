@@ -99,6 +99,12 @@
   (command-center-add 'org-indent-region)
   (command-center-add 'org-store-link)
 
+  ;; Origami
+  (command-center-add 'origami-open-all-nodes)
+  (command-center-add 'origami-close-all-nodes)
+  (command-center-add 'origami-recursively-toggle-node)
+  (command-center-add 'origami-show-only-node)
+
   ;; Frames
   (command-center-add 'my-frame-new "frame-new") ;; 35?
   (command-center-add 'my-frame-close "frame-close")
@@ -130,6 +136,7 @@
   (command-center-add 'sql-clear "clear")
   (command-center-add 'sql-clear)
   (command-center-add 'gtags-create-or-update)
+  (command-center-add 'visit-tags-table)
   (command-center-add 'indent-region)
   (command-center-add 'horizontal-recenter)
   (command-center-add 'google-translate-da/en)

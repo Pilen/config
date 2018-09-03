@@ -58,6 +58,8 @@
 (add-hook 'calendar-mode-hook
           (lambda ()
             (set-face-attribute 'calendar-today nil :bold t)))
+(add-hook 'calendar-today-visible-hook
+          'calendar-mark-today)
 
 (setq temporary-file-directory "/tmp/")
 (setq kill-buffer-query-functions
@@ -370,6 +372,8 @@
 (add-hook 'jde-mode-hook (lambda () (column-marker-1 fill-column)))
 
 
+(setq ps-paper-type 'a4)
+
 ;;______________________________________________________________________________
 ;π STARTUP
 ;;______________________________________________________________________________
@@ -480,6 +484,7 @@
 ;;______________________________________________________________________________
 ;π MAGIT
 ;;______________________________________________________________________________
+(magit-todos-mode)
 (setq magit-commit-show-diff nil)
 (defun my-magit-status ()
   (interactive)

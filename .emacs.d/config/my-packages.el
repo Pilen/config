@@ -61,6 +61,7 @@ All packages here will automatically be installed if not present.")
         loccur
         lorem-ipsum
         magit
+        magit-todos
         markdown-mode
         matlab-mode
         memory-usage
@@ -71,6 +72,7 @@ All packages here will automatically be installed if not present.")
         nav                   ;; Not really used yet
         neotree
         notmuch
+        origami
         pager
         paredit
         powerline             ;; Not used
