@@ -42,3 +42,8 @@
         (delete-overlay overlay)))))
 
 (add-hook 'ag-search-finished-hook 'my-ahs-clear-overlays)
+
+
+;; Looks like auto-highlight-symbol-mode is inconsistent of its use of variables
+(setq ahs-default-symbol-regexp "^[0-9A-Za-zæøåÆØÅ/_.,:;*+=&%|$#@!^?-]+$")
+(setq ahs-include ahs-default-symbol-regexp)
