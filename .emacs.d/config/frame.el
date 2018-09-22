@@ -6,8 +6,9 @@
   (interactive)
   (with-selected-frame (make-frame-command)
     ;; (set-background-color "grey28")
-    (my-frame-random-background (length (frame-list)))))
-
+    (if (frame-live-p my-frame-main)
+        (my-frame-random-background (length (frame-list)))
+      (setq my-frame-main (selected-frame)))))
 
 (defun my-frame-close ()
   "Close current frame"

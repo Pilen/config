@@ -263,10 +263,11 @@
 (global-set-key (kbd "H-`") 'flymake-goto-next-error)
 (global-set-key (kbd "H-~") 'flymake-mode)
 
-(global-set-key (kbd "H-1") 'bc-set)
-(global-set-key (kbd "H-2") 'bc-local-previous)
-(global-set-key (kbd "H-3") 'bc-local-next)
-(global-set-key (kbd "H-#") 'bc-list)
+;; (global-set-key (kbd "H-1") 'bc-set)
+;; (global-set-key (kbd "H-2") 'bc-local-previous)
+;; (global-set-key (kbd "H-3") 'bc-local-next)
+;; (global-set-key (kbd "H-#") 'bc-list)
+(global-set-key (kbd "H-1") 'next-error)
 (global-set-key (kbd "H-4") 'fill-paragraph)
 (global-set-key (kbd "H-$") 'fill-paragraph-from-current-line)
 

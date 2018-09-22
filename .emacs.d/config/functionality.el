@@ -307,6 +307,20 @@ This is to update existing buffers after a Git pull of their underlying files."
         (indent-region object-begin (point)))
 
       (goto-char begin-point))))
+
+
+(defun my-comment-box ()
+  (interactive)
+  (center-line)
+  (save-excursion
+    (beginning-of-line)
+    (delete-char 2)
+    (insert "/*")
+    (end-of-line)
+    (dotimes (_ (- fill-column (current-column) 2))
+      (insert " "))
+    (insert "*/")))
+
 ;;______________________________________________________________________________
 ;π CODE FOLDING
 ;;______________________________________________________________________________
