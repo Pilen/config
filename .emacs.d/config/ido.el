@@ -7,6 +7,7 @@
 (setq ido-file-extension-order '("/" ".tex" ".emacs" ".txt" ".py" ".pl" ".c" ".h" ".hs" ".cfg" ".asm" ".xml" ".org"))
 (setq ido-default-buffer-method 'selected-window)
 (setq ido-case-fold t)
+(setq ido-auto-merge-work-directories-length -1)
 (ido-mode 1)
 
 (set-face-attribute
