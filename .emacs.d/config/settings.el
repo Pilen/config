@@ -504,11 +504,11 @@
 ;π SHELL SCRIPTS
 ;;______________________________________________________________________________
 (require 'sh-script)
-(set-face-attribute 'sh-heredoc-face nil :weight 'normal)
-;; (set-face-foreground 'sh-heredoc-face "dark salmon")
-;; (set-face-foreground 'sh-heredoc-face "salmon1")
-(set-face-foreground 'sh-heredoc-face "lightsalmon")
-;; (set-face-foreground 'sh-heredoc-face "rosy brown")
+(set-face-attribute 'sh-heredoc nil :weight 'normal)
+;; (set-face-foreground 'sh-heredoc "dark salmon")
+;; (set-face-foreground 'sh-heredoc "salmon1")
+(set-face-foreground 'sh-heredoc "lightsalmon")
+;; (set-face-foreground 'sh-heredoc "rosy brown")
 
 
 ;;______________________________________________________________________________

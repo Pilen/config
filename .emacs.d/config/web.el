@@ -43,7 +43,8 @@
       (forward-char)
     (insert ">")
     (save-excursion
-      (let ((tag (elt (save-excursion (sgml-parse-tag-backward)) 4)))
+      ;; (let ((tag (elt (save-excursion (sgml-parse-tag-backward)) 4)))
+      (let ((tag (sgml-tag-name (save-excursion (sgml-parse-tag-backward)))))
         (if (not (or (member tag sgml-empty-tags)
                      (member tag web-mode-void-elements)))
             (progn
