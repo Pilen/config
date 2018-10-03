@@ -4,6 +4,9 @@
   https://github.com/windelicato/dotfiles/wiki/bspwm-for-dummies
   http://profectium.blogspot.dk/2016/07/how-to-install-bspwm_85.html
 
+src/window.c:29:23: fatal error: xcb/shape.h: No such file or directory
+sudo apt install libxcb-shape0-dev
+
 * GTK
 Fuck dconf!
 
