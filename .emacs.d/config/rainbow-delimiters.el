@@ -98,11 +98,11 @@
 ;(show-paren-mode t)
 ;(show-paren-delay 0)
 ;(show-paren-style 'expression)
-;(set-face-background 'show-paren-match-face "#aaaaaa")
-;(set-face-attribute 'show-paren-match-face nil
+;(set-face-background 'show-paren-match "#aaaaaa")
+;(set-face-attribute 'show-paren-match nil
 ;                    :weight 'bold :underline nil : overline nil :slant 'normal)
-;(set-face-foreground 'show-paren-mismatch-face "red")
-;(set-face-attribute 'show-paren-mismatch-face nil
+;(set-face-foreground 'show-paren-mismatch "red")
+;(set-face-attribute 'show-paren-mismatch nil
 ;                    :weight 'bold :underline t :overline nil : slant 'normal)
 
 ;(require 'highlight-parentheses)

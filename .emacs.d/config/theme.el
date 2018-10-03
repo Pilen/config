@@ -59,11 +59,11 @@
 ;   '(mode-line-inactive ((t (:box (:line-width 0 :color "gray50"))))))
 
 (set-face-background 'mode-line "slate gray")
-(set-face-background 'modeline-inactive "gray36")
-;(set-face-foreground 'modeline-inactive "gray10")
-(set-face-foreground 'modeline-inactive "black")
+(set-face-background 'mode-line-inactive "gray36")
+;(set-face-foreground 'mode-line-inactive "gray10")
+(set-face-foreground 'mode-line-inactive "black")
 
-;(set-face-background 'modeline "#4477aa")
+;(set-face-background 'mode-line "#4477aa")
 (set-face-attribute 'mode-line nil :box nil)
 ;(set-background-color "black")
 ;(set-face-background 'default "black")
@@ -74,7 +74,7 @@
 ;(set-cursor-color "red")
 ;(set-cursor-color "cyan")
 
-(set-face-background 'show-paren-match-face "gray40")
+(set-face-background 'show-paren-match "gray40")
 ;(set-face-background 'paren-face-match "gray40") ;; from mic-paren
 
 (set-face-foreground 'vertical-border "gray22")

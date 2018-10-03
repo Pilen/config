@@ -436,6 +436,8 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 90 :width normal :foundry "Schumacher" :family "Clean"))))
  '(eshell-prompt ((t (:foreground "LightSkyBlue1" :weight bold))))
- '(flymake-errline ((((class color)) (:underline "red"))))
- '(flymake-warnline ((((class color)) (:underline "yellow"))))
+ '(flymake-errline ((((class color)) (:underline "red"))) t)
+ '(flymake-error ((((class color)) (:underline "red"))))
+ '(flymake-warning ((((class color)) (:underline "yellow"))))
+ '(flymake-warnline ((((class color)) (:underline "yellow"))) t)
  '(whitespace-line ((t (:inherit nil :background "gray20")))))

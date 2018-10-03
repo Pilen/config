@@ -1,7 +1,8 @@
 ;;______________________________________________________________________________
 ;π FLYSPELL
 ;;______________________________________________________________________________
-(autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
+(require 'flyspell)
+;(autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
 (setq flyspell-issue-welcome-flag nil)
                                         ;(setq ispell-dictionary "dansk")
 (setq ispell-dictionary "english")
