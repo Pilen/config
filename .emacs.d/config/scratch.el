@@ -4,6 +4,7 @@
 
 (define-derived-mode scratch-mode fundamental-mode "Scratch" "Scratch buffers"
   (interactive)
+  (setq electric-indent-inhibit t)
   (run-hooks 'scratch-mode-hook))
 
 (defun create-scratch-buffer ()

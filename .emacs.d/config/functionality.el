@@ -309,6 +309,7 @@ This is to update existing buffers after a Git pull of their underlying files."
       (goto-char begin-point))))
 
 
+
 (defun my-comment-box ()
   (interactive)
   (center-line)
@@ -320,6 +321,24 @@ This is to update existing buffers after a Git pull of their underlying files."
     (dotimes (_ (- fill-column (current-column) 2))
       (insert " "))
     (insert "*/")))
+
+
+(defcustom smart-to-ascii
+  '(("\x201C" . "\"")
+    ("\x201D" . "\"")
+    ("\x2018" . "'")
+    ("\x2019" . "'")
+    ("\x2013" . "-") ;; en-dash
+    ("\x2014" . "-") ;; em-dash
+    )
+    ""
+    :type '(repeat (cons (string :tag "Smart Character  ")
+                         (string :tag "Ascii Replacement"))))
+
+(defun smart-to-ascii (beg end)
+  (interactive "r")
+  (format-replace-strings smart-to-ascii nil beg end))
+
 
 ;;______________________________________________________________________________
 ;π CODE FOLDING

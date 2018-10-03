@@ -25,6 +25,9 @@ All packages here will automatically be installed if not present.")
         company-quickhelp
         csv-mode
         dash
+        docker
+        dockerfile-mode
+        docker-compose-mode
         dimmer
         diredfl
         dtrt-indent
