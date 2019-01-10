@@ -34,3 +34,5 @@
   (replace-regexp-in-string "\\.\\(\n\\|$\\)" ".<span class='sentence-end'></span>\\1" text)
   )
 
+
+(require 'org-tempo)
