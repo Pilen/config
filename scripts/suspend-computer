@@ -1,4 +1,5 @@
 #!/bin/bash
 
 lock-screen &
+sleep 10
 systemctl suspend

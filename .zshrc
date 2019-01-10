@@ -2,7 +2,8 @@
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
-setopt appendhistory autocd extendedglob nomatch
+# setopt appendhistory autocd extendedglob nomatch
+setopt appendhistory extendedglob nomatch
 setopt hist_ignore_space
 setopt hist_expire_dups_first
 setopt HIST_IGNORE_DUPS
