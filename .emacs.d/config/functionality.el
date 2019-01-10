@@ -40,8 +40,12 @@
 ;;
 ;; Never understood why Emacs doesn't have this function.
 ;;
-(defun rename-file-and-buffer (new-name)
-  "Renames both current buffer and file it's visiting to NEW-NAME." (interactive "sNew name: ")
+(defun rename-file-and-buffer (&optional new-name)
+  "Renames both current buffer and file it's visiting to NEW-NAME."
+  ;; (interactive "sNew name: ")
+  (interactive)
+  (unless new-name
+    (setq new-name (read-string "New Name: " (buffer-name))))
   (let ((name (buffer-name))
         (filename (buffer-file-name)))
     (if (not filename)
@@ -50,7 +54,7 @@
           (message "A buffer named '%s' already exists!" new-name)
         (progn
           (rename-file filename new-name 1)
-          (rename-buffer new-name)
+          (rename-buffer new-name t)
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
 (defalias 'rfb 'rename-file-and-buffer)

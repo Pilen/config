@@ -33,11 +33,12 @@ All packages here will automatically be installed if not present.")
         dtrt-indent
         elpy
         ensime                ;; Scala stuff - auto enables it self
-        erc-hl-nicks
+        ;;erc-hl-nicks ;; Breaks my setup after updating to emacs 26.1
         expand-region
         fastnav               ;; todo use me more
         fill-column-indicator ;; not really used (could come in handy)
         flymake-cursor        ;; todo use flymake more
+        forge
         full-ack              ;; not really used yet
         fuzzy                 ;; not used, what is it exactly?
         geiser

@@ -102,6 +102,9 @@
 (defun eshell/s (command &rest args)
   (shell-command (mapconcat 'identity (cons command args) " ")))
 
+(defun eshell/neo ()
+  (neotree-dir default-directory))
+
 (defun shell-toggle-buffer-switch-to-other-window ()
   "Switches to other window.  If the current window is the only window in the
 current frame, create a new window and switch to it.

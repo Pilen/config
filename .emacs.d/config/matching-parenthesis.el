@@ -44,3 +44,8 @@
     (save-excursion
     (comment-or-uncomment-region (progn (beginning-of-line) (point))
                                  (progn (end-of-line) (point))))))
+
+
+(defun my-paredit-insert-space-p (a b)
+  (not (eq major-mode `js2-mode)))
+(add-to-list 'paredit-space-for-delimiter-predicates 'my-paredit-insert-space-p)

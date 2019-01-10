@@ -138,6 +138,7 @@
 (defadvice ibuffer (around ibuffer-point-to-most-recent) ()
   "Open ibuffer with cursor pointed to most recent buffer name"
   (let ((recent-buffer-name (buffer-name)))
+    (message "ibuffer focus %s" recent-buffer-name)
     ad-do-it
     (ibuffer-jump-to-buffer recent-buffer-name)))
 (ad-activate 'ibuffer)
