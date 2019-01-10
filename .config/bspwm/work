@@ -55,6 +55,7 @@ def is_at_work():
 
 def work_config():
     run_capture("bspc", "config", "borderless_monocle", "false")
+    run_capture("bspc", "config", "gapless_monocle", "false")
 
     run_capture("bspc", "config", "border_width", "2")
     run_capture("bspc", "config", "window_gap", "-2")

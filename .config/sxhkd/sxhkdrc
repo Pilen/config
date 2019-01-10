@@ -47,6 +47,8 @@ super + {u,n,e,i}
     subwindow-moving.py {north,west,south,east}
 super + shift + {u,n,e,i}
     bspc node -s {north,west,south,east} --follow
+super + {Up,Left,Down,Right}
+    bspc node -f {north,west,south,east}
 
 super + k
     bspc node -f next.floating
