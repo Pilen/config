@@ -74,4 +74,6 @@
        "∑ summation sigma"
        "∘ circle (compose)"
        "° degree"
-       "½ 1/2 one half"))
+       "½ 1/2 one half"
+       "§ paragraf"
+       ))
