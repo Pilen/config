@@ -23,6 +23,7 @@
       (insert ">")
       (web-mode-element-close))))
 
+(add-hook 'js2-mode-hook 'electric-pair-local-mode)
 (add-to-list 'wrap-region-except-modes 'web-mode)
 (add-to-list 'wrap-region-except-modes 'html-mode)
 (defun my-web-insert-quote ()

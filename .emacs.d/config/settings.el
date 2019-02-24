@@ -500,6 +500,59 @@
 ;; (setq magit-display-file-buffer-function 'magit-display-file-buffer-other-window)
 (setq magit-display-file-buffer-function 'switch-to-buffer-other-window)
 (setq magit-log-margin '(t "%F %T" magit-log-margin-width t 18))
+(defun my-magit-refresh-hook ()
+  (my-ahs-clear-overlays))
+(add-hook 'magit-post-refresh-hook 'my-ahs-clear-overlays)
+
+
+(defun my-async-when-done (proc &optional _change)
+  "Process sentinel used to retrieve the value from the child process."
+  (when (and (eq 'exit (process-status proc))
+             (buffer-live-p (process-buffer proc))) ;; This is what I added, to avoid selecting deleted buffers.
+    (with-current-buffer (process-buffer proc)
+      (let ((async-current-process proc))
+        (if (= 0 (process-exit-status proc))
+            (if async-callback-for-process
+                (if async-callback
+                    (prog1
+                        (funcall async-callback proc)
+                      (unless async-debug
+                        (kill-buffer (current-buffer))))
+                  (set (make-local-variable 'async-callback-value) proc)
+                  (set (make-local-variable 'async-callback-value-set) t))
+              (goto-char (point-max))
+              (backward-sexp)
+              (async-handle-result async-callback (read (current-buffer))
+                                   (current-buffer)))
+          (set (make-local-variable 'async-callback-value)
+               (list 'error
+                     (format "Async process '%s' failed with exit code %d"
+                             (process-name proc) (process-exit-status proc))))
+          (set (make-local-variable 'async-callback-value-set) t))))))
+(cl-defun magit-todos--async-start-process (name &key command finish-func)
+  "Start the executable PROGRAM asynchronously.  See `async-start'.
+PROGRAM is passed PROGRAM-ARGS, calling FINISH-FUNC with the
+process object when done.  If FINISH-FUNC is nil, the future
+object will return the process object when the program is
+finished.  Set DEFAULT-DIRECTORY to change PROGRAM's current
+working directory.
+
+This is a copy of `async-start-process' that does not override
+`process-connection-type'.  It also uses keyword arguments."
+  (declare (indent defun))
+  ;; TODO: Drop this function when possible.  See
+  ;; <https://github.com/jwiegley/emacs-async/issues/102>.
+  (let* ((args (cdr command))
+         (command (car command))
+         (buf (generate-new-buffer (concat "*" name "*")))
+         (proc (apply #'start-process name buf command args)))
+    (with-current-buffer buf
+      (set-process-query-on-exit-flag proc nil)
+      (set (make-local-variable 'async-callback) finish-func)
+      (set-process-sentinel proc #'my-async-when-done)
+      (unless (string= name "emacs")
+        (set (make-local-variable 'async-callback-for-process) t))
+      proc)))
 ;;______________________________________________________________________________
 ;π SHELL SCRIPTS
 ;;______________________________________________________________________________

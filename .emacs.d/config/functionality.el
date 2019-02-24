@@ -40,8 +40,12 @@
 ;;
 ;; Never understood why Emacs doesn't have this function.
 ;;
-(defun rename-file-and-buffer (new-name)
-  "Renames both current buffer and file it's visiting to NEW-NAME." (interactive "sNew name: ")
+(defun rename-file-and-buffer (&optional new-name)
+  "Renames both current buffer and file it's visiting to NEW-NAME."
+  ;; (interactive "sNew name: ")
+  (interactive)
+  (unless new-name
+    (setq new-name (read-string "New Name: " (buffer-name))))
   (let ((name (buffer-name))
         (filename (buffer-file-name)))
     (if (not filename)
@@ -50,7 +54,7 @@
           (message "A buffer named '%s' already exists!" new-name)
         (progn
           (rename-file filename new-name 1)
-          (rename-buffer new-name)
+          (rename-buffer new-name t)
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil))))))
 (defalias 'rfb 'rename-file-and-buffer)
@@ -309,6 +313,7 @@ This is to update existing buffers after a Git pull of their underlying files."
       (goto-char begin-point))))
 
 
+
 (defun my-comment-box ()
   (interactive)
   (center-line)
@@ -320,6 +325,24 @@ This is to update existing buffers after a Git pull of their underlying files."
     (dotimes (_ (- fill-column (current-column) 2))
       (insert " "))
     (insert "*/")))
+
+
+(defcustom smart-to-ascii
+  '(("\x201C" . "\"")
+    ("\x201D" . "\"")
+    ("\x2018" . "'")
+    ("\x2019" . "'")
+    ("\x2013" . "-") ;; en-dash
+    ("\x2014" . "-") ;; em-dash
+    )
+    ""
+    :type '(repeat (cons (string :tag "Smart Character  ")
+                         (string :tag "Ascii Replacement"))))
+
+(defun smart-to-ascii (beg end)
+  (interactive "r")
+  (format-replace-strings smart-to-ascii nil beg end))
+
 
 ;;______________________________________________________________________________
 ;π CODE FOLDING

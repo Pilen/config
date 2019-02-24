@@ -7,23 +7,28 @@
   ;; (setq imenu-create-index-function 'imenu-default-create-index-function)
   (setq imenu-create-index-function 'python-imenu-create-index)
   (setq tab-width (default-value 'tab-width)) ;; Don't fuck with my tab-width!!!
-  (add-to-list 'company-backends 'company-jedi)
-  (jedi:setup))
+  ;; (add-to-list 'company-backends 'company-jedi)
+  ;; (jedi:setup)
+  )
 
-(jedi:install-server)
+;; (jedi:install-server)
 
-(setq jedi:get-in-function-call-delay 100)
-(setq jedi:use-shortcuts t) ;; Enable M-. and M-, for jumping to tags
-(setq jedi:complete-on-dot t)
+;; (setq jedi:get-in-function-call-delay 100)
+;; (setq jedi:use-shortcuts t) ;; Enable M-. and M-, for jumping to tags
+;; (setq jedi:complete-on-dot t)
+;; (setq jedi:tooltip-method nil)
+
+(defun my-kill-jedi () (message "killing jedi") (ignore-errors (kill-process  (epc:manager-server-process jedi:epc)))) ;; This is a bloody hack, currently there are bugs in jedi, spawning a slew of processes
+ (run-with-idle-timer 60 t 'my-kill-jedi)
+
 
 (add-hook 'python-mode-hook 'my-python-mode-hook)
-(setq python-shell-interpreter "ipython"
+(setq python-shell-interpreter "ipython3"
       python-shell-interpreter-args "-i --simple-prompt"
       python-shell-prompt-regexp "In \\[[0-9]+\\]: "
       python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
 )
 
-(setq jedi:tooltip-method nil)
 ;; (elpy-enable)
 ;; (elpy-disable)
 

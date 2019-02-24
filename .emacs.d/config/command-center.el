@@ -168,10 +168,15 @@
   (command-center-add 'dired-toggle-read-only "dired-edit")
   (command-center-add 'wdired-finish-edit "dired-finish-edit")
   (command-center-add (lambda () (interactive) (mc/insert-numbers (string-to-number (read-from-minibuffer "start: ")))) "multiple-cursors-insert-number")
+
   (command-center-add (lambda () (interactive) (insert (prin1-to-string (call-interactively 'eval-expression)))) "insert")
 
   (command-center-add 'my-antialias-toggle)
 
+
+
+
+  (command-center-add 'smart-to-ascii)
 
   ;; Revy
   (command-center-add 'revy-abort)

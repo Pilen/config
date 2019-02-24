@@ -1,6 +1,7 @@
 ;;______________________________________________________________________________
 ;π ERC
 ;;______________________________________________________________________________
+(setq erc-modules nil)
 (require 'erc)
 ;; (require 'erc-highlight-nicknames)
 (setq erc-modules (quote (autojoin

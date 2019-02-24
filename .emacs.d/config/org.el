@@ -24,3 +24,15 @@
     (call-interactively 'new-indented-line)))
 
 (define-key org-mode-map (kbd "S-<return>") 'my-org-shift-return)
+
+(setq org-html-postamble nil)
+
+
+(setq org-export-allow-bind-keywords t)
+
+(defun my-org-sentence-end (text backend info)
+  (replace-regexp-in-string "\\.\\(\n\\|$\\)" ".<span class='sentence-end'></span>\\1" text)
+  )
+
+
+(require 'org-tempo)

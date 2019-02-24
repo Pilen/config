@@ -18,7 +18,7 @@ def human_time(old, new):
     new = datetime.datetime.strptime(new, "%Y-%m-%dT%H:%M:%S")
     delta = new - old
     days = delta.days
-    plural = "s" if days > 1 else ""
+    plural = "s" if days != 1 else ""
     return "{} day{}".format(days, plural)
 
 def fetch(project):
