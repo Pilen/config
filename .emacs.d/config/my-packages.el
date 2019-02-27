@@ -38,7 +38,7 @@ All packages here will automatically be installed if not present.")
         fastnav               ;; todo use me more
         fill-column-indicator ;; not really used (could come in handy)
         flymake-cursor        ;; todo use flymake more
-        forge
+;;        forge
         full-ack              ;; not really used yet
         fuzzy                 ;; not used, what is it exactly?
         geiser

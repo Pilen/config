@@ -412,6 +412,10 @@
 (setq neo-window-width 35)
 ;; (setq neo-vc-integration nil)
 
+(defun my-neotree-here ()
+  (interactive)
+  (neotree-dir default-directory))
+
 ;;______________________________________________________________________________
 ;π CONSOLE
 ;;______________________________________________________________________________

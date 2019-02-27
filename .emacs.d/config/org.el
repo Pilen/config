@@ -4,7 +4,6 @@
 ;; org-clock-out-hook
 ;; org-clock-cancel-hook
 
-
 (defun my-org-clock-in ()
   )
 
@@ -14,6 +13,7 @@
   (when (eq backend 'beamer)
     (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
 
+(require 'ox)
 (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
 
 
@@ -27,12 +27,15 @@
 
 (setq org-html-postamble nil)
 
-
 (setq org-export-allow-bind-keywords t)
 
 (defun my-org-sentence-end (text backend info)
   (replace-regexp-in-string "\\.\\(\n\\|$\\)" ".<span class='sentence-end'></span>\\1" text)
   )
 
+(setq org-cycle-separator-lines 3)
 
-(require 'org-tempo)
+(setq org-edit-src-content-indentation 0)
+
+(message "remember to (require 'org-tempo)")
+;; (require 'org-tempo)

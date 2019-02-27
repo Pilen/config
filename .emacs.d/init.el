@@ -368,6 +368,7 @@
 (load-file "~/.emacs.d/config/ido.el")
 (load-file "~/.emacs.d/config/ido-imenu.el")
 (load-file "~/.emacs.d/config/incmove.el") ;; move to my-plugins
+(load-file "~/.emacs.d/config/org.el")
 (load-file "~/.emacs.d/config/search.el")
 (load-file "~/.emacs.d/config/rainbow-delimiters.el")
 (load-file "~/.emacs.d/config/shell.el")
