@@ -46,6 +46,7 @@
                                  (progn (end-of-line) (point))))))
 
 
+(require 'paredit)
 (defun my-paredit-insert-space-p (a b)
   (not (eq major-mode `js2-mode)))
 (require 'paredit)

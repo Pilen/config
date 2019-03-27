@@ -89,6 +89,7 @@ def update(requirements, destination):
 
     with open(destination, mode="w") as f:
         f.write("\n".join(result))
+        f.write("\n")
 
 def main():
     description, epilog = __doc__.split("\n", 1)

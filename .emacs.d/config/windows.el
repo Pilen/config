@@ -12,6 +12,7 @@
 (window-numbering-mode 1)
 (require 'win-switch)
 (setq win-switch-idle-time 0.60)
+(setq win-switch-idle-time 2)
 (setq win-switch-window-threshold 2)
 (setq win-switch-other-window-first nil)
 ;(win-switch-set-wrap-around)

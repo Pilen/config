@@ -103,6 +103,7 @@
   (shell-command (mapconcat 'identity (cons command args) " ")))
 
 (defun eshell/neo ()
+  (interactive)
   (neotree-dir default-directory))
 
 (defun shell-toggle-buffer-switch-to-other-window ()
