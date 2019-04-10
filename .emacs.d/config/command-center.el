@@ -66,6 +66,7 @@
   (command-center-add 'loccur-previous-match)
   (command-center-add 'ag-project-regexp "ag")
   (command-center-add 'swiper)
+  (command-center-add 'query-replace-regexp)
 
   ;; Elisp
   (command-center-add 'eval-buffer)

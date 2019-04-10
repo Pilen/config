@@ -103,5 +103,8 @@
        "∘ circle (compose)"
        "° degree"
        "½ 1/2 one half"
+       "¹ superscript one"
+       "² superscript two squared"
+       "³ superscript three cubed"
        "€ euro"
        "£ pound"))

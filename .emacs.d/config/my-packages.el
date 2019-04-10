@@ -23,6 +23,7 @@ All packages here will automatically be installed if not present.")
         company-go
         company-jedi
         company-quickhelp
+        crontab-mode
         csv-mode
         dash
         docker
