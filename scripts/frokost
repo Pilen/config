@@ -24,4 +24,5 @@ function fetch {
 
 # evince "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20uge%20$(date +%-V).pdf" --page-index="$(date +%u)"
 # evince "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20uge%20$(date +%-V)%202019.pdf"  --page-index="$(date +%u)"
-evince "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20uge%20$(date +%V)%202019.pdf"  --page-index="$(date +%u)"
+# evince "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20uge%20$(date +%V)%202019.pdf"  --page-index="$(date +%u)"
+evince "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20menu%20uge%20$(date +%V)%202019.pdf"  --page-index="$(date +%u)"

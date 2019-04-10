@@ -2,5 +2,6 @@
 
 export NO_AT_BRIDGE=1 # Makes Emacs not throw the warning: ** (emacs:3616): WARNING **: Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus
 
+# (setq ps-landscape-mode t) Does not work?
 echo "$1"
 emacs -Q "$1" --eval "(progn (when (derived-mode-p 'outline-mode) (outline-show-all)) (setq ps-paper-type (quote a4)) (setq ps-right-margin 20) (setq ps-left-margin 20) (ps-print-buffer-with-faces) (save-buffers-kill-terminal))"
