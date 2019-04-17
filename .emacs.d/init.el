@@ -360,6 +360,7 @@
 (load-file "~/.emacs.d/config/erc.el") ;; todo
 (load-file "~/.emacs.d/config/eshell.el")
 (load-file "~/.emacs.d/config/expand-region.el") ;; + smart-forward look into this
+(load-file "~/.emacs.d/config/eww.el")
 (load-file "~/.emacs.d/config/flymake.el")
 (load-file "~/.emacs.d/config/flyspell.el")
 (load-file "~/.emacs.d/config/debugger.el")
