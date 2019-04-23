@@ -291,6 +291,7 @@
 
 (global-set-key (kbd "<f1>") 'my-help)
 (global-set-key (kbd "S-<f1>") 'man)
+(global-set-key (kbd "H-<f1>") 'my-documentation)
 ;; (global-set-key (kbd "<f1>") 'google-translate-da/en)
 ;; (global-set-key (kbd "S-<f1>") 'google-translate-en/da)
 ;; (global-set-key (kbd "H-<f1>") 'flyspell-mode)
