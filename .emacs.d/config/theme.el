@@ -92,7 +92,8 @@
 ;(set-face-background hl-line-face "gray34")
 
 
-(setq ansi-color-names-vector ["black" "red" "green" "yellow" "dodger blue" "magenta" "cyan" "white"])
+(setq ansi-color-names-vector ["black" "red3" "green3" "yellow3" "blue2" "magenta3" "cyan3" "gray90"])
+;; (setq ansi-color-names-vector ["black" "red" "green" "yellow" "dodger blue" "magenta" "cyan" "white"])
 (setq ansi-color-map (ansi-color-make-color-map))
 
 

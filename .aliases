@@ -58,7 +58,8 @@ alias glg2='git log --graph --abbrev-commit --decorate --format=format:"%C(bold 
 alias glg3='git log --pretty="format:\"%C(yellow)%h %ad%Cred%d %Creset%s%Cblue [%an]\"" --decorate --date=relative --abbrev-commit --abbrev=10 --graph'
 
 #alias vs="vagrant ssh || (vagrant up && vagrant ssh)"
-alias vs="vagrant status --machine-readable | grep "state,running" -q || vagrant up && vagrant ssh"
+#alias vs="vagrant status --machine-readable | grep "state,running" -q || vagrant up && vagrant ssh"
+alias vs="sshvag"
 alias vu="vagrant up"
 alias vh="vagrant halt"
 alias vhs="vh; vs"

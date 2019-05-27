@@ -94,6 +94,7 @@
   ;; Org
   (command-center-add 'show-all)
   (command-center-add 'hide-sublevels "hide-all")
+  (command-center-add 'org-mouse-show-headlines "show-headlines")
   (command-center-add 'org-promote-subtree)
   (command-center-add 'org-demote-subtree)
   (command-center-add 'org-indent-block)
@@ -111,6 +112,8 @@
   (command-center-add 'my-frame-close "frame-close")
   (command-center-add 'my-frame-close-others "frame-close-others")
   (command-center-add 'my-frame-close-extra "frame-close-extra")
+  (command-center-add 'my-frame-reset-background "frame-reset-background")
+  (command-center-add 'my-frame-random-background "frame-random-background")
 
 
   ;; Terminal/shell
@@ -173,7 +176,7 @@
   (command-center-add (lambda () (interactive) (insert (prin1-to-string (call-interactively 'eval-expression)))) "insert")
 
   (command-center-add 'my-antialias-toggle)
-
+  (command-center-add 'my-print-source-code "print-source-code")
 
 
 

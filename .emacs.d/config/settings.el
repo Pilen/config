@@ -179,11 +179,20 @@
 ;; (load-file "~/.emacs.d/plugins/multiple-cursors/multiple-cursors.el")
 (require 'multiple-cursors)
 
+(require 'ediff)
 ;; This is what you probably want if you are using a tiling window
 ;; manager under X, such as ratpoison.
 (setq ediff-window-setup-function 'ediff-setup-windows-plain) ;; Same frame
 ;; (setq ediff-window-setup-function 'ediff-setup-windows-default) ;; Same frame
 (setq ediff-split-window-function 'split-window-horizontally)
+(set-face-background 'ediff-even-diff-A "gray40")
+(set-face-background 'ediff-even-diff-B "gray40")
+(set-face-background 'ediff-even-diff-C "gray40")
+(set-face-background 'ediff-even-diff-Ancestor "gray40")
+(set-face-background 'ediff-odd-diff-A "gray40")
+(set-face-background 'ediff-odd-diff-B "gray40")
+(set-face-background 'ediff-odd-diff-C "gray40")
+(set-face-background 'ediff-odd-diff-Ancestor "gray40")
 
 (require 'fuzzy)
 

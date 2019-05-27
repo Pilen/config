@@ -4,6 +4,7 @@
 ;; org-clock-out-hook
 ;; org-clock-cancel-hook
 
+(require 'org-mouse)
 (defun my-org-clock-in ()
   )
 
@@ -39,3 +40,15 @@
 
 (message "remember to (require 'org-tempo)")
 ;; (require 'org-tempo)
+
+
+(add-to-list 'org-babel-load-languages '(python . t))
+(org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
+
+(setq org-confirm-babel-evaluate nil)
+
+(setq org-src-preserve-indentation t)
+
+
+;; https://emacs.stackexchange.com/questions/7629/the-syntax-highlight-and-indentation-of-source-code-block-in-exported-html-file
+;(setq org-html-htmlize-output-type 'css)

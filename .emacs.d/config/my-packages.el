@@ -26,6 +26,7 @@ All packages here will automatically be installed if not present.")
         crontab-mode
         csv-mode
         dash
+        dash-docs
         docker
         dockerfile-mode
         docker-compose-mode
