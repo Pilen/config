@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -o errexit -o nounset -o pipefail
+
+export NO_AT_BRIDGE=1 # Makes Emacs not throw the warning: ** (emacs:3616): WARNING **: Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus
+
+org_file="$1"
+html_file="${org_file%.org}.html"
+pdf_file="${org_file%.org}.pdf"
+echo "$org_file"
+
+emacs -Q "$org_file" --eval "(progn (load-file \"~/config/.emacs.d/elpa/htmlize-20180923.1829/htmlize.el\") (load-file \"~/config/.emacs.d/config/org.el\") (org-html-export-to-html) (save-buffers-kill-terminal))"
+weasyprint "$html_file" "$pdf_file"
+rm "$html_file"
