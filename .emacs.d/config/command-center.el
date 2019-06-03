@@ -57,6 +57,7 @@
   (command-center-add 'magit-status)
   (command-center-add 'magit-pull-from-upstream)
   (command-center-add 'magit-push-current-to-upstream)
+  (command-center-add 'magit-fetch-all)
   (command-center-add 'magit-log-buffer-file)
   (command-center-add 'magit-blame)
 
