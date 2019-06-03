@@ -353,6 +353,11 @@
 
 (define-key minibuffer-local-map (kbd "H-u") 'previous-line-or-history-element)
 (define-key minibuffer-local-map (kbd "H-e") 'next-line-or-history-element)
+;; (setq minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
+;; (setq minibuffer-prompt-properties (plist-put minibuffer-prompt-properties 'point-entered 'minibuffer-avoid-prompt))
+(customize-set-variable
+ 'minibuffer`-prompt-properties
+ (quote (read-only t cursor-intangible t face minibuffer-prompt)))
 
 ;;______________________________________________________________________________
 ;π COMPLETIONS

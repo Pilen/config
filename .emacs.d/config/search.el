@@ -74,6 +74,8 @@
       (goto-char to-show))))
 (define-key occur-mode-map (kbd "f") 'occur-show-function)
 
+(add-hook 'occur-hook
+          '(lambda () (switch-to-buffer-other-window "*Occur*")))
 ;;______________________________________________________________________________
 ;π LOCCUR
 ;;______________________________________________________________________________

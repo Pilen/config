@@ -133,8 +133,9 @@
      (ido-find-file-in-dir default-directory))))
 (add-hook 'ibuffer-mode-hook
           (lambda ()
-            (define-key ibuffer-mode-map "\C-x\C-f"
-              'ibuffer-ido-find-file)))
+            (define-key ibuffer-mode-map "\C-x\C-f" 'ibuffer-ido-find-file)
+            (define-key ibuffer-mode-map (kbd "<menu>") '(lambda () (interactive) (kill-buffer)))
+            ))
 (defadvice ibuffer (around ibuffer-point-to-most-recent) ()
   "Open ibuffer with cursor pointed to most recent buffer name"
   (let ((recent-buffer-name (buffer-name)))
