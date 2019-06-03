@@ -100,6 +100,7 @@
   (command-center-add 'org-indent-block)
   (command-center-add 'org-indent-region)
   (command-center-add 'org-store-link)
+  (command-center-add 'org-babel-execute-buffer)
 
   ;; Origami
   (command-center-add 'origami-open-all-nodes)
