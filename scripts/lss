@@ -1,12 +1,9 @@
-#!/usr/bin/env bash
-if [[ $# -eq  0 ]]; then
-    # No arguments given
-    ls -CF --group-directories-first --color=auto "$@";
+#!/usr/bin/env sh
+
+# If the script is called with one argument and it is a file, less is called, else ls is called
+
+if [ "$#" -eq 1 ] && [ -f "$1" ] ; then
+    less "$@"
 else
-    if [[ -d "${@: -1}" ]]; then
-        # Last argument is dir
-        ls  -CF --group-directories-first --color=auto "$@";
-    else
-        less "$@"
-    fi
+    ls  -CF --group-directories-first --color=auto "$@";
 fi

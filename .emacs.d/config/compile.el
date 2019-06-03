@@ -23,6 +23,7 @@
 (add-hook 'shell-script-mode     (lambda () (define-key sh-mode-map          (kbd "H-g") 'eshell-execute-current-line)))
 (add-hook 'sml-mode-hook         (lambda () (define-key sml-mode-map         (kbd "H-g") 'sml-compile)))
 (add-hook 'sql-mode              (lambda () (define-key sql-mode-map         (kbd "H-g") 'sql-send-line)))
+(add-hook 'org-mode              (lambda () (define-key org-mode-map         (kbd "H-g") 'org-ctrl-c-ctrl-c)))
 
 (defun my-c-compile ()
   (interactive)

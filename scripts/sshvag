@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+REMOTE_CONFIG_DIR="/home/vagrant/remoteconfig"
+LOCAL_CONFIG_DIR="$HOME/config/remoteconfig"
+# Created through sshsudo. Not recreated here!
+
+vagrant status --machine-readable | grep "state,running" -q || vagrant up
+
+vagrant ssh-config > /tmp/vagrant-ssh.conf
+
+if ! rsync --rsh="ssh -oBatchMode=yes -F /tmp/vagrant-ssh.conf" -r "$LOCAL_CONFIG_DIR/" "default:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1; then
+    echo "failed to copy configuration"
+    # ssh-copy-id "default"
+    # rsync -r "$LOCAL_CONFIG_DIR/" "default:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1
+fi
+ssh -F /tmp/vagrant-ssh.conf default -t "REMOTE_CONFIG_DIR=${REMOTE_CONFIG_DIR} VAGRANT=yes bash --rcfile ${REMOTE_CONFIG_DIR}/bashrc -O globstar"

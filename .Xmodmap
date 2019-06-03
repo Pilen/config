@@ -30,3 +30,4 @@ keycode 20 = U03BB U03C0
 
 keysym XF86Back = Page_Up
 keysym XF86Forward = Page_Down
+keysym Super_R = Menu

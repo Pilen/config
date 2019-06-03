@@ -1,4 +1,8 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
 
 REMOTE_CONFIG_DIR="$HOME/remoteconfig" # Assume remote user and local user has same $HOME
 LOCAL_CONFIG_DIR="$HOME/config/remoteconfig"
@@ -8,5 +12,8 @@ cp "$HOME/config/scripts/highlight" "$LOCAL_CONFIG_DIR/scripts/"
 cp "$HOME/config/scripts/ifind" "$LOCAL_CONFIG_DIR/scripts/"
 cp "$HOME/config/scripts/lss" "$LOCAL_CONFIG_DIR/scripts/"
 
-rsync -r "$LOCAL_CONFIG_DIR/" "$@:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1
+if ! rsync --rsh="ssh -oBatchMode=yes" -r "$LOCAL_CONFIG_DIR/" "$@:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1; then
+    ssh-copy-id "$@"
+    rsync -r "$LOCAL_CONFIG_DIR/" "$@:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1
+fi
 ssh "$@" -t "sudo -i REMOTE_CONFIG_DIR=${REMOTE_CONFIG_DIR} bash --rcfile ${REMOTE_CONFIG_DIR}/bashrc -O globstar"

@@ -5,6 +5,18 @@
 ;;
 ;;______________________________________________________________________________
 
+(defun my-print-source-code (&optional file)
+  (interactive)
+  (if(buffer-file-name)
+      (progn
+        (unless file (setq file (buffer-file-name)))
+        (start-process "my-print-source-code" nil "print-source-code" file))
+    (let ((file (make-temp-file (file-name-sans-extension (buffer-name)) nil (file-name-extension (buffer-name)))))
+      (write-region (point-min) (point-max) file)
+      (message file)
+      (call-process "print-source-code" nil nil nil file)
+      (delete-file file)
+      )))
 
 (defun stop-using-minibuffer ()
   "kill the minibuffer"
@@ -230,6 +242,7 @@ in that cyclic order."
     (kill-whole-line)
     (forward-line -1)
     (yank)
+    (unless (= (char-before) ?\n) (insert "\n"))
     (setq kill-ring (cdr kill-ring))
     (forward-line -1)
     (move-to-column column-number)))
@@ -416,3 +429,14 @@ This is to update existing buffers after a Git pull of their underlying files."
           (when (overlay-get o p)
             (insert (format " %15S: %S\n" p (overlay-get o p))))))
       (pop-to-buffer buf))))
+
+
+;;______________________________________________________________________________
+;π FONT LOCK FIX
+;;______________________________________________________________________________
+(setq my-font-lock-quick-fix--timer nil)
+(defun my-font-lock-quick-fix ()
+  (interactive)
+  (when my-font-lock-quick-fix--timer (cancel-timer my-font-lock-quick-fix--timer))
+  (setq my-font-lock-quick-fix--timer
+        (run-with-idle-timer 3 t (lambda () (when (or (derived-mode-p 'prog-mode) (derived-mode-p 'text-mode)) (font-lock-fontify-buffer))))))

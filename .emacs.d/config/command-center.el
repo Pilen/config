@@ -57,6 +57,7 @@
   (command-center-add 'magit-status)
   (command-center-add 'magit-pull-from-upstream)
   (command-center-add 'magit-push-current-to-upstream)
+  (command-center-add 'magit-fetch-all)
   (command-center-add 'magit-log-buffer-file)
   (command-center-add 'magit-blame)
 
@@ -66,6 +67,7 @@
   (command-center-add 'loccur-previous-match)
   (command-center-add 'ag-project-regexp "ag")
   (command-center-add 'swiper)
+  (command-center-add 'query-replace-regexp)
 
   ;; Elisp
   (command-center-add 'eval-buffer)
@@ -93,11 +95,13 @@
   ;; Org
   (command-center-add 'show-all)
   (command-center-add 'hide-sublevels "hide-all")
+  (command-center-add 'org-mouse-show-headlines "show-headlines")
   (command-center-add 'org-promote-subtree)
   (command-center-add 'org-demote-subtree)
   (command-center-add 'org-indent-block)
   (command-center-add 'org-indent-region)
   (command-center-add 'org-store-link)
+  (command-center-add 'org-babel-execute-buffer)
 
   ;; Origami
   (command-center-add 'origami-open-all-nodes)
@@ -110,6 +114,8 @@
   (command-center-add 'my-frame-close "frame-close")
   (command-center-add 'my-frame-close-others "frame-close-others")
   (command-center-add 'my-frame-close-extra "frame-close-extra")
+  (command-center-add 'my-frame-reset-background "frame-reset-background")
+  (command-center-add 'my-frame-random-background "frame-random-background")
 
 
   ;; Terminal/shell
@@ -172,7 +178,7 @@
   (command-center-add (lambda () (interactive) (insert (prin1-to-string (call-interactively 'eval-expression)))) "insert")
 
   (command-center-add 'my-antialias-toggle)
-
+  (command-center-add 'my-print-source-code "print-source-code")
 
 
 
