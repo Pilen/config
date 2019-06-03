@@ -49,6 +49,14 @@
 
 (setq org-src-preserve-indentation t)
 
+(setq org-src-tab-acts-natively t)
+
+(defun my-org-return ()
+  (interactive)
+  (if (org-in-src-block-p t)
+      (org-return-indent)
+    (org-return)))
+(define-key org-mode-map (kbd "<return>") 'my-org-return)
 
 ;; https://emacs.stackexchange.com/questions/7629/the-syntax-highlight-and-indentation-of-source-code-block-in-exported-html-file
 ;(setq org-html-htmlize-output-type 'css)
