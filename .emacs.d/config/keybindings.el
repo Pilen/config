@@ -70,7 +70,7 @@
 ;; isearch
 ;(global-set-key (kbd "H-o") 'isearch-forward)
 ;(global-set-key (kbd "H-O") 'isearch-backward)
- (global-set-key (kbd "H-g") 'recenter)
+
 
 ;;;; MAJOR EDITING COMMANDS
 ;; Delete previous/next char
