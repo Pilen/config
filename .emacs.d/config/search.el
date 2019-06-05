@@ -116,3 +116,5 @@
 (define-key swiper-map (kbd "H-i") 'ivy-done)
 (define-key swiper-map (kbd "H-n") 'ivy-done)
 (define-key swiper-map (kbd "H-q") 'swiper-mc)
+
+(setq swiper-stay-on-quit t)
