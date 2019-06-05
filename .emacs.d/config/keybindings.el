@@ -78,6 +78,13 @@
 (global-set-key (kbd "H-t") 'delete-forward-char)
 ;; (global-set-key (kbd "H-s") 'paredit-backward-delete)
 ;; (global-set-key (kbd "H-t") 'paredit-forward-delete)
+(global-set-key (kbd "H-3") 'paredit-forward-slurp-sexp)
+(global-set-key (kbd "H-2") 'paredit-backward-slurp-sexp)
+(global-set-key (kbd "H-#") 'paredit-forward-barf-sexp)
+(global-set-key (kbd "H-@") 'paredit-backward-barf-sexp)
+(global-set-key (kbd "H-C-3") 'paredit-join-sexps)
+(global-set-key (kbd "H-C-2") 'paredit-split-sexp)
+
 
 (global-set-key (kbd "H-C-s") 'my-scroll-left)
 (global-set-key (kbd "H-C-t") 'my-scroll-right)
