@@ -430,6 +430,12 @@
   (interactive)
   (neotree-dir default-directory))
 
+(defun my-neotree ()
+  (interactive)
+  (if (eq major-mode 'neotree-mode)
+      (neotree-hide)
+    (neotree)))
+
 ;;______________________________________________________________________________
 ;π CONSOLE
 ;;______________________________________________________________________________

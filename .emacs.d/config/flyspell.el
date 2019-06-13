@@ -1,6 +1,9 @@
 ;;______________________________________________________________________________
 ;π FLYSPELL
 ;;______________________________________________________________________________
+;; Aspell is better than hunspell
+;; Ubuntu: aspell-da
+
 (require 'flyspell)
 ;(autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
 (setq flyspell-issue-welcome-flag nil)
@@ -150,6 +153,8 @@
 ;  (ad-set-arg 0 (reverse (ad-get-arg 0))))
 
 
+
+(require 'flyspell-correct-ivy)
 ;;______________________________________________________________________________
 ;π DICTIONARIES
 ;;______________________________________________________________________________

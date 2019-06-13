@@ -306,6 +306,7 @@
 (global-set-key (kbd "<f2>") 'flyspell-mode)
 ;; (global-set-key (kbd "H-<f2>") 'fd-switch-dictionary)
 (global-set-key (kbd "S-<f2>") 'fd-switch-dictionary-flyspell)
+(global-set-key (kbd "H-<f2>") 'flyspell-correct-at-point)
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<H-f3>") 'kmacro-name-last-macro)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
@@ -321,7 +322,7 @@
 (global-set-key (kbd "<f11>") nil)
 (global-set-key (kbd "H-<f11>") nil)
 (global-set-key (kbd "S-<f11>") nil)
-(global-set-key (kbd "<f12>") 'neotree)
+(global-set-key (kbd "<f12>") 'my-neotree)
 (global-set-key (kbd "S-<f12>") 'my-neotree-here)
 (global-set-key (kbd "H-<f12>") 'neotree-toggle)
 
