@@ -356,9 +356,11 @@
 ;; (setq minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
 ;; (setq minibuffer-prompt-properties (plist-put minibuffer-prompt-properties 'point-entered 'minibuffer-avoid-prompt))
 (customize-set-variable
- 'minibuffer`-prompt-properties
+ 'minibuffer-prompt-properties
  (quote (read-only t cursor-intangible t face minibuffer-prompt)))
 
+
+(customize-set-variable 'csv-separators '("," "\t" ";"))
 ;;______________________________________________________________________________
 ;π COMPLETIONS
 ;;______________________________________________________________________________
@@ -429,6 +431,10 @@
 (defun my-neotree-here ()
   (interactive)
   (neotree-dir default-directory))
+
+(defun my-neotree-ag ()
+  (interactive)
+  (ag (ag/read-from-minibuffer "Search string") default-directory))
 
 ;;______________________________________________________________________________
 ;π CONSOLE
