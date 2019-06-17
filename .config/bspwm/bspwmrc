@@ -27,6 +27,8 @@ bspc config remove_unplugged_monitors true
 # bspc config remove_disabled_monitors false
 # bspc config remove_unplugged_monitors false
 
+bspc config ignore_ewmh_focus true
+
 bspc rule -a "*:libreoffice" state=tiled
 bspc rule -a Emacs state=tiled
 
