@@ -185,6 +185,10 @@
 
   (command-center-add 'smart-to-ascii)
 
+
+  (command-center-add 'vagrant)
+
+
   ;; Revy
   (command-center-add 'revy-abort)
   (command-center-add 'revy-show-text)

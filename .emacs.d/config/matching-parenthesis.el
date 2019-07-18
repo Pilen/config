@@ -41,9 +41,7 @@
   (interactive)
   (if (region-active-p)
       (comment-or-uncomment-region (region-beginning) (region-end))
-    (save-excursion
-    (comment-or-uncomment-region (progn (beginning-of-line) (point))
-                                 (progn (end-of-line) (point))))))
+    (comment-or-uncomment-region (line-beginning-position) (line-end-position))))
 
 
 (require 'paredit)
