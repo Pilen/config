@@ -1,0 +1,100 @@
+#!/usr/bin/env python3
+import argparse
+import random
+import sys
+from pathlib import Path
+from typing import List, Set
+
+def fixseed(input: List[str]):
+    random.seed("\n".join(input))
+
+def get_paths(input: List[str]):
+    result = []
+    for raw in input:
+        p = Path(raw)
+        if not p.is_file():
+            print("ERROR not a file: {}".format(p), file=sys.stderr)
+            sys.exit(1)
+        result.append(p)
+    return result
+
+def total_line_count(paths: List[Path]):
+    lines = 0
+    for path in paths:
+        with path.open() as f:
+            for line in f:
+                lines += 1
+    return lines
+
+def select_lines(amount:int , line_count:int, include:Set[int]):
+    amount += len(include)
+    selected = set()
+    selected.update(include)
+    while len(selected) < amount:
+        x = random.randint(1, line_count)
+        selected.add(x)
+    return selected
+
+def get_next(it):
+    try:
+        return next(it)
+    except StopIteration as e:
+        return None
+
+def grab_selected(paths:List[Path], selected:Set[int]):
+    selected = iter(sorted(selected))
+    n = get_next(selected)
+    line_no = 0
+    for path in paths:
+        with path.open() as f:
+            for line in f:
+                line_no += 1
+                if line_no == n:
+                    yield line
+                    n = get_next(selected)
+                    if n is None:
+                        return
+    print("ERROR: Ran out of lines, did the files change?", file=sys.stderr)
+    sys.exit(1)
+
+def print_selected(lines):
+    for line in lines:
+        print(line, end="")
+
+def analyze(selected, lines):
+    selected = sorted(selected)
+    previous = selected[0]
+    diffs = []
+    print(previous, "-")
+    for item in selected[1:]:
+        diff = item - previous
+        print(item, diff)
+        diffs.append(diff)
+        previous = item
+    import statistics
+    mean = statistics.mean(diffs)
+    stdev = statistics.pstdev(diffs)
+    print("mean:", mean)
+    print("stdev:", stdev)
+    print("expected", lines/len(selected))
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    # parser.add_argument("input", nargs="*", type=argparse.FileType("r"), default=sys.stdin, help="The files to select from")
+    parser.add_argument("input", nargs="*", help="The files to select from") # Needs to be filenames, as they are read twice!
+    parser.add_argument("-n", "--amount", required=True, type=int, help="The amount of random rows to grab")
+    parser.add_argument("-i", "--include", default=[], nargs="*", type=int, help="A specific line to add to the output in addition to the output")
+    parser.add_argument("-d", "--deterministic", action="store_true", help="Grab a pseudo random but deterministic set of lines, based(seeded) on the filenames")
+    args = parser.parse_args()
+
+    if args.deterministic:
+        fixseed(args.input)
+    paths = get_paths(args.input)
+    line_count = total_line_count(paths)
+    selected = select_lines(args.amount, line_count, set(args.include))
+    it = grab_selected(paths, selected)
+    print_selected(it)
+    # analyze(selected, line_count)
+if __name__ == "__main__":
+    main()
