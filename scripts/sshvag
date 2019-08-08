@@ -12,7 +12,7 @@ vagrant status --machine-readable | grep "state,running" -q || vagrant up
 
 vagrant ssh-config > /tmp/vagrant-ssh.conf
 
-if ! rsync --rsh="ssh -oBatchMode=yes -F /tmp/vagrant-ssh.conf" -r "$LOCAL_CONFIG_DIR/" "default:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1; then
+if ! rsync --rsh="ssh -oBatchMode=yes -F /tmp/vagrant-ssh.conf" --copy-links -r "$LOCAL_CONFIG_DIR/" "default:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1; then
     echo "failed to copy configuration"
     # ssh-copy-id "default"
     # rsync -r "$LOCAL_CONFIG_DIR/" "default:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1
