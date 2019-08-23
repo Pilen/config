@@ -34,6 +34,7 @@ alias les='less'
 alias bc='bc -q'
 alias rf='rm -rf'
 alias u='urxvtc'
+alias visidata='~/.local/bin/vd'
 alias rsync="rsync -hPr"
 alias rsyncs="rsync -haPr --rsync-path='sudo rsync'"
 
@@ -62,9 +63,9 @@ alias glg3='git log --pretty="format:\"%C(yellow)%h %ad%Cred%d %Creset%s%Cblue [
 alias vs="sshvag"
 alias vu="vagrant up"
 alias vh="vagrant halt"
-alias vhs="vh; vs"
+alias vhs="vh && vs"
 alias vd="vagrant destroy"
-alias vds="vd; vs"
+alias vds="vd && vs"
 alias vr="vagrant reload"
 alias vsmxi="cd ~/code/smx-interface/; vs"
 alias vsmxp="cd ~/code/smx-processor/; vs"
