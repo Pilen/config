@@ -47,13 +47,23 @@
 (defun eshell/new (&optional arg)
   (if arg
         (with-current-buffer (eshell arg)
-          (rename-buffer (format "*eshell - %s*" arg) )
+          ;; (rename-buffer (format "*eshell - %s*" arg) )
           (when (file-directory-p arg)
             (insert "cd " arg)
             (eshell-send-input)))
     (eshell t)))
 
 (defalias 'eshell/n 'eshell/new)
+
+(defun my-eshell-rename ()
+  (let* ((dir (replace-regexp-in-string "^~/" "" (directory-file-name (abbreviate-file-name default-directory))))
+         (new-name (format "*eshell* %s" dir))
+         (n 1))
+    (while (get-buffer new-name)
+      (incf n)
+      (setq new-name (format "*eshell* %s <%s>" dir n)))
+    (rename-buffer new-name)))
+(add-hook 'eshell-directory-change-hook 'my-eshell-rename)
 
 (add-hook 'eshell-mode-hook 'm-eshell-hook)
 (defun tyler-eshell-view-file (file)
