@@ -438,6 +438,37 @@
       (neotree-hide)
     (neotree)))
 
+(setq neo-show-hidden-files t)
+(defface neo-hidden-face
+  '((((background dark)) (:foreground "DimGray"))
+    (t                   (:foreground "DimGray")))
+  "*Face used for hidden face in neotree buffer."
+  :group 'neotree :group 'font-lock-highlighting-faces)
+(set-face-foreground 'neo-hidden-face "DimGray")
+
+;; Updated to "hide" hidden files
+(defun neo-buffer--insert-file-entry (node depth)
+  (let* ((node-short-name (neo-path--file-short-name node))
+         (vc (when neo-vc-integration (neo-vc-for-node node)))
+         (hidden (string-prefix-p "." node-short-name)))
+    (insert-char ?\s (* (- depth 1) 2)) ; indent
+    (when (memq 'char neo-vc-integration)
+      (insert-char (car vc))
+      (insert-char ?\s))
+    (neo-buffer--insert-fold-symbol 'leaf node-short-name)
+    (insert-button node-short-name
+                   'follow-link t
+                   'face (if hidden
+                             'neo-hidden-face
+                             (if (memq 'face neo-vc-integration)
+                                        (cdr vc)
+                                      neo-file-link-face))
+                   'neo-full-path node
+                   'keymap neotree-file-button-keymap
+                   'help-echo (neo-buffer--help-echo-message node-short-name))
+    (neo-buffer--node-list-set nil node)
+    (neo-buffer--newline-and-begin)))
+
 ;;______________________________________________________________________________
 ;π CONSOLE
 ;;______________________________________________________________________________
