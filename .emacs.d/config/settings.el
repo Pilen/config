@@ -420,7 +420,9 @@
                                            (when (not (file-directory-p default-directory))
                                              (setq default-directory (file-name-directory default-directory)))
                                            (eshell/new default-directory))))
-(define-key neotree-mode-map (kbd "b") (lambda () (interactive) (goto-char (point-min)) (neotree-change-root)))
+;; (define-key neotree-mode-map (kbd "b") (lambda () (interactive) (goto-char (point-min)) (neotree-change-root)))
+(define-key neotree-mode-map (kbd "b") (lambda () (interactive) (goto-char (point-min)) (neotree-next-line) (neotree-change-root)))
+(define-key neotree-mode-map (kbd "b") 'neotree-select-up-node)
 (define-key neotree-mode-map (kbd "c") 'neotree-change-root)
 
 (setq neo-window-width 35)
