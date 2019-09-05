@@ -356,7 +356,7 @@
 ;; (setq minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
 ;; (setq minibuffer-prompt-properties (plist-put minibuffer-prompt-properties 'point-entered 'minibuffer-avoid-prompt))
 (customize-set-variable
- 'minibuffer`-prompt-properties
+ 'minibuffer-prompt-properties
  (quote (read-only t cursor-intangible t face minibuffer-prompt)))
 
 ;;______________________________________________________________________________
