@@ -208,6 +208,7 @@
 (global-set-key (kbd "S-<menu>") 'menu-bar-mode)
 
 (global-set-key (kbd "H-D") 'create-scratch-buffer)
+(global-set-key (kbd "H-C-d") 'next-scratch-buffer)
 ;;END
 
 ;;New layout

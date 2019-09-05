@@ -188,6 +188,7 @@
 
   (command-center-add 'vagrant)
 
+  (command-center-add 'next-scratch-buffer)
 
   ;; Revy
   (command-center-add 'revy-abort)
