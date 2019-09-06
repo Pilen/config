@@ -108,3 +108,27 @@
   (interactive)
   (let ((directory (read-directory-name "Directory: ")))
     ()))
+
+
+
+
+
+
+
+
+
+
+
+;; (with-current-buffer (get-buffer-create "scratch<5>")
+;;   (cd "~/")
+;;   default-directory
+;;   (erase-buffer)
+;;   (call-process "find" nil (current-buffer) t "-type" "d" "-name" ".git")
+;;   (goto-char (point-min))
+;;   (while (re-search-forward "/.git$" nil t)
+;;     (replace-match ""))
+;;   (ido-completing-read
+;;    "Project:"
+;;    (split-string (buffer-string) "\n" t)
+;;    nil t)
+;; )

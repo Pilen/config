@@ -181,3 +181,21 @@
   (let ((lang (ring-ref lang-ring -1)))
     (ring-insert lang-ring lang)
     (ispell-change-dictionary lang)))
+
+
+;; Dansk is fucked up, ispell-get-word generates the following regex:
+;; "[A-Z\306\330\305a-z\346\370\345]+\\([']?[A-Z\306\330\305a-z\346\370\345]+\\)?"
+;; But it should probably be something like this:
+;; "[A-ZÆØÅa-zæøå]+\\([']?[A-ZÆØÅa-zæøå]+\\)?"
+;; From
+;; ("dansk"				; Dansk.aff
+;;      "[A-Z\306\330\305a-z\346\370\345]" "[^A-Z\306\330\305a-z\346\370\345]"
+;;      "[']" nil ("-C") nil iso-8859-1)
+;; To
+;; '("[A-Z\306\330\305a-z\346\370\345]" "[^A-Z\306\330\305a-z\346\370\345]"
+;;   "[']" nil ("-C") nil iso-8859-1)
+
+;; (let ((dansk (alist-get "dansk" ispell-dictionary-base-alist nil nil 'equal)))
+;;   (setf (alist-get "dansk" ispell-dictionary-base-alist nil nil 'equal)
+;;         '("[A-ZÆØÅa-zæøå]" "[^A-ZÆØÅa-zæøå]"
+;;           "[']" nil ("-C") nil iso-8859-1)))
