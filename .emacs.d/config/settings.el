@@ -355,6 +355,12 @@
 (define-key minibuffer-local-map (kbd "H-e") 'next-line-or-history-element)
 ;; (setq minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
 ;; (setq minibuffer-prompt-properties (plist-put minibuffer-prompt-properties 'point-entered 'minibuffer-avoid-prompt))
+
+
+(setq markdown-command "/usr/bin/pandoc")
+
+
+
 (customize-set-variable
  'minibuffer-prompt-properties
  (quote (read-only t cursor-intangible t face minibuffer-prompt)))
