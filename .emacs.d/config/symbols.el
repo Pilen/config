@@ -91,6 +91,7 @@
        "∩ intersection"
        "≡ identical"
        "≢ not identical"
+       "≈ approx"
        "¬ lnot"
        "⊨ true"
        "⊭ not true"

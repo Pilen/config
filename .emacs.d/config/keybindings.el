@@ -78,6 +78,13 @@
 (global-set-key (kbd "H-t") 'delete-forward-char)
 ;; (global-set-key (kbd "H-s") 'paredit-backward-delete)
 ;; (global-set-key (kbd "H-t") 'paredit-forward-delete)
+(global-set-key (kbd "H-3") 'paredit-forward-slurp-sexp)
+(global-set-key (kbd "H-2") 'paredit-backward-slurp-sexp)
+(global-set-key (kbd "H-#") 'paredit-forward-barf-sexp)
+(global-set-key (kbd "H-@") 'paredit-backward-barf-sexp)
+(global-set-key (kbd "H-C-3") 'paredit-join-sexps)
+(global-set-key (kbd "H-C-2") 'paredit-split-sexp)
+
 
 (global-set-key (kbd "H-C-s") 'my-scroll-left)
 (global-set-key (kbd "H-C-t") 'my-scroll-right)
@@ -201,6 +208,7 @@
 (global-set-key (kbd "S-<menu>") 'menu-bar-mode)
 
 (global-set-key (kbd "H-D") 'create-scratch-buffer)
+(global-set-key (kbd "H-C-d") 'next-scratch-buffer)
 ;;END
 
 ;;New layout
@@ -299,6 +307,7 @@
 (global-set-key (kbd "<f2>") 'flyspell-mode)
 ;; (global-set-key (kbd "H-<f2>") 'fd-switch-dictionary)
 (global-set-key (kbd "S-<f2>") 'fd-switch-dictionary-flyspell)
+(global-set-key (kbd "H-<f2>") 'flyspell-correct-at-point)
 (global-set-key (kbd "<f3>") 'kmacro-start-macro-or-insert-counter)
 (global-set-key (kbd "<H-f3>") 'kmacro-name-last-macro)
 (global-set-key (kbd "<f4>") 'kmacro-end-or-call-macro)
@@ -314,9 +323,9 @@
 (global-set-key (kbd "<f11>") nil)
 (global-set-key (kbd "H-<f11>") nil)
 (global-set-key (kbd "S-<f11>") nil)
-(global-set-key (kbd "<f12>") 'neotree)
-(global-set-key (kbd "S-<f12>") 'my-neotree-here)
-(global-set-key (kbd "H-<f12>") 'neotree-toggle)
+(global-set-key (kbd "<f12>") 'my-neotree)
+(global-set-key (kbd "S-<f12>") 'neotree-toggle)
+(global-set-key (kbd "H-<f12>") 'my-neotree-here)
 
 (global-set-key (kbd "<print>") 'my-magit-status)
 

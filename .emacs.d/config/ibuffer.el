@@ -93,12 +93,21 @@
                ("Magit"
                 (or
                  (name . "magit")))
+               ("Customize"
+                (mode . Custom-mode))
+               ("*...*"
+                (starred-name . "."))
                ))))
 
-(add-hook 'ibuffer-mode-hook
-          (lambda ()
-            (ibuffer-auto-mode t)
-            (ibuffer-switch-to-saved-filter-groups "default")))
+
+(defun my-ibuffer-hook ()
+  ;; (ibuffer-auto-mode t)
+  (ibuffer-switch-to-saved-filter-groups "default")
+  (define-key ibuffer-mode-map "\C-x\C-f" 'ibuffer-ido-find-file)
+  (define-key ibuffer-mode-map (kbd "<menu>") '(lambda () (interactive) (kill-buffer)))
+  (define-key ibuffer-mode-map (kbd "<return>") 'my-ibuffer-visit-buffer)
+  )
+(add-hook 'ibuffer-mode-hook 'my-ibuffer-hook)
 
 (setq ibuffer-show-empty-filter-groups nil)
 
@@ -133,8 +142,6 @@
      (ido-find-file-in-dir default-directory))))
 (add-hook 'ibuffer-mode-hook
           (lambda ()
-            (define-key ibuffer-mode-map "\C-x\C-f" 'ibuffer-ido-find-file)
-            (define-key ibuffer-mode-map (kbd "<menu>") '(lambda () (interactive) (kill-buffer)))
             ))
 (defadvice ibuffer (around ibuffer-point-to-most-recent) ()
   "Open ibuffer with cursor pointed to most recent buffer name"
@@ -154,3 +161,8 @@
     (ediff-buffers (car marked-buffers) (cadr marked-buffers))))
 
 (define-key ibuffer-mode-map "e" 'ibuffer-ediff-marked-buffers)
+
+(defun my-ibuffer-visit-buffer ()
+  (interactive)
+  (ibuffer-visit-buffer)
+  (kill-buffer "*Ibuffer*"))

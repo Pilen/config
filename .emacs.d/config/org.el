@@ -60,3 +60,7 @@
 
 ;; https://emacs.stackexchange.com/questions/7629/the-syntax-highlight-and-indentation-of-source-code-block-in-exported-html-file
 ;(setq org-html-htmlize-output-type 'css)
+
+(setq org-babel-min-lines-for-block-output 10000)
+
+;; (setq org-babel-python-command "python ")

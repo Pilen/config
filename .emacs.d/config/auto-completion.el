@@ -28,12 +28,31 @@
 (define-key company-active-map (kbd "H-i") 'company-abort)
 (define-key company-active-map (kbd "H-n") 'nil)
 (define-key company-active-map (kbd "SPC") 'company-abort)
+;; (dotimes (i 10)
+;;   (define-key company-active-map (format "%d" i) 'company-complete-number))
 (dotimes (i 10)
-  (define-key company-active-map (read-kbd-macro (format "%d" i)) 'company-complete-number))
-
+  (define-key company-active-map (format "%d" i) 'ora-company-number))
 
 (add-to-list 'company-backends 'company-jedi)
 (add-to-list 'company-backends 'company-go)
+
+
+(defun ora-company-number ()
+  "Forward to `company-complete-number'.
+Unless the number is potentially part of the candidate.
+In that case, insert the number."
+  (interactive)
+  (let* ((k (this-command-keys))
+         (re (concat "^" company-prefix k)))
+    (if (or (cl-find-if (lambda (s) (string-match re s))
+                        company-candidates)
+            (> (string-to-number k)
+               (length company-candidates)))
+        (self-insert-command 1)
+      (company-complete-number
+       (if (equal k "0")
+           10
+         (string-to-number k))))))
 
 
 (defun company-quickhelp--show ()
