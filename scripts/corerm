@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+shopt -s extglob
+for file in .+([0-9]);
+do
+    echo "$file"
+    rm "$file"
+done

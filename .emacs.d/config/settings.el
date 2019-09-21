@@ -394,7 +394,7 @@
 ;π STARTUP
 ;;______________________________________________________________________________
 (setq inhibit-startup-message t)
-(with-current-buffer (get-buffer-create (generate-new-buffer-name "lock"))
+(with-current-buffer (get-buffer-create (generate-new-buffer-name "*lock*"))
   (emacs-lock-mode 'exit))
 (defun display-startup-echo-area-message ()
   (message ""))
