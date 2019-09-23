@@ -430,6 +430,7 @@
 (define-key neotree-mode-map (kbd "b") (lambda () (interactive) (goto-char (point-min)) (neotree-next-line) (neotree-change-root)))
 (define-key neotree-mode-map (kbd "b") 'neotree-select-up-node)
 (define-key neotree-mode-map (kbd "c") 'neotree-change-root)
+(define-key neotree-mode-map (kbd "C-xC-F") 'my-neotree-find-file-here)
 
 (setq neo-window-width 35)
 ;; (setq neo-vc-integration nil)
@@ -454,9 +455,8 @@
 
 ;; Updated to "hide" hidden files
 (defun neo-buffer--insert-file-entry (node depth)
-  (let* ((node-short-name (neo-path--file-short-name node))
-         (vc (when neo-vc-integration (neo-vc-for-node node)))
-         (hidden (string-prefix-p "." node-short-name)))
+  (let ((node-short-name (neo-path--file-short-name node))
+        (vc (when neo-vc-integration (neo-vc-for-node node))))
     (insert-char ?\s (* (- depth 1) 2)) ; indent
     (when (memq 'char neo-vc-integration)
       (insert-char (car vc))
@@ -464,16 +464,28 @@
     (neo-buffer--insert-fold-symbol 'leaf node-short-name)
     (insert-button node-short-name
                    'follow-link t
-                   'face (if hidden
-                             'neo-hidden-face
-                             (if (memq 'face neo-vc-integration)
-                                        (cdr vc)
-                                      neo-file-link-face))
+                   'face (if (neo-filepath-hidden-p node) ;; Inserted this
+                             'neo-hidden-face             ;; Inserted this
+                           (if (memq 'face neo-vc-integration)
+                               (cdr vc)
+                             neo-file-link-face))
                    'neo-full-path node
                    'keymap neotree-file-button-keymap
                    'help-echo (neo-buffer--help-echo-message node-short-name))
     (neo-buffer--node-list-set nil node)
     (neo-buffer--newline-and-begin)))
+
+
+
+(defun my-neotree-keep-size (frame)
+  (when (frame-size-changed-p frame)
+    (neo-global--reset-width)
+    (message "frame resized")))
+(push 'my-neotree-keep-size window-size-change-functions)
+
+(defun my-neotree-find-file-here ()
+  (interactive)
+  (cd (neo-path--match-path-directory (neo-buffer--get-filename-current-line neo-buffer--start-node))))
 
 ;;______________________________________________________________________________
 ;π CONSOLE
