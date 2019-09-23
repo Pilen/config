@@ -430,7 +430,7 @@
 (define-key neotree-mode-map (kbd "b") (lambda () (interactive) (goto-char (point-min)) (neotree-next-line) (neotree-change-root)))
 (define-key neotree-mode-map (kbd "b") 'neotree-select-up-node)
 (define-key neotree-mode-map (kbd "c") 'neotree-change-root)
-(define-key neotree-mode-map (kbd "C-xC-F") 'my-neotree-find-file-here)
+(define-key neotree-mode-map (kbd "C-x C-F") 'my-neotree-find-file-here)
 
 (setq neo-window-width 35)
 ;; (setq neo-vc-integration nil)
@@ -478,14 +478,16 @@
 
 
 (defun my-neotree-keep-size (frame)
-  (when (frame-size-changed-p frame)
+  (when (and (frame-size-changed-p frame) (neo-global--window-exists-p))
     (neo-global--reset-width)
-    (message "frame resized")))
+    ;; (message "frame resized")
+    ))
 (push 'my-neotree-keep-size window-size-change-functions)
 
 (defun my-neotree-find-file-here ()
   (interactive)
-  (cd (neo-path--match-path-directory (neo-buffer--get-filename-current-line neo-buffer--start-node))))
+  (cd (neo-path--match-path-directory (neo-buffer--get-filename-current-line neo-buffer--start-node)))
+  (call-interactively 'find-file))
 
 ;;______________________________________________________________________________
 ;π CONSOLE
