@@ -1,0 +1,115 @@
+#!/usr/bin/env python3
+
+"""
+Wrapper around sshfs, so it be used either way
+
+# https://blog.dhampir.no/content/reverse-sshfs-mounts-fs-push
+
+If you get the following message when reversing:
+bash: sshfs: command not found
+Then you must install sshfs on remote system
+
+If you get the following message when reversing:
+fuse: bad mount point `/opt/aimdev': No such file or directory
+Then you must make the dir /opt/aimdev on the remote
+"""
+
+import argparse
+import re
+import subprocess
+from pathlib import Path
+
+PROCESS = None
+
+class UserError(Exception):
+    pass
+
+class Location:
+    def __init__(self, location):
+        match = re.fullmatch("((([^@/]+)@)?([^:/]+):)?(.+)", location)
+        if not match:
+            raise UserError("Not a valid location: {}".format(location))
+        self.location = location
+        self.user = match.group(3)
+        self.host = match.group(4)
+        self.dir = match.group(5)
+        if self.is_remote and self.dir[0] != "/":
+            self.dir = str(Path(self.dir).absolute())
+
+    @property
+    def user_host(self):
+        if self.user:
+            return "{}@{}".format(self.user, self.host)
+        else:
+            return self.host
+
+    @property
+    def is_remote(self):
+        return self.host is not None
+
+
+def sshfs(source, destination):
+    global PROCESS
+    assert not destination.is_remote
+    if destination.is_remote:
+        raise UserError("Destination should not be remote: {}".format(destination.location))
+    # -f foreground operation
+    PROCESS = subprocess.Popen(["sshfs", source.location, destination.location, "-f",
+                                "-o", "cache=yes",
+                                "-o", "kernel_cache",
+                                "-o", "compression=yes"])
+    PROCESS.wait()
+
+
+def reverse_sshfs(source, destination):
+    global PROCESS
+    assert not source.is_remote
+    if source.is_remote:
+        raise UserError("Source should not be remote: {}".format(destination.location))
+    sudo = ["sudo"] if not destination.user == "root" else []
+    command = ["dpipe", "/usr/lib/openssh/sftp-server", "=",
+               "ssh", destination.user_host, *sudo, "sshfs", ":"+source.dir, destination.dir,
+               "-o", "slave",
+               "-o", "idmap=user",
+               "-o", "gid=0",
+               # "-o", "transform_symlinks",
+               # "-o", "follow_symlinks",
+    ]
+    PROCESS = subprocess.Popen(command)
+    PROCESS.wait()
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    # parser.add_argument("--source", "-s", help="The filesystem where the files are located, can be remote")
+    # parser.add_argument("--destination", "-d", help="Where to mount the filesystem, can be remote if FROM isn't")
+    parser.add_argument("source", help="The filesystem where the files are located, can be remote")
+    parser.add_argument("destination", help="Where to mount the filesystem, can be remote if FROM isn't")
+    args = parser.parse_args()
+
+    source = Location(args.source)
+    destination = Location(args.destination)
+
+    if source.is_remote and destination.is_remote:
+        print("Error! Both source and destination are remote")
+        return
+    if not source.is_remote and not destination.is_remote:
+        print("Error! Both source and destination are local")
+        return
+    try:
+        if source.is_remote:
+            sshfs(source, destination)
+        else:
+            reverse_sshfs(source, destination)
+    except UserError as e:
+        print("Error! {}".format(e))
+    except KeyboardInterrupt as e:
+        print()
+    finally:
+        if PROCESS is not None:
+            if PROCESS.returncode is None:
+                PROCESS.terminate()
+
+
+if __name__ == "__main__":
+    main()
