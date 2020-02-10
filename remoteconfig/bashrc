@@ -6,6 +6,7 @@ shopt -s extglob
 bind '\C-n:menu-complete'
 bind '\C-p:menu-complete-previous'
 
+export HISTCONTROL=ignoredups:ignorespace
 
 source "$REMOTE_CONFIG_DIR/.aliases"
 

@@ -5,4 +5,4 @@ convert /tmp/screen_locked.png -blur 20x20 /tmp/screen_locked_blurred.png
 rm /tmp/screen_locked.png
 killall -SIGUSR1 dunst # Pause dunst
 i3lock -i /tmp/screen_locked_blurred.png
-killall -SIGUSR2 dunst # Pause dunst
+killall -SIGUSR2 dunst # Resume dunst

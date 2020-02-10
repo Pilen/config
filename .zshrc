@@ -66,7 +66,7 @@ if [ -e "/usr/share/z/z.sh" ]; then
 fi
 
 function mkcd {
-    mkdir $1 && cd $1;
+    mkdir -p $1 && cd $1;
 }
 
 function cl {

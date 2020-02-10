@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 cd ~
 
@@ -21,6 +21,7 @@ files=(
     '.config/sxhkd'
     # files:
     '.Xdefaults'
+    '.Xresources'
     '.Xmodmap'
     '.aliases'
     '.bashrc'
