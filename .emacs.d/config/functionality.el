@@ -357,6 +357,13 @@ This is to update existing buffers after a Git pull of their underlying files."
   (format-replace-strings smart-to-ascii nil beg end))
 
 
+(defun insert-thing (&optional arg)
+  (interactive)
+  (insert " ")
+  (if (called-interactively-p)
+      (eval-last-sexp t)
+    (insert (prin1-to-string arg))))
+
 ;;______________________________________________________________________________
 ;π CODE FOLDING
 ;;______________________________________________________________________________
