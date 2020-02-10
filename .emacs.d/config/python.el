@@ -9,6 +9,7 @@
   (setq tab-width (default-value 'tab-width)) ;; Don't fuck with my tab-width!!!
   ;; (add-to-list 'company-backends 'company-jedi)
   ;; (jedi:setup)
+  (which-function-mode)
   )
 
 ;; (jedi:install-server)

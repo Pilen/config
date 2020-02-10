@@ -141,7 +141,7 @@
 ;(global-set-key (kbd "H-8") 'extend-selection)
 ;(global-set-key (kbd "H-*") 'select-text-in-quote)
 
-(global-set-key (kbd "H-v") 'goto-last-change)
+(global-set-key (kbd "H-v") 'my-goto-last-change)
 (global-set-key (kbd "H-V") 'pop-to-mark-command)
 
 
@@ -228,6 +228,7 @@
 ;(global-set-key (kbd "H-r") 'transpose-lines)
 (global-set-key (kbd "H-r") 'comment-or-uncomment-region-or-line)
 (global-set-key (kbd "H-R") 'my-align-regexp)
+(global-set-key (kbd "H-R") 'align-regexp)
 (global-set-key (kbd "H-]") 'golden-ratio)
 (global-set-key (kbd "H-C-]") 'golden-ratio-toggle)
 (global-set-key (kbd "H-}") 'balance-windows)
@@ -343,6 +344,8 @@
 
 (global-set-key (kbd "H-C-.") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "->") (insert " ->")) (if (not (char-equal (char-after) ?\s )) (insert " ") (forward-char))))
 (global-set-key (kbd "H-C-,") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "<-") (insert " <-")) (if (not (char-equal (char-after) ?\s )) (insert " ") (forward-char))))
+(global-set-key (kbd "H-C->") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "=>") (insert " =>")) (if (not (char-equal (char-after) ?\s )) (insert " ") (forward-char))))
+(global-set-key (kbd "H-C-<") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "<=") (insert " <=")) (if (not (char-equal (char-after) ?\s )) (insert " ") (forward-char))))
 
 (add-hook 'multiple-cursors-mode-enabled-hook (lambda ()
                                                 (define-key mc/keymap (kbd "<return>") 'newline)))

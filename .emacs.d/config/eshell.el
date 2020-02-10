@@ -454,3 +454,10 @@ If there's a string at point, offer that as a default."
       (if buffer
           (switch-to-buffer-other-window buffer)
         (eshell)))))
+
+;;______________________________________________________________________________
+;π ESHELL TREE
+;;______________________________________________________________________________
+
+;; Like running tree, but clickable names and colored
+;; H-J works almost as good!

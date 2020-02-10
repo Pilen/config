@@ -430,6 +430,7 @@
 (define-key neotree-mode-map (kbd "b") (lambda () (interactive) (goto-char (point-min)) (neotree-next-line) (neotree-change-root)))
 (define-key neotree-mode-map (kbd "b") 'neotree-select-up-node)
 (define-key neotree-mode-map (kbd "c") 'neotree-change-root)
+(define-key neotree-mode-map (kbd "m") 'my-neotree-move-buffer-file)
 (define-key neotree-mode-map (kbd "C-x C-F") 'my-neotree-find-file-here)
 
 (setq neo-window-width 35)
@@ -488,6 +489,19 @@
   (interactive)
   (cd (neo-path--match-path-directory (neo-buffer--get-filename-current-line neo-buffer--start-node)))
   (call-interactively 'find-file))
+
+(defun my-neotree-move-buffer-file ()
+  (interactive)
+  (let* ((file (neo-buffer--get-filename-current-line))
+         (buffer (find-buffer-visiting file))
+         (dir (read-directory-name "Move to: " (file-name-directory file)))
+         (newfile (concat dir (file-name-nondirectory file))))
+    (when buffer
+      (with-current-buffer buffer (set-visited-file-name newfile nil t)))
+    (rename-file file newfile)
+    (neo-buffer--refresh t)
+    newfile
+    ))
 
 ;;______________________________________________________________________________
 ;π CONSOLE

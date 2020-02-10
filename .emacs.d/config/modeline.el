@@ -62,6 +62,7 @@
 (defvar my-mode-line-buffer-line-count nil)
 (make-variable-buffer-local 'my-mode-line-buffer-line-count)
 
+;; https://stackoverflow.com/questions/8190277/how-do-i-display-the-total-number-of-lines-in-the-emacs-modeline
 (defun my-mode-line-count-lines ()
   (setq my-mode-line-buffer-line-count (int-to-string (count-lines (point-min) (point-max)))))
 
@@ -246,6 +247,7 @@
     (setq end   (floor (* (/ number-end (float number-max)) inner-len)))
     (setq string
           (concat "%l/"
+                  ;; my-mode-line-buffer-line-count
                   (my-mode-line-count-lines)
                   ":%c"))
 

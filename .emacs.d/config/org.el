@@ -3,7 +3,7 @@
 ;; org-clock-in-hook
 ;; org-clock-out-hook
 ;; org-clock-cancel-hook
-
+(require 'org)
 (require 'org-mouse)
 (defun my-org-clock-in ()
   )

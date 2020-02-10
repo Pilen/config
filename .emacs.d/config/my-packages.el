@@ -46,6 +46,7 @@ All packages here will automatically be installed if not present.")
         fuzzy                 ;; not used, what is it exactly?
         geiser
         ghc
+        gnu-elpa-keyring-update
         go-mode
         golden-ratio          ;; Not used often
         google-translate
@@ -110,7 +111,7 @@ All packages here will automatically be installed if not present.")
 
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 ;; (add-to-list 'package-archives
 ;;              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)

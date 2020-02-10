@@ -37,8 +37,10 @@
                 (mode . jde-mode))
                ("Web"
                 (or
+                 (mode . web-mode)
                  (mode . html-mode)
-                 (mode . css-mode)))
+                 (mode . css-mode)
+                 ))
                ("Javascript"
                 (or
                  (mode . js-mode)
@@ -63,6 +65,8 @@
                  (mode . sh-mode)))
                ("Perl"
                 (mode . perl-mode))
+               ("Vagrant"
+                (name . "Vagrantfile"))
                ("Tex"
                 (or
                  (mode . auctex)
@@ -74,6 +78,8 @@
                 (mode . org-mode))
                ("Text"
                 (mode . text-mode))
+               ("XML"
+                (mode . nxml-mode))
                ("Mail"
                 (or ;; mail-related buffers
                  (mode . message-mode)

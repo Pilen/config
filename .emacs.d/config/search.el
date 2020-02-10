@@ -118,3 +118,5 @@
 (define-key swiper-map (kbd "H-q") 'swiper-mc)
 
 (setq swiper-stay-on-quit t)
+
+(setq ivy-height 13)
