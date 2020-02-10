@@ -4,11 +4,31 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+if [ $# -eq 0 ]; then
+    echo "Error! No arguments"
+    exit 1
+elif [ $# -gt 2 ]; then
+    echo "Error! Wrong number of arguments"
+    exit 1
+fi
+
+
 REMOTE_CONFIG_DIR="$HOME/remoteconfig" # Assume remote user and local user has same $HOME
 LOCAL_CONFIG_DIR="$HOME/config/remoteconfig"
+REMOTE="$1"
 
-if ! rsync --rsh="ssh -oBatchMode=yes" --copy-links -r "$LOCAL_CONFIG_DIR/" "$@:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1; then
-    ssh-copy-id "$@"
-    rsync --copy-links -r "$LOCAL_CONFIG_DIR/" "$@:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1
+if ! rsync --rsh="ssh -oBatchMode=yes" --copy-links -r "$LOCAL_CONFIG_DIR/" "$REMOTE:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1; then
+    ssh-copy-id "$REMOTE"
+    rsync --copy-links -r "$LOCAL_CONFIG_DIR/" "$REMOTE:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1
 fi
-ssh "$@" -t "sudo -i REMOTE_CONFIG_DIR=${REMOTE_CONFIG_DIR} bash --rcfile ${REMOTE_CONFIG_DIR}/bashrc -O globstar"
+
+
+if [ $# -eq 1 ]; then
+    ssh "$REMOTE" -t "sudo -i REMOTE_CONFIG_DIR=\"${REMOTE_CONFIG_DIR}\" SSH_CONNECTION=\"\$SSH_CONNECTION\" bash --rcfile ${REMOTE_CONFIG_DIR}/bashrc -O globstar"
+elif [ $# -eq 2 ]; then
+    TMUX_SESSION="$2"
+    ssh "$REMOTE" -t "sudo -i REMOTE_CONFIG_DIR=\"${REMOTE_CONFIG_DIR}\" SSH_CONNECTION=\"\$SSH_CONNECTION\" tmux -f ${REMOTE_CONFIG_DIR}/tmux.conf new-session -A -s ${TMUX_SESSION}    bash --rcfile ${REMOTE_CONFIG_DIR}/bashrc -O globstar"
+else
+    echo "ERROR!"
+    exit 1
+fi
