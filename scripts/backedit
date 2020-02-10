@@ -1,0 +1,24 @@
+#!/bin/bash
+set -o errexit -o nounset -o pipefail
+
+FILE="$(realpath $1)"
+if [ ! -f $FILE ]; then
+    echo "Error! Not a file: $FILE"
+    exit 1
+fi
+
+source "$REMOTE_CONFIG_DIR/backedit.conf"
+
+if [[ $EUID -eq 0 ]]; then
+    SUDO="yes"
+    USER="spi"
+else
+    SUDO="no"
+    USER="$USER"
+fi
+
+JSON="{\"sudo\":\"$SUDO\",\"user\":\"$USER\",\"host\":\"$HOSTNAME\",\"secret\":\"$BACKEDIT_SECRET\",\"path\":\"$FILE\"}"
+echo wget --timeout 60 --quiet -O - "${BACKEDIT_SERVER}:${BACKEDIT_PORT}/" --header='Content-Type: application/json' --post-data "$JSON" > /dev/null
+wget --timeout 60 --quiet -O - "${BACKEDIT_SERVER}:${BACKEDIT_PORT}/" --header='Content-Type: application/json' --post-data "$JSON" > /dev/null
+
+# Beaware that $SSH_CONNECTION is not usable in vagrant as a portforwarding is configured directly in virtualbox
