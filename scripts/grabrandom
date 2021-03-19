@@ -79,6 +79,91 @@ def analyze(selected, lines):
     print("expected", lines/len(selected))
 
 
+
+# USE THIS:
+# Reservoir sampling
+# def grab_random(it, k):
+#     it = iter(it)
+#     selected = []
+#     for i, x in enumerate(it):
+#         if i < k:
+#             selected.append((i, x))
+#         else:
+#             j = random.randint(0, i)
+#             if j < k:
+#                 selected[j] = (i, x)
+#     selected.sort()
+#     return [x for i, x in selected]
+# grab_random(['a', 'b', 'c', 'd', 'e'], 2)
+
+# def analyze(it, k, r):
+#     c = collections.Counter()
+#     for i in range(r):
+#         for x in grab_random(it, k):
+#             c[x] += 1
+#     return c.most_common()
+
+def analyze2(p, k, r):
+    import collections
+    c = collections.Counter()
+    for i in range(r):
+        for x in grab_lines(p, k, []):
+            c[x] += 1
+    return c.most_common()
+
+def grab_lines(paths, amount, include):
+    a = -1
+    i = -1
+    include = sorted(include)
+    fixed = []
+    selected = []
+    for path in paths:
+        include_it = iter(include)
+        next_include = next(include_it, None)
+        with path.open() as f:
+            for r, line in enumerate(f, 1):
+                a += 1
+                if r == next_include:
+                    next_include = next(include_it, None)
+                    fixed.append((i, line))
+                    continue
+                i += 1
+                if i < amount:
+                    selected.append((i, line))
+                else:
+                    j = random.randint(0, a)
+                    if j < amount:
+                        selected[j] = (i, line)
+    selected.extend(fixed)
+    selected.sort()
+    return (x for i, x in selected)
+
+def grab_lines(paths, amount, include):
+    a = -1
+    i = -1
+    include = iter(sorted(include))
+    fixed = []
+    selected = []
+    for path in paths:
+        next_include = next(include, None)
+        with path.open() as f:
+            for r, line in enumerate(f, 1):
+                a += 1
+                if r == next_include:
+                    next_include = next(include, None)
+                    fixed.append((i, line))
+                    continue
+                i += 1
+                if i < amount:
+                    selected.append((i, line))
+                else:
+                    j = random.randint(0, a)
+                    if j < amount:
+                        selected[j] = (i, line)
+    selected.extend(fixed)
+    selected.sort()
+    return (x for i, x in selected)
+
 def main():
     parser = argparse.ArgumentParser()
     # parser.add_argument("input", nargs="*", type=argparse.FileType("r"), default=sys.stdin, help="The files to select from")
@@ -91,9 +176,10 @@ def main():
     if args.deterministic:
         fixseed(args.input)
     paths = get_paths(args.input)
-    line_count = total_line_count(paths)
-    selected = select_lines(args.amount, line_count, set(args.include))
-    it = grab_selected(paths, selected)
+    # line_count = total_line_count(paths)
+    # selected = select_lines(args.amount, line_count, set(args.include))
+    # it = grab_selected(paths, selected)
+    it = grab_lines(paths, args.amount, set(args.include))
     print_selected(it)
     # analyze(selected, line_count)
 if __name__ == "__main__":
