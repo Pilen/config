@@ -64,6 +64,8 @@ URxvt.inheritPixmap: false
 !URxvt.scrollBar: true
 URxvt.scrollBar: false
 URxvt.urlLauncher: chromium
+URxvt.url-launcher: chromium
+! URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 URxvt.cursorBlink: true
 URxvt.geometry: 93.26
