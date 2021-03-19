@@ -8,7 +8,8 @@ if [ $1 = "-m" ]; then
     SUDO_COMMAND=""
     shift
 else
-    SUDO_COMMAND="sudo -i"
+    # SUDO_COMMAND="sudo -i"
+    SUDO_COMMAND="sudo"
 fi
 
 if [ $# -eq 0 ]; then
@@ -26,22 +27,38 @@ REMOTE="$1"
 SERVERALIVEINTERVAL="240"
 
 if ! rsync --rsh="ssh -oBatchMode=yes" --copy-links -r "$LOCAL_CONFIG_DIR/" "$REMOTE:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1; then
-    ssh-copy-id "$REMOTE"
-    rsync --copy-links -r "$LOCAL_CONFIG_DIR/" "$REMOTE:${REMOTE_CONFIG_DIR}" > /dev/null 2>&1
+    set +o errexit
+    # It might be due to having a diffent $HOME
+    REMOTE_CONFIG_DIR="$(ssh -q -oBatchMode=yes "$REMOTE" 'echo ~')"
+    set -o errexit
+    if [ -z "$REMOTE_CONFIG_DIR" ]; then
+        ssh-copy-id "$REMOTE"
+        REMOTE_CONFIG_DIR="$(ssh -q -oBatchMode=yes "$REMOTE" 'echo $HOME')"
+    fi
+    rsync --copy-links -r "$LOCAL_CONFIG_DIR/" "$REMOTE:${REMOTE_CONFIG_DIR}" > /dev/null
 fi
 
-
+# TODO, add some flag, that will run something like
+# tmux attach\; choose-tree
+# or it could be if session name is - or ?
 if [ $# -eq 1 ]; then
     TMUX_COMMAND=""
+    TMUX_VARS=""
 elif [ $# -eq 2 ]; then
     TMUX_SESSION="$2"
     TMUX_COMMAND="tmux -f ${REMOTE_CONFIG_DIR}/tmux.conf new-session -A -s ${TMUX_SESSION}"
+    TMUX_VARS="TMUX_SESSION=\"${TMUX_SESSION}\""
 else
     echo "ERROR!"
     exit 1
 fi
 
-VARIABLES="REMOTE_CONFIG_DIR=\"${REMOTE_CONFIG_DIR}\" SSH_CONNECTION=\"\$SSH_CONNECTION\""
+# VARIABLES="REMOTE_CONFIG_DIR=\\\"${REMOTE_CONFIG_DIR}\\\" SSH_CONNECTION=\\\"\$SSH_CONNECTION\\\""
+# VARIABLES="env REMOTE_CONFIG_DIR=\\\"${REMOTE_CONFIG_DIR}\\\" SSH_CONNECTION=\\\"\$SSH_CONNECTION\\\""
+VARIABLES="env REMOTE_CONFIG_DIR=\"${REMOTE_CONFIG_DIR}\" SSH_CONNECTION=\"\$SSH_CONNECTION\" $TMUX_VARS"
 SHELL_COMMAND="bash --rcfile ${REMOTE_CONFIG_DIR}/bashrc -O globstar"
 
-ssh "$REMOTE" -t -o "ServerAliveInterval=${SERVERALIVEINTERVAL}" -o "LogLevel=error" "${SUDO_COMMAND} ${VARIABLES} ${TMUX_COMMAND} ${SHELL_COMMAND}"
+# ssh "$REMOTE" -t -o "ServerAliveInterval=${SERVERALIVEINTERVAL}" -o "LogLevel=error" "${SUDO_COMMAND} ${VARIABLES} ${TMUX_COMMAND} ${SHELL_COMMAND}"
+# ssh "$REMOTE" -t -o "ServerAliveInterval=${SERVERALIVEINTERVAL}" -o "LogLevel=error" "${TMUX_COMMAND} \"${SUDO_COMMAND} ${VARIABLES} ${SHELL_COMMAND}\""
+# ssh "$REMOTE" -t -o "ServerAliveInterval=${SERVERALIVEINTERVAL}" -o "LogLevel=error" "${TMUX_COMMAND} \"${SUDO_COMMAND} ${VARIABLES} ${SHELL_COMMAND}\""
+ssh "$REMOTE" -t -o "ServerAliveInterval=${SERVERALIVEINTERVAL}" -o "LogLevel=error" "${TMUX_COMMAND}" "${SUDO_COMMAND}" "${VARIABLES}" "${SHELL_COMMAND}"
