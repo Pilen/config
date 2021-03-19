@@ -14,9 +14,7 @@ def prompt():
     city = hostname[2:5]
     company = hostname[5:6]
     service = hostname[6:]
-    tmux = None
-    if os.environ.get("TMUX", None):
-        tmux = subprocess.check_output(["tmux", "display-message", "-p", "#S"], universal_newlines=True).strip()
+    tmux = os.environ.get("TMUX_SESSION", None)
     if user == "vagrant":
         yield r"\[\e[01;33m\]\u"
         yield r"\[\e[00;33m\]@\h"
@@ -66,6 +64,7 @@ def prompt():
         yield r"\[\e[00m\]:"
         yield r"\[\e[01;34m\]\w "
         yield r"\[\e[00;34m\]\$"
+    yield " "
 
 def main():
     print("".join(prompt()) + r"\[\e[00m\]")
