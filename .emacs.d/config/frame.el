@@ -52,3 +52,17 @@
 
 (defvar my-nice-background-colors '("#203538" "#1e2034" "#1d2031"))
 ;; (frame-parameter nil 'background-color)
+
+
+(defun my-frame-select-color ()
+  (interactive)
+  (let* ((colors `(("timesheet" . "#1fc61bf133a9")
+                   ("four" . "#1e74326d34a1")
+                   ("dusty" . ,(apply 'color-rgb-to-hex (color-hsl-to-rgb 0.53 0.22 0.22)))
+                   ("dusty2" . ,(apply 'color-rgb-to-hex (color-hsl-to-rgb 0.53 0.13 0.28)))
+                   ))
+         (color-names (mapcar #'car colors))
+         (selected-name (ido-completing-read "select background color: " color-names nil t))
+         (selected-color (alist-get selected-name colors)))
+    (set-background-color selected-color)))
+;; (my-frame-select-color)

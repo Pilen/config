@@ -5,9 +5,11 @@
 ;; org-clock-cancel-hook
 (require 'org)
 (require 'org-mouse)
+(require 'org-table)
 (defun my-org-clock-in ()
   )
 
+(setq org-startup-folded nil)
 
 ;; By default org-beamer will export *text* as \alert{text} not \textbf{text}, revert this
 (defun my-beamer-bold (contents backend info)
@@ -64,3 +66,388 @@
 (setq org-babel-min-lines-for-block-output 10000)
 
 ;; (setq org-babel-python-command "python ")
+
+
+(setq org-agenda-files '("/home/spi/status/"))
+
+(setq org-duration-format `((special . h:mm)))
+
+;; (defun my-org-extract-text ())
+
+;; look at org-clock.el.gz
+;; org-clock-update-mode-line
+;; org-clock-get-clock-string
+;; (org-clock-get-clocked-time)
+;; (org-clocking-p)
+
+
+(defface my-org-not-clocked-in-face
+  '((t
+     :foreground "OrangeRed1"
+     ;; :background "DeepSkyBlue4"
+     :weight bold
+     ;; :underline t
+     )) "")
+(set-face-background 'my-org-not-clocked-in-face nil)
+(set-face-foreground 'my-org-not-clocked-in-face "OrangeRed1")
+(set-face-foreground 'my-org-not-clocked-in-face "coral3")
+(set-face-bold 'my-org-not-clocked-in-face t)
+
+(defun my-org-clock-in-hook ()
+  (force-mode-line-update t)
+  )
+(add-hook 'org-clock-in-hook 'my-org-clock-in-hook)
+(defun my-org-clock-out-hook ()
+  (setq org-mode-line-string (propertize
+                              " [Not clocked in]"
+                              'face 'my-org-not-clocked-in-face
+                              'local-map org-clock-mode-line-map))
+  (force-mode-line-update t)
+  )
+(add-hook 'org-clock-out-hook 'my-org-clock-out-hook)
+
+(my-org-clock-out-hook)
+
+
+(setq org-clock-history-length 30)
+
+;; (org-clock-in '(4))
+;; (org-clock-select-task)
+(defun my-org-clock-in-menu ()
+  (interactive)
+  (let (candidates
+        selected-task
+        selected
+
+        cat task heading prefix
+        )
+    (dolist (marker org-clock-history)
+      (when (and (not (equal marker (cadr candidates)))
+                 (marker-buffer marker))
+        (with-current-buffer (org-base-buffer (marker-buffer marker))
+          (org-with-wide-buffer
+           (ignore-errors
+             (goto-char marker)
+             (setq cat (org-get-category)
+                   heading (org-get-heading 'notags)
+                   prefix (save-excursion
+                            (org-back-to-heading t)
+                            (looking-at org-outline-regexp)
+                            (match-string 0))
+                   ;; task (substring ;-no-properties
+                   ;;       (org-fontify-like-in-org-mode
+                   ;;        (concat prefix heading)
+                   ;;        org-odd-levels-only)
+                   ;;       (length prefix))
+                   task (progn (set-text-properties 0 (length heading) nil heading) heading)
+                   )
+             (when (and cat task)
+               (push (cons task marker) candidates)))))))
+    (push (cons "[New task]" 'new-task) candidates)
+    (setq candidates (reverse candidates))
+    (when (org-clocking-p)
+      (push (cons "[Clock out]" 'clock-out) candidates)
+      )
+    (setq selected-task (ivy-read "Task:" candidates))
+    (setq selected (cdr (assoc selected-task candidates)))
+    (case selected
+      ((clock-out) (org-clock-out))
+      ((new-task)
+       (let ((task (read-from-minibuffer "Task: ")))
+         (with-current-buffer (org-base-buffer (marker-buffer (car org-clock-history))) ;; This can fail if marker is in no buffer, eg if buffer is closed (even if reopened)
+           (with-selected-window (get-buffer-window (current-buffer) t)
+             (goto-char (point-max))
+             (search-backward-regexp "^\\*\\* Tasks")
+             (goto-char (match-end 0))
+             (search-forward-regexp "^\\*\\* ")
+             (goto-char (match-beginning 0))
+             (insert "*** " task "\n\n")
+             (backward-char 1)
+             (beginning-of-line)
+             (org-clock-in))
+           ))
+       )
+      (otherwise
+       (with-current-buffer (org-base-buffer (marker-buffer selected))
+         (goto-char selected)
+        (org-clock-in))))))
+
+
+;; (with-current-buffer (org-base-buffer (marker-buffer (car org-clock-history)))
+;;          (goto-char (point-max))
+;;          (search-backward-regexp "^\\*\\* Tasks")
+;;          (goto-char (match-end 0))
+;;          (search-forward-regexp "^\\*\\* ")
+;;          (goto-char (match-beginning 0))
+;;          (insert "λ")
+;;          )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(defun my-org-status-new-daily-entry ()
+  (interactive)
+  (goto-char (point-max))
+  (when (string= (format-time-string "%A") "Monday")
+    (setq org-clock-history nil) ;; Reset history
+    (insert (format-time-string "\n* Week %V\n"))
+    (insert "** Tasks\n")
+    (insert "#+BEGIN: clocktable :scope subtree :maxlevel 50 :compact t :properties (\"Issue\" \"Registered\") :formula \"@2$2=vsum(@3$2..@>$2);U\"\n")
+    (insert "#+END:\n\n")
+    (insert "#+BEGIN: clocktable :scope subtree :block week :step day :stepskip0 t :maxlevel 50 :compact t\n")
+    (insert "#+END:\n\n")
+    (insert "*** ?\n"))
+  (insert (format-time-string "\n** %A %Y-%m-%d\n"))
+  (org-clock-in)
+  (org-clock-out)
+  (goto-char (point-max))
+  (insert "#+BEGIN_QUOTE\n")
+  (let ((p (point)))
+    (insert "\n#+END_QUOTE\n\n")
+    (goto-char p)))
+
+
+(defun my-org-status-daily-standup ()
+  (interactive)
+  (goto-char (point-max))
+  (let (today
+        last ;; last working day
+        start ;; point
+        end ;; point
+        did
+        plan
+        )
+    (search-backward-regexp "^\\*\\* ")
+    (setq today (point))
+    (search-backward-regexp "^\\*\\* ")
+    (setq last (point))
+
+    (goto-char last)
+    (search-forward "#+BEGIN_QUOTE\n")
+    (search-forward "#+END_QUOTE")
+    (while (eq (char-after) ?\n) (forward-char))
+    (setq start (point))
+    (search-forward-regexp "^\\*")
+    (goto-char (match-beginning 0))
+    (while (eq (char-before) ?\n) (backward-char))
+    (setq end (point))
+    (setq did (buffer-substring-no-properties start end))
+
+    (goto-char today)
+    (search-forward "#+BEGIN_QUOTE\n")
+    (while (eq (char-after) ?\n) (forward-char))
+    (setq start (point))
+    (search-forward "#+END_QUOTE")
+    (goto-char (match-beginning 0))
+    (while (eq (char-before) ?\n) (backward-char))
+    (setq end (point))
+    (setq plan (buffer-substring-no-properties start end))
+
+    (with-current-buffer (get-buffer-create "*Daily Standup status*")
+      (erase-buffer)
+      (insert "Yesterday, ")
+      (insert (replace-regexp-in-string "$DAY" (lambda (x) (pcase x ("$day" "yesterday") ("$DAY" "Yesterday") (_ "Yesterday"))) did t))
+      (insert "\n\n")
+      (insert "Today, ")
+      (insert plan)
+      (replace-regexp "^# .*\n" "" nil (point-min) (point-max))
+      (kill-ring-save (point-min) (point-max))
+      (goto-char (point-max))
+      )
+    (goto-char (point-max))
+    ))
+
+
+(defun my-org-status-weekly-status-email ()
+  (interactive)
+  (goto-char (point-max))
+  (let (day ;; string
+        week ;; string
+        start ;; point
+        end ;; point
+        did)
+    (search-backward-regexp "^\\* Week \\([0-9]+\\)")
+    (setq week (match-string 1))
+    (with-current-buffer (get-buffer-create "*Daily Standup status*") (erase-buffer))
+    (search-forward-regexp "^\\*\\* Tasks")
+    (while (search-forward-regexp "^\\*\\* \\([a-zA-Z]+\\)" nil t)
+      (setq day (match-string 1))
+      (search-forward "#+BEGIN_QUOTE\n")
+      (search-forward "#+END_QUOTE")
+      (while (eq (char-after) ?\n) (forward-char))
+      (setq start (point))
+      (if (search-forward-regexp "^\\*" nil t)
+        (goto-char (match-beginning 0))
+        (goto-char (point-max)))
+      (while (eq (char-before) ?\n) (backward-char))
+      (setq end (point))
+      (setq did (buffer-substring-no-properties start end))
+
+      (with-current-buffer (get-buffer-create "*Daily Standup status*")
+        (insert day)
+        (insert ":\n")
+        (setq start (point))
+        (insert (replace-regexp-in-string "$DAY" (lambda (x) (pcase x ("$day" (downcase day)) ("$DAY" (capitalize day)) (_ (capitalize day)))) did t))
+        (setq end (point))
+        (goto-char start)
+        (capitalize-word 1)
+        (goto-char end)
+        (insert "\n\n")))
+    (with-current-buffer (get-buffer-create "*Daily Standup status*")
+      (let* ((items (list
+                     "an acceptable"
+                     "an excellent"
+                     "an exceptional"
+                     "a fine"
+                     "a good"
+                     "a great"
+                     "a happy"
+                     "a nice"
+                     "a satisfactory"
+                     "a superb"
+                     "a wonderful"
+                     "a cool"
+                     ))
+             (item (nth (random (length items)) items)))
+        (insert "Have " item " weekend!\nBR, Søren\n"))
+      (insert "Status Email - Week " week)
+      (replace-regexp "^# .*\n" "" nil (point-min) (point-max))
+      (kill-ring-save (point-min) (point-max))
+      )))
+
+
+(defun my-org-status-synchronize-time-with-gitlab ()
+  (interactive)
+  (unless (y-or-n-p "Are you sure you want to synchronize time registered with Gitlab?")
+    (user-error "Aborted synchronization"))
+  (goto-char (point-max))
+  (search-backward-regexp "^* ")
+  (org-next-visible-heading 1)
+  (org-next-visible-heading 1)
+  (while (not (eobp))
+    (if (catch 'break
+          (let ((clocked (org-clock-sum-current-item))
+                (issue-url (org-entry-get (point) "issue"))
+                (registered (org-entry-get (point) "registered"))
+                (registered-minutes 0)
+                delta
+                project-encoded
+                issue-id
+                api
+                new-registered
+                spend
+                response
+                )
+            (unless issue-url (throw 'break t))
+            (when registered
+              (unless (string-match "^\\(\\([0-9]+\\):\\)?\\([0-9]+\\)$" registered)
+                (user-error "Invalid value for registered time: %s" registered))
+              (setq registered-minutes (+ (* (string-to-number (or (match-string 2 registered) "0"))
+                                             60)
+                                          (string-to-number (match-string 3 registered)))))
+            (setq delta (- clocked registered-minutes))
+            (when (< delta 0) (user-error "I am not sure this handles negative amount yet"))
+            (when (zerop delta) (throw 'break 'nil))
+            (setq new-registered (format "%d:%02d" (/ clocked 60) (mod clocked 60)))
+            (unless (string-match "^https://[^/]+/\\(.+\\)/-/issues/\\([0-9]+\\)$" issue-url)
+              (user-error "Unknown url format: %s" issue-url))
+            (setq project-encoded (url-hexify-string (match-string 1 issue-url)))
+            (setq issue-id (match-string 2 issue-url))
+            (when (zerop registered-minutes)
+              (setq api (format "https://gitlab.isynet.net/api/v4/projects/%s/issues/%s/notes" project-encoded issue-id))
+              (setq response
+                    (request
+                      api
+                      :data `(("body" . ,(my-org-status--convert-entry-to-md)))
+                      :headers `(("PRIVATE-TOKEN" . ,private-gitlab-token))
+                      :type "POST"
+                      :parser 'json-read
+                      :sync t
+                      ))
+              (unless (eq 'success (request-response-symbol-status response))
+                (user-error "An error occured while talking to Gitlab. Could not post comment"))
+              )
+            (setq api (format "https://gitlab.isynet.net/api/v4/projects/%s/issues/%s/add_spent_time" project-encoded issue-id))
+            (setq spend (format "%dm" delta))
+            (message "/spend %s on %s" spend api)
+            (setq response
+                  (request
+                    api
+                    :data `(("duration" . ,spend))
+                    :headers `(("PRIVATE-TOKEN" . ,private-gitlab-token))
+                    :type "POST"
+                    :parser 'json-read
+                    :sync t
+                    ;; :success (cl-function (lambda (&key data &allow-other-keys) (message "my success")))
+                    ;; :error (cl-function (lambda (&key data &allow-other-keys) (message "my error")))
+                    ))
+            (if (eq 'success (request-response-symbol-status response))
+                (org-set-property "registered" new-registered)
+              (org-set-property "registered" (format "%s?" registered)) ;; This will break the next instance from running before clearing
+              (user-error "An error occured while talking to Gitlab. Please check registered time manually!"))
+            nil
+            )
+          )
+        (org-next-visible-heading 1)
+      (let ((previous (point)))
+        (org-forward-heading-same-level 1)
+        (when (= previous (point))
+          (goto-char (point-max))))
+  ))
+  (message "Done")
+  )
+
+(defun my-org-status-show-timetable ()
+  (interactive)
+  (org-agenda-list)
+  (display-buffer "*Org Agenda*")
+  (with-selected-window (get-buffer-window "*Org Agenda*")
+    (my-ahs-clear-overlays)
+    (unless org-agenda-show-log
+      (org-agenda-log-mode))))
+
+
+
+(defun my-org--extract-title-and-text ()
+  (org-back-to-heading t)
+  (let* ((elt (org-element-at-point))
+         (title (org-element-property :title elt))
+         (beg (progn (org-end-of-meta-data t) (point))) ;; skips to actual text
+         (end (progn (unless (eq (char-after) ?*) (org-next-visible-heading 1))
+                     (while (eq (char-before) ?\n) (backward-char))
+                     (point)))
+         (text (buffer-substring-no-properties beg end)))
+    (cons title text))
+  )
+(defun my-org-status--convert-entry-to-md ()
+  (save-excursion
+    (let ((entry (my-org--extract-title-and-text))
+          (org-export-with-toc nil)
+          md-buffer)
+      (with-temp-buffer
+        (setq md-buffer (current-buffer))
+        (with-temp-buffer
+          (insert (cdr entry))
+          (org-export-to-buffer 'md md-buffer nil nil nil t))
+        (goto-char (point-max))
+        (while (eq (char-before) ?\n) (delete-char -1))
+        (if (= (point-max) 1)
+            (insert (car entry))
+          (goto-char (point-min))
+          (insert "#### " (car entry) "\n"))
+        (buffer-substring-no-properties (point-min) (point-max)))))
+  )

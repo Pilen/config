@@ -24,9 +24,20 @@
 ;; (add-hook 'LaTeX-mode-hook 'turn-on-flyspell); (setq ispell-dictionary "dansk"))) ; Commented out as aspell-da is not working
 
 ;; Do this to avoid fireing both flyspell-correct-word and mouse-yank-primary
-(add-hook 'flyspell-mode-hook (lambda ()
-                                (define-key flyspell-mouse-map [down-mouse-2] 'ignore)
-                                (define-key flyspell-mouse-map [mouse-2] #'flyspell-correct-word)))
+
+(defun my-flyspell-hook ()
+  (define-key flyspell-mouse-map [down-mouse-2] 'ignore)
+  ;; (define-key flyspell-mouse-map [mouse-2] #'flyspell-correct-word)
+  (define-key flyspell-mouse-map [mouse-2] 'ignore)
+  (define-key flyspell-mouse-map [mouse-3] #'flyspell-correct-word)
+
+  (when flyspell-mode (flyspell-buffer))
+  )
+(add-hook 'flyspell-mode-hook 'my-flyspell-hook)
+(setq flyspell-mode-hook nil)
+;; (add-hook 'flyspell-mode-hook (lambda ()
+;;                                 (define-key flyspell-mouse-map [down-mouse-2] 'ignore)
+;;                                 (define-key flyspell-mouse-map [mouse-2] #'flyspell-correct-word)))
 
 (defun turn-on-flyspell ()
   "Force flyspell-mode on using a positive arg."
@@ -145,7 +156,7 @@
 ;;   (setq flyspell-is-on t)
 ;;   (flyspell-buffer))
 
-(add-hook 'flyspell-mode-hook (lambda () (when flyspell-mode (flyspell-buffer))))
+;; (add-hook 'flyspell-mode-hook (lambda () (when flyspell-mode (flyspell-buffer))))
 
 ;; Better order of spelling suggestions
 ;(defadvice ispell-command-loop (before ispell-reverse-miss-list activate)

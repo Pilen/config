@@ -110,6 +110,14 @@
     ()))
 
 
+(defun my-tags-create ()
+  (interactive)
+  (call-process "create-tags")
+  (let ((dir (locate-dominating-file default-directory "TAGS"))
+        (tags-add-tables nil)) ;; New tags list
+    (if dir
+        (visit-tags-table dir)
+      (message "No TAGS file found"))))
 
 
 

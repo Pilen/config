@@ -35,7 +35,31 @@
 
 (add-to-list 'company-backends 'company-jedi)
 (add-to-list 'company-backends 'company-go)
+;; (add-to-list 'company-backends 'company-dabbrev-code)
+;; (add-to-list 'company-backends 'company-dabbrev)
+;; (dolist (item company-backends)
+;;   (print item))
 
+;; (setq company-backends
+;;       '(
+;;         ;; company-dabbrev
+;;         ;; company-dabbrev-code
+;;         ;; company-go
+;;         company-jedi
+;;         company-bbdb
+;;         company-eclim
+;;         company-semantic
+;;         company-clang
+;;         company-xcode
+;;         company-cmake
+;;         company-capf
+;;         company-files
+;;         (company-dabbrev-code company-gtags company-etags company-keywords)
+;;         company-oddmuse
+;;         company-dabbrev
+;;         ))
+
+(setq company-transformers '(company-sort-by-occurrence))
 
 (defun ora-company-number ()
   "Forward to `company-complete-number'.
@@ -134,7 +158,8 @@ In that case, insert the number."
 ;π TAB COMPLETION
 ;;______________________________________________________________________________
 
-
+(defvar my-pcomplete-show-completions-auto-single nil)
+(setq my-pcomplete-show-completions-auto-single t)
 (defun pcomplete-show-completions (completions)
   "This is my personal attempt to rip out the interface of pcomplete and replace it with ivy.
 Instead of asynchronously creating a *Completions* buffer ivy is immediately called with all the completions.
@@ -145,7 +170,9 @@ This is a MAJOR hack, but it works."
   (let* ((buffer (current-buffer))
          (base-size completion-base-size)
          (base-position completion-base-position)
-         (choice (ivy-completing-read ">" completions))
+         (choice (if (and my-pcomplete-show-completions-auto-single (consp completions) (null (cdr completions)))
+                     (car completions)
+                   (ivy-completing-read ">" completions)))
          ;; (choice (ido-completing-read ">" completions))
          (position (list (choose-completion-guess-base-position choice))))
     (choose-completion-string choice buffer position nil)

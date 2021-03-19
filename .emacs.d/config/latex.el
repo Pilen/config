@@ -1,6 +1,10 @@
+
 ;;______________________________________________________________________________
 ;π LATEX
 ;;______________________________________________________________________________
+
+;; TODO: look at the xenops package https://github.com/dandavison/xenops that replaces preview
+
 (require 'tex-site) ;; Auctex
 (require 'preview) ;; preview-latex
 ;; (load "auctex.el" nil t t)

@@ -17,6 +17,13 @@
    '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 80 :width normal :foundry "unknown" :family "DejaVu Sans Mono")))))
   )
 
+(defun zoomableface ()
+  (interactive)
+  (custom-set-faces
+   '(default ((t (:inherit nil :stipple nil :background "grey30" :foreground "honeydew1" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 80 :width normal :foundry "unknown" :family "Ubuntu Mono")))))
+  )
+
+;; (add-to-list 'default-frame-alist '(font . "Ubuntu Mono-10:antialias=none"))
 (defun zoom (n)
   "With positive N, increase the font size, otherwire decrease it"
     (interactive)

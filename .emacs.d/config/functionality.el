@@ -388,12 +388,29 @@ This is to update existing buffers after a Git pull of their underlying files."
 ;;       (while (search-forward (car pair) end t)
 ;;         (replace-match (cdr pair))))))
 
-(defun my-goto-last-change ()
-  (interactive)
-  (condition-case e
-      (goto-last-change nil 1)
-    (error (message "%s" (error-message-string e)))))
+;; (defun my-goto-last-change ()
+;;   (interactive)
+;;   (condition-case e
+;;       (goto-last-change nil nil)
+;;     (error (message "%s" (error-message-string e)))))
 
+
+
+(defun my-describe-variable-full ()
+  (interactive)
+  (let ((print-level nil)
+        (print-length nil))
+    (call-interactively 'describe-variable))
+  nil)
+(define-key help-mode-map (kbd "f") 'my-describe-variable-full)
+
+
+(defun my-yank-insert-rectangle  ()
+  (interactive)
+  (narrow-to-region (point) (point))
+  (yank-rectangle)
+  (widen))
+(global-set-key (kbd "C-x r C-y") 'my-yank-insert-rectangle)
 ;;______________________________________________________________________________
 ;π CODE FOLDING
 ;;______________________________________________________________________________

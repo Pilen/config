@@ -16,6 +16,7 @@ All packages here will automatically be installed if not present.")
         auctex
         arduino-mode
         buffer-move
+        calfw
         c-eldoc
         counsel
         column-marker
@@ -33,6 +34,7 @@ All packages here will automatically be installed if not present.")
         dimmer
         diredfl
         dtrt-indent
+        edit-server ;; For use with emacs_chrome (Edit with Emacs)
         elpy
         ensime                ;; Scala stuff - auto enables it self
         ;;erc-hl-nicks ;; Breaks my setup after updating to emacs 26.1
@@ -41,7 +43,7 @@ All packages here will automatically be installed if not present.")
         fill-column-indicator ;; not really used (could come in handy)
         flymake-cursor        ;; todo use flymake more
         flyspell-correct-ivy
-;;        forge
+        ;;forge
         full-ack              ;; not really used yet
         fuzzy                 ;; not used, what is it exactly?
         geiser
@@ -88,6 +90,7 @@ All packages here will automatically be installed if not present.")
         ;; python-mode        ;; Very heavy (26000 lines+)
         quack
         rainbow-delimiters
+        request
         rfringe               ;; Not used
         scala-mode
         skewer-mode
@@ -103,6 +106,8 @@ All packages here will automatically be installed if not present.")
         volatile-highlights
         web-mode
         web                   ;; For my sharelatex.el package
+        wgrep
+        wgrep-ag
         win-switch
         window-numbering
         wrap-region

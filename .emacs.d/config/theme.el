@@ -93,6 +93,8 @@
 
 
 (setq ansi-color-names-vector ["black" "red3" "green3" "yellow3" "blue2" "magenta3" "cyan3" "gray90"])
+(setq ansi-color-names-vector ["black" "OrangeRed1" "green3" "yellow3" "blue2" "magenta3" "cyan3" "gray90"])
+(setq ansi-color-names-vector ["black" "OrangeRed2" "green3" "yellow3" "DodgerBlue2" "DarkOrchid2" "cyan3" "gray90"])
 ;; (setq ansi-color-names-vector ["black" "red" "green" "yellow" "dodger blue" "magenta" "cyan" "white"])
 (setq ansi-color-map (ansi-color-make-color-map))
 
