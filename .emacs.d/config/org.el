@@ -6,6 +6,7 @@
 (require 'org)
 (require 'org-mouse)
 (require 'org-table)
+(require 'org-clock)
 (defun my-org-clock-in ()
   )
 
@@ -68,7 +69,8 @@
 ;; (setq org-babel-python-command "python ")
 
 
-(setq org-agenda-files '("/home/spi/status/"))
+(setq org-agenda-files '("/home/spi/status/status.org"))
+(setq org-agenda-clockreport-parameter-plist '(:link nil :maxlevel 99 :compact t :step day :stepskip0 t))
 
 (setq org-duration-format `((special . h:mm)))
 
@@ -197,12 +199,13 @@
 
 
 
-
+(defvar my-org-day nil)
 
 (defun my-org-status-new-daily-entry ()
   (interactive)
   (goto-char (point-max))
-  (when (string= (format-time-string "%A") "Monday")
+  ;; (when (string= (format-time-string "%A") "Monday")
+  (when (string= (format-time-string "%A") "Tuesday")
     (setq org-clock-history nil) ;; Reset history
     (insert (format-time-string "\n* Week %V\n"))
     (insert "** Tasks\n")
@@ -213,12 +216,21 @@
     (insert "*** ?\n"))
   (insert (format-time-string "\n** %A %Y-%m-%d\n"))
   (org-clock-in)
+  (setq my-org-day (copy-marker (car org-clock-history)))
   (org-clock-out)
   (goto-char (point-max))
   (insert "#+BEGIN_QUOTE\n")
   (let ((p (point)))
     (insert "\n#+END_QUOTE\n\n")
     (goto-char p)))
+
+(defun my-org-suspend ()
+  (with-current-buffer (marker-buffer my-org-day)
+    (goto-char (marker-position my-org-day))
+    (org-clock-in)
+    (org-clock-out)
+    )
+  )
 
 
 (defun my-org-status-daily-standup ()
@@ -230,6 +242,8 @@
         end ;; point
         did
         plan
+        bullet-last?
+        bullet-today?
         )
     (search-backward-regexp "^\\*\\* ")
     (setq today (point))
@@ -237,20 +251,23 @@
     (setq last (point))
 
     (goto-char last)
-    (search-forward "#+BEGIN_QUOTE\n")
-    (search-forward "#+END_QUOTE")
-    (while (eq (char-after) ?\n) (forward-char))
-    (setq start (point))
-    (search-forward-regexp "^\\*")
-    (goto-char (match-beginning 0))
-    (while (eq (char-before) ?\n) (backward-char))
-    (setq end (point))
-    (setq did (buffer-substring-no-properties start end))
+    (unless (looking-at "** Tasks")
+      (search-forward "#+BEGIN_QUOTE\n")
+      (search-forward "#+END_QUOTE")
+      (while (eq (char-after) ?\n) (forward-char))
+      (setq start (point))
+      (when (eq (char-after) ?-) (setq bullet-last? t))
+      (search-forward-regexp "^\\*")
+      (goto-char (match-beginning 0))
+      (while (eq (char-before) ?\n) (backward-char))
+      (setq end (point))
+      (setq did (buffer-substring-no-properties start end)))
 
     (goto-char today)
     (search-forward "#+BEGIN_QUOTE\n")
     (while (eq (char-after) ?\n) (forward-char))
     (setq start (point))
+    (when (eq (char-after) ?-) (setq bullet-today? t))
     (search-forward "#+END_QUOTE")
     (goto-char (match-beginning 0))
     (while (eq (char-before) ?\n) (backward-char))
@@ -259,10 +276,15 @@
 
     (with-current-buffer (get-buffer-create "*Daily Standup status*")
       (erase-buffer)
-      (insert "Yesterday, ")
-      (insert (replace-regexp-in-string "$DAY" (lambda (x) (pcase x ("$day" "yesterday") ("$DAY" "Yesterday") (_ "Yesterday"))) did t))
-      (insert "\n\n")
-      (insert "Today, ")
+      (when did
+        (if bullet-last?
+            (insert "Yesterday:\n")
+          (insert "Yesterday, "))
+        (insert (replace-regexp-in-string "$DAY" (lambda (x) (pcase x ("$day" "yesterday") ("$DAY" "Yesterday") (_ "Yesterday"))) did t))
+        (insert "\n\n"))
+      (if bullet-today?
+          (insert "Today:\n")
+        (insert "Today, "))
       (insert plan)
       (replace-regexp "^# .*\n" "" nil (point-min) (point-max))
       (kill-ring-save (point-min) (point-max))
@@ -330,6 +352,7 @@
       )))
 
 
+(require 'request)
 (defun my-org-status-synchronize-time-with-gitlab ()
   (interactive)
   (unless (y-or-n-p "Are you sure you want to synchronize time registered with Gitlab?")
@@ -351,6 +374,8 @@
                 new-registered
                 spend
                 response
+                org-last-set-property
+                org-last-set-property-value
                 )
             (unless issue-url (throw 'break t))
             (when registered
@@ -372,7 +397,7 @@
               (setq response
                     (request
                       api
-                      :data `(("body" . ,(my-org-status--convert-entry-to-md)))
+                      :data `(("body" . ,(concat ":clock5:\n" (my-org-status--convert-entry-to-md))))
                       :headers `(("PRIVATE-TOKEN" . ,private-gitlab-token))
                       :type "POST"
                       :parser 'json-read
@@ -411,14 +436,22 @@
   (message "Done")
   )
 
-(defun my-org-status-show-timetable ()
-  (interactive)
-  (org-agenda-list)
-  (display-buffer "*Org Agenda*")
-  (with-selected-window (get-buffer-window "*Org Agenda*")
-    (my-ahs-clear-overlays)
-    (unless org-agenda-show-log
-      (org-agenda-log-mode))))
+(setq org-agenda-start-with-follow-mode t)
+(setq org-agenda-start-with-log-mode t)
+(setq org-agenda-start-with-clockreport-mode t)
+(add-hook 'org-agenda-mode-hook 'my-ahs-clear-overlays)
+;; (fmakunbound 'my-org-status-show-timetable)
+;; (defun my-org-status-show-timetable ()
+;;   (interactive)
+;;   (org-agenda-list)
+;;   (display-buffer "*Org Agenda*")
+;;   (with-selected-window (get-buffer-window "*Org Agenda*")
+;;     (my-ahs-clear-overlays)
+;;     ;; (unless org-agenda-follow-mode
+;;     ;;   (org-agenda-follow-mode))
+;;     ;; (unless org-agenda-show-log
+;;     ;;   (org-agenda-log-mode))
+;;     ))
 
 
 
@@ -433,6 +466,8 @@
          (text (buffer-substring-no-properties beg end)))
     (cons title text))
   )
+
+(require 'ox-md)
 (defun my-org-status--convert-entry-to-md ()
   (save-excursion
     (let ((entry (my-org--extract-title-and-text))
@@ -450,4 +485,20 @@
           (goto-char (point-min))
           (insert "#### " (car entry) "\n"))
         (buffer-substring-no-properties (point-min) (point-max)))))
+
   )
+
+
+(defun my-org-total-work-duration ()
+  (let* ((re (concat "^\\(\\*+\\)[ \t]\\|^[ \t]*" org-clock-string "[ \t]*\\(?:\\(\\[.*?\\]\\)-+\\(\\[.*?\\]\\)\\|=>[ \t]+\\([0-9]+\\):\\([0-9]+\\)\\)"))
+         time
+           )
+      (save-excursion
+        (re-search-forward re)
+        (unless (match-end 2) (error "wrong match"))
+        (setq time (apply #'encode-time (org-parse-time-string (match-string 2))))
+        (list (float-time time)
+              time)
+        ;; (apply #'encode-time ))
+      )
+    ))

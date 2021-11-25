@@ -110,4 +110,12 @@
        "² superscript two squared"
        "³ superscript three cubed"
        "€ euro"
-       "£ pound"))
+       "£ pound"
+
+
+
+       "➝ right arrow"
+       "➞ heavy right arrow"
+       "➜ heavy round right arrow"
+
+       ))

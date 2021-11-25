@@ -168,7 +168,8 @@
 
 (global-set-key (kbd "H-m") 'isearch-forward)
 (global-set-key (kbd "H-m") 'swiper)
-(global-set-key (kbd "H-M") 'sprint-forward)
+;; (global-set-key (kbd "H-M") 'sprint-forward)
+(global-unset-key (kbd "H-M"))
 (global-set-key (kbd "H-c") 'ace-jump-char-local)
 (global-set-key (kbd "H-C") 'ace-jump-char-global)
 
@@ -297,6 +298,8 @@
 
 (global-set-key (kbd "H-8") 'forward-same-syntax)
 (global-set-key (kbd "H-*") (lambda () (interactive) (forward-same-syntax -1)))
+(global-set-key (kbd "H-TAB") 'forward-same-syntax)
+(global-set-key (kbd "H-C-n") (lambda () (interactive) (forward-same-syntax -1)))
 (global-set-key (kbd "H-9") 'beginning-of-defun)
 (global-set-key (kbd "H-0") 'end-of-defun)
 (global-set-key (kbd "H-(") 'smart-backward)
@@ -329,7 +332,7 @@
 (global-set-key (kbd "H-<f11>") nil)
 (global-set-key (kbd "S-<f11>") nil)
 (global-set-key (kbd "<f12>") 'my-neotree)
-(global-set-key (kbd "S-<f12>") 'neotree-toggle)
+;; (global-set-key (kbd "S-<f12>") 'neotree-toggle)
 (global-set-key (kbd "H-<f12>") 'my-neotree-here)
 
 (global-set-key (kbd "<print>") 'my-magit-status)

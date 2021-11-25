@@ -112,6 +112,7 @@ def get_ip():
     return ip
 
 def main():
+    print("Starting backedit server")
     update_secret()
     make_backedit_remote_conf()
     server = http.server.HTTPServer((ADDRESS, PORT), HTTPRequestHandler)

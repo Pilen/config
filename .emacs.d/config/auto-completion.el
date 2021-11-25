@@ -61,6 +61,7 @@
 
 (setq company-transformers '(company-sort-by-occurrence))
 
+;; https://oremacs.com/2017/12/27/company-numbers/
 (defun ora-company-number ()
   "Forward to `company-complete-number'.
 Unless the number is potentially part of the candidate.

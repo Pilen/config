@@ -1,5 +1,6 @@
 #!/bin/bash
 
+emacsclient -e "(my-org-suspend)"
 lock-screen &
 sleep 10
 systemctl suspend

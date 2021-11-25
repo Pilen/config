@@ -46,6 +46,9 @@
 (setq linum-eager nil)
 (global-linum-mode t)
 (winner-mode 1)
+(define-key winner-mode-map (kbd "C-c <left>") nil)
+(define-key winner-mode-map (kbd "C-c <right>") nil)
+
 (put 'narrow-to-region 'disabled nil)
 (put 'narrow-to-defun 'disabled nil)
 (put 'narrow-to-page 'disabled nil)
@@ -107,6 +110,8 @@
 
 (defvar sql-sqlite-program "sqlite3")
 
+
+(global-undo-tree-mode)
 
 ;(require 'rfringe)
 ;(set-fringe-mode '(1 . 0))
@@ -372,8 +377,54 @@
 ;; (setq minibuffer-prompt-properties (plist-put minibuffer-prompt-properties 'point-entered 'minibuffer-avoid-prompt))
 
 
+(require 'markdown-mode)
 (setq markdown-command "/usr/bin/pandoc")
-
+;; Make the faces behave similar to org-level-1 etc
+(set-face-attribute 'markdown-header-face-1 nil :inherit 'outline-1)
+(set-face-attribute 'markdown-header-face-2 nil :inherit 'outline-2)
+(set-face-attribute 'markdown-header-face-3 nil :inherit 'outline-3)
+(set-face-attribute 'markdown-header-face-4 nil :inherit 'outline-4)
+(set-face-attribute 'markdown-header-face-5 nil :inherit 'outline-5)
+(set-face-attribute 'markdown-header-face-6 nil :inherit 'outline-6)
+;; Redefine so entire line including "#" is using same header face
+(defun markdown-fontify-headings (last)
+  "Add text properties to headings from point to LAST."
+  (when (markdown-match-propertized-text 'markdown-heading last)
+    (let* ((level (markdown-outline-level))
+           (heading-face
+            (intern (format "markdown-header-face-%d" level)))
+           (heading-props `(face ,heading-face))
+           (left-markup-props
+            `(face ,heading-face ;; Pilen replaced markdown-header-delimiter-face -> heading-face
+                   ,@(cond
+                      (markdown-hide-markup
+                       `(display ""))
+                      (markdown-marginalize-headers
+                       `(display ((margin left-margin)
+                                  ,(markdown--marginalize-string level)))))))
+           (right-markup-props
+            `(face ,heading-face ;; Pilen replaced markdown-header-delimiter-face -> heading-face
+                   ,@(when markdown-hide-markup `(display ""))))
+           (rule-props `(face markdown-header-rule-face
+                              ,@(when markdown-hide-markup `(display "")))))
+      (if (match-end 1)
+          ;; Setext heading
+          (progn (add-text-properties
+                  (match-beginning 1) (match-end 1) heading-props)
+                 (if (= level 1)
+                     (add-text-properties
+                      (match-beginning 2) (match-end 2) rule-props)
+                   (add-text-properties
+                    (match-beginning 3) (match-end 3) rule-props)))
+        ;; atx heading
+        (add-text-properties
+         (match-beginning 4) (match-end 4) left-markup-props)
+        (add-text-properties
+         (match-beginning 5) (match-end 5) heading-props)
+        (when (match-end 6)
+          (add-text-properties
+           (match-beginning 6) (match-end 6) right-markup-props))))
+    t))
 
 
 (setq display-buffer-alist nil)
@@ -567,9 +618,19 @@
 (define-key neotree-mode-map (kbd "c") 'neotree-change-root)
 (define-key neotree-mode-map (kbd "m") 'my-neotree-move-buffer-file)
 (define-key neotree-mode-map (kbd "C-x C-F") 'my-neotree-find-file-here)
+(define-key neotree-mode-map (kbd "w") 'my-neotree-toggle-width)
 
-(setq neo-window-width 35)
 ;; (setq neo-vc-integration nil)
+(setq neo-window-width 35)
+(defun my-neotree-toggle-width ()
+  (interactive)
+  (case neo-window-width
+    (35 (setq neo-window-width 60))
+    (60 (setq neo-window-width 70))
+    (70 (setq neo-window-width 100))
+    (t (setq neo-window-width 35))
+    )
+  (neo-global--reset-width))
 
 (defun my-neotree-here ()
   (interactive)
@@ -623,7 +684,7 @@
      (if expanded 'open 'close) node)
     (insert-button (if neo-show-slash-for-folder (concat node-short-name "/") node-short-name)
                    'follow-link t
-                   'face (if (vc-git--out-ok "check-ignore" "-q" "--" node) 'neo-hidden-face neo-dir-link-face)  ;; Inserted this (State only shows edited, not ignored)
+                   'face (if (or (vc-git--out-ok "check-ignore" "-q" "--" node) (neo-filepath-hidden-p node)) 'neo-hidden-face neo-dir-link-face)  ;; Inserted this (State only shows edited, not ignored)
                    'neo-full-path node
                    'keymap neotree-dir-button-keymap
                    'help-echo (neo-buffer--help-echo-message node-short-name))
@@ -656,6 +717,8 @@
     newfile
     ))
 
+
+(add-to-list 'auto-mode-alist '("\\.crontab\\'" . crontab-mode))
 ;;______________________________________________________________________________
 ;π CONSOLE
 ;;______________________________________________________________________________
@@ -763,6 +826,8 @@
 (add-hook 'magit-post-refresh-hook 'my-ahs-clear-overlays)
 
 (setq magit-branch-read-upstream-first nil)
+
+(setq magit-ellipsis ?.) ;; My font rendered `?…` wider than other chars, making dates not align in log buffers
 
 (defun my-async-when-done (proc &optional _change)
   "Process sentinel used to retrieve the value from the child process."

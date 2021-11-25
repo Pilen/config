@@ -87,6 +87,8 @@
   (command-center-add (lambda () (interactive) (fill-region (point-min) (point-max))) "fill buffer")
   (command-center-add 'sort-lines)
   (command-center-add (lambda () (interactive) (untabify (point-min) (point-max))) "untabify-buffer")
+  (command-center-add 'align-regexp)
+  (command-center-add 'my-align-regexp)
 
   ;; Edit
   (command-center-add 'insert-unicode-symbol)

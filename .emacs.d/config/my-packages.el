@@ -102,6 +102,7 @@ All packages here will automatically be installed if not present.")
         tabbar                ;; Not used
         typescript-mode
         typing
+        undo-tree
         visible-mark
         volatile-highlights
         web-mode

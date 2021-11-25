@@ -1,5 +1,6 @@
 
 (defvar my-frame-main (selected-frame) "Main frame")
+;; (setq my-frame-main (selected-frame))
 
 (defun my-frame-new ()
   "Create a new frame"

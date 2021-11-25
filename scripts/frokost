@@ -55,21 +55,42 @@ fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/
 # evince "$URL" --page-index="$(date +%u)"
 """
 
-import requests
 import bs4
-import urllib.parse
+import datetime
+import re
+import requests
 import subprocess
+import urllib.parse
 
-URL = "https://torvekoekken.dk/frokostordning/favorit"
+# # URL = "https://torvekoekken.dk/frokostordning/favorit"
+# URL = "https://torvekoekken.dk/frokostordning/favorit-buffet"
+# def pdf_url():
+#     r = requests.get(URL)
+#     r.raise_for_status()
+#     s = bs4.BeautifulSoup(r.text, "lxml")
+#     pdf_link = s.find(class_="uploadPDFFiles").find("a").attrs["href"]
+#     return urllib.parse.urljoin(URL, pdf_link)
+
+# URL = "https://torvekoekken.dk/frokostordning/frokostbuffeter/favorit-buffet"
+URL = "https://torvekoekken.dk/frokostordning/frokostbuffeter/verdens-buffet"
 def pdf_url():
     r = requests.get(URL)
     r.raise_for_status()
     s = bs4.BeautifulSoup(r.text, "lxml")
-    pdf_link = s.find(class_="uploadPDFFiles").find("a").attrs["href"]
-    return urllib.parse.urljoin(URL, pdf_link)
+    buttons = s.find(id="content").find_all("button")
+    for button in buttons:
+        match = re.fullmatch("location\\.href='([^']*)'", button.attrs["onclick"])
+        if not match:
+            continue
+        pdf_link = match.group(1)
+        if not datetime.date.today().strftime("%W") in pdf_link:
+            continue
+        return urllib.parse.urljoin(URL, pdf_link)
+    raise Exception("Could not find link")
 
 def day_of_week():
-    return int(subprocess.check_output(["date", "+%u"], universal_newlines=True).strip())
+    # return int(subprocess.check_output(["date", "+%u"], universal_newlines=True).strip())
+    return int(datetime.date.today().strftime("%u"))
 
 def main():
     pdf = pdf_url()

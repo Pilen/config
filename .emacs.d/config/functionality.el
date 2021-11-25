@@ -69,7 +69,7 @@
   ;; (interactive "sNew name: ")
   (interactive)
   (unless new-name
-    (setq new-name (read-string "New Name: " (buffer-name))))
+    (setq new-name (read-string "New Name: " (buffer-file-name))))
   (let ((name (buffer-name))
         (filename (buffer-file-name)))
     (if (not filename)
