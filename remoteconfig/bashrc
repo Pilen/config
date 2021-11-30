@@ -6,6 +6,16 @@ shopt -s extglob
 bind '\C-n:menu-complete'
 bind '\C-p:menu-complete-previous'
 
+export HISTCONTROL=ignoredups:ignorespace
+export HISTFILESIZE= # unlimited
+export HISTSIZE= # unlimited
+shopt -s histappend
+
+
+bind "TAB:menu-complete"
+bind "set show-all-if-ambiguous on"
+bind "set completion-ignore-case on"
+bind "set menu-complete-display-prefix on"
 
 source "$REMOTE_CONFIG_DIR/.aliases"
 

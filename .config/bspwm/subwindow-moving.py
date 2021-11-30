@@ -32,7 +32,6 @@ def emacs(direction):
         LEFT: "left",
         RIGHT: "right",
     }
-
     windmove_directions = {
         UP: "up",
         DOWN: "down",
@@ -40,14 +39,39 @@ def emacs(direction):
         RIGHT: "right",
     }
 
-    command = "(when (window-in-direction '{}) (windmove-{}) t)".format(emacs_directions[direction], windmove_directions[direction])
-    emacs = subprocess.run(["emacsclient", "-e", command], timeout=1, stdout=subprocess.PIPE, universal_newlines=True).stdout.strip()
-    if emacs == "t":
-        return True
-    if emacs == "nil":
-        return False
+    try:
+        command = "(when (window-in-direction '{}) (windmove-{}) t)".format(emacs_directions[direction], windmove_directions[direction])
+        emacs = subprocess.run(["emacsclient", "-e", command], timeout=1, stdout=subprocess.PIPE, universal_newlines=True).stdout.strip()
+        if emacs == "t":
+            return True
+        if emacs == "nil":
+            return False
+    except Exception:
+        pass
     print("Bad output from Emacs")
     return None
+
+def emacs_reset(direction):
+    emacs_directions = {
+        UP: "below",
+        DOWN: "above",
+        LEFT: "right",
+        RIGHT: "left",
+    }
+    windmove_directions = {
+        UP: "down",
+        DOWN: "up",
+        LEFT: "right",
+        RIGHT: "left",
+    }
+    try:
+        command = "(while (window-in-direction '{}) (windmove-{}))".format(emacs_directions[direction], windmove_directions[direction])
+        print(command)
+        emacs = subprocess.run(["emacsclient", "-e", command], timeout=1)
+    except Exception:
+        pass
+    return None
+
 
 def bspwm(direction):
     bspwm_directions = {
@@ -56,31 +80,33 @@ def bspwm(direction):
         LEFT: "west",
         RIGHT: "east",
     }
-    subprocess.run(["bspc", "node", "-f", bspwm_directions[direction]])
-    return True
+    try:
+        status = subprocess.run(["bspc", "node", "-f", bspwm_directions[direction]]).returncode
+        return status == 0 # True if moved
+    except Exception:
+        pass
+    return None
 
-
-
-def main():
-    direction = directions_input[sys.argv[1].lower()]
-
+def current_window():
     try:
         bspc = subprocess.run(["bspc", "query", "-T", "-n", "focused"], stdout=subprocess.PIPE, universal_newlines=True).stdout
         query = json.loads(bspc)
-    except Exception as e:
+        return query["client"]["className"]
+    except Exception:
         print(e)
-        pass
+        return None
+
+def main():
+    direction = directions_input[sys.argv[1].lower()]
     moved = False
-    try:
-        if query["client"]["className"] == "Emacs":
-            moved = emacs(direction)
-    except:
-        pass
-    try:
-        if not moved:
-            bspwm(direction)
-    except:
-        pass
+    if current_window() == "Emacs":
+        moved = emacs(direction)
+    if not moved:
+        moved = bspwm(direction)
+        if moved:
+            if current_window() == "Emacs":
+                # If moved, and window is now Emacs, we should slide to the outer edge in the opposite (incomming) direction.
+                emacs_reset(direction)
 
 
 

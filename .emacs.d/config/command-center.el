@@ -60,6 +60,9 @@
   (command-center-add 'magit-fetch-all)
   (command-center-add 'magit-log-buffer-file)
   (command-center-add 'magit-blame)
+  (command-center-add 'magit-remote-prune)
+  (command-center-add 'my-magit-clean-after-merge-request)
+  (command-center-add 'magit-section-toggle-children)
 
   ;; Search
   (command-center-add 'occur)
@@ -84,6 +87,8 @@
   (command-center-add (lambda () (interactive) (fill-region (point-min) (point-max))) "fill buffer")
   (command-center-add 'sort-lines)
   (command-center-add (lambda () (interactive) (untabify (point-min) (point-max))) "untabify-buffer")
+  (command-center-add 'align-regexp)
+  (command-center-add 'my-align-regexp)
 
   ;; Edit
   (command-center-add 'insert-unicode-symbol)
@@ -93,6 +98,7 @@
 
 
   ;; Org
+  (command-center-add 'org-mode)
   (command-center-add 'show-all)
   (command-center-add 'hide-sublevels "hide-all")
   (command-center-add 'org-mouse-show-headlines "show-headlines")
@@ -103,6 +109,7 @@
   (command-center-add 'org-store-link)
   (command-center-add 'org-babel-execute-buffer)
   (command-center-add 'org-babel-switch-to-session)
+  (command-center-add 'org-set-tags-command)
 
   ;; Origami
   (command-center-add 'origami-open-all-nodes)
@@ -142,6 +149,7 @@
   (command-center-add 'sgml-close-tag)
   (command-center-add 'sql-clear "clear")
   (command-center-add 'sql-clear)
+  (command-center-add 'my-tags-create)
   (command-center-add 'gtags-create-or-update)
   (command-center-add 'visit-tags-table)
   (command-center-add 'indent-region)
@@ -155,7 +163,7 @@
   (command-center-add 'list-processes)
   (command-center-add (lambda () (interactive) (find-file (concat (file-name-sans-extension (buffer-file-name)) ".pdf"))) "open-pdf")
   (command-center-add 'tramp-cleanup-all-connections)
-  (command-center-add 'tramp-cleanup-all-buffers)
+  (command-center-add 'tramp-cleanup-all-buffers "tramp close everything")
   (command-center-add 'ediff-buffers)
   (command-center-add 'ediff)
   (command-center-add 'ediff-directories)
@@ -182,6 +190,7 @@
   (command-center-add 'my-antialias-toggle)
   (command-center-add 'my-print-source-code "print-source-code")
 
+  (command-center-add 'my-describe-variable-full)
 
 
   (command-center-add 'smart-to-ascii)
@@ -190,6 +199,7 @@
   (command-center-add 'vagrant)
 
   (command-center-add 'next-scratch-buffer)
+  (command-center-add 'flyspell-correct-word-before-point)
 
   ;; Revy
   (command-center-add 'revy-abort)

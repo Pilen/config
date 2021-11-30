@@ -31,8 +31,8 @@
   (interactive)
   (unless (= (point) (point-max))
     (if (char-equal (char-after) ?\n)
-        (search-forward-regexp "[a-zA-Z0-9æøåÆØÅ]+" nil t)
-      (search-forward-regexp "[[a-zA-Z0-9æøåÆØÅ]+\\|$" nil t))))
+        (search-forward-regexp "[a-zA-Z0-9æøåÆØÅ_]+" nil t)
+      (search-forward-regexp "[[a-zA-Z0-9æøåÆØÅ_]+\\|$" nil t))))
 
 ;; Alternatively look at https://github.com/nivaca/nv-delete-back
 ;;theres an error, as it needs a non a-0-9 char before the word
@@ -42,13 +42,13 @@
     (if (char-equal (char-before) ?\n)
         (progn ;; At beginning of line
           (backward-char)
-          (if (search-backward-regexp "[^a-zA-Z0-9æøåÆØÅ]+[a-zA-Z0-9æøåÆØÅ]+" nil t)
+          (if (search-backward-regexp "[^a-zA-Z0-9æøåÆØÅ_]+[a-zA-Z0-9æøåÆØÅ_]+" nil t)
               (forward-char)
             (beginning-of-line)))
       (progn
         (when (or (eobp) (char-equal (char-after) ?\n))
           (backward-char))
-        (if (search-backward-regexp "[^a-zA-Z0-9æøåÆØÅ]+[a-zA-Z0-9æøåÆØÅ]+\\|$" nil t)
+        (if (search-backward-regexp "[^a-zA-Z0-9æøåÆØÅ_]+[a-zA-Z0-9æøåÆØÅ_]+\\|$" nil t)
             (forward-char)
           (beginning-of-line))))))
 

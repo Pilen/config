@@ -14,6 +14,8 @@
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
+;; (setq web-mode-enable-element-tag-fontification nil)
+
 (defun my-web-close-tag ()
   (interactive)
   (unless (member (web-mode-element-tag-name (web-mode-element-parent-position))
@@ -22,6 +24,30 @@
         (forward-char)
       (insert ">")
       (web-mode-element-close))))
+
+;; from web-mode.el web-mode-on-post-command:
+;; (and (not (eobp))
+;;      (eq (char-after) ?\<)
+;;      (eq (get-text-property (point) 'tag-type) 'end)
+;;      (looking-back ">\n[ \t]*" (point-min))
+;;      (setq n (length (match-string-no-properties 0)))
+;;      (eq (get-text-property (- (point) n) 'tag-type) 'start)
+;;      (string= (get-text-property (- (point) n) 'tag-name)
+;;               (get-text-property (point) 'tag-name))
+;;      )
+(defun my-web-mode-on-post-command ()
+  (when (and
+         (member this-command '(newline electric-newline-and-maybe-indent newline-and-indent))
+         (not (eobp))
+         (eq (char-after) ?\<)
+         (looking-back ">\n[ \t]*" (point-min))
+         )
+    (newline-and-indent)
+    (forward-line -1)
+    (indent-according-to-mode)))
+(defun my-html-mode-hook ()
+  (add-hook 'post-command-hook 'my-web-mode-on-post-command nil t))
+(add-hook 'html-mode-hook 'my-html-mode-hook)
 
 (add-hook 'js2-mode-hook 'electric-pair-local-mode)
 (add-to-list 'wrap-region-except-modes 'web-mode)

@@ -1,7 +1,7 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=9223372036854775807 # limits.h LONG_MAX
+SAVEHIST=9223372036854775807 # limits.h LONG_MAX
 # setopt appendhistory autocd extendedglob nomatch
 setopt appendhistory extendedglob nomatch
 setopt hist_ignore_space
@@ -42,10 +42,10 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 #if [[$hostname = *penguin*]]; then
 PROMPT="";
 if [[ "$HOST" == joker ]]; then
-    PROMPT="%B%{%F{green}%}%n@%m%{%f%} %{%F{blue}%}%~ %(!.#.$)%{%f%}%b"
+    PROMPT="%B%{%F{green}%}%n@%m%{%f%} %{%F{blue}%}%~ %(!.#.$)%{%f%}%b "
     #RPROMPT="%3~";
 else
-    PROMPT="%B%{%F{magenta}%}%n@%m%{%f%} %{%F{blue}%}%~ %(!.#.$)%{%f%}%b"
+    PROMPT="%B%{%F{magenta}%}%n@%m%{%f%} %{%F{blue}%}%~ %(!.#.$)%{%f%}%b "
     # PROMPT="%(!.#.$)";
     # RPROMPT="%3~";
 fi
@@ -66,7 +66,7 @@ if [ -e "/usr/share/z/z.sh" ]; then
 fi
 
 function mkcd {
-    mkdir $1 && cd $1;
+    mkdir -p $1 && cd $1;
 }
 
 function cl {

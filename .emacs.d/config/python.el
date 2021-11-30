@@ -12,7 +12,8 @@
 
   ;; I think i already did this somewhere? Remove when fixed by elpy
   (setq elpy-eldoc-show-current-function nil)
-  (which-function-mode)
+  ;; (which-function-mode)
+  (which-function-mode 0)
   )
 
 ;; (jedi:install-server)

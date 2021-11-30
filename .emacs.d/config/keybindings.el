@@ -168,7 +168,8 @@
 
 (global-set-key (kbd "H-m") 'isearch-forward)
 (global-set-key (kbd "H-m") 'swiper)
-(global-set-key (kbd "H-M") 'sprint-forward)
+;; (global-set-key (kbd "H-M") 'sprint-forward)
+(global-unset-key (kbd "H-M"))
 (global-set-key (kbd "H-c") 'ace-jump-char-local)
 (global-set-key (kbd "H-C") 'ace-jump-char-global)
 
@@ -187,6 +188,7 @@
 ;(global-set-key (kbd "H-,") 'previous-buffer)
 ;(global-set-key (kbd "H-.") 'next-buffer)
 ;(global-set-key (kbd "H-g") 'goto-line)
+(global-set-key (kbd "H-<return>") 'ivy-switch-buffer)
 (global-set-key (kbd "H-<return>") 'ido-switch-buffer)
 ;(global-set-key (kbd "H-<return>") 'idobuffer)
 (global-set-key (kbd "S-<return>") 'new-indented-line)
@@ -228,6 +230,7 @@
 ;(global-set-key (kbd "H-r") 'transpose-lines)
 (global-set-key (kbd "H-r") 'comment-or-uncomment-region-or-line)
 (global-set-key (kbd "H-R") 'my-align-regexp)
+(global-set-key (kbd "H-R") 'align-regexp)
 (global-set-key (kbd "H-]") 'golden-ratio)
 (global-set-key (kbd "H-C-]") 'golden-ratio-toggle)
 (global-set-key (kbd "H-}") 'balance-windows)
@@ -276,6 +279,9 @@
 ;; (global-set-key (kbd "H-3") 'bc-local-next)
 ;; (global-set-key (kbd "H-#") 'bc-list)
 (global-set-key (kbd "H-1") 'next-error)
+(global-set-key (kbd "H-!") 'first-error)
+;; (global-set-key (kbd "H-C-1") (lambda () (interactive) (with-current-buffer "*compilation*" (goto-char (point-max)) (compilation-next-error -1))))
+(global-set-key (kbd "H-C-1") 'previous-error)
 (global-set-key (kbd "H-4") 'fill-paragraph)
 (global-set-key (kbd "H-$") 'fill-paragraph-from-current-line)
 
@@ -292,6 +298,8 @@
 
 (global-set-key (kbd "H-8") 'forward-same-syntax)
 (global-set-key (kbd "H-*") (lambda () (interactive) (forward-same-syntax -1)))
+(global-set-key (kbd "H-TAB") 'forward-same-syntax)
+(global-set-key (kbd "H-C-n") (lambda () (interactive) (forward-same-syntax -1)))
 (global-set-key (kbd "H-9") 'beginning-of-defun)
 (global-set-key (kbd "H-0") 'end-of-defun)
 (global-set-key (kbd "H-(") 'smart-backward)
@@ -324,10 +332,11 @@
 (global-set-key (kbd "H-<f11>") nil)
 (global-set-key (kbd "S-<f11>") nil)
 (global-set-key (kbd "<f12>") 'my-neotree)
-(global-set-key (kbd "S-<f12>") 'neotree-toggle)
+;; (global-set-key (kbd "S-<f12>") 'neotree-toggle)
 (global-set-key (kbd "H-<f12>") 'my-neotree-here)
 
 (global-set-key (kbd "<print>") 'my-magit-status)
+(global-set-key (kbd "<Scroll_Lock>") 'my-org-clock-in-menu)
 
 (global-set-key (kbd "<home>") 'beginning-of-buffer)
 (global-set-key (kbd "<end>") 'end-of-buffer)
@@ -341,8 +350,11 @@
    (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
    (define-key comint-mode-map (kbd "<down>") 'comint-next-input)))
 
-(global-set-key (kbd "H-C-.") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "->") (insert " ->")) (if (not (char-equal (char-after) ?\s )) (insert " ") (forward-char))))
-(global-set-key (kbd "H-C-,") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "<-") (insert " <-")) (if (not (char-equal (char-after) ?\s )) (insert " ") (forward-char))))
+;; Uses equal instead of char-equal as (char-after) can return nil when at (point-max)
+(global-set-key (kbd "H-C-.") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "->") (insert " ->")) (if (not (equal (char-after) ?\s )) (insert " ") (forward-char))))
+(global-set-key (kbd "H-C-,") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "<-") (insert " <-")) (if (not (equal (char-after) ?\s )) (insert " ") (forward-char))))
+(global-set-key (kbd "H-C->") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "=>") (insert " =>")) (if (not (equal (char-after) ?\s )) (insert " ") (forward-char))))
+(global-set-key (kbd "H-C-<") '(lambda () (interactive) (if (char-equal (char-before) ?\s) (insert "<=") (insert " <=")) (if (not (equal (char-after) ?\s )) (insert " ") (forward-char))))
 
 (add-hook 'multiple-cursors-mode-enabled-hook (lambda ()
                                                 (define-key mc/keymap (kbd "<return>") 'newline)))
@@ -363,3 +375,6 @@
 (global-set-key (kbd "C-x C-x") (lambda () (interactive) (exchange-point-and-mark) (deactivate-mark) ))
 
 (global-set-key (kbd "<pause>") 'stop-using-minibuffer)
+
+
+(global-set-key [mouse-3] 'ignore)

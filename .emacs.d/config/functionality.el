@@ -42,6 +42,18 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max))
   (whitespace-cleanup))
+(defun reindent-region ()
+  (interactive)
+  (let ((start (point-min)) (end (point-max)))
+    (when (and transient-mark-mode mark-active)
+      (setq start (region-beginning)
+            end (region-end)))
+    (save-excursion
+      (delete-trailing-whitespace start end)
+      (indent-region start end nil)
+      (untabify start end)
+      (whitespace-cleanup-region start end)
+      )))
 
 (defun switch-to-minibuffer-window ()
   "switch to minibuffer window (if active)"
@@ -57,7 +69,7 @@
   ;; (interactive "sNew name: ")
   (interactive)
   (unless new-name
-    (setq new-name (read-string "New Name: " (buffer-name))))
+    (setq new-name (read-string "New Name: " (buffer-file-name))))
   (let ((name (buffer-name))
         (filename (buffer-file-name)))
     (if (not filename)
@@ -74,7 +86,8 @@
 ;; Never understood why Emacs doesn't have this function, either.
 ;;
 (defun move-buffer-file (dir)
-  "Moves both current buffer and file it's visiting to DIR." (interactive "DNew directory: ")
+  "Moves both current buffer and file it's visiting to DIR."
+  (interactive "DNew directory: ")
   (let* ((name (buffer-name))
          (filename (buffer-file-name))
          (dir
@@ -84,7 +97,11 @@
 
     (if (not filename)
         (message "Buffer '%s' is not visiting a file!" name)
-      (progn         (copy-file filename newname 1)  (delete-file filename)  (set-visited-file-name newname)         (set-buffer-modified-p nil)     t))))
+      (copy-file filename newname 1)
+      (delete-file filename)
+      (set-visited-file-name newname)
+      (set-buffer-modified-p nil)
+      t)))
 
 
 (defun toggle-letter-case ()
@@ -326,6 +343,10 @@ This is to update existing buffers after a Git pull of their underlying files."
       (goto-char begin-point))))
 
 
+(defun mean (&rest args)
+  (/ (apply '+ args)
+     (length args)))
+
 
 (defun my-comment-box ()
   (interactive)
@@ -356,6 +377,16 @@ This is to update existing buffers after a Git pull of their underlying files."
   (interactive "r")
   (format-replace-strings smart-to-ascii nil beg end))
 
+;; (defun my-smart-to-ascii ()
+;;   (interactive)
+;;   (let ((start (if (use-region-p) (region-beginning) (point-min)))
+;;         (end (if (use-region-p) (region-end) (point-max)))
+;;         (replace '(("‘" . "'")
+;;                    ("‘" . "'"))))
+;;     (dolist (pair replace)
+;;       (goto-char start)
+;;       (while (search-forward (car pair) end t)
+;;         (replace-match (cdr pair))))))
 
 (defun insert-thing (&optional arg)
   (interactive)
@@ -363,6 +394,30 @@ This is to update existing buffers after a Git pull of their underlying files."
   (if (called-interactively-p)
       (eval-last-sexp t)
     (insert (prin1-to-string arg))))
+
+;; (defun my-goto-last-change ()
+;;   (interactive)
+;;   (condition-case e
+;;       (goto-last-change nil nil)
+;;     (error (message "%s" (error-message-string e)))))
+
+
+
+(defun my-describe-variable-full ()
+  (interactive)
+  (let ((print-level nil)
+        (print-length nil))
+    (call-interactively 'describe-variable))
+  nil)
+(define-key help-mode-map (kbd "f") 'my-describe-variable-full)
+
+
+(defun my-yank-insert-rectangle  ()
+  (interactive)
+  (narrow-to-region (point) (point))
+  (yank-rectangle)
+  (widen))
+(global-set-key (kbd "C-x r C-y") 'my-yank-insert-rectangle)
 
 ;;______________________________________________________________________________
 ;π CODE FOLDING

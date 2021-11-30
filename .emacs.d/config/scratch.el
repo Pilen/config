@@ -10,7 +10,7 @@
 (defun create-scratch-buffer ()
   "Create a scratch buffer"
   (interactive)
-  (pop-to-buffer (get-buffer-create (generate-new-buffer-name "scratch")))
+  (switch-to-buffer (get-buffer-create (generate-new-buffer-name "scratch")))
   (scratch-mode)
   (emacs-lock-mode 'exit))
 
@@ -19,8 +19,14 @@
   (let* ((current-name (buffer-name))
          (buffer-names (mapcar #'buffer-name (buffer-list)))
          (filtered (seq-filter (lambda (name) (string-prefix-p "scratch" name)) buffer-names))
-         (sorted (sort filtered #'string-collate-lessp))
-         (sorted2 sorted)
+         ;; (sorted (sort filtered #'string-collate-lessp))
+         (sorted (nreverse (cl-sort
+                            filtered
+                            #'<
+                            :key (lambda (name)
+                                   (if (string-match "scratch<\\([0-9]+\\)>" name )
+                                       (string-to-number (match-string 1 name))
+                                     0)))))
          (first (car sorted))
          (selected (catch 'return
                      (while sorted

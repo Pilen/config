@@ -88,6 +88,16 @@ super + {1-9,0}
 super + shift + {1-9,0}
     bspc node -d 'd{1-9,0}'
 
+### External Screen ###
+super {_,shift} + grave
+    bspc {desktop -f,node -d} 'Ex1'
+
+super + U03BB
+    bspc desktop -f 'Ex2'
+
+super + {equal, plus}
+    bspc {desktop -f,node -d} 'Ex3'
+
 # super + {k,m}
 #     bspc desktop -f {prev,next}.local
 
@@ -108,10 +118,9 @@ super + ctrl + space
     bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
     # bspc node -p cancel
 
+super + g
+    bspc node -f last; bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-### External Screen ###
-super {_,shift} + grave
-    bspc {desktop -f,node -d} 'Ex1'
 
 
 # Select more

@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+"""
 #!/usr/bin/env bash
 
 # function fetch {
@@ -17,7 +20,7 @@
 function fetch {
     URL="$1"
     echo "$URL"
-    if curl --fail --head --silent --output /dev/null "$URL"; then
+    if curl --fail --head --silent --location --output /dev/null "$URL"; then
         evince "$URL" --page-index="$(date +%u)";
         exit 0
     fi
@@ -33,11 +36,67 @@ function fetch {
 
 WEEK="$(date +%V)"
 WEEK_NP="$(date +%-V)"
+YEAR="2020"
 # fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20uge%20${WEEK_NP}.pdf"
-# fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20uge%20${WEEK_NP}%202019.pdf"
-# fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20uge%20${WEEK}%202019.pdf"
-fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20menu%20uge%20${WEEK}%202019.pdf"
-fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20menu%20uge%20${WEEK}_2019__.pdf"
-fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20menu%20uge%20${WEEK}_2019.pdf"
+# fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20uge%20${WEEK_NP}%20${YEAR}.pdf"
+# fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20uge%20${WEEK}%20${YEAR}.pdf"
+
+fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20menu%20uge%20${WEEK_NP}%20${YEAR}.pdf"
+fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20menu%20uge%20${WEEK}%20${YEAR}.pdf"
+fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20menu%20uge%20${WEEK}_${YEAR}__.pdf"
+fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20menu%20uge%20${WEEK}_${YEAR}.pdf"
+fetch "https://torvekoekken.dk/Admin/Public/DWSDownload.aspx?File=%2fFiles%2fFiles%2fFavorit+menu+uge+${WEEK}_${YEAR}.pdf"
+fetch "https://torvekoekken.dk/Admin/Public/DWSDownload.aspx?File=%2fFiles%2fFiles%2fFavorit+menu+uge+${WEEK_NP}+${YEAR}.pdf"
+fetch "https://torvekoekken.dk/Admin/Public/Download.aspx?file=Files%2fFiles%2fFavorit+menu+uge+${WEEK_NP}+${YEAR}.pdf"
+fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20uge%20${WEEK}%20${YEAR}.pdf"
+fetch "https://torvekoekken.dk/Admin/Public/DWSDownload.aspx?File=%2fFiles%2fFiles%2fFavorit+menu+uge+${WEEK}+${YEAR}.pdf"
+fetch "https://torvekoekken.dk/Files/Images/Til%20ugens%20menu/Menuer%20Favorit/Favorit%20menu%20uge%20${WEEK}_${YEAR}_X.pdf"
 # curl --fail --head --silent --output /dev/null "$URL"
 # evince "$URL" --page-index="$(date +%u)"
+"""
+
+import bs4
+import datetime
+import re
+import requests
+import subprocess
+import urllib.parse
+
+# # URL = "https://torvekoekken.dk/frokostordning/favorit"
+# URL = "https://torvekoekken.dk/frokostordning/favorit-buffet"
+# def pdf_url():
+#     r = requests.get(URL)
+#     r.raise_for_status()
+#     s = bs4.BeautifulSoup(r.text, "lxml")
+#     pdf_link = s.find(class_="uploadPDFFiles").find("a").attrs["href"]
+#     return urllib.parse.urljoin(URL, pdf_link)
+
+# URL = "https://torvekoekken.dk/frokostordning/frokostbuffeter/favorit-buffet"
+URL = "https://torvekoekken.dk/frokostordning/frokostbuffeter/verdens-buffet"
+def pdf_url():
+    r = requests.get(URL)
+    r.raise_for_status()
+    s = bs4.BeautifulSoup(r.text, "lxml")
+    buttons = s.find(id="content").find_all("button")
+    for button in buttons:
+        match = re.fullmatch("location\\.href='([^']*)'", button.attrs["onclick"])
+        if not match:
+            continue
+        pdf_link = match.group(1)
+        if not datetime.date.today().strftime("%W") in pdf_link:
+            continue
+        return urllib.parse.urljoin(URL, pdf_link)
+    raise Exception("Could not find link")
+
+def day_of_week():
+    # return int(subprocess.check_output(["date", "+%u"], universal_newlines=True).strip())
+    return int(datetime.date.today().strftime("%u"))
+
+def main():
+    pdf = pdf_url()
+    day = day_of_week()
+    subprocess.run(["evince", pdf, "--page-index="+str(day)])
+
+
+if __name__ == "__main__":
+    main()

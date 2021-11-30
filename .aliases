@@ -21,7 +21,7 @@ alias fehw='feh -.qB white'
 alias music="mplayer -novideo"
 alias cal='cal -m -3'
 alias ,='./a.out'
-alias pong='ping -c10 google.dk'
+alias pong='ping -c10 tv2.dk | while read pong; do echo "$(date +%H:%M:%S) $pong"; done'
 alias nano='nano -Simz'
 alias eixt='exit'
 alias gcc32='/usr/bin/x86_64-unknown-linux-gnu-gcc'
@@ -30,6 +30,7 @@ alias mip='curl http://ifconfig.me/'
 alias p='python'
 alias p2='python2'
 alias p3='python3'
+alias activate='source venv/bin/activate'
 alias les='less'
 alias bc='bc -q'
 alias rf='rm -rf'
@@ -57,6 +58,7 @@ alias gp='git pull && git push'
 alias glg1='git log --graph --abbrev-commit --decorate --date=relative --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
 alias glg2='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n""          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)" --all'
 alias glg3='git log --pretty="format:\"%C(yellow)%h %ad%Cred%d %Creset%s%Cblue [%an]\"" --decorate --date=relative --abbrev-commit --abbrev=10 --graph'
+alias git-list-all-files='git log --pretty=format: --name-only --diff-filter=A | sort -u'
 
 #alias vs="vagrant ssh || (vagrant up && vagrant ssh)"
 #alias vs="vagrant status --machine-readable | grep "state,running" -q || vagrant up && vagrant ssh"
@@ -69,12 +71,18 @@ alias vds="vd && vs"
 alias vr="vagrant reload"
 alias vsmxi="cd ~/code/smx-interface/; vs"
 alias vsmxp="cd ~/code/smx-processor/; vs"
+alias vinf="cd ~/code/inflow/; vs"
 alias vpdb="cd ~/code/pdb/; vs"
 alias vrep="cd ~/code/reports; vs"
 alias vras="cd ~/code/ras; vs"
 
+# alias t="tmux attach\; choose-tree -Zs"
+alias t="if [ \"$UID\" == '0' ]; then sudo -u spi tmux attach ';' choose-tree -s; else tmux attach ';' choose-tree -s; fi"
+alias tr="sudo tmux attach ';' choose-tree -s"
+
 alias sshs="sshsudo"
 alias sss="sshsudo"
+alias sst="sshsudotmux"
 
 alias colemak='setxkbmap us -variant colemak; xmodmap .Xmodmap'
 alias dansk='setxkbmap dk'

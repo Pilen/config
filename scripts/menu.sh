@@ -14,6 +14,7 @@ fi
 title="$date $bat"
 
 menu=(\
+        -         "exit"
         firefox   "firefox"
         emacs     "emacs"
         ranger    "urxvt -e ranger"

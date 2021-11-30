@@ -17,6 +17,7 @@ All packages here will automatically be installed if not present.")
         arduino-mode
         bnf-mode
         buffer-move
+        calfw
         c-eldoc
         counsel
         column-marker
@@ -34,6 +35,7 @@ All packages here will automatically be installed if not present.")
         dimmer
         diredfl
         dtrt-indent
+        edit-server ;; For use with emacs_chrome (Edit with Emacs)
         elpy
         ensime                ;; Scala stuff - auto enables it self
         ;;erc-hl-nicks ;; Breaks my setup after updating to emacs 26.1
@@ -42,11 +44,12 @@ All packages here will automatically be installed if not present.")
         fill-column-indicator ;; not really used (could come in handy)
         flymake-cursor        ;; todo use flymake more
         flyspell-correct-ivy
-;;        forge
+        ;;forge
         full-ack              ;; not really used yet
         fuzzy                 ;; not used, what is it exactly?
         geiser
         ghc
+        gnu-elpa-keyring-update
         go-mode
         golden-ratio          ;; Not used often
         google-translate
@@ -88,6 +91,7 @@ All packages here will automatically be installed if not present.")
         ;; python-mode        ;; Very heavy (26000 lines+)
         quack
         rainbow-delimiters
+        request
         rfringe               ;; Not used
         scala-mode
         skewer-mode
@@ -99,10 +103,13 @@ All packages here will automatically be installed if not present.")
         tabbar                ;; Not used
         typescript-mode
         typing
+        undo-tree
         visible-mark
         volatile-highlights
         web-mode
         web                   ;; For my sharelatex.el package
+        wgrep
+        wgrep-ag
         win-switch
         window-numbering
         wrap-region
@@ -111,7 +118,7 @@ All packages here will automatically be installed if not present.")
 
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 ;; (add-to-list 'package-archives
 ;;              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)

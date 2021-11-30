@@ -204,21 +204,24 @@ PREFIX is used to create the key."
          (imenu-auto-rescan-maxout (if current-prefix-arg
                                        (buffer-size)
                                      imenu-auto-rescan-maxout))
-         (items (imenu--make-index-alist t))
-         (items (delete (assoc "*Rescan*" items) items)))
-    (ivy-read "imenu items: " (counsel-imenu-get-candidates-from items)
-              :preselect (thing-at-point 'symbol)
-              :require-match nil
-              :action (lambda (candidate)
-                        (if (stringp candidate)
-                            (let ((numeric (cl-parse-integer candidate :junk-allowed t)))
-                              (if numeric
-                                  (goto-line numeric)
-                                (beginning-of-buffer)
-                                (swiper candidate)))
-                          (with-ivy-window
-                            ;; In org-mode, (imenu candidate) will expand child node
-                            ;; after jump to the candidate position
-                            (imenu (cdr candidate)))))
-              :keymap counsel-imenu-map
-              :caller 'counsel-imenu)))
+         (items (ignore-errors (imenu--make-index-alist t))))
+
+    (if (null items)
+        (call-interactively 'goto-line)
+      (setq items (delete (assoc "*Rescan*" items) items))
+      (ivy-read "imenu items: " (counsel-imenu-get-candidates-from items)
+                :preselect (thing-at-point 'symbol)
+                :require-match nil
+                :action (lambda (candidate)
+                          (if (stringp candidate)
+                              (let ((numeric (cl-parse-integer candidate :junk-allowed t)))
+                                (if numeric
+                                    (goto-line numeric)
+                                  (beginning-of-buffer)
+                                  (swiper candidate)))
+                            (with-ivy-window
+                              ;; In org-mode, (imenu candidate) will expand child node
+                              ;; after jump to the candidate position
+                              (imenu (cdr candidate)))))
+                :keymap counsel-imenu-map
+                :caller 'counsel-imenu))))

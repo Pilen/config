@@ -8,6 +8,8 @@
 (setq ido-default-buffer-method 'selected-window)
 (setq ido-case-fold t)
 (setq ido-auto-merge-work-directories-length -1)
+;; (setq ido-use-virtual-buffers t) :; Not used, rather slow
+(setq ido-completion-buffer nil)
 (ido-mode 1)
 
 (set-face-attribute

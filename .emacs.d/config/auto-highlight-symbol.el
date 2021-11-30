@@ -38,7 +38,8 @@
   (dolist (overlay (overlays-in (point-min) (point-max)))
     (let ((face (overlay-get overlay 'face)))
       (when (or (eq face 'ahs-face)
-                (eq face 'ahs-plugin-whole-buffer-face))
+                (eq face 'ahs-plugin-whole-buffer-face)
+                (eq face 'ahs-definition-face))
         (delete-overlay overlay)))))
 
 (add-hook 'ag-search-finished-hook 'my-ahs-clear-overlays)

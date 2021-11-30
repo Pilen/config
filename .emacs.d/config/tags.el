@@ -108,3 +108,35 @@
   (interactive)
   (let ((directory (read-directory-name "Directory: ")))
     ()))
+
+
+(defun my-tags-create ()
+  (interactive)
+  (call-process "create-tags")
+  (let ((dir (locate-dominating-file default-directory "TAGS"))
+        (tags-add-tables nil)) ;; New tags list
+    (if dir
+        (visit-tags-table dir)
+      (message "No TAGS file found"))))
+
+
+
+
+
+
+
+
+
+;; (with-current-buffer (get-buffer-create "scratch<5>")
+;;   (cd "~/")
+;;   default-directory
+;;   (erase-buffer)
+;;   (call-process "find" nil (current-buffer) t "-type" "d" "-name" ".git")
+;;   (goto-char (point-min))
+;;   (while (re-search-forward "/.git$" nil t)
+;;     (replace-match ""))
+;;   (ido-completing-read
+;;    "Project:"
+;;    (split-string (buffer-string) "\n" t)
+;;    nil t)
+;; )

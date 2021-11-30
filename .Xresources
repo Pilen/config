@@ -64,6 +64,8 @@ URxvt.inheritPixmap: false
 !URxvt.scrollBar: true
 URxvt.scrollBar: false
 URxvt.urlLauncher: chromium
+URxvt.url-launcher: chromium
+! URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 URxvt.cursorBlink: true
 URxvt.geometry: 93.26
@@ -159,3 +161,11 @@ URxvt.tabbed.tab-bg: 0
 URxvt.tabbed.new-button: false
 URxvt.tabbed.title: false
 URxvt.tabbed.autohide: true
+
+
+
+!! ================
+!! XTerm
+!! ================
+xterm.vt100.background: #220802
+xterm.vt100.foreground: #bac8ae

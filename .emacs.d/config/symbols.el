@@ -94,6 +94,8 @@
        "≡ identical"
        "≢ not identical"
        "≈ approx"
+       "≤ less than or equal (smaller)"
+       "≥ greater than or equal (larger, more)"
        "¬ lnot"
        "⊨ true"
        "⊭ not true"
@@ -112,4 +114,10 @@
        "³ superscript three cubed"
        "€ euro"
        "£ pound"
+
+
+
+       "➝ right arrow"
+       "➞ heavy right arrow"
+       "➜ heavy round right arrow"
        ))
