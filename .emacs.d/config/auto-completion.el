@@ -33,9 +33,10 @@
 (dotimes (i 10)
   (define-key company-active-map (format "%d" i) 'ora-company-number))
 
-(add-to-list 'company-backends 'company-jedi)
-(add-to-list 'company-backends 'company-go)
 
+;; (add-to-list 'company-backends 'company-jedi)
+(add-to-list 'company-backends 'company-go)
+;; (setq company-backends (delete 'company-jedi company-backends))
 
 (defun ora-company-number ()
   "Forward to `company-complete-number'.

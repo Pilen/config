@@ -15,6 +15,7 @@ All packages here will automatically be installed if not present.")
         ace-window
         auctex
         arduino-mode
+        bnf-mode
         buffer-move
         c-eldoc
         counsel

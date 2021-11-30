@@ -343,6 +343,7 @@
 (require 'man)
 (define-key Man-mode-map (kbd "u") (lambda () (interactive) (pager-scroll-screen -8)))
 (define-key Man-mode-map (kbd "e") (lambda () (interactive) (pager-scroll-screen 8)))
+(defun Man--window-state-change (window) nil)
 
 
 ;; If deleting the prompts is suddenly possible, it might be that comint-prompt-read-only is somehow set to nil (should be t)
@@ -566,6 +567,7 @@
 (setq magit-log-margin '(t "%F %T" magit-log-margin-width t 18))
 (defun my-magit-refresh-hook ()
   (my-ahs-clear-overlays))
+(global-set-key (kbd "<f6>") 'my-ahs-clear-overlays)
 (add-hook 'magit-post-refresh-hook 'my-ahs-clear-overlays)
 
 
