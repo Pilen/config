@@ -815,6 +815,7 @@
 ;;______________________________________________________________________________
 (magit-todos-mode)
 (setq magit-commit-show-diff nil)
+(setq magit-status-show-hashes-in-headers t)
 (defun my-magit-status ()
   (interactive)
   (if (derived-mode-p 'magit-status-mode)
