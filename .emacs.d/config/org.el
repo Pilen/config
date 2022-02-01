@@ -204,8 +204,8 @@
 (defun my-org-status-new-daily-entry ()
   (interactive)
   (goto-char (point-max))
-  ;; (when (string= (format-time-string "%A") "Monday")
-  (when (string= (format-time-string "%A") "Tuesday")
+  (when (string= (format-time-string "%A") "Monday")
+  ;; (when (string= (format-time-string "%A") "Tuesday")
     (setq org-clock-history nil) ;; Reset history
     (insert (format-time-string "\n* Week %V\n"))
     (insert "** Tasks\n")
