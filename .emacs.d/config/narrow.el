@@ -28,7 +28,13 @@
   "Restrict editing in this buffer to the current region, indirectly."
   (interactive "r")
   (deactivate-mark)
-  (let ((buf (clone-indirect-buffer nil nil)))
-    (with-current-buffer buf
-      (narrow-to-region start end))
-      (switch-to-buffer buf)))
+  (lexical-let ((start start)
+                (end end))
+    (run-with-idle-timer
+     0 nil
+     (lambda ()
+       (let ((buf (clone-indirect-buffer nil nil)))
+         (with-current-buffer buf
+           (narrow-to-region start end))
+         (switch-to-buffer buf)
+         (when linum-mode (linum-mode -1) (linum-mode)))))))
