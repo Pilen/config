@@ -349,7 +349,7 @@ In Eshell's implementation of ls, ENTRIES is always reversed."
    To be used from within an eshell alias
    (`alias ag 'ag-eshell $1'` within eshell)"
   (message "in ag-eshell")
-  (let ((ag-arguments (cons "--smart-case" (cons "--stats" args))))
+  (let ((ag-arguments (cons "--smart-case" (cons "--stats" (mapcar (lambda (arg) (format "%s" arg)) args)))))
     (ag/search string (eshell/pwd) :regexp t))
   "")
 (setq-default ag-ignore-list '("#*#" "venv"))

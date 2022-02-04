@@ -65,6 +65,16 @@
 (add-hook 'calendar-today-visible-hook
           'calendar-mark-today)
 
+(copy-face font-lock-constant-face 'calendar-iso-week-face)
+;; (set-face-attribute 'calendar-iso-week-face nil :height 1)
+(setq calendar-intermonth-text
+      '(propertize
+        (format "%2d"
+                (car
+                 (calendar-iso-from-absolute
+                  (calendar-absolute-from-gregorian (list month day year)))))
+        'font-lock-face 'calendar-iso-week-face))
+
 (require 'calfw)
 
 (setq temporary-file-directory "/tmp/")
@@ -834,6 +844,7 @@
 ;;______________________________________________________________________________
 (magit-todos-mode)
 (setq magit-commit-show-diff nil)
+(setq magit-status-show-hashes-in-headers t)
 (defun my-magit-status ()
   (interactive)
   (if (derived-mode-p 'magit-status-mode)
