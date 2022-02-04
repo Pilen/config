@@ -111,7 +111,7 @@
 (defvar sql-sqlite-program "sqlite3")
 
 
-(global-undo-tree-mode)
+;; (global-undo-tree-mode)
 
 ;(require 'rfringe)
 ;(set-fringe-mode '(1 . 0))
