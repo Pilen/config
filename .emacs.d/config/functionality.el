@@ -171,6 +171,10 @@ in that cyclic order."
         (yank-pop arg)
       (yank-pop))))
 
+(defun my-kill-ring-save-buffer ()
+  (interactive)
+  (kill-ring-save (point-min) (point-max))
+  (message "Copied buffer"))
 
 (defun horizontal-recenter ()
   "make the point horizontally centered in the window"

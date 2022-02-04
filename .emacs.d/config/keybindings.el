@@ -103,6 +103,8 @@
 (global-set-key (kbd "H-z") 'undo)
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "H-w") 'kill-ring-save)
+(global-set-key (kbd "H-W") 'my-kill-ring-save-buffer)
+
 
 ;; Kill line
 ;(global-set-key (kbd "H-d") 'kill-line)
