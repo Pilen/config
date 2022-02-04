@@ -14,6 +14,7 @@
 (add-hook 'go-mode-hook          (lambda () (define-key go-mode-map          (kbd "H-g") 'my-go-compile)))
 (add-hook 'haskell-mode-hook     (lambda () (define-key haskell-mode-map     (kbd "H-g") 'inferior-haskell-load-file)))
 (add-hook 'jde-mode-hook         (lambda () (define-key jde-mode-map         (kbd "H-g") 'jde-compile-or-run)))
+(add-hook 'java-mode-hook        (lambda () (define-key java-mode-map        (kbd "H-g") 'my-c-compile)))
 (add-hook 'makefile-mode-hook    (lambda () (define-key makefile-mode-map    (kbd "H-g") 'my-c-compile)))
 (add-hook 'maple-mode-hook       (lambda () (define-key maple-mode-map       (kbd "H-g") 'maple-buffer)))
 ;; (add-hook 'python-mode-hook      (lambda () (define-key python-mode-map      (kbd "H-g") 'python-compile)))

@@ -88,6 +88,7 @@ All packages here will automatically be installed if not present.")
         paredit
         powerline             ;; Not used
         projectile
+        processing-mode
         ;; python-mode        ;; Very heavy (26000 lines+)
         quack
         rainbow-delimiters

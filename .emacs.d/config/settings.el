@@ -583,6 +583,8 @@
 
 (setq ps-paper-type 'a4)
 
+(setq processing-location (executable-find "processing-java"))
+
 ;;______________________________________________________________________________
 ;π STARTUP
 ;;______________________________________________________________________________
@@ -728,6 +730,23 @@
 
 
 (add-to-list 'auto-mode-alist '("\\.crontab\\'" . crontab-mode))
+
+
+(push '("\\.pde$" . processing-mode) auto-mode-alist)
+(add-to-list 'auto-mode-alist '("\\.pde$" . processing-mode))
+(add-hook 'processing-mode-hook (lambda () (setq c-basic-offset 4)))
+
+(defun my-cc-mode-hook ()
+  ;; (setq c-electric-flag nil)
+  ;; (setq c-electric-flag nil)
+  (c-toggle-electric-state -1)
+  ;; nil
+  ;; (setq electric-indent-inhibit nil)
+  ;; (message "hej")
+  )
+(add-hook 'java-mode-hook 'my-cc-mode-hook)
+(define-key java-mode-map (kbd "<return>") 'newline-and-indent)
+
 
 ;;______________________________________________________________________________
 ;π CONSOLE
