@@ -140,6 +140,13 @@ in that cyclic order."
     )
   )
 
+(defun toggle-letter-case-forward ()
+  (interactive)
+  (let ((case-fold-search nil))
+    (cond
+     ((looking-at "[[:lower:]]") (upcase-region (point) (1+ (point))))
+     ((looking-at "[[:upper:]]") (downcase-region (point) (1+ (point)))))))
+
 
 
 (defun shell-command-on-region-replace (start end command)

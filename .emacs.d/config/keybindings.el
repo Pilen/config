@@ -115,7 +115,8 @@
 ;(global-set-key (kbd "H-w") 'shrink-whitespace) ???
 ;(global-set-key (kbd "H-'") 'comment-dwim) ;?
 (global-set-key (kbd "H-b") 'toggle-letter-case)
-(global-set-key (kbd "H-B") 'caps-mode)
+;; (global-set-key (kbd "H-B") 'caps-mode)
+(global-set-key (kbd "H-B") 'toggle-letter-case-forward)
 ;; Keyword completion, because Alt-Tab is used by OS
 ;(global-set-key (kbd "H-g") 'call-keyword-completion) ???
 ;; Hard-wrap/un-hard-wrap paragraph
