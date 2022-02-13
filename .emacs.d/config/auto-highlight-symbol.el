@@ -18,9 +18,13 @@
 (set-face-background 'ahs-plugin-whole-buffer-face "SteelBlue4")
 (set-face-foreground 'ahs-plugin-whole-buffer-face nil)
 
+(setq my-ahs-ignored-modes '(ag-mode grep-mode))
 (defun ahs-mode-maybe ()
   "Fire up `auto-highlight-symbol-mode' if major-mode in ahs-modes."
-  (when (not (minibufferp (current-buffer)))
+  (when (and (not (minibufferp (current-buffer)))
+             ;; (not (string-prefix-p "*" (buffer-name)))
+             (not (memq major-mode my-ahs-ignored-modes))
+             )
     (auto-highlight-symbol-mode t)))
 
 (global-auto-highlight-symbol-mode 1)
