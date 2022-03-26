@@ -430,6 +430,28 @@ This is to update existing buffers after a Git pull of their underlying files."
   (widen))
 (global-set-key (kbd "C-x r C-y") 'my-yank-insert-rectangle)
 
+
+(defun my-yank-as-rectangle ()
+  (interactive)
+  (with-temp-buffer
+    (yank)
+    (goto-char (point-min))
+    (while (= (char-after) ?\n)
+      (delete-char 1))
+    (goto-char (point-max))
+    (while (= (char-before) ?\n)
+      (delete-char -1))
+    (let* ((value (buffer-substring (point-min) (point-max)))
+           (lines (split-string value "\n"))
+           (lengths (mapcar 'length lines))
+           (max (apply 'max lengths))
+           (last (car (last lengths)))
+           (difference (- max last)))
+      (dotimes (i difference)
+        (insert " "))
+      (kill-rectangle (point-min) (point-max))))
+  (yank-rectangle))
+(global-set-key (kbd "C-x r C-y") 'my-yank-as-rectangle)
 ;;______________________________________________________________________________
 ;π CODE FOLDING
 ;;______________________________________________________________________________
