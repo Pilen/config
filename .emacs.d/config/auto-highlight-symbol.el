@@ -22,7 +22,7 @@
 (defun ahs-mode-maybe ()
   "Fire up `auto-highlight-symbol-mode' if major-mode in ahs-modes."
   (when (and (not (minibufferp (current-buffer)))
-             ;; (not (string-prefix-p "*" (buffer-name)))
+             (not (string-prefix-p "*" (buffer-name)))
              (not (memq major-mode my-ahs-ignored-modes))
              )
     (auto-highlight-symbol-mode t)))
