@@ -350,9 +350,54 @@
       (replace-regexp "^# .*\n" "" nil (point-min) (point-max))
       (kill-ring-save (point-min) (point-max))
       )))
-
+(defun my-org-status-weekly-status-email ()
+  (interactive)
+  (goto-char (point-max))
+  (let (week ;; string
+        did)
+    (search-backward-regexp "^\\* Week \\([0-9]+\\)")
+    (setq week (match-string 1))
+    (with-current-buffer (get-buffer-create "*Daily Standup status*") (erase-buffer))
+    (search-forward-regexp "^\\*\\* Tasks")
+    ;; (search-forward-regexp "^\\*\\*\\* ")
+    (beginning-of-line)
+    ;; (while (looking-at "^\\*\\*\\* ")
+    (while (search-forward-regexp "^\\*\\*\\* " nil t)
+      (setq did (my-org--extract-title-and-text))
+      ;; (search-forward-regexp "^\\*\\*\\* ")
+      ;; (beginning-of-line)
+      (with-current-buffer (get-buffer-create "*Daily Standup status*")
+        (insert "* ")
+        (insert (car did))
+        (insert ":\n")
+        (insert (cdr did))
+        (while (eq (char-before) ?\n) (delete-char -1))
+        (insert "\n\n")
+        ))
+    (with-current-buffer (get-buffer-create "*Daily Standup status*")
+      (let* ((items (list
+                     "an acceptable"
+                     "an excellent"
+                     "an exceptional"
+                     "a fine"
+                     "a good"
+                     "a great"
+                     "a happy"
+                     "a nice"
+                     "a satisfactory"
+                     "a superb"
+                     "a wonderful"
+                     "a cool"
+                     ))
+             (item (nth (random (length items)) items)))
+        (insert "Have " item " weekend!\nBR, Søren\n"))
+      (insert "Status Email - Week " week)
+      (replace-regexp "^# .*\n" "" nil (point-min) (point-max))
+      (kill-ring-save (point-min) (point-max))
+      )))
 
 (require 'request)
+(setq my-org-status-synchronize-time-with-gitlab-should-post-comment nil)
 (defun my-org-status-synchronize-time-with-gitlab ()
   (interactive)
   (unless (y-or-n-p "Are you sure you want to synchronize time registered with Gitlab?")
@@ -392,7 +437,7 @@
               (user-error "Unknown url format: %s" issue-url))
             (setq project-encoded (url-hexify-string (match-string 1 issue-url)))
             (setq issue-id (match-string 2 issue-url))
-            (when (zerop registered-minutes)
+            (when (and (zerop registered-minutes) my-org-status-synchronize-time-with-gitlab-should-post-comment)
               (setq api (format "https://gitlab.isynet.net/api/v4/projects/%s/issues/%s/notes" project-encoded issue-id))
               (setq response
                     (request
