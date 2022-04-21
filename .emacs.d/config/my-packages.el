@@ -52,7 +52,8 @@ All packages here will automatically be installed if not present.")
         go-mode
         golden-ratio          ;; Not used often
         google-translate
-        goto-last-change
+        goto-chg
+        ;; goto-last-change
         graphviz-dot-mode
         haskell-mode
         highlight-tail        ;; Cool but not used

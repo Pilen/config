@@ -102,6 +102,9 @@
 ;(global-set-key (kbd "H-Z") 'redo)
 (global-set-key (kbd "H-z") 'undo)
 (global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "H-Z") 'undo-tree-redo)
+(global-set-key (kbd "C-Z") 'undo-tree-redo)
+
 (global-set-key (kbd "H-w") 'kill-ring-save)
 
 ;; Kill line
