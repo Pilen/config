@@ -986,7 +986,7 @@ the upstream."
              'mouse-face 'magit-section-highlight)))
       (insert ?\n))))
 
-
+(defun magit-imenu--status-create-index-function ()) ;; Disable imenu in magit (it is currently broken)
 (require 'wgrep)
 (require 'wgrep-ag)
 

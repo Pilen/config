@@ -172,6 +172,7 @@
   (command-center-add 'quick-calc)
   (command-center-add 'man) ()
   (command-center-add 'neotree)
+  (command-center-add 'imenu-list-smart-toggle)
   (command-center-add 'ibuffer)
   (command-center-add 'font-lock-fontify-buffer)
   (command-center-add 'beginning-of-defun)

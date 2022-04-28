@@ -60,6 +60,7 @@ All packages here will automatically be installed if not present.")
         hlinum
         idomenu               ;; I rolled my own instead
         iedit
+        imenu-list
         impatient-mode
         inf-ruby
         ivy-xref

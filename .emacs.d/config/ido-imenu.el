@@ -225,3 +225,8 @@ PREFIX is used to create the key."
                               (imenu (cdr candidate)))))
                 :keymap counsel-imenu-map
                 :caller 'counsel-imenu))))
+
+
+(setq imenu-list-position 'right) ;; If left it will compete with neotree about being first
+(setq imenu-list-size 30)
+(setq imenu-list-mode-line-format '(" %e" (:eval (buffer-name imenu-list--displayed-buffer))))

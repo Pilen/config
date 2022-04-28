@@ -162,5 +162,7 @@
     (setq my-dominating-compile-history (cons command (delete command my-dominating-compile-history)))
     (compile new-command)
     (setq compile-command command)))
+
+(require 'typescript-mode)
 (define-key typescript-mode-map (kbd "H-g") 'my-dominating-compile)
 ;; (setq my-dominating-compile-history (cdr my-dominating-compile-history))
