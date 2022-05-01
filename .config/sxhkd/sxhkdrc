@@ -94,6 +94,8 @@ super {_,shift} + grave
 
 super + U03BB
     bspc desktop -f 'Ex2'
+super + Greek_lambda
+    bspc desktop -f 'Ex2'
 
 super + {equal, plus}
     bspc {desktop -f,node -d} 'Ex3'
