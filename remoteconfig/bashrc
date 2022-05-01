@@ -3,6 +3,8 @@ if [ -z "$REMOTE_CONFIG_DIR" ]; then
 fi
 
 shopt -s extglob
+shopt -s globstar
+
 bind '\C-n:menu-complete'
 bind '\C-p:menu-complete-previous'
 

@@ -102,6 +102,9 @@
 ;(global-set-key (kbd "H-Z") 'redo)
 (global-set-key (kbd "H-z") 'undo)
 (global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "H-Z") 'undo-tree-redo)
+(global-set-key (kbd "C-Z") 'undo-tree-redo)
+
 (global-set-key (kbd "H-w") 'kill-ring-save)
 (global-set-key (kbd "H-W") 'my-kill-ring-save-buffer)
 
@@ -332,6 +335,7 @@
 (global-set-key (kbd "<f9>") 'command-center)
 (global-set-key (kbd "<f10>") nil)
 (global-set-key (kbd "<f11>") nil)
+(global-set-key (kbd "<f11>") (lambda () (interactive) (message "%s" (or (buffer-file-name) "Not a file"))))
 (global-set-key (kbd "H-<f11>") nil)
 (global-set-key (kbd "S-<f11>") nil)
 (global-set-key (kbd "<f12>") 'my-neotree)

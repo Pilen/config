@@ -111,7 +111,8 @@
     (setq recentf-save-timer nil))
   (setq recentf-save-timer (run-at-time t (* 60 60) (lambda () (recentf-save-list)))))
 
-(require 'goto-last-change)
+;; (require 'goto-last-change)
+(require 'goto-chg)
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
@@ -1015,7 +1016,7 @@ the upstream."
              'mouse-face 'magit-section-highlight)))
       (insert ?\n))))
 
-
+(defun magit-imenu--status-create-index-function ()) ;; Disable imenu in magit (it is currently broken)
 (require 'wgrep)
 (require 'wgrep-ag)
 

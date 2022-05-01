@@ -227,6 +227,8 @@
 ;;        (put-text-property end sml-modeline-len 'face 'sml-modeline-end-face string))
 ;;      string)))
 
+;; (defun sml-modeline-create ()
+;;   "abc")
 (defun sml-modeline-create ()
   (let* ((wstart (window-start))
          (wend (window-end))
@@ -274,5 +276,13 @@
       (put-text-property end sml-modeline-len 'face 'sml-modeline-end-face string))
     string))
 
-(setq-default mode-line-position '(eval (list (sml-modeline-create))))
+;; (setq-default mode-line-position '(eval (list (sml-modeline-create))))
+(setq-default mode-line-position '(:eval (list (sml-modeline-create))))
+
+;; ((:eval
+;;    (list
+;;     (sml-modeline-create)))
+;;  (list
+;;   (sml-modeline-create)))
+
 (sml-modeline-mode 1)

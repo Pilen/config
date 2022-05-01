@@ -38,7 +38,9 @@
          (selected-dir)
          )
     (save-buffer)
-    (unless project-dir (error "Not inside a project"))
+    (if (not project-dir)
+      ;; (error "Not inside a project")
+      (call-interactively 'compile)
 
     ;; Read commands
     (with-temp-buffer
@@ -92,4 +94,13 @@
       (pcase (plist-get selected-command :method)
         ((or 'compile 'nil)
          (compile command-string))
-        ('shell (start-process-shell-command "*project-runner*" (get-buffer-create "*project-runner*") command-string))))))
+        ('shell (start-process-shell-command "*project-runner*" (get-buffer-create "*project-runner*") command-string)))))))
+
+
+;; (defun project-runner ()
+;;   (interactive)
+;;   (let* ((project-file-name "run.sh")
+;;          (project-dir (locate-dominating-file default-directory project-file-name))
+;;          (project-file (expand-file-name project-file-name project-dir))
+;;          (commands nil)
+;;          )))

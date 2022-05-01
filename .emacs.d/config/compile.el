@@ -18,7 +18,8 @@
 (add-hook 'makefile-mode-hook    (lambda () (define-key makefile-mode-map    (kbd "H-g") 'my-c-compile)))
 (add-hook 'maple-mode-hook       (lambda () (define-key maple-mode-map       (kbd "H-g") 'maple-buffer)))
 ;; (add-hook 'python-mode-hook      (lambda () (define-key python-mode-map      (kbd "H-g") 'python-compile)))
-(add-hook 'python-mode-hook      (lambda () (define-key python-mode-map      (kbd "H-g") 'project-runner)))
+;; (add-hook 'python-mode-hook      (lambda () (define-key python-mode-map      (kbd "H-g") 'project-runner)))
+(add-hook 'python-mode-hook      (lambda () (define-key python-mode-map      (kbd "H-g") 'my-dominating-compile)))
 (add-hook 'ruby-mode-hook        (lambda () (define-key ruby-mode-map        (kbd "H-g") (lambda () (interactive) (save-excursion (when (null inf-ruby-buffer) (run-ruby) (sleep-for 1))) (ruby-send-region-and-go (point-min) (point-max))))))
 (add-hook 'scheme-mode-hook      (lambda () (define-key scheme-mode-map      (kbd "H-g") (lambda () (interactive) (save-buffer) (geiser-mode-switch-to-repl-and-enter)))))
 (add-hook 'sh-mode               (lambda () (define-key sh-mode-map          (kbd "H-g") 'eshell-execute-current-line)))
@@ -26,6 +27,8 @@
 (add-hook 'sml-mode-hook         (lambda () (define-key sml-mode-map         (kbd "H-g") 'sml-compile)))
 (add-hook 'sql-mode              (lambda () (define-key sql-mode-map         (kbd "H-g") 'sql-send-line)))
 (add-hook 'org-mode              (lambda () (define-key org-mode-map         (kbd "H-g") 'org-ctrl-c-ctrl-c)))
+;; (last python-mode-hook)
+;; (setq python-mode-hook (butlast python-mode-hook 1))
 
 (defun my-c-compile ()
   (interactive)
@@ -101,7 +104,8 @@
 (defun my-colorize-compilation-buffer (&rest r)
   (when (eq major-mode 'compilation-mode)
     (let ((inhibit-read-only t))
-      (ansi-color-apply-on-region compilation-filter-start (point)))))
+      (ansi-color-apply-on-region compilation-filter-start (point))))
+  )
 (defun my-compilation-find-file-advice (func marker filename directory &rest formats)
   (apply func marker (ansi-color-filter-apply filename) directory formats))
 (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer)
@@ -124,6 +128,7 @@
 
 (define-key compilation-mode-map (kbd "f") 'next-error-follow-minor-mode)
 
+(setq compilation-environment '("TERM=xterm-color"))
 
 ;; (setq my-next-error-detected nil)
 ;; (defun my-next-error-detect-hook ()
@@ -141,3 +146,24 @@
 ;;   )
 
 ;; ;; (my-goto-last-error)
+
+(setq my-dominating-compile-history nil)
+(defun my-dominating-compile ()
+  (interactive)
+  (save-buffer)
+  (let* (
+         ;; (command (compilation-read-command (eval compile-command)))
+         (command (ivy-read "Compile: " my-dominating-compile-history))
+         (command-list (split-string command " "))
+         (dir (locate-dominating-file default-directory (car command-list)))
+         (file (expand-file-name (car command-list) dir))
+         (new-command (s-join " " (cons file (cdr command-list))))
+         (default-directory dir)
+         )
+    (setq my-dominating-compile-history (cons command (delete command my-dominating-compile-history)))
+    (compile new-command)
+    (setq compile-command command)))
+
+(require 'typescript-mode)
+(define-key typescript-mode-map (kbd "H-g") 'my-dominating-compile)
+;; (setq my-dominating-compile-history (cdr my-dominating-compile-history))
