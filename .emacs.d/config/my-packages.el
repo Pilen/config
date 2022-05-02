@@ -95,6 +95,7 @@ All packages here will automatically be installed if not present.")
         request
         rfringe               ;; Not used
         scala-mode
+        ;; side-hustle           ;; like imenu-list
         skewer-mode
         smart-forward         ;; Not really used yet
         smex                  ;; Not used, i use my own instead

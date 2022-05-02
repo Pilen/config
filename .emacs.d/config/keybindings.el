@@ -332,7 +332,7 @@
 (global-set-key (kbd "<f9>") 'command-center)
 (global-set-key (kbd "<f10>") nil)
 (global-set-key (kbd "<f11>") nil)
-(global-set-key (kbd "<f11>") (lambda () (interactive) (message "%s" (or (buffer-file-name) "Not a file"))))
+(global-set-key (kbd "<f11>") #'my-imenu-list)
 (global-set-key (kbd "H-<f11>") nil)
 (global-set-key (kbd "S-<f11>") nil)
 (global-set-key (kbd "<f12>") 'my-neotree)
