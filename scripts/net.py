@@ -13,7 +13,8 @@ import time
 # TODO: create /root/networks if it doesn't exist
 
 ip_link = subprocess.check_output(["ip", "link", "show"], universal_newlines=True)
-default_interface = [interface for interface in re.findall("[0-9]+: ([^:]*): <", ip_link) if interface.startswith("wlp")][0]
+# default_interface = [interface for interface in re.findall("[0-9]+: ([^:]*): <", ip_link) if interface.startswith("wlp")][0]
+default_interface = [interface for interface in re.findall("[0-9]+: ([^:]*): <", ip_link) if interface.startswith("w")][0]
 
 default_driver = "wext"
 default_config_directory = "/root/networks/"
@@ -153,7 +154,9 @@ def disconnect():
 def connect():
     disconnect()
     try:
-        wpa_supplicant = subprocess.Popen(["wpa_supplicant", "-i", interface, "-D", driver, "-c", config_directory + wpa_config, "-B"], universal_newlines=True)
+        command = ["wpa_supplicant", "-i", interface, "-D", driver, "-c", config_directory + wpa_config, "-B"]
+        print(" ".join(command))
+        wpa_supplicant = subprocess.Popen(command, universal_newlines=True)
         time.sleep(2)
         dhcp_client = subprocess.check_output(["dhclient", "-v", interface], universal_newlines=True)
         print(dhcp_client)

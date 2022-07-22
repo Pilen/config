@@ -186,6 +186,7 @@
   (command-center-add (lambda () (interactive) (mc/insert-numbers (string-to-number (read-from-minibuffer "start: ")))) "multiple-cursors-insert-number")
 
   (command-center-add (lambda () (interactive) (insert (prin1-to-string (call-interactively 'eval-expression)))) "insert")
+  (command-center-add 'insert-thing)
 
   (command-center-add 'my-antialias-toggle)
   (command-center-add 'my-print-source-code "print-source-code")

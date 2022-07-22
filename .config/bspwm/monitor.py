@@ -23,6 +23,8 @@ def main():
 
 @handler
 def monitor_add(id, name, geometry):
+    if name == "LVDS1":
+        return
     subprocess.run(["bspc", "desktop", "Ex1", "-m", name])
     subprocess.run(["bspc", "desktop", "Ex1", "-f"])
     subprocess.run(["bspc", "desktop", "Desktop", "-r"])

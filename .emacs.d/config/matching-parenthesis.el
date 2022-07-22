@@ -47,4 +47,5 @@
 (require 'paredit)
 (defun my-paredit-insert-space-p (a b)
   (not (eq major-mode `js2-mode)))
+(require 'paredit)
 (add-to-list 'paredit-space-for-delimiter-predicates 'my-paredit-insert-space-p)

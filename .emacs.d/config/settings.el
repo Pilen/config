@@ -122,7 +122,7 @@
 (defvar sql-sqlite-program "sqlite3")
 
 
-(global-undo-tree-mode)
+;; (global-undo-tree-mode)
 
 ;(require 'rfringe)
 ;(set-fringe-mode '(1 . 0))
@@ -374,6 +374,7 @@
 (require 'man)
 (define-key Man-mode-map (kbd "u") (lambda () (interactive) (pager-scroll-screen -8)))
 (define-key Man-mode-map (kbd "e") (lambda () (interactive) (pager-scroll-screen 8)))
+(defun Man--window-state-change (window) nil)
 
 
 ;; If deleting the prompts is suddenly possible, it might be that comint-prompt-read-only is somehow set to nil (should be t)
@@ -557,10 +558,13 @@
  'minibuffer-prompt-properties
  (quote (read-only t cursor-intangible t face minibuffer-prompt)))
 
+
+(customize-set-variable 'csv-separators '("," "\t" ";"))
 (require 'edit-server)
 (setq edit-server-new-frame nil)
 (setq edit-server-default-major-mode 'markdown-mode)
 (edit-server-start)
+
 ;;______________________________________________________________________________
 ;π COMPLETIONS
 ;;______________________________________________________________________________
@@ -590,11 +594,13 @@
 
 (setq ps-paper-type 'a4)
 
+(setq processing-location (executable-find "processing-java"))
+
 ;;______________________________________________________________________________
 ;π STARTUP
 ;;______________________________________________________________________________
 (setq inhibit-startup-message t)
-(with-current-buffer (get-buffer-create (generate-new-buffer-name "lock"))
+(with-current-buffer (get-buffer-create (generate-new-buffer-name "*lock*"))
   (emacs-lock-mode 'exit))
 (defun display-startup-echo-area-message ()
   (message ""))
@@ -684,6 +690,11 @@
     (neo-buffer--node-list-set nil node)
     (neo-buffer--newline-and-begin)))
 
+(defun my-neotree-ag ()
+  (interactive)
+  (ag (ag/read-from-minibuffer "Search string") default-directory))
+
+
 (setq neo-vc-integration nil)
 
 (defun neo-buffer--insert-dir-entry (node depth expanded)
@@ -730,6 +741,24 @@
 
 
 (add-to-list 'auto-mode-alist '("\\.crontab\\'" . crontab-mode))
+
+
+(push '("\\.pde$" . processing-mode) auto-mode-alist)
+(add-to-list 'auto-mode-alist '("\\.pde$" . processing-mode))
+(add-hook 'processing-mode-hook (lambda () (setq c-basic-offset 4)))
+
+(defun my-cc-mode-hook ()
+  ;; (setq c-electric-flag nil)
+  ;; (setq c-electric-flag nil)
+  (c-toggle-electric-state -1)
+  ;; nil
+  ;; (setq electric-indent-inhibit nil)
+  ;; (message "hej")
+  )
+(add-hook 'java-mode-hook 'my-cc-mode-hook)
+(define-key java-mode-map (kbd "<return>") 'newline-and-indent)
+
+
 ;;______________________________________________________________________________
 ;π CONSOLE
 ;;______________________________________________________________________________
@@ -835,6 +864,7 @@
 (setq magit-log-margin '(t "%F %T" magit-log-margin-width t 18))
 (defun my-magit-refresh-hook ()
   (my-ahs-clear-overlays))
+(global-set-key (kbd "<f6>") 'my-ahs-clear-overlays)
 (add-hook 'magit-post-refresh-hook 'my-ahs-clear-overlays)
 
 (setq magit-branch-read-upstream-first nil)

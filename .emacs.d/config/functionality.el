@@ -140,6 +140,13 @@ in that cyclic order."
     )
   )
 
+(defun toggle-letter-case-forward ()
+  (interactive)
+  (let ((case-fold-search nil))
+    (cond
+     ((looking-at "[[:lower:]]") (upcase-region (point) (1+ (point))))
+     ((looking-at "[[:upper:]]") (downcase-region (point) (1+ (point)))))))
+
 
 
 (defun shell-command-on-region-replace (start end command)
@@ -171,6 +178,10 @@ in that cyclic order."
         (yank-pop arg)
       (yank-pop))))
 
+(defun my-kill-ring-save-buffer ()
+  (interactive)
+  (kill-ring-save (point-min) (point-max))
+  (message "Copied buffer"))
 
 (defun horizontal-recenter ()
   "make the point horizontally centered in the window"
@@ -388,6 +399,13 @@ This is to update existing buffers after a Git pull of their underlying files."
 ;;       (while (search-forward (car pair) end t)
 ;;         (replace-match (cdr pair))))))
 
+(defun insert-thing (&optional arg)
+  (interactive)
+  (insert " ")
+  (if (called-interactively-p)
+      (eval-last-sexp t)
+    (insert (prin1-to-string arg))))
+
 ;; (defun my-goto-last-change ()
 ;;   (interactive)
 ;;   (condition-case e
@@ -411,6 +429,29 @@ This is to update existing buffers after a Git pull of their underlying files."
   (yank-rectangle)
   (widen))
 (global-set-key (kbd "C-x r C-y") 'my-yank-insert-rectangle)
+
+
+(defun my-yank-as-rectangle ()
+  (interactive)
+  (with-temp-buffer
+    (yank)
+    (goto-char (point-min))
+    (while (= (char-after) ?\n)
+      (delete-char 1))
+    (goto-char (point-max))
+    (while (= (char-before) ?\n)
+      (delete-char -1))
+    (let* ((value (buffer-substring (point-min) (point-max)))
+           (lines (split-string value "\n"))
+           (lengths (mapcar 'length lines))
+           (max (apply 'max lengths))
+           (last (car (last lengths)))
+           (difference (- max last)))
+      (dotimes (i difference)
+        (insert " "))
+      (kill-rectangle (point-min) (point-max))))
+  (yank-rectangle))
+(global-set-key (kbd "C-x r C-y") 'my-yank-as-rectangle)
 ;;______________________________________________________________________________
 ;π CODE FOLDING
 ;;______________________________________________________________________________

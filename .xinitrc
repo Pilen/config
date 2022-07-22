@@ -10,4 +10,5 @@ urxvtd -q -o -f
 redshift -l 55.7:12.6 &
 wmname LG3D
 sxhkd &
+xrdb ~/.Xresources
 exec bspwm

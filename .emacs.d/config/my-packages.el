@@ -15,6 +15,7 @@ All packages here will automatically be installed if not present.")
         ace-window
         auctex
         arduino-mode
+        bnf-mode
         buffer-move
         calfw
         c-eldoc
@@ -89,6 +90,7 @@ All packages here will automatically be installed if not present.")
         paredit
         powerline             ;; Not used
         projectile
+        processing-mode
         ;; python-mode        ;; Very heavy (26000 lines+)
         quack
         rainbow-delimiters

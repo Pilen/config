@@ -2,6 +2,7 @@
 (defun insert-unicode-symbol ()
   (interactive)
   (let ((selected (ido-completing-read "symbol: " useful-unicode-symbols nil)))
+    (setq useful-unicode-symbols (cons selected (delete selected useful-unicode-symbols)))
     (insert (substring selected 0 1))))
 
 (setq useful-unicode-symbols
@@ -57,6 +58,7 @@
        "Χ Chi big"
        "Ψ Psi big"
        "Ω Omega big"
+       "Ω Ohm" ;; Alias
 
        "ℕ natural"
        "ℤ integer"
@@ -106,6 +108,7 @@
        "∘ circle (compose)"
        "° degree"
        "½ 1/2 one half"
+       "§ paragraf"
        "¹ superscript one"
        "² superscript two squared"
        "³ superscript three cubed"
@@ -117,5 +120,4 @@
        "➝ right arrow"
        "➞ heavy right arrow"
        "➜ heavy round right arrow"
-
        ))

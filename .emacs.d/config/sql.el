@@ -1,35 +1,35 @@
 ;;______________________________________________________________________________
 ;π SQL
 ;;______________________________________________________________________________
-(defvar sql-last-prompt-pos 1
-  "position of last prompt when added recording started")
-(make-variable-buffer-local 'sql-last-prompt-pos)
-(put 'sql-last-prompt-pos 'permanent-local t)
+;; (defvar sql-last-prompt-pos 1
+;;   "position of last prompt when added recording started")
+;; (make-variable-buffer-local 'sql-last-prompt-pos)
+;; (put 'sql-last-prompt-pos 'permanent-local t)
 
-(defun sql-add-newline-first (output)
-  "Add newline to beginning of OUTPUT for `comint-preoutput-filter-functions'
-    This fixes up the display of queries sent to the inferior buffer
-    programatically."
-  (let ((begin-of-prompt
-         (or (and comint-last-prompt-overlay
-                  ;; sometimes this overlay is not on prompt
-                  (save-excursion
-                    (goto-char (overlay-start comint-last-prompt-overlay))
-                    (looking-at-p comint-prompt-regexp)
-                    (point)))
-             1)))
-    (if (> begin-of-prompt sql-last-prompt-pos)
-        (progn
-          (setq sql-last-prompt-pos begin-of-prompt)
-          (concat "\n" output))
-      output)))
+;; (defun sql-add-newline-first (output)
+;;   "Add newline to beginning of OUTPUT for `comint-preoutput-filter-functions'
+;;     This fixes up the display of queries sent to the inferior buffer
+;;     programatically."
+;;   (let ((begin-of-prompt
+;;          (or (and comint-last-prompt-overlay
+;;                   ;; sometimes this overlay is not on prompt
+;;                   (save-excursion
+;;                     (goto-char (overlay-start comint-last-prompt-overlay))
+;;                     (looking-at-p comint-prompt-regexp)
+;;                     (point)))
+;;              1)))
+;;     (if (> begin-of-prompt sql-last-prompt-pos)
+;;         (progn
+;;           (setq sql-last-prompt-pos begin-of-prompt)
+;;           (concat "\n" output))
+;;       output)))
 
-(defun sqli-add-hooks ()
-  "Add hooks to `sql-interactive-mode-hook'."
-  (add-hook 'comint-preoutput-filter-functions
-            'sql-add-newline-first))
+;; (defun sqli-add-hooks ()
+;;   "Add hooks to `sql-interactive-mode-hook'."
+;;   (add-hook 'comint-preoutput-filter-functions
+;;             'sql-add-newline-first))
 
-(add-hook 'sql-interactive-mode-hook 'sqli-add-hooks)
+;; (add-hook 'sql-interactive-mode-hook 'sqli-add-hooks)
 
 (defun sql-send-line ()
   (interactive)
@@ -70,14 +70,45 @@
       ;; We don't have no stinkin' sql
       (message "No SQL process started."))))
 
-(defun sql-clear ()
+(defun pilen-sql-clear ()
   (interactive)
-  (eshell/clear)
-  (comint-send-input)
+  ;; Based on (eshell/clear)
+  (goto-char (point-max))
+  (beginning-of-line)
+  (let ((inhibit-read-only t)
+        (current (buffer-substring (point) (point-max))))
+    (delete-region (point) (point-max))
+    (erase-buffer)
+    (comint-send-input)
+    (insert current))
   (setq sql-last-prompt-pos 1))
 
 (add-hook 'sql-interactive-mode-hook
           (lambda ()
-            (define-key sql-interactive-mode-map (kbd "C-l") 'sql-clear)))
+            (define-key sql-interactive-mode-map (kbd "C-l") 'pilen-sql-clear)))
 ;; (add-hook 'sql-mode-hook
 ;;           (lambda () (local-set-minor-mode-key 'sql-mode (kbd "C-l") 'sql-clear)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(fmakunbound 'sql-clear)
+
+(setq sql-sqlite-options '("-batch" "-interactive"))
+(defun sql-add-newline-first (output) nil)
+(defun sqli-add-hooks () nil)
+;; (setq sql-interactive-mode-hook nil)
+(setq comint-preoutput-filter-functions nil)
+
+(setq sql-electric-stuff 'semicolon)

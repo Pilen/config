@@ -106,6 +106,8 @@
 (global-set-key (kbd "C-Z") 'undo-tree-redo)
 
 (global-set-key (kbd "H-w") 'kill-ring-save)
+(global-set-key (kbd "H-W") 'my-kill-ring-save-buffer)
+
 
 ;; Kill line
 ;(global-set-key (kbd "H-d") 'kill-line)
@@ -116,7 +118,8 @@
 ;(global-set-key (kbd "H-w") 'shrink-whitespace) ???
 ;(global-set-key (kbd "H-'") 'comment-dwim) ;?
 (global-set-key (kbd "H-b") 'toggle-letter-case)
-(global-set-key (kbd "H-B") 'caps-mode)
+;; (global-set-key (kbd "H-B") 'caps-mode)
+(global-set-key (kbd "H-B") 'toggle-letter-case-forward)
 ;; Keyword completion, because Alt-Tab is used by OS
 ;(global-set-key (kbd "H-g") 'call-keyword-completion) ???
 ;; Hard-wrap/un-hard-wrap paragraph

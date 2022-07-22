@@ -9,6 +9,10 @@
   (setq tab-width (default-value 'tab-width)) ;; Don't fuck with my tab-width!!!
   ;; (add-to-list 'company-backends 'company-jedi)
   ;; (jedi:setup)
+
+  ;; I think i already did this somewhere? Remove when fixed by elpy
+  (setq elpy-eldoc-show-current-function nil)
+  ;; (which-function-mode)
   (which-function-mode 0)
   )
 
@@ -19,8 +23,8 @@
 ;; (setq jedi:complete-on-dot t)
 ;; (setq jedi:tooltip-method nil)
 
-(defun my-kill-jedi () (ignore-errors (kill-process  (epc:manager-server-process jedi:epc)))) ;; This is a bloody hack, currently there are bugs in jedi, spawning a slew of processes
- (run-with-idle-timer 60 t 'my-kill-jedi)
+;; (defun my-kill-jedi () (ignore-errors (kill-process  (epc:manager-server-process jedi:epc)))) ;; This is a bloody hack, currently there are bugs in jedi, spawning a slew of processes
+;;  (run-with-idle-timer 60 t 'my-kill-jedi)
 
 
 (add-hook 'python-mode-hook 'my-python-mode-hook)

@@ -55,7 +55,7 @@ super + k
 
 # Next/Previous
 super + {_,shift + } Tab
-    bspc node -f {next,prev}.local
+    bspc node -f {next,prev}.local.window
 
 ##
 # Swap current to biggest node
@@ -93,6 +93,8 @@ super {_,shift} + grave
     bspc {desktop -f,node -d} 'Ex1'
 
 super + U03BB
+    bspc desktop -f 'Ex2'
+super + Greek_lambda
     bspc desktop -f 'Ex2'
 
 super + {equal, plus}
@@ -156,10 +158,12 @@ super + x
 #     bspc pointer -u
 
 ### Volume ###
+    # amixer -q set Master 1+
+    # amixer -q set Master 1-
 XF86AudioRaiseVolume
-    amixer -q set Master 1+
+    amixer -q -M set Master '1%+'
 XF86AudioLowerVolume
-    amixer -q set Master 1-
+    amixer -q -M set Master '1%-'
 XF86AudioMute
     amixer -q set Master toggle
 
