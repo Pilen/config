@@ -16,13 +16,13 @@ def run_capture(*args):
     return subprocess.run(args, stdout=subprocess.PIPE, universal_newlines=True)
 
 monitor_to_desktops = {"DP-1-3": ("Ex1", "d1", "d2", "d5", "d6", "d7", "Ex1"), # left
-                       "DP-1-2": ("d3", "d4"),        # mid
+                       "DP-1-0": ("d3", "d4"),        # mid
                        "eDP-1": ("d8", "d9", "d0", "Ex2", "Ex3")}   # right
 
 def setup_monitors():
     xrandr = run_capture("xrandr",
-                         "--output", "DP-1-2", "--auto", "--left-of", "eDP-1",
-                         "--output", "DP-1-3", "--auto", "--left-of", "DP-1-2")
+                         "--output", "DP-1-0", "--auto", "--left-of", "eDP-1",
+                         "--output", "DP-1-3", "--auto", "--left-of", "DP-1-0")
     return xrandr.returncode == 0
 
 def setup_desktops():
@@ -51,7 +51,7 @@ def remove_unused():
 
 def is_at_work():
     hostname = socket.gethostname()
-    return hostname == "LA0107" || hostname == "LA0158"
+    return hostname == "LA0107" or hostname == "LA0158"
 
 def work_config():
     run_capture("bspc", "config", "borderless_monocle", "false")
