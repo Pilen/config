@@ -27,7 +27,7 @@ menu=(\
         evince    "my-evince"
         xpdf      "perl $HOME/config/scripts/xpdf.pl"
         #chromium  "chromium --purge-memory-button"
-        chromium  "firefox"
+        chromium  "chromium"
         thunderbird "thunderbird.sh"
         teams     "teams"
         # python3   "urxvtc -bg #111111 -e bpython"

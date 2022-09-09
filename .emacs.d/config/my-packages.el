@@ -20,7 +20,7 @@ All packages here will automatically be installed if not present.")
         calfw
         c-eldoc
         counsel
-        column-marker
+        ;;column-marker ;; No longer available?
         company
         company-go
         company-jedi
@@ -37,7 +37,7 @@ All packages here will automatically be installed if not present.")
         dtrt-indent
         edit-server ;; For use with emacs_chrome (Edit with Emacs)
         elpy
-        ensime                ;; Scala stuff - auto enables it self
+        ;; ensime                ;; Scala stuff - auto enables it self ;; No longer available?
         ;;erc-hl-nicks ;; Breaks my setup after updating to emacs 26.1
         expand-region
         fastnav               ;; todo use me more
@@ -48,7 +48,7 @@ All packages here will automatically be installed if not present.")
         full-ack              ;; not really used yet
         fuzzy                 ;; not used, what is it exactly?
         geiser
-        ghc
+        ;; ghc ;; No longer available?
         gnu-elpa-keyring-update
         go-mode
         golden-ratio          ;; Not used often
@@ -57,7 +57,7 @@ All packages here will automatically be installed if not present.")
         ;; goto-last-change
         graphviz-dot-mode
         haskell-mode
-        highlight-tail        ;; Cool but not used
+        ;;highlight-tail        ;; Cool but not used ;; No longer available?
         hlinum
         idomenu               ;; I rolled my own instead
         iedit
@@ -95,7 +95,7 @@ All packages here will automatically be installed if not present.")
         quack
         rainbow-delimiters
         request
-        rfringe               ;; Not used
+        ;;rfringe               ;; Not used ;; No longer available?
         scala-mode
         ;; side-hustle           ;; like imenu-list
         skewer-mode
