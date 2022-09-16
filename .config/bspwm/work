@@ -15,14 +15,19 @@ def run_capture(*args):
     log("running:", " ".join(args))
     return subprocess.run(args, stdout=subprocess.PIPE, universal_newlines=True)
 
-monitor_to_desktops = {"DP-1-3": ("Ex1", "d1", "d2", "d5", "d6", "d7", "Ex1"), # left
-                       "DP-1-0": ("d3", "d4"),        # mid
-                       "eDP-1": ("d8", "d9", "d0", "Ex2", "Ex3")}   # right
+# Yeah, I have no idea why that is the order?!
+RIGHT = "DP-3" # the builtin
+MID = "DP-0"
+LEFT = "DP-4"
+
+monitor_to_desktops = {LEFT: ("Ex1", "d1", "d2", "d5", "d6", "d7", "Ex1"), # left
+                       MID: ("d3", "d4"),        # mid
+                       RIGHT: ("d8", "d9", "d0", "Ex2", "Ex3")}   # right
 
 def setup_monitors():
     xrandr = run_capture("xrandr",
-                         "--output", "DP-1-0", "--auto", "--left-of", "eDP-1",
-                         "--output", "DP-1-3", "--auto", "--left-of", "DP-1-0")
+                         "--output", MID, "--auto", "--left-of", RIGHT,
+                         "--output", LEFT, "--auto", "--left-of", MID)
     return xrandr.returncode == 0
 
 def setup_desktops():
