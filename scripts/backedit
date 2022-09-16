@@ -18,7 +18,7 @@ else
 fi
 
 JSON="{\"sudo\":\"$SUDO\",\"user\":\"$USER\",\"host\":\"$HOSTNAME\",\"secret\":\"$BACKEDIT_SECRET\",\"path\":\"$FILE\"}"
-echo wget --timeout 60 --quiet -O - "${BACKEDIT_SERVER}:${BACKEDIT_PORT}/" --header='Content-Type: application/json' --post-data "$JSON" > /dev/null
+# echo wget --timeout 60 --quiet -O - "${BACKEDIT_SERVER}:${BACKEDIT_PORT}/" --header='Content-Type: application/json' --post-data "$JSON" > /dev/null
 wget --timeout 60 --quiet -O - "${BACKEDIT_SERVER}:${BACKEDIT_PORT}/" --header='Content-Type: application/json' --post-data "$JSON" > /dev/null
 
 # Beaware that $SSH_CONNECTION is not usable in vagrant as a portforwarding is configured directly in virtualbox

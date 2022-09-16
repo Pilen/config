@@ -51,7 +51,7 @@ def remove_unused():
 
 def is_at_work():
     hostname = socket.gethostname()
-    return hostname == "LA0107" || hostname == "LA0158"
+    return hostname == "LA0107" or hostname == "LA0158"
 
 def work_config():
     run_capture("bspc", "config", "borderless_monocle", "false")

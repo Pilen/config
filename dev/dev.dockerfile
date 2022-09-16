@@ -2,7 +2,7 @@ from python:3.8
 
 run \
     apt-get update &&\
-    apt-get -y install sudo less jq &&\
+    apt-get -y install sudo less jq iputils-ping &&\
     groupadd --gid 1000 spi &&\
     useradd --uid 1000 --gid 1000 --group sudo --create-home --shell /bin/bash spi &&\
     echo '%spi ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers &&\

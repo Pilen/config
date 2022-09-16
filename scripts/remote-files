@@ -77,6 +77,7 @@ def reverse_sshfs(source, destination, should_sudo):
                # "-o", "transform_symlinks",
                # "-o", "follow_symlinks",
     ]
+    print(command)
     process = subprocess.Popen(command)
     return process
 
@@ -203,7 +204,7 @@ def main():
         print("Error! Both source and destination are local")
         return
     if args.reanimate:
-        reanimate(destination)
+        reanimate(destination, args.sudo)
         return
 
     process = None
