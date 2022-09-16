@@ -27,8 +27,10 @@ All packages here will automatically be installed if not present.")
         company-quickhelp
         crontab-mode
         csv-mode
+        cypher-mode
         dash
         dash-docs
+        ;; dirvish requires emacs 27.1
         docker
         dockerfile-mode
         docker-compose-mode

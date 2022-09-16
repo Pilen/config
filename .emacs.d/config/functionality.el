@@ -469,6 +469,42 @@ This is to update existing buffers after a Git pull of their underlying files."
      (+ 1 (current-column)))))
 
 
+
+(defun cypher-indent-line ()
+  "Indent current line."
+  (let (ctx (inhibit-modification-hooks t) (offset) pos
+        (regexp "^\s*\\(CREATE\\|ORDER\\|MATCH\\|LIMIT\\|SET\\|SKIP\\|START\\|RETURN\\|WITH\\|WHERE\\|DELETE\\|FOREACH\\|//\\)"))
+
+    (save-excursion
+      (back-to-indentation)
+      (setq pos (point))
+      (setq ctx (cypher-block-context pos))
+      (cond
+       ((string-match-p regexp (thing-at-point 'line))
+        (setq offset 0)
+        )
+       ((plist-get ctx :arg-inline)
+        (setq offset (plist-get ctx :column))
+        )
+       ((re-search-backward regexp nil t)
+        (goto-char (match-end 1))
+        (skip-chars-forward "[:space:]")
+        (setq offset (current-column))
+        )
+       (t
+        (setq offset cypher-indent-offset))
+       ))
+    (when offset
+      (let ((diff (- (current-column) (current-indentation))))
+        (setq offset (max 0 offset))
+        (indent-line-to offset)
+        (if (> diff 0) (forward-char diff))
+        )
+      )
+      ))
+
+
+
 ;;______________________________________________________________________________
 ;π LOCAL BACKGROUND
 ;;______________________________________________________________________________

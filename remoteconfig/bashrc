@@ -11,6 +11,7 @@ bind '\C-p:menu-complete-previous'
 export HISTCONTROL=ignoredups:ignorespace
 export HISTFILESIZE= # unlimited
 export HISTSIZE= # unlimited
+export HISTTIMEFORMAT='%F %T: '
 shopt -s histappend
 
 
