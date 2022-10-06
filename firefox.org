@@ -1,0 +1,7 @@
+https://hidde.blog/use-firefox-with-a-dark-theme-without-triggering-dark-themes-on-websites/
+layout.css.prefers-color-scheme.content-override
+set to 2
+
+https://askubuntu.com/questions/1429321/is-there-a-setting-to-make-firefox-not-directly-download-pdfs-to-downloads-when
+browser.download.start_downloads_in_tmp_dir
+set to true
