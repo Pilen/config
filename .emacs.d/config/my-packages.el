@@ -26,6 +26,7 @@ All packages here will automatically be installed if not present.")
         company-jedi
         company-quickhelp
         crontab-mode
+        cypher-mode
         csv-mode
         cypher-mode
         dash
