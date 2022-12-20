@@ -3,6 +3,7 @@ setxkbmap us -variant colemak
 xset r 66
 xmodmap .Xmodmap
 xsetroot -cursor_name left_ptr
+set bell-style none
 xset -b
 xset r rate 200 30
 xrdb config/.Xresources # Might not be needed
