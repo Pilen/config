@@ -452,6 +452,22 @@ This is to update existing buffers after a Git pull of their underlying files."
       (kill-rectangle (point-min) (point-max))))
   (yank-rectangle))
 (global-set-key (kbd "C-x r C-y") 'my-yank-as-rectangle)
+
+(defun my-end-or-beginning-of-buffer ()
+  (interactive)
+  ;; (if (= (point) (point-min))
+  ;;     (goto-char (point-max))
+  ;;   (if (= (point) (point-max))
+  ;;       (goto-char (or (mark t) (point-min)))
+  ;;     (push-mark)
+  ;;     (goto-char (point-min))))
+  (if (= (point) (point-max))
+      (goto-char (point-min))
+    (if (= (point) (point-min))
+        (goto-char (or (mark t) (point-max)))
+      (push-mark)
+      (goto-char (point-max))))
+  )
 ;;______________________________________________________________________________
 ;π CODE FOLDING
 ;;______________________________________________________________________________
@@ -503,7 +519,27 @@ This is to update existing buffers after a Git pull of their underlying files."
       )
       ))
 
+(defun my-backward-paragraph ()
+  (interactive)
+  (let ((start (point)))
+    (backward-paragraph)
+    (forward-char)
+    (when (= (point) start)
+      (backward-char)
+      (backward-paragraph)
+      (forward-char))))
 
+(defun my-cypher-hook ()
+  (setq beginning-of-defun-function (lambda (&optional arg) (my-backward-paragraph)))
+  (setq end-of-defun-function (lambda (&optional arg) (forward-paragraph))))
+(add-hook 'cypher-mode-hook 'my-cypher-hook)
+
+
+(defun my-caddyfile-mode-hook ()
+  (setq tab-width (default-value 'tab-width))
+  (setq indent-tabs-mode (default-value 'indent-tabs-mode)))
+(add-hook 'caddyfile-mode-hook #'my-caddyfile-mode-hook)
+;; (remove-hook 'caddyfile-mode-hook #'my-caddyfile-mode-hook)
 
 ;;______________________________________________________________________________
 ;π LOCAL BACKGROUND

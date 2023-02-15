@@ -67,6 +67,8 @@
 ;; Move to beginning/ending of file
 (global-set-key (kbd "H-h") 'end-of-buffer)
 (global-set-key (kbd "H-H") 'beginning-of-buffer)
+(global-set-key (kbd "H-h") 'my-end-or-beginning-of-buffer)
+
 ;; isearch
 ;(global-set-key (kbd "H-o") 'isearch-forward)
 ;(global-set-key (kbd "H-O") 'isearch-backward)
