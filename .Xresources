@@ -68,7 +68,8 @@ URxvt.url-launcher: chromium
 ! URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 URxvt.cursorBlink: true
-URxvt.geometry: 93.26
+! URxvt.geometry: 93.26
+URxvt.geometry: 93x1000
 URxvt.fading: 50
 !urxvt.font: xft: Bitstream Vera Sans Mono:pixelsize=10
 !urxvt.boldfont xft:Bitstream Vera Sans Mono:Bold:pixelsize=10
