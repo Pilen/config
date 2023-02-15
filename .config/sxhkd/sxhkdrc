@@ -8,6 +8,9 @@ super + shift + Return
 super + p
     ~/config/scripts/menu.sh
 
+super + shift + p
+    notify-send "Window" "$(xdotool getactivewindow getwindowname)"
+
 # Reload keybindings (sxhkd)
 super + Escape
     pkill -USR1 -x sxhkd
