@@ -87,12 +87,28 @@ def bspwm(direction):
         pass
     return None
 
+
+def bspwm_monitor(direction):
+    bspwm_directions = {
+        UP: "north",
+        DOWN: "south",
+        LEFT: "west",
+        RIGHT: "east",
+    }
+    try:
+        status = subprocess.run(["bspc", "monitor", "-f", bspwm_directions[direction]]).returncode
+        return status == 0 # True if moved
+    except Exception:
+        pass
+    return None
+
+
 def current_window():
     try:
         bspc = subprocess.run(["bspc", "query", "-T", "-n", "focused"], stdout=subprocess.PIPE, universal_newlines=True).stdout
         query = json.loads(bspc)
         return query["client"]["className"]
-    except Exception:
+    except Exception as e:
         print(e)
         return None
 
@@ -107,7 +123,9 @@ def main():
             if current_window() == "Emacs":
                 # If moved, and window is now Emacs, we should slide to the outer edge in the opposite (incomming) direction.
                 emacs_reset(direction)
-
+        else:
+            # monitor has no node
+            bspwm_monitor(direction)
 
 
 if __name__ == "__main__":
