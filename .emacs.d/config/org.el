@@ -47,7 +47,7 @@
 (setq org-edit-src-content-indentation 0)
 
 (message "remember to (require 'org-tempo)")
-;; (require 'org-tempo)
+(require 'org-tempo)
 
 
 (add-to-list 'org-babel-load-languages '(python . t))
@@ -66,6 +66,11 @@
     (org-return)))
 (define-key org-mode-map (kbd "<return>") 'my-org-return)
 
+
+;; The Org version is broken, so ignore it
+(defun org-delete-backward-char (N)
+  (interactive "p")
+  (delete-backward-char N))
 ;; https://emacs.stackexchange.com/questions/7629/the-syntax-highlight-and-indentation-of-source-code-block-in-exported-html-file
 ;(setq org-html-htmlize-output-type 'css)
 
