@@ -230,3 +230,23 @@ PREFIX is used to create the key."
 (setq imenu-list-position 'right) ;; If left it will compete with neotree about being first
 (setq imenu-list-size 30)
 (setq imenu-list-mode-line-format '(" %e" (:eval (buffer-name imenu-list--displayed-buffer))))
+(setq org-imenu-depth 10)
+
+(defun my-imenu-list-toggle-width ()
+  (interactive)
+  (setq imenu-list-size
+        (case imenu-list-size
+          (30 45)
+          (t 30)))
+  (message "%s" imenu-list-size))
+(define-key imenu-list-major-mode-map (kbd "w") #'my-imenu-list-toggle-width)
+
+(defun my-imenu-list ()
+  (interactive)
+  (message "%s" (or (buffer-file-name) "Not a file"))
+  (if (eq major-mode 'imenu-list-major-mode)
+      (imenu-list-minor-mode -1)
+    (imenu-list-minor-mode 1)
+    (imenu-list-show)
+    ;; (imenu-list)
+    ))
