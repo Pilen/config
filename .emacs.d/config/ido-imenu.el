@@ -257,8 +257,19 @@ PREFIX is used to create the key."
   (message "%s" (or (buffer-file-name) "Not a file")))
 
 
+(set-face-attribute 'imenu-list-entry-face-0 nil :foreground "DarkSlateGray1")
+(set-face-attribute 'imenu-list-entry-face-1 nil :foreground "DarkSlateGray2")
+(set-face-attribute 'imenu-list-entry-face-2 nil :foreground "DarkSlateGray3")
+(set-face-attribute 'imenu-list-entry-face-3 nil :foreground "DarkSlateGray4")
 
-
+(set-face-attribute 'imenu-list-entry-face-0 nil :foreground "DarkSlateGray1")
+(set-face-attribute 'imenu-list-entry-face-1 nil :foreground "Aquamarine1")
+(set-face-attribute 'imenu-list-entry-face-2 nil :foreground "SeaGreen1")
+(set-face-attribute 'imenu-list-entry-face-3 nil :foreground "DarkOliveGreen1")
+(set-face-attribute 'imenu-list-entry-subalist-face-0 nil :weight 'unspecified)
+(set-face-attribute 'imenu-list-entry-subalist-face-1 nil :weight 'unspecified)
+(set-face-attribute 'imenu-list-entry-subalist-face-2 nil :weight 'unspecified)
+(set-face-attribute 'imenu-list-entry-subalist-face-3 nil :weight 'unspecified)
 
 
 ;; ;; https://github.com/dsedivec/dot-emacs-d/blob/ddc3fec6a2a884ce4adf730a2eb255dab97834b7/recipes/imenu-list-in-side-buffer.el
