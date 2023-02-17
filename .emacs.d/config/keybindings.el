@@ -64,6 +64,8 @@
 ;(global-set-key (kbd "H-E") 'scroll-up)
 (global-set-key (kbd "H-U") 'pager-page-up)
 (global-set-key (kbd "H-E") 'pager-page-down)
+(global-set-key (kbd "H-C-S-u") 'scroll-down-line) ;; Why does H-C-U not work?
+(global-set-key (kbd "H-C-S-e") 'scroll-up-line) ;; Why does H-C-E not work?
 ;; Move to beginning/ending of file
 (global-set-key (kbd "H-h") 'end-of-buffer)
 (global-set-key (kbd "H-H") 'beginning-of-buffer)
