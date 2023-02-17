@@ -17,6 +17,7 @@ All packages here will automatically be installed if not present.")
         arduino-mode
         bnf-mode
         buffer-move
+        caddyfile-mode
         calfw
         c-eldoc
         counsel
@@ -44,7 +45,7 @@ All packages here will automatically be installed if not present.")
         ;;erc-hl-nicks ;; Breaks my setup after updating to emacs 26.1
         expand-region
         fastnav               ;; todo use me more
-        fill-column-indicator ;; not really used (could come in handy)
+        ;; fill-column-indicator ;; not really used (could come in handy)
         flymake-cursor        ;; todo use flymake more
         flyspell-correct-ivy
         ;;forge
@@ -69,6 +70,7 @@ All packages here will automatically be installed if not present.")
         inf-ruby
         ivy-xref
         js2-mode
+        json-mode
         jss
         keyfreq
         kite
