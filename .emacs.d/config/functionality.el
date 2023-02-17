@@ -455,19 +455,15 @@ This is to update existing buffers after a Git pull of their underlying files."
 
 (defun my-end-or-beginning-of-buffer ()
   (interactive)
-  ;; (if (= (point) (point-min))
-  ;;     (goto-char (point-max))
-  ;;   (if (= (point) (point-max))
-  ;;       (goto-char (or (mark t) (point-min)))
-  ;;     (push-mark)
-  ;;     (goto-char (point-min))))
-  (if (= (point) (point-max))
-      (goto-char (point-min))
-    (if (= (point) (point-min))
-        (goto-char (or (mark t) (point-max)))
-      (push-mark)
-      (goto-char (point-max))))
-  )
+  (cond
+   ((= (point) (point-max))
+    (goto-char (point-min)))
+   ((and (= (point) (point-min)) (= (mark t) (point-min)))
+    (goto-char (point-max)))
+   ((= (point) (point-min))
+    (goto-char (or (mark t) (point-max))))
+   (t (push-mark) (goto-char (point-max)))
+   ))
 ;;______________________________________________________________________________
 ;π CODE FOLDING
 ;;______________________________________________________________________________
