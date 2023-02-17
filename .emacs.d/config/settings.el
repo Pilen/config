@@ -582,14 +582,16 @@
 ;; (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
 ;; (global-fci-mode 1)
 
-;; ;; todo why is this not working add hook to fundamental mode
-;; (require 'column-marker)
-;; (column-marker-1 fill-column)
-;; (set-face-attribute 'column-marker-1 nil
-;;                     ;; :background "gray44")
-;;                     :background "gray20")
-;; (add-hook 'prog-mode-hook (lambda () (column-marker-1 fill-column)))
-;; (add-hook 'jde-mode-hook (lambda () (column-marker-1 fill-column)))
+;; todo why is this not working add hook to fundamental mode
+;; Clone to plugins https://github.com/emacsmirror/column-marker
+(add-to-list 'load-path "~/.emacs.d/plugins/column-marker")
+(require 'column-marker)
+(column-marker-1 fill-column)
+(set-face-attribute 'column-marker-1 nil
+                    ;; :background "gray44")
+                    :background "gray20")
+(add-hook 'prog-mode-hook (lambda () (column-marker-1 fill-column)))
+(add-hook 'jde-mode-hook (lambda () (column-marker-1 fill-column)))
 
 
 (setq ps-paper-type 'a4)
