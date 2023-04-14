@@ -109,6 +109,7 @@ All packages here will automatically be installed if not present.")
         sml-mode
         sr-speedbar
         swiper
+        sql-indent
         tabbar                ;; Not used
         typescript-mode
         typing

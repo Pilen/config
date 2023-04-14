@@ -91,6 +91,10 @@
 
 
 
+(defun my-sql-mode-hook ()
+  (setq tab-width 8)
+  )
+(add-hook 'sql-mode-hook 'my-sql-mode-hook)
 
 
 

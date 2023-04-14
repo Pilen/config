@@ -458,7 +458,7 @@ This is to update existing buffers after a Git pull of their underlying files."
   (cond
    ((= (point) (point-max))
     (goto-char (point-min)))
-   ((and (= (point) (point-min)) (= (mark t) (point-min)))
+   ((and (= (point) (point-min)) (eql (mark t) (point-min)))
     (goto-char (point-max)))
    ((= (point) (point-min))
     (goto-char (or (mark t) (point-max))))

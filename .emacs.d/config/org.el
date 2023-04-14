@@ -426,7 +426,8 @@
         did
         level
         title
-        body)
+        body
+        p)
     (search-backward-regexp "^\\* Week \\([0-9]+\\)")
     (setq week (match-string 1))
     (with-current-buffer (get-buffer-create "*Daily Standup status*") (erase-buffer))
@@ -452,11 +453,14 @@
           (insert title)
           (unless (string= "" body)
             (insert ":\n")
+            (setq p (point))
             (insert body)
+            (indent-region p (point) 2)
+            (while (eq (char-before) ?\n) (delete-char -1))
             (insert "\n"))
-          (while (eq (char-before) ?\n) (delete-char -1))
-          (insert "\n\n")
-          ;; (insert "\n")
+          ;; (while (eq (char-before) ?\n) (delete-char -1))
+          ;; (insert "\n\n")
+          (insert "\n")
           )))
     (with-current-buffer (get-buffer-create "*Daily Standup status*")
       (insert "\n")

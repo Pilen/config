@@ -376,6 +376,7 @@
 (define-key Man-mode-map (kbd "u") (lambda () (interactive) (pager-scroll-screen -8)))
 (define-key Man-mode-map (kbd "e") (lambda () (interactive) (pager-scroll-screen 8)))
 (defun Man--window-state-change (window) nil)
+(setq Man-width-max 120)
 
 
 ;; If deleting the prompts is suddenly possible, it might be that comint-prompt-read-only is somehow set to nil (should be t)
