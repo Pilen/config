@@ -293,7 +293,8 @@
 (global-set-key (kbd "H-1") 'next-error)
 (global-set-key (kbd "H-!") 'first-error)
 ;; (global-set-key (kbd "H-C-1") (lambda () (interactive) (with-current-buffer "*compilation*" (goto-char (point-max)) (compilation-next-error -1))))
-(global-set-key (kbd "H-C-1") 'previous-error)
+;; (global-set-key (kbd "H-C-1") 'previous-error)
+(global-set-key (kbd "H-C-1") 'my-previous-error-wrapping)
 (global-set-key (kbd "H-4") 'fill-paragraph)
 (global-set-key (kbd "H-$") 'fill-paragraph-from-current-line)
 

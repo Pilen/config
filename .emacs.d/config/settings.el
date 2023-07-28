@@ -441,6 +441,17 @@
     t))
 
 
+(defun my-previous-error-wrapping ()
+  (interactive)
+  ;; (next-error)
+  (condition-case e (previous-error)
+    (user-error
+     (progn
+       (select-window (get-buffer-window next-error-last-buffer t))
+       (goto-char (point-max))
+       ;; (previous-error)
+       )))
+  )
 (setq display-buffer-alist nil)
 ;; (setq display-buffer-alist '(("^\\*compilation\\*$" (display-buffer-reuse-window))))
 ;; (setq display-buffer-alist '(("^\\*compilation\\*$" nil (reusable-frames . visible))))
