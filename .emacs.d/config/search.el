@@ -185,3 +185,16 @@ When non-nil, INITIAL-INPUT is the initial search pattern."
     (when (/= (point) swiper--opoint)
       (unless (and transient-mark-mode mark-active)
         (push-mark swiper--opoint t)))))
+
+
+
+
+
+
+(define-key swiper-map (kbd "H-S-<return>") 'my-swiper-goto-imenu)
+(defun my-swiper-goto-imenu ()
+  (interactive)
+  (ivy-quit-and-run
+    (my-counsel-imenu ivy-text)
+    ;; (message "in my-swiper-goto-imenu %s" ivy-text)
+    ))

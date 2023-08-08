@@ -195,7 +195,7 @@ PREFIX is used to create the key."
     map))
 
 ;;;###autoload
-(defun my-counsel-imenu ()
+(defun my-counsel-imenu (&optional initial-input)
   "Jump to a buffer position indexed by imenu."
   (interactive)
   (unless (featurep 'imenu)
@@ -211,6 +211,7 @@ PREFIX is used to create the key."
       (setq items (delete (assoc "*Rescan*" items) items))
       (ivy-read "imenu items: " (counsel-imenu-get-candidates-from items)
                 :preselect (thing-at-point 'symbol)
+                :initial-input initial-input
                 :require-match nil
                 :action (lambda (candidate)
                           (if (stringp candidate)
