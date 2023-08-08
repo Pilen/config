@@ -44,8 +44,9 @@
 (menu-bar-mode 0)
 
 ;(require 'linum+)
-(setq linum-eager nil)
-(global-linum-mode t)
+;; (setq linum-eager nil)
+;; (global-linum-mode t)
+(global-display-line-numbers-mode)
 (winner-mode 1)
 (define-key winner-mode-map (kbd "C-c <left>") nil)
 (define-key winner-mode-map (kbd "C-c <right>") nil)

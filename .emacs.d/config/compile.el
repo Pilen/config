@@ -110,7 +110,8 @@
   (apply func marker (ansi-color-filter-apply filename) directory formats))
 (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer)
 (add-hook 'compilation-start-hook (lambda (p) (call-interactively 'my-ahs-clear-overlays)))
-(add-hook 'compilation-start-hook (lambda (p) (linum-mode -1))) ;; linum causes this to slow down!
+;; (add-hook 'compilation-start-hook (lambda (p) (linum-mode -1))) ;; linum causes this to slow down! (I no longer use linum)
+
 ;; (advice-add 'compilation-next-error-function :before 'my-colorize-compilation-buffer)
 ;; (advice-remove 'compilation-next-error-function 'my-colorize-compilation-buffer)
 (advice-add 'compilation-find-file :around 'my-compilation-find-file-advice)
@@ -148,6 +149,7 @@
 ;; ;; (my-goto-last-error)
 
 (setq my-dominating-compile-history nil)
+;; (setq my-dominating-compile-history '("./run.sh -d mypy" "./run.sh -d pytest"))
 (defun my-dominating-compile ()
   (interactive)
   (save-buffer)

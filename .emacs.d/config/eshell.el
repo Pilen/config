@@ -391,10 +391,10 @@ If there's a string at point, offer that as a default."
 (setq ag-highlight-search t)
 (set-face-attribute 'ag-match-face nil :inherit nil :foreground "cyan" :weight 'bold)
 
+;; (I no longer use linum)
 ;; Updating linums while ag runs causes it to slow down enormously, so turn it off temporarily
-(add-hook 'ag-mode-hook '(lambda () (linum-mode -1)))
-(add-hook 'ag-search-finished-hook '(lambda () (linum-mode t)))
-
+;; (add-hook 'ag-mode-hook '(lambda () (linum-mode -1)))
+;; (add-hook 'ag-search-finished-hook '(lambda () (linum-mode t)))
 
 ;;______________________________________________________________________________
 ;π Enhanced LS
