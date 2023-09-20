@@ -73,7 +73,7 @@
 
 
 (setq which-func-modes t)
-(which-func-mode 1)
+(which-function-mode 1)
 
 ;; (setq mode-line-format
 ;;               '("  " mode-line-modified
