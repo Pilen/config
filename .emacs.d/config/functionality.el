@@ -109,7 +109,6 @@
 Toggles from 3 cases: UPPER CASE, lower case, Title Case,
 in that cyclic order."
   (interactive)
-
   (let (pos1 pos2 (deactivate-mark nil) (case-fold-search nil))
     (if (and transient-mark-mode mark-active)
         (setq pos1 (region-beginning)

@@ -319,6 +319,19 @@
 ;; (add-to-list 'tramp-default-proxies-alist
 ;;              '((regexp-quote (system-name)) nil nil))
 
+(defun my-tramp-add-prefix ()
+  ;; Inspired by https://emacs.stackexchange.com/a/26514
+  (when (tramp-tramp-file-p (buffer-file-name (current-buffer)))
+    (unless (s-prefix-p "tramp: " (buffer-name (current-buffer)))
+      (rename-buffer (concat "tramp: " (buffer-name (current-buffer))))))
+  )
+(add-hook 'find-file-hook 'my-tramp-add-prefix)
+;; (defun add-server-postfix ()
+;;   "Add the name of the connection type and server to the buffer name"
+;;   (if (string-match "^/ssh:.*?:" (buffer-file-name (current-buffer)))
+;;       (rename-buffer (concat (buffer-name (current-buffer)) "<" (match-string 0 (buffer-file-name (current-buffer))) ">")) nil))
+;; (add-hook 'find-file-hook 'add-server-postfix)
+
 (setq view-read-only t)
 
 (defadvice message (after message-tail activate)
@@ -666,6 +679,11 @@
     (t (setq neo-window-width 35))
     )
   (neo-global--reset-width))
+
+(defun my-neotree-line-number-hook (window)
+  (when display-line-numbers-mode
+    (display-line-numbers-mode -1)))
+(add-hook 'neo-after-create-hook 'my-neotree-line-number-hook)
 
 (defun my-neotree-here ()
   (interactive)
