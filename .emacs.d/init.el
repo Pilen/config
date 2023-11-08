@@ -38,6 +38,21 @@
 ;;
 ;;______________________________________________________________________________
 
+;;;; Regressions in 28.2 to 29.1:
+;; Font loading stops working by default, it wont see Schumacher Clean by default.
+;; I can force it, but it will do annoying fallbacks on bold fonts.
+;; Some guy suggested monaco as an alternative font https://news.ycombinator.com/item?id=1059120
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Fonts.html
+
+;; Emacs fails to recognize the changes done through xmodmap
+;; It combines different modifiers.
+;; The problem is only with the modifier keys
+;; There are suggestions to use setxkbmap instead of xmodmap, but I don't know how
+;; https://old.reddit.com/r/emacs/comments/15g3f9b/emacs_29_not_understanding_xmodmap_keybindings/
+;; https://emacs.stackexchange.com/questions/78135/why-does-emacs-29-translates-meta-to-metahyper-m-somekey-to-h-m-somekey
+;; https://old.reddit.com/r/emacs/comments/16hg0hx/gtk3_version_is_getting_the_wrong_key/
+
+
 ;;;; Regressions in updating 24.5 to 25.1:
 ;; jdee mode no longer works
 ;; eldoc can print in modeline? Is this bad

@@ -89,6 +89,7 @@
   (command-center-add (lambda () (interactive) (untabify (point-min) (point-max))) "untabify-buffer")
   (command-center-add 'align-regexp)
   (command-center-add 'my-align-regexp)
+  (command-center-add 'my-sql-align)
 
   ;; Edit
   (command-center-add 'insert-unicode-symbol)

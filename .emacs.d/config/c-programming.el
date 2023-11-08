@@ -33,3 +33,16 @@
       (goto-char (match-end 0))
       (search-backward-regexp "")
       (insert func ";\n"))))
+
+
+(defun my-arduino-mode-hook ()
+  (c-toggle-comment-style -1)
+  (setq imenu-create-index-function 'imenu-default-create-index-function))
+(add-hook 'arduino-mode-hook 'my-arduino-mode-hook)
+
+(defun semantic-create-imenu-index (&optional stream)
+  ;; Why is this suddenly added to my hooks?
+  ;; And what hook?
+  ;; (signal 'my-error "foo")
+  (imenu-default-create-index-function)
+  )

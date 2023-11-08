@@ -43,7 +43,10 @@
   (define-key ido-completion-map (kbd "H-e") 'ido-next-match)
   (define-key ido-completion-map (kbd "H-u") 'ido-prev-match)
   (define-key ido-completion-map (kbd "<down>") 'ido-next-match)
-  (define-key ido-completion-map (kbd "<up>") 'ido-prev-match))
+  (define-key ido-completion-map (kbd "<up>") 'ido-prev-match)
+  (define-key ido-completion-map (kbd "<f9>") 'exit-minibuffer)
+
+  )
 
 
 ;; use ido to complete commands via M-X

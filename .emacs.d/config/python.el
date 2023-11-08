@@ -2,6 +2,7 @@
 ;π PYTHON
 ;;______________________________________________________________________________
 ;; (setq python-command "/usr/bin/bpython")
+(require 'python)
 (remove-hook 'python-mode-hook (lambda () (setq imenu-create-index-function 'python-imenu-create-index)))
 (defun my-python-mode-hook ()
   ;; (setq imenu-create-index-function 'imenu-default-create-index-function)
@@ -100,3 +101,26 @@
         (python-shell-send-string (concat string "\n" "print('evaluating: " (buffer-name) "', end='')"))))
     (save-selected-window
       (python-shell-switch-to-shell))))
+
+
+
+
+
+(defun my-python-f-string ()
+  (interactive)
+  (save-excursion
+    (let ((start (nth 8 (syntax-ppss))))
+      (when start
+        (goto-char start)
+        (insert "f")
+        ))
+    ))
+
+(defhydra my-python-hydra
+  (:exit t)
+  "Python functions"
+  ("f" my-python-f-string "Make f-string")
+  ("sql" my-sql-align "Align sql")
+  ("q" nil "Quit"))
+
+(define-key python-mode-map (kbd "H-c") 'my-python-hydra/body)
