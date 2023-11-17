@@ -61,9 +61,15 @@
 
 (defun my-org-return ()
   (interactive)
-  (if (org-in-src-block-p t)
-      (org-return-indent)
-    (org-return)))
+  (cond
+   ((org-in-src-block-p t)
+    (org-return-indent))
+   ((looking-at "[ \t\n]")
+    (org-return-indent))
+   ((org-in-regexp org-link-any-re)
+    (org-open-at-point))
+   (t
+    (org-return))))
 (define-key org-mode-map (kbd "<return>") 'my-org-return)
 
 ;; https://emacs.stackexchange.com/questions/7629/the-syntax-highlight-and-indentation-of-source-code-block-in-exported-html-file
@@ -99,6 +105,23 @@
 (set-face-foreground 'my-org-not-clocked-in-face "OrangeRed1")
 (set-face-foreground 'my-org-not-clocked-in-face "coral3")
 (set-face-bold 'my-org-not-clocked-in-face t)
+
+
+
+
+(defun my-org-insert-file-link ()
+  (interactive)
+  (let ((path (read-file-name "file:"))
+        (description (read-string "Description:")))
+    (org-insert-link nil (concat "file:" path) description)))
+
+(setq org-link-frame-setup
+      '((vm . vm-visit-folder-other-frame)
+        (vm-imap . vm-visit-imap-folder-other-frame)
+        (gnus . org-gnus-no-new-news)
+        (file . find-file-other-window)
+        (wl . wl-other-frame)))
+
 
 (defun my-org-clock-in-hook ()
   (force-mode-line-update t)
