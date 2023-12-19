@@ -76,6 +76,10 @@
 
 (add-hook 'occur-hook
           '(lambda () (switch-to-buffer-other-window "*Occur*")))
+(defun my-occur-hook ()
+  (display-line-numbers-mode -1)
+  )
+(add-hook 'occur-hook 'my-occur-hook)
 ;;______________________________________________________________________________
 ;π LOCCUR
 ;;______________________________________________________________________________

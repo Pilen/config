@@ -96,6 +96,7 @@
 
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
+(vhl/ext/occur/off) ;; It doesn't work in occur mode? It might need an upgrade
 
 ;(load "~/.emacs.d/plugins/fixed-point-completion.el")
 ;(enable-fixed-point-completions)
