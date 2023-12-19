@@ -124,7 +124,7 @@ for (( count = 0 ; count < ${#menu[*]}; count++ )); do
 
 done
 
-select=`echo -e $menu_labels | dmenu -i -p "$title" -fn "Clean-10"`
+select=`echo -e $menu_labels | dmenu -l 10 -i -p "$title" -fn "Clean-10"`
 
 if [ "$select" != "" ]; then
 
