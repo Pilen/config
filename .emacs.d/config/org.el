@@ -64,7 +64,7 @@
   (cond
    ((org-in-src-block-p t)
     (org-return-indent))
-   ((looking-at "[ \t\n]")
+   ((looking-at "[ \t\n]\\|$")
     (org-return-indent))
    ((org-in-regexp org-link-any-re)
     (org-open-at-point))
