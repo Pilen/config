@@ -123,6 +123,7 @@
 ;(global-set-key (kbd "H-'") 'comment-dwim) ;?
 (global-set-key (kbd "H-b") 'toggle-letter-case)
 (global-set-key (kbd "H-B") 'caps-mode)
+(global-set-key (kbd "H-C-B") 'toggle-letter-case-programming)
 ;; (global-set-key (kbd "H-B") 'toggle-letter-case-forward)
 (global-set-key (kbd "H-C-S-b") 'toggle-letter-case-forward)
 ;; (global-set-key (kbd "H-C-S-b") 'caps-mode)

@@ -147,6 +147,83 @@ in that cyclic order."
      ((looking-at "[[:upper:]]") (downcase-region (point) (1+ (point)))))))
 
 
+(defun toggle-letter-case-programming ()
+  (interactive)
+  (save-excursion
+    (let* ((case-fold-search nil)
+           (bound-start nil)
+           (bound-end nil)
+           )
+      (while (looking-at "[_a-zæøåA-ZÆØÅ0-9]")
+        (forward-char -1))
+      (forward-char 1)
+      (setq bound-start (point))
+      (search-forward-regexp "[_a-zæøåA-ZÆØÅ0-9]+")
+      (setq bound-end (point))
+      ;; (setq bound-end -1)
+      (goto-char bound-start)
+      (cond
+       ;; snake_case -> smallCase
+       ((and (looking-at "\\(_*\\)\\([a-zæøå0-9]+\\(_[a-zæøå0-9]+\\)+\\)\\(_*\\)")
+             (= (match-end 0) bound-end))
+        (message "snake_case -> smallCase")
+        (let* ((start (match-end 1))
+               (end (match-beginning 4))
+               (words (split-string (match-string-no-properties 2) "_"))
+               (first (car words))
+               (rest (cdr words))
+               )
+          (message "%s %s" start end)
+          (goto-char start)
+          (delete-region start end)
+          (insert first)
+          (insert (mapconcat #'upcase-initials rest ""))
+          ))
+       ;; UPPER_CASE -> snake_case
+       ;; Positioned above test for pascal case
+       ((and (looking-at "\\(_*\\)\\([A-ZÆØÅ0-9]+\\(_[A-ZÆØÅ0-9]+\\)*\\)\\(_*\\)")
+             (= (match-end 0) bound-end))
+        (message "UPPER_CASE -> snake_case")
+        (let* ((start (match-end 1))
+               (end (match-beginning 4)))
+          (downcase-region start end)
+          ))
+       ;; smallCase -> PascalCase
+       ((and (looking-at "\\(_*\\)\\([a-zæøå]\\)[a-zæøå0-9A-ZÆØÅ]*\\(_*\\)")
+             (= (match-end 0) bound-end))
+        (message "smallCase -> PascalCase")
+        (let* ((start (match-end 1))
+               (letter (match-string-no-properties 2)))
+          (goto-char start)
+          (delete-char 1)
+          (insert (upcase letter))
+          ))
+       ;; PascalCase -> UPPER_CASE
+       ((and (looking-at "\\(_*\\)\\([A-ZÆØÅ][a-zæøå0-9A-ZÆØÅ]+\\)\\(_*\\)")
+             (= (match-end 0) bound-end))
+        (message "PascalCase -> UPPER_CASE")
+        (let* ((start (match-end 1))
+               (end (match-beginning 3))
+               (words (match-string-no-properties 2))
+               (n 0))
+          (goto-char start)
+          (delete-region start end)
+          (while (string-match "\\([A-ZÆØÅ]\\)\\([a-zæøå0-9]*\\)" words n)
+            (insert (match-string 1 words))
+            (insert (upcase (match-string 2 words)))
+            (insert "_")
+            (setq n (match-end 0))
+            )
+          (delete-char -1)
+          ))
+       (t
+        (message "fallback to toggle-letter-case")
+        (toggle-letter-case)
+        )))))
+
+
+
+
 
 (defun shell-command-on-region-replace (start end command)
   "Run shell-command-on-region interactivly replacing the region in place"
