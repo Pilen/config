@@ -146,6 +146,7 @@
 
   ;; Other
   (command-center-add 'compile)
+  (command-center-add 'my-dominating-compile-history-remove)
   (command-center-add 'sgml-close-tag)
   (command-center-add 'sql-clear "clear")
   (command-center-add 'sql-clear)

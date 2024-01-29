@@ -452,7 +452,8 @@ If there's a string at point, offer that as a default."
                            (not (eq it current-buffer))))
                     (buffer-list))))
       (if buffer
-          (switch-to-buffer-other-window buffer)
+          ;; (switch-to-buffer-other-window buffer)
+          (if (get-buffer-window buffer t) (select-window (get-buffer-window buffer t)) (switch-to-buffer-other-window buffer))  ;; Hack due to problem with display-buffer-alist
         (eshell)))))
 
 ;;______________________________________________________________________________

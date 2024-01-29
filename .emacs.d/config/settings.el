@@ -470,7 +470,7 @@
 (setq display-buffer-alist nil)
 ;; (setq display-buffer-alist '(("^\\*compilation\\*$" (display-buffer-reuse-window))))
 ;; (setq display-buffer-alist '(("^\\*compilation\\*$" nil (reusable-frames . visible))))
-(setq display-buffer-alist '(("^.*$" nil (reusable-frames . visible))))
+;; (setq display-buffer-alist '(("^.*$" nil (reusable-frames . visible)))) ;; Unfortunately this breaks display-buffer's ability to select window in other frame
 (setq display-buffer-reuse-frames nil)
 ;; (setq display-buffer-alist '(("\\*foo\\*" (display-buffer-below-selected display-buffer-at-bottom)
 ;;                               (inhibit-same-window . t)

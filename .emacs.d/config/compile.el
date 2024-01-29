@@ -169,3 +169,10 @@
 (require 'typescript-mode)
 (define-key typescript-mode-map (kbd "H-g") 'my-dominating-compile)
 ;; (setq my-dominating-compile-history (cdr my-dominating-compile-history))
+
+(defun my-dominating-compile-history-remove ()
+  (interactive)
+  (let ((command (ivy-read "Remove: " my-dominating-compile-history)))
+    (setq my-dominating-compile-history (delete command my-dominating-compile-history))
+    )
+  )
