@@ -15,6 +15,7 @@ title="$date $bat"
 
 menu=(\
         -         "exit"
+        browser   "firefox"
         firefox   "firefox"
         emacs     "emacs"
         ranger    "urxvt -e ranger"
@@ -27,7 +28,9 @@ menu=(\
         evince    "my-evince"
         xpdf      "perl $HOME/config/scripts/xpdf.pl"
         #chromium  "chromium --purge-memory-button"
-        chromium  "chromium"
+        # chromium  "chromium"
+        chromium  "firefox"
+        c-hromium  "chromium"
         thunderbird "thunderbird.sh"
         teams     "teams"
         # python3   "urxvtc -bg #111111 -e bpython"
