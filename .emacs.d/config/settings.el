@@ -792,6 +792,8 @@
   ;; (setq electric-indent-inhibit nil)
   ;; (message "hej")
   )
+
+(require 'cc-mode)
 (add-hook 'java-mode-hook 'my-cc-mode-hook)
 (define-key java-mode-map (kbd "<return>") 'newline-and-indent)
 

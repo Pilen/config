@@ -93,12 +93,72 @@
 
 (defun my-sql-mode-hook ()
   (setq tab-width 8)
+  (setq indent-tabs-mode t)
   )
 (add-hook 'sql-mode-hook 'my-sql-mode-hook)
 
 
-
-
+;; ;;; """
+;;                 DELETE FROM abc 1 def,
+;;                       WHERE jkl
+;;                       WHERE def = ?
+;;   WHERE XXXXXXXXXXXXXXXXXXX foo
+;;                       WHERE foo
+;; ;;; ""
+(defun my-sql-align ()
+  (interactive)
+  (save-excursion
+    (let ((start 0)
+          (end 0)
+          (end-line 0)
+          (start-column 1000000)
+          (max-keyword-width 0)
+          (case-fold-search nil)
+          (x 0)
+          (keyword-width 0)
+          )
+      (if (region-active-p)
+          (setq start (min (region-beginning) (region-end))
+                end (max (region-beginning) (region-end)))
+        (search-backward "\"\"\"")
+        (search-forward-regexp "[A-Z]")
+        (setq start (point))
+        (search-forward "\"\"\"")
+        (search-backward-regexp "[A-Za-z]")
+        (setq end (point))
+        )
+      (setq end-line (+ (line-number-at-pos end) 1))
+      (goto-char start)
+      (back-to-indentation)
+      (setq start-column (current-column))
+      (while (< (line-number-at-pos) end-line)
+        (back-to-indentation)
+        ;; (setq start-column (min start-column (current-column)))
+        (setq x (point))
+        (search-forward-regexp "[^A-Z ]")
+        (backward-char 1)
+        (setq max-keyword-width
+              (max max-keyword-width
+                   (- (point) x)))
+        (forward-line 1)
+        )
+      (goto-char start)
+      (while (< (line-number-at-pos) end-line)
+        (back-to-indentation)
+        (if (< (current-column) start-column)
+            (insert (make-string (- start-column (current-column)) ?\ ))
+          (delete-char (- start-column (current-column))))
+        (setq x (point))
+        (search-forward-regexp "[^A-Z ]")
+        (backward-char 1)
+        (setq keyword-width (- (point) x))
+        (when (looking-back "[A-Z]")
+          (incf keyword-width))
+        (back-to-indentation)
+        (insert (make-string (- max-keyword-width keyword-width) ?\ ))
+        (forward-line 1)
+        )
+      )))
 
 
 

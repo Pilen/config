@@ -69,6 +69,7 @@ URxvt.url-launcher: chromium
 URxvt.matcher.button: 1
 URxvt.cursorBlink: true
 ! URxvt.geometry: 93.26
+! URxvt.geometry: 100x100
 URxvt.geometry: 93x1000
 URxvt.fading: 50
 !urxvt.font: xft: Bitstream Vera Sans Mono:pixelsize=10

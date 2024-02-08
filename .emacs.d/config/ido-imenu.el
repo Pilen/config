@@ -234,6 +234,7 @@ PREFIX is used to create the key."
 (setq imenu-list-size 30)
 (setq imenu-list-mode-line-format '(" %e" (:eval (buffer-name imenu-list--displayed-buffer))))
 (setq imenu-list-persist-when-imenu-index-unavailable t)
+(setq org-imenu-depth 10)
 
 (defun imenu-list--depth-string (depth)
   "Return a prefix string representing an entry's DEPTH."
@@ -253,11 +254,29 @@ PREFIX is used to create the key."
   )
 
 
+(defun my-imenu-list-toggle-width ()
+  (interactive)
+  (setq imenu-list-size
+        (case imenu-list-size
+          (30 45)
+          (t 30)))
+  (message "%s" imenu-list-size))
+(define-key imenu-list-major-mode-map (kbd "w") #'my-imenu-list-toggle-width)
 
 (defun my-imenu-list ()
   (interactive)
-  (imenu-list-smart-toggle)
-  (message "%s" (or (buffer-file-name) "Not a file")))
+  (message "%s" (or (buffer-file-name) "Not a file"))
+  (if (eq major-mode 'imenu-list-major-mode)
+      (imenu-list-minor-mode -1)
+    (imenu-list-minor-mode 1)
+    (imenu-list-show)
+    ;; (imenu-list)
+    ))
+
+;; (defun my-imenu-list ()
+;;   (interactive)
+;;   (imenu-list-smart-toggle)
+;;   (message "%s" (or (buffer-file-name) "Not a file")))
 
 
 (set-face-attribute 'imenu-list-entry-face-0 nil :foreground "DarkSlateGray1")

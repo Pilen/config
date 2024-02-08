@@ -83,6 +83,7 @@ alias dr='docker run --rm -it --net="host" --volume="$PWD:/app" --volume="/home/
 # alias t="tmux attach\; choose-tree -Zs"
 alias t="if [[ \"$UID\" == '0' ]]; then sudo -u spi tmux attach ';' choose-tree -s; else tmux attach ';' choose-tree -s; fi"
 alias tr="sudo tmux attach ';' choose-tree -s"
+alias tn="tmux new-session -A -s"
 
 alias sshs="sshsudo"
 alias sss="sshsudo"

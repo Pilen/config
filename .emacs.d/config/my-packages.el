@@ -112,6 +112,7 @@ All packages here will automatically be installed if not present.")
         swiper
         sql-indent
         tabbar                ;; Not used
+        tagedit
         typescript-mode
         typing
         undo-tree

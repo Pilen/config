@@ -103,6 +103,28 @@
   (skewer-eval "location.reload()"))
 (define-key js2-mode-map (kbd "C-x C-s") 'my-web-save-and-reload)
 
+
+(defun my-html-forward-slurp-word ()
+  (interactive)
+  (let ((insert-point (point))
+        after-tag
+        )
+    (unless (looking-at "</[^>]+>")
+      (error "Not at a place to slurp"))
+    (goto-char (match-end 0))
+    (setq after-tag (point))
+    (forward-word)
+    (kill-region after-tag (point))
+    (goto-char insert-point)
+    (yank)
+    )
+  )
+(define-key html-mode-map (kbd "H-3") 'my-html-forward-slurp-word)
+
+(defhydra my-html-hydra
+  (:exit t)
+  "html functions"
+  )
 ;; Modes installed and their uses
 ;; simple-httpd (httpd-start httpd-serve-directory)
 ;;   A simple webserver build into Emacs for serving files

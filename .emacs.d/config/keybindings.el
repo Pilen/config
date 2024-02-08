@@ -115,7 +115,7 @@
 
 ;; Kill line
 ;(global-set-key (kbd "H-d") 'kill-line)
-(global-set-key (kbd "H-d") 'kill-whole-line)
+(global-set-key (kbd "H-d") 'my-kill-whole-line)
 
 ;;;; Textual Transformation
 (global-set-key (kbd "H-S-SPC") '(lambda () (interactive) (mark-paragraph) (right-char)))
@@ -183,8 +183,10 @@
 (global-set-key (kbd "H-m") 'swiper)
 ;; (global-set-key (kbd "H-M") 'sprint-forward)
 (global-unset-key (kbd "H-M"))
-(global-set-key (kbd "H-c") 'ace-jump-char-local)
-(global-set-key (kbd "H-C") 'ace-jump-char-global)
+;; (global-set-key (kbd "H-c") 'ace-jump-char-local)
+;; (global-set-key (kbd "H-C") 'ace-jump-char-global)
+(global-set-key (kbd "H-c") '(lambda () (interactive) (message "Run hydra")))
+(global-unset-key (kbd "H-c"))
 
 ;(global-set-key (kbd "H-V") '(lambda () (interactive) (global-hl-line-mode) (my-global-auto-highlight-symbol-mode)))
 ;; (global-set-key (kbd "H-S-<return>") 'ido-goto-symbol-or-line)
@@ -344,6 +346,7 @@
 (global-set-key (kbd "<f9>") 'command-center)
 (global-set-key (kbd "<f10>") nil)
 (global-set-key (kbd "<f11>") nil)
+;; (global-set-key (kbd "<f11>") (lambda () (interactive) (message "%s" (or (buffer-file-name) "Not a file")) (imenu-list-smart-toggle)))
 (global-set-key (kbd "<f11>") #'my-imenu-list)
 (global-set-key (kbd "H-<f11>") nil)
 (global-set-key (kbd "S-<f11>") nil)

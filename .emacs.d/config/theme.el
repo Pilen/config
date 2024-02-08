@@ -24,6 +24,11 @@
  '(flymake-warnline ((((class color)) (:underline "yellow"))))
  '(whitespace-line ((t (:inherit nil :background "gray20")))))
 
+;; M-x set-frame-font
+;; -Schumacher-Schumacher Clean-regular-normal-normal-*-12-*-*-*-c-60-iso10646-1
+;; (add-to-list 'default-frame-alist
+;;              '(font . "-Schumacher-Schumacher Clean-regular-normal-normal-*-12-*-*-*-c-60-iso10646-1"))
+
 (setq my-antialias-toggle nil)
 (defun my-antialias-toggle ()
   (interactive)

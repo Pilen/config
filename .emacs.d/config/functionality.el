@@ -259,6 +259,11 @@ in that cyclic order."
   (kill-ring-save (point-min) (point-max))
   (message "Copied buffer"))
 
+(defun my-kill-whole-line ()
+  (interactive)
+  (setq last-command nil)
+  (kill-whole-line))
+
 (defun horizontal-recenter ()
   "make the point horizontally centered in the window"
   (interactive)
@@ -343,7 +348,7 @@ in that cyclic order."
   "Move current line up"
   (interactive)
   (let ((column-number (- (point) (point-at-bol))))
-    (kill-whole-line)
+    (my-kill-whole-line)
     (forward-line -1)
     (yank)
     (unless (= (char-before) ?\n) (insert "\n"))
@@ -356,7 +361,7 @@ in that cyclic order."
   "Move current line down"
   (interactive)
   (let ((column-number (- (point) (point-at-bol))))
-    (kill-whole-line)
+    (my-kill-whole-line)
     (forward-line 1)
     (yank)
     (setq kill-ring (cdr kill-ring))
@@ -513,12 +518,19 @@ This is to update existing buffers after a Git pull of their underlying files."
 (define-key help-mode-map (kbd "f") 'my-describe-variable-full)
 
 
-(defun my-yank-insert-rectangle  ()
-  (interactive)
-  (narrow-to-region (point) (point))
-  (yank-rectangle)
-  (widen))
-(global-set-key (kbd "C-x r C-y") 'my-yank-insert-rectangle)
+;; (defun my-yank-insert-rectangle  ()
+;;   (interactive)
+;;   (narrow-to-region (point) (point))
+;;   (yank-rectangle)
+;;   (widen))
+(defun my-yank-insert-rectangle ()
+    (interactive)
+  (with-temp-buffer
+    (yank-rectangle)
+    (kill-region (point-min) (point-max)))
+  (yank)
+  )
+(global-set-key (kbd "C-x r Y") 'my-yank-insert-rectangle)
 
 
 (defun my-yank-as-rectangle ()
@@ -554,6 +566,7 @@ This is to update existing buffers after a Git pull of their underlying files."
     (goto-char (or (mark t) (point-max))))
    (t (push-mark) (goto-char (point-max)))
    ))
+
 ;;______________________________________________________________________________
 ;π CODE FOLDING
 ;;______________________________________________________________________________

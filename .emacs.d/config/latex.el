@@ -30,8 +30,8 @@
 (define-key LaTeX-mode-map (kbd "S-<f11>") 'LaTeX-insert-matrix)
 (define-key LaTeX-mode-map (kbd "<f12>") (lambda () (interactive) (save-buffer) (preview-buffer)))
 
-(define-key reftex-toc-map (kbd "u") 'reftex-toc-previous)
-(define-key reftex-toc-map (kbd "e") 'reftex-toc-next)
+(define-key reftex-toc-mode-map (kbd "u") 'reftex-toc-previous)
+(define-key reftex-toc-mode-map (kbd "e") 'reftex-toc-next)
 ;(add-hook 'LaTeX-mode-hook 'flyspell-mode)
 ;(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 
