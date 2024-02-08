@@ -405,13 +405,27 @@ This is to update existing buffers after a Git pull of their underlying files."
   (insert (shell-command-to-string (concat "echo -n $(date +'" format "')"))))
 
 
-(defun my-align-regexp ()
+(defun my-align-regexp-left ()
   (interactive)
   (align-regexp
    (region-beginning)
    (region-end)
    (concat (read-string "Align regex: ")
            "\\(\s+\\)")))
+(defun my-align-regexp-right ()
+  (interactive)
+  (align-regexp
+   (region-beginning)
+   (region-end)
+   (concat "\\(\s+\\)"
+           (read-string "Align regex: ")))
+    )
+(defhydra my-align-hydra
+  (:exit t)
+  "Align"
+  ("l" my-align-regexp-left "Align seperator left")
+  ("r" my-align-regexp-right "Align seperator right")
+  )
 
 (require 'json)
 (defun my-json-sort (point)

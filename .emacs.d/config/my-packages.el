@@ -63,6 +63,7 @@ All packages here will automatically be installed if not present.")
         haskell-mode
         ;;highlight-tail        ;; Cool but not used ;; No longer available?
         hlinum
+        hydra
         idomenu               ;; I rolled my own instead
         iedit
         imenu-list
