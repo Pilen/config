@@ -9,12 +9,19 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.html?\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 ;; (setq web-mode-enable-element-tag-fontification nil)
+
+(setq web-mode-enable-element-content-fontification t)
+(set-face-attribute 'web-mode-html-tag-face nil :foreground "LightSkyBlue")
+(set-face-attribute 'web-mode-html-attr-name-face nil :foreground "LightGoldenrod")
+(set-face-attribute 'web-mode-doctype-face nil :foreground"cyan1")
+(set-face-attribute 'web-mode-html-tag-bracket-face nil :foreground "honeydew1")
 
 (defun my-web-close-tag ()
   (interactive)

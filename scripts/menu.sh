@@ -2,6 +2,7 @@
 
 date=`date +%H:%M`
 bat=`acpi | grep "Battery 0" | grep -o '[0-9]*%'`
+desktop="$(bspc query -D -d focused --names)"
 
 if [[ $(acpi | grep "Charging") ]]
 then
@@ -11,7 +12,7 @@ then
     bat="$bat-"
 fi
 
-title="$date $bat"
+title="$date [$desktop] $bat"
 
 menu=(\
         -         "exit"
