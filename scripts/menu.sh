@@ -16,6 +16,7 @@ title="$date [$desktop] $bat"
 
 menu=(\
         -         "exit"
+        browser   "firefox"
         firefox   "firefox"
         emacs     "emacs"
         ranger    "urxvt -e ranger"
@@ -28,7 +29,9 @@ menu=(\
         evince    "my-evince"
         xpdf      "perl $HOME/config/scripts/xpdf.pl"
         #chromium  "chromium --purge-memory-button"
+        # chromium  "chromium"
         chromium  "firefox"
+        c-hromium  "chromium"
         thunderbird "thunderbird.sh"
         teams     "teams"
         # python3   "urxvtc -bg #111111 -e bpython"
@@ -125,7 +128,7 @@ for (( count = 0 ; count < ${#menu[*]}; count++ )); do
 
 done
 
-select=`echo -e $menu_labels | dmenu -i -p "$title" -fn "Clean-10" -l 10`
+select=`echo -e $menu_labels | dmenu -l 10 -i -p "$title" -fn "Clean-10"`
 
 if [ "$select" != "" ]; then
 

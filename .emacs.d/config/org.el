@@ -61,9 +61,15 @@
 
 (defun my-org-return ()
   (interactive)
-  (if (org-in-src-block-p t)
-      (org-return-indent)
-    (org-return)))
+  (cond
+   ((org-in-src-block-p t)
+    (org-return-indent))
+   ((looking-at "[ \t\n]\\|$")
+    (org-return-indent))
+   ((org-in-regexp org-link-any-re)
+    (org-open-at-point))
+   (t
+    (org-return))))
 (define-key org-mode-map (kbd "<return>") 'my-org-return)
 
 
@@ -104,6 +110,23 @@
 (set-face-foreground 'my-org-not-clocked-in-face "OrangeRed1")
 (set-face-foreground 'my-org-not-clocked-in-face "coral3")
 (set-face-bold 'my-org-not-clocked-in-face t)
+
+
+
+
+(defun my-org-insert-file-link ()
+  (interactive)
+  (let ((path (read-file-name "file:"))
+        (description (read-string "Description:")))
+    (org-insert-link nil (concat "file:" path) description)))
+
+(setq org-link-frame-setup
+      '((vm . vm-visit-folder-other-frame)
+        (vm-imap . vm-visit-imap-folder-other-frame)
+        (gnus . org-gnus-no-new-news)
+        (file . find-file-other-window)
+        (wl . wl-other-frame)))
+
 
 (defun my-org-clock-in-hook ()
   (force-mode-line-update t)
@@ -169,10 +192,11 @@
          (with-current-buffer (org-base-buffer (marker-buffer (car org-clock-history))) ;; This can fail if marker is in no buffer, eg if buffer is closed (even if reopened)
            (with-selected-window (get-buffer-window (current-buffer) t)
              (goto-char (point-max))
-             (search-backward-regexp "^\\*\\* Tasks")
-             (goto-char (match-end 0))
-             (search-forward-regexp "^\\*\\* ")
-             (goto-char (match-beginning 0))
+             ;; (search-backward-regexp "^\\*\\* Tasks")
+             ;; (goto-char (match-end 0))
+             ;; (search-forward-regexp "^\\*\\* ")
+             ;; (goto-char (match-beginning 0))
+             (insert "\n")
              (insert "*** " task "\n\n")
              (backward-char 1)
              (beginning-of-line)
@@ -214,25 +238,42 @@
 (defun my-org-status-new-daily-entry ()
   (interactive)
   (goto-char (point-max))
-  (when (string= (format-time-string "%A") "Monday")
+  (when (not (search-backward-regexp "^\\*\\* Days" nil t))
+  ;; (when (string= (format-time-string "%A") "Monday")
   ;; (when (string= (format-time-string "%A") "Tuesday")
+  ;; (when (string= (format-time-string "%A") "Thursday")
     (setq org-clock-history nil) ;; Reset history
     (insert (format-time-string "\n* Week %V\n"))
+    (insert "** Days\n")
     (insert "** Tasks\n")
-    (insert "#+BEGIN: clocktable :scope subtree :maxlevel 50 :compact t :properties (\"Issue\" \"Registered\") :formula \"@2$2=vsum(@3$2..@>$2);U\"\n")
+    (insert "#+BEGIN: clocktable :scope subtree :maxlevel 50 :compact t :properties (\"Issue\" \"Registered\" \"TODO\") :formula \"@2$2=vsum(@3$2..@>$2);U\"\n")
     (insert "#+END:\n\n")
     (insert "#+BEGIN: clocktable :scope subtree :block week :step day :stepskip0 t :maxlevel 50 :compact t\n")
     (insert "#+END:\n\n")
-    (insert "*** ?\n"))
-  (insert (format-time-string "\n** %A %Y-%m-%d\n"))
-  (org-clock-in)
-  (setq my-org-day (copy-marker (car org-clock-history)))
-  (org-clock-out)
-  (goto-char (point-max))
+    (insert "*** Monday Morning Meeting\n")
+    (search-backward-regexp "^\\*\\* Days")
+    )
+  ;; (search-backward-regexp "^\\*\\* Days")
+  (org-forward-heading-same-level 1)
+  (insert (format-time-string "*** %A %Y-%m-%d\n"))
   (insert "#+BEGIN_QUOTE\n")
   (let ((p (point)))
     (insert "\n#+END_QUOTE\n\n")
-    (goto-char p)))
+    (goto-char p))
+;; (forward-char -1)
+  ;; (forward-line -1)
+  (org-clock-in)
+  (setq my-org-day (copy-marker (car org-clock-history)))
+  (org-clock-out)
+  ;; (goto-char (point-max))
+  )
+
+(defun my-org-archive-week ()
+  (interactive)
+  (goto-char (point-min))
+  (search-forward-regexp "^\\* Week \\([0-9]+\\)")
+  (org-archive-subtree)
+  )
 
 (defun my-org-suspend ()
   (with-current-buffer (marker-buffer my-org-day)
@@ -304,87 +345,153 @@
     ))
 
 
-(defun my-org-status-weekly-status-email ()
-  (interactive)
-  (goto-char (point-max))
-  (let (day ;; string
-        week ;; string
-        start ;; point
-        end ;; point
-        did)
-    (search-backward-regexp "^\\* Week \\([0-9]+\\)")
-    (setq week (match-string 1))
-    (with-current-buffer (get-buffer-create "*Daily Standup status*") (erase-buffer))
-    (search-forward-regexp "^\\*\\* Tasks")
-    (while (search-forward-regexp "^\\*\\* \\([a-zA-Z]+\\)" nil t)
-      (setq day (match-string 1))
-      (search-forward "#+BEGIN_QUOTE\n")
-      (search-forward "#+END_QUOTE")
-      (while (eq (char-after) ?\n) (forward-char))
-      (setq start (point))
-      (if (search-forward-regexp "^\\*" nil t)
-        (goto-char (match-beginning 0))
-        (goto-char (point-max)))
-      (while (eq (char-before) ?\n) (backward-char))
-      (setq end (point))
-      (setq did (buffer-substring-no-properties start end))
+;; (defun my-org-status-weekly-status-email ()
+;;   (interactive)
+;;   (goto-char (point-max))
+;;   (let (day ;; string
+;;         week ;; string
+;;         start ;; point
+;;         end ;; point
+;;         did)
+;;     (search-backward-regexp "^\\* Week \\([0-9]+\\)")
+;;     (setq week (match-string 1))
+;;     (with-current-buffer (get-buffer-create "*Daily Standup status*") (erase-buffer))
+;;     (search-forward-regexp "^\\*\\* Tasks")
+;;     (while (search-forward-regexp "^\\*\\* \\([a-zA-Z]+\\)" nil t)
+;;       (setq day (match-string 1))
+;;       (search-forward "#+BEGIN_QUOTE\n")
+;;       (search-forward "#+END_QUOTE")
+;;       (while (eq (char-after) ?\n) (forward-char))
+;;       (setq start (point))
+;;       (if (search-forward-regexp "^\\*" nil t)
+;;         (goto-char (match-beginning 0))
+;;         (goto-char (point-max)))
+;;       (while (eq (char-before) ?\n) (backward-char))
+;;       (setq end (point))
+;;       (setq did (buffer-substring-no-properties start end))
 
-      (with-current-buffer (get-buffer-create "*Daily Standup status*")
-        (insert day)
-        (insert ":\n")
-        (setq start (point))
-        (insert (replace-regexp-in-string "$DAY" (lambda (x) (pcase x ("$day" (downcase day)) ("$DAY" (capitalize day)) (_ (capitalize day)))) did t))
-        (setq end (point))
-        (goto-char start)
-        (capitalize-word 1)
-        (goto-char end)
-        (insert "\n\n")))
-    (with-current-buffer (get-buffer-create "*Daily Standup status*")
-      (let* ((items (list
-                     "an acceptable"
-                     "an excellent"
-                     "an exceptional"
-                     "a fine"
-                     "a good"
-                     "a great"
-                     "a happy"
-                     "a nice"
-                     "a satisfactory"
-                     "a superb"
-                     "a wonderful"
-                     "a cool"
-                     ))
-             (item (nth (random (length items)) items)))
-        (insert "Have " item " weekend!\nBR, Søren\n"))
-      (insert "Status Email - Week " week)
-      (replace-regexp "^# .*\n" "" nil (point-min) (point-max))
-      (kill-ring-save (point-min) (point-max))
-      )))
+;;       (with-current-buffer (get-buffer-create "*Daily Standup status*")
+;;         (insert day)
+;;         (insert ":\n")
+;;         (setq start (point))
+;;         (insert (replace-regexp-in-string "$DAY" (lambda (x) (pcase x ("$day" (downcase day)) ("$DAY" (capitalize day)) (_ (capitalize day)))) did t))
+;;         (setq end (point))
+;;         (goto-char start)
+;;         (capitalize-word 1)
+;;         (goto-char end)
+;;         (insert "\n\n")))
+;;     (with-current-buffer (get-buffer-create "*Daily Standup status*")
+;;       (let* ((items (list
+;;                      "an acceptable"
+;;                      "an excellent"
+;;                      "an exceptional"
+;;                      "a fine"
+;;                      "a good"
+;;                      "a great"
+;;                      "a happy"
+;;                      "a nice"
+;;                      "a satisfactory"
+;;                      "a superb"
+;;                      "a wonderful"
+;;                      "a cool"
+;;                      ))
+;;              (item (nth (random (length items)) items)))
+;;         (insert "Have " item " weekend!\nBR, Søren\n"))
+;;       (insert "Status Email - Week " week)
+;;       (replace-regexp "^# .*\n" "" nil (point-min) (point-max))
+;;       (kill-ring-save (point-min) (point-max))
+;;       )))
+;; (defun my-org-status-weekly-status-email ()
+;;   (interactive)
+;;   (goto-char (point-max))
+;;   (let (week ;; string
+;;         did)
+;;     (search-backward-regexp "^\\* Week \\([0-9]+\\)")
+;;     (setq week (match-string 1))
+;;     (with-current-buffer (get-buffer-create "*Daily Standup status*") (erase-buffer))
+;;     (search-forward-regexp "^\\*\\* Tasks")
+;;     ;; (search-forward-regexp "^\\*\\*\\* ")
+;;     (beginning-of-line)
+;;     ;; (while (looking-at "^\\*\\*\\* ")
+;;     (while (search-forward-regexp "^\\*\\*\\* " nil t)
+;;       (setq did (my-org--extract-title-and-text))
+;;       ;; (search-forward-regexp "^\\*\\*\\* ")
+;;       ;; (beginning-of-line)
+;;       (with-current-buffer (get-buffer-create "*Daily Standup status*")
+;;         (insert "* ")
+;;         (insert (car did))
+;;         (unless (string= "" (string-trim (cdr did)))
+;;           (insert ":\n")
+;;           (insert (cdr did)))
+;;         (while (eq (char-before) ?\n) (delete-char -1))
+;;         (insert "\n\n")
+;;         ))
+;;     (with-current-buffer (get-buffer-create "*Daily Standup status*")
+;;       (let* ((items (list
+;;                      "an acceptable"
+;;                      "an excellent"
+;;                      "an exceptional"
+;;                      "a fine"
+;;                      "a good"
+;;                      "a great"
+;;                      "a happy"
+;;                      "a nice"
+;;                      "a satisfactory"
+;;                      "a superb"
+;;                      "a wonderful"
+;;                      "a cool"
+;;                      ))
+;;              (item (nth (random (length items)) items)))
+;;         (insert "Have " item " weekend!\nBR, Søren\n"))
+;;       (insert "Status Email - Week " week)
+;;       (replace-regexp "^# .*\n" "" nil (point-min) (point-max))
+;;       (kill-ring-save (point-min) (point-max))
+;;       )))
 (defun my-org-status-weekly-status-email ()
   (interactive)
   (goto-char (point-max))
   (let (week ;; string
-        did)
+        did
+        level
+        title
+        body
+        p)
     (search-backward-regexp "^\\* Week \\([0-9]+\\)")
     (setq week (match-string 1))
     (with-current-buffer (get-buffer-create "*Daily Standup status*") (erase-buffer))
-    (search-forward-regexp "^\\*\\* Tasks")
+    (search-forward-regexp "^\\*\\* \\(.*\\) *Tasks")
     ;; (search-forward-regexp "^\\*\\*\\* ")
     (beginning-of-line)
     ;; (while (looking-at "^\\*\\*\\* ")
-    (while (search-forward-regexp "^\\*\\*\\* " nil t)
-      (setq did (my-org--extract-title-and-text))
-      ;; (search-forward-regexp "^\\*\\*\\* ")
-      ;; (beginning-of-line)
-      (with-current-buffer (get-buffer-create "*Daily Standup status*")
-        (insert "* ")
-        (insert (car did))
-        (insert ":\n")
-        (insert (cdr did))
-        (while (eq (char-before) ?\n) (delete-char -1))
-        (insert "\n\n")
-        ))
+    (while (search-forward-regexp "^\\*\\*\\(\\*+\\) " nil t)
+      (unless (org-entry-is-todo-p)
+        (setq level (- (length (match-string 1)) 2))
+        (setq did (my-org--extract-title-and-text))
+        (setq title (car did))
+        (setq body (string-trim (replace-regexp-in-string "^#.*$" "" (cdr did))))
+        (setq title (replace-regexp-in-string "^\\[[^]]+\\]* *" "" title))
+        (setq title (replace-regexp-in-string " *<[^>]*>" "" title))
+        (message "<%s>" body)
+        ;; (search-forward-regexp "^\\*\\*\\* ")
+        ;; (beginning-of-line)
+        (with-current-buffer (get-buffer-create "*Daily Standup status*")
+          (dotimes (n level)
+            (insert "*"))
+          (insert " ")
+          (insert title)
+          (unless (string= "" body)
+            (insert ":\n")
+            (setq p (point))
+            (insert body)
+            (indent-region p (point) 2)
+            (while (eq (char-before) ?\n) (delete-char -1))
+            (insert "\n"))
+          ;; (while (eq (char-before) ?\n) (delete-char -1))
+          ;; (insert "\n\n")
+          (insert "\n")
+          )))
     (with-current-buffer (get-buffer-create "*Daily Standup status*")
+      (insert "\n")
       (let* ((items (list
                      "an acceptable"
                      "an excellent"
@@ -397,12 +504,12 @@
                      "a satisfactory"
                      "a superb"
                      "a wonderful"
-                     "a cool"
+                     ;; "a cool"
                      ))
              (item (nth (random (length items)) items)))
         (insert "Have " item " weekend!\nBR, Søren\n"))
       (insert "Status Email - Week " week)
-      (replace-regexp "^# .*\n" "" nil (point-min) (point-max))
+      ;; (replace-regexp "^# .*\n" "" nil (point-min) (point-max))
       (kill-ring-save (point-min) (point-max))
       )))
 
@@ -413,6 +520,7 @@
   (unless (y-or-n-p "Are you sure you want to synchronize time registered with Gitlab?")
     (user-error "Aborted synchronization"))
   (goto-char (point-max))
+  ;; (org-show-all) ;; Unfortunately needed so we can iterate through all (no, dont do this)
   (search-backward-regexp "^* ")
   (org-next-visible-heading 1)
   (org-next-visible-heading 1)
@@ -432,6 +540,7 @@
                 org-last-set-property
                 org-last-set-property-value
                 )
+            (message "issue-url: %s" issue-url)
             (unless issue-url (throw 'break t))
             (when registered
               (unless (string-match "^\\(\\([0-9]+\\):\\)?\\([0-9]+\\)$" registered)
@@ -443,6 +552,7 @@
             (when (< delta 0) (user-error "I am not sure this handles negative amount yet"))
             (when (zerop delta) (throw 'break 'nil))
             (setq new-registered (format "%d:%02d" (/ clocked 60) (mod clocked 60)))
+            (setq issue-url (or (cdr (assoc issue-url my-org-named-issues)) issue-url)) ;; Lookup in named issues and use that if there
             (unless (string-match "^https://[^/]+/\\(.+\\)/-/issues/\\([0-9]+\\)$" issue-url)
               (user-error "Unknown url format: %s" issue-url))
             (setq project-encoded (url-hexify-string (match-string 1 issue-url)))
@@ -484,7 +594,8 @@
           )
         (org-next-visible-heading 1)
       (let ((previous (point)))
-        (org-forward-heading-same-level 1)
+        ;; (org-forward-heading-same-level 1)
+        (org-next-visible-heading 1) ;; (fix dont do this, will break nested timetracking)
         (when (= previous (point))
           (goto-char (point-max))))
   ))

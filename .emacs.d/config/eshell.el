@@ -391,10 +391,10 @@ If there's a string at point, offer that as a default."
 (setq ag-highlight-search t)
 (set-face-attribute 'ag-match-face nil :inherit nil :foreground "cyan" :weight 'bold)
 
+;; (I no longer use linum)
 ;; Updating linums while ag runs causes it to slow down enormously, so turn it off temporarily
-(add-hook 'ag-mode-hook '(lambda () (linum-mode -1)))
-(add-hook 'ag-search-finished-hook '(lambda () (linum-mode t)))
-
+;; (add-hook 'ag-mode-hook '(lambda () (linum-mode -1)))
+;; (add-hook 'ag-search-finished-hook '(lambda () (linum-mode t)))
 
 ;;______________________________________________________________________________
 ;π Enhanced LS
@@ -452,7 +452,8 @@ If there's a string at point, offer that as a default."
                            (not (eq it current-buffer))))
                     (buffer-list))))
       (if buffer
-          (switch-to-buffer-other-window buffer)
+          ;; (switch-to-buffer-other-window buffer)
+          (if (get-buffer-window buffer t) (select-window (get-buffer-window buffer t)) (switch-to-buffer-other-window buffer))  ;; Hack due to problem with display-buffer-alist
         (eshell)))))
 
 ;;______________________________________________________________________________

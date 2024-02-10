@@ -195,7 +195,7 @@ PREFIX is used to create the key."
     map))
 
 ;;;###autoload
-(defun my-counsel-imenu ()
+(defun my-counsel-imenu (&optional initial-input)
   "Jump to a buffer position indexed by imenu."
   (interactive)
   (unless (featurep 'imenu)
@@ -211,6 +211,7 @@ PREFIX is used to create the key."
       (setq items (delete (assoc "*Rescan*" items) items))
       (ivy-read "imenu items: " (counsel-imenu-get-candidates-from items)
                 :preselect (thing-at-point 'symbol)
+                :initial-input initial-input
                 :require-match nil
                 :action (lambda (candidate)
                           (if (stringp candidate)
@@ -226,13 +227,32 @@ PREFIX is used to create the key."
                 :keymap counsel-imenu-map
                 :caller 'counsel-imenu))))
 
+(ivy-configure 'counsel-imenu :update-fn 'auto)
 
 (require 'imenu-list)
-
 (setq imenu-list-position 'right) ;; If left it will compete with neotree about being first
 (setq imenu-list-size 30)
 (setq imenu-list-mode-line-format '(" %e" (:eval (buffer-name imenu-list--displayed-buffer))))
+(setq imenu-list-persist-when-imenu-index-unavailable t)
 (setq org-imenu-depth 10)
+
+(defun imenu-list--depth-string (depth)
+  "Return a prefix string representing an entry's DEPTH."
+  (let ((indents (cl-loop for i from 1 to depth collect " "))) ;; One space
+    (format "%s%s"
+            (mapconcat #'identity indents "")
+            (if indents " " ""))))
+
+(add-hook 'imenu-list-major-mode-hook #'my-imenu-list-hide-linum)
+(defun my-imenu-list-hide-linum ()
+  (message "hej %s %s" (boundp 'linum-mode) linum-mode)
+  (linum-mode -1)
+  ;; (when (and (boundp 'linum-mode)
+  ;;            (not (null linum-mode)))
+  ;;   (message "disable")
+  ;;   (linum-mode -1))
+  )
+
 
 (defun my-imenu-list-toggle-width ()
   (interactive)
@@ -252,3 +272,61 @@ PREFIX is used to create the key."
     (imenu-list-show)
     ;; (imenu-list)
     ))
+
+
+(defun my-imenu-list ()
+  (interactive)
+  (imenu-list-smart-toggle)
+  (message "%s" (or (buffer-file-name) "Not a file")))
+
+
+(set-face-attribute 'imenu-list-entry-face-0 nil :foreground "DarkSlateGray1")
+(set-face-attribute 'imenu-list-entry-face-1 nil :foreground "DarkSlateGray2")
+(set-face-attribute 'imenu-list-entry-face-2 nil :foreground "DarkSlateGray3")
+(set-face-attribute 'imenu-list-entry-face-3 nil :foreground "DarkSlateGray4")
+
+(set-face-attribute 'imenu-list-entry-face-0 nil :foreground "DarkSlateGray1")
+(set-face-attribute 'imenu-list-entry-face-1 nil :foreground "Aquamarine1")
+(set-face-attribute 'imenu-list-entry-face-2 nil :foreground "SeaGreen1")
+(set-face-attribute 'imenu-list-entry-face-3 nil :foreground "DarkOliveGreen1")
+(set-face-attribute 'imenu-list-entry-subalist-face-0 nil :weight 'unspecified)
+(set-face-attribute 'imenu-list-entry-subalist-face-1 nil :weight 'unspecified)
+(set-face-attribute 'imenu-list-entry-subalist-face-2 nil :weight 'unspecified)
+(set-face-attribute 'imenu-list-entry-subalist-face-3 nil :weight 'unspecified)
+
+
+;; ;; https://github.com/dsedivec/dot-emacs-d/blob/ddc3fec6a2a884ce4adf730a2eb255dab97834b7/recipes/imenu-list-in-side-buffer.el
+;; (defun my:imenu-list-install-display-buffer ()
+;;   "Put imenu-list buffer on a dedicated side window with a preserved size."
+;;   (let* ((side (cl-ecase imenu-list-position
+;;                  (above 'top)
+;;                  (below 'bottom)
+;;                  ((left right) imenu-list-position)))
+;;          (preserve-dimen (if (memq side '(left right))
+;;                              'window-width
+;;                            'window-height)))
+;;     (setf (alist-get (concat "^" (regexp-quote imenu-list-buffer-name) "$")
+;;                      display-buffer-alist nil nil #'equal)
+;;           `(display-buffer-in-side-window
+;;             (side . ,side)
+;;             ;; It is not totally clear to me if `imenu-list-size' is
+;;             ;; supposed to be the window's body height/width or the
+;;             ;; window's total height/width.  The way we're using it
+;;             ;; here it is definitely the total, not the body.
+;;             ;;
+;;             ;; If it's supposed to be the body height/width then I
+;;             ;; think it might be best to pass a function as the value
+;;             ;; for the `window-height'/`window-width' here, and then
+;;             ;; have the function compute it once the imenu-list window
+;;             ;; has come into existence.  (See documentation for those
+;;             ;; alist entries in the docstring for `display-buffer'.)
+;;             (,preserve-dimen . ,imenu-list-size)
+;;             (preserve-size . ,(if (eq preserve-dimen 'window-width)
+;;                                   '(t . nil)
+;;                                 '(nil . t)))
+;;             (dedicated . t)))))
+;; (advice-add 'imenu-list-install-display-buffer :override
+;;             #'my:imenu-list-install-display-buffer)
+;; (when (featurep 'imenu-list)
+;;   ;; Too late, imenu-list already loaded.  Call our new setup function.
+;;   (my:imenu-list-install-display-buffer))

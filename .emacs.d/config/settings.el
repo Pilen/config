@@ -22,7 +22,8 @@
 
 (column-number-mode t)
 
-(setq-default fill-column 80)
+;; (setq-default fill-column 80)
+(setq-default fill-column 100)
 (setq sentence-end-double-space nil)
 (setq colon-double-space nil)
 
@@ -43,8 +44,9 @@
 (menu-bar-mode 0)
 
 ;(require 'linum+)
-(setq linum-eager nil)
-(global-linum-mode t)
+;; (setq linum-eager nil)
+;; (global-linum-mode t)
+(global-display-line-numbers-mode)
 (winner-mode 1)
 (define-key winner-mode-map (kbd "C-c <left>") nil)
 (define-key winner-mode-map (kbd "C-c <right>") nil)
@@ -94,6 +96,7 @@
 
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
+(vhl/ext/occur/off) ;; It doesn't work in occur mode? It might need an upgrade
 
 ;(load "~/.emacs.d/plugins/fixed-point-completion.el")
 ;(enable-fixed-point-completions)
@@ -317,6 +320,19 @@
 ;; (add-to-list 'tramp-default-proxies-alist
 ;;              '((regexp-quote (system-name)) nil nil))
 
+(defun my-tramp-add-prefix ()
+  ;; Inspired by https://emacs.stackexchange.com/a/26514
+  (when (tramp-tramp-file-p (buffer-file-name (current-buffer)))
+    (unless (s-prefix-p "tramp: " (buffer-name (current-buffer)))
+      (rename-buffer (concat "tramp: " (buffer-name (current-buffer))))))
+  )
+(add-hook 'find-file-hook 'my-tramp-add-prefix)
+;; (defun add-server-postfix ()
+;;   "Add the name of the connection type and server to the buffer name"
+;;   (if (string-match "^/ssh:.*?:" (buffer-file-name (current-buffer)))
+;;       (rename-buffer (concat (buffer-name (current-buffer)) "<" (match-string 0 (buffer-file-name (current-buffer))) ">")) nil))
+;; (add-hook 'find-file-hook 'add-server-postfix)
+
 (setq view-read-only t)
 
 (defadvice message (after message-tail activate)
@@ -375,6 +391,7 @@
 (define-key Man-mode-map (kbd "u") (lambda () (interactive) (pager-scroll-screen -8)))
 (define-key Man-mode-map (kbd "e") (lambda () (interactive) (pager-scroll-screen 8)))
 (defun Man--window-state-change (window) nil)
+(setq Man-width-max 120)
 
 
 ;; If deleting the prompts is suddenly possible, it might be that comint-prompt-read-only is somehow set to nil (should be t)
@@ -439,10 +456,21 @@
     t))
 
 
+(defun my-previous-error-wrapping ()
+  (interactive)
+  ;; (next-error)
+  (condition-case e (previous-error)
+    (user-error
+     (progn
+       (select-window (get-buffer-window next-error-last-buffer t))
+       (goto-char (point-max))
+       ;; (previous-error)
+       )))
+  )
 (setq display-buffer-alist nil)
 ;; (setq display-buffer-alist '(("^\\*compilation\\*$" (display-buffer-reuse-window))))
 ;; (setq display-buffer-alist '(("^\\*compilation\\*$" nil (reusable-frames . visible))))
-(setq display-buffer-alist '(("^.*$" nil (reusable-frames . visible))))
+;; (setq display-buffer-alist '(("^.*$" nil (reusable-frames . visible)))) ;; Unfortunately this breaks display-buffer's ability to select window in other frame
 (setq display-buffer-reuse-frames nil)
 ;; (setq display-buffer-alist '(("\\*foo\\*" (display-buffer-below-selected display-buffer-at-bottom)
 ;;                               (inhibit-same-window . t)
@@ -583,6 +611,8 @@
 ;; (global-fci-mode 1)
 
 ;; todo why is this not working add hook to fundamental mode
+;; Clone to plugins https://github.com/emacsmirror/column-marker
+(add-to-list 'load-path "~/.emacs.d/plugins/column-marker")
 (require 'column-marker)
 (column-marker-1 fill-column)
 (set-face-attribute 'column-marker-1 nil
@@ -630,8 +660,10 @@
                                              (setq default-directory (file-name-directory default-directory)))
                                            (eshell/new default-directory))))
 ;; (define-key neotree-mode-map (kbd "b") (lambda () (interactive) (goto-char (point-min)) (neotree-change-root)))
-(define-key neotree-mode-map (kbd "b") (lambda () (interactive) (goto-char (point-min)) (neotree-next-line) (neotree-change-root)))
-(define-key neotree-mode-map (kbd "b") 'neotree-select-up-node)
+;; (define-key neotree-mode-map (kbd "b") (lambda () (interactive) (goto-char (point-min)) (neotree-next-line) (neotree-change-root)))
+(define-key neotree-mode-map (kbd "b") (lambda () (interactive) (goto-char (point-min)) (neotree-select-up-node)))
+;; (define-key neotree-mode-map (kbd "b") 'neotree-select-up-node)
+(define-key neotree-mode-map (kbd "u") 'neotree-select-up-node)
 (define-key neotree-mode-map (kbd "c") 'neotree-change-root)
 (define-key neotree-mode-map (kbd "m") 'my-neotree-move-buffer-file)
 (define-key neotree-mode-map (kbd "C-x C-F") 'my-neotree-find-file-here)
@@ -648,6 +680,11 @@
     (t (setq neo-window-width 35))
     )
   (neo-global--reset-width))
+
+(defun my-neotree-line-number-hook (window)
+  (when display-line-numbers-mode
+    (display-line-numbers-mode -1)))
+(add-hook 'neo-after-create-hook 'my-neotree-line-number-hook)
 
 (defun my-neotree-here ()
   (interactive)

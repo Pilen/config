@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 
+
 case "${1,,}" in
     "playpause")
         command="PlayPause";
         ;;
     "pause")
-        command="PlayPause";
+        command="Pause";
+        notify-send $command
         ;;
     "play")
-        command="PlayPause";
+        command="Play";
+        notify-send $command
         ;;
     "stop")
         command="Stop";
@@ -24,6 +27,7 @@ case "${1,,}" in
         ;;
     *)
         echo "Invalid argument $1";
+        notify-send "spotify-control" "Invalid argument $1";
         exit 1;
 esac
 dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 "org.mpris.MediaPlayer2.Player.${command}"

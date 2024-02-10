@@ -153,7 +153,12 @@
         )
       )))
 
-(add-hook 'sql-mode-hook '(lambda () (setq indent-tabs-mode t)))
+(defun my-sql-mode-hook ()
+  (setq tab-width 8)
+  (setq indent-tabs-mode t)
+  )
+(add-hook 'sql-mode-hook 'my-sql-mode-hook)
+
 
 
 

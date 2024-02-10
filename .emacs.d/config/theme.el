@@ -103,6 +103,25 @@
 ;; (setq ansi-color-names-vector ["black" "red" "green" "yellow" "dodger blue" "magenta" "cyan" "white"])
 (setq ansi-color-map (ansi-color-make-color-map))
 
+(set-face-foreground 'ansi-color-black   "black")
+(set-face-foreground 'ansi-color-red     "OrangeRed2")
+(set-face-foreground 'ansi-color-red     "OrangeRed1")
+(set-face-foreground 'ansi-color-green   "green3")
+(set-face-foreground 'ansi-color-yellow  "yellow3")
+(set-face-foreground 'ansi-color-blue    "DodgerBlue2")
+(set-face-foreground 'ansi-color-magenta "DarkOrchid2")
+(set-face-foreground 'ansi-color-cyan    "cyan3")
+(set-face-foreground 'ansi-color-white   "gray90")
+
+(set-face-foreground 'ansi-color-bright-black   "gray30")
+(set-face-foreground 'ansi-color-bright-red     "DarkOrange1")
+(set-face-foreground 'ansi-color-bright-green   "green1")
+(set-face-foreground 'ansi-color-bright-yellow  "yellow1")
+(set-face-foreground 'ansi-color-bright-blue    "DodgerBlue1")
+(set-face-foreground 'ansi-color-bright-magenta "DarkOrchid1")
+(set-face-foreground 'ansi-color-bright-cyan    "cyan1")
+(set-face-foreground 'ansi-color-bright-white   "gray90")
+
 
 (set-face-foreground 'font-lock-comment-face "chocolate1") ; default
 ;; (set-face-foreground 'font-lock-comment-face "rosy brown")

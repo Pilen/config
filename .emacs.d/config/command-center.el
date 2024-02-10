@@ -147,6 +147,7 @@
 
   ;; Other
   (command-center-add 'compile)
+  (command-center-add 'my-dominating-compile-history-remove)
   (command-center-add 'sgml-close-tag)
   (command-center-add 'sql-clear "clear")
   (command-center-add 'sql-clear)
@@ -178,6 +179,7 @@
   (command-center-add 'font-lock-fontify-buffer)
   (command-center-add 'beginning-of-defun)
   (command-center-add 'apply-macro-to-region-lines)
+  (command-center-add (lambda () (interactive) (let ((name (file-name-nondirectory (buffer-file-name)))) (kill-new name) (gui-set-selection 'PRIMARY name) (message "%s" name))) "Copy file name")
 
   (command-center-add (lambda () (interactive) (ido-find-file-in-dir "~/.emacs.d/config/")) "find config file")
   (command-center-add 'goto-command-center)

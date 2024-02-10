@@ -86,6 +86,7 @@ def pdf_url():
         print(pdf_link)
         week = datetime.date.today().strftime("%W").strip("0")
         regex = "[^0-9][0]*{week}[^0-9]".format(week=week)
+        # regex = "[^0-9]{week}[^0-9]".format(week=week)
         if re.search(regex, pdf_link):
             return urllib.parse.urljoin(URL, pdf_link)
     raise Exception("Could not find link")

@@ -109,7 +109,6 @@
 Toggles from 3 cases: UPPER CASE, lower case, Title Case,
 in that cyclic order."
   (interactive)
-
   (let (pos1 pos2 (deactivate-mark nil) (case-fold-search nil))
     (if (and transient-mark-mode mark-active)
         (setq pos1 (region-beginning)
@@ -146,6 +145,83 @@ in that cyclic order."
     (cond
      ((looking-at "[[:lower:]]") (upcase-region (point) (1+ (point))))
      ((looking-at "[[:upper:]]") (downcase-region (point) (1+ (point)))))))
+
+
+(defun toggle-letter-case-programming ()
+  (interactive)
+  (save-excursion
+    (let* ((case-fold-search nil)
+           (bound-start nil)
+           (bound-end nil)
+           )
+      (while (looking-at "[_a-zæøåA-ZÆØÅ0-9]")
+        (forward-char -1))
+      (forward-char 1)
+      (setq bound-start (point))
+      (search-forward-regexp "[_a-zæøåA-ZÆØÅ0-9]+")
+      (setq bound-end (point))
+      ;; (setq bound-end -1)
+      (goto-char bound-start)
+      (cond
+       ;; snake_case -> smallCase
+       ((and (looking-at "\\(_*\\)\\([a-zæøå0-9]+\\(_[a-zæøå0-9]+\\)+\\)\\(_*\\)")
+             (= (match-end 0) bound-end))
+        (message "snake_case -> smallCase")
+        (let* ((start (match-end 1))
+               (end (match-beginning 4))
+               (words (split-string (match-string-no-properties 2) "_"))
+               (first (car words))
+               (rest (cdr words))
+               )
+          (message "%s %s" start end)
+          (goto-char start)
+          (delete-region start end)
+          (insert first)
+          (insert (mapconcat #'upcase-initials rest ""))
+          ))
+       ;; UPPER_CASE -> snake_case
+       ;; Positioned above test for pascal case
+       ((and (looking-at "\\(_*\\)\\([A-ZÆØÅ0-9]+\\(_[A-ZÆØÅ0-9]+\\)*\\)\\(_*\\)")
+             (= (match-end 0) bound-end))
+        (message "UPPER_CASE -> snake_case")
+        (let* ((start (match-end 1))
+               (end (match-beginning 4)))
+          (downcase-region start end)
+          ))
+       ;; smallCase -> PascalCase
+       ((and (looking-at "\\(_*\\)\\([a-zæøå]\\)[a-zæøå0-9A-ZÆØÅ]*\\(_*\\)")
+             (= (match-end 0) bound-end))
+        (message "smallCase -> PascalCase")
+        (let* ((start (match-end 1))
+               (letter (match-string-no-properties 2)))
+          (goto-char start)
+          (delete-char 1)
+          (insert (upcase letter))
+          ))
+       ;; PascalCase -> UPPER_CASE
+       ((and (looking-at "\\(_*\\)\\([A-ZÆØÅ][a-zæøå0-9A-ZÆØÅ]+\\)\\(_*\\)")
+             (= (match-end 0) bound-end))
+        (message "PascalCase -> UPPER_CASE")
+        (let* ((start (match-end 1))
+               (end (match-beginning 3))
+               (words (match-string-no-properties 2))
+               (n 0))
+          (goto-char start)
+          (delete-region start end)
+          (while (string-match "\\([A-ZÆØÅ]\\)\\([a-zæøå0-9]*\\)" words n)
+            (insert (match-string 1 words))
+            (insert (upcase (match-string 2 words)))
+            (insert "_")
+            (setq n (match-end 0))
+            )
+          (delete-char -1)
+          ))
+       (t
+        (message "fallback to toggle-letter-case")
+        (toggle-letter-case)
+        )))))
+
+
 
 
 
@@ -334,13 +410,27 @@ This is to update existing buffers after a Git pull of their underlying files."
   (insert (shell-command-to-string (concat "echo -n $(date +'" format "')"))))
 
 
-(defun my-align-regexp ()
+(defun my-align-regexp-left ()
   (interactive)
   (align-regexp
    (region-beginning)
    (region-end)
    (concat (read-string "Align regex: ")
            "\\(\s+\\)")))
+(defun my-align-regexp-right ()
+  (interactive)
+  (align-regexp
+   (region-beginning)
+   (region-end)
+   (concat "\\(\s+\\)"
+           (read-string "Align regex: ")))
+    )
+(defhydra my-align-hydra
+  (:exit t)
+  "Align"
+  ("l" my-align-regexp-left "Align seperator left")
+  ("r" my-align-regexp-right "Align seperator right")
+  )
 
 (require 'json)
 (defun my-json-sort (point)
@@ -465,6 +555,17 @@ This is to update existing buffers after a Git pull of their underlying files."
   (yank-rectangle))
 (global-set-key (kbd "C-x r C-y") 'my-yank-as-rectangle)
 
+(defun my-end-or-beginning-of-buffer ()
+  (interactive)
+  (cond
+   ((= (point) (point-max))
+    (goto-char (point-min)))
+   ((and (= (point) (point-min)) (eql (mark t) (point-min)))
+    (goto-char (point-max)))
+   ((= (point) (point-min))
+    (goto-char (or (mark t) (point-max))))
+   (t (push-mark) (goto-char (point-max)))
+   ))
 ;;______________________________________________________________________________
 ;π CODE FOLDING
 ;;______________________________________________________________________________
@@ -481,6 +582,62 @@ This is to update existing buffers after a Git pull of their underlying files."
        nil
      (+ 1 (current-column)))))
 
+
+
+(defun cypher-indent-line ()
+  "Indent current line."
+  (let (ctx (inhibit-modification-hooks t) (offset) pos
+        (regexp "^\s*\\(CREATE\\|ORDER\\|MATCH\\|LIMIT\\|SET\\|SKIP\\|START\\|RETURN\\|WITH\\|WHERE\\|DELETE\\|FOREACH\\|//\\)"))
+
+    (save-excursion
+      (back-to-indentation)
+      (setq pos (point))
+      (setq ctx (cypher-block-context pos))
+      (cond
+       ((string-match-p regexp (thing-at-point 'line))
+        (setq offset 0)
+        )
+       ((plist-get ctx :arg-inline)
+        (setq offset (plist-get ctx :column))
+        )
+       ((re-search-backward regexp nil t)
+        (goto-char (match-end 1))
+        (skip-chars-forward "[:space:]")
+        (setq offset (current-column))
+        )
+       (t
+        (setq offset cypher-indent-offset))
+       ))
+    (when offset
+      (let ((diff (- (current-column) (current-indentation))))
+        (setq offset (max 0 offset))
+        (indent-line-to offset)
+        (if (> diff 0) (forward-char diff))
+        )
+      )
+      ))
+
+(defun my-backward-paragraph ()
+  (interactive)
+  (let ((start (point)))
+    (backward-paragraph)
+    (forward-char)
+    (when (= (point) start)
+      (backward-char)
+      (backward-paragraph)
+      (forward-char))))
+
+(defun my-cypher-hook ()
+  (setq beginning-of-defun-function (lambda (&optional arg) (my-backward-paragraph)))
+  (setq end-of-defun-function (lambda (&optional arg) (forward-paragraph))))
+(add-hook 'cypher-mode-hook 'my-cypher-hook)
+
+
+(defun my-caddyfile-mode-hook ()
+  (setq tab-width (default-value 'tab-width))
+  (setq indent-tabs-mode (default-value 'indent-tabs-mode)))
+(add-hook 'caddyfile-mode-hook #'my-caddyfile-mode-hook)
+;; (remove-hook 'caddyfile-mode-hook #'my-caddyfile-mode-hook)
 
 ;;______________________________________________________________________________
 ;π LOCAL BACKGROUND

@@ -17,18 +17,22 @@ All packages here will automatically be installed if not present.")
         arduino-mode
         bnf-mode
         buffer-move
+        caddyfile-mode
         calfw
         c-eldoc
         counsel
-        column-marker
+        ;;column-marker ;; No longer available?
         company
         company-go
         company-jedi
         company-quickhelp
         crontab-mode
+        cypher-mode
         csv-mode
+        cypher-mode
         dash
         dash-docs
+        ;; dirvish requires emacs 27.1
         docker
         dockerfile-mode
         docker-compose-mode
@@ -37,18 +41,18 @@ All packages here will automatically be installed if not present.")
         dtrt-indent
         edit-server ;; For use with emacs_chrome (Edit with Emacs)
         elpy
-        ensime                ;; Scala stuff - auto enables it self
+        ;; ensime                ;; Scala stuff - auto enables it self ;; No longer available?
         ;;erc-hl-nicks ;; Breaks my setup after updating to emacs 26.1
         expand-region
         fastnav               ;; todo use me more
-        fill-column-indicator ;; not really used (could come in handy)
+        ;; fill-column-indicator ;; not really used (could come in handy)
         flymake-cursor        ;; todo use flymake more
         flyspell-correct-ivy
         ;;forge
         full-ack              ;; not really used yet
         fuzzy                 ;; not used, what is it exactly?
         geiser
-        ghc
+        ;; ghc ;; No longer available?
         gnu-elpa-keyring-update
         go-mode
         golden-ratio          ;; Not used often
@@ -57,7 +61,7 @@ All packages here will automatically be installed if not present.")
         ;; goto-last-change
         graphviz-dot-mode
         haskell-mode
-        highlight-tail        ;; Cool but not used
+        ;;highlight-tail        ;; Cool but not used ;; No longer available?
         hlinum
         hydra
         idomenu               ;; I rolled my own instead
@@ -67,6 +71,7 @@ All packages here will automatically be installed if not present.")
         inf-ruby
         ivy-xref
         js2-mode
+        json-mode
         jss
         keyfreq
         kite
@@ -96,14 +101,16 @@ All packages here will automatically be installed if not present.")
         quack
         rainbow-delimiters
         request
-        rfringe               ;; Not used
+        ;;rfringe               ;; Not used ;; No longer available?
         scala-mode
+        ;; side-hustle           ;; like imenu-list
         skewer-mode
         smart-forward         ;; Not really used yet
         smex                  ;; Not used, i use my own instead
         sml-mode
         sr-speedbar
         swiper
+        sql-indent
         tabbar                ;; Not used
         tagedit
         typescript-mode

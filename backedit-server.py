@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+"""
+sudo caddy run --adapter caddyfile --config ./config/backedit.Caddyfile
+"""
+
 import base64
 import datetime
 import http.server

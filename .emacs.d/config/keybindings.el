@@ -64,9 +64,13 @@
 ;(global-set-key (kbd "H-E") 'scroll-up)
 (global-set-key (kbd "H-U") 'pager-page-up)
 (global-set-key (kbd "H-E") 'pager-page-down)
+(global-set-key (kbd "H-C-S-u") 'scroll-down-line) ;; Why does H-C-U not work?
+(global-set-key (kbd "H-C-S-e") 'scroll-up-line) ;; Why does H-C-E not work?
 ;; Move to beginning/ending of file
 (global-set-key (kbd "H-h") 'end-of-buffer)
 (global-set-key (kbd "H-H") 'beginning-of-buffer)
+(global-set-key (kbd "H-h") 'my-end-or-beginning-of-buffer)
+
 ;; isearch
 ;(global-set-key (kbd "H-o") 'isearch-forward)
 ;(global-set-key (kbd "H-O") 'isearch-backward)
@@ -118,8 +122,11 @@
 ;(global-set-key (kbd "H-w") 'shrink-whitespace) ???
 ;(global-set-key (kbd "H-'") 'comment-dwim) ;?
 (global-set-key (kbd "H-b") 'toggle-letter-case)
-;; (global-set-key (kbd "H-B") 'caps-mode)
-(global-set-key (kbd "H-B") 'toggle-letter-case-forward)
+(global-set-key (kbd "H-B") 'caps-mode)
+(global-set-key (kbd "H-C-B") 'toggle-letter-case-programming)
+;; (global-set-key (kbd "H-B") 'toggle-letter-case-forward)
+(global-set-key (kbd "H-C-S-b") 'toggle-letter-case-forward)
+;; (global-set-key (kbd "H-C-S-b") 'caps-mode)
 ;; Keyword completion, because Alt-Tab is used by OS
 ;(global-set-key (kbd "H-g") 'call-keyword-completion) ???
 ;; Hard-wrap/un-hard-wrap paragraph
@@ -237,8 +244,9 @@
 (global-set-key (kbd "H-;") 'split-window-horizontally)
 ;(global-set-key (kbd "H-r") 'transpose-lines)
 (global-set-key (kbd "H-r") 'comment-or-uncomment-region-or-line)
-(global-set-key (kbd "H-R") 'my-align-regexp)
-(global-set-key (kbd "H-R") 'align-regexp)
+;; (global-set-key (kbd "H-R") 'my-align-regexp)
+;; (global-set-key (kbd "H-R") 'align-regexp)
+(global-set-key (kbd "H-R") 'my-align-hydra/body)
 (global-set-key (kbd "H-]") 'golden-ratio)
 (global-set-key (kbd "H-C-]") 'golden-ratio-toggle)
 (global-set-key (kbd "H-}") 'balance-windows)
@@ -289,7 +297,8 @@
 (global-set-key (kbd "H-1") 'next-error)
 (global-set-key (kbd "H-!") 'first-error)
 ;; (global-set-key (kbd "H-C-1") (lambda () (interactive) (with-current-buffer "*compilation*" (goto-char (point-max)) (compilation-next-error -1))))
-(global-set-key (kbd "H-C-1") 'previous-error)
+;; (global-set-key (kbd "H-C-1") 'previous-error)
+(global-set-key (kbd "H-C-1") 'my-previous-error-wrapping)
 (global-set-key (kbd "H-4") 'fill-paragraph)
 (global-set-key (kbd "H-$") 'fill-paragraph-from-current-line)
 
