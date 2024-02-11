@@ -320,6 +320,7 @@
 ;; (add-to-list 'tramp-default-proxies-alist
 ;;              '((regexp-quote (system-name)) nil nil))
 
+(require 'tramp)
 (defun my-tramp-add-prefix ()
   ;; Inspired by https://emacs.stackexchange.com/a/26514
   (when (tramp-tramp-file-p (buffer-file-name (current-buffer)))
@@ -908,7 +909,7 @@
 
 (setq magit-branch-read-upstream-first nil)
 
-(setq magit-ellipsis ?.) ;; My font rendered `?…` wider than other chars, making dates not align in log buffers
+(setq magit-ellipsis ".") ;; My font rendered `?…` wider than other chars, making dates not align in log buffers
 
 (defun my-async-when-done (proc &optional _change)
   "Process sentinel used to retrieve the value from the child process."
@@ -961,7 +962,7 @@ This is a copy of `async-start-process' that does not override
 
 (setq magit-branch-prefer-remote-upstream t)
 
-(define-suffix-command magit-push-current-to-upstream (args)
+(transient-define-suffix magit-push-current-to-upstream (args)
   "Push the current branch to its upstream branch.
 
 With a prefix argument or when the upstream is either not
