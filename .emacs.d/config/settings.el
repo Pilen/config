@@ -961,7 +961,8 @@ This is a copy of `async-start-process' that does not override
 
 (setq magit-branch-prefer-remote-upstream t)
 
-(define-suffix-command magit-push-current-to-upstream (args)
+(require 'transient)
+(transient-define-suffix magit-push-current-to-upstream (args)
   "Push the current branch to its upstream branch.
 
 With a prefix argument or when the upstream is either not
