@@ -2,6 +2,7 @@
 
 date=`date +%H:%M`
 bat=`acpi | grep "Battery 0" | grep -o '[0-9]*%'`
+# window="$(xdotool getactivewindow getwindowname)"
 
 if [[ $(acpi | grep "Charging") ]]
 then
