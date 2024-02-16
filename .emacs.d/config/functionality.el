@@ -360,11 +360,16 @@ in that cyclic order."
 (defun transpose-down ()
   "Move current line down"
   (interactive)
-  (let ((column-number (- (point) (point-at-bol))))
+  (let ((column-number (- (point) (point-at-bol)))
+        (line-number))
     (my-kill-whole-line)
+    (setq line-number (line-number-at-pos))
     (forward-line 1)
+    (when (= (line-number-at-pos) line-number)
+      (insert "\n"))
     (yank)
     (setq kill-ring (cdr kill-ring))
+    (end-of-line)
     (forward-line -1)
     (move-to-column column-number)))
 
@@ -566,6 +571,7 @@ This is to update existing buffers after a Git pull of their underlying files."
     (goto-char (or (mark t) (point-max))))
    (t (push-mark) (goto-char (point-max)))
    ))
+
 
 ;;______________________________________________________________________________
 ;π CODE FOLDING

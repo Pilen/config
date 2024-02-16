@@ -320,6 +320,7 @@
 ;; (add-to-list 'tramp-default-proxies-alist
 ;;              '((regexp-quote (system-name)) nil nil))
 
+(require 'tramp)
 (defun my-tramp-add-prefix ()
   ;; Inspired by https://emacs.stackexchange.com/a/26514
   (when (tramp-tramp-file-p (buffer-file-name (current-buffer)))
@@ -908,7 +909,7 @@
 
 (setq magit-branch-read-upstream-first nil)
 
-(setq magit-ellipsis ?.) ;; My font rendered `?…` wider than other chars, making dates not align in log buffers
+(setq magit-ellipsis ".") ;; My font rendered `?…` wider than other chars, making dates not align in log buffers
 
 (defun my-async-when-done (proc &optional _change)
   "Process sentinel used to retrieve the value from the child process."

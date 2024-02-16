@@ -167,6 +167,7 @@
 
 
 
+
 (fmakunbound 'sql-clear)
 
 (setq sql-sqlite-options '("-batch" "-interactive"))
