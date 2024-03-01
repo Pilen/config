@@ -1097,7 +1097,39 @@ the upstream."
 (advice-add 'ace-window :around 'my-aw-hide-cursor)
 
 ;;______________________________________________________________________________
-;π SERVER
+;π Man
+;;______________________________________________________________________________
+(setq woman-fill-frame t)
+
+(defun my-man-imenu-options ()
+  (interactive)
+  (let (options match)
+    (save-excursion
+      (goto-char (point-min))
+      (while (setq match (text-property-search-forward 'face 'Man-overstrike t))
+        (goto-char (prop-match-beginning match))
+        (when (and (looking-back "^ *") (looking-at "-"))
+          (push (cons (buffer-substring-no-properties
+                       (prop-match-beginning match)
+                       (prop-match-end match))
+                      (prop-match-beginning match)
+                      )
+                options))
+        (goto-char (prop-match-end match))))
+    (setq options (nreverse options))
+    ;; (message "%s" options)
+    (ivy-read
+     "Goto: "
+     options
+     :action (lambda (arg) (goto-char (cdr arg)))
+     :caller 'my-man-imenu-options
+     ))
+    )
+
+(ivy-configure 'my-man-imenu-options :update-fn 'auto)
+
+;;______________________________________________________________________________
+                                        ;π SERVER
 ;;______________________________________________________________________________
 (server-force-delete)
 (server-start)

@@ -39,7 +39,7 @@
 ;; (add-hook 'dired-mode-hook 'my-maybe-assign-remote-color)
 
 
-
+;; Change face in modeline of tramp buffers
 (defun my-remote-colorize ()
   (when (file-remote-p default-directory)
     (face-remap-add-relative 'mode-line (list :background "DarkOrchid3"))
