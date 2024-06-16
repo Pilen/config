@@ -1,7 +1,8 @@
 touchpad-off
-setxkbmap us -variant colemak
+# setxkbmap us -variant colemak
+xkbcomp -w 0 -I$HOME/config/xkb ~/config/xkb/map $DISPLAY
 xset r 66
-xmodmap .Xmodmap
+# xmodmap .Xmodmap
 xsetroot -cursor_name left_ptr
 set bell-style none
 xset -b
