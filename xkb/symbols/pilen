@@ -1,0 +1,12 @@
+partial alphanumeric_keys
+xkb_symbols "pilenkey" {
+    key <AE11>	{[ Greek_lambda, Greek_pi ]};
+};
+
+partial modifier_keys
+xkb_symbols "pilenmod" {
+    replace key <RCTL> {[ Alt_L, Meta_L ]};
+    modifier_map Mod1 { <RCTL> };
+    key <LALT> {[ Hyper_L, Hyper_L]};
+    modifier_map Mod3 { <LALT> };
+};

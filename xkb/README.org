@@ -1,0 +1,3 @@
+* build
+setxkbmap us -variant colemak -print > ~/config/xkb/map
+* Load
