@@ -1,0 +1,311 @@
+{
+  "scripts": {
+    "New script - hjemmeproduktion.dk": {
+      "custom": {
+        "origInclude": true,
+        "origExclude": true,
+        "origMatch": true,
+        "origExcludeMatch": true,
+        "name": "",
+        "runAt": "",
+        "homepageURL": "",
+        "updateURL": "",
+        "downloadURL": "",
+        "include": [],
+        "match": [],
+        "exclude": [],
+        "excludeMatch": [],
+        "pathMap": {}
+      },
+      "config": {
+        "enabled": 1,
+        "shouldUpdate": 1,
+        "notifyUpdates": null,
+        "removed": 0
+      },
+      "position": 1,
+      "lastModified": 1639778402726,
+      "lastUpdated": 1639778402726
+    },
+    "youtube.com title": {
+      "custom": {
+        "origInclude": true,
+        "origExclude": true,
+        "origMatch": true,
+        "origExcludeMatch": true,
+        "name": "",
+        "runAt": "",
+        "homepageURL": "",
+        "updateURL": "",
+        "downloadURL": "",
+        "include": [],
+        "match": [],
+        "exclude": [],
+        "excludeMatch": [],
+        "pathMap": {}
+      },
+      "config": {
+        "enabled": 1,
+        "shouldUpdate": 1,
+        "notifyUpdates": null,
+        "removed": 0
+      },
+      "position": 2,
+      "lastModified": 1627945887599,
+      "lastUpdated": 1627945887599
+    },
+    "friluftsland.dk Menu": {
+      "custom": {
+        "origInclude": true,
+        "origExclude": true,
+        "origMatch": true,
+        "origExcludeMatch": true,
+        "name": "",
+        "runAt": "",
+        "homepageURL": "",
+        "updateURL": "",
+        "downloadURL": "",
+        "include": [],
+        "match": [],
+        "exclude": [],
+        "excludeMatch": [],
+        "pathMap": {}
+      },
+      "config": {
+        "enabled": false,
+        "shouldUpdate": 1,
+        "notifyUpdates": null,
+        "removed": 0
+      },
+      "position": 3,
+      "lastModified": 1644273653608,
+      "lastUpdated": 1627945912579
+    },
+    "New script - youtube.com": {
+      "custom": {
+        "origInclude": true,
+        "origExclude": true,
+        "origMatch": true,
+        "origExcludeMatch": true,
+        "name": "",
+        "runAt": "",
+        "homepageURL": "",
+        "updateURL": "",
+        "downloadURL": "",
+        "include": [],
+        "match": [],
+        "exclude": [],
+        "excludeMatch": [],
+        "pathMap": {}
+      },
+      "config": {
+        "enabled": 1,
+        "shouldUpdate": 1,
+        "notifyUpdates": null,
+        "removed": 0
+      },
+      "position": 4,
+      "lastModified": 1627945944469,
+      "lastUpdated": 1627945944469
+    },
+    "New script - proshave.dk": {
+      "custom": {
+        "origInclude": true,
+        "origExclude": true,
+        "origMatch": true,
+        "origExcludeMatch": true,
+        "name": "",
+        "runAt": "",
+        "homepageURL": "",
+        "updateURL": "",
+        "downloadURL": "",
+        "include": [],
+        "match": [],
+        "exclude": [],
+        "excludeMatch": [],
+        "pathMap": {}
+      },
+      "config": {
+        "enabled": 1,
+        "shouldUpdate": 1,
+        "notifyUpdates": null,
+        "removed": 0
+      },
+      "position": 5,
+      "lastModified": 1627945965996,
+      "lastUpdated": 1627945965996
+    },
+    "New script - oracle.com": {
+      "custom": {
+        "origInclude": true,
+        "origExclude": true,
+        "origMatch": true,
+        "origExcludeMatch": true,
+        "name": "",
+        "runAt": "",
+        "homepageURL": "",
+        "updateURL": "",
+        "downloadURL": "",
+        "include": [],
+        "match": [],
+        "exclude": [],
+        "excludeMatch": [],
+        "pathMap": {}
+      },
+      "config": {
+        "enabled": 1,
+        "shouldUpdate": 1,
+        "notifyUpdates": null,
+        "removed": 0
+      },
+      "position": 6,
+      "lastModified": 1639877643447,
+      "lastUpdated": 1639877643447
+    },
+    "New script - processing.org": {
+      "custom": {
+        "origInclude": true,
+        "origExclude": true,
+        "origMatch": true,
+        "origExcludeMatch": true,
+        "name": "",
+        "runAt": "",
+        "homepageURL": "",
+        "updateURL": "",
+        "downloadURL": "",
+        "include": [],
+        "match": [],
+        "exclude": [],
+        "excludeMatch": [],
+        "pathMap": {}
+      },
+      "config": {
+        "enabled": 1,
+        "shouldUpdate": 1,
+        "notifyUpdates": null,
+        "removed": 0
+      },
+      "position": 7,
+      "lastModified": 1644854712485,
+      "lastUpdated": 1644854712485
+    },
+    "New script - elfadistrelec.dk": {
+      "custom": {
+        "origInclude": true,
+        "origExclude": true,
+        "origMatch": true,
+        "origExcludeMatch": true,
+        "name": "",
+        "runAt": "",
+        "homepageURL": "",
+        "updateURL": "",
+        "downloadURL": "",
+        "include": [],
+        "match": [],
+        "exclude": [],
+        "excludeMatch": [],
+        "pathMap": {}
+      },
+      "config": {
+        "enabled": 1,
+        "shouldUpdate": 1,
+        "notifyUpdates": null,
+        "removed": 0
+      },
+      "position": 8,
+      "lastModified": 1660680322900,
+      "lastUpdated": 1660680322900
+    },
+    "New script lospec.com": {
+      "custom": {
+        "origInclude": true,
+        "origExclude": true,
+        "origMatch": true,
+        "origExcludeMatch": true,
+        "pathMap": {}
+      },
+      "config": {
+        "enabled": 1,
+        "shouldUpdate": 1,
+        "removed": 0
+      },
+      "position": 9,
+      "lastModified": 1716224188184,
+      "lastUpdated": 1716224188184
+    }
+  },
+  "settings": {
+    "isApplied": true,
+    "autoUpdate": 1,
+    "updateEnabledScriptsOnly": true,
+    "lastUpdate": 1718994631525,
+    "lastModified": 0,
+    "showBadge": "unique",
+    "badgeColor": "#880088",
+    "badgeColorBlocked": "#888888",
+    "exportValues": true,
+    "exportNameTemplate": "[violentmonkey]_YYYY-MM-DD_HH.mm.ss",
+    "expose": {
+      "greasyfork%2Eorg": true,
+      "sleazyfork%2Eorg": false
+    },
+    "closeAfterInstall": false,
+    "editAfterInstall": false,
+    "helpForLocalFile": true,
+    "trackLocalFile": false,
+    "autoReload": false,
+    "features": null,
+    "blacklist": null,
+    "syncScriptStatus": true,
+    "customCSS": "",
+    "importScriptData": true,
+    "importSettings": true,
+    "notifyUpdates": false,
+    "notifyUpdatesGlobal": false,
+    "version": 1,
+    "defaultInjectInto": "auto",
+    "ffInject": true,
+    "xhrInject": false,
+    "filters": {
+      "searchScope": "name",
+      "showOrder": false,
+      "sort": "exec",
+      "viewSingleColumn": false,
+      "viewTable": false
+    },
+    "filtersPopup": {
+      "sort": "exec",
+      "enabledFirst": false,
+      "groupRunAt": true,
+      "hideDisabled": ""
+    },
+    "editor": {
+      "killTrailingSpaceOnSave": true,
+      "showTrailingSpace": true,
+      "autocompleteOnTyping": 100,
+      "lineWrapping": false,
+      "indentWithTabs": false,
+      "indentUnit": 2,
+      "tabSize": 2,
+      "undoDepth": 500
+    },
+    "editorTheme": "",
+    "editorThemeName": null,
+    "editorWindow": false,
+    "editorWindowPos": {},
+    "editorWindowSimple": true,
+    "scriptTemplate": "// ==UserScript==\n// @name        New script {{name}}\n// @namespace   Violentmonkey Scripts\n// @match       {{url}}\n// @grant       none\n// @version     1.0\n// @author      -\n// @description {{date}}\n// ==/UserScript==\n",
+    "showAdvanced": true,
+    "valueEditor": {
+      "autocompleteOnTyping": 100,
+      "lineWrapping": false,
+      "indentWithTabs": false,
+      "indentUnit": 2,
+      "tabSize": 2,
+      "undoDepth": 500
+    },
+    "uiTheme": "",
+    "scriptTemplateEdited": true
+  },
+  "values": {}
+}
