@@ -14,3 +14,12 @@ sudo apt install dconf-tools
 dconf-editor
 org > gtk > settings > file-chooser > startup-mode = recent
 org > gnome > evince > default > sizing-mode = fit-page
+
+* beep
+/etc/modprobe.d/blacklist.conf
+#+begin_src shell
+blacklist pcspkr
+#+end_src
+#+begin_src shell
+sudo rmmod pcspkr
+#+end_src
