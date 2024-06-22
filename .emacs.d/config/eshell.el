@@ -454,7 +454,8 @@ If there's a string at point, offer that as a default."
       (if buffer
           ;; (switch-to-buffer-other-window buffer)
           (if (get-buffer-window buffer t) (select-window (get-buffer-window buffer t)) (switch-to-buffer-other-window buffer))  ;; Hack due to problem with display-buffer-alist
-        (eshell)))))
+        (with-current-buffer (eshell)
+          (my-eshell-rename))))))
 
 ;;______________________________________________________________________________
 ;π ESHELL TREE

@@ -1,4 +1,5 @@
-FROM python:3.11
+# from python:3.8
+from python:3.11
 
 RUN \
     apt-get update &&\
@@ -7,7 +8,7 @@ RUN \
     groupadd --gid 1000 spi &&\
     useradd --uid 1000 --gid 1000 --group sudo --create-home --shell /bin/bash spi &&\
     echo '%spi ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers &&\
-    sudo -u spi pip install ipython mypy pytest pytest-cov openpyxl requests pymongo && \
+    sudo -u spi pip install ipython mypy pytest pytest-cov openpyxl requests pymongo pgcli && \
     echo ""\
     apt-get update &&\
     apt-get install -y ca-certificates curl gnupg lsb-release &&\

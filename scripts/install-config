@@ -16,7 +16,6 @@ echo -e "\n\n"
 files=(
     # directories:
     '.emacs.d'
-    'code/scripts'
     '.config/bspwm'
     '.config/sxhkd'
     # files:

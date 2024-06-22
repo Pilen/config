@@ -12,6 +12,8 @@
 
 (setq org-startup-folded nil)
 
+(setq org-todo-keywords '((sequence "TODO" "ACTIVE" "DONE")))
+
 ;; By default org-beamer will export *text* as \alert{text} not \textbf{text}, revert this
 (defun my-beamer-bold (contents backend info)
   (when (eq backend 'beamer)
@@ -59,6 +61,8 @@
 
 (setq org-src-tab-acts-natively t)
 
+(setq org-odt-preferred-output-format "docx")
+
 (defun my-org-return ()
   (interactive)
   (cond
@@ -85,7 +89,12 @@
 ;; (setq org-babel-python-command "python ")
 
 
-(setq org-agenda-files '("/home/spi/status/status.org"))
+(setq
+ org-agenda-files
+ '(
+   "/home/spi/status/status.org"
+   "/home/pilen/knoerden/projekter/escaperoombox/"
+   ))
 (setq org-agenda-clockreport-parameter-plist '(:link nil :maxlevel 99 :compact t :step day :stepskip0 t))
 
 (setq org-duration-format `((special . h:mm)))

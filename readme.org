@@ -14,3 +14,25 @@ sudo apt install dconf-tools
 dconf-editor
 org > gtk > settings > file-chooser > startup-mode = recent
 org > gnome > evince > default > sizing-mode = fit-page
+
+
+* xkb
+https://old.reddit.com/r/emacs/comments/15g3f9b/emacs_29_not_understanding_xmodmap_keybindings/
+
+Xmodmap - Old style:
+https://wiki.archlinux.org/title/Xmodmap
+https://erwin.co/adding-a-hyper-modifier-key-to-your-keyboard-because-shift-ctrl-alt-meta-super-arent-enough/
+https://protesilaos.com/codelog/2019-10-10-debian-xmodmap/
+
+setxkbmap - New style:
+https://wiki.archlinux.org/title/X_keyboard_extension
+https://wiki.archlinux.org/title/Xorg/Keyboard_configuration
+https://web.archive.org/web/20170825051821/http://madduck.net:80/docs/extending-xkb/
+https://rlog.rgtti.com/2014/05/01/how-to-modify-a-keyboard-layout-in-linux/ Followed this
+https://askubuntu.com/questions/876005/what-file-is-the-setxkbmap-option-rules-meant-to-take-and-how-can-i-add-keyboa ?
+https://a3nm.net/blog/xkbcomp.html Followed this
+https://a3nm.net/git/myconfig/file/xkb/map.html Followed this
+https://www.charvolant.org/doug/xkb/html/xkb.html Followed this
+https://www.charvolant.org/doug/xkb/html/node5.html Followed this
+https://wiki.tcl-lang.org/page/Modifier+Keys
+https://stackoverflow.com/questions/28527938/xkb-configuration-for-emacs
