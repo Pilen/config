@@ -9,4 +9,7 @@ xkb_symbols "pilenmod" {
     modifier_map Mod1 { <RCTL> };
     key <LALT> {[ Hyper_L, Hyper_L]};
     modifier_map Mod3 { <LALT> };
+
+//    replace key <MENU> {[ Menu ]};
+    key <RWIN> {[ Menu ]};
 };

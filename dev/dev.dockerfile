@@ -4,10 +4,11 @@ RUN \
     apt-get update &&\
     apt-get -y install sudo less jq iputils-ping ssh &&\
     apt-get -y install postgresql &&\
+    apt-get -y install default-jre &&\
     groupadd --gid 1000 spi &&\
     useradd --uid 1000 --gid 1000 --group sudo --create-home --shell /bin/bash spi &&\
     echo '%spi ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers &&\
-    sudo -u spi pip install ipython mypy pytest pytest-cov openpyxl requests pymongo && \
+    sudo -u spi pip install ipython mypy pytest pytest-cov openpyxl requests pymongo pgcli && \
     echo ""\
     apt-get update &&\
     apt-get install -y ca-certificates curl gnupg lsb-release &&\

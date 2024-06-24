@@ -221,7 +221,8 @@
 (global-set-key (kbd "H->") '(lambda () (interactive) (ahs-highlight-now) (ahs-forward-definition)))
 
 ;;(global-set-key (kbd "<menu>") 'idobuffer)
-(global-set-key (kbd "<menu>") 'ibuffer)
+;; (global-set-key (kbd "<menu>") 'ibuffer)
+(global-set-key (kbd "<menu>") 'my-magit-status)
 (global-set-key (kbd "S-<menu>") 'menu-bar-mode)
 
 (global-set-key (kbd "H-D") 'create-scratch-buffer)

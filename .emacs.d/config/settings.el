@@ -1126,6 +1126,7 @@ the upstream."
      ))
     )
 
+(require 'ivy)
 (ivy-configure 'my-man-imenu-options :update-fn 'auto)
 
 ;;______________________________________________________________________________
