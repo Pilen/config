@@ -1,5 +1,4 @@
-# from python:3.8
-from python:3.11
+from python:3.12
 
 RUN \
     apt-get update &&\

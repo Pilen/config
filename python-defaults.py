@@ -15,3 +15,9 @@ import argparse
 
 d = {"a":"A", "b":"B", "c":"C"}
 l = [1, 2, 3]
+
+
+def make_password(length: int = 16):
+    import secrets
+    import string
+    return "".join(secrets.choice(string.ascii_letters + "0123456789") for _ in range(length))
