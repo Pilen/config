@@ -1,0 +1,15 @@
+
+#+begin_export ascii
++------------------+          +----------------+
+| Localhost        |          | Remote         |
+| backedit-server  |--------->| backedit-proxy |
+|    ^             |          |                |
+| sss (backedit-?) |--------->| backedit $FILE |
++-----------------+           +----------------+
+
+#+end_export
++
+
+backedit-proxy
+
+backedit

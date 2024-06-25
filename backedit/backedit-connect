@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+
+import argparse
+import socket
+import sys
+from pathlib import Path
+
+SOCKET_PATH = Path("/tmp/backedit-server.socket")
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("host")
+    args = parser.parse_args()
+    host = args.host
+    if not SOCKET_PATH.exists():
+        print("Backedit-server is not running")
+        sys.exit(1)
+    client = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+    client.settimeout(5)
+    client.connect(str(SOCKET_PATH))
+    client.sendall(b"CONNECT ")
+    client.sendall(host.encode("utf-8"))
+
+
+if __name__ == "__main__":
+    main()

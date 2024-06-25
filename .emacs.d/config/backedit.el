@@ -1,5 +1,5 @@
 
-(start-process "backedit" "*backedit*" "~/config/backedit-server.py")
+(start-process "backedit" "*backedit*" "~/config/backedit/backedit-server.py")
 ;; (find-file "/ssh:dkcphispitest01:/tmp/testfile")
 
 

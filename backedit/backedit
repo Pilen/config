@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+
+import argparse
+import os
+import socket
+import sys
+from pathlib import Path
+
+SOCKET_PATH = Path("/tmp/backedit.socket")
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("file", type=Path)
+    args = parser.parse_args()
+    uid = os.getuid()
+    file = args.file.absolute()
+    sudo = "sudo" if uid == 0 else "user"
+    message = f"OPEN {sudo} {file}".encode("utf-8")
+    if not SOCKET_PATH.exists():
+        print("Backedit-proxy is not running")
+        sys.exit(1)
+    client = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+    client.settimeout(5)
+    client.connect(str(SOCKET_PATH))
+    client.sendall(message)
+
+
+if __name__ == "__main__":
+    main()
