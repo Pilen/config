@@ -12,6 +12,7 @@ SOCKET_PATH = Path("/tmp/backedit-server.socket")
 SOCKET_SERVER = None
 QUEUE = queue.SimpleQueue()
 
+
 def run_socket_server():
     global SOCKET_SERVER
     with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as server:
@@ -25,6 +26,7 @@ def run_socket_server():
                 receive_socket_message(conn)
             except TimeoutError:
                 print("Connection timed out")
+
 
 def receive_socket_message(conn):
     buffer = []
@@ -71,18 +73,19 @@ class Connection(threading.Thread):
         self.process.kill()
 
 
-
 def loop():
     connections = {}
     while True:
         message, host = QUEUE.get()
+        # Clean dead connections before handle, so any reconnects can proceed
+        for host in connections.keys():
+            if not connections[host].is_alive:
+                connections.pop(host)
         try:
             handle(message, host, connections)
         except Exception as e:
             print(e)
-        for host in connections.keys():
-            if not connections[host].is_alive:
-                connections.pop(host)
+
 
 def handle(message, host, connections):
     command, arg = message.split(" ", 1)
@@ -107,6 +110,7 @@ def handle(message, host, connections):
     else:
         print("Unknown command:", command)
 
+
 def open_in_emacs(how, host, path):
     if how == "sudo":
         extend = "|sudo:"
@@ -119,10 +123,14 @@ def open_in_emacs(how, host, path):
     subprocess.run(command)
     # subprocess.run(["bspc", "config", "ignore_ewmh_focus", "true"])
 
+
 def validate_host(host):
     assert re.fullmatch("[-a-zA-Z0-9._:@]+", host)
+
+
 def validate_path(path):
     assert not re.search("""['"\n\\\\]""", path)
+
 
 def main():
     try:
