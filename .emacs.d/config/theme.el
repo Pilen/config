@@ -55,47 +55,47 @@
   (set-background-color "SteelBlue4"))
 (set-foreground-color "honeydew1")
 
-;(set-face-background 'menubar "slate gray")
-;(set-face-attribute 'menubar nil :box nil)
+;; (set-face-background 'menubar "slate gray")
+;; (set-face-attribute 'menubar nil :box nil)
 
 ;; Box modeline
-;(custom-set-faces
-;   '(mode-line ((t (:box (:line-width 0 :color "gray50"))))))
-;(custom-set-faces
-;   '(mode-line-inactive ((t (:box (:line-width 0 :color "gray50"))))))
+;; (custom-set-faces
+;;    '(mode-line ((t (:box (:line-width 0 :color "gray50"))))))
+;; (custom-set-faces
+;;    '(mode-line-inactive ((t (:box (:line-width 0 :color "gray50"))))))
 
 (set-face-background 'mode-line "slate gray")
 (set-face-background 'mode-line-inactive "gray36")
-;(set-face-foreground 'mode-line-inactive "gray10")
+;; (set-face-foreground 'mode-line-inactive "gray10")
 (set-face-foreground 'mode-line-inactive "black")
 
-;(set-face-background 'mode-line "#4477aa")
+;; (set-face-background 'mode-line "#4477aa")
 (set-face-attribute 'mode-line nil :box nil)
-;(set-background-color "black")
-;(set-face-background 'default "black")
-;(set-face-background 'region "black")
-;(set-face-foreground 'default "white")
-;(set-face-foreground 'region "gray60")
-;(set-foreground-color "white")
-;(set-cursor-color "red")
-;(set-cursor-color "cyan")
+;; (set-background-color "black")
+;; (set-face-background 'default "black")
+;; (set-face-background 'region "black")
+;; (set-face-foreground 'default "white")
+;; (set-face-foreground 'region "gray60")
+;; (set-foreground-color "white")
+;; (set-cursor-color "red")
+;; (set-cursor-color "cyan")
 
 (set-face-background 'show-paren-match "gray40")
-;(set-face-background 'paren-face-match "gray40") ;; from mic-paren
+;; (set-face-background 'paren-face-match "gray40") ;; from mic-paren
 
 (set-face-foreground 'vertical-border "gray22")
 
-;(set-face-background 'region "royal blue")
-;(set-face-background 'region "cornflower blue")
-;(set-face-background 'region "DeepSkyBlue4")
+;; (set-face-background 'region "royal blue")
+;; (set-face-background 'region "cornflower blue")
+;; (set-face-background 'region "DeepSkyBlue4")
 (set-face-background 'region "SkyBlue4")
 
-;(set-face-background hl-line-face "dark olive green")
+;; (set-face-background hl-line-face "dark olive green")
 (set-face-background hl-line-face "dark slate gray")
-;(set-face-background hl-line-face "DodgerBlue4")
-;(set-face-background hl-line-face "RoyalBlue4")
-;(set-face-background hl-line-face "gray27")
-;(set-face-background hl-line-face "gray34")
+;; (set-face-background hl-line-face "DodgerBlue4")
+;; (set-face-background hl-line-face "RoyalBlue4")
+;; (set-face-background hl-line-face "gray27")
+;; (set-face-background hl-line-face "gray34")
 
 
 (setq ansi-color-names-vector ["black" "red3" "green3" "yellow3" "blue2" "magenta3" "cyan3" "gray90"])
