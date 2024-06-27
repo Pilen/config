@@ -29,6 +29,21 @@
 ;; -Schumacher-Schumacher Clean-regular-normal-normal-*-12-*-*-*-c-60-iso10646-1
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "-Schumacher-Schumacher Clean-regular-normal-normal-*-12-*-*-*-c-60-iso10646-1"))
+;; (set-frame-font "-DAMA-Ubuntu Mono-regular-normal-normal-*-*-*-*-*-m-0-iso10646-1")
+;; (add-to-list 'default-frame-alist
+;;              '(font . "-DAMA-Ubuntu Mono-regular-normal-normal-*-*-*-*-*-m-0-iso10646-1"))
+;; (set-frame-font "Ubuntu Mono:antialias=false")
+;; (add-to-list 'default-frame-alist
+;;              '(font . "Ubuntu Mono:antialias=false"))
+;; (set-frame-font "Source Code Pro:antialias=false")
+;; (add-to-list 'default-frame-alist
+;;              '(font . "Source Code Pro:antialias=false"))
+;; (set-frame-font "Source Code Pro" nil t)
+;; (set-frame-font "Monaco :size=12" nil t)
+;; (set-frame-font "Monaco :antialias=false:size=12" nil t)
+;; (set-frame-font "Monaco :size=11" nil t)
+(set-frame-font "Monaco :antialias=false:size=11" nil t)
+;; (setf (alist-get 'font default-frame-alist) "Source Code Pro")
 
 (setq my-antialias-toggle nil)
 (defun my-antialias-toggle ()
@@ -50,10 +65,17 @@
 ;(require 'color-theme-solarized)
 ;(color-theme-solarized-dark)
 
-(if (or (string= (system-name) "joker") (string= (system-name) "penguin"))
-    (set-background-color "grey30")
-  (set-background-color "SteelBlue4"))
+;; (if (or (string= (system-name) "joker") (string= (system-name) "penguin"))
+;;     (set-background-color "grey30")
+;;   (set-background-color "SteelBlue4"))
+(set-background-color "grey30")
 (set-foreground-color "honeydew1")
+;; (face-attribute 'default :height)
+;; (set-face-attribute 'default nil :height 100)
+;; (set-face-attribute 'default nil :height 90)
+;; (set-face-attribute 'default nil :height 80)
+;; (my-antialias-toggle)
+;; (my-antialias-toggle)
 
 ;; (set-face-background 'menubar "slate gray")
 ;; (set-face-attribute 'menubar nil :box nil)
