@@ -96,10 +96,8 @@ super + shift + {1-9,0}
 super {_,shift} + grave
     bspc {desktop -f,node -d} 'Ex1'
 
-super + U03BB
-    bspc desktop -f 'Ex2'
-super + Greek_lambda
-    bspc desktop -f 'Ex2'
+super + {Greek_lambda, Greek_pi}
+    bspc {desktop -f,node -d} 'Ex2'
 
 super + {equal, plus}
     bspc {desktop -f,node -d} 'Ex3'
