@@ -82,17 +82,23 @@
 
 
 ;; Toggle window dedication
+(defvar my-dedicated-window-face-remap-token)
+(make-variable-buffer-local 'my-dedicated-window-face-remap-token)
 (defun toggle-window-dedicated ()
   "Toggle whether the current active window is dedicated or not"
   (interactive)
   (if (let (window (get-buffer-window (current-buffer)))
-       (set-window-dedicated-p window (not (window-dedicated-p window))))
+        (set-window-dedicated-p window (not (window-dedicated-p window))))
       (progn
         (message "'%s' dedicated" (current-buffer))
-        (bufferlocal-background "gray20"))
+        (setq my-dedicated-window-face-remap-token (face-remap-add-relative 'line-number (list :background "RoyalBlue4")))
+        ;; (bufferlocal-background "gray20")
+        )
     (progn
+      (face-remap-remove-relative my-dedicated-window-face-remap-token)
       (message "'%s' normal" (current-buffer))
-      (remove-bufferlocal-background))))
+      ;; (remove-bufferlocal-background)
+      )))
 
 (require 'golden-ratio)
 (setq golden-ratio 'nil)
