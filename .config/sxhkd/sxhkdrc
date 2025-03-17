@@ -186,3 +186,12 @@ XF86AudioPrev
 
 # XF86AudioStop
 #     ~/config/scripts/spotify-control stop
+
+super + semicolon
+    ~/config/scripts/spotify-control playpause
+
+super + bracketleft
+~/config/scripts/spotify-control previous
+
+super + bracketright
+    ~/config/scripts/spotify-control next
