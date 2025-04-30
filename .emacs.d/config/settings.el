@@ -711,7 +711,8 @@
   (let ((node-short-name (neo-path--file-short-name node))
         (vc (when neo-vc-integration (neo-vc-for-node node))))
     (insert-char ?\s (* (- depth 1) 2)) ; indent
-    (when (memq 'char neo-vc-integration)
+    ;; (when (memq 'char neo-vc-integration) ;; Ignore condition
+    (when t ;; Ignore condition
       (insert-char (car vc))
       (insert-char ?\s))
     (neo-buffer--insert-fold-symbol 'leaf node-short-name)
@@ -719,7 +720,8 @@
                    'follow-link t
                    'face (if (neo-filepath-hidden-p node) ;; Inserted this
                              'neo-hidden-face             ;; Inserted this
-                           (if (memq 'face neo-vc-integration)
+                           ;; (if (memq 'face neo-vc-integration) ;; Ignore condition
+                           (if t ;; Ignore condition
                                (cdr vc)
                              neo-file-link-face))
                    'neo-full-path node
@@ -733,7 +735,16 @@
   (ag (ag/read-from-minibuffer "Search string") default-directory))
 
 
-(setq neo-vc-integration nil)
+;; (setq neo-vc-integration nil)
+(setq neo-vc-integration '(face))
+(setq neo-vc-integration '(char))
+(push (cons 'unregistered ?.) neo-vc-state-char-alist)
+;; (pop neo-vc-state-char-alist)
+(set-face-foreground 'neo-vc-up-to-date-face nil)
+(set-face-foreground 'neo-vc-unregistered-face "DarkGray")
+(set-face-foreground 'neo-vc-edited-face "IndianRed1")
+(set-face-foreground 'neo-vc-edited-face "tomato1")
+(set-face-foreground 'neo-vc-edited-face "cyan1")
 
 (defun neo-buffer--insert-dir-entry (node depth expanded)
   (let ((node-short-name (neo-path--file-short-name node)))
@@ -744,7 +755,7 @@
      (if expanded 'open 'close) node)
     (insert-button (if neo-show-slash-for-folder (concat node-short-name "/") node-short-name)
                    'follow-link t
-                   'face (if (or (vc-git--out-ok "check-ignore" "-q" "--" node) (neo-filepath-hidden-p node)) 'neo-hidden-face neo-dir-link-face)  ;; Inserted this (State only shows edited, not ignored)
+                   'face (if (or (vc-git--out-ok "check-ignore" "-q" "--" node) (neo-filepath-hidden-p node)) 'neo-hidden-face neo-dir-link-face) ;; Inserted this (State only shows edited, not ignored)
                    'neo-full-path node
                    'keymap neotree-dir-button-keymap
                    'help-echo (neo-buffer--help-echo-message node-short-name))
