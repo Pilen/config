@@ -706,6 +706,27 @@
   :group 'neotree :group 'font-lock-highlighting-faces)
 (set-face-foreground 'neo-hidden-face "DimGray")
 
+(defun neo-vc-for-node (node)
+  (let* ((backend (ignore-errors
+                    (vc-responsible-backend node)))
+         (q (vc-state-refresh node backend)) ;; Inserted this
+         (vc-state (when backend (vc-state node backend))))
+    (cons (cdr (assoc vc-state neo-vc-state-char-alist))
+          (cl-case vc-state
+            (up-to-date       neo-vc-up-to-date-face)
+            (edited           neo-vc-edited-face)
+            (needs-update     neo-vc-needs-update-face)
+            (needs-merge      neo-vc-needs-merge-face)
+            (unlocked-changes neo-vc-unlocked-changes-face)
+            (added            neo-vc-added-face)
+            (removed          neo-vc-removed-face)
+            (conflict         neo-vc-conflict-face)
+            (missing          neo-vc-missing-face)
+            (ignored          neo-vc-ignored-face)
+            (unregistered     neo-vc-unregistered-face)
+            (user             neo-vc-user-face)
+            (otherwise        neo-vc-default-face)))))
+
 ;; Updated to "hide" hidden files
 (defun neo-buffer--insert-file-entry (node depth)
   (let ((node-short-name (neo-path--file-short-name node))
@@ -917,6 +938,7 @@
   (my-ahs-clear-overlays))
 (global-set-key (kbd "<f6>") 'my-ahs-clear-overlays)
 (add-hook 'magit-post-refresh-hook 'my-ahs-clear-overlays)
+
 
 (setq magit-branch-read-upstream-first nil)
 
