@@ -115,7 +115,7 @@
        "€ euro"
        "£ pound"
 
-
+       "• bullet"
 
        "➝ right arrow"
        "➞ heavy right arrow"
