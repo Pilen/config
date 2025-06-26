@@ -62,7 +62,7 @@ Only meaningful for consecutive chops.")
 (defun chop-next (dir)
   "Make the next chop."
   (setq chop-size (/ chop-size 2))
-  (incf chop-current-line (* dir chop-size))
+  (cl-incf chop-current-line (* dir chop-size))
   (move-to-window-line (min (chop-last-line-number)
 			    (round chop-current-line))))
 
