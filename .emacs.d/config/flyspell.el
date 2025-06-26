@@ -7,6 +7,7 @@
 (require 'flyspell)
 ;(autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
 (setq flyspell-issue-welcome-flag nil)
+(setq ispell-program-name "aspell") ;; sudo pacman -S aspell aspell-en aspell-da
                                         ;(setq ispell-dictionary "dansk")
 (setq ispell-dictionary "english")
 ;; (add-hook 'prog-mode-hook 'flyspell-prog-mode)
@@ -34,7 +35,7 @@
   (when flyspell-mode (flyspell-buffer))
   )
 (add-hook 'flyspell-mode-hook 'my-flyspell-hook)
-(setq flyspell-mode-hook nil)
+;; (setq flyspell-mode-hook nil)
 ;; (add-hook 'flyspell-mode-hook (lambda ()
 ;;                                 (define-key flyspell-mouse-map [down-mouse-2] 'ignore)
 ;;                                 (define-key flyspell-mouse-map [mouse-2] #'flyspell-correct-word)))
