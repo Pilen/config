@@ -32,6 +32,7 @@ All packages here will automatically be installed if not present.")
         cypher-mode
         dash
         dash-docs
+        deadgrep
         ;; dirvish requires emacs 27.1
         docker
         dockerfile-mode
@@ -74,7 +75,7 @@ All packages here will automatically be installed if not present.")
         json-mode
         jss
         keyfreq
-        kite
+        ;;kite
         less-css-mode
         livid-mode
         loccur

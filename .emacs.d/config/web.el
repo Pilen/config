@@ -11,7 +11,8 @@
 
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.html?\\'" . html-mode))
-(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css\\'" . css-mode))
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
@@ -155,3 +156,38 @@
 ;;   Tern is a stand-alone code-analysis engine for JavaScript. http://ternjs.net/
 ;; jade
 ;;
+
+
+(defun css--fontify-region (start end &optional loudly)
+  "Fontify a CSS buffer between START and END.
+START and END are buffer positions."
+  (let ((extended-region (font-lock-default-fontify-region start end loudly)))
+    (when css-fontify-colors
+      (when (and (consp extended-region)
+		 (eq (car extended-region) 'jit-lock-bounds))
+	(setq start (cadr extended-region))
+	(setq end (cddr extended-region)))
+      (save-excursion
+	(let ((case-fold-search t))
+	  (goto-char start)
+	  (while (re-search-forward css--colors-regexp end t)
+	    ;; Skip comments and strings.
+	    (unless (nth 8 (syntax-ppss))
+	      (let* ((start (match-beginning 0))
+                     (color (css--compute-color start (match-string 0))))
+		(when color
+		  (with-silent-modifications
+		    ;; Use the color as the background, to make it more
+		    ;; clear.  Use a contrasting color as the foreground,
+		    ;; to make it readable.  Finally, have a small box
+		    ;; using the existing foreground color, to make sure
+		    ;; it stands out a bit from any other text; in
+		    ;; particular this is nice when the color matches the
+		    ;; buffer's background color.
+		    (add-text-properties
+		     start (point)
+		     (list 'face (list :background color
+				       :foreground (readable-foreground-color
+                                                    color)
+				       :box `(:line-width 3 :color ,color)))))))))))) ;; SPI: Changed color of box line to match, and increased width.
+    extended-region))

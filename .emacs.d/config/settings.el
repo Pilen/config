@@ -594,8 +594,15 @@
 (setq edit-server-default-major-mode 'markdown-mode)
 (edit-server-start)
 
+
+
+
+(require 'bnf-mode)
+(defun spi-bnf-mode-hook ()
+  (setq comment-start "// "))
+(add-hook 'bnf-mode-hook 'spi-bnf-mode-hook)
 ;;______________________________________________________________________________
-;π COMPLETIONS
+                                        ;π COMPLETIONS
 ;;______________________________________________________________________________
 
 (define-key completion-list-mode-map (kbd "H-u") 'previous-completion)
@@ -707,10 +714,16 @@
 (set-face-foreground 'neo-hidden-face "DimGray")
 
 (defun neo-vc-for-node (node)
-  (let* ((backend (ignore-errors
-                    (vc-responsible-backend node)))
-         (q (vc-state-refresh node backend)) ;; Inserted this
-         (vc-state (when backend (vc-state node backend))))
+  ;; (let* ((backend (ignore-errors
+  ;;                   (vc-responsible-backend node)))
+  ;;        (q (vc-state-refresh node backend)) ;; Inserted this
+  ;;        (vc-state (when backend (vc-state node backend))))
+  (let* (backend vc-state)
+    (message "%S" backend)
+    (setq backend (ignore-errors (vc-responsible-backend node)))
+    (if (null backend) ;; inserted this
+        (cons ?\s neo-vc-default-face) ;; Inserted this
+    (vc-state-refresh node backend) ;; Inserted this
     (cons (cdr (assoc vc-state neo-vc-state-char-alist))
           (cl-case vc-state
             (up-to-date       neo-vc-up-to-date-face)
@@ -725,7 +738,8 @@
             (ignored          neo-vc-ignored-face)
             (unregistered     neo-vc-unregistered-face)
             (user             neo-vc-user-face)
-            (otherwise        neo-vc-default-face)))))
+            (otherwise        neo-vc-default-face))))))
+
 
 ;; Updated to "hide" hidden files
 (defun neo-buffer--insert-file-entry (node depth)

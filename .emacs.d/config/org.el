@@ -12,6 +12,8 @@
 
 (setq org-startup-folded nil)
 
+(setq org-todo-keywords '((sequence "TODO" "ACTIVE" "DONE")))
+
 ;; By default org-beamer will export *text* as \alert{text} not \textbf{text}, revert this
 (defun my-beamer-bold (contents backend info)
   (when (eq backend 'beamer)
@@ -42,7 +44,8 @@
   (replace-regexp-in-string "\\.\\(\n\\|$\\)" ".<span class='sentence-end'></span>\\1" text)
   )
 
-(setq org-cycle-separator-lines 3)
+;; (setq org-cycle-separator-lines 3)
+(setq org-cycle-separator-lines 0)
 
 (setq org-edit-src-content-indentation 0)
 
@@ -64,6 +67,8 @@
   (cond
    ((org-in-src-block-p t)
     (org-return-indent))
+   ((org-in-item-p)
+    (org-return-and-maybe-indent))
    ((looking-at "[ \t\n]\\|$")
     (org-return-indent))
    ((org-in-regexp org-link-any-re)
@@ -85,7 +90,9 @@
 ;; (setq org-babel-python-command "python ")
 
 
-(setq org-agenda-files '("/home/spi/status/status.org"))
+;; (setq org-agenda-files '("/home/spi/status/status.org" "/home/spi/status/2026"))
+(setq org-agenda-files '("/home/spi/status/2026"))
+
 (setq org-agenda-clockreport-parameter-plist '(:link nil :maxlevel 99 :compact t :step day :stepskip0 t))
 
 (setq org-duration-format `((special . h:mm)))
@@ -148,65 +155,65 @@
 
 ;; (org-clock-in '(4))
 ;; (org-clock-select-task)
-(defun my-org-clock-in-menu ()
-  (interactive)
-  (let (candidates
-        selected-task
-        selected
+;; (defun my-org-clock-in-menu ()
+;;   (interactive)
+;;   (let (candidates
+;;         selected-task
+;;         selected
 
-        cat task heading prefix
-        )
-    (dolist (marker org-clock-history)
-      (when (and (not (equal marker (cadr candidates)))
-                 (marker-buffer marker))
-        (with-current-buffer (org-base-buffer (marker-buffer marker))
-          (org-with-wide-buffer
-           (ignore-errors
-             (goto-char marker)
-             (setq cat (org-get-category)
-                   heading (org-get-heading 'notags)
-                   prefix (save-excursion
-                            (org-back-to-heading t)
-                            (looking-at org-outline-regexp)
-                            (match-string 0))
-                   ;; task (substring ;-no-properties
-                   ;;       (org-fontify-like-in-org-mode
-                   ;;        (concat prefix heading)
-                   ;;        org-odd-levels-only)
-                   ;;       (length prefix))
-                   task (progn (set-text-properties 0 (length heading) nil heading) heading)
-                   )
-             (when (and cat task)
-               (push (cons task marker) candidates)))))))
-    (push (cons "[New task]" 'new-task) candidates)
-    (setq candidates (reverse candidates))
-    (when (org-clocking-p)
-      (push (cons "[Clock out]" 'clock-out) candidates)
-      )
-    (setq selected-task (ivy-read "Task:" candidates))
-    (setq selected (cdr (assoc selected-task candidates)))
-    (case selected
-      ((clock-out) (org-clock-out))
-      ((new-task)
-       (let ((task (read-from-minibuffer "Task: ")))
-         (with-current-buffer (org-base-buffer (marker-buffer (car org-clock-history))) ;; This can fail if marker is in no buffer, eg if buffer is closed (even if reopened)
-           (with-selected-window (get-buffer-window (current-buffer) t)
-             (goto-char (point-max))
-             ;; (search-backward-regexp "^\\*\\* Tasks")
-             ;; (goto-char (match-end 0))
-             ;; (search-forward-regexp "^\\*\\* ")
-             ;; (goto-char (match-beginning 0))
-             (insert "\n")
-             (insert "*** " task "\n\n")
-             (backward-char 1)
-             (beginning-of-line)
-             (org-clock-in))
-           ))
-       )
-      (otherwise
-       (with-current-buffer (org-base-buffer (marker-buffer selected))
-         (goto-char selected)
-        (org-clock-in))))))
+;;         cat task heading prefix
+;;         )
+;;     (dolist (marker org-clock-history)
+;;       (when (and (not (equal marker (cadr candidates)))
+;;                  (marker-buffer marker))
+;;         (with-current-buffer (org-base-buffer (marker-buffer marker))
+;;           (org-with-wide-buffer
+;;            (ignore-errors
+;;              (goto-char marker)
+;;              (setq cat (org-get-category)
+;;                    heading (org-get-heading 'notags)
+;;                    prefix (save-excursion
+;;                             (org-back-to-heading t)
+;;                             (looking-at org-outline-regexp)
+;;                             (match-string 0))
+;;                    ;; task (substring ;-no-properties
+;;                    ;;       (org-fontify-like-in-org-mode
+;;                    ;;        (concat prefix heading)
+;;                    ;;        org-odd-levels-only)
+;;                    ;;       (length prefix))
+;;                    task (progn (set-text-properties 0 (length heading) nil heading) heading)
+;;                    )
+;;              (when (and cat task)
+;;                (push (cons task marker) candidates)))))))
+;;     (push (cons "[New task]" 'new-task) candidates)
+;;     (setq candidates (reverse candidates))
+;;     (when (org-clocking-p)
+;;       (push (cons "[Clock out]" 'clock-out) candidates)
+;;       )
+;;     (setq selected-task (ivy-read "Task:" candidates))
+;;     (setq selected (cdr (assoc selected-task candidates)))
+;;     (case selected
+;;       ((clock-out) (org-clock-out))
+;;       ((new-task)
+;;        (let ((task (read-from-minibuffer "Task: ")))
+;;          (with-current-buffer (org-base-buffer (marker-buffer (car org-clock-history))) ;; This can fail if marker is in no buffer, eg if buffer is closed (even if reopened)
+;;            (with-selected-window (get-buffer-window (current-buffer) t)
+;;              (goto-char (point-max))
+;;              ;; (search-backward-regexp "^\\*\\* Tasks")
+;;              ;; (goto-char (match-end 0))
+;;              ;; (search-forward-regexp "^\\*\\* ")
+;;              ;; (goto-char (match-beginning 0))
+;;              (insert "\n")
+;;              (insert "*** " task "\n\n")
+;;              (backward-char 1)
+;;              (beginning-of-line)
+;;              (org-clock-in))
+;;            ))
+;;        )
+;;       (otherwise
+;;        (with-current-buffer (org-base-buffer (marker-buffer selected))
+;;          (goto-char selected)
+;;         (org-clock-in))))))
 
 
 ;; (with-current-buffer (org-base-buffer (marker-buffer (car org-clock-history)))

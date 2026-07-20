@@ -173,6 +173,7 @@
   (command-center-add (lambda () (interactive) (quick-calc) (yank)) "quick-calc-insert")
   (command-center-add 'quick-calc)
   (command-center-add 'man) ()
+  (command-center-add '(lambda () (interactive) (call-interactively 'Man-update-manpage)) "man reload")
   (command-center-add 'neotree)
   (command-center-add 'imenu-list-smart-toggle)
   (command-center-add 'ibuffer)
