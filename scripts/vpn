@@ -1,0 +1,23 @@
+#!/usr/bin/python3
+
+import getpass
+import subprocess
+
+CERT = "vpn/spi.2026-02-22.pfx"
+def main():
+    try:
+        password = getpass.getpass("P:")
+        input = f"{password}\nspi\n{password}\nDenmark\n"
+        # input = f"{password}\n"
+        subprocess.run(["sudo", "-k"])
+        subprocess.run(["sudo", "--stdin", "--prompt=", "echo", ""], input=f"{password}\n", text=True)
+        # subprocess.run(["sudo", "openconnect", "--passwd-on-stdin", "--protocol=gp", "-c", "vpn/spi.2023-06-05.pfx", "portal.isynet.net",
+        subprocess.run(["sudo", "openconnect", "--protocol=gp", "-c", CERT, "portal.isynet.net",
+                        ], input=input, text=True)
+    except KeyboardInterrupt:
+        print("Abort")
+
+
+
+if __name__ == "__main__":
+    main()

@@ -1,19 +1,21 @@
 #!/bin/bash
 
 date=`date +%H:%M`
-bat=`acpi | grep "Battery 0" | grep -o '[0-9]*%'`
+battery=`acpi | grep "Battery 0" | grep -o '[0-9]*%'`
 # window="$(xdotool getactivewindow getwindowname)"
 desktop="$(bspc query -D -d focused --names)"
+headset="$(upower --dump | grep headset -A 3 | grep percentage | grep -E "[0-9]+%" -o)"
+mouse="$(upower --dump | grep mouse -A 6 | grep percentage | grep -E "[0-9]+%" -o)"
 
 if [[ $(acpi | grep "Charging") ]]
 then
-    bat="$bat+"
+    battery="$battery+"
 elif [[ $(acpi | grep "Discharging") ]]
 then
-    bat="$bat-"
+    battery="$battery-"
 fi
 
-title="$date [$desktop] $bat"
+title="$date [$desktop] (${battery} ${headset} ${mouse})"
 
 menu=(\
         -         "exit"
@@ -44,14 +46,16 @@ menu=(\
         # update    "urxvtc -bg black -e sudo pacman -Syu"
         urxvt-nf  "urxvtc -fade 0"
         shutdown  "urxvtc -bg black -fg red -e sudo shutdown -h now"
-        spotify   "spotify"
+        spotify   "spotify-launcher"
         pause     "spotify-control playpause"
         # youtube   "yplayer"
         # politiken "chromium --purge-memory-button -new-window -incognito politiken.dk"
         netflix   "netflix.sh"
         pong      "urxvtc -bg black -e ping tv2.dk"
         color     "zenity --color-selection"
-        suspend   "suspend-computer"
+        # suspend   "suspend-computer"
+        suspend   "lock-screen"
+        # suspend     "xlock -mode matrix -font fixed -bg black -fg green -erasedelay 0"
         # starleaf  "starleaf-breeze"
         frokost   "frokost"
         # 0%        "amixer set Master 0"

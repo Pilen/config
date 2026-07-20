@@ -9,7 +9,7 @@ import sys
 
 import requests
 
-regex = re.compile("^( *)([a-zA-Z0-9a_.-]+)( *)(==)( *)([0-9a-bA-B._-]+)( *)$")
+regex = re.compile("^( *)([a-zA-Z0-9a_.-]+)( *)(==)( *)([0-9a-bA-B._-]+)( *)(#.*)?$")
 class Error(Exception):
     pass
 
@@ -44,16 +44,18 @@ def check_project(project, version):
 def check(requirements):
     for line in requirements:
         line = line.strip()
+        if not line:
+            continue
         if line.startswith("#"):
             continue
         match = regex.match(line)
         if not match:
             if "==" not in line:
-                print("{} has no specified version".format(line))
+                print("No specified version: {}".format(line))
             elif "*" in line:
                 print("Dont yet know how to handle wildcards")
             elif len(line.strip()) > 0:
-                print("Did not know how to handle {}".format(line))
+                print("Did not know how to handle: {}".format(line))
             continue
 
         groups = list(match.groups())

@@ -37,7 +37,23 @@ alias bc='bc -q'
 alias rf='rm -rf'
 alias u='urxvtc'
 alias visidata='~/.local/bin/vd'
-alias rsync="rsync -hPr"
+
+# -h --human-readable    output numbers in a human-readable format
+# -P
+#    --partial           keep partially transferred files
+#    --progress          show progress during transfer
+# -r --recursive         recurse into directories
+# -a                     archive mode is -rlptgoD (no -A,-X,-U,-N,-H)
+#    --recursive         recurse into directories
+#    --links             copy symlinks as symlinks
+#    --perms             preserve permissions
+#    --times             preserve modification times
+#    --group             preserve group
+#    --owner             preserve owner (super-user only)
+#    -D
+#        --devices       preserve device files (super-user only)
+#        --specials      preserve special files
+alias rsync="rsync -haPr"
 alias rsyncs="rsync -haPr --rsync-path='sudo rsync'"
 
 alias grep='grep --color=auto'

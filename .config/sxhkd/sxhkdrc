@@ -191,7 +191,7 @@ super + semicolon
     ~/config/scripts/spotify-control playpause
 
 super + bracketleft
-~/config/scripts/spotify-control previous
+    ~/config/scripts/spotify-control previous
 
 super + bracketright
     ~/config/scripts/spotify-control next
