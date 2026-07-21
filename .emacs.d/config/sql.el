@@ -91,6 +91,8 @@
 
 
 
+(require 'sql)
+(define-key sql-mode-map (kbd "<tab>") (lambda () (interactive) (insert "\t")))
 (defun my-sql-mode-hook ()
   (setq tab-width 8)
   (setq indent-tabs-mode t)

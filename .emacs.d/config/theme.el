@@ -42,7 +42,9 @@
 ;; (set-frame-font "Monaco :size=12" nil t)
 ;; (set-frame-font "Monaco :antialias=false:size=12" nil t)
 ;; (set-frame-font "Monaco :size=11" nil t)
+;; (set-frame-font "Monaco :size=10" nil t)
 (set-frame-font "Monaco :antialias=false:size=11" nil t)
+(set-frame-font "Monaco :antialias=false:size=10" nil t)
 ;; (setf (alist-get 'font default-frame-alist) "Source Code Pro")
 
 (setq my-antialias-toggle nil)
