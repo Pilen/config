@@ -37,7 +37,7 @@ All packages here will automatically be installed if not present.")
         docker
         dockerfile-mode
         docker-compose-mode
-        dimmer
+        ;; dimmer ;; Not working, would like it to
         diredfl
         dtrt-indent
         edit-server ;; For use with emacs_chrome (Edit with Emacs)

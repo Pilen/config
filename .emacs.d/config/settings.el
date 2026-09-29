@@ -226,8 +226,8 @@
 (add-hook 'occur-mode-hook 'next-error-follow-minor-mode)
 
 
-(dimmer-mode)
-(setq dimmer-percent 0.15)
+;; (dimmer-mode)
+;; (setq dimmer-percent 0.15)
 
 
 (require 'keyfreq)
