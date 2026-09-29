@@ -7,6 +7,8 @@ CERT = "vpn/spi.2026-02-22.pfx"
 def main():
     try:
         password = getpass.getpass("P:")
+        if not password:
+            return
         input = f"{password}\nspi\n{password}\nDenmark\n"
         # input = f"{password}\n"
         subprocess.run(["sudo", "-k"])
