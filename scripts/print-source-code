@@ -40,6 +40,7 @@ COMMAND=$(cat <<-EOF
   (when (derived-mode-p 'outline-mode)
     (outline-show-all))
   (setq ps-paper-type 'a4)
+  (setq ps-top-margin (/ (* 72  2.0) 2.54)) ;; 2cm
   (setq ps-right-margin 20)
   (ps-print-buffer-with-faces $OUTPUT)
   (setq ps-left-margin 20)
