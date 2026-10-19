@@ -145,6 +145,9 @@
 
 
 
+  ;; Claude
+  (command-center-add 'my/send-buffer-to-claude "Send buffer to claude")
+
   ;; Other
   (command-center-add 'compile)
   (command-center-add 'my-dominating-compile-history-remove)
