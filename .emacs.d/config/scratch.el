@@ -7,12 +7,18 @@
   (setq electric-indent-inhibit t)
   (run-hooks 'scratch-mode-hook))
 
+(defvar scratch-buffer-counter 1
+  "Number appended to the name of the next scratch buffer.")
+
 (defun create-scratch-buffer ()
-  "Create a scratch buffer"
+  "Create a scratch buffer named scratch<N> with a monotonically increasing N."
   (interactive)
-  (switch-to-buffer (get-buffer-create (generate-new-buffer-name "scratch")))
-  (scratch-mode)
-  (emacs-lock-mode 'exit))
+  (let ((name (format "scratch<%d>" scratch-buffer-counter)))
+    (setq scratch-buffer-counter (1+ scratch-buffer-counter))
+    (switch-to-buffer (get-buffer-create name))
+    (scratch-mode)
+    (emacs-lock-mode 'exit)))
+
 
 (defun next-scratch-buffer ()
   (interactive)
