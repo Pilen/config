@@ -311,6 +311,9 @@
 (require 'zeal-at-point)
 
 (require 'lorem-ipsum)
+(setq-default lorem-ipsum-paragraph-separator "\n")
+(setq-default lorem-ipsum-sentence-separator " ")
+
 
 (setq tramp-default-method "ssh")
 ;; ;; http://irreal.org/blog/?p=895
@@ -1073,6 +1076,9 @@ the upstream."
 (defun magit-diff-visit-file (file &optional other-window)
   (interactive (list (magit-file-at-point t t) current-prefix-arg))
   (magit-diff-visit-file--internal file nil #'switch-to-buffer-other-window))
+(defun magit-diff-visit-file (&optional other-window)
+  (interactive "P")
+  (magit-diff-visit-file-other-window))
 
 
 (defun magit-log-wash-log (style args)

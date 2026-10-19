@@ -222,6 +222,7 @@
 
 ;;(global-set-key (kbd "<menu>") 'idobuffer)
 ;; (global-set-key (kbd "<menu>") 'ibuffer)
+(global-set-key (kbd "<f10>") 'ibuffer)
 (global-set-key (kbd "<menu>") 'my-magit-status)
 (global-set-key (kbd "S-<menu>") 'menu-bar-mode)
 
